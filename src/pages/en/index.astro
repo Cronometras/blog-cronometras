@@ -30,12 +30,30 @@ const call_to_action = homepage.data.call_to_action;
 
 <Base title={homepage.data.title} description={homepage.data.meta_description}>
   <!-- Banner -->
-  <Banner
-    title={banner.title}
-    content={banner.content}
-    image={banner.image}
-    button={banner.button}
-  />
+  <section class="banner py-14 lg:py-20">
+    <div class="container">
+      <div class="row items-center">
+        <div class="lg:col-6 order-2 lg:order-1">
+          <h1 class="mb-4 text-h1" set:html={banner.title} />
+          <p class="mb-8" set:html={banner.content} />
+          {
+            banner.button?.enable && (
+              <a href={banner.button.link} class="btn btn-primary">
+                {banner.button.label}
+              </a>
+            )
+          }
+        </div>
+        <div class="lg:col-6 order-1 lg:order-2 mb-8 lg:mb-0">
+          <img
+            src={banner.image}
+            alt={banner.title}
+            class="mx-auto rounded-lg"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Secciones -->
   <section class="section">
