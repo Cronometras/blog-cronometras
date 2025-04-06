@@ -5,21 +5,71 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Redirecciones para manejar rutas con lenguaje
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/"
+  to = "/es"
+  status = 302
   force = false
   conditions = {Language = ["es"]}
 
 [[redirects]]
-  from = "/*"
-  to = "/en/index.html"
-  status = 200
+  from = "/"
+  to = "/en"
+  status = 302
   force = false
   conditions = {Language = ["en"]}
-  
+
+[[redirects]]
+  from = "/"
+  to = "/es"
+  status = 302
+
+# Redirecciones para páginas específicas
+[[redirects]]
+  from = "/about"
+  to = "/es/about"
+  status = 302
+  force = false
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/about"
+  to = "/en/about"
+  status = 302
+  force = false
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/privacy"
+  to = "/es/privacy"
+  status = 302
+  force = false
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/privacy"
+  to = "/en/privacy"
+  status = 302
+  force = false
+  conditions = {Language = ["en"]}
+
+[[redirects]]
+  from = "/contact"
+  to = "/es/contacto"
+  status = 302
+  force = false
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/contact"
+  to = "/en/contact"
+  status = 302
+  force = false
+  conditions = {Language = ["en"]}
+
+# Redirección fallback para SPA
 [[redirects]]
   from = "/*"
-  to = "/es/index.html"
-  status = 200 
+  to = "/404"
+  status = 404 

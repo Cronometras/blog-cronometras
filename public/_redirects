@@ -1,0 +1,15 @@
+# Redirecciones de idioma por defecto
+/  /es  302  Language=es
+/  /en  302  Language=en
+/  /es  302
+
+# Redirecciones específicas
+/about      /es/about    302  Language=es
+/about      /en/about    302  Language=en
+/privacy    /es/privacy  302  Language=es
+/privacy    /en/privacy  302  Language=en
+/contact    /es/contacto 302  Language=es
+/contact    /en/contact  302  Language=en
+
+# SPA fallback
+/*  /404  404 
