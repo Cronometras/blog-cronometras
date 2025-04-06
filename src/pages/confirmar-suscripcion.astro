@@ -28,53 +28,49 @@ const isValid = false;
       <div class="row justify-center">
         <div class="md:col-10 lg:col-6">
           <div class="bg-white p-8 rounded-xl shadow-lg text-center">
-            {
-              isValid ? (
-                <>
-                  <div class="inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 mx-auto mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                    </svg>
-                  </div>
-                  <h1 class="text-2xl font-bold mb-4">¡Suscripción Confirmada!</h1>
-                  <p class="text-gray-700 mb-6">
-                    Gracias por confirmar tu suscripción a nuestro newsletter. A partir de ahora, 
-                    recibirás nuestras actualizaciones, consejos y novedades directamente en tu bandeja de entrada.
-                  </p>
-                  <p class="text-gray-600 mb-8">
-                    Hemos confirmado la suscripción para: <strong id="email-placeholder"></strong>
-                  </p>
-                  <div>
-                    <a href="/" class="inline-block py-2 px-6 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors">
-                      Volver a la página principal
-                    </a>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div class="inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600 mx-auto mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                    </svg>
-                  </div>
-                  <h1 class="text-2xl font-bold mb-4">Error de Confirmación</h1>
-                  <p class="text-gray-700 mb-6">
-                    Lo sentimos, pero no pudimos confirmar tu suscripción. El enlace que has 
-                    utilizado podría haber expirado o no ser válido.
-                  </p>
-                  <div class="space-y-4">
-                    <a href="/es/newsletter" class="inline-block py-2 px-6 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors">
-                      Intentar suscribirse de nuevo
-                    </a>
-                    <div>
-                      <a href="/" class="inline-block text-accent hover:underline mt-4">
-                        Volver a la página principal
-                      </a>
-                    </div>
-                  </div>
-                </>
-              )
-            }
+            <div id="success-message" style="display: none;">
+              <div class="inline-flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-600 mx-auto mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h1 class="text-2xl font-bold mb-4">¡Suscripción Confirmada!</h1>
+              <p class="text-gray-700 mb-6">
+                Gracias por confirmar tu suscripción a nuestro newsletter. A partir de ahora, 
+                recibirás nuestras actualizaciones, consejos y novedades directamente en tu bandeja de entrada.
+              </p>
+              <p class="text-gray-600 mb-8">
+                Hemos confirmado la suscripción para: <strong id="email-placeholder"></strong>
+              </p>
+              <div>
+                <a href="/" class="inline-block py-2 px-6 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors">
+                  Volver a la página principal
+                </a>
+              </div>
+            </div>
+            
+            <div id="error-message">
+              <div class="inline-flex h-20 w-20 items-center justify-center rounded-full bg-red-100 text-red-600 mx-auto mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <h1 class="text-2xl font-bold mb-4">Error de Confirmación</h1>
+              <p class="text-gray-700 mb-6">
+                Lo sentimos, pero no pudimos confirmar tu suscripción. El enlace que has 
+                utilizado podría haber expirado o no ser válido.
+              </p>
+              <div class="space-y-4">
+                <a href="/es/newsletter" class="inline-block py-2 px-6 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors">
+                  Intentar suscribirse de nuevo
+                </a>
+                <div>
+                  <a href="/" class="inline-block text-accent hover:underline mt-4">
+                    Volver a la página principal
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -97,8 +93,8 @@ const isValid = false;
       document.querySelector('#email-placeholder').textContent = email;
       
       // Cambiar containers de visibilidad
-      document.querySelectorAll('[data-confirmation="error"]').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('[data-confirmation="success"]').forEach(el => el.style.display = 'block');
+      document.querySelector('#error-message').style.display = 'none';
+      document.querySelector('#success-message').style.display = 'block';
       
       // Enviar evento a Analytics si está disponible
       if (typeof window.gtag === 'function') {
@@ -108,9 +104,9 @@ const isValid = false;
         });
       }
     } else {
-      // Mostrar la pantalla de error
-      document.querySelectorAll('[data-confirmation="success"]').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('[data-confirmation="error"]').forEach(el => el.style.display = 'block');
+      // Mostrar la pantalla de error (ya visible por defecto)
+      document.querySelector('#success-message').style.display = 'none';
+      document.querySelector('#error-message').style.display = 'block';
       
       // Enviar evento a Analytics si está disponible
       if (typeof window.gtag === 'function') {
