@@ -1,0 +1,15 @@
+# Archivos temporales y de depuración
+*.log
+*.debug
+*.temp
+*.tmp
+*.contrast
+*.fix*
+*.bak
+
+# Directorios de caché
+.astro/
+node_modules/
+.cache/
+
+# Archivos específicos que podrían causar problemas 
