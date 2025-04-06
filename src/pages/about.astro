@@ -1,10 +1,25 @@
 ---
 import { getLangFromUrl } from "../i18n/utils";
 
-// Get the user's preferred language
+// Detectar el idioma preferido
 const lang = getLangFromUrl(Astro.url);
 
-// Redirect to language-specific about page
+// Definir la URL de redirección basada en el idioma
 const redirectUrl = lang === 'es' ? '/es/about' : '/en/about';
-return Astro.redirect(redirectUrl);
---- 
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <meta http-equiv="refresh" content={`0;url=${redirectUrl}`}>
+  <script>
+    window.location.href = '${redirectUrl}';
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href={redirectUrl}>{redirectUrl}</a>...</p>
+</body>
+</html> 

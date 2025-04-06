@@ -1,10 +1,26 @@
 import Base from "@/layouts/Base.astro";
 
-// Obtener el token y email de los parámetros de la URL
-const { token, email } = Astro.url.searchParams;
+// En modo estático, necesitamos definir getStaticPaths
+export function getStaticPaths() {
+  return [
+    {
+      params: { },
+      props: { 
+        isRedirect: true 
+      }
+    }
+  ];
+}
 
-// En un entorno real, aquí verificaríamos el token contra nuestra base de datos
-const isValid = token && email;
+const { isRedirect } = Astro.props;
+
+// Para versión estática, suponemos que el usuario será redirigido
+// a la página de confirmación con los parámetros en la URL
+let token = null;
+let email = null;
+
+// Asumimos que no hay parámetros disponibles en este momento de construcción
+const isValid = false;
 
 <Base title={isValid ? "Suscripción Confirmada | Cronometras App" : "Error de Confirmación | Cronometras App"}>
   <section class="section">
@@ -26,7 +42,7 @@ const isValid = token && email;
                     recibirás nuestras actualizaciones, consejos y novedades directamente en tu bandeja de entrada.
                   </p>
                   <p class="text-gray-600 mb-8">
-                    Hemos confirmado la suscripción para: <strong>{email}</strong>
+                    Hemos confirmado la suscripción para: <strong id="email-placeholder"></strong>
                   </p>
                   <div>
                     <a href="/" class="inline-block py-2 px-6 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors">
@@ -66,18 +82,45 @@ const isValid = token && email;
   </section>
 </Base>
 
-<script define:vars={{ isValid, email }}>
-  // Enviar evento a Google Analytics
-  if (typeof window !== 'undefined' && window.gtag) {
+<script>
+  // Esta función procesa los parámetros al cargar la página
+  function processUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    const email = params.get('email');
+    
+    const isValid = token && email;
+    
+    // Actualizar la UI basada en los parámetros
     if (isValid) {
-      window.gtag('event', 'subscription_confirmed', {
-        event_category: 'newsletter',
-        event_label: email
-      });
+      // Mostrar la pantalla de confirmación exitosa
+      document.querySelector('#email-placeholder').textContent = email;
+      
+      // Cambiar containers de visibilidad
+      document.querySelectorAll('[data-confirmation="error"]').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('[data-confirmation="success"]').forEach(el => el.style.display = 'block');
+      
+      // Enviar evento a Analytics si está disponible
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'subscription_confirmed', {
+          event_category: 'newsletter',
+          event_label: email
+        });
+      }
     } else {
-      window.gtag('event', 'subscription_error', {
-        event_category: 'newsletter'
-      });
+      // Mostrar la pantalla de error
+      document.querySelectorAll('[data-confirmation="success"]').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('[data-confirmation="error"]').forEach(el => el.style.display = 'block');
+      
+      // Enviar evento a Analytics si está disponible
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'subscription_error', {
+          event_category: 'newsletter'
+        });
+      }
     }
   }
+  
+  // Ejecutar cuando la página cargue
+  document.addEventListener('DOMContentLoaded', processUrlParams);
 </script> 

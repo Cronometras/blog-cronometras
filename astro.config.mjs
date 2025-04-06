@@ -5,17 +5,13 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig, sharpImageService } from "astro/config";
 import config from "./src/config/config.json";
 import AutoImport from "astro-auto-import";
-import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://astrotemplatesitey.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  output: "server",
-  adapter: node({
-    mode: "standalone"
-  }),
+  output: "static",
   vite: {
     css: {
       preprocessorOptions: {

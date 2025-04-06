@@ -1,69 +1,88 @@
 ---
-import Section from "@/components/core/Section.astro";
+import Base from "@/layouts/Base.astro";
+import { Image } from "astro:assets";
+import Banner from "@/components/Banner.astro";
 import Features from "@/components/Features.astro";
 import Testimonial from "@/components/Testimonial.astro";
-import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/partials/Cta.astro";
 import { getCollection } from "astro:content";
 import HowItWorks from "@/layouts/components/HowItWorks.astro";
 import Colaboramos from "@/layouts/components/Colaboramos.astro";
 import { RequestDemoFormIsland } from "@/components/react/ReactIslands";
 import VideoTutorialModal from "@/components/core/VideoTutorialModal.astro";
+import PageHeader from "@/components/PageHeader.astro";
 
-const homepageEntries = await getCollection("homepage");
-console.log("Available entries:", homepageEntries.map(entry => ({ 
-  id: entry.id, 
-  slug: entry.slug,
-  collection: entry.collection
-})));
+// Para el modo estático, necesitamos definir getStaticPaths
+export const prerender = true;
 
-// Intentar diferentes patrones de ID
-const possibleIds = ["en/index", "en/index.md", "en/index/index.md", "en"];
-let homepage;
-
-for (const id of possibleIds) {
-  homepage = homepageEntries.find(entry => entry.id === id);
-  if (homepage) {
-    console.log("Found homepage with ID:", id);
-    break;
-  }
-}
+// Obtener datos de la página de inicio
+const allHomepage = await getCollection("homepage");
+const homepage = allHomepage.find(p => p.id === "en/index.md");
 
 if (!homepage) {
-  console.error("Could not find homepage with any of these IDs:", possibleIds);
-  console.error("Available entries:", homepageEntries.map(entry => entry.id));
   throw new Error("Homepage content not found for English version");
 }
 
-const { banner, sections = [], features, testimonial, how_it_works, colaboramos } = homepage.data;
+// Extraer datos
+const { banner, sections = [], features = [], testimonial, how_it_works, colaboramos } = homepage.data;
 const call_to_action = homepage.data.call_to_action;
 ---
 
-<Base>
-  <!-- banner -->
-  <section class="lg:mb-10 animate-fade-in">
-    <Section section={banner} />
+<Base title={homepage.data.title} description={homepage.data.meta_description}>
+  <!-- Banner -->
+  <Banner
+    title={banner.title}
+    content={banner.content}
+    image={banner.image}
+    button={banner.button}
+  />
+
+  <!-- Secciones -->
+  <section class="section">
+    <div class="container">
+      {sections.map((section) => (
+        <div class="row items-center">
+          <div class={`md:col-6 ${
+            section.image_position !== "left" ? "order-1 md:order-2" : "order-1 md:order-1"
+          }`}>
+            <div class="aspect-square relative p-4">
+              <Image
+                class="object-contain rounded-md"
+                src={section.image}
+                alt={section.title}
+                width={600}
+                height={600}
+              />
+            </div>
+          </div>
+          <div class={`md:col-6 ${
+            section.image_position !== "left" ? "order-0 md:order-1" : "order-0 md:order-2"
+          }`}>
+            <div class={`text-container ${
+              section.image_position !== "left" ? "text-left md:text-left" : "text-left md:text-right"
+            }`}>
+              <h2 class="mb-4 text-h2">{section.title}</h2>
+              <p class="mb-6">{section.content}</p>
+              {section.button.enable && (
+                <a class="btn btn-primary" href={section.button.link}>
+                  {section.button.label}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   </section>
 
-  <!-- key features -->
+  <!-- Características -->
   <Features features={features} />
 
-  <!-- multi section -->
-  {
-    sections && (
-      <section class="multi-section">
-        {sections.map((section) => (
-          <Section section={section} />
-        ))}
-      </section>
-    )
-  }
-
-  <!-- how it works -->
-  <HowItWorks how_it_works={how_it_works} />
+  <!-- Cómo funciona -->
+  {how_it_works && <HowItWorks data={how_it_works} />}
 
   <!-- Colaboramos -->
-  <Colaboramos colaboramos={colaboramos} />
+  {colaboramos && <Colaboramos colaboramos={colaboramos} />}
 
   <!-- testimonial -->
   <Testimonial testimonial={testimonial} />
@@ -77,80 +96,29 @@ const call_to_action = homepage.data.call_to_action;
   <VideoTutorialModal />
 </Base>
 
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM Content Loaded");
-    
-    // Buscar el botón de "Request a Free Demo"
-    const demoButtons = document.querySelectorAll('a[href="/signup"]');
-    console.log("Found demo buttons:", demoButtons.length);
-    
-    demoButtons.forEach((button, index) => {
-      // Verificar si este es el botón específico que queremos modificar
-      console.log(`Button ${index} text:`, button.innerText);
-      
-      if (button.innerText.includes('Request a Free Demo') || 
-          button.innerText.includes('Get Started') ||
-          button.innerText.includes('Free Demo')) {
-        
-        console.log(`Configuring button ${index}`);
-        
-        // Importante: Primero eliminar el atributo href para evitar la navegación
-        button.removeAttribute('href');
-        button.style.cursor = 'pointer';
-        
-        // Cambiar el comportamiento para abrir el modal
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log("Demo button clicked");
-          
-          // Abrir el modal si existe la función
-          if (typeof window.openRequestDemoModal === 'function') {
-            console.log("Calling openRequestDemoModal");
-            window.openRequestDemoModal();
-          } else {
-            console.error("The function openRequestDemoModal is not defined");
-          }
-        });
+<script>
+  document.querySelectorAll('.request-demo-btn').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (typeof window.openRequestDemoModal === 'function') {
+        window.openRequestDemoModal();
+      } else {
+        console.warn('Demo modal not available');
+        window.location.href = '/en/contact';
       }
     });
-    
-    // Buscar el botón de "Watch Tutorial Video"
-    const videoButtons = document.querySelectorAll('a[href="#video"]');
-    console.log("Found video buttons:", videoButtons.length);
-    
-    videoButtons.forEach((button, index) => {
-      // Verificar si este es el botón específico que queremos modificar
-      console.log(`Video button ${index} text:`, button.innerText);
-      
-      if (button.innerText.includes('Watch Tutorial Video') || 
-          button.innerText.includes('See Demo') || 
-          button.innerText.trim() === 'Watch Tutorial Video') {
-        
-        console.log(`Configuring video button ${index}`);
-        
-        // Importante: Primero eliminar el atributo href para evitar la navegación
-        button.removeAttribute('href');
-        button.style.cursor = 'pointer';
-        
-        // Cambiar el comportamiento para abrir el modal
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log("Video tutorial button clicked");
-          
-          // Abrir el modal si existe la función
-          if (typeof window.openVideoTutorialModal === 'function') {
-            console.log("Calling openVideoTutorialModal");
-            window.openVideoTutorialModal();
-          } else {
-            console.error("The function openVideoTutorialModal is not defined");
-          }
-        });
+  });
+
+  document.querySelectorAll('[data-video-id]').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const videoId = e.currentTarget.getAttribute('data-video-id');
+      if (typeof window.openVideoTutorial === 'function' && videoId) {
+        window.openVideoTutorial(videoId);
+      } else {
+        console.warn('Video modal not available');
+        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
       }
     });
-    
-    // Verificar si las funciones globales están disponibles
-    console.log("openRequestDemoModal disponible:", typeof window.openRequestDemoModal === 'function');
-    console.log("openVideoTutorialModal disponible:", typeof window.openVideoTutorialModal === 'function');
   });
 </script>
