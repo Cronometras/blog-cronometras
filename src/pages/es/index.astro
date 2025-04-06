@@ -16,7 +16,7 @@ const allHomepage = await getCollection("homepage");
 const homepage = allHomepage.find(p => p.id === "es/index.md");
 
 if (!homepage) {
-  throw new Error("No se encontró contenido para la página de inicio en español");
+  throw new Error("Homepage content not found for Spanish version");
 }
 
 // Extraer datos
@@ -32,7 +32,7 @@ const { banner, sections = [], features = [], how_it_works, colaboramos } = home
           <h1 class="mb-4 text-h1" set:html={banner.title} />
           <p class="mb-8" set:html={banner.content} />
           {
-            banner.button?.enable && (
+            banner.button && banner.button.enable && (
               <a href={banner.button.link} class="btn btn-primary">
                 {banner.button.label}
               </a>

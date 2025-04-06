@@ -37,7 +37,7 @@ const call_to_action = homepage.data.call_to_action;
           <h1 class="mb-4 text-h1" set:html={banner.title} />
           <p class="mb-8" set:html={banner.content} />
           {
-            banner.button?.enable && (
+            banner.button && banner.button.enable && (
               <a href={banner.button.link} class="btn btn-primary">
                 {banner.button.label}
               </a>
