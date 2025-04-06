@@ -1,0 +1,25 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/*"
+  to = "/en/index.html"
+  status = 200
+  force = false
+  conditions = {Language = ["en"]}
+  
+[[redirects]]
+  from = "/*"
+  to = "/es/index.html"
+  status = 200 
