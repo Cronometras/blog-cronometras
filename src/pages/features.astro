@@ -1,19 +1,10 @@
 ---
-import PageHeader from "@/components/core/PageHeader.astro";
-import Base from "@/layouts/Base.astro";
-import { getEntry } from "astro:content";
+import { defaultLang } from "../i18n/ui";
 
-const features = await getEntry("features", "index");
-const { Content } = await features.render();
+const redirectTo = `/${defaultLang}/features`;
 ---
 
-<Base>
-  <section class="py-16">
-    <div class="container">
-      <PageHeader page_data={features.data} />
-    </div>
-    <div class="container">
-       <Content />
-    </div>
-  </section>
-</Base>
+<meta http-equiv="refresh" content={`0;url=${redirectTo}`} />
+<script>
+  window.location.replace(window.location.origin + "${redirectTo}");
+</script>

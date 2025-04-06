@@ -1,0 +1,92 @@
+---
+import Base from "@/layouts/Base.astro";
+import NewsletterForm from "@/components/react/NewsletterForm";
+---
+
+<Base title="Suscríbete a nuestro Newsletter | Cronometras App">
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center mb-8">
+        <div class="md:col-10 lg:col-8 text-center">
+          <h1 class="text-3xl font-bold mb-4">Suscríbete a nuestro Newsletter</h1>
+          <p class="text-lg text-gray-700">
+            Mantente actualizado con las últimas novedades, consejos de productividad y 
+            actualizaciones de Cronometras App.
+          </p>
+        </div>
+      </div>
+      
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-7">
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h2 class="text-2xl font-semibold mb-6">¿Qué obtendrás al suscribirte?</h2>
+            
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-medium text-lg">Tips de productividad</h3>
+                  <p class="text-gray-600">Consejos prácticos para mejorar la eficiencia en tu empresa.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-medium text-lg">Novedades y actualizaciones</h3>
+                  <p class="text-gray-600">Sé el primero en conocer las nuevas funcionalidades y mejoras.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-medium text-lg">Guías y tutoriales</h3>
+                  <p class="text-gray-600">Instrucciones paso a paso para sacar el máximo partido a Cronometras App.</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 h-8 w-8 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 2a1 1 0 011 1v1h1a1 1 0 010 2H6v1a1 1 0 01-2 0V6H3a1 1 0 010-2h1V3a1 1 0 011-1zm0 10a1 1 0 011 1v1h1a1 1 0 110 2H6v1a1 1 0 11-2 0v-1H3a1 1 0 110-2h1v-1a1 1 0 011-1zM12 2a1 1 0 01.967.744L14.146 7.2 17.5 9.134a1 1 0 010 1.732l-3.354 1.935-1.18 4.455a1 1 0 01-1.933 0L9.854 12.8 6.5 10.866a1 1 0 010-1.732l3.354-1.935 1.18-4.455A1 1 0 0112 2z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-medium text-lg">Ofertas exclusivas</h3>
+                  <p class="text-gray-600">Acceso a descuentos y promociones especiales para suscriptores.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="p-6 bg-gray-50 rounded-lg">
+              <h3 class="text-xl font-semibold mb-4">¡Únete a nuestra comunidad!</h3>
+              <NewsletterForm showNameField={true} client:load />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row justify-center mt-12">
+        <div class="md:col-10 lg:col-7 text-center">
+          <p class="text-sm text-gray-500">
+            Te enviamos un máximo de dos correos por mes. Respetamos tu privacidad y 
+            puedes darte de baja en cualquier momento con un solo clic.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base> 

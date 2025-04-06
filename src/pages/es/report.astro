@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/core/PageHeader.astro';
+
+const pages = await getCollection('pages');
+const report = pages.find((page) => page.id === 'es/report.mdx');
+const { Content } = await report.render();
+---
+
+<Base title={report.data.document_title} description={report.data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <PageHeader page_data={report.data} />
+    </div>
+    <div class="container">
+      <Content />
+    </div>
+  </section>
+</Base>

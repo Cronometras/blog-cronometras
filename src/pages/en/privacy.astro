@@ -1,0 +1,144 @@
+---
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+
+// Define page data directly
+const page_data = {
+  title: 'CRONOMETRAS Privacy Policy',
+  description: 'This Privacy Policy describes how CRONOMETRAS collects, uses, and protects your information when you use our website.',
+};
+
+// Debug logging
+console.log("🔍 DEBUG: Using direct content approach for privacy page");
+---
+
+<Base>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="container py-10">
+        <div class="row justify-center">
+          <div class="md:col-10 lg:col-8">
+            <!-- Adding custom styles to ensure all text elements have proper contrast in dark mode -->
+            <div class="prose prose-lg mx-auto text-text">
+              <style>
+                /* Custom styles to ensure proper contrast in dark mode */
+                .dark .prose h2,
+                .dark .prose h3,
+                .dark .prose h4,
+                .dark .prose h5,
+                .dark .prose h6 {
+                  color: var(--text);
+                }
+                
+                .dark .prose strong {
+                  color: var(--text);
+                }
+                
+                .dark .prose ul li,
+                .dark .prose ol li {
+                  color: var(--text);
+                }
+              </style>
+              
+              <!-- Removed duplicate h1 heading -->
+
+              <p>This Privacy Policy describes how CRONOMETRAS (email: info@cronometras.com) collects, uses, and protects your information when you use our website (https://cronometras.com). By accessing or using the Service, you agree to the practices described in this policy.</p>
+
+              <p><strong class="text-text">Last Updated:</strong> 2/12/2024<br />
+              <strong class="text-text">Effective Date:</strong> 2/12/2024</p>
+
+              <p>We reserve the right to modify this Privacy Policy at any time. We will post the revised version on our website, and the new policy will take effect 30 days after its publication. We recommend reviewing this page periodically to stay informed of any changes. Continued use of the Service after that period constitutes your acceptance of the revised Privacy Policy.</p>
+
+              <h2 class="text-text">Information We Collect</h2>
+
+              <p>We collect and process the following personal information:</p>
+
+              <ul>
+                <li>Email Address: We collect your email address when you create an account or contact us.</li>
+                <li>Name: We collect your name when you create an account or contact us.</li>
+              </ul>
+
+              <h2 class="text-text">How We Collect Your Information</h2>
+
+              <p>We collect information from the following sources:</p>
+
+              <ul>
+                <li>When you complete the registration form or provide personal information in other ways.</li>
+              </ul>
+
+              <h2 class="text-text">How We Use Your Information</h2>
+
+              <p>We use the collected information for the following purposes:</p>
+
+              <ul>
+                <li>Product information.</li>
+                <li>User account creation.</li>
+                <li>(Optional) Testimonial posting (with your consent).</li>
+                <li>Website administration.</li>
+                <li>User account management.</li>
+                <li>Commercial communications about new products or services. You can request to stop receiving these emails by writing to us at info@cronometras.com. However, you will still be able to view updates on the website.</li>
+              </ul>
+
+              <p>If we wish to use your information for any other purpose, we will request your explicit consent.</p>
+
+              <h2 class="text-text">How We Share Your Information</h2>
+
+              <p>We are committed to protecting your privacy and will not share your personal information with third parties without your consent, except in the following circumstances:</p>
+
+              <ul>
+                <li>Analytics: We may share anonymized data with analytics services to improve our website.</li>
+                <li>To comply with applicable law, regulation, court order, or other legal process.</li>
+                <li>To enforce our agreements with you, including this Privacy Policy.</li>
+                <li>To respond to claims that your use of the Service violates the rights of third parties.</li>
+                <li>If CRONOMETRAS merges with or is acquired by another company, your information may be transferred as part of that transaction.</li>
+              </ul>
+
+              <h2 class="text-text">Data Retention</h2>
+
+              <p>We retain your personal information for as long as necessary to provide you with our services and comply with our legal obligations.</p>
+
+              <p>If you request the deletion of your account, we will delete or anonymize your personal information within 7 days, unless we are required to retain it for legal or regulatory reasons.</p>
+
+              <h2 class="text-text">Your Rights</h2>
+
+              <p>You have the following rights regarding your personal information:</p>
+
+              <ul>
+                <li>Access, correct, or delete your personal data.</li>
+                <li>Receive a copy of your personal data.</li>
+                <li>Restrict or object to the active processing of your data.</li>
+                <li>Withdraw any consent you have provided for us to process your data.</li>
+              </ul>
+
+              <p>To exercise these rights, you can write to us at info@cronometras.com. We will respond to your request in accordance with applicable law.</p>
+
+              <h2 class="text-text">Billing</h2>
+
+              <p>CRONOMETRAS does not use payment forms on the website, but we may invoice our customers outside of the platform. We do not collect or store users' financial information through our website.</p>
+
+              <h2 class="text-text">Exclusion of Minors</h2>
+
+              <p>The service is not intended for minors. We do not knowingly collect information from minors. If we detect that we have collected data from a minor, we will take steps to remove that information.</p>
+
+              <h2 class="text-text">Cookies and Similar Technologies</h2>
+
+              <p>Our website uses cookies and similar technologies. For more information, see our Cookie Policy.</p>
+
+              <h2 class="text-text">Security</h2>
+
+              <p>We implement reasonable security measures to protect your information against unauthorized access, alteration, disclosure, or destruction. However, please note that no data transmission over the Internet or electronic storage system is completely secure.</p>
+
+              <h2 class="text-text">Contact</h2>
+
+              <p>If you have any questions or concerns about this Privacy Policy or the processing of your information, you can contact us at info@cronometras.com.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+```

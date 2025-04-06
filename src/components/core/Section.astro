@@ -3,6 +3,7 @@ import type { PageSection } from "@/content/page.types";
 import { markdownify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
 import Button from "../LinkButton.astro";
+import ImageModal from "./ImageModal.astro";
 
 export type Section = PageSection;
 export type Props = {
@@ -13,7 +14,7 @@ const { section } = Astro.props;
 if (!section) {
   throw new Error("Section data is required");
 }
-const { title, buttons, image, content, image_position } = section;
+const { title, buttons, image, content, image_position, imageClasses } = section;
 const image_position_classes = (() => {
   if (!image && !image_position) {
     return ["", "col-12", ""];
@@ -49,24 +50,28 @@ const image_position_classes = (() => {
       {
         image && image_position === "top" && (
           <div class={`${image_position_classes[2]}`}>
-            <Image
-              class="w-1/2 mr-auto ml-auto object-contain"
-              alt="section-image"
-              src={image}
-              width={500}
-              height={333}
-            />
+            <div class="cursor-pointer" onclick={`openModal('${image}')`}>
+              <Image
+                class={imageClasses || "w-1/2 mr-auto ml-auto object-contain"}
+                alt="section-image"
+                src={image}
+                width={500}
+                height={333}
+              />
+            </div>
           </div>
         )
       }
       <div class=`${image_position_classes[1]}`>
-        <h1 class={`${section.title_size}`} set:html={markdownify(title)} />
+        {title && (
+          <h2 class={`${section.title_size}`} set:html={markdownify(title)} />
+        )}
 
         <p class="mt-6" set:html={markdownify(content)} />
 
         {
           buttons && buttons.length > 0 && (
-            <div class="flex flex-wrap mt-8">
+            <div class="flex flex-wrap mt-8 space-y-4 md:space-y-0">
               {buttons.map((button) => (
                 <Button {...button} />
               ))}
@@ -77,16 +82,19 @@ const image_position_classes = (() => {
         {
           image && image_position != "top" && (
             <div class={`${image_position_classes[2]}`}>
-              <Image
-                class="w-full object-contain"
-                alt="section-image"
-                src={image}
-                width={500}
-                height={333}
-              />
+              <div class="cursor-pointer" onclick={`openModal('${image}')`}>
+                <Image
+                  class={imageClasses || "w-full object-contain"}
+                  alt="section-image"
+                  src={image}
+                  width={500}
+                  height={333}
+                />
+              </div>
             </div>
           )
         }
     </div>
   </div>
+  <ImageModal />
 </section>

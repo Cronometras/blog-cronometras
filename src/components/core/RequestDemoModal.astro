@@ -1,0 +1,209 @@
+<div id="requestDemoModal" class="modal hidden fixed inset-0 z-50 w-full h-full bg-black/80 flex items-center justify-center">
+  <div class="modal-content relative bg-white dark:bg-gray-800 max-w-3xl w-full mx-4 rounded-xl shadow-2xl overflow-hidden">
+    <div class="p-6 md:p-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white" id="modal-title">
+        Solicita una Demo Gratuita
+      </h2>
+      <p class="text-gray-600 dark:text-gray-300 text-center mb-8" id="modal-description">
+        Completa el formulario y te contactaremos para mostrarte cómo CRONOMETRAS puede optimizar la productividad en tu empresa.
+      </p>
+      
+      <div id="form-container">
+        <!-- El formulario se cargará aquí mediante React -->
+        <p class="text-center text-gray-500" id="loading-text">Cargando formulario...</p>
+      </div>
+    </div>
+    
+    <button onclick="closeRequestDemoModal()" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-accent text-2xl font-bold transition-colors z-10">&times;</button>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  console.log("Inicializando modal de solicitud de demo");
+  
+  // Variable para controlar el estado
+  let modalIsActive = false;
+  
+  // Función para detectar el idioma
+  function detectLanguage() {
+    return window.location.pathname.startsWith('/en') ? 'en' : 'es';
+  }
+  
+  // Función para establecer los textos según el idioma
+  function setModalTexts() {
+    const lang = detectLanguage();
+    const titleEl = document.getElementById('modal-title');
+    const descriptionEl = document.getElementById('modal-description');
+    const loadingEl = document.getElementById('loading-text');
+    
+    if (titleEl && descriptionEl && loadingEl) {
+      if (lang === 'en') {
+        titleEl.textContent = 'Request a Free Demo';
+        descriptionEl.textContent = 'Complete the form and we will contact you to show you how CRONOMETRAS can optimize productivity in your company.';
+        loadingEl.textContent = 'Loading form...';
+      } else {
+        titleEl.textContent = 'Solicita una Demo Gratuita';
+        descriptionEl.textContent = 'Completa el formulario y te contactaremos para mostrarte cómo CRONOMETRAS puede optimizar la productividad en tu empresa.';
+        loadingEl.textContent = 'Cargando formulario...';
+      }
+    }
+  }
+  
+  // Exponer las funciones al ámbito global
+  window.openRequestDemoModal = function() {
+    console.log("Abriendo modal de solicitud de demo");
+    
+    if (modalIsActive) {
+      console.log("El modal ya está activo, no necesita ser reinicializado");
+      return;
+    }
+    
+    const modal = document.getElementById('requestDemoModal');
+    
+    if (!modal) {
+      console.error("No se encontró el modal #requestDemoModal");
+      return;
+    }
+    
+    // Establecer los textos según el idioma
+    setModalTexts();
+    
+    // Marcar como activo
+    modalIsActive = true;
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Trigger entrance animation
+    setTimeout(() => {
+      modal.classList.add('modal-visible');
+    }, 10);
+
+    // Cargar el componente React en el contenedor cada vez que se abra el modal
+    loadFormComponent();
+  };
+
+  window.closeRequestDemoModal = function() {
+    console.log("Cerrando modal de solicitud de demo");
+    const modal = document.getElementById('requestDemoModal');
+    
+    if (!modal) {
+      console.error("No se encontró el modal al intentar cerrarlo");
+      return;
+    }
+    
+    modal.classList.remove('modal-visible');
+    
+    // Wait for animation to complete before hiding
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      
+      // Limpiar el contenedor al cerrar para asegurar una carga limpia la próxima vez
+      resetFormContainer();
+      
+      // Marcar como inactivo
+      modalIsActive = false;
+    }, 300);
+  };
+  
+  // Función para cargar el componente React
+  function loadFormComponent() {
+    console.log("Cargando componente de formulario");
+    const formContainer = document.getElementById('form-container');
+    
+    if (!formContainer) {
+      console.error("No se encontró el contenedor #form-container");
+      return;
+    }
+    
+    // Aseguramos que el contenedor tenga el mensaje de carga
+    const lang = detectLanguage();
+    const loadingText = lang === 'en' ? 'Loading form...' : 'Cargando formulario...';
+    formContainer.innerHTML = `<p class="text-center text-gray-500">${loadingText}</p>`;
+    
+    // Usamos setTimeout para asegurar que el DOM se ha actualizado
+    setTimeout(() => {
+      // Usamos una función auxiliar para cargar el componente React
+      if (typeof window.loadRequestDemoForm === 'function') {
+        console.log("Llamando a loadRequestDemoForm");
+        window.loadRequestDemoForm();
+      } else {
+        const errorText = lang === 'en' ? 'Error loading form' : 'Error al cargar el formulario';
+        console.error("La función loadRequestDemoForm no está definida");
+        formContainer.innerHTML = `<p class="text-center text-red-500">${errorText}</p>`;
+      }
+    }, 100); // Aumentamos el retraso para dar más tiempo al DOM
+  }
+  
+  // Función para resetear el contenedor del formulario
+  function resetFormContainer() {
+    console.log("Reseteando contenedor del formulario");
+    const formContainer = document.getElementById('form-container');
+    if (formContainer) {
+      // No limpiamos directamente para evitar problemas con React
+      // React se encargará de desmontar correctamente sus componentes
+      const lang = detectLanguage();
+      const loadingText = lang === 'en' ? 'Loading form...' : 'Cargando formulario...';
+      formContainer.innerHTML = `<p class="text-center text-gray-500">${loadingText}</p>`;
+    }
+  }
+
+  // Event listener para cerrar el modal haciendo clic fuera del contenido
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded en RequestDemoModal");
+    const modal = document.getElementById('requestDemoModal');
+    if (modal) {
+      console.log("Modal encontrado, agregando event listeners");
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          window.closeRequestDemoModal();
+        }
+      });
+    } else {
+      console.error("No se encontró el modal para agregar event listeners");
+    }
+
+    // Event listener para cerrar con la tecla Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modalIsActive) {
+        window.closeRequestDemoModal();
+      }
+    });
+    
+    // Verificar que las funciones estén definidas
+    console.log("openRequestDemoModal definido:", typeof window.openRequestDemoModal === 'function');
+    console.log("closeRequestDemoModal definido:", typeof window.closeRequestDemoModal === 'function');
+  });
+})();
+</script>
+
+<style>
+  .modal {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
+  
+  .modal-visible {
+    opacity: 1;
+  }
+
+  .modal-content {
+    transform: translateY(20px);
+    transition: transform 0.3s ease-out;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-visible .modal-content {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 640px) {
+    .modal-content {
+      width: 95%;
+      max-width: none;
+    }
+  }
+</style> 

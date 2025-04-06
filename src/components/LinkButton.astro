@@ -20,7 +20,7 @@ const hasChildren = Object.keys(Astro.slots).length > 0;
 <a
   {...Astro.props}
   target={target}
-  class={`btn${color ? "-" + color : ""}${mode === "outline" ? "-outline" : ""} me-4 mb-4 ${addClasses ?? ""} `}
+  class={`btn${color ? "-" + color : ""}${mode === "outline" ? "-outline" : ""} me-4 mb-4 ${addClasses ?? ""} ${Astro.props.class ?? ""} mt-2 md:mt-0`}
   aria-disabled={disabled}
 >
   {

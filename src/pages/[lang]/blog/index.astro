@@ -1,0 +1,112 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import { slugify } from '@/utils/slugify';
+
+export const getStaticPaths = async () => {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+};
+
+// Habilitar prerender para generar páginas estáticas durante la compilación
+export const prerender = true;
+
+const { lang } = Astro.params;
+console.log(`Renderizando página índice de blog para idioma: ${lang}`);
+
+// Get all blog posts, filter by language and draft status
+const allPosts = await getCollection('blog');
+console.log(`Total posts encontrados: ${allPosts.length}`);
+
+const currentLangPosts = allPosts.filter((post) => {
+  // Los posts están en carpetas organizadas por idioma (es/ o en/)
+  const postLang = post.slug.split('/')[0];
+  console.log(`Evaluando post: ${post.id}, idioma: ${postLang}, actual: ${lang}`);
+  
+  return postLang === lang && !post.data.draft;
+});
+
+// Ordenar por fecha de publicación, más reciente primero
+const posts = currentLangPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+console.log(`Posts filtrados por idioma ${lang}: ${posts.length}`);
+
+// Traducir el título y descripción según el idioma
+const title = lang === 'es' ? 'Blog de CRONOMETRAS' : 'CRONOMETRAS Blog';
+const description = lang === 'es' 
+  ? 'Artículos sobre productividad, estudios de tiempos y gestión industrial' 
+  : 'Articles about productivity, time studies, and industrial management';
+
+// Traducir el texto del botón "Leer más"
+const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
+---
+
+<Base title={title} description={description}>
+  <section class="py-20">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="col-12 text-center">
+          <h1 class="mb-4 text-4xl lg:text-5xl font-bold">{title}</h1>
+          <p class="mb-16 text-lg">{description}</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          posts.map((post) => {
+            // Extraer el slug correcto, omitiendo la parte del idioma
+            const postSlug = post.slug.split('/').slice(1).join('/');
+            console.log(`Generando card para post: ${post.id}, slug: ${postSlug}`);
+            
+            return (
+              <div class="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-transform duration-300 hover:-translate-y-2">
+                <a href={`/${lang}/blog/${postSlug}`} class="block">
+                  <img 
+                    src={post.data.heroImage || '/images/cronometras App.png'} 
+                    alt={post.data.title} 
+                    class="w-full h-48 object-cover"
+                  />
+                  <div class="p-6">
+                    <p class="text-sm text-accent mb-2 font-medium">
+                      {post.data.category}
+                    </p>
+                    <h2 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                      {post.data.title}
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                      {post.data.description}
+                    </p>
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm text-gray-500 dark:text-gray-400">
+                        {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                      <span class="text-accent font-medium">{readMoreText} &rarr;</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      {posts.length === 0 && (
+        <div class="text-center py-20">
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            {lang === 'es' ? 'No hay artículos disponibles en este momento.' : 'No articles available at this time.'}
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .section {
+    min-height: calc(100vh - 200px);
+  }
+</style>

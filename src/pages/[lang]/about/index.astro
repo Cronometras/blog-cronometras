@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+
+export const getStaticPaths = async () => {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
+  ];
+};
+
+// Habilitar prerender para generar páginas estáticas durante la compilación
+export const prerender = true;
+
+const { lang } = Astro.params;
+console.log(`Renderizando página about para idioma: ${lang}`);
+
+// Obtener el contenido de about para el idioma actual
+const aboutContent = await getCollection('about');
+console.log("Todos los documentos about:", aboutContent.map(entry => entry.id));
+
+// Buscar el documento por ID en lugar de por slug
+const aboutEntry = aboutContent.find(entry => entry.id === `${lang}/index.md`);
+
+if (!aboutEntry) {
+  console.error(`No se encontró contenido de about para el idioma: ${lang}, ID buscado: ${lang}/index.md`);
+  console.error("IDs disponibles:", aboutContent.map(entry => entry.id));
+}
+
+// Título y descripción por defecto en caso de que no se encuentre el contenido
+const title = aboutEntry?.data?.title || (lang === 'es' ? 'Sobre Nosotros' : 'About Us');
+const description = aboutEntry?.data?.description || '';
+const pageTitle = aboutEntry?.data?.document_title || title;
+const buttons = aboutEntry?.data?.buttons || [];
+
+// Obtener el contenido
+let Content;
+if (aboutEntry) {
+  try {
+    const rendered = await aboutEntry.render();
+    Content = rendered.Content;
+  } catch (error) {
+    console.error(`Error al renderizar el contenido de about para ${lang}:`, error);
+    Content = null;
+  }
+}
+---
+
+<Base title={pageTitle} description={description}>
+  <section class="section pt-14">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8 text-center">
+          <h1 class="h2 mb-6">{title}</h1>
+          {description && <p class="mb-8">{description}</p>}
+          {buttons.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-4">
+              {buttons.map((button) => (
+                <a
+                  href={button.href}
+                  target={button.target || "_self"}
+                  class={`btn ${button.color === "primary" ? "btn-primary" : "btn-outline-primary"}`}
+                >
+                  {button.icon && <i class={`ti ${button.icon} me-2`}></i>}
+                  {button.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="container">
+      {Content ? (
+        <div class="content">
+          <Content />
+        </div>
+      ) : (
+        <div class="row justify-center">
+            <p class="text-xl text-red-500">
+              {lang === 'es' 
+                ? 'Lo sentimos, no se pudo cargar el contenido.' 
+                : 'Sorry, the content could not be loaded.'}
+            </p>
+        </div>
+      )}
+    </div>
+  </section>
+</Base> 

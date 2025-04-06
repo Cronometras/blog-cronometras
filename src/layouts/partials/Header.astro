@@ -1,26 +1,26 @@
 ---
 import Logo from "@/components/core/Logo.astro";
 import ThemeToggle from "@/components/core/ThemeToggle.astro";
+import LanguagePicker from "@/components/core/LanguagePicker.astro";
 import menu from "@/config/menu.json";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils";
 
-export interface ChildNavigationLink {
-  name: string;
-  url: string;
-}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 
-export interface NavigationLink {
-  name: string;
-  url: string;
-  hasChildren?: boolean;
-  children?: ChildNavigationLink[];
-}
-
-const { main }: { main: NavigationLink[] } = menu;
+const { main } = menu;
 const { pathname } = Astro.url;
+
+// Function to check if a URL is active, considering language prefix
+const isActiveUrl = (menuUrl: string) => {
+  const translatedUrl = translatePath(menuUrl);
+  return pathname === translatedUrl || pathname.startsWith(translatedUrl + '/');
+};
 ---
 
-<header class="header">
-  <nav class="navbar container">
+<header class="header bg-white dark:bg-gray-900 shadow-sm">
+  <nav class="navbar container flex flex-col space-y-4 sm:space-y-0 md:space-y-2 lg:space-y-0 sm:flex-row sm:items-center sm:justify-between" data-astro-cid-rq644orq="" data-astro-source-file="C:/Users/micao/OneDrive/APPS/bolt/CRONOMETRAS/V42/blog/alfadev-astro-starter/src/layouts/partials/Header.astro" data-astro-source-loc="23:33">
     <!-- logo -->
     <div class="order-0">
       <Logo />
@@ -30,7 +30,7 @@ const { pathname } = Astro.url;
     <label
       id="show-button"
       for="nav-toggle"
-      class="order-2 flex cursor-pointer items-center lg:order-1 lg:hidden mr-6"
+      class="order-2 ml-auto mr-4 flex cursor-pointer items-center lg:order-1 lg:hidden"
     >
       <svg class="h-6 fill-current" viewBox="0 0 20 20">
         <title>Menu Open</title>
@@ -40,105 +40,140 @@ const { pathname } = Astro.url;
     <label
       id="hide-button"
       for="nav-toggle"
-      class="order-2 hidden cursor-pointer items-center lg:order-1 mr-6"
+      class="order-2 ml-auto mr-4 hidden cursor-pointer items-center lg:hidden"
     >
       <svg class="h-6 fill-current" viewBox="0 0 20 20">
         <title>Menu Close</title>
         <polygon
-          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
-          transform="rotate(45 10 10)"></polygon>
+          points="18.198,16.198 12,10 18.198,3.802 16.198,1.802 10,8 3.802,1.802 1.802,3.802 8,10 1.802,16.198 3.802,18.198 10,12 16.198,18.198"
+        ></polygon>
       </svg>
     </label>
-    <!-- /navbar toggler -->
 
     <ul
       id="nav-menu"
-      class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2 "
+      class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
     >
       {
         main.map((menu) => (
-          <>
+          <li class="nav-item">
             {menu.hasChildren ? (
-              <li class="nav-item nav-dropdown group relative cursor-pointer dropdown-button">
-                <span
-                  class={`nav-link inline-flex items-center ${
-                    menu.children?.map(({ url }) => url).includes(pathname) ||
-                    menu.children
-                      ?.map(({ url }) => `${url}/`)
-                      .includes(pathname)
-                      ? "active"
-                      : ""
-                  }`}
+              <div class="relative">
+                <button 
+                  class="inline-flex items-center nav-link dropdown-button"
                 >
-                  {menu.name}
-                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  {t(menu.name)}
+                  <svg class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
                   </svg>
-                </span>
-                <ul
-                  id="dropdown"
-                  class="nav-dropdown-list"
-                >
+                </button>
+                <ul class="nav-dropdown hidden">
                   {menu.children?.map((child) => (
-                    <li class="nav-dropdown-item">
+                    <li>
                       <a
-                        href={child.url}
-                        class={`nav-dropdown-link block ${
-                          (pathname === `${child.url}/` ||
-                            pathname === child.url) &&
-                          "text-secondary"
-                        }`}
+                        href={translatePath(child.url)}
+                        class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary block px-4 py-2 text-sm"
                       >
-                        {child.name}
+                        {t(child.name)}
                       </a>
                     </li>
                   ))}
                 </ul>
-              </li>
+              </div>
             ) : (
-              <li class="nav-item">
-                <a
-                  href={menu.url}
-                  class={`nav-link inline-block lg:block ${
-                    (pathname === `${menu.url}/` || pathname === menu.url) &&
-                    "active"
-                  }`}
-                >
-                  {menu.name}
-                </a>
-              </li>
+              <a
+                href={translatePath(menu.url)}
+                class={`nav-link block font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary ${
+                  isActiveUrl(menu.url) ? "active" : ""
+                }`}
+              >
+                {t(menu.name)}
+              </a>
             )}
-          </>
+          </li>
         ))
       }
     </ul>
-    <div class="order-1 ml-auto absolute right-3 top-3 items-center md:order-2 md:ml-0 lg:relative lg:right-0 lg:flex lg:top-0">
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
       <ThemeToggle />
+      <LanguagePicker />
     </div>
-  </header>
-</nav>
+  </nav>
+</header>
 
-<script is:inline>
-  function initDropdownListeners() {
-    document.querySelectorAll(".dropdown-button").forEach((button) => {
-      const dropdown = button.closest(".nav-dropdown");
-      function toggleDropdown(e) {
-        e.stopPropagation(); // Evitar eventos innecesarios
-        dropdown.classList.toggle("open");
+<style>
+.header {
+  @apply sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800;
+}
+.navbar {
+  @apply relative flex flex-wrap items-center justify-between px-6 py-4;
+}
+.navbar-nav {
+  @apply mt-4 lg:mt-0;
+}
+.nav-item {
+  @apply lg:flex;
+}
+.nav-link {
+  @apply px-3 py-2 transition-colors duration-200;
+}
+.nav-dropdown {
+  @apply absolute left-0 z-10 mt-2 min-w-[180px] rounded border bg-white py-2 shadow-lg dark:border-gray-800 dark:bg-gray-900;
+}
+.active {
+  @apply text-primary dark:text-primary;
+}
+</style>
 
-        // Cierra otros dropdowns abiertos
-        document.querySelectorAll(".nav-dropdown").forEach((otherDropdown) => {
-          if (otherDropdown !== dropdown) {
-            otherDropdown.classList.remove("open");
-          }
-        });
-      }
-      button.removeEventListener("click", toggleDropdown);
-      button.addEventListener("click", toggleDropdown);
-    });
+<script>
+// Mobile menu toggle
+const navToggle = document.getElementById("nav-toggle");
+const navMenu = document.getElementById("nav-menu");
+const showButton = document.getElementById("show-button");
+const hideButton = document.getElementById("hide-button");
+
+navToggle?.addEventListener("change", function () {
+  if (this.checked) {
+    navMenu?.classList.remove("hidden");
+    showButton?.classList.add("hidden");
+    hideButton?.classList.remove("hidden");
+  } else {
+    navMenu?.classList.add("hidden");
+    showButton?.classList.remove("hidden");
+    hideButton?.classList.add("hidden");
   }
-  // Asegura que los eventos se reasignen después de cada navegación
-  document.addEventListener("astro:page-load", () => {
-    initDropdownListeners();
+});
+
+// Dropdown menu
+document.addEventListener('astro:page-load', () => {
+  const buttons = document.querySelectorAll('.dropdown-button');
+  let activeDropdown = null;
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown-button') && activeDropdown) {
+      activeDropdown.nextElementSibling.classList.add('hidden');
+      activeDropdown = null;
+    }
   });
+
+  // Toggle dropdown on button click
+  buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const dropdown = button.nextElementSibling;
+
+      if (activeDropdown && activeDropdown !== button) {
+        activeDropdown.nextElementSibling.classList.add('hidden');
+      }
+
+      dropdown.classList.toggle('hidden');
+      activeDropdown = dropdown.classList.contains('hidden') ? null : button;
+    });
+  });
+});
 </script>

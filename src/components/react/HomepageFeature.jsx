@@ -2,11 +2,14 @@ import { humanize } from "@/lib/utils/textConverter";
 import * as Icon from "react-feather";
 import { markdownify } from "@/lib/utils/textConverter";
 
-const HomapageFeature = ({ feature_list }) => {
+const HomepageFeature = ({ feature_list }) => {
   return (
-    <div className="key-feature-grid mt-10 grid grid-cols-2 gap-7 md:grid-cols-3 xl:grid-cols-4 ">
+    <div className="key-feature-grid mt-10 grid grid-cols-2 gap-7 md:grid-cols-2 xl:grid-cols-3 ">
       {feature_list.map((item, i) => {
-        const FeatherIcon = Icon[humanize(item.icon)];
+        // Asegurarse de que el nombre del icono sea válido y exista
+        const iconName = humanize(item.icon?.replace("_", ""));
+        const IconComponent = iconName && Icon[iconName];
+
         return (
           <div
             key={i}
@@ -15,7 +18,7 @@ const HomapageFeature = ({ feature_list }) => {
             <div>
               <div className="flex flex-row items-center">
                 <span className="icon">
-                <FeatherIcon />
+                  {IconComponent ? <IconComponent size={20} /> : null}
                 </span>
                 <h3 className="ml-2 break-all text-sm md:text-lg">{item.title}</h3>
               </div>
@@ -28,4 +31,4 @@ const HomapageFeature = ({ feature_list }) => {
   );
 };
 
-export default HomapageFeature;
+export default HomepageFeature;

@@ -1,0 +1,53 @@
+---
+import { getLangFromUrl } from "@/i18n/utils";
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import { getEntry } from "astro:content";
+
+// Get the user's preferred language from the URL parameter
+const lang = Astro.params.lang;
+
+// Try to get the privacy content for the current language
+let privacy;
+let page_data;
+let Content;
+
+try {
+  privacy = await getEntry("privacy", `${lang}/index`);
+  if (privacy) {
+    page_data = {
+      ...privacy.data,
+      content: privacy.body,
+    };
+    const rendered = await privacy.render();
+    Content = rendered.Content;
+  } else {
+    console.error(`Privacy entry not found for language: ${lang}`);
+    // Redirect to English as fallback
+    return Astro.redirect('/en/privacy');
+  }
+} catch (error) {
+  console.error(`Error loading privacy content: ${error.message}`);
+  // Redirect to English as fallback
+  return Astro.redirect('/en/privacy');
+}
+---
+
+<Base
+  entry_keys={["privacy", `${lang}/index`]}
+>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <div class="prose prose-lg mx-auto mt-8">
+            {Content ? <Content /> : <p class="mb-6">{page_data.description}</p>}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

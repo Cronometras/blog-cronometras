@@ -1,0 +1,201 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+import TextToSpeech from '@/components/blog/TextToSpeech.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  console.log(`Total de posts encontrados: ${posts.length}`);
+  
+  const paths = [];
+  
+  for (const post of posts) {
+    // Dividir el slug en partes para obtener el idioma y el resto del slug
+    const slugParts = post.slug.split('/');
+    const lang = slugParts[0];
+    const slug = slugParts.slice(1).join('/');
+    
+    console.log(`Generando ruta estática para: lang=${lang}, slug=${slug}, id=${post.id}`);
+    
+    paths.push({
+      params: { lang, slug },
+      props: { post },
+    });
+  }
+  
+  console.log(`Total de rutas generadas: ${paths.length}`);
+  return paths;
+}
+
+const { post } = Astro.props;
+const { lang, slug } = Astro.params;
+
+console.log(`Renderizando post: lang=${lang}, slug=${slug}, id=${post?.id || 'undefined'}`);
+
+// Verificar que post y post.render estén definidos antes de utilizarlos
+let Content;
+let errorMessage = '';
+
+try {
+  if (!post) {
+    throw new Error(`Post no encontrado o indefinido. Parámetros: lang=${lang}, slug=${slug}`);
+  }
+  
+  if (typeof post.render !== 'function') {
+    throw new Error(`La función render no está disponible en el post. Post id: ${post.id}, slug: ${post.slug}`);
+  }
+  
+  const rendered = await post.render();
+  Content = rendered.Content;
+  console.log(`Post renderizado exitosamente: ${post.id}`);
+} catch (error) {
+  console.error('Error al renderizar el post:', error);
+  errorMessage = 'No se pudo cargar el contenido del post.';
+}
+
+// Extract text content for text-to-speech
+const rawContent = post?.body || '';
+
+// Prerender para generar páginas estáticas durante la compilación
+export const prerender = true;
+---
+
+<Base title={post?.data?.title || 'Blog Post'} description={post?.data?.description || ''}>
+  <article class="mx-auto">
+    <!-- Hero Image with Overlay -->
+    <div class="relative h-[60vh] min-h-[400px] w-full mb-12">
+      <img
+        src={post?.data?.heroImage || '/images/cronometras App.png'}
+        alt={post?.data?.title || 'Blog Post'}
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
+      <div class="absolute inset-0 flex flex-col justify-end p-8 container max-w-4xl mx-auto">
+        <div class="text-white mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{post?.data?.title || 'Blog Post'}</h1>
+          <div class="flex items-center gap-4 text-gray-200 mb-4">
+            {post?.data?.pubDate && (
+              <time datetime={post.data.pubDate.toISOString()} class="font-medium">
+                {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+            )}
+            {post?.data?.author && (
+              <>
+                <span>•</span>
+                <span class="font-medium">{post.data.author}</span>
+              </>
+            )}
+          </div>
+          {post?.data?.description && (
+            <p class="text-xl text-gray-100 max-w-2xl leading-relaxed">{post.data.description}</p>
+          )}
+          <div class="mt-8">
+            <TextToSpeech text={rawContent} lang={lang || 'en'} />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <section class="section py-16 bg-white dark:bg-gray-900">
+      <div class="container max-w-4xl">
+        <div class="prose prose-lg dark:prose-invert mx-auto">
+          {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
+        </div>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<style is:global>
+  .prose {
+    @apply max-w-none;
+    --tw-prose-body: #374151;
+    --tw-prose-headings: #111827;
+    --tw-prose-lead: #4b5563;
+    --tw-prose-links: rgb(var(--primary));
+    --tw-prose-bold: #111827;
+    --tw-prose-counters: #6b7280;
+    --tw-prose-bullets: #d1d5db;
+    --tw-prose-hr: #e5e7eb;
+    --tw-prose-quotes: #111827;
+    --tw-prose-quote-borders: #e5e7eb;
+    --tw-prose-captions: #6b7280;
+    --tw-prose-code: #111827;
+    --tw-prose-pre-code: #e5e7eb;
+    --tw-prose-pre-bg: #1f2937;
+    --tw-prose-th-borders: #d1d5db;
+    --tw-prose-td-borders: #e5e7eb;
+
+    /* Ensure content h1 becomes h2 */
+    :where(h1):not(:where([class~="not-prose"] *)) {
+      @apply text-3xl font-bold;
+    }
+    :where(h2):not(:where([class~="not-prose"] *)) {
+      @apply text-2xl;
+    }
+    :where(h3):not(:where([class~="not-prose"] *)) {
+      @apply text-xl;
+    }
+    :where(h4):not(:where([class~="not-prose"] *)) {
+      @apply text-lg;
+    }
+    :where(h5):not(:where([class~="not-prose"] *)) {
+      @apply text-base;
+    }
+    :where(h6):not(:where([class~="not-prose"] *)) {
+      @apply text-sm;
+    }
+  }
+
+  .dark .prose {
+    --tw-prose-body: #d1d5db;
+    --tw-prose-headings: #f3f4f6;
+    --tw-prose-lead: #9ca3af;
+    --tw-prose-links: rgb(var(--primary));
+    --tw-prose-bold: #f3f4f6;
+    --tw-prose-counters: #9ca3af;
+    --tw-prose-bullets: #4b5563;
+    --tw-prose-hr: #374151;
+    --tw-prose-quotes: #f3f4f6;
+    --tw-prose-quote-borders: #374151;
+    --tw-prose-captions: #9ca3af;
+    --tw-prose-code: #f3f4f6;
+    --tw-prose-pre-code: #e5e7eb;
+    --tw-prose-pre-bg: #111827;
+    --tw-prose-th-borders: #4b5563;
+    --tw-prose-td-borders: #374151;
+  }
+
+  .prose :where(p):not(:where([class~="not-prose"] *)) {
+    @apply mb-6 leading-relaxed;
+  }
+
+  .prose :where(a):not(:where([class~="not-prose"] *)) {
+    @apply text-primary hover:text-opacity-80 transition-colors duration-200;
+  }
+
+  .prose :where(ul, ol):not(:where([class~="not-prose"] *)) {
+    @apply my-6 ml-6;
+  }
+
+  .prose :where(li):not(:where([class~="not-prose"] *)) {
+    @apply mb-2;
+  }
+
+  .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+    @apply border-l-4 border-primary pl-4 italic my-6;
+  }
+
+  .prose :where(code):not(:where([class~="not-prose"] *)) {
+    @apply bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5;
+  }
+
+  .prose :where(pre):not(:where([class~="not-prose"] *)) {
+    @apply bg-gray-900 dark:bg-gray-800 rounded-lg p-4 my-6 overflow-x-auto;
+  }
+</style>

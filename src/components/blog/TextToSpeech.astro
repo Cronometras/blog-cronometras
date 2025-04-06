@@ -1,0 +1,159 @@
+---
+interface Props {
+  text: string;
+  lang: string;
+}
+
+const { text, lang } = Astro.props;
+---
+
+<div class="text-to-speech flex gap-2">
+  <button
+    id="tts-button"
+    class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
+    data-text={text}
+    data-lang={lang}
+  >
+    <div class="relative w-5 h-5">
+      <!-- Play icon -->
+      <svg id="tts-play-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+      </svg>
+      <!-- Pause icon -->
+      <svg id="tts-pause-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute hidden" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <span id="tts-text">
+      {lang === 'es' ? 'Leer en voz alta' : 'Read aloud'}
+    </span>
+  </button>
+  <button
+    id="tts-stop"
+    class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 disabled:bg-red-600/50 disabled:cursor-not-allowed"
+    disabled
+  >
+    <!-- Stop icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 8h4v4H8V8z" />
+    </svg>
+    <span>{lang === 'es' ? 'Detener' : 'Stop'}</span>
+  </button>
+</div>
+
+<script>
+enum PlayState {
+  Stopped = 'stopped',
+  Playing = 'playing',
+  Paused = 'paused'
+}
+
+let playState: PlayState = PlayState.Stopped;
+let utterance: SpeechSynthesisUtterance | null = null;
+let currentPosition = 0;
+let currentText = '';
+
+function updateButtonState() {
+  const playButton = document.getElementById('tts-button');
+  const playButtonText = document.getElementById('tts-text');
+  const stopButton = document.getElementById('tts-stop') as HTMLButtonElement;
+  const playIcon = document.getElementById('tts-play-icon');
+  const pauseIcon = document.getElementById('tts-pause-icon');
+  const lang = playButton?.getAttribute('data-lang') === 'es';
+  
+  if (playButton && playButtonText && stopButton && playIcon && pauseIcon) {
+    playButton.classList.remove('bg-primary', 'bg-yellow-600', 'hover:bg-primary/90', 'hover:bg-yellow-700');
+    
+    switch (playState) {
+      case PlayState.Playing:
+        playButton.classList.add('bg-yellow-600', 'hover:bg-yellow-700');
+        playButtonText.textContent = lang ? 'Pausar' : 'Pause';
+        stopButton.disabled = false;
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        break;
+      case PlayState.Paused:
+        playButton.classList.add('bg-primary', 'hover:bg-primary/90');
+        playButtonText.textContent = lang ? 'Continuar' : 'Resume';
+        stopButton.disabled = false;
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        break;
+      case PlayState.Stopped:
+        playButton.classList.add('bg-primary', 'hover:bg-primary/90');
+        playButtonText.textContent = lang ? 'Leer en voz alta' : 'Read aloud';
+        stopButton.disabled = true;
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        break;
+    }
+  }
+}
+
+function stopSpeech() {
+  if (utterance) {
+    window.speechSynthesis.cancel();
+    playState = PlayState.Stopped;
+    currentPosition = 0;
+    updateButtonState();
+  }
+}
+
+function pauseSpeech() {
+  window.speechSynthesis.pause();
+  playState = PlayState.Paused;
+  updateButtonState();
+}
+
+function resumeSpeech() {
+  window.speechSynthesis.resume();
+  playState = PlayState.Playing;
+  updateButtonState();
+}
+
+function startSpeech(text: string, lang: string) {
+  currentText = text;
+  utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = lang === 'es' ? 'es-ES' : 'en-US';
+  
+  utterance.onend = () => {
+    playState = PlayState.Stopped;
+    currentPosition = 0;
+    updateButtonState();
+  };
+  
+  utterance.onerror = () => {
+    stopSpeech();
+  };
+  
+  window.speechSynthesis.speak(utterance);
+  playState = PlayState.Playing;
+  updateButtonState();
+}
+
+document.getElementById('tts-button')?.addEventListener('click', function() {
+  const text = this.getAttribute('data-text');
+  const lang = this.getAttribute('data-lang');
+  
+  if (!text || !lang) return;
+  
+  switch (playState) {
+    case PlayState.Stopped:
+      startSpeech(text, lang);
+      break;
+    case PlayState.Playing:
+      pauseSpeech();
+      break;
+    case PlayState.Paused:
+      resumeSpeech();
+      break;
+  }
+});
+
+document.getElementById('tts-stop')?.addEventListener('click', stopSpeech);
+
+// Clean up when navigating away
+document.addEventListener('astro:before-swap', () => {
+  stopSpeech();
+});
+</script>

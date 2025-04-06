@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Get the language from the post slug (e.g., "es/post-name" -> "es")
+const lang = post.slug.split('/')[0];
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <section class="section">
+    <div class="container">
+      <article class="mx-auto max-w-3xl">
+        <header class="mb-10 text-center">
+          <h1 class="h2 mb-4 text-primary">{post.data.title}</h1>
+          <div class="text-text mb-4">
+            <time datetime={post.data.pubDate.toISOString()}>
+              {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+            {post.data.author && <span class="text-text"> · {post.data.author}</span>}
+          </div>
+          {post.data.description && (
+            <p class="text-text">{post.data.description}</p>
+          )}
+        </header>
+        <div class="prose mx-auto max-w-3xl">
+          <Content />
+        </div>
+      </article>
+    </div>
+  </section>
+</Base>

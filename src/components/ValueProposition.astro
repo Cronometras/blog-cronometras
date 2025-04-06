@@ -1,0 +1,13 @@
+---
+import FeatherIcon from '@/components/react/FeatherIcon.tsx';
+
+const { icon, title, description } = Astro.props;
+---
+
+<div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
+  <div class="text-primary text-4xl mb-4">
+    <FeatherIcon name={icon} size={48} className="text-accent" />
+  </div>
+  <h3 class="h4 mb-4 dark:text-white">{title}</h3>
+  <p class="dark:text-gray-200">{description}</p>
+</div>

@@ -13,7 +13,7 @@ if (theme_config.fonts.font_family.secondary) {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-  safelist: [{ pattern: /^col-/ }, ...theme_config.colors.flatMap((color) => [{ pattern: new RegExp(`bg-${color}`) }]), {pattern: /^btn-/}],
+  safelist: [{ pattern: /^col-/ }, ...theme_config.colors.flatMap((color) => [{ pattern: new RegExp(`bg-${color}`) }])],
   darkMode: "selector",
   theme: {
     container: {

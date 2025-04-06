@@ -18,7 +18,11 @@ const {
         <div class="row">
           <div class="lg:col-7">
             <h2 class="h1 text-text" set:html={markdownify(title)}/>
-            {button && <LinkButton {...button} addClasses="mt-8" />}
+            {button && (
+              <div class="mt-8">
+                <LinkButton {...button} addClasses="mt-4 hover:bg-accent-dark dark:text-white dark:border-accent dark:hover:bg-accent" />
+              </div>
+            )}
           </div>
           <div class="mt-8 lg:col-5 lg:mt-0">
             <p class="text-text" set:html={markdownify(description)}/>
@@ -28,3 +32,22 @@ const {
     </div>
   </div>
 </section>
+
+<style>
+  /* Custom styles for CTA in dark mode */
+  :global(.dark) .bg-surface {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Ensure button stands out in dark mode */
+  :global(.dark) a.btn-accent {
+    color: white;
+    background-color: var(--accent);
+    border-color: var(--accent);
+  }
+  
+  :global(.dark) a.btn-accent:hover {
+    background-color: var(--accent-dark, #0056b3);
+    box-shadow: 0px 5px 15px rgba(var(--accent-rgb), 0.5);
+  }
+</style>

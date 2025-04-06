@@ -1,0 +1,43 @@
+---
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const featuresEntries = await getCollection("features");
+console.log("Available features entries:", featuresEntries.map(entry => ({ 
+  id: entry.id, 
+  slug: entry.slug,
+  collection: entry.collection
+})));
+
+// Intentar diferentes patrones de ID
+const possibleIds = ["es/index", "es/index.mdx", "es"];
+let features;
+
+for (const id of possibleIds) {
+  features = featuresEntries.find(entry => entry.id === id);
+  if (features) {
+    console.log("Found features with ID:", id);
+    break;
+  }
+}
+
+if (!features) {
+  console.error("Could not find features with any of these IDs:", possibleIds);
+  throw new Error("Features content not found");
+}
+
+const { Content } = await features.render();
+---
+
+<Base>
+  <section class="py-16">
+    <div class="container">
+      <PageHeader page_data={features.data} />
+    </div>
+    <div class="container">
+       <Content />
+    </div>
+  </section>
+  
+</Base>

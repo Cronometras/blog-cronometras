@@ -1,0 +1,116 @@
+---
+import ImageModal from "@/components/core/ImageModal.astro";
+
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+  image: string;
+}
+
+interface Props {
+  how_it_works?: {
+    title: string;
+    description: string;
+    image?: string;
+    image_alt?: string;
+    steps: Step[];
+    footer_description: string;
+  };
+}
+
+const { how_it_works } = Astro.props;
+
+// Si how_it_works no está definido, no renderizar nada o mostrar un mensaje alternativo
+if (!how_it_works) {
+  console.error("Componente HowItWorks: La propiedad how_it_works no está definida");
+}
+---
+
+{how_it_works && (
+  <section class="section">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="mb-12 text-center md:col-10 lg:col-8">
+          <h2 class="mb-4" set:html={how_it_works.title} />
+          <p class="mb-8" set:html={how_it_works.description} />
+          {
+            how_it_works.image && (
+              <div class="cursor-pointer" onclick={`openModal('${how_it_works.image}')`}>
+                <img
+                  src={how_it_works.image}
+                  alt={how_it_works.image_alt || ""}
+                  class="mx-auto rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  width="1024"
+                  height="576"
+                />
+              </div>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="mt-12 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-2">
+        {
+          how_it_works.steps && how_it_works.steps.map((step) => (
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0">
+                <div class="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white">
+                  {step.number}
+                </div>
+              </div>
+              <div class="flex-grow">
+                <div class="flex items-center space-x-4">
+                  <h3 class="text-xl font-semibold" set:html={step.title} />
+                  {step.image && (
+                    <div class="cursor-pointer" onclick={`openModal('${step.image}')`}>
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        class="h-24 w-auto rounded hover:opacity-90 transition-opacity duration-300"
+                      />
+                    </div>
+                  )}
+                </div>
+                <p class="mt-2 text-gray-600" set:html={step.description} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-12 text-center">
+        <p class="text-gray-600" set:html={how_it_works.footer_description} />
+      </div>
+    </div>
+  </section>
+)}
+
+<ImageModal />
+
+<script is:inline>
+  // Añadir un efecto de pulsación sutil a las imágenes cuando el cursor pasa sobre ellas
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('section.section img');
+    images.forEach(img => {
+      img.addEventListener('mouseenter', () => {
+        img.classList.add('pulse-effect');
+      });
+      img.addEventListener('mouseleave', () => {
+        img.classList.remove('pulse-effect');
+      });
+    });
+  });
+</script>
+
+<style>
+  .pulse-effect {
+    animation: pulseEffect 0.5s ease-in-out;
+  }
+
+  @keyframes pulseEffect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+</style>

@@ -1,0 +1,134 @@
+---
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import { getEntry } from "astro:content";
+
+let privacy;
+let page_data;
+let Content;
+let debugInfo = {};
+
+console.log("🔍 DEBUG: Starting privacy page rendering process");
+
+try {
+  console.log("🔍 DEBUG: Attempting to fetch privacy entry for es/index");
+  privacy = await getEntry("privacy", "es/index");
+  
+  if (privacy) {
+    console.log("✅ DEBUG: Successfully retrieved privacy entry", {
+      id: privacy.id,
+      collection: privacy.collection,
+      dataKeys: Object.keys(privacy.data),
+      bodyLength: privacy.body.length
+    });
+    
+    page_data = {
+      ...privacy.data,
+      content: privacy.body,
+    };
+    
+    console.log("🔍 DEBUG: Attempting to render privacy content");
+    try {
+      const rendered = await privacy.render();
+      Content = rendered.Content;
+      console.log("✅ DEBUG: Successfully rendered privacy content", {
+        hasContent: !!Content,
+        contentType: typeof Content
+      });
+      
+      // Store debug info for rendering in the page
+      debugInfo = {
+        success: true,
+        id: privacy.id,
+        collection: privacy.collection,
+        dataKeys: Object.keys(privacy.data),
+        bodyLength: privacy.body.length,
+        hasContent: !!Content,
+        contentType: typeof Content
+      };
+    } catch (renderError) {
+      console.error("❌ DEBUG: Error rendering privacy content", renderError);
+      debugInfo = {
+        success: false,
+        error: "Render error",
+        message: renderError.message,
+        stack: renderError.stack
+      };
+    }
+  } else {
+    console.error("❌ DEBUG: Privacy entry not found for language: es");
+    debugInfo = {
+      success: false,
+      error: "Entry not found"
+    };
+    
+    // Provide fallback data
+    page_data = {
+      title: 'Política de Privacidad',
+      description: 'Información sobre nuestra política de privacidad.',
+      content: ''
+    };
+  }
+} catch (error) {
+  console.error("❌ DEBUG: Error loading privacy content", {
+    message: error.message,
+    stack: error.stack
+  });
+  
+  debugInfo = {
+    success: false,
+    error: "Load error",
+    message: error.message,
+    stack: error.stack
+  };
+  
+  // Provide fallback data
+  page_data = {
+    title: 'Política de Privacidad',
+    description: 'Información sobre nuestra política de privacidad.',
+    content: ''
+  };
+}
+
+// Log the final state before rendering
+console.log("🔍 DEBUG: Final state before rendering", {
+  hasPageData: !!page_data,
+  hasContent: !!Content,
+  debugInfo
+});
+---
+
+<Base
+  entry_keys={["privacy", "es/index"]}
+>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="container py-10">
+        <div class="row justify-center">
+          <div class="md:col-10 lg:col-8">
+            <div class="prose prose-lg mx-auto">
+              {Content ? (
+                <>
+                  <Content />
+                </>
+              ) : (
+                <>
+                  <p class="mb-6">{page_data.description}</p>
+                  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-6">
+                    <h3 class="font-bold">Debug Information:</h3>
+                    <pre class="text-xs overflow-auto mt-2 p-2 bg-gray-100 rounded">
+                      {JSON.stringify(debugInfo, null, 2)}
+                    </pre>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/core/PageHeader.astro';
+
+const pages = await getCollection('pages');
+const frequency = pages.find((page) => page.id === 'en/frequency.mdx');
+const { Content } = await frequency.render();
+---
+
+<Base title={frequency.data.document_title} description={frequency.data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <PageHeader page_data={frequency.data} />
+    </div>
+    <div class="container">
+      <Content />
+    </div>
+  </section>
+</Base>

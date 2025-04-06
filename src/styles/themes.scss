@@ -8,9 +8,9 @@
 
 // @see @/config/theme.json
 $default: (
-    "primary": #1164a3,
-    "secondary": #199AFC,
-    "accent": #ff5a02,
+    "primary": #fbbf24,
+    "secondary": #22c55e,
+    "accent": #6b1fab,
     "background": #f9f9f9,
     "background-contrast": #141414,
     "surface": #ffffff,
@@ -20,17 +20,16 @@ $default: (
     "text-contrast": #ffffff,
     "text-secondary": #494949,
     "text-disabled": #999999,
-    // All the colors defined in the default theme but not defined in the dark theme will be used in the dark theme 'as is'
     "danger": #d93131,
-    "success": #21b621,
-    "warning": #f1cc14,
-    "info": #2760dc
+    "success": #22c55e,
+    "warning": #fbbf24,
+    "info": #6b1fab
 );
 
 $dark: (
-    "primary": #1164a3,
-    "secondary": #199AFC,
-    "accent": #ff5a02,
+    "primary": #6b1fab,
+    "secondary": #fbbf24,
+    "accent": #22c55e,
     "background": #020617,
     "background-contrast": #f1f1f1,
     "surface": #232323,
@@ -40,9 +39,6 @@ $dark: (
     "text-contrast": #1f1f1f,
     "text-secondary": #d1d1d1,
     "text-disabled": #999999
-    // Override the default theme colors with the dark theme colors
-    // "danger": #ea3434,
-    // ...
 );
 
 // This can be used to set the default theme, or changed to a different theme with a custom class name
@@ -51,11 +47,21 @@ $dark: (
     @each $key, $value in $default {
         --#{$key}: #{to_rgba($value, 1)};
     }
-
 }
 
 .dark {
     @each $key, $value in $dark {
         --#{$key}: #{to_rgba($value, 1)};
+    }
+}
+
+// Hover effect for section images
+.section-image-hover {
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.5);
+        z-index: 10;
     }
 }

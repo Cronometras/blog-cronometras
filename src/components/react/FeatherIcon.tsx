@@ -11,15 +11,7 @@ import * as Icon from 'react-feather'
  * @returns
  */
 export default function FeatherIcon(props: IconProps) {
-
-    // return <p>{props.name}</p>ç
-    const iconName = props.name?.startsWith("_") ? props.name.substring(1,props.name.length) : humanize(props.name as string)
-
-    const IconI = Icon[iconName]
-
-    // console.log('Icon', props.name, iconName, IconI)
-
-    return (
-        <IconI {...props} />
-    )
+  const iconName = props.name?.startsWith("_") ? props.name.substring(1,props.name.length) : humanize(props.name as string);
+  const IconComponent = Icon[iconName];
+  return IconComponent ? <IconComponent {...props} /> : null;
 }

@@ -1,0 +1,107 @@
+---
+document_title: "Funcionalidades de la Página de Método en CRONOMETRAS"
+meta_description: "Explora las funcionalidades clave de la página de Método en CRONOMETRAS: tipos de elementos, repetición, formulario, reconocimiento de voz, biblioteca y gestión de elementos."
+meta_keywords: "CRONOMETRAS, página de método, tipos de elementos, tipos de repetición, formulario, reconocimiento de voz, biblioteca de elementos, gestión de elementos, validaciones"
+
+title: "Página de Método en CRONOMETRAS: Funcionalidades Detalladas"
+---
+
+<Section
+  section={{
+    title: "Tipos de Elementos: Define la Naturaleza de Cada Actividad",
+    content:
+      "CRONOMETRAS te permite clasificar los elementos según su relación con la maquinaria:",
+    image: "/images/tipos de elementos en un estudio de tiempos de trabajo.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Tipos de elementos en CRONOMETRAS"
+  }}
+/>
+
+*   **Máquina Parada (machine-stopped):**  Elemento que se realiza con la máquina detenida.
+*   **Máquina en Marcha (machine-running):**  Elemento que se realiza mientras la máquina está en funcionamiento.
+*   **Tiempo de Máquina (machine-time):**  Elemento que representa el tiempo de actividad de la máquina.
+
+<Section
+  section={{
+    title: "Tipos de Repetición: Adapta el Cronometraje a la Frecuencia de la Tarea",
+    content:
+      "Clasifica los elementos según su patrón de repetición:",
+    image: "/images/tipos de repetición en un estudio de métodos y tiempos.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Tipos de elementos en CRONOMETRAS"
+  }}
+/>
+
+*   **Repetitivo (repetitive):**  Elemento que se repite de forma regular en cada ciclo.
+*   **Frecuencial (frequency):**  Elemento que ocurre con una cierta frecuencia, no necesariamente en cada ciclo.
+*   **Máquina (machine-type):**  Elemento directamente relacionado con el funcionamiento de una máquina.
+
+<Section
+  section={{
+    title: "Formulario de Elemento: Captura la Información Esencial",
+    content:
+      "El formulario para crear o editar un elemento incluye los siguientes campos:",
+  }}
+/>
+
+*   **Campos Obligatorios:**
+    *   Descripción del elemento.
+    *   Tipo de elemento.
+    *   Tipo de repetición.
+*   **Campos para Elementos Frecuenciales:**
+    *   Número de repeticiones.
+    *   Número de ciclos.
+
+<Section
+  section={{
+    title: "Reconocimiento de Voz: Dictado Manos Libres",
+    content:
+      "Agiliza la descripción de elementos con el reconocimiento de voz:",
+    image: "/images/reconocimiento de voz.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Reconocimiento de voz en CRONOMETRAS"
+  }}
+/>
+
+*   Disponible para dictar la descripción del elemento.
+*   Soporta español (es-ES) e inglés (en-US).
+*   Detección automática de silencio (2 segundos).
+*   Mensajes de error para:
+    *   No se detectó voz.
+    *   No se detectó micrófono.
+    *   Acceso al micrófono denegado.
+
+<Section
+  section={{
+    title: "Biblioteca de Elementos: Reutilización y Eficiencia",
+    content:
+      "Aprovecha la biblioteca de elementos para acelerar la creación de nuevos estudios:",
+  }}
+/>
+
+*   Opción para agregar elementos a la biblioteca.
+*   Almacenamiento para reutilización en futuros estudios.
+
+<Section
+  section={{
+    title: "Gestión de Elementos: Control Total sobre tus Actividades",
+    content:
+      "CRONOMETRAS te permite gestionar tus elementos de forma eficiente:",
+  }}
+/>
+
+*   Crear nuevos elementos.
+*   Editar elementos existentes.
+*   Eliminar elementos.
+
+
+<Section
+  section={{
+    title: "Validaciones Inteligentes: Asegura la Consistencia de los Datos",
+    content:
+      "El sistema de validación de CRONOMETRAS te ayuda a evitar errores:",
+  }}
+/>
+
+*   Ajuste automático del tipo de repetición a 'machine-type' cuando se selecciona tipo 'machine-time'.
+*   Validación de campos requeridos.

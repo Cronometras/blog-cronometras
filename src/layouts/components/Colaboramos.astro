@@ -1,0 +1,295 @@
+---
+import ImageModal from "@/components/core/ImageModal.astro";
+
+interface Colaborador {
+  title: string;
+  description: string;
+  image: string;
+  imageClasses: string;
+}
+
+interface Props {
+  colaboramos?: {
+    title: string;
+    description: string;
+    image?: string;
+    imageClasses?: string;
+    colaboradores?: Colaborador[];
+  }[] | {
+    title: string;
+    description: string;
+    image?: string;
+    imageClasses?: string;
+    colaboradores?: Colaborador[];
+  };
+}
+
+const { colaboramos } = Astro.props;
+
+// Verificar si colaboramos está definido
+if (!colaboramos) {
+  console.error("Componente Colaboramos: La propiedad colaboramos no está definida");
+}
+
+// Convertir a array si es un objeto único
+const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos ? [colaboramos] : [];
+---
+
+{colaboramosArray.length > 0 && (
+  <section class="section">
+    <div class="container justify-center">
+      {
+        colaboramosArray.map((section) => (
+          <div class="mb-16">
+            <div class="row justify-center">
+              <div class="mb-12 text-center md:col-10 lg:col-8">
+                <h2 class="mb-4" set:html={section.title} />
+                <p class="mb-8" set:html={section.description} />
+                {section.image && (
+                  <div class="cursor-pointer" onclick={`openModal('${section.image}')`}>
+                    <img
+                      src={section.image}
+                      alt={section.title}
+                      class={`${section.imageClasses || ""} section-image-hover`}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {section.colaboradores && section.colaboradores.length > 0 && (
+              <div class="logo-carousel-container">
+                <div class="logo-carousel">
+                  {section.colaboradores.map((colaborador) => (
+                    <div class="logo-item text-center">
+                      <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
+                        <img
+                          src={colaborador.image}
+                          alt={colaborador.title}
+                          class={`${colaborador.imageClasses || ""} colaborador-image`}
+                        />
+                      </div>
+                      <h3 class="mb-2 text-xl font-semibold" set:html={colaborador.title} />
+                      <p class="text-gray-600" set:html={colaborador.description} />
+                    </div>
+                  ))}
+                  {/* Duplicate logos for infinite scroll effect when needed */}
+                  {section.colaboradores.length > 3 && 
+                    section.colaboradores.map((colaborador) => (
+                      <div class="logo-item text-center duplicate">
+                        <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
+                          <img
+                            src={colaborador.image}
+                            alt={colaborador.title}
+                            class={`${colaborador.imageClasses || ""} colaborador-image`}
+                          />
+                        </div>
+                        <h3 class="mb-2 text-xl font-semibold" set:html={colaborador.title} />
+                        <p class="text-gray-600" set:html={colaborador.description} />
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+)}
+
+<ImageModal />
+
+<style>
+  .section-image-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .section-image-hover:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .image-container {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .image-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .colaborador-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+  }
+  
+  .image-container:hover .colaborador-image {
+    filter: brightness(1.05);
+  }
+
+  .logo-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .logo-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding: 1rem 0;
+    width: fit-content;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .logo-item {
+    flex: 0 0 auto;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Apply animation only when there are enough items to scroll */
+  @media (min-width: 768px) {
+    .logo-carousel:hover {
+      animation-play-state: paused;
+    }
+
+    .logo-carousel {
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-250px * var(--logo-count, 3)));
+      }
+    }
+  }
+
+  /* Hide duplicate logos on small screens */
+  @media (max-width: 767px) {
+    .logo-carousel {
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: none;
+    }
+    
+    .logo-item.duplicate {
+      display: none;
+    }
+    
+    .logo-item {
+      width: 100%;
+      max-width: 250px;
+    }
+  }
+
+  /* Additional classes for JavaScript control */
+  .logo-carousel.no-animation {
+    animation: none !important;
+  }
+  
+  .logo-carousel.centered, 
+  .logo-carousel-container.centered {
+    justify-content: center;
+    margin: 0 auto;
+  }
+</style>
+
+<script>
+  // Set the logo count for the animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.logo-carousel');
+    
+    carousels.forEach(carousel => {
+      const items = carousel.querySelectorAll('.logo-item:not(.duplicate)');
+      carousel.setAttribute('data-logo-count', items.length.toString());
+      document.documentElement.style.setProperty('--logo-count', items.length.toString());
+      
+      // Safe parent element check
+      const parent = carousel.parentElement;
+      if (!parent) return;
+      
+      // Check if we need to activate the carousel
+      const containerWidth = parent.offsetWidth;
+      const totalItemsWidth = items.length * 250; // 250px per item
+      
+      // Only apply animation if content exceeds container width
+      if (totalItemsWidth <= containerWidth) {
+        carousel.classList.add('no-animation');
+        carousel.classList.add('centered');
+        
+        // If we're not animating, make sure everything is centered
+        parent.classList.add('centered');
+      }
+    });
+
+    // Añadir un efecto de brillo al pasar el cursor por las imágenes
+    const imagenes = document.querySelectorAll('.colaborador-image, .section-image-hover');
+    imagenes.forEach(img => {
+      img.addEventListener('mouseenter', () => {
+        img.classList.add('image-highlight');
+      });
+      
+      img.addEventListener('mouseleave', () => {
+        img.classList.remove('image-highlight');
+      });
+    });
+  });
+</script>
+
+<style is:global>
+  .image-highlight {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .image-highlight::after {
+    content: "🔍";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .image-container:hover .image-highlight::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>

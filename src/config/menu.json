@@ -1,67 +1,73 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "nav.home",
       "url": "/"
     },
     {
-      "name": "Features",
+      "name": "nav.blog",
+      "url": "/blog"
+    },
+    {
+      "name": "nav.features",
       "url": "/features"
     },
     {
-      "name": "Theme",
-      "url": "/theme"
-    },
-    {
-      "name": "About",
+      "name": "nav.about",
       "url": "/about"
     },
     {
-      "name": "Pages",
+      "name": "nav.pages",
       "url": "",
       "hasChildren": true,
       "children": [
         {
-          "name": "Changelog",
+          "name": "nav.info",
+          "url": "/info"
+        },
+        {
+          "name": "nav.method",
+          "url": "/method"
+        },
+        {
+          "name": "nav.repetitive",
+          "url": "/repetitive"
+        },
+        {
+          "name": "nav.continuous",
+          "url": "/continuous"
+        },
+        {
+          "name": "nav.frequency",
+          "url": "/frequency"
+        },
+        {
+          "name": "nav.machine",
+          "url": "/machine"
+        },
+        {
+          "name": "nav.supplements",
+          "url": "/supplements"
+        },
+        {
+          "name": "nav.report",
+          "url": "/report"
+        },
+        {
+          "name": "nav.changelog",
           "url": "/changelog"
-        },
-        {
-          "name": "Does not exist",
-          "url": "/does-not-exist"
-        },
-
-        {
-          "name": "Neither does this",
-          "url": "/neither-does-this"
-        },
-        {
-          "name": "Nope, not this one either",
-          "url": "/nope-not-this-one-either"
-        },
-        {
-          "name": "What about this?",
-          "url": "/what-about-this"
-        },
-        {
-          "name": "Come on, this one must exist",
-          "url": "/come-on-this-one-must-exist"
-        },
-        {
-          "name": "Do you expect this to exist?",
-          "url": "/do-you-expect-this-to-exist"
         }
       ]
     }
   ],
-
   "footer": [
     {
-      "name": "About",
-      "url": "/about"
+      "name": "footer.privacy",
+      "url": "/privacy"
     },
     {
-      "name": "Changelog",
-      "url": "/changelog"
+      "name": "footer.terms",
+      "url": "/terms"
     }
   ]
 }

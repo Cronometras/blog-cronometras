@@ -1,7 +1,9 @@
 import type { HTMLAttributes } from "astro/types";
 import type { IconProps } from "react-feather";
 
-
+/**
+ * Interface for a link button
+ */
 export interface LinkButtonI {
   /**
    * Button text can be provided as a string via the `label` prop or as a child element
@@ -20,6 +22,9 @@ export interface LinkButtonI {
 
 export type LinkButton = HTMLAttributes<'a'> & LinkButtonI;
 
+/**
+ * Interface for a page section
+ */
 export interface PageSection {
   title: string;
   /**
@@ -27,12 +32,15 @@ export interface PageSection {
    */
   title_size?: string;
   content: string;
-  buttons: LinkButton[] & { length: 0 | 1 | 2};
-  image: string;
+  buttons?: LinkButton[] & { length: 0 | 1 | 2};
+  image?: string;
   image_position?: "top" | "bottom" | "left" | "right";
+  imageClasses?: string;
 };
 
-
+/**
+ * Interface for a page configuration
+ */
 export interface PageConfig {
   /**
    * Applies to the `<title>` tag
@@ -79,9 +87,9 @@ export interface PageConfig {
   meta_image?: string;
 }
 
-
-
-
+/**
+ * Interface for common page properties
+ */
 export interface PageCommonProps {
   /**
    * Page title displayed on the <PageHeader> component
@@ -96,5 +104,8 @@ export interface PageCommonProps {
   sections?: PageSection[];
 }
 
+/**
+ * Interface for a page type
+ */
 export type PageType<data_type = any> = PageCommonProps &
   PageConfig & { data: data_type };

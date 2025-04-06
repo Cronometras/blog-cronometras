@@ -1,0 +1,57 @@
+---
+import { languages } from "@/i18n/ui";
+import { getLangFromUrl, useTranslatedPath, getPathWithoutLang } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+const currentPath = getPathWithoutLang(Astro.url.pathname);
+---
+
+<div class="relative inline-block text-left" x-data="{ open: false }">
+  <button
+    @click="open = !open"
+    @click.outside="open = false"
+    type="button"
+    class="inline-flex justify-center items-center w-full rounded-md px-2 py-1 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-700"
+  >
+    {languages[lang]}
+    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  <div
+    x-show="open"
+    x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="transform opacity-0 scale-95"
+    x-transition:enter-end="transform opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-75"
+    x-transition:leave-start="transform opacity-100 scale-100"
+    x-transition:leave-end="transform opacity-0 scale-95"
+    class="absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50"
+  >
+    <div class="py-1" role="menu">
+      {
+        Object.entries(languages).map(([code, label]) => (
+          <a
+            href={translatePath(currentPath, code)}
+            class:list={[
+              "block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700",
+              code === lang 
+                ? "bg-gray-100 dark:bg-gray-700 text-primary dark:text-white font-semibold" 
+                : "text-gray-700 dark:text-gray-300"
+            ]}
+            role="menuitem"
+          >
+            {label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import Alpine from 'alpinejs';
+  window.Alpine = Alpine;
+  Alpine.start();
+</script>

@@ -10,6 +10,7 @@ input#nav-toggle:checked ~ label#hide-button {
 input#nav-toggle:checked ~ #nav-menu {
   @apply block lg:flex;
 }
+
 .header {
   flex-direction: row;
   --shadow-color: rgba(99, 99, 99, 0.3);
@@ -35,7 +36,6 @@ input#nav-toggle:checked ~ #nav-menu {
   }
 }
 
-
 // navbar items
 .navbar {
   @apply relative flex flex-wrap items-center justify-between;
@@ -52,46 +52,71 @@ input#nav-toggle:checked ~ #nav-menu {
   @apply text-center lg:text-left;
 }
 
+.nav-item {
+  @apply relative py-2;
+}
+
 .nav-link {
-  @apply block p-3 py-2 text-xl md:text-base text-text transition hover:text-secondary md:px-2 lg:inline-block;
-
-  &.active {
-    @apply relative;
-
-    &::after {
-      @apply absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-tl content-[''];
-    }
-  }
+  @apply block py-2 text-base font-medium text-text transition hover:text-accent;
 }
 
 .nav-dropdown {
-  @apply mr-0;
+  @apply relative;
 }
 
 .nav-dropdown-list {
-  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-white/10 bg-primary/5 px-4 py-3 hidden shadow-sm duration-300  lg:mt-0 lg:border lg:bg-surface lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)];
-  @apply mx-auto hidden duration-300 lg:invisible lg:absolute lg:block lg:h-auto lg:w-[13.5rem] lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100;
-}
-
-
-
-.nav-dropdown.open > .nav-dropdown-list {
-  display: block; /* Visible cuando está abierto */
-}
-
-@media (min-width: 1024px) {
-  .nav-dropdown-list {
-    display: block; /* Visible en pantallas grandes */
-  }
-  .nav-dropdown.open > .nav-dropdown-list {
-    display: block; /* Aseguramos que siga funcionando en desktop */
+  @apply invisible absolute left-0 top-full z-50 rounded-lg bg-surface py-2 shadow-lg opacity-0 transition-all;
+  @apply min-w-[180px] border border-gray-200 dark:border-gray-700;
+  
+  .group:hover & {
+    @apply visible opacity-100;
   }
 }
 
 .nav-dropdown-item {
-  @apply mb-1;
+  @apply px-4 py-1;
 }
 
 .nav-dropdown-link {
-  @apply min-w-[150px] py-1 text-base font-medium transition hover:text-secondary text-text;
+  @apply block py-1 text-sm font-medium text-text transition hover:text-accent;
+}
+
+@media (max-width: 1023px) {
+  #nav-menu {
+    @apply fixed left-0 top-[72px] z-40 h-[calc(100vh-72px)] w-full overflow-y-auto bg-surface px-4 py-8;
+    @apply translate-x-full transition-transform duration-300;
+    
+    &.show {
+      @apply translate-x-0;
+    }
+  }
+  
+  .nav-dropdown-list {
+    @apply static mt-2 w-full border-none bg-transparent shadow-none;
+    @apply visible opacity-100;
+  }
+  
+  .nav-dropdown-item {
+    @apply px-0;
+  }
+}
+
+#nav-toggle:checked {
+  & ~ #nav-menu {
+    @apply translate-x-0;
+  }
+  
+  & ~ #show-button {
+    @apply hidden;
+  }
+  
+  & ~ #hide-button {
+    @apply flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  #nav-menu {
+    @apply flex;
+  }
 }
