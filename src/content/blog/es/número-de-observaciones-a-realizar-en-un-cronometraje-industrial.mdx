@@ -1,0 +1,153 @@
+---
+title: "Número de observaciones a realizar en un cronometraje industrial"
+description: "En un estudio de métodos y tiempos es importante conocer el número necesario de observaciones a realizar para obtener mediciones precisas y capturar la variabilidad del proceso."
+pubDate: 2023-03-22
+category: "Cronometraje Industrial"
+tags: ["Cálculo de observaciones", "Cronometraje industrial", "Estudio de tiempos", "Fórmula OIT", "Ingeniería de métodos", "Margen de error", "Medición del trabajo", "Nivel de confianza", "Tamaño de muestra", "Variabilidad del proceso"]
+author: "micaot"
+heroImage: "/images/tomas restantes.png"
+---
+
+En un estudio de métodos y tiempos es importante conocer el número necesario de observaciones a realizar por varias razones:
+
+- Para obtener mediciones precisas de los tiempos. Un número insuficiente de observaciones puede llevar a tiempos no representativos de la operación.
+
+- Para capturar adecuadamente la variabilidad natural del proceso. Factores como la fatiga del trabajador, interrupciones, etc. introducen variabilidad que debe medirse.
+
+- Para determinar tiempos estándar confiables. Los tiempos estándar se calculan a partir de los tiempos observados, por lo que influyen directamente.
+
+- Para identificar oportunidades de mejora. Al observar más ciclos se pueden detectar ineficiencias o causas de demoras.
+
+- Para obtener estimaciones válidas de tiempos improductivos. Se requiere una muestra amplia para estimar adecuadamente proporciones.
+
+- Para evitar recoger más datos de los necesarios. Un exceso de observaciones consumen recursos innecesariamente.
+
+El número de observaciones impacta directamente en la utilidad y precisión de los resultados del estudio de métodos y tiempos.
+
+## Puntos clave para determinar el numero de tomas a realizar en un estudio de tiempos
+
+Algunos puntos clave para determinar el número necesario de observaciones en un estudio:
+
+- Variabilidad esperada: Si se espera una alta variabilidad en las mediciones, se necesitarán más observaciones para obtener una estimación precisa.
+
+- Nivel de confianza deseado: Generalmente se utiliza un nivel de confianza del 95%. Más alto nivel de confianza requiere un tamaño de muestra más grande.
+
+- Margen de error aceptable: ¿Qué nivel de error es aceptable en los resultados? Un margen de error más pequeño requiere más observaciones.
+
+- Recursos disponibles: El número de observaciones que se pueden hacer puede estar limitado por el tiempo, el costo y otros recursos.
+
+- Método de muestreo: El método de muestreo aleatorio simple requiere el tamaño de muestra más pequeño. Otros diseños requieren tamaños de muestra más grandes.
+
+En resumen, determinar el número adecuado de observaciones requiere equilibrar todos estos factores para obtener resultados precisos dentro de las limitaciones de recursos. Los métodos estadísticos formales pueden ayudar a calcular el tamaño óptimo de muestra.
+
+## ¿Qué es el nivel de confianza?
+
+El nivel de confianza, en estadística, es la probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado. El nivel de confianza se define como 1-alfa y sus valores más comunes son 90%, 95% y 99%
+
+## ¿En que momentos del día se deben de realizar las diferentes tomas de tiempos?
+
+A la hora de medir un trabajo es una buena práctica:
+
+- Distribuir las observaciones a lo largo del día y la semana. No concentrarlas solo en las mañanas, o en los martes, por ejemplo.
+
+- Alternar el orden de los participantes u objetos observados. No observar siempre primero a los mismos.
+
+- Contrabalancear las condiciones experimentales u observacionales. Por ejemplo, si se comparan dos métodos diferentes, alternar cuál se presenta primero.
+
+- Evitar momentos atípicos como justo antes/después de vacaciones, días festivos, etc. a menos que sea el objetivo.
+
+- Analizar los datos para detectar sesgos. Por ejemplo, comparar los resultados de diferentes franjas horarias. Si hay diferencias, ajustar el muestreo.
+
+- Usar métodos de muestreo aleatorio y estratificado para seleccionar los momentos, si es factible.
+
+- Documentar detalladamente los momentos y condiciones de cada observación.
+
+En resumen, hay que buscar la mayor aleatoriedad y representatividad distribuyendo bien las  observaciones en tiempo y espacio.
+
+## ¿Factores que afectan en el numero de observaciones a realizar en un estudio de metodos y tiempos?
+
+El número de observaciones en un estudio de métodos y tiempos depende de varios factores:
+
+- Naturaleza del proceso: procesos altamente repetitivos y estandarizados requieren menos observaciones que aquellos muy variables.
+
+- Duración del ciclo: ciclos más largos necesitan menos observaciones que ciclos cortos.
+
+- Precisión deseada: a mayor precisión en los tiempos, se necesitan más observaciones.
+
+- Nivel de confianza: un nivel de confianza más alto requiere un tamaño de muestra mayor.
+
+- Variabilidad del proceso: mayor variabilidad requiere más observaciones para capturarla adecuadamente.
+
+- Importancia de la operación: operaciones claves o cuellos de botella pueden requerir más observaciones.
+
+- Costo de las observaciones: el costo de tomar cada observación puede limitar el tamaño de muestra.
+
+- Tipo de proceso: procesos continuos requieren un enfoque diferente a procesos intermitentes o por lotes.
+
+- Recursos disponibles: el número de observadores y tiempo disponible puede restringir el tamaño de muestra.
+
+- Objetivos del estudio: el uso planeado para los tiempos determina los requisitos de precisión.
+
+En resumen, no hay una regla fija sobre el número de observaciones, depende principalmente de las características del proceso específico y los objetivos del estudio.
+
+## Métodos para determinar el número de observaciones:
+
+Existen varios métodos para determinar el número de observaciones a realizar en un cronometraje industrial. Algunos de los más utilizados son:
+
+### El método empírico:
+
+se basa en la experiencia y en las recomendaciones generales. Por ejemplo, la Oficina Internacional del Trabajo sugiere cronometrar al menos 50 ciclos en operaciones breves y entre 20 y 30 ciclos en operaciones más largas.
+
+![Tabla que establece el número de lecturas según la duración del ciclo a cronometrar](/images/default.png)
+
+### Método estadístico OIT específico para estudios de tiempos industriales. (utilizado en la App CronometrasApp)
+
+Pongamos que tomamos 8 tomas:
+
+25,23,26,25,18,21,24,26
+
+La fórmula utilizada es:
+
+![Fórmula OIT para calcular el número de observaciones](/images/default.png)
+
+```
+n = ((40 * RAIZ((n' * ∑x2) - (∑x)2)) / ∑x)^2
+```
+
+Donde:
+
+- n = tamaño de muestra requerido
+
+- n' = número de observaciones iniciales
+
+- ∑x = sumatorio de los valores de las observaciones
+
+- ∑x2 = sumatorio de los cuadrados de los valores de las observaciones
+
+El origen de esta fórmula se remonta a los trabajos de J.M. Juran en el contexto de estudios de tiempos y movimientos en ingeniería industrial.
+
+Aplicamos la fórmula para calcular el número de observaciones (n) necesarias en un estudio de tiempos de trabajo con un nivel de confianza del 95% y un margen de error del 5% con las observaciones inicailes: 25,23,26,25,18,21,24,26
+
+- Observaciones preliminares (n'): **8 **(ya que hay 8 tomas)
+
+- Suma de los tiempos de las observaciones preliminares (∑x):
+  - 25 + 23 + 26 + 25 + 18 + 21 + 24 + 26 = **188**
+
+- Suma de los cuadrados de los tiempos de las observaciones preliminares (∑x2):
+  - 625 + 529 + 676 + 625 + 324 + 441 + 576 + 676 = **4472**
+
+
+
+Sustituyendo estos valores en la fórmula:
+
+```
+n = ((40 * RAIZ((8 * 4,472) - (188)^2)) / 188)^2
+n = ((40 * RAIZ(35,776 - 35,344)) / 188)^2
+n = ((40 * RAIZ(432)) / 188)^2
+n = ((40 * 20.78) / 188)^2
+n = (830.4 / 188)^2
+n = 4.42^2
+n = 19.53
+```
+
+Como el número de observaciones (n) debe ser un número entero, se redondea hacia arriba, obteniendo un total de 20 observaciones necesarias para alcanzar una fiabilidad del 95% en el estudio de tiempos de trabajo, como ya teníamos 8, nos restan 12 tomas por realizar.

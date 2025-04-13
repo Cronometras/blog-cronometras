@@ -1,4 +1,4 @@
-import { ui, defaultLang, showDefaultLang } from './ui';
+import { ui, defaultLang } from './ui';
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split('/');
@@ -13,23 +13,17 @@ export function useTranslations(lang: keyof typeof ui) {
 }
 
 export function useTranslatedPath(lang: keyof typeof ui) {
-  return function translatePath(path: string, l: string = lang) {
-    // Remove trailing slashes and ensure path starts with /
-    const cleanPath = path.replace(/^\/|\/$/g, '');
-    
-    // Special handling for blog URLs
-    if (cleanPath === 'blog' || cleanPath.startsWith('blog/')) {
-      return `/${l}/${cleanPath}`;
+  return function translatePath(path: string, targetLang: keyof typeof ui = lang) {
+    // Caso especial para la página de inicio
+    if (path === '' || path === '/') {
+      return `/${targetLang}`;
     }
 
-    return !showDefaultLang && l === defaultLang 
-      ? `/${cleanPath}` 
-      : `/${l}${cleanPath ? `/${cleanPath}` : ''}`;
+    return `/${targetLang}${path.startsWith('/') ? path : `/${path}`}`;
   }
 }
 
-export function getPathWithoutLang(pathname: string) {
-  const [, ...rest] = pathname.split('/');
-  if (rest[0] in ui) rest.shift();
-  return rest.length > 0 ? `/${rest.join('/')}` : '';
+export function getPathWithoutLang(path: string) {
+  const [, , ...rest] = path.split('/');
+  return '/' + rest.join('/');
 }

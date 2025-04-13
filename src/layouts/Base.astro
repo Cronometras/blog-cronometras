@@ -9,6 +9,9 @@ import Header from "@/layouts/partials/Header.astro";
 import "@/styles/main.scss";
 import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
 import RequestDemoModal from "@/components/core/RequestDemoModal.astro";
+import { RequestDemoFormIsland } from "@/components/react/ReactIslands";
+import FloatingContactButton from "@/components/core/FloatingContactButton.astro";
+import VideoTutorialModal from "@/components/core/VideoTutorialModal.astro";
 
 import { AstroFont } from "astro-font";
 import { ViewTransitions } from "astro:transitions";
@@ -128,6 +131,7 @@ const _canonical_url = canonical_url
 const _noindex =
   noindex === true ? true : page?.noindex === true ? true : false;
 
+// Obtener el código de idioma de la URL (sin el código de país)
 const lang = getLangFromUrl(Astro.url);
 
 // Para debug
@@ -206,6 +210,11 @@ console.log("Cargando layout Base.astro");
       )
     }
 
+    <!-- Alternate language versions -->
+    <link rel="alternate" hreflang="es" href={`${config.site.base_url}/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <link rel="alternate" hreflang="en" href={`${config.site.base_url}/en${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <link rel="alternate" hreflang="x-default" href={`${config.site.base_url}/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+
     <!-- noindex robots -->
     {
       _noindex === true ? (
@@ -233,6 +242,8 @@ console.log("Cargando layout Base.astro");
       property="og:url"
       content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
     />
+    <meta property="og:locale" content={lang} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en' : 'es'} />
 
     <!-- twitter-title -->
     <meta
@@ -287,16 +298,21 @@ console.log("Cargando layout Base.astro");
       document.addEventListener("astro:after-swap", setTheme);
     </script>
   </head>
-  <body class="transition-colors duration-500">
-    <TwSizeIndicator />
-    <Header />
-    <main id="main-content">
-      <slot />
-    </main>
-    <Footer />
+  <body class="bg-background text-text">
+    <div class="animate-fade-in">
+      <TwSizeIndicator />
+      <Header />
+      <main id="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
     <CookieConsent />
     <GoogleAnalytics />
     <RequestDemoModal />
+
+    <!-- Formulario de solicitud de demo - Se cargará mediante React en el cliente -->
+    <RequestDemoFormIsland targetId="form-container" client:load />
 
     <!-- Script para depuración -->
     <script is:inline>
@@ -311,5 +327,8 @@ console.log("Cargando layout Base.astro");
         console.log("loadRequestDemoForm definido:", typeof window.loadRequestDemoForm === 'function');
       });
     </script>
+
+    <FloatingContactButton />
+    <VideoTutorialModal />
   </body>
 </html>

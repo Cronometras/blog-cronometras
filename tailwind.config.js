@@ -42,12 +42,12 @@ module.exports = {
       // Defined keyframes
       keyframes: {
         "fade-in": {
-          '0%': { transform: 'translateY(15pt)', opacity: 0 },
-          '100%': { transform: 'translateY(0pt)' },
+          '0%': { opacity: 0, transform: 'translateY(10px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
         },
         "fade-out": {
-          '0%': { transform: 'translateY(0pt)' },
-          '100%': { transform: 'translateY(15pt)', opacity: 0 },
+          '0%': { opacity: 1, transform: 'translateY(0)' },
+          '100%': { opacity: 0, transform: 'translateY(10px)' },
         },
         "dissappear": {
           '0%': { opacity: 1, visibility: 'visible' },
@@ -56,9 +56,9 @@ module.exports = {
       },
       // Defined animations
       animation: {
-        "fade-in": 'fade-in 1s ease-in-out',
-        "fade-out": 'fade-out 1s ease-in-out',
-        "dissappear": 'dissappear 1.5s ease-in-out forwards',
+        "fade-in": 'fade-in 0.5s ease-out',
+        "fade-out": 'fade-out 0.5s ease-out',
+        "dissappear": 'dissappear 0.5s ease-out forwards',
       }
     },
   },

@@ -22,6 +22,10 @@
       "hasChildren": true,
       "children": [
         {
+          "name": "nav.dashboard",
+          "url": "/dashboard"
+        },
+        {
           "name": "nav.info",
           "url": "/info"
         },
@@ -54,6 +58,10 @@
           "url": "/report"
         },
         {
+          "name": "nav.library",
+          "url": "/library"
+        },
+        {
           "name": "nav.changelog",
           "url": "/changelog"
         }
@@ -68,6 +76,10 @@
     {
       "name": "footer.terms",
       "url": "/terms"
+    },
+    {
+      "name": "footer.faq",
+      "url": "/faq"
     }
   ]
 }

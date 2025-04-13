@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/core/PageHeader.astro';
+import RelatedBlogPosts from '../../components/RelatedBlogPosts.astro';
+
+const pages = await getCollection('pages');
+const dashboard = pages.find((page) => page.id === 'en/dashboard.mdx');
+const { Content } = await dashboard.render();
+---
+
+<Base title={dashboard.data.document_title} description={dashboard.data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <PageHeader page_data={dashboard.data} />
+    </div>
+    <div class="container">
+      <Content />
+    </div>
+  </section>
+</Base>

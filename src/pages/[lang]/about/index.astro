@@ -54,14 +54,32 @@ if (aboutEntry) {
           <h1 class="h2 mb-6">{title}</h1>
           {description && <p class="mb-8">{description}</p>}
           {buttons.length > 0 && (
-            <div class="flex flex-wrap justify-center gap-4">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 sm:flex-nowrap">
               {buttons.map((button) => (
                 <a
                   href={button.href}
                   target={button.target || "_self"}
-                  class={`btn ${button.color === "primary" ? "btn-primary" : "btn-outline-primary"}`}
+                  class={button.class || `btn ${button.color === "primary" ? "btn-primary" : "btn-outline-primary"}`}
                 >
-                  {button.icon && <i class={`ti ${button.icon} me-2`}></i>}
+                  {button.icon && (
+                    <span class="mr-3 inline-flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-${button.icon}">
+                        {button.icon === 'mail' && (
+                          <>
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                          </>
+                        )}
+                        {button.icon === 'external-link' && (
+                          <>
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </>
+                        )}
+                      </svg>
+                    </span>
+                  )}
                   {button.label}
                 </a>
               ))}
@@ -81,12 +99,12 @@ if (aboutEntry) {
       ) : (
         <div class="row justify-center">
             <p class="text-xl text-red-500">
-              {lang === 'es' 
-                ? 'Lo sentimos, no se pudo cargar el contenido.' 
+              {lang === 'es'
+                ? 'Lo sentimos, no se pudo cargar el contenido.'
                 : 'Sorry, the content could not be loaded.'}
             </p>
         </div>
       )}
     </div>
   </section>
-</Base> 
+</Base>

@@ -81,6 +81,20 @@ const privacyCollection = defineCollection({
   schema: privacySchema,
 });
 
+// Define terms collection schema based on the terms content files
+const termsSchema = z.object({
+  document_title: z.string(),
+  meta_description: z.string(),
+  meta_keywords: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
+const termsCollection = defineCollection({
+  type: "content",
+  schema: termsSchema,
+});
+
 // Export collections
 export const collections = {
   about: pagesCollection,
@@ -91,4 +105,5 @@ export const collections = {
   homepage: homepageCollection,
   pages: pagesCollection,
   privacy: privacyCollection,
+  terms: termsCollection,
 };

@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "App de Cronometraje Industrial",
+    "title": "Cronometras: App de Cronometraje Industrial y Métodos y Tiempos",
     "base_url": "https://cronometras.com",
     "base_path": "/",
     "trailing_slash": false,
@@ -8,22 +8,22 @@
     "logo": "/images/logo.png",
     "logo_width": "47",
     "logo_height": "47",
-    "logo_text": "App de Cronometraje Industrial"
+    "logo_text": "Cronometras App"
   },
 
   "params": {
-    "footer_description": "Building cool things, one line of code (and a lot of coffee) at a time. Got questions? Or just bored? Reach out!",
+    "footer_description": "Cronometras: Optimiza la productividad de tu planta con nuestra app líder en cronometraje industrial, estudio de métodos y tiempos, y generación de informes para un análisis detallado de tiempos producción.",
     "email": "info@cronometras.com",
     "location": "Valencia, Spain.",
-    "phone": "+34 615157877 (but let's be honest, email is faster)",
+    "phone": "+34 615157877",
     "contact_form_action": "#",
-    "copyright": "Copyright 2023 creado por [Micaot](https://micaot.com)"
+    "copyright": "Copyright 2025 creado por [Micaot](https://micaot.com)"
   },
 
   "metadata": {
     "meta_author": "Micaot",
     "meta_image": "/images/logo.png",
-    "meta_description": "App de cronometraje industrial con análisis de resultados en tiempo real y informes automatizados .",
+    "meta_description": "Optimiza tu producción industrial con Cronometras. Realiza estudios de tiempos y movimientos precisos, obtén análisis en tiempo real e informes automatizados. ¡Mejora tu eficiencia hoy!",
     "meta_keywords": ["cronometraje industrial", "App de cronometraje industrial", "Métodos y tiempos", "tiempo estándar", "producción industrial", "Estudios de métodos y tiempos", "Medición de tiempos de trabajo", "Análisis de tiempos de producción", "Informes automatizados", "Gestión de proyectos", "Productividad empresarial", "Aplicación para estudios de tiempos", "Toma de tiempos avanzada", "Análisis de datos en producción", "Automatización de informes de cronometraje", "Compartir estudios de trabajo", "Optimización de métodos de trabajo"],
     "meta_application_name": "CronometrasApp"
   }

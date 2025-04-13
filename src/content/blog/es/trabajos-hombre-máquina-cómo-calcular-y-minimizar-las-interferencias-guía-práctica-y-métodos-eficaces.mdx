@@ -1,0 +1,173 @@
+---
+title: "Trabajos hombre - máquina, cómo calcular y minimizar las interferencias: guía práctica y métodos eficaces"
+description: "La industria moderna se caracteriza por la utilización de máquinas en los procesos productivos. Aprende a calcular y minimizar las interferencias hombre-máquina para optimizar la productividad."
+pubDate: 2025-04-12
+category: "Estudio del Trabajo"
+tags: ["Interferencias hombre-máquina", "Productividad industrial", "Tablas de Ashcroft", "Fórmula de Wright", "Optimización de procesos", "Eficiencia operativa"]
+author: "micaot"
+heroImage: "/images/hombre trabajando en 2 máquinas.png"
+---
+
+La industria moderna se caracteriza por la utilización de máquinas en los procesos productivos. Estas máquinas, cada vez más sofisticadas y precisas, permiten aumentar la productividad y reducir los tiempos de producción. Sin embargo, la interacción entre el operario y la máquina puede generar interferencias que afectan negativamente a la eficiencia del proceso.
+
+En el mundo empresarial, es común pensar que la productividad aumenta si un mismo operario se encarga de varias máquinas. Sin embargo, como he comentado, esto puede generar interferencias que afecten negativamente a la producción. Por ello, es importante realizar un estudio de la interferencia hombre-máquina para determinar el número de máquinas que un trabajador puede manejar sin que la utilización de una interfiera en la producción de las otras.
+
+Imaginemos una fábrica de relojes de precisión. En su interior, un ejército de operarios se afana en montar y ajustar los delicados mecanismos que darán vida a las agujas del tiempo. Cada operario está a cargo de varias máquinas que realizan diferentes tareas: corte, pulido, ensamblaje, etc. Cada máquina tiene un tiempo de ciclo determinado, es decir, el tiempo que tarda en realizar su tarea. Sin embargo, las máquinas no son seres autónomos, necesitan de la intervención humana para su correcto funcionamiento. Es aquí donde entran en juego las interferencias.
+
+En este artículo, nos adentraremos en el fascinante mundo de las interferencias en el trabajo con máquinas.
+
+## ¿Qué son las interferencias hombre - máquina en el trabajo con máquinas?
+
+La interferencia hombre-máquina se produce cuando un operario tiene que atender a varias máquinas a la vez y alguna de ellas queda desatendida porque su ciclo de operación finaliza al mismo tiempo. Esto puede generar paradas en la producción y una disminución de la eficiencia. Las interferencias son estos tiempos adicionales que se producen al atender a varias máquinas a la vez. Estos tiempos de espera forman parte del método de trabajo y deben ser tenidos en cuenta a la hora de calcular la productividad de la instalación.
+
+## Métodos para calcular la interferencia hombre-máquina
+
+Existen tres métodos de cálculo de interferencias, basados en la teoría de colas:
+
+### Tablas de Ashcroft
+
+- Se utilizan cuando todas las máquinas que están a cargo de un mismo operario son diferentes. La relación entre el ciclo mayor y el menor no supera el valor de 2,5.
+
+**Pasos:**
+
+- Calcular el tiempo de ciclo de cada máquina.
+- Buscar en las tablas de Ashcroft el factor de interferencia para la cantidad de máquinas y la relación entre los ciclos.
+- Multiplicar el factor de interferencia por el tiempo de ciclo mayor para obtener el tiempo de interferencia.
+
+### El ábaco de Dale-Jones
+
+### La fórmula de Wright
+
+La fórmula de Wright es un método utilizado para calcular la interferencia en sistemas de producción en los que un operario atiende a varias máquinas. La interferencia se define como el tiempo durante el cual el operario no está disponible para atender a una máquina debido a que está ocupado atendiendo a otra máquina.
+
+La fórmula de Wright tiene dos variantes, dependiendo del número de máquinas que se estén considerando. Para sistemas con un número de máquinas menor o igual a 6, se utiliza un gráfico empírico en el que se lee la interferencia sin necesidad de hacer cálculos. Para sistemas con un número de máquinas mayor a 7, se utiliza la expresión:
+
+```
+I = 1 - (1 - x)^N
+```
+
+Donde:
+
+- I es la interferencia que se quiere calcular.
+- x es la relación entre el tiempo de funcionamiento de máquina y el tiempo de atención por parte del operario.
+- N es el número de máquinas.
+
+Para utilizar la fórmula, primero se debe determinar el valor de x, que representa la relación entre el tiempo de funcionamiento de la máquina y el tiempo de atención del operario. Luego, se sustituye este valor en la fórmula, junto con el número de máquinas, para calcular la interferencia.
+
+### Diagrama de Hombre-Máquina
+
+Permite visualizar gráficamente la interferencia entre el operario y las máquinas.
+
+**Pasos:**
+
+- Representar el ciclo de trabajo del operario y de cada máquina en un diagrama.
+- Identificar los tiempos de espera del operario y de las máquinas.
+- Calcular el tiempo de interferencia a partir de los tiempos de espera.
+
+### Simulación
+
+Se utiliza para analizar la interferencia hombre-máquina en sistemas complejos. Permite evaluar diferentes escenarios y probar diferentes soluciones.
+
+A continuación, te explicamos cómo utilizar cada uno de ellos.
+
+### Tablas de Ashcroft: cálculo del suplemento de tiempo por paro sincronizado
+
+Las tablas de Ashcroft fueron desarrolladas en 1950 y permiten calcular el suplemento de tiempo correspondiente a la producción perdida por paro sincronizado de dos o más máquinas a cargo de un operario. Este método se basa en el concepto de número efectivo de máquinas, también conocido como número de Ashcroft. Para calcularlo, se utiliza la fórmula P=(t1+t2)/(tm-t2), donde t1 y t2 son los tiempos de ciclo de las dos máquinas más lentas y tm es el tiempo de ciclo medio. Una vez calculado el número de Ashcroft, se puede obtener el ciclo máquina corregido, que es el tiempo total que tardará el operario en atender a todas las máquinas, incluyendo las interferencias.
+
+Veamos un ejemplo práctico. Supongamos que tenemos cinco máquinas iguales, cada una con una capacidad máquina de 100 piezas a la hora. Si por cada hora de funcionamiento de máquina hay 0,20 horas de tiempo de parada (intervención externa del operario), ¿qué efecto sobre la productividad de la instalación genera la interferencia?
+
+Para calcular el número de Ashcroft, necesitamos conocer los tiempos de ciclo de las dos máquinas más lentas. Como todas las máquinas son iguales, podemos tomar cualquier pareja. El tiempo de ciclo de cada máquina será de 60 minutos (1 hora) - 0,20 horas (tiempo de parada) = 48 minutos. Por tanto, t1=t2=48 minutos. El tiempo de ciclo medio será tm=48 minutos. Aplicando la fórmula de Ashcroft, obtenemos P=(48+48)/(48-48)=infinito. Este resultado no es válido, ya que el número de Ashcroft debe ser un número finito. La razón es que estamos tratando con máquinas iguales, por lo que el número de Ashcroft será igual al número de máquinas, es decir, 5.
+
+Una vez calculado el número de Ashcroft, podemos obtener el ciclo máquina corregido. La fórmula es N*(tm-t2)/A, donde N es el número de máquinas, tm es el tiempo de ciclo medio y A es el número de Ashcroft. Sustituyendo los valores, obtenemos 5*(48-0,20)/5 = 47,96 minutos. Este es el tiempo total que tardará el operario en atender a las cinco máquinas, incluyendo las interferencias.
+
+Para calcular el efecto de la interferencia sobre la productividad, debemos comparar el ciclo máquina corregido con el tiempo de ciclo teórico, es decir, el tiempo que tardaría el operario en atender a las máquinas si no hubiera interferencias. En este caso, el tiempo de ciclo teórico sería de 5*48 = 240 minutos. La diferencia entre el ciclo máquina corregido y el tiempo de ciclo teórico es el tiempo perdido debido a las interferencias, que en este caso sería de 240 - 47,96 = 192,04 minutos. Por tanto, la interferencia reduce la productividad de la instalación en un 80,02% (192,04/240).
+
+Hasta ahora hemos supuesto que el operario no dedica tiempo alguno a tareas internas durante el funcionamiento de la máquina. Sin embargo, en la práctica esto no suele ser así. Veamos qué ocurre si el operario dedica 0,04 horas (2,4 minutos) en cada máquina durante el funcionamiento de ésta.
+
+En este caso, el tiempo de ciclo de cada máquina será de 48 minutos (tiempo de funcionamiento) + 2,4 minutos (tiempo interno) = 50,4 minutos. El tiempo de ciclo medio será tm=50,4 minutos. Aplicando la fórmula de Ashcroft, obtenemos P=(50,4+50,4)/(50,4-50,4)=infinito. Al igual que antes, este resultado no es válido, ya que el número de Ashcroft debe ser un número finito. La razón es que estamos tratando con máquinas iguales, por lo que el número de Ashcroft será igual al número de máquinas, es decir, 5.
+
+Una vez calculado el número de Ashcroft, podemos obtener el ciclo máquina corregido. La fórmula es N*(tm-t2)/A, donde N es el número de máquinas, tm es el tiempo de ciclo medio y A es el número de Ashcroft. Sustituyendo los valores, obtenemos 5*(50,4-0,20)/5 = 50,16 minutos. Este es el tiempo total que tardará el operario en atender a las cinco máquinas, incluyendo las interferencias y el tiempo interno.
+
+Para calcular el efecto de la interferencia sobre la productividad, debemos comparar el ciclo máquina corregido con el tiempo de ciclo teórico, es decir, el tiempo que tardaría el operario en atender a las máquinas si no hubiera interferencias. En este caso, el tiempo de ciclo teórico sería de 5*50,4 = 252 minutos. La diferencia entre el ciclo máquina corregido y el tiempo de ciclo teórico es el tiempo perdido debido a las interferencias, que en este caso sería de 252 - 50,16 = 201,84 minutos. Por tanto, la interferencia reduce la productividad de la instalación en un 79,94% (201,84/252).
+
+Como se puede observar, la interferencia tiene un gran impacto sobre la productividad de la instalación. Por ello, es importante diseñar los procesos productivos de manera que se minimicen las interferencias. Una forma de hacerlo es aumentar el número de máquinas a cargo de cada operario, de manera que el tiempo de espera se reduzca. Sin embargo, esto puede tener un efecto negativo sobre la calidad del trabajo y el bienestar del operario. Por tanto, es necesario encontrar un equilibrio entre productividad y condiciones de trabajo.
+
+### Ábaco de Dale-Jones: cálculo del porcentaje de interferencia sobre el tiempo máquina
+
+Otro método para calcular las interferencias es el ábaco de Dale-Jones. Este método se basa en el concepto de tiempo de servicio, que es el porcentaje de tiempo hombre que el trabajador dedica en cada ciclo de cada máquina, tanto interno como externo. Para utilizar el ábaco de Dale-Jones, se debe calcular primero el tiempo de servicio y luego cruzar horizontalmente la curva correspondiente con el número de máquinas para obtener el porcentaje de interferencia sobre el tiempo máquina.
+
+Veamos un ejemplo práctico. Supongamos que tenemos un proceso operado por un trabajador con 8 máquinas. El tiempo de servicio del operario en cada máquina es del 8% y el tiempo interno del operario en el ciclo es 0. ¿Cuál es el impacto de la interferencia sobre la productividad total?
+
+Para utilizar el ábaco de Dale-Jones, debemos conocer el tiempo de servicio. En este caso, es del 8%. Cruzando horizontalmente la curva correspondiente a un tiempo de servicio del 8% con el número de máquinas (8), obtenemos un porcentaje de interferencia del 16,5%. Este porcentaje se aplica sobre el tiempo máquina, no sobre el tiempo ciclo.
+
+Para calcular el impacto de la interferencia sobre la productividad total, debemos conocer el tiempo máquina y el tiempo ciclo. Como no se proporcionan estos datos en el enunciado, los supondremos. Supongamos que el tiempo máquina es de 1 hora (60 minutos) y que el tiempo ciclo es de 10 minutos.
+
+El tiempo total que tardará el operario en atender a las ocho máquinas, incluyendo las interferencias, será de 8*(1+0,165) = 9,32 horas. El tiempo total teórico, sin interferencias, sería de 8*1 = 8 horas. Por tanto, la interferencia reduce la productividad total en un 16,5% (1,32/8).
+
+### Fórmula de Wright: cálculo de la interferencia en porcentaje
+
+El tercer método para calcular las interferencias es la fórmula de Wright. Esta fórmula es aplicable cuando el número de máquinas es mayor de 6 y se basa en el concepto de interferencia en porcentaje, que se aplica sobre el tiempo del operario. La fórmula de Wright es I= 50*[ √((1+X-N)2 +2*N) – (1+X-N) ], donde I es la interferencia en porcentaje, X es la relación entre el tiempo máquina y el tiempo total de ciclo (tiempo máquina más tiempo de parada) y N es el número de máquinas.
+
+La fórmula de Wright posee dos variantes bien diferenciadas:
+
+#### Número de máquinas menor o igual que 6, N ≤ 6
+
+Para este caso se utiliza un gráfico empírico en el que se lee la interferencia sin necesidad de hacer cálculos.
+
+#### Número de máquinas mayor que 7, N > 7
+
+En este caso se utiliza la expresión:
+
+<pre><code>I=50*[√(1+x)^2+2*(N-1)*(1+x)-2*(N-1)-1]</code></pre>
+
+Dónde:
+
+- I es la interferencia que se quiere calcular.
+
+- x es la relación entre el tiempo de funcionamiento de máquina y el tiempo de atención por parte del operario.
+
+- N es el número de máquinas.
+
+#### Ejemplo de cálculo de interferencia hombre-máquina
+
+En una fábrica dedicada al metal se quiere ocupar a un trabajador con tres fresadoras. El operario debe ocuparse de:
+
+- Preparar la máquina colocando la materia prima en ella. Esta operación se prolonga durante 45 minutos.
+
+- Poner y quitar la pieza de la máquina, tiempo de operación: 1.75minutos.
+
+- Quitar las rebabas existentes en el material mientras que la máquina trabaja. El tiempo estimado en esta operación es de 1.5 minutos.
+
+Además, hay que saber que cada máquina tarda en realizar la pieza 30 minutos y que la interferencia máxima permitida es un 10%. ¿Podrá el operario ocuparse de las tres máquinas?
+
+Para calcular la interferencia, se debe determinar el método adecuado. En este caso, el operario debe ocuparse del funcionamiento de tres máquinas idénticas, por lo que no se puede utilizar el método de Ashcroft. Se utilizará, entonces, la fórmula de Wright en sus dos variantes. Como tenemos 3 máquinas, se utilizará el gráfico empírico mencionado en el punto 2.a.
+
+Para calcular la interferencia, necesitamos los siguientes datos:
+
+- **x**: relación entre el tiempo de máquina y el tiempo de servicio:
+  - 30 min es el tiempo que la máquina está trabajando.
+  - 1,5 min es el tiempo que el operario está trabajando al mismo tiempo que la máquina.
+
+- Número de máquinas: N=3
+
+Introduciendo estos parámetros en el gráfico presentado se tiene:
+
+![Curva empírica para el cálculo de interferencia (Niebel B. W. y col.)](/images/default.png)
+
+A la vista del gráfico, se observa que con una relación calculada de 20 y 3 máquinas se tiene una interferencia de 5%. Esto quiere decir que únicamente el 5% del tiempo de ciclo posee solapamientos. Teniendo en cuenta que se admite un máximo de 10% de interferencia, se puede afirmar que este operario puede ocuparse de las tres fresadoras.
+
+Veamos un ejemplo práctico. Supongamos que tenemos 20 máquinas y que el tiempo máquina es de 500 minutos, el tiempo máquina parada es de 20 minutos y el tiempo máquina en marcha es de 0 minutos. ¿Cuál es la interferencia en porcentaje?
+
+Para calcular la interferencia en porcentaje, debemos conocer la relación X. En este caso, X=500/(500+20)=0,962. Aplicando la fórmula de Wright, obtenemos I= 50*[ √((1+0,962-20)2 +2*20) – (1+0,962-20) ] = 21,1%. Por tanto, la interferencia en porcentaje es del 21,1%.
+
+## Cómo minimizar las interferencias en el trabajo con máquinas
+
+Para minimizar las interferencias en el trabajo con máquinas, es importante diseñar los procesos productivos de manera que se reduzca el tiempo de espera del operario. Una forma de hacerlo es aumentar el número de máquinas a cargo de cada operario, de manera que el tiempo de espera se reduzca. Sin embargo, esto puede tener un efecto negativo sobre la calidad del trabajo y el bienestar del operario. Por tanto, es necesario encontrar un equilibrio entre productividad y condiciones de trabajo.
+
+Otra forma de minimizar las interferencias es mediante la automatización de algunas tareas, lo que reduce la necesidad de intervención humana. Además, es importante realizar un mantenimiento preventivo de las máquinas para evitar paradas no programadas y reducir el tiempo de parada.
+
+## Conclusión
+
+Como hemos visto, las interferencias son un factor importante a tener en cuenta en el trabajo con máquinas. Los tres métodos de cálculo que hemos presentado permiten cuantificar el impacto de las interferencias sobre la productividad y ayudan a diseñar procesos productivos más eficientes. Sin embargo, es importante recordar que la productividad no lo es todo y que las condiciones de trabajo y el bienestar del operario son aspectos fundamentales a considerar en cualquier proceso productivo.
+
+El trabajo con máquinas es un arte complejo que requiere una cuidadosa planificación y un equilibrio entre productividad y condiciones de trabajo. Las interferencias son un desafío constante en este arte, pero también una oportunidad para mejorar la eficiencia y la calidad del trabajo.

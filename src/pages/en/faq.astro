@@ -1,0 +1,139 @@
+---
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import fs from 'fs';
+import path from 'path';
+import { marked } from 'marked';
+
+// Definir los datos de la página
+const page_data = {
+  title: 'Frequently Asked Questions',
+  description: 'Find answers to the most common questions about CronometrasApp, its features, and how to use it.',
+  document_title: 'FAQ | CRONOMETRAS',
+  meta_description: 'Frequently asked questions about CRONOMETRAS: Find answers about using our time study application, industrial timing, and standard time calculation.',
+  meta_keywords: 'frequently asked questions, FAQ, CRONOMETRAS, time studies, industrial timing, help, support',
+};
+
+// Leer el contenido del archivo Markdown directamente
+let markdownContent = '';
+try {
+  const filePath = path.join(process.cwd(), 'src', 'content', 'faq', 'en', 'index.md');
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+  
+  // Eliminar el frontmatter (todo lo que está entre --- al principio del archivo)
+  markdownContent = fileContent.replace(/^---[\s\S]*?---\s*/m, '');
+  console.log('✅ FAQ file read successfully');
+} catch (error) {
+  console.error(`❌ Error reading FAQ file: ${error.message}`);
+  markdownContent = `
+# Frequently Asked Questions
+
+Sorry, we couldn't load the FAQ content. Please try again later or contact us for assistance.
+  `;
+}
+
+// Convertir el Markdown a HTML usando marked
+const htmlContent = marked(markdownContent);
+
+// Extraer las preguntas y respuestas para el acordeón
+const faqRegex = /<h2>(.*?)<\/h2>([\s\S]*?)(?=<h2>|$)/g;
+const faqs = [];
+let match;
+
+const processedHtml = htmlContent.replace(/<h1>.*?<\/h1>/s, ''); // Eliminar el título principal
+
+while ((match = faqRegex.exec(processedHtml)) !== null) {
+  faqs.push({
+    question: match[1],
+    answer: match[2].trim()
+  });
+}
+---
+
+<Base title={page_data.document_title} description={page_data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <div class="prose prose-lg mx-auto mt-8">
+            <!-- FAQ Accordion -->
+            <div class="space-y-4">
+              {faqs.map((faq, index) => (
+                <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                  <button
+                    class="faq-question w-full flex justify-between items-center p-4 text-left font-medium text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none"
+                    aria-expanded="false"
+                    data-index={index}
+                  >
+                    <span>{faq.question}</span>
+                    <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="faq-answer hidden p-4 prose prose-lg" set:html={faq.answer} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Script to handle the accordion
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const index = question.getAttribute('data-index');
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('svg');
+        
+        // Check if the answer is visible
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        
+        // Close all answers
+        document.querySelectorAll('.faq-answer').forEach(el => {
+          el.classList.add('hidden');
+        });
+        document.querySelectorAll('.faq-question').forEach(el => {
+          el.setAttribute('aria-expanded', 'false');
+          el.querySelector('svg').classList.remove('rotate-180');
+        });
+        
+        // If the answer was closed, open it
+        if (!isExpanded) {
+          answer.classList.remove('hidden');
+          question.setAttribute('aria-expanded', 'true');
+          icon.classList.add('rotate-180');
+        }
+      });
+    });
+    
+    // Open the first question by default
+    if (faqQuestions.length > 0) {
+      const firstQuestion = faqQuestions[0];
+      const firstAnswer = firstQuestion.nextElementSibling;
+      const firstIcon = firstQuestion.querySelector('svg');
+      
+      firstQuestion.setAttribute('aria-expanded', 'true');
+      firstAnswer.classList.remove('hidden');
+      firstIcon.classList.add('rotate-180');
+    }
+  });
+</script>
+
+<style>
+  .faq-question svg {
+    transition: transform 0.3s ease;
+  }
+  .faq-question[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+</style>

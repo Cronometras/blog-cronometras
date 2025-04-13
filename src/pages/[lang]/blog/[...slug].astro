@@ -2,27 +2,28 @@
 import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import TextToSpeech from '@/components/blog/TextToSpeech.astro';
+import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   console.log(`Total de posts encontrados: ${posts.length}`);
-  
+
   const paths = [];
-  
+
   for (const post of posts) {
     // Dividir el slug en partes para obtener el idioma y el resto del slug
     const slugParts = post.slug.split('/');
     const lang = slugParts[0];
     const slug = slugParts.slice(1).join('/');
-    
+
     console.log(`Generando ruta estática para: lang=${lang}, slug=${slug}, id=${post.id}`);
-    
+
     paths.push({
       params: { lang, slug },
       props: { post },
     });
   }
-  
+
   console.log(`Total de rutas generadas: ${paths.length}`);
   return paths;
 }
@@ -40,11 +41,11 @@ try {
   if (!post) {
     throw new Error(`Post no encontrado o indefinido. Parámetros: lang=${lang}, slug=${slug}`);
   }
-  
+
   if (typeof post.render !== 'function') {
     throw new Error(`La función render no está disponible en el post. Post id: ${post.id}, slug: ${post.slug}`);
   }
-  
+
   const rendered = await post.render();
   Content = rendered.Content;
   console.log(`Post renderizado exitosamente: ${post.id}`);
@@ -61,6 +62,7 @@ export const prerender = true;
 ---
 
 <Base title={post?.data?.title || 'Blog Post'} description={post?.data?.description || ''}>
+  {post && <BlogPostSchema post={post} url={Astro.url} />}
   <article class="mx-auto">
     <!-- Hero Image with Overlay -->
     <div class="relative h-[60vh] min-h-[400px] w-full mb-12">

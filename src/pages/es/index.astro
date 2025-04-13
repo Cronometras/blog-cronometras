@@ -1,126 +1,207 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { Image } from "astro:assets";
-import Banner from "@/components/Banner.astro";
+import Section from "@/components/core/Section.astro";
 import Features from "@/components/Features.astro";
+import Testimonial from "@/components/Testimonial.astro";
 import HowItWorks from "@/layouts/components/HowItWorks.astro";
-import Colaboramos from "@/layouts/components/Colaboramos.astro";
-import PageHeader from "@/components/PageHeader.astro";
+import Cta from "@/layouts/partials/Cta.astro";
 import { getCollection } from "astro:content";
+import Colaboramos from "@/layouts/components/Colaboramos.astro";
+import { RequestDemoFormIsland } from "@/components/react/ReactIslands";
+import VideoTutorialModal from "@/components/core/VideoTutorialModal.astro";
 
-// Para el modo estático, necesitamos definir getStaticPaths
-export const prerender = true;
+const homepageEntries = await getCollection("homepage");
+console.log("Available entries:", homepageEntries.map(entry => ({ 
+  id: entry.id, 
+  slug: entry.slug,
+  collection: entry.collection
+})));
 
-// Obtener datos de la página de inicio
-const allHomepage = await getCollection("homepage");
-const homepage = allHomepage.find(p => p.id === "es/index.md");
+// Intentar diferentes patrones de ID
+const possibleIds = ["es/index", "es/index.md", "es/index/index.md", "es"];
+let homepage;
+
+for (const id of possibleIds) {
+  homepage = homepageEntries.find(entry => entry.id === id);
+  if (homepage) {
+    console.log("Found homepage with ID:", id);
+    break;
+  }
+}
 
 if (!homepage) {
+  console.error("Could not find homepage with any of these IDs:", possibleIds);
+  console.error("Available entries:", homepageEntries.map(entry => entry.id));
   throw new Error("Homepage content not found for Spanish version");
 }
 
-// Extraer datos
-const { banner, sections = [], features = [], how_it_works, colaboramos } = homepage.data;
+const { banner, sections = [], features, testimonial, how_it_works, colaboramos } = homepage.data;
+const call_to_action = homepage.data.call_to_action;
 ---
 
-<Base title={homepage.data.title} description={homepage.data.meta_description}>
-  <!-- Banner -->
-  <section class="banner py-14 lg:py-20">
-    <div class="container">
-      <div class="row items-center">
-        <div class="lg:col-6 order-2 lg:order-1">
-          <h1 class="mb-4 text-h1" set:html={banner.title} />
-          <p class="mb-8" set:html={banner.content} />
-          {
-            banner.button && banner.button.enable && (
-              <a href={banner.button.link} class="btn btn-primary">
-                {banner.button.label}
-              </a>
-            )
-          }
-        </div>
-        <div class="lg:col-6 order-1 lg:order-2 mb-8 lg:mb-0">
-          <img
-            src={banner.image}
-            alt={banner.title}
-            class="mx-auto rounded-lg"
-          />
-        </div>
-      </div>
-    </div>
+<Base>
+  <!-- banner -->
+  <section class="lg:mb-10 animate-fade-in">
+    <Section section={banner} />
   </section>
 
-  <!-- Secciones -->
-  <section class="section">
-    <div class="container">
-      {sections.map((section) => (
-        <div class="row items-center">
-          <div class={`md:col-6 ${
-            section.image_position !== "left" ? "order-1 md:order-2" : "order-1 md:order-1"
-          }`}>
-            <div class="aspect-square relative p-4">
-              <Image
-                class="object-contain rounded-md"
-                src={section.image}
-                alt={section.title}
-                width={600}
-                height={600}
-              />
-            </div>
-          </div>
-          <div class={`md:col-6 ${
-            section.image_position !== "left" ? "order-0 md:order-1" : "order-0 md:order-2"
-          }`}>
-            <div class={`text-container ${
-              section.image_position !== "left" ? "text-left md:text-left" : "text-left md:text-right"
-            }`}>
-              <h2 class="mb-4 text-h2">{section.title}</h2>
-              <p class="mb-6">{section.content}</p>
-              {section.button.enable && (
-                <a class="btn btn-primary" href={section.button.link}>
-                  {section.button.label}
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- Características -->
+  <!-- key features -->
   <Features features={features} />
 
-  <!-- Cómo funciona -->
-  {how_it_works && <HowItWorks data={how_it_works} />}
+  <!-- multi section -->
+  {
+    sections && (
+      <section class="multi-section">
+        {sections.map((section) => (
+          <Section section={section} />
+        ))}
+      </section>
+    )
+  }
+
+  <!-- how it works -->
+  <HowItWorks how_it_works={how_it_works} />
 
   <!-- Colaboramos -->
-  {colaboramos && <Colaboramos colaboramos={colaboramos} />}
+  <Colaboramos colaboramos={colaboramos} />
+
+  <!-- testimonial -->
+ <!-- <Testimonial testimonial={testimonial} /> -->
+  <!-- call to action -->
+  <Cta {...call_to_action} />
+
+  <!-- Modal de video tutorial -->
+  <VideoTutorialModal />
 </Base>
 
 <script>
-  document.querySelectorAll('.request-demo-btn').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (typeof window.openRequestDemoModal === 'function') {
-        window.openRequestDemoModal();
-      } else {
-        console.warn('Modal de demostración no disponible');
-        window.location.href = '/es/contacto';
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded in main page");
+    
+    // Función para mostrar/ocultar el botón flotante
+    const toggleFloatingButton = () => {
+      const floatingButton = document.getElementById('floating-contact-button');
+      if (floatingButton) {
+        // Mostrar el botón en todas las páginas
+        floatingButton.style.display = 'flex';
       }
-    });
-  });
+    };
 
-  document.querySelectorAll('[data-video-id]').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const videoId = e.currentTarget.getAttribute('data-video-id');
-      if (typeof window.openVideoTutorial === 'function' && videoId) {
-        window.openVideoTutorial(videoId);
-      } else {
-        console.warn('Modal de video no disponible');
-        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+    // Llamar a la función cuando se carga la página
+    toggleFloatingButton();
+
+    // También llamar a la función cuando cambia la URL (para navegación SPA)
+    window.addEventListener('popstate', toggleFloatingButton);
+    
+    // Look for all buttons that might be related to demo
+    const buttons = document.querySelectorAll('a.btn, button.btn, a.button, button.button');
+    console.log("Found buttons:", buttons.length);
+    
+    buttons.forEach((button, index) => {
+      console.log(`Button ${index} text:`, button.innerText);
+      
+      if (button.innerText.includes('Solicitar Demo') || 
+          button.innerText.includes('Comenzar Ahora') ||
+          button.innerText.includes('Comenzar ahora') ||
+          button.innerText.includes('Demo Gratuita')) {
+        
+        console.log(`Configuring button ${index}`);
+        
+        // Important: First remove href to prevent navigation
+        button.removeAttribute('href');
+        button.style.cursor = 'pointer';
+        
+        // Change behavior to open the modal
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log("Demo button clicked");
+          
+          // Open the modal if the function exists
+          if (typeof window.openRequestDemoModal === 'function') {
+            console.log("Calling openRequestDemoModal");
+            window.openRequestDemoModal();
+          } else {
+            console.error("The function openRequestDemoModal is not defined");
+          }
+        });
       }
     });
+    
+    // Look for the "Watch Tutorial Video" button
+    const videoButtons = document.querySelectorAll('a[href="#video"]');
+    console.log("Found video buttons:", videoButtons.length);
+    
+    videoButtons.forEach((button, index) => {
+      // Check if this is the specific button we want to modify
+      console.log(`Video button ${index} text:`, button.innerText);
+      
+      if (button.innerText.includes('Ver Video Tutorial') || 
+          button.innerText.includes('Ver Demo') || 
+          button.innerText.trim() === 'Ver Video Tutorial') {
+        
+        console.log(`Configuring video button ${index}`);
+        
+        // Important: First remove href to prevent navigation
+        button.removeAttribute('href');
+        button.style.cursor = 'pointer';
+        
+        // Change behavior to open the modal
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log("Video tutorial button clicked");
+          
+          // Open the modal if the function exists
+          if (typeof window.openVideoTutorialModal === 'function') {
+            console.log("Calling openVideoTutorialModal");
+            window.openVideoTutorialModal();
+          } else {
+            console.error("The function openVideoTutorialModal is not defined");
+          }
+        });
+      }
+    });
+    
+    // Look specifically for the main CTA button with ID
+    const mainCtaButton = document.getElementById('main-cta-button');
+    if (mainCtaButton) {
+      console.log("Main CTA button found:", mainCtaButton.innerText);
+      mainCtaButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log("Main CTA button clicked");
+        if (typeof window.openRequestDemoModal === 'function') {
+          console.log("Opening modal from main CTA");
+          window.openRequestDemoModal();
+        } else {
+          console.error("The function openRequestDemoModal is not defined");
+        }
+      });
+      mainCtaButton.style.cursor = 'pointer';
+    } else {
+      console.log("Main CTA button with id main-cta-button not found");
+      
+      // Look for class selector as fallback
+      const ctaButton = document.querySelector('.call-to-action a.btn, .call-to-action button.btn, .call-to-action a.button, .call-to-action button.button');
+      if (ctaButton) {
+        console.log("CTA button found by class:", ctaButton.innerText);
+        ctaButton.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log("End of page CTA button clicked");
+          if (typeof window.openRequestDemoModal === 'function') {
+            console.log("Opening modal from end CTA");
+            window.openRequestDemoModal();
+          } else {
+            console.error("The function openRequestDemoModal is not defined");
+          }
+        });
+        ctaButton.removeAttribute('href');
+        ctaButton.style.cursor = 'pointer';
+      } else {
+        console.log("End of page CTA button not found by class");
+      }
+    }
+    
+    // Check if global functions are available
+    console.log("openRequestDemoModal available:", typeof window.openRequestDemoModal === 'function');
+    console.log("openVideoTutorialModal available:", typeof window.openVideoTutorialModal === 'function');
   });
 </script>

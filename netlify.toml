@@ -1,12 +1,9 @@
 [build]
-  command = "bash netlify-build.sh"
+  command = "npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "18"
-  NPM_FLAGS = "--no-optional"
-  # Añadir esta variable para mostrar más información durante la construcción
-  NETLIFY_VERBOSE = "true"
 
 # Redirecciones para manejar rutas con lenguaje
 [[redirects]]
@@ -59,7 +56,7 @@
 
 [[redirects]]
   from = "/contact"
-  to = "/es/contacto"
+  to = "/es/contact"
   status = 302
   force = false
   conditions = {Language = ["es"]}
@@ -76,13 +73,3 @@
   from = "/*"
   to = "/404"
   status = 404
-
-# Agregar encabezados de seguridad
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; font-src 'self'; frame-src 'self'; object-src 'none'"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin" 

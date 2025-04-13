@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/core/PageHeader.astro';
+import RelatedBlogPosts from '../../components/RelatedBlogPosts.astro';
 
 const pages = await getCollection('pages');
 const report = pages.find((page) => page.id === 'en/report.mdx');

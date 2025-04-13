@@ -1,107 +1,146 @@
 ---
-document_title: "Funcionalidades de la Página de Método en CRONOMETRAS"
-meta_description: "Explora las funcionalidades clave de la página de Método en CRONOMETRAS: tipos de elementos, repetición, formulario, reconocimiento de voz, biblioteca y gestión de elementos."
-meta_keywords: "CRONOMETRAS, página de método, tipos de elementos, tipos de repetición, formulario, reconocimiento de voz, biblioteca de elementos, gestión de elementos, validaciones"
+document_title: "Software de Cronometraje Industrial: Módulo de Método para Estudios de Tiempos y Cálculo de Tiempos Estándar | CRONOMETRAS"
+meta_description: "Optimiza tus estudios de métodos y tiempos con el módulo de Método de CRONOMETRAS. Define elementos de trabajo, clasifica operaciones y establece frecuencias para un cálculo preciso del tiempo estándar."
+meta_keywords: "cronometraje industrial, estudio de tiempos y movimientos, métodos y tiempos, medición del trabajo, tiempo estándar, cálculo tiempo estándar, ingeniería de métodos, software cronometraje industrial, biblioteca de elementos, reconocimiento de voz, elementos repetitivos, elementos frecuenciales"
 
-title: "Página de Método en CRONOMETRAS: Funcionalidades Detalladas"
+title: "Módulo de Método: La Base de tus Estudios de Tiempos"
+description: "Define, clasifica y gestiona los elementos de trabajo que componen tu estudio de tiempos para un cálculo preciso del tiempo estándar."
 ---
 
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">¿Qué es el Módulo de Método en CRONOMETRAS?</h2>
+
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    El <strong>Módulo de Método</strong> es el componente fundamental de <a href="/es/features" class="text-accent hover:underline">CRONOMETRAS</a> donde defines la estructura de tu <a href="/es/blog/mejores-practicas-metodo-trabajo" class="text-accent hover:underline">estudio de métodos y tiempos</a>. Aquí puedes crear, clasificar y gestionar todos los elementos de trabajo que componen tu estudio, estableciendo la base para un cálculo preciso del tiempo estándar.
+  </p>
+</div>
+
 <Section
   section={{
-    title: "Tipos de Elementos: Define la Naturaleza de Cada Actividad",
+    title: "Clasificación de Elementos según Relación Hombre-Máquina",
     content:
-      "CRONOMETRAS te permite clasificar los elementos según su relación con la maquinaria:",
-    image: "/images/tipos de elementos en un estudio de tiempos de trabajo.png",
+      "El <strong>cronometraje industrial</strong> moderno requiere diferenciar claramente los tipos de elementos según su relación con la maquinaria, permitiendo un análisis preciso de los tiempos:",
+    image: "/images/tipos de elemento en un estudio de métodos y tiempos según su relación con la maquinaria.png",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
-    alt: "Tipos de elementos en CRONOMETRAS"
+    alt: "Clasificación de elementos en un estudio de métodos y tiempos según su relación con la maquinaria"
   }}
 />
 
-*   **Máquina Parada (machine-stopped):**  Elemento que se realiza con la máquina detenida.
-*   **Máquina en Marcha (machine-running):**  Elemento que se realiza mientras la máquina está en funcionamiento.
-*   **Tiempo de Máquina (machine-time):**  Elemento que representa el tiempo de actividad de la máquina.
+*   **Máquina Parada (machine-stopped):** Operaciones realizadas con la máquina completamente detenida, donde el operario tiene control total sobre el tiempo de ejecución.
+*   **Máquina en Marcha (machine-running):** Actividades manuales realizadas mientras la máquina opera automáticamente, optimizando la productividad mediante la simultaneidad de tareas.
+*   **Tiempo de Máquina (machine-time):** Períodos donde la máquina trabaja de forma autónoma, cruciales para el cálculo de capacidades productivas y tiempos de ciclo.
 
 <Section
   section={{
-    title: "Tipos de Repetición: Adapta el Cronometraje a la Frecuencia de la Tarea",
+    title: "Clasificación por Patrón de Repetición para Estudios de Tiempos Precisos",
     content:
-      "Clasifica los elementos según su patrón de repetición:",
-    image: "/images/tipos de repetición en un estudio de métodos y tiempos.png",
+      "La <strong>medición del trabajo</strong> efectiva requiere identificar correctamente la frecuencia de cada elemento para un cálculo exacto del <strong>tiempo estándar</strong>:",
+    image: "/images/tipos de elemento según su frecuencia de aparición en el ciclod e trabajo.png",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
-    alt: "Tipos de elementos en CRONOMETRAS"
+    alt: "Clasificación de elementos según su frecuencia de aparición en el ciclo de trabajo"
   }}
 />
 
-*   **Repetitivo (repetitive):**  Elemento que se repite de forma regular en cada ciclo.
-*   **Frecuencial (frequency):**  Elemento que ocurre con una cierta frecuencia, no necesariamente en cada ciclo.
-*   **Máquina (machine-type):**  Elemento directamente relacionado con el funcionamiento de una máquina.
+*   **Elementos Repetitivos:** Operaciones que ocurren en cada ciclo de trabajo de manera constante, formando la base del tiempo de ciclo regular. Fundamentales para establecer el ritmo base de producción.
+*   **Elementos Frecuenciales:** Actividades que aparecen con una frecuencia específica (cada N ciclos), como ajustes, verificaciones o reposiciones. Su correcta asignación es crucial para un <a href="/es/blog/importancia-del-calculo-del-tiempo-estandar-para-la-productividad-y-rentabilidad" class="text-accent hover:underline">cálculo preciso del tiempo estándar</a>.
 
 <Section
   section={{
-    title: "Formulario de Elemento: Captura la Información Esencial",
+    title: "Creación y Edición de Elementos de Trabajo",
     content:
-      "El formulario para crear o editar un elemento incluye los siguientes campos:",
+      "El <strong>software de cronometraje industrial</strong> CRONOMETRAS ofrece un formulario intuitivo para definir cada elemento con precisión:",
+    image: "/images/formulario-elemento-metodo.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Formulario de creación de elementos en estudios de métodos y tiempos"
   }}
 />
 
-*   **Campos Obligatorios:**
-    *   Descripción del elemento.
-    *   Tipo de elemento.
-    *   Tipo de repetición.
-*   **Campos para Elementos Frecuenciales:**
-    *   Número de repeticiones.
-    *   Número de ciclos.
+*   **Descripción Detallada:** Campo para documentar con precisión la operación, facilitando su identificación durante el cronometraje y análisis posterior.
+*   **Clasificación Completa:**
+    *   Tipo según relación hombre-máquina (parada, en marcha, tiempo máquina)
+    *   Patrón de repetición (repetitivo o frecuencial)
+*   **Configuración de Frecuencia:** Para elementos frecuenciales, define exactamente:
+    *   Número de repeticiones por ciclo
+    *   Número de ciclos entre ocurrencias
+*   **Validaciones Automáticas:** El sistema ajusta automáticamente el tipo de repetición a 'machine-type' cuando se selecciona 'machine-time', evitando inconsistencias en los datos.
 
 <Section
   section={{
-    title: "Reconocimiento de Voz: Dictado Manos Libres",
+    title: "Reconocimiento de Voz para Estudios de Tiempos Eficientes",
     content:
-      "Agiliza la descripción de elementos con el reconocimiento de voz:",
+      "Optimiza tu <strong>estudio de tiempos y movimientos</strong> con tecnología de dictado que agiliza la documentación en campo:",
     image: "/images/reconocimiento de voz.png",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
-    alt: "Reconocimiento de voz en CRONOMETRAS"
+    alt: "Reconocimiento de voz en software de cronometraje industrial"
   }}
 />
 
-*   Disponible para dictar la descripción del elemento.
-*   Soporta español (es-ES) e inglés (en-US).
-*   Detección automática de silencio (2 segundos).
-*   Mensajes de error para:
-    *   No se detectó voz.
-    *   No se detectó micrófono.
-    *   Acceso al micrófono denegado.
+*   **Dictado Manos Libres:** Ideal para entornos industriales donde la movilidad y la rapidez son esenciales.
+*   **Multilingüe:** Funciona perfectamente en español e inglés, adaptándose a equipos internacionales.
+*   **Detección Inteligente:** Finaliza automáticamente tras 2 segundos de silencio, optimizando el flujo de trabajo.
+*   **Feedback Claro:** Mensajes específicos para cada posible problema (micrófono no detectado, permisos denegados, etc.).
 
 <Section
   section={{
-    title: "Biblioteca de Elementos: Reutilización y Eficiencia",
+    title: "Biblioteca de Elementos: Estandarización y Consistencia",
     content:
-      "Aprovecha la biblioteca de elementos para acelerar la creación de nuevos estudios:",
+      "La <strong>herramienta de cálculo de tiempo estándar</strong> incluye una potente biblioteca que garantiza consistencia entre estudios:",
+    image: "/images/metodo-biblioteca de elementos 1.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Biblioteca de elementos en software de métodos y tiempos"
   }}
 />
 
-*   Opción para agregar elementos a la biblioteca.
-*   Almacenamiento para reutilización en futuros estudios.
+*   **Reutilización de Elementos:** Importa elementos predefinidos con todos sus atributos, asegurando consistencia entre diferentes estudios y analistas.
+*   **Promediado Inteligente:** Selecciona múltiples elementos similares para crear un nuevo elemento con tiempos y suplementos promediados, ideal para establecer estándares basados en datos históricos.
+*   **Preservación de Datos:** Al importar elementos, se mantienen intactos los registros de tiempo y suplementos, conservando el conocimiento acumulado.
+*   **Búsqueda Avanzada:** Localiza rápidamente elementos específicos mediante filtros por nombre, descripción o tipo.
 
 <Section
   section={{
-    title: "Gestión de Elementos: Control Total sobre tus Actividades",
+    title: "Gestión Avanzada del Método de Trabajo",
     content:
-      "CRONOMETRAS te permite gestionar tus elementos de forma eficiente:",
+      "Organiza tu <strong>estudio de métodos</strong> con herramientas de gestión que facilitan la estructuración lógica del trabajo:",
+    image: "/images/reordena el método de trabajo.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Gestión de elementos en estudios de métodos y tiempos"
   }}
 />
 
-*   Crear nuevos elementos.
-*   Editar elementos existentes.
-*   Eliminar elementos.
+*   **Reordenación Intuitiva:** Mueve elementos hacia arriba o abajo en la secuencia con simples clics, adaptando el método a la secuencia real de operaciones.
+*   **Edición Contextual:** Accede directamente a la edición de cualquier elemento desde la lista principal.
+*   **Eliminación Segura:** Elimina elementos con confirmación previa, incluyendo limpieza automática de registros de tiempo y suplementos asociados.
+*   **Visualización Completa:** Observa de un vistazo todos los elementos con su información clave: número secuencial, descripción, tipo y frecuencia.
 
+<div class="container mx-auto my-12 px-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS</h2>
 
-<Section
-  section={{
-    title: "Validaciones Inteligentes: Asegura la Consistencia de los Datos",
-    content:
-      "El sistema de validación de CRONOMETRAS te ayuda a evitar errores:",
-  }}
-/>
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      El Módulo de Método de CRONOMETRAS es la base fundamental para realizar <a href="/es/blog/mejores-practicas-metodo-trabajo" class="text-accent hover:underline">estudios de métodos y tiempos</a> precisos y profesionales. A diferencia de los métodos tradicionales de cronometraje industrial, nuestro software te permite:
+    </p>
 
-*   Ajuste automático del tipo de repetición a 'machine-type' cuando se selecciona tipo 'machine-time'.
-*   Validación de campos requeridos.
+    <ul class="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
+      <li>Definir con precisión cada elemento de trabajo según su relación con la maquinaria y patrón de repetición</li>
+      <li>Agilizar la documentación mediante reconocimiento de voz avanzado</li>
+      <li>Garantizar consistencia entre estudios con la biblioteca de elementos</li>
+      <li>Estructurar lógicamente el método de trabajo con herramientas de gestión intuitivas</li>
+      <li>Establecer la base para un <a href="/es/blog/importancia-del-calculo-del-tiempo-estandar-para-la-productividad-y-rentabilidad" class="text-accent hover:underline">cálculo preciso del tiempo estándar</a></li>
+    </ul>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      Según estudios recientes sobre productividad industrial, las empresas que implementan sistemas avanzados de <a href="/es/frequency" class="text-accent hover:underline">medición del trabajo</a> como CRONOMETRAS logran <strong>reducir hasta un 30% el tiempo necesario para realizar estudios de métodos y tiempos</strong> y <strong>aumentar la precisión de sus estándares en un 25%</strong>.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-4 mt-8">
+      <a href="/es/contact" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Solicitar una demo gratuita
+      </a>
+      <a href="/es/machine" class="border border-accent text-accent hover:bg-accent/10 font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Explorar Módulo de Tiempos de Máquina
+      </a>
+    </div>
+
+    <RelatedBlogPosts title="Recursos sobre Estudios de Métodos y Tiempos" language="es" />
+  </div>
+</div>

@@ -1,11 +1,10 @@
 ---
 ---
 
-<div id="imageModal" class="modal hidden fixed inset-0 z-50 w-full h-full bg-black/90 flex items-center justify-center" onclick="closeModal()">
+<div id="imageModal" class="modal hidden fixed inset-0 z-50 w-full h-full bg-black/90 flex items-center justify-center">
   <div class="modal-content relative max-w-[95%] max-h-[95%] flex flex-col items-center">
     <div class="image-container relative overflow-hidden">
       <img id="modalImage" src="" alt="Modal Image" class="max-w-full max-h-[85vh] object-contain transition-transform duration-300">
-      <div class="absolute inset-0 modal-effect-overlay"></div>
     </div>
     
     <div class="controls absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/60 rounded-full px-4 py-2 flex items-center space-x-4 text-white z-10">
@@ -89,6 +88,7 @@
   // Initialize drag functionality for zoomed images
   document.addEventListener('DOMContentLoaded', () => {
     const modalImg = document.getElementById('modalImage');
+    const modalContent = document.querySelector('.modal-content');
     
     // Solo configurar los eventos si los elementos existen
     if (!modalImg) return;
@@ -114,10 +114,11 @@
       isDragging = false;
     });
     
-    // Close modal when clicking outside the image
+    // Close modal when clicking outside the image and content
     const modal = document.getElementById('imageModal');
     if (modal) {
       modal.addEventListener('click', function(e) {
+        // Solo cerrar si el clic fue en el fondo del modal (no en la imagen ni en los controles)
         if (e.target === this) {
           window.closeModal();
         }
@@ -149,39 +150,10 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   }
   
-  .modal-effect-overlay {
-    pointer-events: none;
-    background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.7) 100%);
-  }
-  
   .image-container {
     border-radius: 4px;
     overflow: hidden;
     position: relative;
-  }
-  
-  .image-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  .image-container::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
   }
 
   @keyframes ripple {

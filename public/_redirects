@@ -8,8 +8,13 @@
 /about      /en/about    302  Language=en
 /privacy    /es/privacy  302  Language=es
 /privacy    /en/privacy  302  Language=en
-/contact    /es/contacto 302  Language=es
+/contact    /es/contact 302  Language=es
 /contact    /en/contact  302  Language=en
+/terms      /es/terms    302  Language=es
+/terms      /en/terms    302  Language=en
+/faq        /es/faq      302  Language=es
+/faq        /en/faq      302  Language=en
+/faq        /es/faq      302
 
 # SPA fallback
-/*  /404  404 
+/*  /404  404

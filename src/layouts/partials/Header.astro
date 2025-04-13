@@ -1,179 +1,299 @@
 ---
-import Logo from "@/components/core/Logo.astro";
-import ThemeToggle from "@/components/core/ThemeToggle.astro";
-import LanguagePicker from "@/components/core/LanguagePicker.astro";
-import menu from "@/config/menu.json";
-import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils";
+import Logo from "../../components/core/Logo.astro";
+import ThemeToggle from "../../components/core/ThemeToggle.astro";
+import LanguagePicker from "../../components/LanguagePicker.astro";
+import config from "../../config/config.json";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useTranslatedPath(lang);
 
-const { main } = menu;
 const { pathname } = Astro.url;
 
-// Function to check if a URL is active, considering language prefix
+// Function to check if a URL is active
 const isActiveUrl = (menuUrl: string) => {
+  // Caso especial para la página de inicio
+  if (menuUrl === '/') {
+    const langPrefix = `/${lang}`;
+    return pathname === langPrefix || pathname === `${langPrefix}/`;
+  }
+
   const translatedUrl = translatePath(menuUrl);
   return pathname === translatedUrl || pathname.startsWith(translatedUrl + '/');
 };
 ---
 
-<header class="header bg-white dark:bg-gray-900 shadow-sm">
-  <nav class="navbar container flex flex-col space-y-4 sm:space-y-0 md:space-y-2 lg:space-y-0 sm:flex-row sm:items-center sm:justify-between" data-astro-cid-rq644orq="" data-astro-source-file="C:/Users/micao/OneDrive/APPS/bolt/CRONOMETRAS/V42/blog/alfadev-astro-starter/src/layouts/partials/Header.astro" data-astro-source-loc="23:33">
-    <!-- logo -->
-    <div class="order-0">
-      <Logo />
-    </div>
-    <!-- navbar toggler -->
-    <input id="nav-toggle" type="checkbox" class="hidden" />
-    <label
-      id="show-button"
-      for="nav-toggle"
-      class="order-2 ml-auto mr-4 flex cursor-pointer items-center lg:order-1 lg:hidden"
-    >
-      <svg class="h-6 fill-current" viewBox="0 0 20 20">
-        <title>Menu Open</title>
-        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
-      </svg>
-    </label>
-    <label
-      id="hide-button"
-      for="nav-toggle"
-      class="order-2 ml-auto mr-4 hidden cursor-pointer items-center lg:hidden"
-    >
-      <svg class="h-6 fill-current" viewBox="0 0 20 20">
-        <title>Menu Close</title>
-        <polygon
-          points="18.198,16.198 12,10 18.198,3.802 16.198,1.802 10,8 3.802,1.802 1.802,3.802 8,10 1.802,16.198 3.802,18.198 10,12 16.198,18.198"
-        ></polygon>
-      </svg>
-    </label>
+<header class="header z-30 sticky top-0 bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-95 backdrop-blur-sm">
+  <nav class="navbar container">
+    <div class="flex items-center justify-between h-16 w-full">
+      <div class="flex items-center">
+        <Logo />
+      </div>
 
-    <ul
-      id="nav-menu"
-      class="navbar-nav order-3 hidden w-full lg:order-1 lg:flex lg:w-auto lg:space-x-2"
-    >
-      {
-        main.map((menu) => (
-          <li class="nav-item">
-            {menu.hasChildren ? (
-              <div class="relative">
-                <button 
-                  class="inline-flex items-center nav-link dropdown-button"
-                >
-                  {t(menu.name)}
-                  <svg class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-                <ul class="nav-dropdown hidden">
-                  {menu.children?.map((child) => (
-                    <li>
-                      <a
-                        href={translatePath(child.url)}
-                        class="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary block px-4 py-2 text-sm"
-                      >
-                        {t(child.name)}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <a
-                href={translatePath(menu.url)}
-                class={`nav-link block font-medium text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary ${
-                  isActiveUrl(menu.url) ? "active" : ""
-                }`}
-              >
-                {t(menu.name)}
-              </a>
-            )}
-          </li>
-        ))
-      }
-    </ul>
-    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
-      <ThemeToggle />
-      <LanguagePicker />
+      <!-- Menú de navegación para pantallas medianas y grandes -->
+      <div class="hidden md:flex md:items-center md:space-x-4">
+        <a href={translatePath('/')} class={`nav-link ${isActiveUrl('/') ? 'active' : ''}`}>
+          {t('nav.home')}
+        </a>
+        <a href={translatePath('/blog')} class={`nav-link ${isActiveUrl('/blog') ? 'active' : ''}`}>
+          {t('nav.blog')}
+        </a>
+        <a href={translatePath('/features')} class={`nav-link ${isActiveUrl('/features') ? 'active' : ''}`}>
+          {t('nav.features')}
+        </a>
+        <a href={translatePath('/about')} class={`nav-link ${isActiveUrl('/about') ? 'active' : ''}`}>
+          {t('nav.about')}
+        </a>
+        <div class="relative group">
+          <a href="javascript:void(0)" class={`nav-link flex items-center ${isActiveUrl('/dashboard') || isActiveUrl('/info') || isActiveUrl('/method') || isActiveUrl('/repetitive') || isActiveUrl('/continuous') || isActiveUrl('/frequency') || isActiveUrl('/machine') || isActiveUrl('/supplements') || isActiveUrl('/report') || isActiveUrl('/library') ? 'active' : ''}`}>
+            {t('nav.pages')}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <div class="absolute left-0 mt-0 pt-2 w-48 bg-transparent z-10 hidden group-hover:block">
+            <div class="bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 w-full">
+            <a href={translatePath('/dashboard')} class={`dropdown-item ${isActiveUrl('/dashboard') ? 'active' : ''}`}>
+              {t('nav.dashboard')}
+            </a>
+            <a href={translatePath('/info')} class={`dropdown-item ${isActiveUrl('/info') ? 'active' : ''}`}>
+              {t('nav.info')}
+            </a>
+            <a href={translatePath('/method')} class={`dropdown-item ${isActiveUrl('/method') ? 'active' : ''}`}>
+              {t('nav.method')}
+            </a>
+            <a href={translatePath('/repetitive')} class={`dropdown-item ${isActiveUrl('/repetitive') ? 'active' : ''}`}>
+              {t('nav.repetitive')}
+            </a>
+            <a href={translatePath('/continuous')} class={`dropdown-item ${isActiveUrl('/continuous') ? 'active' : ''}`}>
+              {t('nav.continuous')}
+            </a>
+            <a href={translatePath('/frequency')} class={`dropdown-item ${isActiveUrl('/frequency') ? 'active' : ''}`}>
+              {t('nav.frequency')}
+            </a>
+            <a href={translatePath('/machine')} class={`dropdown-item ${isActiveUrl('/machine') ? 'active' : ''}`}>
+              {t('nav.machine')}
+            </a>
+            <a href={translatePath('/supplements')} class={`dropdown-item ${isActiveUrl('/supplements') ? 'active' : ''}`}>
+              {t('nav.supplements')}
+            </a>
+            <a href={translatePath('/report')} class={`dropdown-item ${isActiveUrl('/report') ? 'active' : ''}`}>
+              {t('nav.report')}
+            </a>
+            <a href={translatePath('/library')} class={`dropdown-item ${isActiveUrl('/library') ? 'active' : ''}`}>
+              {t('nav.library')}
+            </a>
+            </div>
+          </div>
+        </div>
+        <a href={translatePath('/contact')} class={`nav-link ${isActiveUrl('/contact') ? 'active' : ''}`}>
+          {t('nav.contact')}
+        </a>
+      </div>
+
+      <div class="flex items-center justify-end space-x-6 md:space-x-4">
+        <LanguagePicker />
+        <ThemeToggle />
+        <!-- Botón de menú móvil -->
+        <button
+          id="show-button"
+          class="md:hidden p-1"
+          aria-label="Mostrar menú"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href={translatePath('/')} class={`mobile-nav-link ${isActiveUrl('/') ? 'active' : ''}`}>
+          {t('nav.home')}
+        </a>
+        <a href={translatePath('/blog')} class={`mobile-nav-link ${isActiveUrl('/blog') ? 'active' : ''}`}>
+          {t('nav.blog')}
+        </a>
+        <a href={translatePath('/features')} class={`mobile-nav-link ${isActiveUrl('/features') ? 'active' : ''}`}>
+          {t('nav.features')}
+        </a>
+        <a href={translatePath('/about')} class={`mobile-nav-link ${isActiveUrl('/about') ? 'active' : ''}`}>
+          {t('nav.about')}
+        </a>
+
+        <!-- Submenú de páginas en móvil -->
+        <div class="py-2">
+          <button id="pages-dropdown-button" class={`mobile-nav-link w-full text-left flex items-center justify-between ${isActiveUrl('/dashboard') || isActiveUrl('/info') || isActiveUrl('/method') || isActiveUrl('/repetitive') || isActiveUrl('/continuous') || isActiveUrl('/frequency') || isActiveUrl('/machine') || isActiveUrl('/supplements') || isActiveUrl('/report') || isActiveUrl('/library') ? 'active' : ''}`}>
+            <span>{t('nav.pages')}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform" id="pages-dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="pages-dropdown-menu" class="hidden mt-2 pl-4 border-l-2 border-gray-200 dark:border-gray-700">
+            <a href={translatePath('/dashboard')} class={`mobile-nav-link ${isActiveUrl('/dashboard') ? 'active' : ''}`}>
+              {t('nav.dashboard')}
+            </a>
+            <a href={translatePath('/info')} class={`mobile-nav-link ${isActiveUrl('/info') ? 'active' : ''}`}>
+              {t('nav.info')}
+            </a>
+            <a href={translatePath('/method')} class={`mobile-nav-link ${isActiveUrl('/method') ? 'active' : ''}`}>
+              {t('nav.method')}
+            </a>
+            <a href={translatePath('/repetitive')} class={`mobile-nav-link ${isActiveUrl('/repetitive') ? 'active' : ''}`}>
+              {t('nav.repetitive')}
+            </a>
+            <a href={translatePath('/continuous')} class={`mobile-nav-link ${isActiveUrl('/continuous') ? 'active' : ''}`}>
+              {t('nav.continuous')}
+            </a>
+            <a href={translatePath('/frequency')} class={`mobile-nav-link ${isActiveUrl('/frequency') ? 'active' : ''}`}>
+              {t('nav.frequency')}
+            </a>
+            <a href={translatePath('/machine')} class={`mobile-nav-link ${isActiveUrl('/machine') ? 'active' : ''}`}>
+              {t('nav.machine')}
+            </a>
+            <a href={translatePath('/supplements')} class={`mobile-nav-link ${isActiveUrl('/supplements') ? 'active' : ''}`}>
+              {t('nav.supplements')}
+            </a>
+            <a href={translatePath('/report')} class={`mobile-nav-link ${isActiveUrl('/report') ? 'active' : ''}`}>
+              {t('nav.report')}
+            </a>
+            <a href={translatePath('/library')} class={`mobile-nav-link ${isActiveUrl('/library') ? 'active' : ''}`}>
+              {t('nav.library')}
+            </a>
+          </div>
+        </div>
+
+        <a href={translatePath('/contact')} class={`mobile-nav-link ${isActiveUrl('/contact') ? 'active' : ''}`}>
+          {t('nav.contact')}
+        </a>
+      </div>
     </div>
   </nav>
 </header>
 
 <style>
 .header {
-  @apply sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800;
+  @apply py-2 md:py-4 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300;
 }
 .navbar {
-  @apply relative flex flex-wrap items-center justify-between px-6 py-4;
-}
-.navbar-nav {
-  @apply mt-4 lg:mt-0;
-}
-.nav-item {
-  @apply lg:flex;
+  @apply relative flex flex-col w-full;
 }
 .nav-link {
-  @apply px-3 py-2 transition-colors duration-200;
+  @apply px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-secondary transition-colors duration-200;
 }
-.nav-dropdown {
-  @apply absolute left-0 z-10 mt-2 min-w-[180px] rounded border bg-white py-2 shadow-lg dark:border-gray-800 dark:bg-gray-900;
+.mobile-nav-link {
+  @apply block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-secondary transition-colors duration-200;
 }
 .active {
-  @apply text-primary dark:text-primary;
+  @apply text-accent dark:text-secondary;
+}
+
+/* Estilos para el menú desplegable */
+.group {
+  @apply relative;
+}
+.group:hover > div {
+  @apply block;
+}
+
+/* Estilos para los elementos del menú desplegable */
+.dropdown-item {
+  @apply block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700;
+}
+.dropdown-item.active {
+  @apply text-accent dark:text-secondary;
+}
+
+/* Estilos para forzar el modo oscuro en la cabecera */
+.dark-mode-applied {
+  @apply bg-gray-900 bg-opacity-95 text-gray-300;
 }
 </style>
 
 <script>
-// Mobile menu toggle
-const navToggle = document.getElementById("nav-toggle");
-const navMenu = document.getElementById("nav-menu");
-const showButton = document.getElementById("show-button");
-const hideButton = document.getElementById("hide-button");
-
-navToggle?.addEventListener("change", function () {
-  if (this.checked) {
-    navMenu?.classList.remove("hidden");
-    showButton?.classList.add("hidden");
-    hideButton?.classList.remove("hidden");
-  } else {
-    navMenu?.classList.add("hidden");
-    showButton?.classList.remove("hidden");
-    hideButton?.classList.add("hidden");
-  }
-});
-
-// Dropdown menu
 document.addEventListener('astro:page-load', () => {
-  const buttons = document.querySelectorAll('.dropdown-button');
-  let activeDropdown = null;
+  const showButton = document.getElementById("show-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const pagesDropdownButton = document.getElementById("pages-dropdown-button");
+  const pagesDropdownMenu = document.getElementById("pages-dropdown-menu");
+  const pagesDropdownIcon = document.getElementById("pages-dropdown-icon");
 
-  // Close dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.dropdown-button') && activeDropdown) {
-      activeDropdown.nextElementSibling.classList.add('hidden');
-      activeDropdown = null;
-    }
-  });
-
-  // Toggle dropdown on button click
-  buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const dropdown = button.nextElementSibling;
-
-      if (activeDropdown && activeDropdown !== button) {
-        activeDropdown.nextElementSibling.classList.add('hidden');
+  // Función para actualizar el estilo de la cabecera según el modo
+  const updateHeaderStyle = () => {
+    const header = document.querySelector('.header');
+    if (header) {
+      // Verificar si estamos en modo oscuro
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      if (isDarkMode) {
+        // Asegurar que los estilos del modo oscuro se apliquen correctamente
+        header.classList.add('dark-mode-applied');
+      } else {
+        // Quitar los estilos del modo oscuro si estamos en modo claro
+        header.classList.remove('dark-mode-applied');
       }
+      // Forzar un reflow para aplicar los estilos correctos
+      header.offsetHeight;
+    }
+  };
 
-      dropdown.classList.toggle('hidden');
-      activeDropdown = dropdown.classList.contains('hidden') ? null : button;
+  // Actualizar el estilo al cargar la página
+  updateHeaderStyle();
+
+  // Observar cambios en la clase 'dark' del documento
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class' &&
+          (mutation.target as Element).classList.contains('dark') !== undefined) {
+        updateHeaderStyle();
+      }
     });
   });
+
+  // Iniciar la observación del elemento html
+  observer.observe(document.documentElement, { attributes: true });
+
+  // Escuchar el evento personalizado de cambio de tema
+  document.addEventListener('themeChanged', () => {
+    updateHeaderStyle();
+  });
+
+  if (showButton && mobileMenu) {
+    showButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Cerrar el menú móvil cuando se hace clic fuera de él
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node;
+      if (!showButton.contains(target) && !mobileMenu.contains(target)) {
+        mobileMenu.classList.add("hidden");
+      }
+    });
+
+    // Cerrar el menú móvil cuando se hace clic en un enlace (excepto en el botón del submenú)
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  }
+
+  // Manejo del submenú de páginas en móvil
+  if (pagesDropdownButton && pagesDropdownMenu && pagesDropdownIcon) {
+    pagesDropdownButton.addEventListener("click", (e) => {
+      e.stopPropagation(); // Evitar que el clic se propague al documento
+      pagesDropdownMenu.classList.toggle("hidden");
+      pagesDropdownIcon.classList.toggle("rotate-180");
+    });
+
+    // Evitar que el clic en el submenú cierre el menú principal
+    pagesDropdownMenu.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  }
 });
 </script>

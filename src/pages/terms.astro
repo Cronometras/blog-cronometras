@@ -1,0 +1,10 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+
+// Get the user's preferred language
+const lang = getLangFromUrl(Astro.url);
+
+// Redirect to language-specific terms page
+const redirectUrl = lang === 'es' ? '/es/terms' : '/en/terms';
+return Astro.redirect(redirectUrl);
+---

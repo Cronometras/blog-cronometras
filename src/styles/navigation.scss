@@ -57,7 +57,7 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-link {
-  @apply block py-2 text-base font-medium text-text transition hover:text-accent;
+  @apply block py-2 text-base font-medium text-text transition hover:text-accent dark:hover:text-secondary;
 }
 
 .nav-dropdown {
@@ -67,7 +67,7 @@ input#nav-toggle:checked ~ #nav-menu {
 .nav-dropdown-list {
   @apply invisible absolute left-0 top-full z-50 rounded-lg bg-surface py-2 shadow-lg opacity-0 transition-all;
   @apply min-w-[180px] border border-gray-200 dark:border-gray-700;
-  
+
   .group:hover & {
     @apply visible opacity-100;
   }
@@ -78,24 +78,24 @@ input#nav-toggle:checked ~ #nav-menu {
 }
 
 .nav-dropdown-link {
-  @apply block py-1 text-sm font-medium text-text transition hover:text-accent;
+  @apply block py-1 text-sm font-medium text-text transition hover:text-accent dark:hover:text-secondary;
 }
 
 @media (max-width: 1023px) {
   #nav-menu {
     @apply fixed left-0 top-[72px] z-40 h-[calc(100vh-72px)] w-full overflow-y-auto bg-surface px-4 py-8;
     @apply translate-x-full transition-transform duration-300;
-    
+
     &.show {
       @apply translate-x-0;
     }
   }
-  
+
   .nav-dropdown-list {
     @apply static mt-2 w-full border-none bg-transparent shadow-none;
     @apply visible opacity-100;
   }
-  
+
   .nav-dropdown-item {
     @apply px-0;
   }
@@ -105,11 +105,11 @@ input#nav-toggle:checked ~ #nav-menu {
   & ~ #nav-menu {
     @apply translate-x-0;
   }
-  
+
   & ~ #show-button {
     @apply hidden;
   }
-  
+
   & ~ #hide-button {
     @apply flex;
   }

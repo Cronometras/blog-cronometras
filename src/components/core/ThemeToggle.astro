@@ -4,10 +4,10 @@ import { IoSunny, IoMoon } from "react-icons/io5";
 
 <button id="themeToggle" class="flex justify-center items-center">
   <span class="icon hidden dark:block"
-    ><IoSunny client:load className="text-white" /></span
+    ><IoSunny client:load className="text-white text-xl md:text-base" /></span
   >
   <span class="icon block dark:hidden"
-    ><IoMoon client:load className="text-gray-700" /></span
+    ><IoMoon client:load className="text-gray-700 text-xl md:text-base" /></span
   >
   <!-- {
     import.meta.env.MODE == "development" && (
@@ -40,6 +40,9 @@ import { IoSunny, IoMoon } from "react-icons/io5";
       document.getElementById("theme_label").textContent = isDark
         ? "Dark theme"
         : "Light theme";
+
+      // Disparar un evento personalizado para notificar el cambio de tema
+      document.dispatchEvent(new CustomEvent('themeChanged', { detail: { isDark } }));
     };
 
     toggleBtn?.addEventListener("click", handleToggleClick);

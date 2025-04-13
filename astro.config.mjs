@@ -5,19 +5,28 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig, sharpImageService } from "astro/config";
 import config from "./src/config/config.json";
 import AutoImport from "astro-auto-import";
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://astrotemplatesitey.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  output: "static",
+  output: "server",
+  adapter: node({
+    mode: "standalone"
+  }),
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
           api: "modern-compiler"
         }
+      }
+    },
+    resolve: {
+      alias: {
+        '@': '/src'
       }
     }
   },
@@ -37,6 +46,7 @@ export default defineConfig({
         "@/components/core/Section.astro",
         "@/components/react/Changelog.tsx",
         "@/components/Badge.astro",
+        "@/components/RelatedBlogPosts.astro",
       ],
     }),
     mdx()

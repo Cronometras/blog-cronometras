@@ -5,7 +5,7 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils";
 
 const { footer } = menu;
 const { copyright, location, email, footer_description } = config.params;
@@ -17,6 +17,7 @@ const has_social = Object.entries(social).some(
 // Get current language and translations
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
 ---
 
 <footer class="footer border-t border-border mx-4">
@@ -43,7 +44,7 @@ const t = useTranslations(lang);
                   <li class={footer.length - 1 === i ? "mb-0" : "mb-4"}>
                     <a
                       class="hover:text-primary hover:underline "
-                      href={item.url}
+                      href={translatePath(item.url)}
                     >
                       {t(item.name)}
                     </a>
@@ -63,7 +64,7 @@ const t = useTranslations(lang);
               {email}
             </a>
           </li>
-         
+
         </ul>
       </div>
     </div>

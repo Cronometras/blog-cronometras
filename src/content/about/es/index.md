@@ -7,13 +7,13 @@ title: Sobre ProdCont
 description: "Somos especialistas en optimización de procesos industriales y de servicios, creadores de CRONOMETRAS, la solución definitiva para el cronometraje y análisis de tiempos."
 buttons:
   - label: "Contactar con nosotros"
-    href: "/es/contacto"
+    href: "/es/contact"
     icon: "mail"
-    color: "primary"
+    class: "bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-all duration-300 shadow-md hover:scale-105 hover:shadow-yellow-500/50 border border-yellow-300 w-full sm:w-auto mb-3 sm:mb-0"
   - label: "Visitar ProdCont.com"
     href: "https://prodcont.com"
     icon: "external-link"
-    color: "outline-primary"
+    class: "bg-gradient-to-r from-purple-600 to-accent text-white hover:opacity-90 font-bold py-3 px-6 rounded-lg text-center transition-all duration-300 shadow-md hover:scale-105 hover:shadow-purple-500/50 border border-purple-400 w-full sm:w-auto"
     target: "_blank"
 ---
 
@@ -38,7 +38,7 @@ buttons:
         <img src="/images/propuesta de valor.jpg" alt="Propuesta de Valor" class="mb-10 mx-auto">
       </div>
     </div>
-    
+
   <div class="row justify-center">
     <div class="md:col-4 mb-8">
       <div class="p-6 h-full dark:bg-gray-700 dark:text-white rounded-lg">
@@ -70,7 +70,7 @@ buttons:
   </div>
   <div class="row justify-center mt-8">
     <div class="md:col-4 text-center">
-      <a href="/es/contacto" class="btn-primary bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border">Comienza ahora</a>
+      <a href="/es/contact" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-colors">Comienza ahora</a>
     </div>
   </div>
 </div>
@@ -89,7 +89,7 @@ buttons:
         <img src="/images/team/german.png" alt="Germán Iranzo" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
         <h3 class="h5 mb-2">Germán Iranzo</h3>
         <p class="text-sm text-gray-600 mb-2">Director de Operaciones</p>
-        <a href="https://www.linkedin.com/in/germ%C3%A1n-iranzo-5733b449/" target="_blank" class="btn-primary btn-sm w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/germ%C3%A1n-iranzo-5733b449/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
       </div>
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
@@ -97,7 +97,7 @@ buttons:
         <img src="/images/team/miguel.png" alt="Miguel Cano" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
         <h3 class="h5 mb-2">Miguel Cano</h3>
         <p class="text-sm text-gray-600 mb-2">Desarrollo de Software</p>
-        <a href="https://www.linkedin.com/in/miguel-cano-otero/" target="_blank" class="btn-primary btn-sm w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/miguel-cano-otero/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
       </div>
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
@@ -105,15 +105,15 @@ buttons:
         <img src="/images/team/juanvi.png" alt="Juan Vicente Tarín" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
         <h3 class="h5 mb-2">Juan Vte. Tarín</h3>
         <p class="text-sm text-gray-600 mb-2">Consultor de Procesos</p>
-        <a href="https://www.linkedin.com/in/juan-vicente-tar%C3%ADn-2a384520/" target="_blank" class="btn-primary btn-sm w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/juan-vicente-tar%C3%ADn-2a384520/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
       </div>
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
       <div class="text-center">
         <img src="/images/team/sofia.png" alt="Sofía Estelles" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
         <h3 class="h5 mb-2">Sofía Estelles</h3>
-        <p class="text-sm text-gray-600 mb-2">Atención al Cliente</p>
-        <a href="https://www.linkedin.com/in/sofia-estelles-miguel-961aba18" target="_blank" class="btn-primary btn-sm w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4">LinkedIn</a>
+        <p class="text-sm text-gray-600 mb-2">Formación y Consultoria</p>
+        <a href="https://www.linkedin.com/in/sofia-estelles-miguel-961aba18" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
       </div>
     </div>
   </div>
@@ -132,21 +132,21 @@ buttons:
         <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
           <h3 class="h4 mb-4 dark:text-white">CRONOMETRAS</h3>
           <p class="mb-4 dark:text-gray-200">Nuestra aplicación insignia para el cronometraje industrial y análisis de tiempos. Permite automatizar la medición del tiempo, desde el cronometraje básico hasta la captura de secuencias complejas de elementos.</p>
-          <a href="/" class="btn-primary btn-sm dark:border-white/10 dark:border">Más información</a>
+          <a href="/" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">Más información</a>
         </div>
       </div>
       <div class="md:col-4 mb-8">
         <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
           <h3 class="h4 mb-4 dark:text-white">Muestreo</h3>
           <p class="mb-4 dark:text-gray-200">Solución para el muestreo de trabajo y análisis estadístico de actividades. Ideal para estudiar la distribución del tiempo en diferentes tareas y detectar oportunidades de mejora.</p>
-          <a href="https://prodcont.com/muestreo/" target="_blank" class="btn-primary btn-sm dark:border-white/10 dark:border">Más información</a>
+          <a href="https://prodcont.com/muestreo/" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">Más información</a>
         </div>
       </div>
       <div class="md:col-4 mb-8">
         <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
           <h3 class="h4 mb-4 dark:text-white">Fichadas</h3>
           <p class="mb-4 dark:text-gray-200">Sistema de control de presencia y gestión de tiempos de trabajo. Permite registrar entradas y salidas, gestionar permisos y generar informes detallados.</p>
-          <a href="https://prodcont.com/fichadas/" target="_blank" class="btn-primary btn-sm dark:border-white/10 dark:border">Más información</a>
+          <a href="https://prodcont.com/fichadas/" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">Más información</a>
         </div>
       </div>
     </div>
@@ -158,7 +158,7 @@ buttons:
     <div class="md:col-10 lg:col-8 text-center">
       <h2 class="mb-4">Descubre cómo mejorar hoy</h2>
       <p class="mb-8">No esperes más, mejora la productividad en tu empresa con nuestras aplicaciones. Contacta con nosotros para una demostración de CRONOMETRAS o cualquiera de nuestras soluciones.</p>
-      <a href="/es/contacto" class="btn-primary">Contactar ahora</a>
+      <a href="/es/contact" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-colors">Contactar ahora</a>
     </div>
   </div>
 </div>

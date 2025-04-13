@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
+import BlogListSchema from '@/components/blog/BlogListSchema.astro';
 import { slugify } from '@/utils/slugify';
 
 export const getStaticPaths = async () => {
@@ -24,7 +25,7 @@ const currentLangPosts = allPosts.filter((post) => {
   // Los posts están en carpetas organizadas por idioma (es/ o en/)
   const postLang = post.slug.split('/')[0];
   console.log(`Evaluando post: ${post.id}, idioma: ${postLang}, actual: ${lang}`);
-  
+
   return postLang === lang && !post.data.draft;
 });
 
@@ -34,8 +35,8 @@ console.log(`Posts filtrados por idioma ${lang}: ${posts.length}`);
 
 // Traducir el título y descripción según el idioma
 const title = lang === 'es' ? 'Blog de CRONOMETRAS' : 'CRONOMETRAS Blog';
-const description = lang === 'es' 
-  ? 'Artículos sobre productividad, estudios de tiempos y gestión industrial' 
+const description = lang === 'es'
+  ? 'Artículos sobre productividad, estudios de tiempos y gestión industrial'
   : 'Articles about productivity, time studies, and industrial management';
 
 // Traducir el texto del botón "Leer más"
@@ -43,6 +44,7 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
 ---
 
 <Base title={title} description={description}>
+  <BlogListSchema posts={posts} url={Astro.url} title={title} description={description} />
   <section class="py-20">
     <div class="container">
       <div class="row justify-center">
@@ -57,13 +59,13 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
             // Extraer el slug correcto, omitiendo la parte del idioma
             const postSlug = post.slug.split('/').slice(1).join('/');
             console.log(`Generando card para post: ${post.id}, slug: ${postSlug}`);
-            
+
             return (
               <div class="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-transform duration-300 hover:-translate-y-2">
                 <a href={`/${lang}/blog/${postSlug}`} class="block">
-                  <img 
-                    src={post.data.heroImage || '/images/cronometras App.png'} 
-                    alt={post.data.title} 
+                  <img
+                    src={post.data.heroImage || '/images/cronometras App.png'}
+                    alt={post.data.title}
                     class="w-full h-48 object-cover"
                   />
                   <div class="p-6">

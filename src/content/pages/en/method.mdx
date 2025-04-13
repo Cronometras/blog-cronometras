@@ -1,37 +1,146 @@
 ---
-document_title: "CRONOMETRAS: Method Screen"
-meta_description: "Learn how to structure and organize your time studies with CRONOMETRAS's method screen."
-meta_keywords: "work methods, time study, element organization, industrial timing"
-title: "Method Screen"
-description: "Structure and organize your time studies efficiently and professionally."
+document_title: "Industrial Time Study Software: Method Module for Time Studies and Standard Time Calculation | CRONOMETRAS"
+meta_description: "Optimize your time and motion studies with CRONOMETRAS Method module. Define work elements, classify operations, and set frequencies for precise standard time calculation."
+meta_keywords: "industrial time study, time and motion study, methods and times, work measurement, standard time, standard time calculation, methods engineering, time study software, element library, voice recognition, repetitive elements, frequency elements"
+
+title: "Method Module: The Foundation of Your Time Studies"
+description: "Define, classify, and manage the work elements that make up your time study for accurate standard time calculation."
 ---
 
-<Section
-  section={{
-    title: "Hierarchical Element Structure",
-    content: "Organize your study logically and efficiently:<br/><br/>• Create a hierarchical structure of work elements<br/>• Group related elements for better organization<br/>• Establish dependencies and relationships between elements<br/>• Visualize the complete study structure<br/><br/><i>Benefit: Keep your studies organized and easy to understand.</i>",
-    image: "/images/method-hierarchy.png",
-    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
-    alt: "Hierarchical structure in CRONOMETRAS"
-  }}
-/>
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">What is the Method Module in CRONOMETRAS?</h2>
+  
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    The <strong>Method Module</strong> is the fundamental component of <a href="/en/features" class="text-accent hover:underline">CRONOMETRAS</a> where you define the structure of your <a href="/en/blog/best-practices-work-methods" class="text-accent hover:underline">time and motion study</a>. Here you can create, classify, and manage all the work elements that make up your study, establishing the foundation for <a href="/en/blog/standard-time-calculation" class="text-accent hover:underline">accurate standard time calculation</a>.
+  </p>
+</div>
 
 <Section
   section={{
-    title: "Alternative Methods Management",
-    content: "Compare different ways of performing a task:<br/><br/>• Define multiple methods for the same operation<br/>• Compare times and efficiency between methods<br/>• Identify best practices<br/>• Document differences between methods<br/><br/><i>Benefit: Find the most efficient way to perform each task.</i>",
-    image: "/images/alternative-methods.png",
+    title: "Element Classification by Man-Machine Relationship",
+    content:
+      "Modern <strong>industrial time study</strong> requires clearly differentiating element types according to their relationship with machinery, allowing precise time analysis:",
+    image: "/images/tipos de elemento en un estudio de métodos y tiempos según su relación con la maquinaria.png",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
-    alt: "Alternative methods in CRONOMETRAS"
+    alt: "Element classification in time and motion studies based on man-machine relationship"
   }}
 />
 
+*   **Machine Stopped (machine-stopped):** Operations performed with the machine completely stopped, where the operator has full control over the execution time.
+*   **Machine Running (machine-running):** Manual activities performed while the machine operates automatically, optimizing productivity through task simultaneity.
+*   **Machine Time (machine-time):** Periods where the machine works autonomously, crucial for calculating production capacities and cycle times.
+
 <Section
   section={{
-    title: "Element Library",
-    content: "Leverage accumulated knowledge:<br/><br/>• Import predefined elements from your library<br/>• Reuse common elements across studies<br/>• Maintain consistency in your analyses<br/>• Save time in setting up new studies<br/><br/><i>Benefit: Speed up the creation of new studies by leveraging previous work.</i>",
-    image: "/images/element-library.png",
+    title: "Classification by Repetition Pattern for Precise Time Studies",
+    content:
+      "Effective <strong>work measurement</strong> requires correctly identifying the frequency of each element for an exact <strong>standard time</strong> calculation:",
+    image: "/images/tipos de elemento según su frecuencia de aparición en el ciclod e trabajo.png",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
-    alt: "Element library in CRONOMETRAS"
+    alt: "Element classification based on frequency of occurrence in the work cycle"
   }}
 />
+
+*   **Repetitive Elements:** Operations that occur in each work cycle consistently, forming the basis of the regular cycle time. Fundamental for establishing the base production rhythm.
+*   **Frequency Elements:** Activities that appear with a specific frequency (every N cycles), such as adjustments, verifications, or replenishments. Their correct assignment is crucial for <a href="/en/blog/standard-time-calculation" class="text-accent hover:underline">accurate standard time calculation</a>.
+
+<Section
+  section={{
+    title: "Work Element Creation and Editing",
+    content:
+      "The <strong>time study software</strong> CRONOMETRAS offers an intuitive form to define each element with precision:",
+    image: "/images/formulario-elemento-metodo.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Element creation form in time and motion studies"
+  }}
+/>
+
+*   **Detailed Description:** Field to document the operation precisely, facilitating its identification during timing and subsequent analysis.
+*   **Complete Classification:**
+    *   Type according to man-machine relationship (stopped, running, machine time)
+    *   Repetition pattern (repetitive or frequency)
+*   **Frequency Configuration:** For frequency elements, define exactly:
+    *   Number of repetitions per cycle
+    *   Number of cycles between occurrences
+*   **Automatic Validations:** The system automatically adjusts the repetition type to 'machine-type' when 'machine-time' is selected, avoiding data inconsistencies.
+
+<Section
+  section={{
+    title: "Voice Recognition for Efficient Time Studies",
+    content:
+      "Optimize your <strong>time and motion study</strong> with dictation technology that streamlines field documentation:",
+    image: "/images/reconocimiento de voz.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Voice recognition in industrial time study software"
+  }}
+/>
+
+*   **Hands-Free Dictation:** Ideal for industrial environments where mobility and speed are essential.
+*   **Multilingual:** Works perfectly in Spanish and English, adapting to international teams.
+*   **Intelligent Detection:** Automatically ends after 2 seconds of silence, optimizing workflow.
+*   **Clear Feedback:** Specific messages for each possible issue (microphone not detected, permissions denied, etc.).
+
+<Section
+  section={{
+    title: "Element Library: Standardization and Consistency",
+    content:
+      "The <strong>standard time calculation tool</strong> includes a powerful library that ensures consistency between studies:",
+    image: "/images/metodo-biblioteca de elementos 1.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Element library in time and motion study software"
+  }}
+/>
+
+*   **Element Reuse:** Import predefined elements with all their attributes, ensuring consistency between different studies and analysts.
+*   **Intelligent Averaging:** Select multiple similar elements to create a new element with averaged times and allowances, ideal for establishing standards based on historical data.
+*   **Data Preservation:** When importing elements, time records and allowances remain intact, preserving accumulated knowledge.
+*   **Advanced Search:** Quickly locate specific elements using filters by name, description, or type.
+
+<Section
+  section={{
+    title: "Advanced Work Method Management",
+    content:
+      "Organize your <strong>method study</strong> with management tools that facilitate the logical structuring of work:",
+    image: "/images/reordena el método de trabajo.png",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Element management in time and motion studies"
+  }}
+/>
+
+*   **Intuitive Reordering:** Move elements up or down in the sequence with simple clicks, adapting the method to the actual sequence of operations.
+*   **Contextual Editing:** Access element editing directly from the main list.
+*   **Safe Deletion:** Delete elements with prior confirmation, including automatic cleanup of associated time records and allowances.
+*   **Complete Visualization:** See at a glance all elements with their key information: sequential number, description, type, and frequency.
+
+<div class="container mx-auto my-12 px-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Optimize Your Time and Motion Studies with CRONOMETRAS</h2>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      The Method Module of CRONOMETRAS is the fundamental basis for conducting precise and professional <a href="/en/blog/best-practices-work-methods" class="text-accent hover:underline">time and motion studies</a>. Unlike traditional industrial time study methods, our software allows you to:
+    </p>
+
+    <ul class="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
+      <li>Precisely define each work element according to its relationship with machinery and repetition pattern</li>
+      <li>Streamline documentation through advanced voice recognition</li>
+      <li>Ensure consistency between studies with the element library</li>
+      <li>Logically structure the work method with intuitive management tools</li>
+      <li>Establish the foundation for <a href="/en/blog/standard-time-calculation" class="text-accent hover:underline">accurate standard time calculation</a></li>
+    </ul>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      According to recent studies on industrial productivity, companies implementing advanced <a href="/en/frequency" class="text-accent hover:underline">work measurement</a> systems like CRONOMETRAS achieve <strong>up to 30% reduction in time needed to conduct time and motion studies</strong> and <strong>25% increase in the accuracy of their standards</strong>.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-4 mt-8">
+      <a href="/en/contact" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Request a free demo
+      </a>
+      <a href="/en/machine" class="border border-accent text-accent hover:bg-accent/10 font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Explore Machine Times Module
+      </a>
+    </div>
+    
+    <RelatedBlogPosts title="Resources on Time and Motion Studies" language="en" />
+  </div>
+</div>

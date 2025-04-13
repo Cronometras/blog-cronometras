@@ -1,0 +1,62 @@
+---
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import fs from 'fs';
+import path from 'path';
+import { marked } from 'marked';
+
+// Definir los datos de la página
+const page_data = {
+  title: 'CRONOMETRAS Terms of Use',
+  description: 'These Terms of Use establish the conditions for accessing and using the CRONOMETRAS application.',
+  document_title: 'Terms of Use | CRONOMETRAS',
+  meta_description: 'CRONOMETRAS Terms of Use: Learn about the rules and policies governing the use of our industrial time study and time measurement application.',
+  meta_keywords: 'terms of use, CRONOMETRAS, conditions, time studies, industrial timing, legal agreement',
+};
+
+// Leer el contenido del archivo Markdown directamente
+let markdownContent = '';
+try {
+  const filePath = path.join(process.cwd(), 'src', 'content', 'terms', 'en', 'index.md');
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+  // Eliminar el frontmatter (todo lo que está entre --- al principio del archivo)
+  markdownContent = fileContent.replace(/^---[\s\S]*?---\s*/m, '');
+  console.log('✅ Terms file read successfully');
+} catch (error) {
+  console.error(`❌ Error reading terms file: ${error.message}`);
+  markdownContent = `
+# CRONOMETRAS Terms of Use
+
+Please read these Terms of Use carefully before accessing or using the Cronometras application (hereinafter, the "Application"). By accessing or using the Application, you agree to be bound by these terms and conditions.
+
+## 1. Acceptance of Terms
+
+These Terms of Use constitute a legally binding agreement between you (the "User") and the provider of Cronometras (hereinafter, "We" or "Cronometras"). By accessing and using the Application, you confirm that you have read, understood, and agreed to be bound by these Terms of Use, as well as our Privacy Policy.
+
+## 2. Service Description
+
+Cronometras is an application designed to facilitate time studies in work environments. The Application allows users to create and manage time studies, define work elements, measure time, and generate detailed reports.
+
+For the complete terms of use, please contact us at info@cronometras.com.
+  `;
+}
+
+// Convertir el Markdown a HTML usando marked
+const htmlContent = marked(markdownContent);
+---
+
+<Base title={page_data.document_title} description={page_data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <div class="prose prose-lg mx-auto mt-8" set:html={htmlContent} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

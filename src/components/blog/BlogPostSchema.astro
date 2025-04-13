@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import config from '@/config/config.json';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  url: URL;
+}
+
+const { post, url } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, author, category, tags } = post.data;
+
+// Construir la URL canónica completa
+const canonicalUrl = new URL(url.pathname, config.site.base_url).toString();
+
+// Obtener el idioma del post
+const lang = post.slug.split('/')[0];
+
+// Construir el esquema JSON-LD para BlogPosting
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "image": heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString(),
+  "datePublished": pubDate.toISOString(),
+  "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+  "inLanguage": lang === 'es' ? 'es-ES' : 'en-US',
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  "author": {
+    "@type": "Person",
+    "name": author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CRONOMETRAS",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/images/logo.png", config.site.base_url).toString()
+    }
+  }
+};
+
+// Añadir categoría y etiquetas si están disponibles
+if (category) {
+  schema.articleSection = category;
+}
+
+if (tags && tags.length > 0) {
+  schema.keywords = tags.join(', ');
+}
+
+// Convertir el esquema a JSON
+const schemaString = JSON.stringify(schema);
+---
+
+<!-- Insertar el esquema JSON-LD en la página -->
+<script type="application/ld+json" set:html={schemaString} />

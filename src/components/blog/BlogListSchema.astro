@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import config from '@/config/config.json';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  url: URL;
+  title: string;
+  description: string;
+}
+
+const { posts, url, title, description } = Astro.props;
+
+// Construir la URL canónica completa
+const canonicalUrl = new URL(url.pathname, config.site.base_url).toString();
+
+// Obtener el idioma de la URL
+const lang = url.pathname.split('/')[1] || 'es';
+
+// Construir el esquema JSON-LD para ItemList de BlogPosting
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": posts.map((post, index) => {
+    const postSlug = post.slug.split('/').slice(1).join('/');
+    const postUrl = new URL(`/${lang}/blog/${postSlug}`, config.site.base_url).toString();
+    
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "BlogPosting",
+        "headline": post.data.title,
+        "description": post.data.description,
+        "image": post.data.heroImage 
+          ? new URL(post.data.heroImage, config.site.base_url).toString() 
+          : new URL("/images/cronometras App.png", config.site.base_url).toString(),
+        "datePublished": post.data.pubDate.toISOString(),
+        "dateModified": post.data.updatedDate 
+          ? post.data.updatedDate.toISOString() 
+          : post.data.pubDate.toISOString(),
+        "author": {
+          "@type": "Person",
+          "name": post.data.author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "CRONOMETRAS",
+          "logo": {
+            "@type": "ImageObject",
+            "url": new URL("/images/logo.png", config.site.base_url).toString()
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": postUrl
+        },
+        "url": postUrl
+      }
+    };
+  }),
+  "numberOfItems": posts.length,
+  "name": title,
+  "description": description,
+  "url": canonicalUrl
+};
+
+// Convertir el esquema a JSON
+const schemaString = JSON.stringify(schema);
+---
+
+<!-- Insertar el esquema JSON-LD en la página -->
+<script type="application/ld+json" set:html={schemaString} />

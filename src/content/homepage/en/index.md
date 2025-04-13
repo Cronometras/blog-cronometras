@@ -173,6 +173,7 @@ call_to_action:
   description: "Join the companies that have already transformed their operational efficiency. **Start your free trial today and discover the power of data-driven optimization.**"
   button:
     label: "Start Now"
-    href: "/signup"
+    href: "#"
     color: accent
+    id: "main-cta-button"
 ---

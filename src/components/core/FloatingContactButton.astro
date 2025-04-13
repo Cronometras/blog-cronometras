@@ -1,0 +1,38 @@
+<div id="floating-contact-button" class="fixed bottom-8 right-8 z-50">
+  <button
+    class="bg-purple-600 dark:bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-purple-700 dark:hover:bg-green-700 transition-all duration-300 flex items-center justify-center"
+    aria-label="Solicitar demo gratuita"
+    onclick="window.openRequestDemoModal()"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("FloatingContactButton: DOMContentLoaded");
+    
+    const floatingButton = document.getElementById('floating-contact-button');
+    if (floatingButton) {
+      // Mostrar el botón en todas las páginas
+      floatingButton.style.display = 'flex';
+      
+      // Agregar el evento de clic directamente al botón
+      const button = floatingButton.querySelector('button');
+      if (button) {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          console.log("Floating button clicked");
+          if (typeof window.openRequestDemoModal === 'function') {
+            console.log("Opening demo modal from floating button");
+            window.openRequestDemoModal();
+          } else {
+            console.error("The function openRequestDemoModal is not defined");
+          }
+        });
+      }
+    }
+  });
+</script> 

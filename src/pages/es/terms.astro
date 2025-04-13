@@ -1,0 +1,62 @@
+---
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import fs from 'fs';
+import path from 'path';
+import { marked } from 'marked';
+
+// Definir los datos de la página
+const page_data = {
+  title: 'Términos de Uso de CRONOMETRAS',
+  description: 'Estos Términos de Uso establecen las condiciones para el acceso y uso de la aplicación CRONOMETRAS.',
+  document_title: 'Términos de Uso | CRONOMETRAS',
+  meta_description: 'Términos y condiciones de uso de CRONOMETRAS: Conoce las reglas y políticas que rigen el uso de nuestra aplicación de cronometraje industrial y estudios de tiempos.',
+  meta_keywords: 'términos de uso, CRONOMETRAS, condiciones, estudios de tiempos, cronometraje industrial, acuerdo legal',
+};
+
+// Leer el contenido del archivo Markdown directamente
+let markdownContent = '';
+try {
+  const filePath = path.join(process.cwd(), 'src', 'content', 'terms', 'es', 'index.md');
+  const fileContent = fs.readFileSync(filePath, 'utf-8');
+
+  // Eliminar el frontmatter (todo lo que está entre --- al principio del archivo)
+  markdownContent = fileContent.replace(/^---[\s\S]*?---\s*/m, '');
+  console.log('✅ Archivo de términos leído correctamente');
+} catch (error) {
+  console.error(`❌ Error al leer el archivo de términos: ${error.message}`);
+  markdownContent = `
+# Términos de Uso de CRONOMETRAS
+
+Por favor, lee atentamente estos Términos de Uso antes de acceder o utilizar la aplicación Cronometras (en adelante, la "Aplicación"). Al acceder o utilizar la Aplicación, aceptas estar sujeto a estos términos y condiciones.
+
+## 1. Aceptación de los Términos
+
+Estos Términos de Uso constituyen un acuerdo legalmente vinculante entre tú (el "Usuario") y el proveedor de Cronometras (en adelante, "Nosotros" o "Cronometras"). Al acceder y utilizar la Aplicación, confirmas que has leído, entendido y aceptado estar sujeto a estos Términos de Uso, así como a nuestra Política de Privacidad.
+
+## 2. Descripción del Servicio
+
+Cronometras es una aplicación diseñada para facilitar la realización de estudios de tiempos en entornos laborales. La Aplicación permite a los usuarios crear y gestionar estudios de tiempos, definir elementos de trabajo, medir tiempos y generar informes detallados.
+
+Para los términos de uso completos, por favor contáctanos en info@cronometras.com.
+  `;
+}
+
+// Convertir el Markdown a HTML usando marked
+const htmlContent = marked(markdownContent);
+---
+
+<Base title={page_data.document_title} description={page_data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <div class="prose prose-lg mx-auto mt-8" set:html={htmlContent} />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

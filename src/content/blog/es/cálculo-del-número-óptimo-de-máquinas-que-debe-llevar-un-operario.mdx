@@ -1,0 +1,147 @@
+---
+title: "Cálculo del número óptimo de máquinas que debe llevar un operario"
+description: "En los procesos de trabajo, es común que un operario tenga que atender a una o varias máquinas. Aprende a calcular el número óptimo de máquinas para maximizar la productividad."
+pubDate: 2025-04-12
+category: "Estudio del Trabajo"
+tags: ["Organización industrial", "Productividad", "Optimización de recursos", "Estudio de tiempos", "Saturación del operario"]
+author: "micaot"
+heroImage: "/images/Cálculo del número óptimo de máquinas que debe llevar un operario.png"
+---
+
+## Introducción
+
+En los procesos de trabajo, es común que un operario tenga que atender a una o varias máquinas para realizar su labor. El número de máquinas que debe atender un operario dependerá de diversos factores, como el tiempo de ciclo, el tiempo de trabajo manual, el tiempo de trabajo de la máquina y el porcentaje de descanso del operario. En este artículo, se explicará paso a paso y con ejemplos cómo calcular el número óptimo de máquinas que debe llevar un operario.
+
+## Conceptos básicos
+
+Antes de comenzar con los cálculos, es necesario conocer algunos conceptos básicos:
+
+- **Tiempo de ciclo (C)**: es el tiempo total que tarda en realizarse una operación completa, incluyendo el tiempo de trabajo manual y el tiempo de trabajo de la máquina.
+
+- **Tiempo de trabajo manual exterior (C1)**: es el tiempo que el operario trabaja fuera del ciclo de la máquina, es decir, con máquina parada.
+
+- **Tiempo de trabajo de la máquina (Tm)**: es el tiempo que la máquina trabaja sin la intervención del operario, el tiempo de trabajo automático de la máquina.
+
+- **Tiempo de trabajo manual interior (C2)**: es el tiempo que el operario trabaja dentro del tiempo de ciclo de la máquina, trabajo con máquina en marcha.
+
+- **Porcentaje de saturación del operario (So)**: es el porcentaje de tiempo que el operario está trabajando en relación con el tiempo total del ciclo.
+
+- **Porcentaje de saturación de la máquina (Sm)**: es el porcentaje de tiempo que la máquina está trabajando en relación con el tiempo total del ciclo.
+
+- **Porcentaje de descanso (D)**: es el porcentaje de tiempo que el operario no está trabajando, ya sea por descansos programados o por esperas entre operaciones.
+
+## Cálculo del número de máquinas
+
+Para calcular el número óptimo de máquinas que debe llevar un operario, se debe seguir los siguientes pasos:
+
+### Paso 1: Calcular el tiempo de ciclo (C)
+
+El tiempo de ciclo se calcula sumando el tiempo de trabajo con máquina parada (C1) y el tiempo de trabajo de más largo de entre el trabajo con máquina en marcha o el tiempo de máquina una vez normalizados los tiempos.
+
+<pre><code>Ciclo Normal = MP+El más largo de MM ó TM</code></pre>
+
+Ejemplo: En un proceso de mecanizado de piezas, el tiempo manual exterior es de 60 segundos y el tiempo de máquina es de 100 segundos. ¿Cuál es el tiempo de ciclo?
+
+C = 60 + 100 = 160 segundos
+
+### Paso 2: Calcular el porcentaje de saturación del operario (So) y de la máquina (Sm)
+
+El porcentaje de saturación del operario trabajando a ritmo normal, se calcula dividiendo el tiempo de trabajo manual C1 + C2 entre el tiempo de ciclo (C) y multiplicando por 100.
+
+<pre><code>Saturación Operario Nomal = [(MM+MP)/Ciclo Normal]*100</code></pre>
+
+El porcentaje de saturación del operario trabajando a ritmo óptimo, se calcula dividiendo el tiempo de trabajo manual C1 + C2 optimizados, entre el tiempo de ciclo (C) optimizado y multiplicando por 100.
+
+<pre><code>Saturación Operario Óptimo = [(MMi + MPi)/Ciclo Óptimo]*100</code></pre>
+
+El porcentaje de saturación de la máquina se calcula dividiendo el tiempo de trabajo de la máquina (Tm) entre el tiempo de ciclo (C) y multiplicando por 100.
+
+<pre><code>Sm = (Tm / C) x 100</code></pre>
+
+Ejemplo: En el proceso de mecanizado de piezas anterior, ¿cuál es el porcentaje de saturación del operario y de la máquina?
+
+So = (60 / 160) x 100 = 37,5%
+
+Sm = (100 / 160) x 100 = 62,5%
+
+### Paso 3: Calcular el porcentaje de descanso (D)
+
+El porcentaje de descanso se calcula restando el porcentaje de saturación del operario y de la máquina de 100.
+
+D = 100 - So - Sm
+
+Ejemplo: En el proceso de mecanizado de piezas anterior, ¿cuál es el porcentaje de descanso?
+
+D = 100 - 37,5 - 62,5 = 0
+
+En este caso, el porcentaje de descanso es 0 porque el operario y la máquina están trabajando al 100% de su capacidad.
+
+### Paso 4: Calcular el número de máquinas
+
+El número de máquinas que puede atender un operario se calcula con la siguiente fórmula:
+
+N = (100 x D) / (A1 + A2)
+
+Donde:
+
+- **N** es el número de máquinas.
+- **D** es el porcentaje de descanso.
+- **A1** es el porcentaje de tiempo manual exterior.
+- **A2** es el porcentaje de tiempo manual interior.
+
+Los porcentajes de tiempo manual exterior e interior se calculan dividiendo el tiempo de trabajo manual exterior e interior entre el tiempo de ciclo y multiplicando por 100.
+
+A1 = (C1 / C) x 100
+
+A2 = (C2 / C) x 100
+
+Ejemplo: Un operario trabaja con un número indeterminado de máquinas ensambladoras de material electrónico. El tiempo acotado para su análisis es de 2 minutos y 24 segundos; el tiempo que trabaja la máquina es de 40 segundos y el que trabaja el operario es de 2 minutos y 12 segundos. Si el porcentaje de descanso es del 8%, ¿cuántas máquinas puede atender el operario?
+
+Paso 1: Calcular el tiempo de ciclo (C)
+
+C = C1 + Tm
+
+C = 2 minutos y 12 segundos + 40 segundos = 2 minutos y 52 segundos = 172 segundos
+
+Paso 2: Calcular el porcentaje de saturación del operario (So) y de la máquina (Sm)
+
+So = (C1 / C) x 100
+
+So = (132 / 172) x 100 = 76,74%
+
+Sm = (Tm / C) x 100
+
+Sm = (40 / 172) x 100 = 23,26%
+
+Paso 3: Calcular el porcentaje de descanso (D)
+
+D = 100 - So - Sm
+
+D = 100 - 76,74 - 23,26 = 0
+
+En este caso, el porcentaje de descanso es 0 porque el operario y la máquina están trabajando al 100% de su capacidad. Sin embargo, el enunciado del problema indica que el porcentaje de descanso es del 8%. Por lo tanto, es necesario ajustar el tiempo de ciclo para incluir el tiempo de descanso.
+
+C = C1 + Tm + D
+
+C = 132 + 40 + (0,08 x 172) = 181,36 segundos
+
+Paso 4: Calcular el número de máquinas (N)
+
+A1 = (C1 / C) x 100
+
+A1 = (132 / 181,36) x 100 = 72,78%
+
+A2 = (C2 / C) x 100
+
+A2 = (0 / 181,36) x 100 = 0%
+
+N = (100 x D) / (A1 + A2)
+
+N = (100 x 8) / (72,78 + 0) = 1,10
+
+En este caso, el número de máquinas es de 1,10. Sin embargo, no se puede atender a una fracción de máquina. Por lo tanto, es necesario ajustar el número de máquinas al entero más cercano. En este caso, el operario puede atender a 1 máquina.
+
+## Conclusión
+
+En este artículo, se ha explicado paso a paso y con ejemplos cómo calcular el número óptimo de máquinas que debe llevar un operario. Para ello, es necesario conocer el tiempo de ciclo, el tiempo de trabajo manual, el tiempo de trabajo de la máquina y el porcentaje de descanso del operario. Con esta información, se pueden calcular el porcentaje de saturación del operario y de la máquina, el porcentaje de descanso y, finalmente, el número de máquinas que puede atender el operario. Es importante tener en cuenta que el número de máquinas debe ser un entero, ya que no se puede atender a una fracción de máquina.
+

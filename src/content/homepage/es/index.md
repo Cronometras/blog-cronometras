@@ -219,7 +219,8 @@ call_to_action:
   description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**"
   button: 
     label: "Comenzar Ahora"
-    href: "/signup"
+    href: "#"
     color: accent
+    id: "main-cta-button"
 
 ---

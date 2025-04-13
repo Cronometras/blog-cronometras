@@ -1,0 +1,93 @@
+---
+title: "Cálculo de saturación en un estudio de tiempos"
+description: "La saturación es el porcentaje de tiempo que ocupamos un recurso dado. Aprende a calcular la saturación de la mano de obra en diferentes escenarios de trabajo con y sin restricciones."
+pubDate: 2024-01-16
+category: "Cronometraje Industrial"
+tags: ["Actividad máxima", "Cálculo de saturación", "Ciclo normal", "Ciclo óptimo", "CronometrasApp", "Estudio de tiempos", "Incentivos por rendimiento", "Operaciones con máquinas", "Saturación", "Trabajo restringido"]
+author: "micaot"
+heroImage: "/images/Cálculo de saturación en un estudio de tiempos.png"
+---
+
+La saturación es el porcentaje de tiempo que ocupamos un recurso dado.
+
+Para el cálculo de la saturación de la mano de obra, cuando se trata de un trabajo irrestricto en el que no intervienen máquinas o otros trabajadores en el proceso, la saturación del operario siempre es del 100% ya que el trabajador no tiene tiempos de espera.
+
+En estos casos el trabajador tiene la capacidad de aumentar su ritmo de trabajo teniendo la posibilidad de alcanzar la actividad óptima del 133%.
+
+Cuando se trata de una operación en la que aparece una máquina, puede darse el caso de que el trabajador deba esperar a la máquina dando lugar a una restricción en la operación.
+
+Imaginemos una operación 1 operario, 1 maquina.
+
+TM = 3 min
+
+MM = 1 min
+
+La máquina realiza el proceso y una vez finalizado este, el operario saca la pieza procesada y carga la nueva pieza a procesar pulsando el avance automático, mientras tanto, la máquina ya está procesando la nueva pieza ya que tiene un buffer de 1 pieza.
+
+![Diagrama de saturación](/images/default.png)
+
+Para calcular la saturación, primero calcularemos el ciclo normal:
+
+```
+Ciclo N = MP + El más largo de MM ó TM
+
+En este caso, no tenemos tiempo de máquina parada por tanto MP = 0
+El tiempo de trabajo del operario con máquina en marcha es de 1 min, por tanto MM = 1
+El tiempo de ciclo de máquina es de 3 min. TM = 3
+
+Ciclo Normal = 3 min
+```
+
+Si el trabajo es continuo y siempre está el buffer este será el ciclo. En el primer y último ciclo de trabajo aparecerá un tiempo de carga y descarga con máquina parada que se podrá tratar como un frecuencial MP asignándole la frecuencia del lote medio. Aunque no tendremos en cuenta los frecuenciales para nuestro ejemplo para clarificar los conceptos.
+
+Una vez que tenemos calculado el ciclo, calculamos la saturación de la mano de obra:
+
+```
+Saturación Normal = ((MM+MP) / Ciclo Normal) * 100
+1 / 3 = 0,33
+0,33 * 100 = 33,33
+```
+
+En el ejemplo anterior el operario no podía influir sobre la saturación ni sobre el rendimiento máximo alcanzable porque era un trabajo restringido. Pongamos pues un nuevo ejemplo con un trabajo en el que se mezclan tiempos de máquina y trabajo libre.
+
+![Diagrama de saturación con trabajo libre](/images/default.png)
+
+```
+Ciclo Normal = MP + El más largo de MM ó TM
+CN = 12 + 17
+CN = 29
+```
+
+```
+Saturación a rendimiento Normal = ((MP+MM) / Ciclo Normal) * 100
+SN = ((12 + 14) / 29) * 100 = 89.65
+```
+
+```
+Ciclo óptimo = CiTMP + El más largo de TW ó CiTMM
+(MP optimizado + El más largo de TW ó MM optimizado):
+
+MP optimizado = 12 / 1,33 = 9,02
+El más largo de TW ó MM optimizado = 17
+                                     14 / 1,33 = 10,52
+
+Ci = 9,02 + 17
+Ci = 26,02
+```
+
+```
+Saturación a rendimiento Óptimo = (MMi + MPi)/Ciclo Óptimo
+
+((10,52 + 9,02) / 26,02) * 100 = 75,09
+```
+
+Al operario aumentar su ritmo de trabajo baja su saturación. En este caso la actividad máxima que puede alcanzar el operario será:
+
+```
+Actividad Máxima = CN/Ci
+(29 / 26.02) * 100 = 111,45
+```
+
+El trabajador únicamente podrá alcanzar esta actividad máxima, por lo que a ese 111,45% de rendimiento le debe corresponder el incentivo óptimo.
+
+Al realizar el estudio de tiempos con la app CronometrasApp, se calcula de forma automática las saturaciones del proceso medido.

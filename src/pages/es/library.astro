@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/core/PageHeader.astro';
+import RelatedBlogPosts from '../../components/RelatedBlogPosts.astro';
+
+const pages = await getCollection('pages');
+const library = pages.find((page) => page.id === 'es/library.mdx');
+const { Content } = await library.render();
+---
+
+<Base title={library.data.document_title} description={library.data.meta_description}>
+  <section class="py-16">
+    <div class="container">
+      <PageHeader page_data={library.data} />
+    </div>
+    <div class="container">
+      <Content />
+    </div>
+  </section>
+</Base>

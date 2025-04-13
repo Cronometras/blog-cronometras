@@ -1,0 +1,106 @@
+---
+// RelatedBlogPosts.astro
+// Componente que muestra enlaces aleatorios a artículos del blog relacionados con estudios de métodos y tiempos
+import { getCollection } from 'astro:content';
+
+// Definimos la interfaz para los artículos del blog
+interface BlogPost {
+  title: string;
+  slug: string;
+}
+
+// Definimos las propiedades que acepta el componente
+interface Props {
+  title?: string;
+  count?: number;
+  language?: string;
+  includeModules?: boolean; // Opción para incluir enlaces a módulos
+}
+
+// Valores por defecto para las propiedades
+const {
+  title = "Recursos relacionados",
+  count = 6,
+  language = "es",
+  includeModules = true
+} = Astro.props;
+
+// Obtenemos todos los artículos del blog
+const allBlogPosts = await getCollection('blog');
+
+// Filtramos los artículos por idioma y que no sean borradores
+const langBlogPosts = allBlogPosts.filter(post => {
+  const postLang = post.slug.split('/')[0];
+  return postLang === language && !post.data.draft;
+});
+
+// Convertimos los artículos a nuestro formato
+const blogPostsArray: BlogPost[] = langBlogPosts.map(post => {
+  // Extraemos el slug sin la parte del idioma
+  const slugParts = post.slug.split('/');
+  const postSlug = slugParts.slice(1).join('/');
+
+  return {
+    title: post.data.title,
+    slug: `/${language}/blog/${postSlug}`
+  };
+});
+
+// Añadimos enlaces a los módulos si se solicita
+let allPosts: BlogPost[] = [...blogPostsArray];
+
+if (includeModules) {
+  // Enlaces a módulos en español
+  const esModules: BlogPost[] = [
+    { title: "Módulo de Tiempos Repetitivos", slug: "/es/repetitive" },
+    { title: "Módulo de Tiempos Frecuenciales", slug: "/es/frequency" },
+    { title: "Módulo de Tiempos de Máquina", slug: "/es/machine" }
+  ];
+
+  // Enlaces a módulos en inglés
+  const enModules: BlogPost[] = [
+    { title: "Repetitive Times Module", slug: "/en/repetitive" },
+    { title: "Frequency Times Module", slug: "/en/frequency" },
+    { title: "Machine Times Module", slug: "/en/machine" }
+  ];
+
+  // Añadimos los módulos según el idioma
+  if (language === 'es') {
+    allPosts = [...allPosts, ...esModules];
+  } else {
+    allPosts = [...allPosts, ...enModules];
+  }
+}
+
+// Función para obtener artículos aleatorios
+function getRandomPosts(posts: BlogPost[], count: number): BlogPost[] {
+  // Si hay menos posts que el número solicitado, devolvemos todos
+  if (posts.length <= count) {
+    return posts;
+  }
+
+  // Hacemos una copia del array para no modificar el original
+  const shuffled = [...posts];
+
+  // Algoritmo de Fisher-Yates para mezclar el array
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  // Devolvemos los primeros 'count' elementos
+  return shuffled.slice(0, count);
+}
+
+// Obtenemos los artículos aleatorios
+const postsToShow = getRandomPosts(allPosts, count);
+---
+
+<div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+  <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">{title}</h3>
+  <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+    {postsToShow.map(post => (
+      <li><a href={post.slug} class="text-accent hover:underline">{post.title}</a></li>
+    ))}
+  </ul>
+</div>
