@@ -10,6 +10,16 @@ pnpm install @astrojs/node
 
 # Ejecutar el comando de compilación
 echo "Ejecutando comando de compilación..."
+
+# Asegurarse de que estamos en modo estático
+echo "Verificando configuración de Astro..."
+grep -q "output: \"static\"" astro.config.mjs || {
+  echo "Cambiando modo de salida a static..."
+  sed -i 's/output: "server"/output: "static"/g' astro.config.mjs
+  sed -i 's/output: "hybrid"/output: "static"/g' astro.config.mjs
+}
+
+# Ejecutar la compilación
 npm run build
 
 # Verificar si la compilación fue exitosa

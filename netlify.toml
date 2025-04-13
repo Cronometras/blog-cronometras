@@ -12,80 +12,87 @@
 # Redirecciones para manejar rutas con lenguaje
 [[redirects]]
   from = "/"
-  to = "/es"
+  to = "/es/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/"
-  to = "/en"
+  to = "/en/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["en"]}
 
 [[redirects]]
   from = "/"
-  to = "/es"
+  to = "/es/"
   status = 302
+  force = true
 
 # Redirecciones para páginas específicas
 [[redirects]]
   from = "/about"
-  to = "/es/about"
+  to = "/es/about/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/about"
-  to = "/en/about"
+  to = "/en/about/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["en"]}
 
 [[redirects]]
   from = "/privacy"
-  to = "/es/privacy"
+  to = "/es/privacy/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/privacy"
-  to = "/en/privacy"
+  to = "/en/privacy/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["en"]}
 
 [[redirects]]
   from = "/contact"
-  to = "/es/contact"
+  to = "/es/contact/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/contact"
-  to = "/en/contact"
+  to = "/en/contact/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["en"]}
 
 # Redirecciones para manejar rutas de blog
 [[redirects]]
   from = "/blog/*"
-  to = "/es/blog/:splat"
+  to = "/es/blog/:splat/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/blog/*"
-  to = "/en/blog/:splat"
+  to = "/en/blog/:splat/"
   status = 302
-  force = false
+  force = true
   conditions = {Language = ["en"]}
+
+# Asegurarse de que las rutas de API funcionen
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
 
 # Redirección fallback para SPA
 [[redirects]]

@@ -226,7 +226,7 @@ const RequestDemoForm: React.FC = () => {
     setServerError('');
 
     try {
-      const response = await fetch('/api/information-request', {
+      const response = await fetch('/.netlify/functions/information-request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
