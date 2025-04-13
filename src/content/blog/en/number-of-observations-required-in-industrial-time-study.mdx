@@ -1,0 +1,150 @@
+---
+title: "Number of Observations Required in Industrial Time Study"
+description: "In a methods and time study, it's important to know the necessary number of observations to obtain accurate measurements and capture process variability."
+pubDate: 2023-03-22
+category: "Industrial Time Study"
+tags: ["Observation calculation", "Industrial time study", "Time study", "ILO formula", "Methods engineering", "Margin of error", "Work measurement", "Confidence level", "Sample size", "Process variability"]
+author: "micaot"
+heroImage: "/images/tomas restantes.png"
+---
+
+In a methods and time study, it's important to know the necessary number of observations to perform for several reasons:
+
+- To obtain precise time measurements. An insufficient number of observations can lead to times that are not representative of the operation.
+
+- To adequately capture the natural variability of the process. Factors such as worker fatigue, interruptions, etc. introduce variability that must be measured.
+
+- To determine reliable standard times. Standard times are calculated from observed times, so they directly influence them.
+
+- To identify improvement opportunities. By observing more cycles, inefficiencies or causes of delays can be detected.
+
+- To obtain valid estimates of unproductive times. A large sample is required to adequately estimate proportions.
+
+- To avoid collecting more data than necessary. Excessive observations unnecessarily consume resources.
+
+The number of observations directly impacts the usefulness and precision of the results of the methods and time study.
+
+## Key points to determine the number of measurements to perform in a time study
+
+Some key points to determine the necessary number of observations in a study:
+
+- Expected variability: If high variability is expected in the measurements, more observations will be needed to obtain an accurate estimate.
+
+- Desired confidence level: Generally, a 95% confidence level is used. A higher confidence level requires a larger sample size.
+
+- Acceptable margin of error: What level of error is acceptable in the results? A smaller margin of error requires more observations.
+
+- Available resources: The number of observations that can be made may be limited by time, cost, and other resources.
+
+- Sampling method: The simple random sampling method requires the smallest sample size. Other designs require larger sample sizes.
+
+In summary, determining the appropriate number of observations requires balancing all these factors to obtain accurate results within resource constraints. Formal statistical methods can help calculate the optimal sample size.
+
+## What is the confidence level?
+
+The confidence level, in statistics, is the maximum probability with which we could ensure that the parameter to be estimated is within our estimated interval. The confidence level is defined as 1-alpha and its most common values are 90%, 95%, and 99%.
+
+## At what times of the day should the different time measurements be taken?
+
+When measuring work, it is good practice to:
+
+- Distribute observations throughout the day and week. Don't concentrate them only in the mornings, or on Tuesdays, for example.
+
+- Alternate the order of participants or objects observed. Don't always observe the same ones first.
+
+- Counterbalance the experimental or observational conditions. For example, if comparing two different methods, alternate which is presented first.
+
+- Avoid atypical moments such as just before/after vacations, holidays, etc. unless that is the objective.
+
+- Analyze the data to detect biases. For example, compare the results of different time slots. If there are differences, adjust the sampling.
+
+- Use random and stratified sampling methods to select the moments, if feasible.
+
+- Document in detail the moments and conditions of each observation.
+
+In summary, seek the greatest randomness and representativeness by properly distributing observations in time and space.
+
+## Factors that affect the number of observations to perform in a methods and time study?
+
+The number of observations in a methods and time study depends on several factors:
+
+- Nature of the process: highly repetitive and standardized processes require fewer observations than those that are very variable.
+
+- Cycle duration: longer cycles need fewer observations than short cycles.
+
+- Desired precision: greater precision in times requires more observations.
+
+- Confidence level: a higher confidence level requires a larger sample size.
+
+- Process variability: greater variability requires more observations to capture it adequately.
+
+- Importance of the operation: key operations or bottlenecks may require more observations.
+
+- Cost of observations: the cost of taking each observation may limit the sample size.
+
+- Type of process: continuous processes require a different approach than intermittent or batch processes.
+
+- Available resources: the number of observers and available time may restrict the sample size.
+
+- Study objectives: the planned use for the times determines the precision requirements.
+
+In summary, there is no fixed rule on the number of observations; it depends mainly on the characteristics of the specific process and the objectives of the study.
+
+## Methods to determine the number of observations:
+
+There are several methods to determine the number of observations to perform in an industrial time study. Some of the most used are:
+
+### The empirical method:
+
+It is based on experience and general recommendations. For example, the International Labour Office suggests timing at least 50 cycles in brief operations and between 20 and 30 cycles in longer operations.
+
+![Table establishing the number of readings according to the duration of the cycle to be timed](/images/default.png)
+
+### ILO statistical method specific for industrial time studies. (used in the CronometrasApp)
+
+Let's say we take 8 measurements:
+
+25, 23, 26, 25, 18, 21, 24, 26
+
+The formula used is:
+
+![ILO formula to calculate the number of observations](/images/default.png)
+
+```
+n = ((40 * SQRT((n' * ∑x2) - (∑x)2)) / ∑x)^2
+```
+
+Where:
+
+- n = required sample size
+- n' = number of initial observations
+- ∑x = sum of the values of the observations
+- ∑x2 = sum of the squares of the values of the observations
+
+The origin of this formula dates back to the work of J.M. Juran in the context of time and motion studies in industrial engineering.
+
+We apply the formula to calculate the number of observations (n) needed in a work time study with a 95% confidence level and a 5% margin of error with the initial observations: 25, 23, 26, 25, 18, 21, 24, 26
+
+- Preliminary observations (n'): **8** (since there are 8 measurements)
+
+- Sum of the times of the preliminary observations (∑x):
+  - 25 + 23 + 26 + 25 + 18 + 21 + 24 + 26 = **188**
+
+- Sum of the squares of the times of the preliminary observations (∑x2):
+  - 625 + 529 + 676 + 625 + 324 + 441 + 576 + 676 = **4472**
+
+
+
+Substituting these values in the formula:
+
+```
+n = ((40 * SQRT((8 * 4,472) - (188)^2)) / 188)^2
+n = ((40 * SQRT(35,776 - 35,344)) / 188)^2
+n = ((40 * SQRT(432)) / 188)^2
+n = ((40 * 20.78) / 188)^2
+n = (830.4 / 188)^2
+n = 4.42^2
+n = 19.53
+```
+
+Since the number of observations (n) must be an integer, it is rounded up, obtaining a total of 20 observations needed to achieve 95% reliability in the work time study. As we already had 8, we have 12 more measurements to perform.
