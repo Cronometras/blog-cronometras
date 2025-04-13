@@ -234,10 +234,20 @@ const RequestDemoForm: React.FC = () => {
         body: JSON.stringify({...formData, lang}), // Incluir el idioma en la solicitud
       });
 
-      // Verificar primero si la respuesta es JSON
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        const data = await response.json();
+      try {
+        // Intentar analizar la respuesta como JSON independientemente del encabezado
+        const responseText = await response.text();
+        console.log('Respuesta recibida:', responseText);
+
+        // Intentar analizar el texto como JSON
+        let data;
+        try {
+          data = JSON.parse(responseText);
+          console.log('Datos analizados:', data);
+        } catch (parseError) {
+          console.error('Error al analizar JSON:', parseError);
+          throw new Error('Respuesta no válida del servidor');
+        }
 
         if (response.ok) {
           setIsSubmitted(true);
@@ -245,9 +255,8 @@ const RequestDemoForm: React.FC = () => {
         } else {
           setServerError(data.error || t.serverError);
         }
-      } else {
-        // Si no es JSON, manejar como error
-        console.error('La respuesta no es JSON:', await response.text());
+      } catch (responseError) {
+        console.error('Error al procesar la respuesta:', responseError);
         setServerError(t.serverError);
       }
     } catch (error) {

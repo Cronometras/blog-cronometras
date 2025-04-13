@@ -4,6 +4,9 @@ exports.handler = async function(event, context) {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Method Not Allowed" })
     };
   }
@@ -11,7 +14,7 @@ exports.handler = async function(event, context) {
   try {
     // Parse the request body
     const data = JSON.parse(event.body);
-    
+
     // Get fields regardless of language (ES or EN)
     const nombre = data.nombre || data.name || '';
     const email = data.email || '';
@@ -19,19 +22,22 @@ exports.handler = async function(event, context) {
     const sector = data.sector || ''; // Optional now
     const mensaje = data.mensaje || data.message || '';
     const lang = data.lang || 'es';
-    
+
     console.log("Datos recibidos:", { nombre, email, empresa, sector, mensaje, lang });
-    
+
     // Validate required fields - same fields for both languages
     if (!nombre || !email || !empresa) {
-      const errorMessage = lang === 'en' 
-        ? "Name, email and company are required fields" 
+      const errorMessage = lang === 'en'
+        ? "Name, email and company are required fields"
         : "El nombre, email y empresa son campos obligatorios";
-      
+
       console.log("Error de validación:", errorMessage);
-      
+
       return {
         statusCode: 400,
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           error: errorMessage
         })
@@ -41,9 +47,12 @@ exports.handler = async function(event, context) {
     // Here you would normally send an email
     // For now, we'll just return a success response
     const successMessage = lang === 'en' ? "Request sent successfully" : "Solicitud enviada correctamente";
-    
+
     return {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         message: successMessage,
         id: "demo-" + Date.now()
@@ -53,6 +62,9 @@ exports.handler = async function(event, context) {
     console.error("Error al procesar la solicitud de información:", error);
     return {
       statusCode: 500,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         error: "Ha ocurrido un error al enviar la solicitud"
       })

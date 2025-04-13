@@ -4,6 +4,9 @@ exports.handler = async function(event, context) {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ error: "Method Not Allowed" })
     };
   }
@@ -12,11 +15,14 @@ exports.handler = async function(event, context) {
     // Parse the request body
     const data = JSON.parse(event.body);
     const { nombre, email, mensaje } = data;
-    
+
     // Validate required fields
     if (!nombre || !email || !mensaje) {
       return {
         statusCode: 400,
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           error: "Todos los campos son obligatorios"
         })
@@ -29,6 +35,9 @@ exports.handler = async function(event, context) {
 
     return {
       statusCode: 200,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         message: "Mensaje enviado correctamente",
         id: "demo-" + Date.now()
@@ -38,6 +47,9 @@ exports.handler = async function(event, context) {
     console.error("Error al procesar el formulario de contacto:", error);
     return {
       statusCode: 500,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         error: "Ha ocurrido un error al enviar el mensaje"
       })

@@ -34,10 +34,20 @@ const ContactForm: React.FC = () => {
         body: JSON.stringify(data),
       });
 
-      // Verificar primero si la respuesta es JSON
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        const result = await response.json();
+      try {
+        // Intentar analizar la respuesta como JSON independientemente del encabezado
+        const responseText = await response.text();
+        console.log('Respuesta recibida:', responseText);
+
+        // Intentar analizar el texto como JSON
+        let result;
+        try {
+          result = JSON.parse(responseText);
+          console.log('Datos analizados:', result);
+        } catch (parseError) {
+          console.error('Error al analizar JSON:', parseError);
+          throw new Error('Respuesta no válida del servidor');
+        }
 
         if (!response.ok) {
           throw new Error(result.error || 'Ha ocurrido un error al enviar el mensaje');
@@ -45,9 +55,8 @@ const ContactForm: React.FC = () => {
 
         setSubmitStatus('success');
         reset();
-      } else {
-        // Si no es JSON, manejar como error
-        console.error('La respuesta no es JSON:', await response.text());
+      } catch (responseError) {
+        console.error('Error al procesar la respuesta:', responseError);
         throw new Error('Ha ocurrido un error al enviar el mensaje. El servidor no respondió correctamente.');
       }
     } catch (error) {
