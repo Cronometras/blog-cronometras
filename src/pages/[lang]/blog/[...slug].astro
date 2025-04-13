@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import TextToSpeech from '@/components/blog/TextToSpeech.astro';
 import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
+import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -107,6 +108,9 @@ export const prerender = true;
       <div class="container max-w-4xl">
         <div class="prose prose-lg dark:prose-invert mx-auto">
           {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
+
+          <!-- Artículos relacionados -->
+          <RelatedBlogPosts language={lang} count={4} title={lang === 'es' ? "Artículos relacionados" : "Related articles"} />
         </div>
       </div>
     </section>
