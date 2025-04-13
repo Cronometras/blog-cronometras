@@ -1,13 +1,53 @@
-import Base from "@/layouts/Base.astro";
+---
+// Esta página no usa ningún componente de Astro para evitar problemas de compilación
+---
 
-// En modo estático, no podemos acceder a los parámetros de la URL en tiempo de compilación
-// Usaremos JavaScript del lado del cliente para obtener y verificar los parámetros
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación de Suscripción | Cronometras App</title>
+  <link rel="stylesheet" href="/styles/global.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+    }
+    .accent {
+      color: #6366f1;
+    }
+    .bg-accent {
+      background-color: #6366f1;
+    }
+    .hover-bg-accent-dark:hover {
+      background-color: #4f46e5;
+    }
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="bg-white shadow-sm py-4">
+    <div class="container mx-auto px-4">
+      <a href="/" class="text-2xl font-bold accent">Cronometras</a>
+    </div>
+  </header>
 
-<Base title="Confirmación de Suscripción | Cronometras App">
-  <section class="section">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="md:col-10 lg:col-6">
+  <main class="py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-center">
+        <div class="w-full max-w-2xl">
           <div id="confirmation-container" class="bg-white p-8 rounded-xl shadow-lg text-center">
             <!-- El contenido se cargará dinámicamente con JavaScript -->
             <div class="flex justify-center">
@@ -18,8 +58,13 @@ import Base from "@/layouts/Base.astro";
         </div>
       </div>
     </div>
-  </section>
-</Base>
+  </main>
+
+  <footer class="bg-gray-100 py-8 mt-12">
+    <div class="container mx-auto px-4 text-center text-gray-600">
+      <p>&copy; {new Date().getFullYear()} Cronometras. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
 <script>
   // Función para obtener parámetros de la URL
