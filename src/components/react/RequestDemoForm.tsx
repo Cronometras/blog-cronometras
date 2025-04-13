@@ -115,14 +115,14 @@ const initialFormState: FormState = {
 const RequestDemoForm: React.FC = () => {
   // Detectar el idioma actual
   const [lang, setLang] = useState<string>('es'); // Por defecto español
-  
+
   // Estados para el formulario
   const [formData, setFormData] = useState<FormState>(initialFormState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [serverError, setServerError] = useState('');
-  
+
   // Detectar el idioma actual basado en la URL
   useEffect(() => {
     const path = window.location.pathname;
@@ -133,10 +133,10 @@ const RequestDemoForm: React.FC = () => {
     }
     console.log("Idioma detectado:", path.startsWith('/en') ? 'en' : 'es');
   }, []);
-  
+
   // Acceso fácil a las traducciones
   const t = translations[lang];
-  
+
   // Efecto para limpiar el estado al montar el componente
   // Esto asegura que el formulario empiece limpio cada vez
   useEffect(() => {
@@ -146,9 +146,9 @@ const RequestDemoForm: React.FC = () => {
     setIsSubmitting(false);
     setIsSubmitted(false);
     setServerError('');
-    
+
     console.log("RequestDemoForm montado/inicializado");
-    
+
     return () => {
       console.log("RequestDemoForm desmontado");
     };
@@ -161,7 +161,7 @@ const RequestDemoForm: React.FC = () => {
       ...prev,
       [name]: value
     }));
-    
+
     // Limpiar error cuando el usuario escribe
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
@@ -170,7 +170,7 @@ const RequestDemoForm: React.FC = () => {
       }));
     }
   };
-  
+
   // Manejar cambios en el checkbox
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
@@ -178,7 +178,7 @@ const RequestDemoForm: React.FC = () => {
       ...prev,
       [name]: checked
     }));
-    
+
     // Limpiar error cuando el usuario marca el checkbox
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
@@ -191,25 +191,25 @@ const RequestDemoForm: React.FC = () => {
   // Validar el formulario
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = t.nameRequired;
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = t.emailRequired;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = t.emailInvalid;
     }
-    
+
     if (!formData.company.trim()) {
       newErrors.company = t.companyRequired;
     }
-    
+
     if (!formData.privacyPolicy) {
       newErrors.privacyPolicy = t.privacyRequired;
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -217,14 +217,14 @@ const RequestDemoForm: React.FC = () => {
   // Manejar el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     setIsSubmitting(true);
     setServerError('');
-    
+
     try {
       const response = await fetch('/api/information-request', {
         method: 'POST',
@@ -233,14 +233,22 @@ const RequestDemoForm: React.FC = () => {
         },
         body: JSON.stringify({...formData, lang}), // Incluir el idioma en la solicitud
       });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData(initialFormState);
+
+      // Verificar primero si la respuesta es JSON
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+
+        if (response.ok) {
+          setIsSubmitted(true);
+          setFormData(initialFormState);
+        } else {
+          setServerError(data.error || t.serverError);
+        }
       } else {
-        setServerError(data.message || t.serverError);
+        // Si no es JSON, manejar como error
+        console.error('La respuesta no es JSON:', await response.text());
+        setServerError(t.serverError);
       }
     } catch (error) {
       console.error('Error al enviar el formulario:', error);
@@ -360,7 +368,7 @@ const RequestDemoForm: React.FC = () => {
           placeholder={t.messagePlaceholder}
         ></textarea>
       </div>
-      
+
       <div className="mt-4">
         <div className={`flex items-start ${errors.privacyPolicy ? 'text-red-500' : ''}`}>
           <div className="flex h-5 items-center">
@@ -402,7 +410,7 @@ const RequestDemoForm: React.FC = () => {
           {isSubmitting ? t.submitting : t.submitButton}
         </button>
       </div>
-      
+
       <p className="text-xs text-gray-500 text-center mt-2">
         {t.requiredFields}
       </p>
@@ -418,4 +426,4 @@ declare global {
     loadRequestDemoForm?: () => void;
     closeRequestDemoModal?: () => void;
   }
-} 
+}

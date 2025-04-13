@@ -34,14 +34,22 @@ const ContactFormEn: React.FC = () => {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      // Verify first if the response is JSON
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.error || 'An error occurred while sending the message');
+        if (!response.ok) {
+          throw new Error(result.error || 'An error occurred while sending the message');
+        }
+
+        setSubmitStatus('success');
+        reset();
+      } else {
+        // If not JSON, handle as error
+        console.error('Response is not JSON:', await response.text());
+        throw new Error('An error occurred while sending the message. The server did not respond correctly.');
       }
-
-      setSubmitStatus('success');
-      reset();
     } catch (error) {
       setSubmitStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'An error occurred while sending the message');
