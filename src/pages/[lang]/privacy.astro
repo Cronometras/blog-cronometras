@@ -2,10 +2,23 @@
 import { getLangFromUrl } from "@/i18n/utils";
 import PageHeader from "@/components/core/PageHeader.astro";
 import Base from "@/layouts/Base.astro";
-import { getEntry } from "astro:content";
+import { getEntry, getCollection } from "astro:content";
+
+// Define the getStaticPaths function to generate routes for each language
+export async function getStaticPaths() {
+  // Define the supported languages
+  const languages = ['en', 'es'];
+
+  return languages.map(lang => {
+    return {
+      params: { lang },
+      props: { lang }
+    };
+  });
+}
 
 // Get the user's preferred language from the URL parameter
-const lang = Astro.params.lang;
+const { lang } = Astro.params;
 
 // Try to get the privacy content for the current language
 let privacy;
@@ -23,13 +36,38 @@ try {
     Content = rendered.Content;
   } else {
     console.error(`Privacy entry not found for language: ${lang}`);
-    // Redirect to English as fallback
-    return Astro.redirect('/en/privacy');
+    // For static builds, we can't redirect, so we'll use English content as fallback
+    privacy = await getEntry("privacy", `en/index`);
+    if (privacy) {
+      page_data = {
+        ...privacy.data,
+        content: privacy.body,
+      };
+      const rendered = await privacy.render();
+      Content = rendered.Content;
+    }
   }
 } catch (error) {
   console.error(`Error loading privacy content: ${error.message}`);
-  // Redirect to English as fallback
-  return Astro.redirect('/en/privacy');
+  // For static builds, we can't redirect, so we'll use English content as fallback
+  try {
+    privacy = await getEntry("privacy", `en/index`);
+    if (privacy) {
+      page_data = {
+        ...privacy.data,
+        content: privacy.body,
+      };
+      const rendered = await privacy.render();
+      Content = rendered.Content;
+    }
+  } catch (innerError) {
+    console.error(`Error loading fallback privacy content: ${innerError.message}`);
+    page_data = {
+      title: "Privacy Policy",
+      description: "Our privacy policy could not be loaded. Please try again later.",
+      content: ""
+    };
+  }
 }
 ---
 
