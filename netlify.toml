@@ -228,17 +228,7 @@
   force = true
 
 # Redirección para balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura
-[[redirects]]
-  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
-  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  status = 301
-  force = true
+# (Movida al final del archivo para evitar duplicados)
 
 # Redirección para como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro
 [[redirects]]
@@ -601,6 +591,19 @@
 [[redirects]]
   from = "/la-ergonomia-del-dolor-a-la-productividad/"
   to = "/es/blog/la-ergonomia-del-dolor-a-la-productividad/"
+  status = 301
+  force = true
+
+# Redirección directa para el artículo con caracteres especiales
+[[redirects]]
+  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
+  to = "/es/blog/balanceo-de-l%C3%ADneas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  to = "/es/blog/balanceo-de-l%C3%ADneas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   status = 301
   force = true
 
