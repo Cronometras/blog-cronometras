@@ -88,6 +88,91 @@
   force = true
   conditions = {Language = ["en"]}
 
+# Redirección 301 para la página principal
+[[redirects]]
+  from = "https://cronometras.com"
+  to = "https://cronometras.com/es/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de contacto
+[[redirects]]
+  from = "https://cronometras.com/contact"
+  to = "https://cronometras.com/es/contact/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cronometras.com/contact/"
+  to = "https://cronometras.com/es/contact/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de método
+[[redirects]]
+  from = "https://cronometras.com/pantalla-de-metodo"
+  to = "https://cronometras.com/es/method/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cronometras.com/pantalla-de-metodo/"
+  to = "https://cronometras.com/es/method/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de inicio
+[[redirects]]
+  from = "https://cronometras.com/pantalla-de-inicio"
+  to = "https://cronometras.com/es/dashboard/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cronometras.com/pantalla-de-inicio/"
+  to = "https://cronometras.com/es/dashboard/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de conoce
+[[redirects]]
+  from = "https://cronometras.com/conoce"
+  to = "https://cronometras.com/es/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cronometras.com/conoce/"
+  to = "https://cronometras.com/es/about/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de FAQ
+[[redirects]]
+  from = "https://cronometras.com/faq"
+  to = "https://cronometras.com/es/faq/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cronometras.com/faq/"
+  to = "https://cronometras.com/es/faq/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de cronometraje
+[[redirects]]
+  from = "https://cronometras.com/pantalla-de-cronometraje"
+  to = "https://cronometras.com/es/repetitive/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://cronometras.com/pantalla-de-cronometraje/"
+  to = "https://cronometras.com/es/repetitive/"
+  status = 301
+  force = true
+
 # Redirecciones 301 para artículos del blog antiguo (con dominio completo)
 [[redirects]]
   from = "https://cronometras.com/*"
