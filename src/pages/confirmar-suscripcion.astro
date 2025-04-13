@@ -1,7 +1,8 @@
 import Base from "@/layouts/Base.astro";
 
 // Obtener el token y email de los parámetros de la URL
-const { token, email } = Astro.url.searchParams;
+const token = Astro.url.searchParams.get('token');
+const email = Astro.url.searchParams.get('email');
 
 // En un entorno real, aquí verificaríamos el token contra nuestra base de datos
 const isValid = token && email;
@@ -22,7 +23,7 @@ const isValid = token && email;
                   </div>
                   <h1 class="text-2xl font-bold mb-4">¡Suscripción Confirmada!</h1>
                   <p class="text-gray-700 mb-6">
-                    Gracias por confirmar tu suscripción a nuestro newsletter. A partir de ahora, 
+                    Gracias por confirmar tu suscripción a nuestro newsletter. A partir de ahora,
                     recibirás nuestras actualizaciones, consejos y novedades directamente en tu bandeja de entrada.
                   </p>
                   <p class="text-gray-600 mb-8">
@@ -43,7 +44,7 @@ const isValid = token && email;
                   </div>
                   <h1 class="text-2xl font-bold mb-4">Error de Confirmación</h1>
                   <p class="text-gray-700 mb-6">
-                    Lo sentimos, pero no pudimos confirmar tu suscripción. El enlace que has 
+                    Lo sentimos, pero no pudimos confirmar tu suscripción. El enlace que has
                     utilizado podría haber expirado o no ser válido.
                   </p>
                   <div class="space-y-4">
@@ -80,4 +81,4 @@ const isValid = token && email;
       });
     }
   }
-</script> 
+</script>
