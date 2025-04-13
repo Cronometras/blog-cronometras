@@ -88,6 +88,29 @@
   force = true
   conditions = {Language = ["en"]}
 
+# Redirecciones 301 para artículos del blog antiguo (con dominio completo)
+[[redirects]]
+  from = "https://cronometras.com/*"
+  to = "https://cronometras-blog.netlify.app/:splat"
+  status = 301
+  force = true
+
+# Redirecciones 301 para artículos del blog antiguo - Regla genérica
+[[redirects]]
+  from = "/:article"
+  to = "/es/blog/:article/"
+  status = 301
+  force = true
+  conditions = {Article = ["calculo-de-saturacion-en-un-estudio-de-tiempos", "balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura", "como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro", "por-que-hay-retrasos-en-la-produccion", "muestreo-del-trabajo", "que-es-el-estudio-de-tiempos-y-movimientos", "que-tipos-de-cronometros-existen", "que-es-gsd-en-ingenieria", "la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo", "que-es-el-cronometraje-industrial", "cuales-son-las-tecnicas-de-cronometraje-industrial", "cuales-son-las-fases-de-un-proceso-industrial", "el-estudio-del-trabajo", "etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial", "metodos-y-tiempos-en-la-gestion-empresarial-industrial", "numero-de-observaciones-a-realizar-en-un-cronometraje-industrial", "objetivos-del-estudio-del-trabajo", "sistema-bedaux", "como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa", "optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial", "herramientas-necesarias-para-realizar-un-estudio-de-tiempos", "obeya-room-lean", "takt-time-que-es-como-se-calcula-y-como-se-aplica", "la-apreciacion-de-la-actividad-en-el-cronometraje-industrial", "como-estandarizar-los-tiempos-de-trabajo-en-la-industria", "cronometraje-y-la-estandarizacion-de-procesos", "la-importancia-del-estudio-de-tiempos-de-trabajo", "beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa", "productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial", "la-ergonomia-del-dolor-a-la-productividad"]}
+
+# Redirecciones 301 para artículos del blog antiguo con barra diagonal al final
+[[redirects]]
+  from = "/:article/"
+  to = "/es/blog/:article/"
+  status = 301
+  force = true
+  conditions = {Article = ["calculo-de-saturacion-en-un-estudio-de-tiempos", "balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura", "como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro", "por-que-hay-retrasos-en-la-produccion", "muestreo-del-trabajo", "que-es-el-estudio-de-tiempos-y-movimientos", "que-tipos-de-cronometros-existen", "que-es-gsd-en-ingenieria", "la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo", "que-es-el-cronometraje-industrial", "cuales-son-las-tecnicas-de-cronometraje-industrial", "cuales-son-las-fases-de-un-proceso-industrial", "el-estudio-del-trabajo", "etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial", "metodos-y-tiempos-en-la-gestion-empresarial-industrial", "numero-de-observaciones-a-realizar-en-un-cronometraje-industrial", "objetivos-del-estudio-del-trabajo", "sistema-bedaux", "como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa", "optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial", "herramientas-necesarias-para-realizar-un-estudio-de-tiempos", "obeya-room-lean", "takt-time-que-es-como-se-calcula-y-como-se-aplica", "la-apreciacion-de-la-actividad-en-el-cronometraje-industrial", "como-estandarizar-los-tiempos-de-trabajo-en-la-industria", "cronometraje-y-la-estandarizacion-de-procesos", "la-importancia-del-estudio-de-tiempos-de-trabajo", "beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa", "productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial", "la-ergonomia-del-dolor-a-la-productividad"]}
+
 # Asegurarse de que las rutas de API funcionen
 [[redirects]]
   from = "/api/*"
