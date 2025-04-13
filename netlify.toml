@@ -68,8 +68,23 @@
   force = false
   conditions = {Language = ["en"]}
 
+# Redirecciones para manejar rutas de blog
+[[redirects]]
+  from = "/blog/*"
+  to = "/es/blog/:splat"
+  status = 302
+  force = false
+  conditions = {Language = ["es"]}
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/en/blog/:splat"
+  status = 302
+  force = false
+  conditions = {Language = ["en"]}
+
 # Redirección fallback para SPA
 [[redirects]]
   from = "/*"
-  to = "/404"
+  to = "/404.html"
   status = 404
