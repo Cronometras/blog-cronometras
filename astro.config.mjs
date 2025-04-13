@@ -12,7 +12,7 @@ export default defineConfig({
   site: config.site.base_url ? config.site.base_url : "http://astrotemplatesitey.com",
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  output: "hybrid",
+  output: "server",
   adapter: node({
     mode: "standalone"
   }),
