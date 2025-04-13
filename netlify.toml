@@ -90,111 +90,519 @@
 
 # Redirección 301 para la página principal
 [[redirects]]
-  from = "https://cronometras.com"
-  to = "https://cronometras.com/es/"
+  from = "/"
+  to = "/es/"
   status = 301
   force = true
 
 # Redirección 301 para la página de contacto
 [[redirects]]
-  from = "https://cronometras.com/contact"
-  to = "https://cronometras.com/es/contact/"
+  from = "/contact"
+  to = "/es/contact/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://cronometras.com/contact/"
-  to = "https://cronometras.com/es/contact/"
+  from = "/contact/"
+  to = "/es/contact/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de funciones
+[[redirects]]
+  from = "/funciones-4"
+  to = "/es/features/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/funciones-4/"
+  to = "/es/features/"
   status = 301
   force = true
 
 # Redirección 301 para la página de método
 [[redirects]]
-  from = "https://cronometras.com/pantalla-de-metodo"
-  to = "https://cronometras.com/es/method/"
+  from = "/pantalla-de-metodo"
+  to = "/es/method/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://cronometras.com/pantalla-de-metodo/"
-  to = "https://cronometras.com/es/method/"
+  from = "/pantalla-de-metodo/"
+  to = "/es/method/"
   status = 301
   force = true
 
 # Redirección 301 para la página de inicio
 [[redirects]]
-  from = "https://cronometras.com/pantalla-de-inicio"
-  to = "https://cronometras.com/es/dashboard/"
+  from = "/pantalla-de-inicio"
+  to = "/es/dashboard/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://cronometras.com/pantalla-de-inicio/"
-  to = "https://cronometras.com/es/dashboard/"
+  from = "/pantalla-de-inicio/"
+  to = "/es/dashboard/"
   status = 301
   force = true
 
 # Redirección 301 para la página de conoce
 [[redirects]]
-  from = "https://cronometras.com/conoce"
-  to = "https://cronometras.com/es/about/"
+  from = "/conoce"
+  to = "/es/about/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://cronometras.com/conoce/"
-  to = "https://cronometras.com/es/about/"
+  from = "/conoce/"
+  to = "/es/about/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de curso
+[[redirects]]
+  from = "/curso/cronometras-app"
+  to = "/es/features/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/curso/cronometras-app/"
+  to = "/es/features/"
+  status = 301
+  force = true
+
+# Redirección 301 para la página de autor
+[[redirects]]
+  from = "/author/micaot"
+  to = "/es/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/author/micaot/"
+  to = "/es/about/"
   status = 301
   force = true
 
 # Redirección 301 para la página de FAQ
 [[redirects]]
-  from = "https://cronometras.com/faq"
-  to = "https://cronometras.com/es/faq/"
+  from = "/faq"
+  to = "/es/faq/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://cronometras.com/faq/"
-  to = "https://cronometras.com/es/faq/"
+  from = "/faq/"
+  to = "/es/faq/"
   status = 301
   force = true
 
 # Redirección 301 para la página de cronometraje
 [[redirects]]
-  from = "https://cronometras.com/pantalla-de-cronometraje"
-  to = "https://cronometras.com/es/repetitive/"
+  from = "/pantalla-de-cronometraje"
+  to = "/es/repetitive/"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://cronometras.com/pantalla-de-cronometraje/"
-  to = "https://cronometras.com/es/repetitive/"
+  from = "/pantalla-de-cronometraje/"
+  to = "/es/repetitive/"
   status = 301
   force = true
 
-# Redirecciones 301 para artículos del blog antiguo (con dominio completo)
+# Redirecciones individuales para artículos del blog antiguo
+
+# Redirección para calculo-de-saturacion-en-un-estudio-de-tiempos
 [[redirects]]
-  from = "https://cronometras.com/*"
-  to = "https://cronometras-blog.netlify.app/:splat"
+  from = "/calculo-de-saturacion-en-un-estudio-de-tiempos"
+  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
   status = 301
   force = true
 
-# Redirecciones 301 para artículos del blog antiguo - Regla genérica
 [[redirects]]
-  from = "/:article"
-  to = "/es/blog/:article/"
+  from = "/calculo-de-saturacion-en-un-estudio-de-tiempos/"
+  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
   status = 301
   force = true
-  conditions = {Article = ["calculo-de-saturacion-en-un-estudio-de-tiempos", "balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura", "como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro", "por-que-hay-retrasos-en-la-produccion", "muestreo-del-trabajo", "que-es-el-estudio-de-tiempos-y-movimientos", "que-tipos-de-cronometros-existen", "que-es-gsd-en-ingenieria", "la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo", "que-es-el-cronometraje-industrial", "cuales-son-las-tecnicas-de-cronometraje-industrial", "cuales-son-las-fases-de-un-proceso-industrial", "el-estudio-del-trabajo", "etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial", "metodos-y-tiempos-en-la-gestion-empresarial-industrial", "numero-de-observaciones-a-realizar-en-un-cronometraje-industrial", "objetivos-del-estudio-del-trabajo", "sistema-bedaux", "como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa", "optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial", "herramientas-necesarias-para-realizar-un-estudio-de-tiempos", "obeya-room-lean", "takt-time-que-es-como-se-calcula-y-como-se-aplica", "la-apreciacion-de-la-actividad-en-el-cronometraje-industrial", "como-estandarizar-los-tiempos-de-trabajo-en-la-industria", "cronometraje-y-la-estandarizacion-de-procesos", "la-importancia-del-estudio-de-tiempos-de-trabajo", "beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa", "productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial", "la-ergonomia-del-dolor-a-la-productividad"]}
 
-# Redirecciones 301 para artículos del blog antiguo con barra diagonal al final
+# Redirección para balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura
 [[redirects]]
-  from = "/:article/"
-  to = "/es/blog/:article/"
+  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   status = 301
   force = true
-  conditions = {Article = ["calculo-de-saturacion-en-un-estudio-de-tiempos", "balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura", "como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro", "por-que-hay-retrasos-en-la-produccion", "muestreo-del-trabajo", "que-es-el-estudio-de-tiempos-y-movimientos", "que-tipos-de-cronometros-existen", "que-es-gsd-en-ingenieria", "la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo", "que-es-el-cronometraje-industrial", "cuales-son-las-tecnicas-de-cronometraje-industrial", "cuales-son-las-fases-de-un-proceso-industrial", "el-estudio-del-trabajo", "etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial", "metodos-y-tiempos-en-la-gestion-empresarial-industrial", "numero-de-observaciones-a-realizar-en-un-cronometraje-industrial", "objetivos-del-estudio-del-trabajo", "sistema-bedaux", "como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa", "optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial", "herramientas-necesarias-para-realizar-un-estudio-de-tiempos", "obeya-room-lean", "takt-time-que-es-como-se-calcula-y-como-se-aplica", "la-apreciacion-de-la-actividad-en-el-cronometraje-industrial", "como-estandarizar-los-tiempos-de-trabajo-en-la-industria", "cronometraje-y-la-estandarizacion-de-procesos", "la-importancia-del-estudio-de-tiempos-de-trabajo", "beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa", "productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial", "la-ergonomia-del-dolor-a-la-productividad"]}
+
+[[redirects]]
+  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  status = 301
+  force = true
+
+# Redirección para como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro
+[[redirects]]
+  from = "/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro"
+  to = "/es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/"
+  to = "/es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/"
+  status = 301
+  force = true
+
+# Redirección para por-que-hay-retrasos-en-la-produccion
+[[redirects]]
+  from = "/por-que-hay-retrasos-en-la-produccion"
+  to = "/es/blog/por-que-hay-retrasos-en-la-produccion/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/por-que-hay-retrasos-en-la-produccion/"
+  to = "/es/blog/por-que-hay-retrasos-en-la-produccion/"
+  status = 301
+  force = true
+
+# Redirección para muestreo-del-trabajo
+[[redirects]]
+  from = "/muestreo-del-trabajo"
+  to = "/es/blog/muestreo-del-trabajo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/muestreo-del-trabajo/"
+  to = "/es/blog/muestreo-del-trabajo/"
+  status = 301
+  force = true
+
+# Redirección para que-es-el-estudio-de-tiempos-y-movimientos
+[[redirects]]
+  from = "/que-es-el-estudio-de-tiempos-y-movimientos"
+  to = "/es/blog/que-es-el-estudio-de-tiempos-y-movimientos/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/que-es-el-estudio-de-tiempos-y-movimientos/"
+  to = "/es/blog/que-es-el-estudio-de-tiempos-y-movimientos/"
+  status = 301
+  force = true
+
+# Redirección para que-tipos-de-cronometros-existen
+[[redirects]]
+  from = "/que-tipos-de-cronometros-existen"
+  to = "/es/blog/que-tipos-de-cronometros-existen/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/que-tipos-de-cronometros-existen/"
+  to = "/es/blog/que-tipos-de-cronometros-existen/"
+  status = 301
+  force = true
+
+# Redirección para que-es-gsd-en-ingenieria
+[[redirects]]
+  from = "/que-es-gsd-en-ingenieria"
+  to = "/es/blog/que-es-gsd-en-ingenieria/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/que-es-gsd-en-ingenieria/"
+  to = "/es/blog/que-es-gsd-en-ingenieria/"
+  status = 301
+  force = true
+
+# Redirección para la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo
+[[redirects]]
+  from = "/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo"
+  to = "/es/blog/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo/"
+  to = "/es/blog/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo/"
+  status = 301
+  force = true
+
+# Redirección para que-es-el-cronometraje-industrial
+[[redirects]]
+  from = "/que-es-el-cronometraje-industrial"
+  to = "/es/blog/que-es-el-cronometraje-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/que-es-el-cronometraje-industrial/"
+  to = "/es/blog/que-es-el-cronometraje-industrial/"
+  status = 301
+  force = true
+
+# Redirección para cuales-son-las-tecnicas-de-cronometraje-industrial
+[[redirects]]
+  from = "/cuales-son-las-tecnicas-de-cronometraje-industrial"
+  to = "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cuales-son-las-tecnicas-de-cronometraje-industrial/"
+  to = "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/"
+  status = 301
+  force = true
+
+# Redirección para cuales-son-las-fases-de-un-proceso-industrial
+[[redirects]]
+  from = "/cuales-son-las-fases-de-un-proceso-industrial"
+  to = "/es/blog/cuales-son-las-fases-de-un-proceso-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cuales-son-las-fases-de-un-proceso-industrial/"
+  to = "/es/blog/cuales-son-las-fases-de-un-proceso-industrial/"
+  status = 301
+  force = true
+
+# Redirección para el-estudio-del-trabajo
+[[redirects]]
+  from = "/el-estudio-del-trabajo"
+  to = "/es/blog/el-estudio-del-trabajo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/el-estudio-del-trabajo/"
+  to = "/es/blog/el-estudio-del-trabajo/"
+  status = 301
+  force = true
+
+# Redirección para etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial
+[[redirects]]
+  from = "/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial"
+  to = "/es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/"
+  to = "/es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/"
+  status = 301
+  force = true
+
+# Redirección para metodos-y-tiempos-en-la-gestion-empresarial-industrial
+[[redirects]]
+  from = "/metodos-y-tiempos-en-la-gestion-empresarial-industrial"
+  to = "/es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/metodos-y-tiempos-en-la-gestion-empresarial-industrial/"
+  to = "/es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/"
+  status = 301
+  force = true
+
+# Redirección para numero-de-observaciones-a-realizar-en-un-cronometraje-industrial
+[[redirects]]
+  from = "/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial"
+  to = "/es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/"
+  to = "/es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/"
+  status = 301
+  force = true
+
+# Redirección para objetivos-del-estudio-del-trabajo
+[[redirects]]
+  from = "/objetivos-del-estudio-del-trabajo"
+  to = "/es/blog/objetivos-del-estudio-del-trabajo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/objetivos-del-estudio-del-trabajo/"
+  to = "/es/blog/objetivos-del-estudio-del-trabajo/"
+  status = 301
+  force = true
+
+# Redirección para sistema-bedaux
+[[redirects]]
+  from = "/sistema-bedaux"
+  to = "/es/blog/sistema-bedaux/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sistema-bedaux/"
+  to = "/es/blog/sistema-bedaux/"
+  status = 301
+  force = true
+
+# Redirección para como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa
+[[redirects]]
+  from = "/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa"
+  to = "/es/blog/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa/"
+  to = "/es/blog/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa/"
+  status = 301
+  force = true
+
+# Redirección para optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial
+[[redirects]]
+  from = "/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial"
+  to = "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
+  to = "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
+  status = 301
+  force = true
+
+# Redirección para herramientas-necesarias-para-realizar-un-estudio-de-tiempos
+[[redirects]]
+  from = "/herramientas-necesarias-para-realizar-un-estudio-de-tiempos"
+  to = "/es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/"
+  to = "/es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/"
+  status = 301
+  force = true
+
+# Redirección para obeya-room-lean
+[[redirects]]
+  from = "/obeya-room-lean"
+  to = "/es/blog/obeya-room-lean/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/obeya-room-lean/"
+  to = "/es/blog/obeya-room-lean/"
+  status = 301
+  force = true
+
+# Redirección para takt-time-que-es-como-se-calcula-y-como-se-aplica
+[[redirects]]
+  from = "/takt-time-que-es-como-se-calcula-y-como-se-aplica"
+  to = "/es/blog/takt-time-que-es-como-se-calcula-y-como-se-aplica/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/takt-time-que-es-como-se-calcula-y-como-se-aplica/"
+  to = "/es/blog/takt-time-que-es-como-se-calcula-y-como-se-aplica/"
+  status = 301
+  force = true
+
+# Redirección para la-apreciacion-de-la-actividad-en-el-cronometraje-industrial
+[[redirects]]
+  from = "/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial"
+  to = "/es/blog/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/"
+  to = "/es/blog/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/"
+  status = 301
+  force = true
+
+# Redirección para como-estandarizar-los-tiempos-de-trabajo-en-la-industria
+[[redirects]]
+  from = "/como-estandarizar-los-tiempos-de-trabajo-en-la-industria"
+  to = "/es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/como-estandarizar-los-tiempos-de-trabajo-en-la-industria/"
+  to = "/es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria/"
+  status = 301
+  force = true
+
+# Redirección para cronometraje-y-la-estandarizacion-de-procesos
+[[redirects]]
+  from = "/cronometraje-y-la-estandarizacion-de-procesos"
+  to = "/es/blog/cronometraje-y-la-estandarizacion-de-procesos/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cronometraje-y-la-estandarizacion-de-procesos/"
+  to = "/es/blog/cronometraje-y-la-estandarizacion-de-procesos/"
+  status = 301
+  force = true
+
+# Redirección para la-importancia-del-estudio-de-tiempos-de-trabajo
+[[redirects]]
+  from = "/la-importancia-del-estudio-de-tiempos-de-trabajo"
+  to = "/es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/la-importancia-del-estudio-de-tiempos-de-trabajo/"
+  to = "/es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/"
+  status = 301
+  force = true
+
+# Redirección para beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa
+[[redirects]]
+  from = "/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa"
+  to = "/es/blog/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa/"
+  to = "/es/blog/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa/"
+  status = 301
+  force = true
+
+# Redirección para productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial
+[[redirects]]
+  from = "/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial"
+  to = "/es/blog/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial/"
+  to = "/es/blog/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial/"
+  status = 301
+  force = true
+
+# Redirección para la-ergonomia-del-dolor-a-la-productividad
+[[redirects]]
+  from = "/la-ergonomia-del-dolor-a-la-productividad"
+  to = "/es/blog/la-ergonomia-del-dolor-a-la-productividad/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/la-ergonomia-del-dolor-a-la-productividad/"
+  to = "/es/blog/la-ergonomia-del-dolor-a-la-productividad/"
+  status = 301
+  force = true
 
 # Asegurarse de que las rutas de API funcionen
 [[redirects]]
@@ -205,5 +613,5 @@
 # Redirección fallback para SPA
 [[redirects]]
   from = "/*"
-  to = "/404.html"
+  to = "/es/404/"
   status = 404
