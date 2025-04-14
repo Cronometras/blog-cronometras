@@ -51,6 +51,10 @@
 /balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura      /es/blog/balanceo-de-l%C3%ADneas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
 /balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/     /es/blog/balanceo-de-l%C3%ADneas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
 
+/descanso-laboral      /es/blog/descanso-en-el-trabajo-un-enfoque-integral/   301
+/descanso-laboral      /es/blog/descanso-en-el-trabajo-un-enfoque-integral/   301
+
+
 /como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro      /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
 /como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/     /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
 
@@ -134,6 +138,67 @@
 
 /la-ergonomia-del-dolor-a-la-productividad      /es/blog/la-ergonomia-del-dolor-a-la-productividad/    301
 /la-ergonomia-del-dolor-a-la-productividad/     /es/blog/la-ergonomia-del-dolor-a-la-productividad/    301
+
+# Redirecciones para lecciones antiguas
+/leccion/define-el-metodo-de-trabajo/                 /es/blog/mejores-practicas-metodo-trabajo/    301
+/leccion/define-el-metodo-de-trabajo                  /es/blog/mejores-practicas-metodo-trabajo/    301
+
+/leccion/etapas-del-estudio-de-metodos-de-trabajo/   /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/leccion/etapas-del-estudio-de-metodos-de-trabajo    /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+
+/leccion/medir-sin-metodo-preestablecido-crono-seguido/   /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/medir-sin-metodo-preestablecido-crono-seguido    /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+
+/leccion/diseno-del-metodo-de-trabajo/               /es/blog/mejores-practicas-metodo-trabajo/    301
+/leccion/diseno-del-metodo-de-trabajo                /es/blog/mejores-practicas-metodo-trabajo/    301
+
+/leccion/importancia-del-estudio-de-metodos-y-tiempos-de-trabajo/   /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301
+/leccion/importancia-del-estudio-de-metodos-y-tiempos-de-trabajo    /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301
+
+/leccion/cronometrando-el-ciclo-de-trabajo/          /es/blog/que-es-el-cronometraje-industrial/    301
+/leccion/cronometrando-el-ciclo-de-trabajo           /es/blog/que-es-el-cronometraje-industrial/    301
+
+/leccion/delimitar-los-elementos-de-trabajo-en-un-estudio-de-tiempos-con-cronometro/   /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/delimitar-los-elementos-de-trabajo-en-un-estudio-de-tiempos-con-cronometro    /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+
+/leccion/introduccion-al-cronometraje-industrial/    /es/blog/que-es-el-cronometraje-industrial/    301
+/leccion/introduccion-al-cronometraje-industrial     /es/blog/que-es-el-cronometraje-industrial/    301
+
+/leccion/cronometraje-de-elementos-frecuenciales/    /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301
+/leccion/cronometraje-de-elementos-frecuenciales     /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301
+
+/leccion/toma-de-tiempos-con-cronometro/             /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/toma-de-tiempos-con-cronometro              /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+
+/leccion/cronometraje-de-tiempos-de-maquina/         /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/leccion/cronometraje-de-tiempos-de-maquina          /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+
+/leccion/aplicacion-de-suplementos-oit/              /es/blog/suplementos-fatiga-oit/    301
+/leccion/aplicacion-de-suplementos-oit               /es/blog/suplementos-fatiga-oit/    301
+
+/leccion/medicion-de-tiempos-de-trabajo/             /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301
+/leccion/medicion-de-tiempos-de-trabajo              /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301
+
+/leccion/generar-informe-de-estudio-de-tiempos/      /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/leccion/generar-informe-de-estudio-de-tiempos       /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+
+/leccion/identificacion-del-trabajo-a-medir/         /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/identificacion-del-trabajo-a-medir          /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+
+/leccion/elige-como-vas-a-medir-el-trabajo/          /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/    301
+/leccion/elige-como-vas-a-medir-el-trabajo           /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/    301
+
+/leccion/acceder-a-la-app/                           /es/features/    301
+/leccion/acceder-a-la-app                            /es/features/    301
+
+/leccion/prepara-la-automatizacion/                  /es/features/    301
+/leccion/prepara-la-automatizacion                   /es/features/    301
+
+/leccion/como-crear-un-nuevo-estudio-de-trabajo/     /es/features/    301
+/leccion/como-crear-un-nuevo-estudio-de-trabajo      /es/features/    301
+
+# Redirección genérica para cualquier otra lección
+/leccion/*                                           /es/blog/    301
 
 # Redirección para las rutas de API
 /api/*  /.netlify/functions/:splat  200
