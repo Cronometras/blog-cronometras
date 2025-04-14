@@ -1,0 +1,79 @@
+---
+title: "Prepara la automatización"
+description: "Contactar con el profesor Si queremos automatizar la actualización de los datos entre nuestra App y nuestra hoja de cálculo de Google Sheets, deberemos realizar unos pasos previos, que conseguiremos t..."
+pubDate: 2022-05-23
+category: "Curso de cronometraje industrial"
+tags: ["aplicaciones industriales", "software de cronometraje"]
+author: "micaot"
+heroImage: "/images/automatizacion-industrial.jpg"
+---
+
+Si queremos automatizar la actualización de los datos entre nuestra App y nuestra hoja de cálculo de Google Sheets, deberemos realizar unos pasos previos, que conseguiremos tener listos en 5 minutos, solo tendremos que realizar esta operación una vez y estaremos listos para sincronizar nuestra app.
+
+Lo primero que tendremos que hacer será configurar nuestra hoja de cálculo de Google para que se comunique con la aplicación y podamos automatizar el traslado de la información desde la aplicación.
+
+Para ello tendremos que seguir los siguientes pasos:
+
+1. Abre en tu navegador web tu cuenta de Google spreadsheets, debes estar logueado con la cuenta que quieras utilizar para trabajar con la app.
+
+2. Una vez dentro, pega en la barra de direcciones del navegador la dirección de la plantilla de sincronización: https://docs.google.com/spreadsheets/d/1NYkhsAJHH-jcOTBZOfwhItvLVinGkFafmpH8k7AkSao/edit#gid=1866236056 y haz clic en enter para abrir la web
+
+3. Se abrirá una hoja de cálculo. Ahora en el menú superior, haz clic en "Archivo" + "Hacer una copia". Aparecerá una ventana emergente donde podrás poner un nombre identificativo a la plantilla + clic en el botón "Hacer una copia".
+
+4. Ahora tienes tu propia copia de la plantilla. Dale permisos de lectura públicos desde el botón de compartir (esquina superior derecha) para qué desde la aplicación podamos comunicarnos con nuestra hoja. "Cualquier usuario de Internet con este enlace puede ver esto" + seleccionar "Editor"
+
+5. abre tu listado de hojas de cálculo desde el panel de inicio https://docs.google.com/spreadsheets/u/0/ verás que tienes tu propia copia en la que el propietario eres tu. También hay otra en la que el propietario es cronometras app, para evitar posibles confusiones, elimina la que el propietario es cronometras app, ya no la usarás más. Para ello haz clic en los 3 botones que hay a la derecha del título de la hoja + Quitar. Ahora vuelve a abrir la hoja de la que tu si que eres propietario, tu copia.
+
+6. Vincula un formulario. En el menú superior haz clic en: Herramientas + Crear Formulario + Cambia "Varias opciones" por "Respuesta corta" + clic en el icono superior del ojo para acceder a la vista pública del formulario.
+
+7. Vuelve a la Hoja de cálculo y haz clic en el menú superior "Extensiones" + "Apps script". Ahora debes crear un activador, para ello, en la ventana de Apps Script, haz clic en el botón del menú de la izquierda que tiene el icono del reloj para acceder a la pantalla de activadores + "Añade Activador" (bajo a la derecha) + función a ejecutar = limpiar hoja + despliegue a ejecutar = Principal + fuente del evento = De una hoja de cálculo + Tipo de evento = Al enviarse el formulario + Guardar. Debes Autorizar el disparador.
+
+8. Ahora abre tu email y empieza a redactar un email que te enviarás a la cuenta de email con la que trabajes en el dispositivo móvil donde vayas a instalar la aplicación, debes poder abrirlo desde ese dispositivo, ya que serán los datos necesarios para conectar la app con tu hoja de cálculo. La información a incluir es:
+
+- nombre Hoja=> Escribir "Base"
+
+- SpreadSheetID.=> Copia el SpreadSheetID de la hoja  y pegaló en el correo. (https://docs.google.com/spreadsheets/d/----esto es el ID----/edit#gid=xxxxx)
+
+- gid  => Copia el gid de la hoja y pegaló en el correo. (https://docs.google.com/spreadsheets/d/----esto es el ID----/edit#gid=----esto es el gid----)
+
+- FormID =>  Haz clic en el menú superior "Herramientas" + "crear formulario" +  "selecciona respuesta corta" + "ve a la vista pública del formulario" + Copia y pega en el correo que te enviarás la ID del formulario FormID(https://docs.google.com/forms/d/e/----esto es la ID------/)
+
+- FormEntryID => En la página del formulario, clic "F12" y busca "entry." + copia y pega en el correo que te enviarás esa ID. Ejemplo: (name="entry.726594466"), lo que debes guardar es entry.726594466
+
+9. Vuelve a la hoja de cálculo, veras que ahora la primera pestaña de nuestra hoja de cálculo es la de respuestas del formulario, debes arrastrarla detrás de la pestaña "Base" de modo que esta quede como la primera pestaña del libro.
+
+El funcionamiento del ecosistema es sencillo, lo que hemos hecho es conectar la App con google spreadsheets, para poder sincronizar los datos. Cuando le damos a sincronizar, lo primero que hacemos es limpiar la hoja de los datos anteriores, para ello usamos el script de limpiar hoja que ya viene copiado en la plantilla, y para ejecutar este script usamos un disparador que es, "al recibir una respuesta del formulario", por ello, desde la app, al hacer clic en sincronizar lo primero que hacemos es enviar una respuesta al formulario, de modo que ejecuta el disparador y una vez limpia la hoja sincronizamos datos.
+
+## Enlaza ahora la App.
+
+Listo, ya tenemos configurada nuestra hoja de cálculo para la sincronización con nuestra App. Hemos tenido que guardar 5 datos:
+
+- Nombre Hoja: "Base" que es el nombre de la hoja donde se sincronizan los datos y que no debes cambiar.
+
+- SpreadSheet ID: Para conectar la hoja de cálculo con la App
+
+- GID: Para SELECCIONAR la hoja a descargar una vez sincronizados los datos de la App con SpreadSheets
+
+- Form Entry ID: para enviar una respuesta desde nuestra App al formulario.
+
+- FormID: Para conectar el formulario con la App
+
+Una vez hayas enviado el email con esos datos al dispositivo donde vas a instalar la app, abre la App en tu dispositivo Android y logueate con tu cuenta para acceder a la pantalla principal.
+
+Una vez en la pantalla principal, haz clic en la rueda dentada que aparece en la esquina superior izquierda, entonces aparecerá una ventana donde deberás introducir los datos que enviaste previamente, tan solo deberás copiar y pegar esos datos en su caja de texto correspondiente.
+
+https://www.youtube.com/watch?v=VlpeYDkFNcU&ab_channel=cronometrasapp
+
+Ver cuestionario
+
+Completar lección
+
+Lección siguiente
+
+Reiniciar lección
+
+
+
+## Conclusión
+
+Dominar las técnicas de cronometraje industrial es esencial para cualquier profesional que busque optimizar procesos productivos. La aplicación sistemática de estos métodos no solo mejora la eficiencia operativa, sino que también contribuye significativamente a la reducción de costos y al aumento de la competitividad empresarial. Recuerde que la precisión en la medición y el análisis riguroso de los datos son la base para establecer estándares de tiempo confiables que impulsen la mejora continua en su organización.

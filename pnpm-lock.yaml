@@ -48,13 +48,13 @@ importers:
         specifier: ^6.4.17
         version: 6.4.17
       alpinejs:
-        specifier: ^3.14.8
+        specifier: ^3.14.9
         version: 3.14.9
       astro:
         specifier: ^5.6.1
         version: 5.6.1(@types/node@18.19.64)(jiti@1.21.6)(rollup@4.39.0)(sass@1.81.0)(typescript@5.3.3)(yaml@2.6.0)
       astro-auto-import:
-        specifier: ^0.4.2
+        specifier: ^0.4.4
         version: 0.4.4(astro@5.6.1(@types/node@18.19.64)(jiti@1.21.6)(rollup@4.39.0)(sass@1.81.0)(typescript@5.3.3)(yaml@2.6.0))
       astro-font:
         specifier: ^0.0.77
@@ -84,7 +84,7 @@ importers:
         specifier: ^7.55.0
         version: 7.55.0(react@18.3.1)
       react-icons:
-        specifier: ^5.0.1
+        specifier: ^5.3.0
         version: 5.3.0(react@18.3.1)
       resend:
         specifier: ^4.2.0
@@ -93,17 +93,17 @@ importers:
         specifier: ^6.1.1
         version: 6.1.1
       swiper:
-        specifier: ^11.0.6
+        specifier: ^11.1.14
         version: 11.1.14
       zod:
         specifier: ^3.24.2
         version: 3.24.2
     devDependencies:
       '@tailwindcss/forms':
-        specifier: ^0.5.7
+        specifier: ^0.5.9
         version: 0.5.9(tailwindcss@3.4.15)
       '@tailwindcss/typography':
-        specifier: ^0.5.10
+        specifier: ^0.5.15
         version: 0.5.15(tailwindcss@3.4.15)
       '@types/marked':
         specifier: ^5.0.2
@@ -115,19 +115,19 @@ importers:
         specifier: ^18.3.5
         version: 18.3.5(@types/react@18.3.18)
       autoprefixer:
-        specifier: ^10.4.17
+        specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
       postcss:
-        specifier: ^8.4.34
+        specifier: ^8.4.49
         version: 8.4.49
       prettier:
-        specifier: ^3.2.5
+        specifier: ^3.3.3
         version: 3.3.3
       prettier-plugin-astro:
         specifier: ^0.13.0
         version: 0.13.0
       prettier-plugin-tailwindcss:
-        specifier: ^0.5.11
+        specifier: ^0.5.14
         version: 0.5.14(prettier-plugin-astro@0.13.0)(prettier@3.3.3)
       react:
         specifier: ^18.3.1
@@ -136,7 +136,7 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       sass:
-        specifier: ^1.70.0
+        specifier: ^1.81.0
         version: 1.81.0
       sharp:
         specifier: 0.33.1
@@ -145,7 +145,7 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(tailwindcss@3.4.15)
       tailwindcss:
-        specifier: ^3.4.1
+        specifier: ^3.4.15
         version: 3.4.15
       typescript:
         specifier: 5.3.3
@@ -1641,11 +1641,8 @@ packages:
     resolution: {integrity: sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==}
     engines: {node: '>=16'}
 
-  caniuse-lite@1.0.30001680:
-    resolution: {integrity: sha512-rPQy70G6AGUMnbwS1z6Xg+RkHYPAi18ihs47GH0jcxIG7wArmPgY3XbS2sRdBbxJljp3thdT8BIqv9ccCypiPA==}
-
-  caniuse-lite@1.0.30001710:
-    resolution: {integrity: sha512-B5C0I0UmaGqHgo5FuqJ7hBd4L57A4dDD+Xi+XX1nXOoxGeDdY4Ko38qJYOyqznBVJEqON5p8P1x5zRR3+rsnxA==}
+  caniuse-lite@1.0.30001713:
+    resolution: {integrity: sha512-wCIWIg+A4Xr7NfhTuHdX+/FKh3+Op3LBbSp2N5Pfx6T/LhdQy3GTyoTg48BReaW/MyMNZAkTadsBtai3ldWK0Q==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -5063,7 +5060,7 @@ snapshots:
   autoprefixer@10.4.20(postcss@8.4.49):
     dependencies:
       browserslist: 4.24.2
-      caniuse-lite: 1.0.30001680
+      caniuse-lite: 1.0.30001713
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
@@ -5073,7 +5070,7 @@ snapshots:
   autoprefixer@10.4.21(postcss@8.5.3):
     dependencies:
       browserslist: 4.24.4
-      caniuse-lite: 1.0.30001710
+      caniuse-lite: 1.0.30001713
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
@@ -5123,14 +5120,14 @@ snapshots:
 
   browserslist@4.24.2:
     dependencies:
-      caniuse-lite: 1.0.30001680
+      caniuse-lite: 1.0.30001713
       electron-to-chromium: 1.5.62
       node-releases: 2.0.18
       update-browserslist-db: 1.1.1(browserslist@4.24.2)
 
   browserslist@4.24.4:
     dependencies:
-      caniuse-lite: 1.0.30001710
+      caniuse-lite: 1.0.30001713
       electron-to-chromium: 1.5.132
       node-releases: 2.0.19
       update-browserslist-db: 1.1.1(browserslist@4.24.4)
@@ -5148,9 +5145,7 @@ snapshots:
 
   camelcase@8.0.0: {}
 
-  caniuse-lite@1.0.30001680: {}
-
-  caniuse-lite@1.0.30001710: {}
+  caniuse-lite@1.0.30001713: {}
 
   ccount@2.0.1: {}
 
@@ -6402,7 +6397,7 @@ snapshots:
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.15
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001710
+      caniuse-lite: 1.0.30001713
       postcss: 8.4.31
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
