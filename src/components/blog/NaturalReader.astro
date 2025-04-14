@@ -70,8 +70,14 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
     <!-- Mensaje informativo sobre lectura en segundo plano -->
     <div class="text-xs text-gray-500 dark:text-gray-400 italic">
       {lang === 'es'
-        ? 'La lectura continuará incluso si la pantalla se apaga o cambias de aplicación.'
-        : 'Reading will continue even if the screen turns off or you switch apps.'}
+        ? 'La lectura intentará continuar cuando la pantalla se apague. Para mejores resultados, mantén la pantalla encendida.'
+        : 'Reading will try to continue when the screen turns off. For best results, keep the screen on.'}
+    </div>
+    <!-- Mensaje de compatibilidad -->
+    <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      {lang === 'es'
+        ? 'La compatibilidad varía según el dispositivo y navegador.'
+        : 'Compatibility varies by device and browser.'}
     </div>
   </div>
 </div>
@@ -112,6 +118,9 @@ class NaturalReader {
     this.wakeLock = null; // Para mantener la pantalla encendida
     this.visibilityHandler = null; // Manejador para eventos de visibilidad
     this.keepAliveInterval = null; // Intervalo para mantener activo el proceso
+    this.silentAudio = null; // Audio silencioso para mantener activo el proceso de audio
+    this.backgroundWorker = null; // Worker en segundo plano para mantener activo el proceso
+    this.mediaSession = null; // Sesión de media para control en la pantalla de bloqueo
 
     // Detectar tipo de dispositivo y navegador
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -304,12 +313,57 @@ class NaturalReader {
         this.readerControls.classList.remove('hidden');
       }
 
+      // Configurar la MediaSession API para control desde la pantalla de bloqueo
+      this.setupMediaSession();
+
       // Iniciar la lectura del primer fragmento
       this.updateState(STATES.PLAYING);
       this.speakNextChunk();
     } catch (error) {
       console.error('Error al iniciar la lectura:', error);
       this.updateState(STATES.ERROR);
+    }
+  }
+
+  // Configurar la MediaSession API para control desde la pantalla de bloqueo
+  setupMediaSession() {
+    if ('mediaSession' in navigator) {
+      try {
+        // Obtener el título del artículo
+        const articleTitle = document.querySelector('h1')?.textContent || 'Artículo';
+
+        // Configurar metadatos de la sesión multimedia
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: articleTitle,
+          artist: 'Cronometras',
+          album: 'Lectura de artículo',
+          artwork: [
+            { src: '/favicon.png', sizes: '96x96', type: 'image/png' }
+          ]
+        });
+
+        // Configurar manejadores de acciones
+        navigator.mediaSession.setActionHandler('play', () => {
+          if (this.state === STATES.PAUSED) {
+            this.resumeReading();
+          }
+        });
+
+        navigator.mediaSession.setActionHandler('pause', () => {
+          if (this.state === STATES.PLAYING) {
+            this.pauseReading();
+          }
+        });
+
+        navigator.mediaSession.setActionHandler('stop', () => {
+          this.stopReading();
+        });
+
+        // Guardar referencia a la sesión multimedia
+        this.mediaSession = navigator.mediaSession;
+      } catch (e) {
+        console.error('Error al configurar MediaSession:', e);
+      }
     }
   }
 
@@ -471,13 +525,36 @@ class NaturalReader {
     // Eliminar el manejador de visibilidad
     if (this.visibilityHandler) {
       document.removeEventListener('visibilitychange', this.visibilityHandler);
+      this.visibilityHandler = null;
     }
 
     // Liberar Wake Lock
     this.releaseWakeLock();
 
-    // Detener el intervalo de mantenimiento
+    // Detener el intervalo de mantenimiento y limpiar recursos
     this.stopKeepAlive();
+
+    // Limpiar MediaSession
+    if ('mediaSession' in navigator && this.mediaSession) {
+      try {
+        // Eliminar manejadores de acciones
+        navigator.mediaSession.setActionHandler('play', null);
+        navigator.mediaSession.setActionHandler('pause', null);
+        navigator.mediaSession.setActionHandler('stop', null);
+        this.mediaSession = null;
+      } catch (e) {
+        console.error('Error al limpiar MediaSession:', e);
+      }
+    }
+
+    // Asegurarse de que la síntesis de voz se detenga completamente
+    if (window.speechSynthesis) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {
+        console.error('Error al cancelar síntesis de voz:', e);
+      }
+    }
   }
 
   // Configurar manejo de visibilidad para continuar la lectura en segundo plano
@@ -537,7 +614,10 @@ class NaturalReader {
     // Detener cualquier intervalo existente
     this.stopKeepAlive();
 
-    // Crear un nuevo intervalo que mantenga activo el proceso
+    // Crear un audio silencioso para mantener activo el proceso de audio
+    this.createSilentAudio();
+
+    // Crear un nuevo intervalo que mantenga activo el proceso (más frecuente)
     this.keepAliveInterval = setInterval(() => {
       if (this.state === STATES.PLAYING) {
         // Verificar si la síntesis de voz sigue activa
@@ -551,21 +631,158 @@ class NaturalReader {
             this.stopKeepAlive();
           }
         } else {
-          // Mantener activa la síntesis de voz
+          // Mantener activa la síntesis de voz con una técnica más agresiva
           window.speechSynthesis.pause();
-          window.speechSynthesis.resume();
+          setTimeout(() => {
+            if (this.state === STATES.PLAYING) {
+              window.speechSynthesis.resume();
+            }
+          }, 50);
+
+          // Reproducir un breve sonido silencioso para mantener activo el proceso de audio
+          this.playSilentSound();
+
+          // Solicitar un wake lock de nuevo si se ha liberado
+          if (!this.wakeLock) {
+            this.requestWakeLock();
+          }
+
+          // Usar vibración (si está disponible) para mantener activo el dispositivo
+          if ('vibrate' in navigator) {
+            try {
+              navigator.vibrate(1); // Vibración imperceptible de 1ms
+            } catch (e) {
+              // Ignorar errores de vibración
+            }
+          }
         }
       } else {
         this.stopKeepAlive();
       }
-    }, 5000); // Verificar cada 5 segundos
+    }, 1000); // Verificar cada segundo (más frecuente)
+
+    // Crear un worker en segundo plano para mantener activo el proceso
+    this.createBackgroundWorker();
   }
 
-  // Detener el intervalo de mantenimiento
+  // Crear un audio silencioso para mantener activo el proceso de audio
+  createSilentAudio() {
+    try {
+      // Eliminar cualquier audio anterior
+      if (this.silentAudio) {
+        this.silentAudio.pause();
+        this.silentAudio = null;
+      }
+
+      // Crear un nuevo elemento de audio con un sonido silencioso
+      this.silentAudio = new Audio();
+
+      // Usar un data URI con un sonido silencioso muy corto
+      this.silentAudio.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
+      this.silentAudio.loop = true;
+      this.silentAudio.volume = 0.01; // Volumen muy bajo
+
+      // Configurar para reproducción en segundo plano (iOS)
+      if (this.isIOS) {
+        this.silentAudio.setAttribute('playsinline', '');
+        this.silentAudio.setAttribute('webkit-playsinline', '');
+      }
+    } catch (e) {
+      console.error('Error al crear audio silencioso:', e);
+    }
+  }
+
+  // Reproducir un breve sonido silencioso
+  playSilentSound() {
+    try {
+      if (this.silentAudio) {
+        // Asegurarse de que el audio esté reproduciéndose
+        const playPromise = this.silentAudio.play();
+
+        if (playPromise !== undefined) {
+          playPromise.catch(e => {
+            // Auto-reproducción bloqueada, intentar después de interacción del usuario
+            console.log('Auto-reproducción bloqueada, se requiere interacción del usuario');
+          });
+        }
+      }
+    } catch (e) {
+      console.error('Error al reproducir sonido silencioso:', e);
+    }
+  }
+
+  // Crear un worker en segundo plano para mantener activo el proceso
+  createBackgroundWorker() {
+    try {
+      // Eliminar cualquier worker anterior
+      if (this.backgroundWorker) {
+        this.backgroundWorker.terminate();
+        this.backgroundWorker = null;
+      }
+
+      // Crear un nuevo worker con un código simple que se ejecute periódicamente
+      const workerCode = `
+        setInterval(() => {
+          self.postMessage('keepAlive');
+        }, 500);
+      `;
+
+      // Crear un blob con el código del worker
+      const blob = new Blob([workerCode], { type: 'application/javascript' });
+      const workerUrl = URL.createObjectURL(blob);
+
+      // Crear el worker
+      this.backgroundWorker = new Worker(workerUrl);
+
+      // Configurar el manejador de mensajes
+      this.backgroundWorker.onmessage = (e) => {
+        if (e.data === 'keepAlive' && this.state === STATES.PLAYING) {
+          // Mantener activa la síntesis de voz si es necesario
+          if (window.speechSynthesis.speaking && Math.random() < 0.1) { // 10% de probabilidad
+            window.speechSynthesis.pause();
+            setTimeout(() => {
+              if (this.state === STATES.PLAYING) {
+                window.speechSynthesis.resume();
+              }
+            }, 10);
+          }
+        }
+      };
+
+      // Limpiar la URL del blob cuando ya no se necesite
+      URL.revokeObjectURL(workerUrl);
+    } catch (e) {
+      console.error('Error al crear worker en segundo plano:', e);
+    }
+  }
+
+  // Detener el intervalo de mantenimiento y limpiar recursos
   stopKeepAlive() {
+    // Detener el intervalo principal
     if (this.keepAliveInterval) {
       clearInterval(this.keepAliveInterval);
       this.keepAliveInterval = null;
+    }
+
+    // Detener el audio silencioso
+    if (this.silentAudio) {
+      try {
+        this.silentAudio.pause();
+        this.silentAudio.src = '';
+        this.silentAudio = null;
+      } catch (e) {
+        console.error('Error al detener audio silencioso:', e);
+      }
+    }
+
+    // Terminar el worker en segundo plano
+    if (this.backgroundWorker) {
+      try {
+        this.backgroundWorker.terminate();
+        this.backgroundWorker = null;
+      } catch (e) {
+        console.error('Error al terminar worker:', e);
+      }
     }
   }
 
