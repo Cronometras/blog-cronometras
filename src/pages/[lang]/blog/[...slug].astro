@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
-import ChunkedReader from '@/components/blog/ChunkedReader.astro';
+import NaturalReader from '@/components/blog/NaturalReader.astro';
 import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
 import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
 
@@ -97,7 +97,7 @@ export const prerender = true;
             <p class="text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed">{post.data.description}</p>
           )}
           <div class="mt-4 md:mt-8">
-            <ChunkedReader text={rawContent} lang={lang || 'en'} />
+            <NaturalReader text={rawContent} lang={lang || 'en'} />
           </div>
         </div>
       </div>
