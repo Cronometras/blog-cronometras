@@ -1,0 +1,45 @@
+---
+// CategoryFilter.astro
+// Componente para filtrar artículos del blog por categoría
+
+interface Props {
+  categories: string[];
+  currentCategory: string | null;
+  lang: string;
+}
+
+const { categories, currentCategory, lang } = Astro.props;
+
+// Traducir textos según el idioma
+const allCategoriesText = lang === 'es' ? 'Todas las categorías' : 'All categories';
+const categoriesText = lang === 'es' ? 'Categorías' : 'Categories';
+---
+
+<div class="mb-12">
+  <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">{categoriesText}</h2>
+  <div class="flex flex-wrap gap-2">
+    <a 
+      href={`/${lang}/blog/`} 
+      class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+        !currentCategory 
+          ? 'bg-primary text-white' 
+          : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+      }`}
+    >
+      {allCategoriesText}
+    </a>
+    
+    {categories.map(category => (
+      <a 
+        href={`/${lang}/blog/category/${encodeURIComponent(category.toLowerCase().replace(/ /g, '-'))}`} 
+        class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+          currentCategory === category.toLowerCase().replace(/ /g, '-') 
+            ? 'bg-primary text-white' 
+            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+        }`}
+      >
+        {category}
+      </a>
+    ))}
+  </div>
+</div>

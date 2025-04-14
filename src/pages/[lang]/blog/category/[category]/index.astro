@@ -5,7 +5,7 @@ import BlogListSchema from '@/components/blog/BlogListSchema.astro';
 import Pagination from '@/components/Pagination.astro';
 import CategoryFilter from '@/components/CategoryFilter.astro';
 import { slugify } from '@/utils/slugify';
-import { getAllCategories } from '@/utils/categories';
+import { getAllCategories, denormalizeCategoryName } from '@/utils/categories';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
@@ -14,35 +14,41 @@ export async function getStaticPaths() {
   const paths = [];
 
   for (const lang of languages) {
-    // Filtrar posts por idioma y que no sean borradores
-    const langPosts = allPosts.filter((post) => {
-      const postLang = post.slug.split('/')[0];
-      return postLang === lang && !post.data.draft;
-    });
-
-    // Ordenar por fecha de publicación, más reciente primero
-    const sortedPosts = langPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-    // Calcular el número total de páginas
-    const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
-
     // Obtener todas las categorías para este idioma
     const categories = await getAllCategories(lang);
-
-    // Generar rutas para cada página (excepto la primera que ya está en index.astro)
-    for (let page = 2; page <= totalPages; page++) {
-      const startIndex = (page - 1) * postsPerPage;
-      const endIndex = startIndex + postsPerPage;
-
+    
+    // Para cada categoría, crear una ruta
+    for (const category of categories) {
+      // Normalizar el nombre de la categoría para la URL
+      const normalizedCategory = category.toLowerCase().replace(/ /g, '-');
+      
+      // Filtrar posts por idioma, categoría y que no sean borradores
+      const filteredPosts = allPosts.filter((post) => {
+        const postLang = post.slug.split('/')[0];
+        const postCategory = post.data.category;
+        return postLang === lang && 
+               !post.data.draft && 
+               postCategory && 
+               postCategory.toLowerCase().replace(/ /g, '-') === normalizedCategory;
+      });
+      
+      // Ordenar por fecha de publicación, más reciente primero
+      const sortedPosts = filteredPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+      
+      // Calcular el número total de páginas
+      const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
+      
+      // Generar la primera página para esta categoría
       paths.push({
-        params: { lang, page: page.toString() },
+        params: { lang, category: normalizedCategory },
         props: {
-          posts: sortedPosts.slice(startIndex, endIndex),
-          currentPage: page,
+          posts: sortedPosts.slice(0, postsPerPage),
+          currentPage: 1,
           totalPages,
           totalPosts: sortedPosts.length,
           categories,
-          currentCategory: null
+          currentCategory: normalizedCategory,
+          categoryName: category
         }
       });
     }
@@ -54,19 +60,20 @@ export async function getStaticPaths() {
 // Habilitar prerender para generar páginas estáticas durante la compilación
 export const prerender = true;
 
-const { lang, page } = Astro.params;
-const { posts, currentPage, totalPages, totalPosts, categories, currentCategory } = Astro.props;
+const { lang, category } = Astro.params;
+const { posts, currentPage, totalPages, totalPosts, categories, currentCategory, categoryName } = Astro.props;
 
-console.log(`Renderizando página ${currentPage} de blog para idioma: ${lang}`);
+console.log(`Renderizando página ${currentPage} de blog para idioma: ${lang}, categoría: ${category}`);
 console.log(`Total posts: ${totalPosts}, Mostrando: ${posts.length}, Páginas totales: ${totalPages}`);
-console.log(`Categorías disponibles: ${categories.join(', ')}`);
-console.log(`Categoría actual: ${currentCategory || 'Todas'}`);
 
 // Traducir el título y descripción según el idioma
-const title = lang === 'es' ? `Blog de CRONOMETRAS - Página ${currentPage}` : `CRONOMETRAS Blog - Page ${currentPage}`;
+const title = lang === 'es' 
+  ? `Blog de CRONOMETRAS - Categoría: ${categoryName}` 
+  : `CRONOMETRAS Blog - Category: ${categoryName}`;
+
 const description = lang === 'es'
-  ? 'Artículos sobre productividad, estudios de tiempos y gestión industrial'
-  : 'Articles about productivity, time studies, and industrial management';
+  ? `Artículos sobre ${categoryName.toLowerCase()}`
+  : `Articles about ${categoryName.toLowerCase()}`;
 
 // Traducir el texto del botón "Leer más"
 const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
@@ -82,10 +89,10 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
             {lang === 'es' ? 'Blog de CRONOMETRAS' : 'CRONOMETRAS Blog'}
           </h1>
           <p class="mb-2 text-lg">{description}</p>
-          <p class="mb-8 text-accent">
-            {lang === 'es' ? `Página ${currentPage} de ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+          <p class="mb-8 text-accent font-medium">
+            {lang === 'es' ? `Categoría: ${categoryName}` : `Category: ${categoryName}`}
           </p>
-
+          
           {/* Filtro de categorías */}
           <div class="max-w-3xl mx-auto">
             <CategoryFilter
@@ -142,18 +149,22 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
       {posts.length === 0 && (
         <div class="text-center py-20">
           <p class="text-xl text-gray-600 dark:text-gray-300">
-            {lang === 'es' ? 'No hay artículos disponibles en este momento.' : 'No articles available at this time.'}
+            {lang === 'es' 
+              ? `No hay artículos disponibles en la categoría "${categoryName}".` 
+              : `No articles available in the "${categoryName}" category.`}
           </p>
         </div>
       )}
-
+      
       {/* Paginación */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        basePath={`/${lang}/blog`}
-        lang={lang}
-      />
+      {totalPages > 1 && (
+        <Pagination 
+          currentPage={currentPage} 
+          totalPages={totalPages} 
+          basePath={`/${lang}/blog/category/${category}`} 
+          lang={lang} 
+        />
+      )}
     </div>
   </section>
 </Base>
