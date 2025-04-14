@@ -29,7 +29,7 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
     </svg>
     <span id="button-text">{readText}</span>
   </button>
-  
+
   <button
     id="stop-button"
     class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 opacity-50 cursor-not-allowed"
@@ -63,14 +63,14 @@ class MobileVoiceReader {
     this.buttonText = document.getElementById('button-text');
     this.stopButton = document.getElementById('stop-button');
     this.articleText = document.getElementById('article-text');
-    
+
     this.text = this.articleText ? this.articleText.textContent || '' : '';
     this.lang = lang || 'en';
     this.utterance = null;
     this.currentIndex = 0;
     this.chunks = [];
     this.currentChunk = 0;
-    
+
     // Detectar tipo de dispositivo y navegador
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -78,35 +78,35 @@ class MobileVoiceReader {
     this.isChrome = /Chrome/i.test(navigator.userAgent);
     this.isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent);
     this.isEdge = /Edg/i.test(navigator.userAgent);
-    
+
     // Verificar soporte de síntesis de voz
     this.speechSynthesisSupported = 'speechSynthesis' in window;
-    
+
     this.init();
   }
-  
+
   init() {
     if (!this.readButton || !this.stopButton || !this.text) return;
-    
+
     // Dividir el texto en fragmentos más pequeños para mejor compatibilidad
     this.prepareTextChunks();
-    
+
     // Inicializar eventos
     this.readButton.addEventListener('click', () => this.toggleReading());
     this.stopButton.addEventListener('click', () => this.stopReading());
-    
+
     // Inicializar síntesis de voz
     if (this.speechSynthesisSupported) {
       // Cancelar cualquier síntesis en curso
       window.speechSynthesis.cancel();
-      
+
       // Inicializar voces
       if (window.speechSynthesis.getVoices().length === 0) {
         window.speechSynthesis.onvoiceschanged = () => {
           console.log('Voces cargadas:', window.speechSynthesis.getVoices().length);
         };
       }
-      
+
       // Fix para Safari en iOS
       if (this.isIOS) {
         document.addEventListener('touchstart', () => {
@@ -116,11 +116,11 @@ class MobileVoiceReader {
     } else {
       this.updateState(STATES.ERROR);
     }
-    
+
     // Limpiar al navegar a otra página
     window.addEventListener('beforeunload', () => this.stopReading());
     document.addEventListener('astro:before-swap', () => this.stopReading());
-    
+
     console.log('MobileVoiceReader inicializado:', {
       isMobile: this.isMobile,
       isIOS: this.isIOS,
@@ -133,42 +133,66 @@ class MobileVoiceReader {
       chunks: this.chunks.length
     });
   }
-  
+
   // Dividir el texto en fragmentos más pequeños
   prepareTextChunks() {
-    // Tamaño máximo de cada fragmento (más pequeño para dispositivos móviles)
-    const chunkSize = this.isMobile ? 200 : 500;
-    
-    // Dividir por oraciones o párrafos
-    const sentences = this.text.match(/[^.!?]+[.!?]+/g) || [];
-    
+    // Tamaño máximo de cada fragmento (mucho más pequeño para dispositivos móviles)
+    const chunkSize = this.isMobile ? 100 : 300;
+
+    // Primero, limpiar el texto de caracteres especiales y HTML
+    const cleanText = this.text
+      .replace(/<[^>]*>/g, '') // Eliminar etiquetas HTML
+      .replace(/\s+/g, ' ')   // Normalizar espacios
+      .trim();
+
+    // Dividir por oraciones
+    const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
+
     if (sentences.length === 0) {
       // Si no hay oraciones, dividir por longitud
-      for (let i = 0; i < this.text.length; i += chunkSize) {
-        this.chunks.push(this.text.substring(i, i + chunkSize));
+      for (let i = 0; i < cleanText.length; i += chunkSize) {
+        this.chunks.push(cleanText.substring(i, i + chunkSize));
       }
     } else {
-      // Agrupar oraciones en fragmentos
-      let currentChunk = '';
+      // Procesar cada oración
       for (const sentence of sentences) {
-        if (currentChunk.length + sentence.length > chunkSize) {
-          this.chunks.push(currentChunk);
-          currentChunk = sentence;
+        // Si la oración es más larga que el tamaño máximo, dividirla
+        if (sentence.length > chunkSize) {
+          // Dividir por comas o espacios
+          const parts = sentence.split(/([,;])\s/);
+          let currentChunk = '';
+
+          for (const part of parts) {
+            if (currentChunk.length + part.length > chunkSize) {
+              this.chunks.push(currentChunk);
+              currentChunk = part;
+            } else {
+              currentChunk += part;
+            }
+          }
+
+          if (currentChunk) {
+            this.chunks.push(currentChunk);
+          }
         } else {
-          currentChunk += sentence;
+          this.chunks.push(sentence);
         }
       }
-      if (currentChunk) {
-        this.chunks.push(currentChunk);
-      }
     }
-    
-    // Si no hay fragmentos, crear uno con el texto completo
+
+    // Si no hay fragmentos, crear uno con el texto limpio
     if (this.chunks.length === 0) {
-      this.chunks.push(this.text);
+      this.chunks.push(cleanText.substring(0, 1000)); // Limitar a 1000 caracteres como máximo
     }
+
+    // Limitar el número total de fragmentos para evitar problemas
+    if (this.chunks.length > 100) {
+      this.chunks = this.chunks.slice(0, 100);
+    }
+
+    console.log(`Texto dividido en ${this.chunks.length} fragmentos`);
   }
-  
+
   // Alternar entre reproducir y pausar
   toggleReading() {
     switch (this.state) {
@@ -184,21 +208,21 @@ class MobileVoiceReader {
         break;
     }
   }
-  
+
   // Iniciar la lectura
   startReading() {
     if (!this.speechSynthesisSupported) {
       this.updateState(STATES.ERROR);
       return;
     }
-    
+
     try {
       // Cancelar cualquier síntesis en curso
       window.speechSynthesis.cancel();
-      
+
       // Reiniciar el índice de fragmentos
       this.currentChunk = 0;
-      
+
       // Iniciar la lectura del primer fragmento
       this.speakCurrentChunk();
     } catch (error) {
@@ -206,7 +230,7 @@ class MobileVoiceReader {
       this.updateState(STATES.ERROR);
     }
   }
-  
+
   // Reproducir el fragmento actual
   speakCurrentChunk() {
     if (this.currentChunk >= this.chunks.length) {
@@ -214,38 +238,38 @@ class MobileVoiceReader {
       this.updateState(STATES.STOPPED);
       return;
     }
-    
+
     try {
       const chunkText = this.chunks[this.currentChunk];
-      
+
       // Crear una nueva instancia de SpeechSynthesisUtterance
       this.utterance = new SpeechSynthesisUtterance(chunkText);
       this.utterance.lang = this.lang === 'es' ? 'es-ES' : 'en-US';
       this.utterance.rate = 0.9; // Ligeramente más lento para mejor comprensión
-      
+
       // Seleccionar una voz adecuada
       const voices = window.speechSynthesis.getVoices();
       const langCode = this.lang === 'es' ? 'es' : 'en';
-      
+
       // Buscar una voz adecuada
       let voice = voices.find(v => v.lang.startsWith(langCode) && v.localService);
       if (!voice) {
         voice = voices.find(v => v.lang.startsWith(langCode));
       }
-      
+
       if (voice) {
         this.utterance.voice = voice;
       }
-      
+
       // Configurar eventos
       this.utterance.onstart = () => {
         this.updateState(STATES.PLAYING);
       };
-      
+
       this.utterance.onend = () => {
         // Pasar al siguiente fragmento
         this.currentChunk++;
-        
+
         // Si hay más fragmentos, continuar
         if (this.currentChunk < this.chunks.length) {
           // Pequeña pausa entre fragmentos
@@ -257,10 +281,10 @@ class MobileVoiceReader {
           this.updateState(STATES.STOPPED);
         }
       };
-      
+
       this.utterance.onerror = (event) => {
         console.error('Error en la síntesis de voz:', event);
-        
+
         // Si es un error de interrupción, intentar con el siguiente fragmento
         if (event.error === 'interrupted' || event.error === 'canceled') {
           this.currentChunk++;
@@ -275,11 +299,11 @@ class MobileVoiceReader {
           this.updateState(STATES.ERROR);
         }
       };
-      
+
       // Iniciar la reproducción
       window.speechSynthesis.speak(this.utterance);
       this.updateState(STATES.PLAYING);
-      
+
       // Fix para Chrome en Android
       if (this.isAndroid && this.isChrome) {
         this.startChromeWorkaround();
@@ -289,31 +313,37 @@ class MobileVoiceReader {
       this.updateState(STATES.ERROR);
     }
   }
-  
+
   // Solución para el bug de Chrome en Android
   startChromeWorkaround() {
     if (this.chromeWorkaroundInterval) {
       clearInterval(this.chromeWorkaroundInterval);
     }
-    
+
+    // Usar un intervalo más corto (2 segundos) para evitar que se detenga
     this.chromeWorkaroundInterval = setInterval(() => {
       if (this.state === STATES.PLAYING) {
+        console.log('Aplicando workaround para Chrome en Android');
         window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
+        setTimeout(() => {
+          if (this.state === STATES.PLAYING) {
+            window.speechSynthesis.resume();
+          }
+        }, 50); // Pequeña pausa antes de resumir
       } else {
         clearInterval(this.chromeWorkaroundInterval);
       }
-    }, 5000);
+    }, 2000); // Intervalo más corto
   }
-  
+
   // Pausar la lectura
   pauseReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       window.speechSynthesis.pause();
       this.updateState(STATES.PAUSED);
-      
+
       // Limpiar el workaround de Chrome si está activo
       if (this.chromeWorkaroundInterval) {
         clearInterval(this.chromeWorkaroundInterval);
@@ -323,15 +353,15 @@ class MobileVoiceReader {
       this.stopReading(); // Si falla la pausa, detener completamente
     }
   }
-  
+
   // Reanudar la lectura
   resumeReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       window.speechSynthesis.resume();
       this.updateState(STATES.PLAYING);
-      
+
       // Reiniciar el workaround de Chrome si es necesario
       if (this.isAndroid && this.isChrome) {
         this.startChromeWorkaround();
@@ -341,15 +371,19 @@ class MobileVoiceReader {
       this.stopReading(); // Si falla la reanudación, detener completamente
     }
   }
-  
+
   // Detener la lectura
   stopReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       window.speechSynthesis.cancel();
+
+      // Reiniciar el índice de fragmentos para la próxima vez
+      this.currentChunk = 0;
+
       this.updateState(STATES.STOPPED);
-      
+
       // Limpiar el workaround de Chrome si está activo
       if (this.chromeWorkaroundInterval) {
         clearInterval(this.chromeWorkaroundInterval);
@@ -358,11 +392,11 @@ class MobileVoiceReader {
       console.error('Error al detener la lectura:', error);
     }
   }
-  
+
   // Actualizar el estado y la interfaz
   updateState(newState) {
     this.state = newState;
-    
+
     // Actualizar la interfaz según el estado
     if (this.readButton && this.buttonText && this.stopButton) {
       switch (newState) {
