@@ -29,7 +29,7 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
     </svg>
     <span id="button-text">{readText}</span>
   </button>
-  
+
   <button
     id="stop-button"
     class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 opacity-50 cursor-not-allowed"
@@ -41,10 +41,29 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
     </svg>
     <span>{stopText}</span>
   </button>
-  
-  <!-- Indicador de progreso -->
-  <div id="progress-container" class="hidden w-full h-2 bg-gray-200 rounded-full mt-2">
-    <div id="progress-bar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+
+  <!-- Controles adicionales -->
+  <div id="reader-controls" class="hidden w-full mt-2 flex flex-wrap gap-2 items-center">
+    <!-- Control de velocidad -->
+    <div class="flex items-center gap-2">
+      <label for="speed-control" class="text-sm text-gray-600 dark:text-gray-400">
+        {lang === 'es' ? 'Velocidad:' : 'Speed:'}
+      </label>
+      <select
+        id="speed-control"
+        class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-sm"
+      >
+        <option value="0.7">{lang === 'es' ? 'Lenta' : 'Slow'}</option>
+        <option value="0.9" selected>{lang === 'es' ? 'Normal' : 'Normal'}</option>
+        <option value="1.1">{lang === 'es' ? 'Rápida' : 'Fast'}</option>
+        <option value="1.3">{lang === 'es' ? 'Muy rápida' : 'Very fast'}</option>
+      </select>
+    </div>
+
+    <!-- Indicador de progreso -->
+    <div id="progress-container" class="flex-grow h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+      <div id="progress-bar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+    </div>
   </div>
 </div>
 
@@ -68,9 +87,11 @@ class ChunkedReader {
     this.buttonText = document.getElementById('button-text');
     this.stopButton = document.getElementById('stop-button');
     this.articleText = document.getElementById('article-text');
+    this.readerControls = document.getElementById('reader-controls');
     this.progressContainer = document.getElementById('progress-container');
     this.progressBar = document.getElementById('progress-bar');
-    
+    this.speedControl = document.getElementById('speed-control');
+
     this.text = this.articleText ? this.articleText.textContent || '' : '';
     this.lang = lang || 'en';
     this.utterance = null;
@@ -78,7 +99,8 @@ class ChunkedReader {
     this.currentChunk = 0;
     this.totalChunks = 0;
     this.shouldContinue = false;
-    
+    this.speechRate = 0.9; // Velocidad predeterminada
+
     // Detectar tipo de dispositivo y navegador
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -86,28 +108,36 @@ class ChunkedReader {
     this.isChrome = /Chrome/i.test(navigator.userAgent);
     this.isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent);
     this.isEdge = /Edg/i.test(navigator.userAgent);
-    
+
     // Verificar soporte de síntesis de voz
     this.speechSynthesisSupported = 'speechSynthesis' in window;
-    
+
     this.init();
   }
-  
+
   init() {
     if (!this.readButton || !this.stopButton || !this.text) return;
-    
+
     // Limpiar y dividir el texto en micro-fragmentos
     this.prepareTextChunks();
-    
+
     // Inicializar eventos
     this.readButton.addEventListener('click', () => this.toggleReading());
     this.stopButton.addEventListener('click', () => this.stopReading());
-    
+
+    // Evento para el control de velocidad
+    if (this.speedControl) {
+      this.speedControl.addEventListener('change', () => {
+        this.speechRate = parseFloat(this.speedControl.value) || 0.9;
+        console.log(`Velocidad de lectura cambiada a: ${this.speechRate}`);
+      });
+    }
+
     // Inicializar síntesis de voz
     if (this.speechSynthesisSupported) {
       // Cancelar cualquier síntesis en curso
       window.speechSynthesis.cancel();
-      
+
       // Fix para Safari en iOS
       if (this.isIOS) {
         document.addEventListener('touchstart', () => {
@@ -117,11 +147,11 @@ class ChunkedReader {
     } else {
       this.updateState(STATES.ERROR);
     }
-    
+
     // Limpiar al navegar a otra página
     window.addEventListener('beforeunload', () => this.stopReading());
     document.addEventListener('astro:before-swap', () => this.stopReading());
-    
+
     console.log('ChunkedReader inicializado:', {
       isMobile: this.isMobile,
       isIOS: this.isIOS,
@@ -134,7 +164,7 @@ class ChunkedReader {
       chunks: this.chunks.length
     });
   }
-  
+
   // Dividir el texto en micro-fragmentos
   prepareTextChunks() {
     // Primero, limpiar el texto de caracteres especiales y HTML
@@ -142,13 +172,13 @@ class ChunkedReader {
       .replace(/<[^>]*>/g, '') // Eliminar etiquetas HTML
       .replace(/\\s+/g, ' ')   // Normalizar espacios
       .trim();
-    
+
     // Tamaño extremadamente pequeño para cada fragmento
     const chunkSize = this.isMobile ? 50 : 100;
-    
+
     // Dividir por oraciones
     const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
-    
+
     if (sentences.length === 0) {
       // Si no hay oraciones, dividir por longitud
       for (let i = 0; i < cleanText.length; i += chunkSize) {
@@ -161,15 +191,15 @@ class ChunkedReader {
         if (sentence.length > chunkSize) {
           // Dividir por comas, puntos y coma, o espacios
           const parts = sentence.split(/([,;:])\s/);
-          
+
           for (let i = 0; i < parts.length; i++) {
             const part = parts[i];
-            
+
             // Si la parte es más larga que el tamaño máximo, dividirla por espacios
             if (part.length > chunkSize) {
               const words = part.split(/\s+/);
               let currentChunk = '';
-              
+
               for (const word of words) {
                 if (currentChunk.length + word.length + 1 > chunkSize) {
                   this.chunks.push(currentChunk);
@@ -178,7 +208,7 @@ class ChunkedReader {
                   currentChunk += (currentChunk ? ' ' : '') + word;
                 }
               }
-              
+
               if (currentChunk) {
                 this.chunks.push(currentChunk);
               }
@@ -191,21 +221,21 @@ class ChunkedReader {
         }
       }
     }
-    
+
     // Si no hay fragmentos, crear uno con el texto limpio
     if (this.chunks.length === 0) {
       this.chunks.push(cleanText.substring(0, 1000)); // Limitar a 1000 caracteres como máximo
     }
-    
+
     // Limitar el número total de fragmentos para evitar problemas
     if (this.chunks.length > 200) {
       this.chunks = this.chunks.slice(0, 200);
     }
-    
+
     this.totalChunks = this.chunks.length;
     console.log(`Texto dividido en ${this.chunks.length} micro-fragmentos`);
   }
-  
+
   // Alternar entre reproducir y pausar
   toggleReading() {
     switch (this.state) {
@@ -221,27 +251,27 @@ class ChunkedReader {
         break;
     }
   }
-  
+
   // Iniciar la lectura
   startReading() {
     if (!this.speechSynthesisSupported) {
       this.updateState(STATES.ERROR);
       return;
     }
-    
+
     try {
       // Cancelar cualquier síntesis en curso
       window.speechSynthesis.cancel();
-      
+
       // Reiniciar el índice de fragmentos
       this.currentChunk = 0;
       this.shouldContinue = true;
-      
-      // Mostrar la barra de progreso
-      if (this.progressContainer) {
-        this.progressContainer.classList.remove('hidden');
+
+      // Mostrar los controles adicionales
+      if (this.readerControls) {
+        this.readerControls.classList.remove('hidden');
       }
-      
+
       // Iniciar la lectura del primer fragmento
       this.updateState(STATES.PLAYING);
       this.speakNextChunk();
@@ -250,7 +280,7 @@ class ChunkedReader {
       this.updateState(STATES.ERROR);
     }
   }
-  
+
   // Reproducir el siguiente fragmento
   speakNextChunk() {
     if (!this.shouldContinue || this.currentChunk >= this.chunks.length) {
@@ -258,37 +288,37 @@ class ChunkedReader {
       this.updateState(STATES.STOPPED);
       return;
     }
-    
+
     try {
       const chunkText = this.chunks[this.currentChunk];
-      
+
       // Actualizar la barra de progreso
       this.updateProgressBar();
-      
+
       // Crear una nueva instancia de SpeechSynthesisUtterance
       this.utterance = new SpeechSynthesisUtterance(chunkText);
       this.utterance.lang = this.lang === 'es' ? 'es-ES' : 'en-US';
-      this.utterance.rate = 0.9; // Ligeramente más lento para mejor comprensión
-      
+      this.utterance.rate = this.speechRate; // Usar la velocidad seleccionada por el usuario
+
       // Seleccionar una voz adecuada
       const voices = window.speechSynthesis.getVoices();
       const langCode = this.lang === 'es' ? 'es' : 'en';
-      
+
       // Buscar una voz adecuada
       let voice = voices.find(v => v.lang.startsWith(langCode) && v.localService);
       if (!voice) {
         voice = voices.find(v => v.lang.startsWith(langCode));
       }
-      
+
       if (voice) {
         this.utterance.voice = voice;
       }
-      
+
       // Configurar eventos
       this.utterance.onend = () => {
         // Pasar al siguiente fragmento
         this.currentChunk++;
-        
+
         // Si hay más fragmentos y debemos continuar, reproducir el siguiente
         if (this.shouldContinue && this.currentChunk < this.chunks.length) {
           // Pequeña pausa entre fragmentos
@@ -300,10 +330,10 @@ class ChunkedReader {
           this.updateState(STATES.STOPPED);
         }
       };
-      
+
       this.utterance.onerror = (event) => {
         console.error('Error en la síntesis de voz:', event);
-        
+
         // Si es un error de interrupción, intentar con el siguiente fragmento
         if (event.error === 'interrupted' || event.error === 'canceled') {
           if (this.shouldContinue) {
@@ -320,12 +350,12 @@ class ChunkedReader {
           this.updateState(STATES.ERROR);
         }
       };
-      
+
       // Iniciar la reproducción
       window.speechSynthesis.speak(this.utterance);
     } catch (error) {
       console.error('Error al reproducir fragmento:', error);
-      
+
       // Intentar con el siguiente fragmento
       this.currentChunk++;
       if (this.shouldContinue && this.currentChunk < this.chunks.length) {
@@ -337,7 +367,7 @@ class ChunkedReader {
       }
     }
   }
-  
+
   // Actualizar la barra de progreso
   updateProgressBar() {
     if (this.progressBar && this.totalChunks > 0) {
@@ -345,11 +375,11 @@ class ChunkedReader {
       this.progressBar.style.width = `${progress}%`;
     }
   }
-  
+
   // Pausar la lectura
   pauseReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       this.shouldContinue = false;
       window.speechSynthesis.cancel();
@@ -359,11 +389,11 @@ class ChunkedReader {
       this.stopReading();
     }
   }
-  
+
   // Reanudar la lectura
   resumeReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       this.shouldContinue = true;
       this.updateState(STATES.PLAYING);
@@ -373,20 +403,20 @@ class ChunkedReader {
       this.stopReading();
     }
   }
-  
+
   // Detener la lectura
   stopReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       this.shouldContinue = false;
       window.speechSynthesis.cancel();
       this.currentChunk = 0;
       this.updateState(STATES.STOPPED);
-      
-      // Ocultar la barra de progreso
-      if (this.progressContainer) {
-        this.progressContainer.classList.add('hidden');
+
+      // Ocultar los controles adicionales
+      if (this.readerControls) {
+        this.readerControls.classList.add('hidden');
         if (this.progressBar) {
           this.progressBar.style.width = '0%';
         }
@@ -395,11 +425,11 @@ class ChunkedReader {
       console.error('Error al detener la lectura:', error);
     }
   }
-  
+
   // Actualizar el estado y la interfaz
   updateState(newState) {
     this.state = newState;
-    
+
     // Actualizar la interfaz según el estado
     if (this.readButton && this.buttonText && this.stopButton) {
       switch (newState) {
@@ -450,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
       touch-action: manipulation;
     }
   }
-  
+
   /* Animación para la barra de progreso */
   #progress-bar {
     transition: width 0.3s ease-in-out;
