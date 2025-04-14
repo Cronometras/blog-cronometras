@@ -45,13 +45,69 @@ const { text, lang } = Astro.props;
 enum PlayState {
   Stopped = 'stopped',
   Playing = 'playing',
-  Paused = 'paused'
+  Paused = 'paused',
+  Error = 'error'
 }
 
 let playState: PlayState = PlayState.Stopped;
 let utterance: SpeechSynthesisUtterance | null = null;
 let currentPosition = 0;
 let currentText = '';
+let speechSynthesisSupported = false;
+let isMobile = false;
+
+// Check if speech synthesis is supported
+function checkSpeechSynthesisSupport() {
+  speechSynthesisSupported = 'speechSynthesis' in window;
+
+  // Check if we're on a mobile device
+  isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  // Update UI based on support
+  const ttsContainer = document.querySelector('.text-to-speech');
+  const playButton = document.getElementById('tts-button');
+  const stopButton = document.getElementById('tts-stop');
+
+  if (!speechSynthesisSupported) {
+    // Hide the buttons if speech synthesis is not supported
+    if (ttsContainer) ttsContainer.classList.add('hidden');
+    return false;
+  }
+
+  // If on mobile, add a special class for mobile-specific styling
+  if (isMobile && ttsContainer) {
+    ttsContainer.classList.add('tts-mobile');
+  }
+
+  return true;
+}
+
+function showErrorMessage(message: string) {
+  const playButton = document.getElementById('tts-button');
+  const playButtonText = document.getElementById('tts-text');
+  const lang = playButton?.getAttribute('data-lang') === 'es';
+
+  if (playButton && playButtonText) {
+    playButton.classList.remove('bg-primary', 'bg-yellow-600');
+    playButton.classList.add('bg-red-600', 'hover:bg-red-700');
+    playButtonText.textContent = lang ? 'Error' : 'Error';
+
+    // Show error tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-red-600 text-white text-sm rounded shadow-lg';
+    tooltip.textContent = message;
+    playButton.style.position = 'relative';
+    playButton.appendChild(tooltip);
+
+    // Remove tooltip after 3 seconds
+    setTimeout(() => {
+      if (tooltip.parentNode === playButton) {
+        playButton.removeChild(tooltip);
+      }
+      updateButtonState();
+    }, 3000);
+  }
+}
 
 function updateButtonState() {
   const playButton = document.getElementById('tts-button');
@@ -60,10 +116,10 @@ function updateButtonState() {
   const playIcon = document.getElementById('tts-play-icon');
   const pauseIcon = document.getElementById('tts-pause-icon');
   const lang = playButton?.getAttribute('data-lang') === 'es';
-  
+
   if (playButton && playButtonText && stopButton && playIcon && pauseIcon) {
-    playButton.classList.remove('bg-primary', 'bg-yellow-600', 'hover:bg-primary/90', 'hover:bg-yellow-700');
-    
+    playButton.classList.remove('bg-primary', 'bg-yellow-600', 'bg-red-600', 'hover:bg-primary/90', 'hover:bg-yellow-700', 'hover:bg-red-700');
+
     switch (playState) {
       case PlayState.Playing:
         playButton.classList.add('bg-yellow-600', 'hover:bg-yellow-700');
@@ -86,74 +142,211 @@ function updateButtonState() {
         playIcon.classList.remove('hidden');
         pauseIcon.classList.add('hidden');
         break;
+      case PlayState.Error:
+        playButton.classList.add('bg-primary', 'hover:bg-primary/90');
+        playButtonText.textContent = lang ? 'Reintentar' : 'Retry';
+        stopButton.disabled = true;
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+        break;
     }
   }
 }
 
 function stopSpeech() {
-  if (utterance) {
-    window.speechSynthesis.cancel();
-    playState = PlayState.Stopped;
-    currentPosition = 0;
+  try {
+    if (window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      playState = PlayState.Stopped;
+      currentPosition = 0;
+      updateButtonState();
+    }
+  } catch (error) {
+    console.error('Error stopping speech:', error);
+    playState = PlayState.Error;
     updateButtonState();
   }
 }
 
 function pauseSpeech() {
-  window.speechSynthesis.pause();
-  playState = PlayState.Paused;
-  updateButtonState();
+  try {
+    if (window.speechSynthesis && window.speechSynthesis.pause) {
+      window.speechSynthesis.pause();
+      playState = PlayState.Paused;
+      updateButtonState();
+    } else {
+      // If pause is not supported (like on some mobile browsers), just stop
+      stopSpeech();
+    }
+  } catch (error) {
+    console.error('Error pausing speech:', error);
+    stopSpeech();
+  }
 }
 
 function resumeSpeech() {
-  window.speechSynthesis.resume();
-  playState = PlayState.Playing;
-  updateButtonState();
+  try {
+    if (window.speechSynthesis && window.speechSynthesis.resume) {
+      window.speechSynthesis.resume();
+      playState = PlayState.Playing;
+      updateButtonState();
+    } else {
+      // If resume is not supported, restart from the beginning
+      const playButton = document.getElementById('tts-button');
+      const text = playButton?.getAttribute('data-text') || '';
+      const lang = playButton?.getAttribute('data-lang') || 'en';
+      startSpeech(text, lang);
+    }
+  } catch (error) {
+    console.error('Error resuming speech:', error);
+    playState = PlayState.Error;
+    updateButtonState();
+  }
+}
+
+function getVoiceForLanguage(lang: string) {
+  const voices = window.speechSynthesis.getVoices();
+  const langCode = lang === 'es' ? 'es' : 'en';
+
+  // First try to find a voice that matches the language exactly
+  let voice = voices.find(v => v.lang.startsWith(langCode) && v.localService);
+
+  // If no local voice found, try any voice for that language
+  if (!voice) {
+    voice = voices.find(v => v.lang.startsWith(langCode));
+  }
+
+  // If still no voice found, use the default voice
+  return voice || null;
 }
 
 function startSpeech(text: string, lang: string) {
-  currentText = text;
-  utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang === 'es' ? 'es-ES' : 'en-US';
-  
-  utterance.onend = () => {
-    playState = PlayState.Stopped;
-    currentPosition = 0;
+  try {
+    if (!window.speechSynthesis) {
+      showErrorMessage(lang === 'es' ? 'Tu navegador no soporta la síntesis de voz' : 'Your browser does not support speech synthesis');
+      return;
+    }
+
+    // For mobile Safari, we need to break the text into smaller chunks
+    if (isMobile && /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent)) {
+      // Break text into sentences or paragraphs
+      const chunks = text.match(/[^.!?]+[.!?]+/g) || [text];
+
+      // Process only the first few chunks to avoid memory issues
+      const maxChunks = 10;
+      const processedText = chunks.slice(0, maxChunks).join(' ');
+      text = processedText;
+    }
+
+    currentText = text;
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'es' ? 'es-ES' : 'en-US';
+
+    // Wait for voices to be loaded if needed
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        if (utterance) {
+          const voice = getVoiceForLanguage(lang);
+          if (voice) utterance.voice = voice;
+          continueSpeech();
+        }
+      };
+    } else {
+      const voice = getVoiceForLanguage(lang);
+      if (voice) utterance.voice = voice;
+      continueSpeech();
+    }
+
+    function continueSpeech() {
+      if (!utterance) return;
+
+      utterance.onend = () => {
+        playState = PlayState.Stopped;
+        currentPosition = 0;
+        updateButtonState();
+      };
+
+      utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event);
+        stopSpeech();
+        showErrorMessage(lang === 'es' ? 'Error en la síntesis de voz' : 'Speech synthesis error');
+        playState = PlayState.Error;
+        updateButtonState();
+      };
+
+      try {
+        window.speechSynthesis.speak(utterance);
+        playState = PlayState.Playing;
+        updateButtonState();
+      } catch (error) {
+        console.error('Error starting speech:', error);
+        showErrorMessage(lang === 'es' ? 'Error al iniciar la síntesis de voz' : 'Error starting speech synthesis');
+        playState = PlayState.Error;
+        updateButtonState();
+      }
+    }
+  } catch (error) {
+    console.error('Error in startSpeech:', error);
+    showErrorMessage(lang === 'es' ? 'Error inesperado' : 'Unexpected error');
+    playState = PlayState.Error;
     updateButtonState();
-  };
-  
-  utterance.onerror = () => {
-    stopSpeech();
-  };
-  
-  window.speechSynthesis.speak(utterance);
-  playState = PlayState.Playing;
-  updateButtonState();
+  }
 }
 
-document.getElementById('tts-button')?.addEventListener('click', function() {
-  const text = this.getAttribute('data-text');
-  const lang = this.getAttribute('data-lang');
-  
-  if (!text || !lang) return;
-  
-  switch (playState) {
-    case PlayState.Stopped:
-      startSpeech(text, lang);
-      break;
-    case PlayState.Playing:
-      pauseSpeech();
-      break;
-    case PlayState.Paused:
-      resumeSpeech();
-      break;
-  }
-});
+// Initialize when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  if (!checkSpeechSynthesisSupport()) return;
 
-document.getElementById('tts-stop')?.addEventListener('click', stopSpeech);
+  document.getElementById('tts-button')?.addEventListener('click', function() {
+    const text = this.getAttribute('data-text');
+    const lang = this.getAttribute('data-lang');
+
+    if (!text || !lang) return;
+
+    switch (playState) {
+      case PlayState.Stopped:
+      case PlayState.Error:
+        startSpeech(text, lang);
+        break;
+      case PlayState.Playing:
+        pauseSpeech();
+        break;
+      case PlayState.Paused:
+        resumeSpeech();
+        break;
+    }
+  });
+
+  document.getElementById('tts-stop')?.addEventListener('click', stopSpeech);
+});
 
 // Clean up when navigating away
 document.addEventListener('astro:before-swap', () => {
   stopSpeech();
 });
+
+// Fix for Safari that requires user interaction
+document.addEventListener('touchstart', () => {
+  if (isMobile && window.speechSynthesis) {
+    // Just initialize the speech synthesis
+    window.speechSynthesis.cancel();
+  }
+}, { once: true });
 </script>
+
+<style>
+  /* Mobile-specific styles */
+  .tts-mobile button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    touch-action: manipulation;
+  }
+
+  /* Fix for iOS Safari */
+  @supports (-webkit-touch-callout: none) {
+    .text-to-speech button {
+      cursor: pointer;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+  }
+</style>
