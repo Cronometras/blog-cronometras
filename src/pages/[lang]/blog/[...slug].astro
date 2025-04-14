@@ -66,17 +66,17 @@ export const prerender = true;
   {post && <BlogPostSchema post={post} url={Astro.url} />}
   <article class="mx-auto">
     <!-- Hero Image with Overlay -->
-    <div class="relative h-[60vh] min-h-[400px] w-full mb-12">
+    <div class="relative h-[40vh] md:h-[50vh] lg:h-[60vh] min-h-[300px] w-full mb-6 md:mb-12">
       <img
         src={post?.data?.heroImage || '/images/cronometras App.png'}
         alt={post?.data?.title || 'Blog Post'}
         class="absolute inset-0 w-full h-full object-cover"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
-      <div class="absolute inset-0 flex flex-col justify-end p-8 container max-w-4xl mx-auto">
-        <div class="text-white mb-8">
-          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{post?.data?.title || 'Blog Post'}</h1>
-          <div class="flex items-center gap-4 text-gray-200 mb-4">
+      <div class="absolute inset-0 flex flex-col justify-end p-4 md:p-8 container mx-auto">
+        <div class="text-white mb-4 md:mb-8 max-w-4xl mx-auto w-full">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">{post?.data?.title || 'Blog Post'}</h1>
+          <div class="flex flex-wrap items-center gap-2 md:gap-4 text-gray-200 mb-3 md:mb-4 text-sm md:text-base">
             {post?.data?.pubDate && (
               <time datetime={post.data.pubDate.toISOString()} class="font-medium">
                 {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
@@ -94,9 +94,9 @@ export const prerender = true;
             )}
           </div>
           {post?.data?.description && (
-            <p class="text-xl text-gray-100 max-w-2xl leading-relaxed">{post.data.description}</p>
+            <p class="text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed">{post.data.description}</p>
           )}
-          <div class="mt-8">
+          <div class="mt-4 md:mt-8">
             <TextToSpeech text={rawContent} lang={lang || 'en'} />
           </div>
         </div>
@@ -104,13 +104,20 @@ export const prerender = true;
     </div>
 
     <!-- Article Content -->
-    <section class="section py-16 bg-white dark:bg-gray-900">
-      <div class="container max-w-4xl">
-        <div class="prose prose-lg dark:prose-invert mx-auto">
-          {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
+    <section class="section py-8 md:py-16 bg-white dark:bg-gray-900">
+      <div class="container px-4 md:px-8 mx-auto">
+        <div class="max-w-3xl mx-auto">
+          <div class="article-content prose prose-base md:prose-lg dark:prose-invert">
+            {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
+          </div>
+
+          <!-- Separador -->
+          <div class="my-12 border-t border-gray-200 dark:border-gray-700"></div>
 
           <!-- Artículos relacionados -->
-          <RelatedBlogPosts language={lang} count={4} title={lang === 'es' ? "Artículos relacionados" : "Related articles"} />
+          <div class="mt-8 md:mt-12">
+            <RelatedBlogPosts language={lang} count={4} title={lang === 'es' ? "Artículos relacionados" : "Related articles"} />
+          </div>
         </div>
       </div>
     </section>
@@ -118,7 +125,8 @@ export const prerender = true;
 </Base>
 
 <style is:global>
-  .prose {
+  /* Estilos base para el contenido del artículo */
+  .article-content {
     @apply max-w-none;
     --tw-prose-body: #374151;
     --tw-prose-headings: #111827;
@@ -136,29 +144,10 @@ export const prerender = true;
     --tw-prose-pre-bg: #1f2937;
     --tw-prose-th-borders: #d1d5db;
     --tw-prose-td-borders: #e5e7eb;
-
-    /* Ensure content h1 becomes h2 */
-    :where(h1):not(:where([class~="not-prose"] *)) {
-      @apply text-3xl font-bold;
-    }
-    :where(h2):not(:where([class~="not-prose"] *)) {
-      @apply text-2xl;
-    }
-    :where(h3):not(:where([class~="not-prose"] *)) {
-      @apply text-xl;
-    }
-    :where(h4):not(:where([class~="not-prose"] *)) {
-      @apply text-lg;
-    }
-    :where(h5):not(:where([class~="not-prose"] *)) {
-      @apply text-base;
-    }
-    :where(h6):not(:where([class~="not-prose"] *)) {
-      @apply text-sm;
-    }
   }
 
-  .dark .prose {
+  /* Estilos para modo oscuro */
+  .dark .article-content {
     --tw-prose-body: #d1d5db;
     --tw-prose-headings: #f3f4f6;
     --tw-prose-lead: #9ca3af;
@@ -177,31 +166,116 @@ export const prerender = true;
     --tw-prose-td-borders: #374151;
   }
 
-  .prose :where(p):not(:where([class~="not-prose"] *)) {
-    @apply mb-6 leading-relaxed;
+  /* Estilos para encabezados */
+  .article-content :where(h1):not(:where([class~="not-prose"] *)) {
+    @apply text-2xl md:text-3xl font-bold mt-8 mb-4 leading-tight;
+  }
+  .article-content :where(h2):not(:where([class~="not-prose"] *)) {
+    @apply text-xl md:text-2xl font-bold mt-8 mb-4 leading-tight;
+  }
+  .article-content :where(h3):not(:where([class~="not-prose"] *)) {
+    @apply text-lg md:text-xl font-semibold mt-6 mb-3;
+  }
+  .article-content :where(h4):not(:where([class~="not-prose"] *)) {
+    @apply text-base md:text-lg font-semibold mt-6 mb-3;
+  }
+  .article-content :where(h5):not(:where([class~="not-prose"] *)) {
+    @apply text-base font-medium mt-4 mb-2;
+  }
+  .article-content :where(h6):not(:where([class~="not-prose"] *)) {
+    @apply text-sm font-medium mt-4 mb-2;
   }
 
-  .prose :where(a):not(:where([class~="not-prose"] *)) {
-    @apply text-primary hover:text-opacity-80 transition-colors duration-200;
+  /* Estilos para párrafos */
+  .article-content :where(p):not(:where([class~="not-prose"] *)) {
+    @apply mb-5 leading-relaxed text-base md:text-lg;
   }
 
-  .prose :where(ul, ol):not(:where([class~="not-prose"] *)) {
-    @apply my-6 ml-6;
+  /* Estilos para enlaces */
+  .article-content :where(a):not(:where([class~="not-prose"] *)) {
+    @apply text-primary hover:text-opacity-80 transition-colors duration-200 font-medium;
   }
 
-  .prose :where(li):not(:where([class~="not-prose"] *)) {
-    @apply mb-2;
+  /* Estilos para listas */
+  .article-content :where(ul, ol):not(:where([class~="not-prose"] *)) {
+    @apply my-5 ml-6 space-y-2;
   }
 
-  .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
-    @apply border-l-4 border-primary pl-4 italic my-6;
+  .article-content :where(li):not(:where([class~="not-prose"] *)) {
+    @apply mb-1 text-base md:text-lg;
   }
 
-  .prose :where(code):not(:where([class~="not-prose"] *)) {
-    @apply bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5;
+  /* Estilos para citas */
+  .article-content :where(blockquote):not(:where([class~="not-prose"] *)) {
+    @apply border-l-4 border-primary pl-4 italic my-6 py-1 text-gray-600 dark:text-gray-300;
   }
 
-  .prose :where(pre):not(:where([class~="not-prose"] *)) {
-    @apply bg-gray-900 dark:bg-gray-800 rounded-lg p-4 my-6 overflow-x-auto;
+  /* Estilos para código */
+  .article-content :where(code):not(:where([class~="not-prose"] *)) {
+    @apply bg-gray-100 dark:bg-gray-800 rounded px-1.5 py-0.5 text-sm font-mono;
+  }
+
+  .article-content :where(pre):not(:where([class~="not-prose"] *)) {
+    @apply bg-gray-900 dark:bg-gray-800 rounded-lg p-4 my-6 overflow-x-auto text-sm;
+  }
+
+  /* Estilos para imágenes */
+  .article-content :where(img):not(:where([class~="not-prose"] *)) {
+    @apply rounded-lg my-6 mx-auto shadow-md max-w-full h-auto;
+  }
+
+  /* Estilos para tablas */
+  .article-content :where(table):not(:where([class~="not-prose"] *)) {
+    @apply w-full my-6 text-sm md:text-base border-collapse;
+  }
+
+  .article-content :where(th):not(:where([class~="not-prose"] *)) {
+    @apply py-2 px-3 bg-gray-100 dark:bg-gray-800 text-left font-semibold border-b border-gray-200 dark:border-gray-700;
+  }
+
+  .article-content :where(td):not(:where([class~="not-prose"] *)) {
+    @apply py-2 px-3 border-b border-gray-200 dark:border-gray-700;
+  }
+
+  /* Estilos para líneas horizontales */
+  .article-content :where(hr):not(:where([class~="not-prose"] *)) {
+    @apply my-8 border-t border-gray-200 dark:border-gray-700;
+  }
+
+  /* Estilos para elementos interactivos */
+  .article-content :where(button, input, select, textarea):not(:where([class~="not-prose"] *)) {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50;
+  }
+
+  /* Mejoras de legibilidad */
+  .article-content {
+    @apply text-gray-800 dark:text-gray-200;
+    font-feature-settings: "kern", "liga", "clig", "calt";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Ajustes para dispositivos móviles */
+  @media (max-width: 640px) {
+    .article-content :where(p, li, blockquote):not(:where([class~="not-prose"] *)) {
+      @apply text-base;
+    }
+
+    .article-content :where(h1):not(:where([class~="not-prose"] *)) {
+      @apply text-2xl;
+    }
+
+    .article-content :where(h2):not(:where([class~="not-prose"] *)) {
+      @apply text-xl;
+    }
+
+    .article-content :where(h3):not(:where([class~="not-prose"] *)) {
+      @apply text-lg;
+    }
+
+    .article-content :where(pre, code):not(:where([class~="not-prose"] *)) {
+      @apply text-xs;
+    }
   }
 </style>
