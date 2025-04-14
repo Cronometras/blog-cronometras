@@ -1,0 +1,235 @@
+---
+interface Props {
+  text: string;
+  lang: string;
+}
+
+const { text, lang } = Astro.props;
+
+// Textos según el idioma
+const readText = lang === 'es' ? 'Leer en voz alta' : 'Read aloud';
+const pauseText = lang === 'es' ? 'Pausar' : 'Pause';
+const resumeText = lang === 'es' ? 'Continuar' : 'Resume';
+const stopText = lang === 'es' ? 'Detener' : 'Stop';
+
+// Limitar longitud del texto para evitar problemas
+const maxLength = 10000;
+const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+---
+
+<div class="voice-reader flex flex-wrap gap-2 items-center">
+  <button
+    id="read-aloud-btn"
+    class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
+    data-text={plainText}
+    data-lang={lang}
+    data-read-text={readText}
+    data-pause-text={pauseText}
+    data-resume-text={resumeText}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071a1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243a1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828a1 1 0 010-1.415z" clip-rule="evenodd" />
+    </svg>
+    <span>{readText}</span>
+  </button>
+  
+  <button
+    id="stop-btn"
+    class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 opacity-50 cursor-not-allowed"
+    disabled
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd" />
+    </svg>
+    <span>{stopText}</span>
+  </button>
+</div>
+
+<!-- Script para cargar y usar ResponsiveVoice -->
+<script>
+// Cargar ResponsiveVoice de forma dinámica
+function loadResponsiveVoice() {
+  return new Promise((resolve, reject) => {
+    if (window.responsiveVoice) {
+      resolve(window.responsiveVoice);
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://code.responsivevoice.org/responsivevoice.js?key=3HUgCyQR';
+    script.async = true;
+    script.onload = () => {
+      if (window.responsiveVoice) {
+        window.responsiveVoice.init();
+        resolve(window.responsiveVoice);
+      } else {
+        reject(new Error('ResponsiveVoice no se cargó correctamente'));
+      }
+    };
+    script.onerror = () => reject(new Error('Error al cargar ResponsiveVoice'));
+    document.head.appendChild(script);
+  });
+}
+
+// Estados del reproductor
+const STATES = {
+  STOPPED: 'stopped',
+  PLAYING: 'playing',
+  PAUSED: 'paused'
+};
+
+// Clase para manejar la lectura en voz alta
+class VoiceReader {
+  constructor() {
+    this.state = STATES.STOPPED;
+    this.readButton = document.getElementById('read-aloud-btn');
+    this.stopButton = document.getElementById('stop-btn');
+    this.text = '';
+    this.lang = 'en';
+    this.readText = '';
+    this.pauseText = '';
+    this.resumeText = '';
+    
+    this.init();
+  }
+  
+  async init() {
+    if (!this.readButton || !this.stopButton) return;
+    
+    // Obtener datos del botón
+    this.text = this.readButton.getAttribute('data-text') || '';
+    this.lang = this.readButton.getAttribute('data-lang') || 'en';
+    this.readText = this.readButton.getAttribute('data-read-text') || 'Read aloud';
+    this.pauseText = this.readButton.getAttribute('data-pause-text') || 'Pause';
+    this.resumeText = this.readButton.getAttribute('data-resume-text') || 'Resume';
+    
+    // Intentar cargar ResponsiveVoice
+    try {
+      await loadResponsiveVoice();
+      
+      // Agregar eventos a los botones
+      this.readButton.addEventListener('click', () => this.toggleReading());
+      this.stopButton.addEventListener('click', () => this.stopReading());
+      
+      // Detener la lectura al navegar a otra página
+      window.addEventListener('beforeunload', () => this.stopReading());
+      document.addEventListener('astro:before-swap', () => this.stopReading());
+      
+      console.log('VoiceReader inicializado correctamente');
+    } catch (error) {
+      console.error('Error al inicializar VoiceReader:', error);
+      this.readButton.disabled = true;
+      this.readButton.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+  }
+  
+  toggleReading() {
+    if (!window.responsiveVoice) return;
+    
+    switch (this.state) {
+      case STATES.STOPPED:
+        this.startReading();
+        break;
+      case STATES.PLAYING:
+        this.pauseReading();
+        break;
+      case STATES.PAUSED:
+        this.resumeReading();
+        break;
+    }
+  }
+  
+  startReading() {
+    if (!window.responsiveVoice) return;
+    
+    // Seleccionar la voz según el idioma
+    const voice = this.lang === 'es' ? 'Spanish Female' : 'UK English Female';
+    
+    // Opciones de reproducción
+    const options = {
+      pitch: 1,
+      rate: 0.9,
+      volume: 1,
+      onstart: () => this.updateState(STATES.PLAYING),
+      onend: () => this.updateState(STATES.STOPPED),
+      onerror: (e) => {
+        console.error('Error en la reproducción:', e);
+        this.updateState(STATES.STOPPED);
+      }
+    };
+    
+    // Iniciar la reproducción
+    window.responsiveVoice.speak(this.text, voice, options);
+    this.updateState(STATES.PLAYING);
+  }
+  
+  pauseReading() {
+    if (!window.responsiveVoice) return;
+    
+    window.responsiveVoice.pause();
+    this.updateState(STATES.PAUSED);
+  }
+  
+  resumeReading() {
+    if (!window.responsiveVoice) return;
+    
+    window.responsiveVoice.resume();
+    this.updateState(STATES.PLAYING);
+  }
+  
+  stopReading() {
+    if (!window.responsiveVoice) return;
+    
+    window.responsiveVoice.cancel();
+    this.updateState(STATES.STOPPED);
+  }
+  
+  updateState(newState) {
+    this.state = newState;
+    
+    // Actualizar la interfaz según el estado
+    if (this.readButton && this.stopButton) {
+      const buttonText = this.readButton.querySelector('span');
+      
+      switch (newState) {
+        case STATES.PLAYING:
+          if (buttonText) buttonText.textContent = this.pauseText;
+          this.readButton.classList.remove('bg-primary', 'hover:bg-primary/90');
+          this.readButton.classList.add('bg-yellow-600', 'hover:bg-yellow-700');
+          this.stopButton.disabled = false;
+          this.stopButton.classList.remove('opacity-50', 'cursor-not-allowed');
+          break;
+        case STATES.PAUSED:
+          if (buttonText) buttonText.textContent = this.resumeText;
+          this.readButton.classList.remove('bg-yellow-600', 'hover:bg-yellow-700');
+          this.readButton.classList.add('bg-primary', 'hover:bg-primary/90');
+          this.stopButton.disabled = false;
+          this.stopButton.classList.remove('opacity-50', 'cursor-not-allowed');
+          break;
+        case STATES.STOPPED:
+          if (buttonText) buttonText.textContent = this.readText;
+          this.readButton.classList.remove('bg-yellow-600', 'hover:bg-yellow-700');
+          this.readButton.classList.add('bg-primary', 'hover:bg-primary/90');
+          this.stopButton.disabled = true;
+          this.stopButton.classList.add('opacity-50', 'cursor-not-allowed');
+          break;
+      }
+    }
+  }
+}
+
+// Inicializar cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', () => {
+  new VoiceReader();
+});
+</script>
+
+<style>
+  /* Estilos específicos para móviles */
+  @media (max-width: 640px) {
+    .voice-reader button {
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      touch-action: manipulation;
+    }
+  }
+</style>

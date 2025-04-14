@@ -8,209 +8,88 @@ const { text, lang } = Astro.props;
 
 // Textos según el idioma
 const readText = lang === 'es' ? 'Leer en voz alta' : 'Read aloud';
-const pauseText = lang === 'es' ? 'Pausar' : 'Pause';
-const resumeText = lang === 'es' ? 'Continuar' : 'Resume';
 const stopText = lang === 'es' ? 'Detener' : 'Stop';
+
+// Limitar longitud del texto para evitar problemas
+const plainText = text.substring(0, 10000);
 ---
 
 <div class="text-to-speech flex flex-wrap gap-2 items-center">
   <button
-    id="rv-button"
+    id="read-button"
     class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors duration-200"
-    data-text={text}
     data-lang={lang}
     aria-label={readText}
   >
     <div class="relative w-5 h-5">
-      <!-- Play icon -->
-      <svg id="rv-play-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071a1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243a1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828a1 1 0 010-1.415z" clip-rule="evenodd" />
       </svg>
-      <!-- Pause icon -->
-      <svg id="rv-pause-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute hidden" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-      </svg>
     </div>
-    <span id="rv-text">{readText}</span>
+    <span>{readText}</span>
   </button>
   <button
-    id="rv-stop"
+    id="stop-button"
     class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 disabled:bg-red-600/50 disabled:cursor-not-allowed"
-    disabled
     aria-label={stopText}
   >
-    <!-- Stop icon -->
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
       <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 8h4v4H8V8z" />
     </svg>
     <span>{stopText}</span>
   </button>
-  
-  <!-- Mensaje de estado -->
-  <div id="rv-status" class="hidden text-sm text-gray-600 dark:text-gray-400 italic"></div>
 </div>
 
-<!-- Cargar ResponsiveVoice desde CDN -->
+<!-- Contenido oculto para la síntesis de voz -->
+<div id="article-content" class="hidden" aria-hidden="true">{plainText}</div>
+
+<!-- Cargar ResponsiveVoice desde CDN con API key -->
 <script is:inline src="https://code.responsivevoice.org/responsivevoice.js?key=3HUgCyQR"></script>
 
-<script>
-// Estados del reproductor
-enum PlayState {
-  Stopped = 'stopped',
-  Playing = 'playing',
-  Paused = 'paused'
-}
+<script is:inline>
+  // Esperar a que el DOM esté cargado
+  document.addEventListener('DOMContentLoaded', function() {
+    // Obtener referencias a los elementos
+    const readButton = document.getElementById('read-button');
+    const stopButton = document.getElementById('stop-button');
+    const articleContent = document.getElementById('article-content');
 
-// Variables globales
-let playState = PlayState.Stopped;
-let currentText = '';
-let isMobile = false;
+    if (!readButton || !stopButton || !articleContent) return;
 
-// Comprobar si estamos en un dispositivo móvil
-function checkMobile() {
-  isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  return isMobile;
-}
+    const lang = readButton.getAttribute('data-lang') || 'en';
+    const text = articleContent.textContent || '';
 
-// Actualizar el estado de los botones
-function updateButtonState() {
-  const playButton = document.getElementById('rv-button');
-  const playButtonText = document.getElementById('rv-text');
-  const stopButton = document.getElementById('rv-stop');
-  const playIcon = document.getElementById('rv-play-icon');
-  const pauseIcon = document.getElementById('rv-pause-icon');
-  const lang = playButton?.getAttribute('data-lang') === 'es';
-  
-  if (playButton && playButtonText && stopButton && playIcon && pauseIcon) {
-    playButton.classList.remove('bg-yellow-600', 'hover:bg-yellow-700');
-    
-    switch (playState) {
-      case PlayState.Playing:
-        playButton.classList.add('bg-yellow-600', 'hover:bg-yellow-700');
-        playButton.classList.remove('bg-primary', 'hover:bg-primary/90');
-        playButtonText.textContent = lang ? 'Pausar' : 'Pause';
-        stopButton.disabled = false;
-        playIcon.classList.add('hidden');
-        pauseIcon.classList.remove('hidden');
-        break;
-      case PlayState.Paused:
-        playButton.classList.add('bg-primary', 'hover:bg-primary/90');
-        playButtonText.textContent = lang ? 'Continuar' : 'Resume';
-        stopButton.disabled = false;
-        playIcon.classList.remove('hidden');
-        pauseIcon.classList.add('hidden');
-        break;
-      case PlayState.Stopped:
-        playButton.classList.add('bg-primary', 'hover:bg-primary/90');
-        playButtonText.textContent = lang ? 'Leer en voz alta' : 'Read aloud';
-        stopButton.disabled = true;
-        playIcon.classList.remove('hidden');
-        pauseIcon.classList.add('hidden');
-        break;
+    // Seleccionar la voz según el idioma
+    const voice = lang === 'es' ? 'Spanish Female' : 'UK English Female';
+
+    // Función para leer el texto
+    function readText() {
+      if (typeof responsiveVoice !== 'undefined') {
+        responsiveVoice.speak(text, voice, {
+          pitch: 1,
+          rate: 0.9,
+          volume: 1
+        });
+      } else {
+        console.error('ResponsiveVoice no está disponible');
+      }
     }
-  }
-}
 
-// Detener la reproducción
-function stopSpeech() {
-  if (window.responsiveVoice && window.responsiveVoice.isPlaying()) {
-    window.responsiveVoice.cancel();
-  }
-  playState = PlayState.Stopped;
-  updateButtonState();
-}
-
-// Pausar la reproducción
-function pauseSpeech() {
-  if (window.responsiveVoice && window.responsiveVoice.isPlaying()) {
-    window.responsiveVoice.pause();
-    playState = PlayState.Paused;
-    updateButtonState();
-  }
-}
-
-// Reanudar la reproducción
-function resumeSpeech() {
-  if (window.responsiveVoice) {
-    window.responsiveVoice.resume();
-    playState = PlayState.Playing;
-    updateButtonState();
-  }
-}
-
-// Iniciar la reproducción
-function startSpeech(text, lang) {
-  if (!window.responsiveVoice) {
-    console.error('ResponsiveVoice no está disponible');
-    return;
-  }
-  
-  currentText = text;
-  
-  // Seleccionar la voz según el idioma
-  const voice = lang === 'es' ? 'Spanish Female' : 'UK English Female';
-  
-  // Opciones de reproducción
-  const options = {
-    pitch: 1,
-    rate: 1,
-    volume: 1,
-    onstart: function() {
-      playState = PlayState.Playing;
-      updateButtonState();
-    },
-    onend: function() {
-      playState = PlayState.Stopped;
-      updateButtonState();
-    },
-    onerror: function(e) {
-      console.error('Error en ResponsiveVoice:', e);
-      playState = PlayState.Stopped;
-      updateButtonState();
+    // Función para detener la lectura
+    function stopReading() {
+      if (typeof responsiveVoice !== 'undefined') {
+        responsiveVoice.cancel();
+      }
     }
-  };
-  
-  // Iniciar la reproducción
-  window.responsiveVoice.speak(text, voice, options);
-}
 
-// Inicializar cuando el DOM esté cargado
-document.addEventListener('DOMContentLoaded', () => {
-  checkMobile();
-  
-  // Evento para el botón de reproducción/pausa
-  document.getElementById('rv-button')?.addEventListener('click', function() {
-    const text = this.getAttribute('data-text');
-    const lang = this.getAttribute('data-lang');
-    
-    if (!text || !lang) return;
-    
-    switch (playState) {
-      case PlayState.Stopped:
-        startSpeech(text, lang);
-        break;
-      case PlayState.Playing:
-        pauseSpeech();
-        break;
-      case PlayState.Paused:
-        resumeSpeech();
-        break;
-    }
+    // Agregar eventos a los botones
+    readButton.addEventListener('click', readText);
+    stopButton.addEventListener('click', stopReading);
+
+    // Detener la lectura al navegar a otra página
+    window.addEventListener('beforeunload', stopReading);
+    document.addEventListener('astro:before-swap', stopReading);
   });
-  
-  // Evento para el botón de detener
-  document.getElementById('rv-stop')?.addEventListener('click', stopSpeech);
-});
-
-// Limpiar al navegar a otra página
-document.addEventListener('astro:before-swap', () => {
-  stopSpeech();
-});
-
-// Inicializar ResponsiveVoice cuando esté listo
-if (window.responsiveVoice) {
-  window.responsiveVoice.init();
-}
 </script>
 
 <style>
@@ -219,15 +98,6 @@ if (window.responsiveVoice) {
     .text-to-speech button {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       touch-action: manipulation;
-    }
-  }
-  
-  /* Fix para Safari en iOS */
-  @supports (-webkit-touch-callout: none) {
-    .text-to-speech button {
-      cursor: pointer;
-      -webkit-user-select: none;
-      user-select: none;
     }
   }
 </style>
