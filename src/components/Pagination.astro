@@ -1,0 +1,143 @@
+---
+// Pagination.astro
+// Componente para mostrar la paginación en el blog
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+  lang: string;
+}
+
+const { currentPage, totalPages, basePath, lang } = Astro.props;
+
+// Determinar qué páginas mostrar en la paginación
+const showFirst = currentPage > 3;
+const showLast = currentPage < totalPages - 2;
+const showPrevDots = currentPage > 4;
+const showNextDots = currentPage < totalPages - 3;
+
+// Calcular las páginas a mostrar alrededor de la página actual
+const pagesToShow = [];
+const startPage = Math.max(2, currentPage - 1);
+const endPage = Math.min(totalPages - 1, currentPage + 1);
+
+for (let i = startPage; i <= endPage; i++) {
+  pagesToShow.push(i);
+}
+
+// Traducir los textos según el idioma
+const prevText = lang === 'es' ? 'Anterior' : 'Previous';
+const nextText = lang === 'es' ? 'Siguiente' : 'Next';
+---
+
+<nav aria-label="Pagination" class="flex justify-center my-12">
+  <ul class="flex items-center space-x-1">
+    <!-- Botón Anterior -->
+    {currentPage > 1 ? (
+      <li>
+        <a
+          href={`${basePath}${currentPage === 2 ? '' : '/page/' + (currentPage - 1)}`}
+          class="px-4 py-2 border rounded-md text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label={prevText}
+        >
+          &larr; {prevText}
+        </a>
+      </li>
+    ) : (
+      <li>
+        <span
+          class="px-4 py-2 border rounded-md text-gray-400 dark:text-gray-600 border-gray-300 dark:border-gray-700 cursor-not-allowed"
+          aria-disabled="true"
+        >
+          &larr; {prevText}
+        </span>
+      </li>
+    )}
+
+    <!-- Primera página -->
+    <li>
+      <a
+        href={basePath}
+        class={`px-4 py-2 border rounded-md ${
+          currentPage === 1
+            ? 'bg-primary text-white border-primary'
+            : 'text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800'
+        } transition-colors`}
+        aria-current={currentPage === 1 ? 'page' : undefined}
+      >
+        1
+      </a>
+    </li>
+
+    <!-- Puntos suspensivos anteriores -->
+    {showPrevDots && (
+      <li>
+        <span class="px-3 py-2 text-gray-500 dark:text-gray-400">...</span>
+      </li>
+    )}
+
+    <!-- Páginas intermedias -->
+    {pagesToShow.map((page) => (
+      <li>
+        <a
+          href={`${basePath}${page === 1 ? '' : '/page/' + page}`}
+          class={`px-4 py-2 border rounded-md ${
+            currentPage === page
+              ? 'bg-primary text-white border-primary'
+              : 'text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800'
+          } transition-colors`}
+          aria-current={currentPage === page ? 'page' : undefined}
+        >
+          {page}
+        </a>
+      </li>
+    ))}
+
+    <!-- Puntos suspensivos posteriores -->
+    {showNextDots && (
+      <li>
+        <span class="px-3 py-2 text-gray-500 dark:text-gray-400">...</span>
+      </li>
+    )}
+
+    <!-- Última página -->
+    {totalPages > 1 && (
+      <li>
+        <a
+          href={`${basePath}/page/${totalPages}`}
+          class={`px-4 py-2 border rounded-md ${
+            currentPage === totalPages
+              ? 'bg-primary text-white border-primary'
+              : 'text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800'
+          } transition-colors`}
+          aria-current={currentPage === totalPages ? 'page' : undefined}
+        >
+          {totalPages}
+        </a>
+      </li>
+    )}
+
+    <!-- Botón Siguiente -->
+    {currentPage < totalPages ? (
+      <li>
+        <a
+          href={`${basePath}/page/${currentPage + 1}`}
+          class="px-4 py-2 border rounded-md text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          aria-label={nextText}
+        >
+          {nextText} &rarr;
+        </a>
+      </li>
+    ) : (
+      <li>
+        <span
+          class="px-4 py-2 border rounded-md text-gray-400 dark:text-gray-600 border-gray-300 dark:border-gray-700 cursor-not-allowed"
+          aria-disabled="true"
+        >
+          {nextText} &rarr;
+        </span>
+      </li>
+    )}
+  </ul>
+</nav>

@@ -5,7 +5,7 @@ import BlogListSchema from '@/components/blog/BlogListSchema.astro';
 import Pagination from '@/components/Pagination.astro';
 import { slugify } from '@/utils/slugify';
 
-export const getStaticPaths = async () => {
+export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
   const postsPerPage = 30; // Mostrar 30 entradas por página
   const languages = ['es', 'en'];
@@ -20,36 +20,41 @@ export const getStaticPaths = async () => {
 
     // Ordenar por fecha de publicación, más reciente primero
     const sortedPosts = langPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
+    
     // Calcular el número total de páginas
     const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
-
-    // Generar la primera página (index)
-    paths.push({
-      params: { lang },
-      props: {
-        posts: sortedPosts.slice(0, postsPerPage),
-        currentPage: 1,
-        totalPages,
-        totalPosts: sortedPosts.length
-      }
-    });
+    
+    // Generar rutas para cada página (excepto la primera que ya está en index.astro)
+    for (let page = 2; page <= totalPages; page++) {
+      const startIndex = (page - 1) * postsPerPage;
+      const endIndex = startIndex + postsPerPage;
+      
+      paths.push({
+        params: { lang, page: page.toString() },
+        props: {
+          posts: sortedPosts.slice(startIndex, endIndex),
+          currentPage: page,
+          totalPages,
+          totalPosts: sortedPosts.length
+        }
+      });
+    }
   }
 
   return paths;
-};
+}
 
 // Habilitar prerender para generar páginas estáticas durante la compilación
 export const prerender = true;
 
-const { lang } = Astro.params;
+const { lang, page } = Astro.params;
 const { posts, currentPage, totalPages, totalPosts } = Astro.props;
 
 console.log(`Renderizando página ${currentPage} de blog para idioma: ${lang}`);
 console.log(`Total posts: ${totalPosts}, Mostrando: ${posts.length}, Páginas totales: ${totalPages}`);
 
 // Traducir el título y descripción según el idioma
-const title = lang === 'es' ? 'Blog de CRONOMETRAS' : 'CRONOMETRAS Blog';
+const title = lang === 'es' ? `Blog de CRONOMETRAS - Página ${currentPage}` : `CRONOMETRAS Blog - Page ${currentPage}`;
 const description = lang === 'es'
   ? 'Artículos sobre productividad, estudios de tiempos y gestión industrial'
   : 'Articles about productivity, time studies, and industrial management';
@@ -64,8 +69,13 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
     <div class="container">
       <div class="row justify-center">
         <div class="col-12 text-center">
-          <h1 class="mb-4 text-4xl lg:text-5xl font-bold">{title}</h1>
-          <p class="mb-16 text-lg">{description}</p>
+          <h1 class="mb-4 text-4xl lg:text-5xl font-bold">
+            {lang === 'es' ? 'Blog de CRONOMETRAS' : 'CRONOMETRAS Blog'}
+          </h1>
+          <p class="mb-2 text-lg">{description}</p>
+          <p class="mb-16 text-accent">
+            {lang === 'es' ? `Página ${currentPage} de ${totalPages}` : `Page ${currentPage} of ${totalPages}`}
+          </p>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -118,16 +128,14 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
           </p>
         </div>
       )}
-
+      
       {/* Paginación */}
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          basePath={`/${lang}/blog`}
-          lang={lang}
-        />
-      )}
+      <Pagination 
+        currentPage={currentPage} 
+        totalPages={totalPages} 
+        basePath={`/${lang}/blog`} 
+        lang={lang} 
+      />
     </div>
   </section>
 </Base>
