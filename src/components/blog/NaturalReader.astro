@@ -29,7 +29,7 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
     </svg>
     <span id="button-text">{readText}</span>
   </button>
-  
+
   <button
     id="stop-button"
     class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 opacity-50 cursor-not-allowed"
@@ -41,28 +41,37 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
     </svg>
     <span>{stopText}</span>
   </button>
-  
+
   <!-- Controles adicionales -->
-  <div id="reader-controls" class="hidden w-full mt-2 flex flex-wrap gap-2 items-center">
-    <!-- Control de velocidad -->
-    <div class="flex items-center gap-2">
-      <label for="speed-control" class="text-sm text-gray-600 dark:text-gray-400">
-        {lang === 'es' ? 'Velocidad:' : 'Speed:'}
-      </label>
-      <select 
-        id="speed-control" 
-        class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-sm"
-      >
-        <option value="0.7">{lang === 'es' ? 'Lenta' : 'Slow'}</option>
-        <option value="0.9" selected>{lang === 'es' ? 'Normal' : 'Normal'}</option>
-        <option value="1.1">{lang === 'es' ? 'Rápida' : 'Fast'}</option>
-        <option value="1.3">{lang === 'es' ? 'Muy rápida' : 'Very fast'}</option>
-      </select>
+  <div id="reader-controls" class="hidden w-full mt-2 flex flex-col gap-2">
+    <div class="flex flex-wrap gap-2 items-center">
+      <!-- Control de velocidad -->
+      <div class="flex items-center gap-2">
+        <label for="speed-control" class="text-sm text-gray-600 dark:text-gray-400">
+          {lang === 'es' ? 'Velocidad:' : 'Speed:'}
+        </label>
+        <select
+          id="speed-control"
+          class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-sm"
+        >
+          <option value="0.7">{lang === 'es' ? 'Lenta' : 'Slow'}</option>
+          <option value="0.9" selected>{lang === 'es' ? 'Normal' : 'Normal'}</option>
+          <option value="1.1">{lang === 'es' ? 'Rápida' : 'Fast'}</option>
+          <option value="1.3">{lang === 'es' ? 'Muy rápida' : 'Very fast'}</option>
+        </select>
+      </div>
+
+      <!-- Indicador de progreso -->
+      <div id="progress-container" class="flex-grow h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+        <div id="progress-bar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+      </div>
     </div>
-    
-    <!-- Indicador de progreso -->
-    <div id="progress-container" class="flex-grow h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
-      <div id="progress-bar" class="h-full bg-primary rounded-full" style="width: 0%"></div>
+
+    <!-- Mensaje informativo sobre lectura en segundo plano -->
+    <div class="text-xs text-gray-500 dark:text-gray-400 italic">
+      {lang === 'es'
+        ? 'La lectura continuará incluso si la pantalla se apaga o cambias de aplicación.'
+        : 'Reading will continue even if the screen turns off or you switch apps.'}
     </div>
   </div>
 </div>
@@ -91,7 +100,7 @@ class NaturalReader {
     this.progressContainer = document.getElementById('progress-container');
     this.progressBar = document.getElementById('progress-bar');
     this.speedControl = document.getElementById('speed-control');
-    
+
     this.text = this.articleText ? this.articleText.textContent || '' : '';
     this.lang = lang || 'en';
     this.utterance = null;
@@ -100,7 +109,10 @@ class NaturalReader {
     this.totalChunks = 0;
     this.shouldContinue = false;
     this.speechRate = 0.9; // Velocidad predeterminada
-    
+    this.wakeLock = null; // Para mantener la pantalla encendida
+    this.visibilityHandler = null; // Manejador para eventos de visibilidad
+    this.keepAliveInterval = null; // Intervalo para mantener activo el proceso
+
     // Detectar tipo de dispositivo y navegador
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -108,23 +120,23 @@ class NaturalReader {
     this.isChrome = /Chrome/i.test(navigator.userAgent);
     this.isSafari = /Safari/i.test(navigator.userAgent) && !/Chrome/i.test(navigator.userAgent);
     this.isEdge = /Edg/i.test(navigator.userAgent);
-    
+
     // Verificar soporte de síntesis de voz
     this.speechSynthesisSupported = 'speechSynthesis' in window;
-    
+
     this.init();
   }
-  
+
   init() {
     if (!this.readButton || !this.stopButton || !this.text) return;
-    
+
     // Limpiar y dividir el texto en fragmentos naturales
     this.prepareTextChunks();
-    
+
     // Inicializar eventos
     this.readButton.addEventListener('click', () => this.toggleReading());
     this.stopButton.addEventListener('click', () => this.stopReading());
-    
+
     // Evento para el control de velocidad
     if (this.speedControl) {
       this.speedControl.addEventListener('change', () => {
@@ -132,26 +144,29 @@ class NaturalReader {
         console.log(`Velocidad de lectura cambiada a: ${this.speechRate}`);
       });
     }
-    
+
     // Inicializar síntesis de voz
     if (this.speechSynthesisSupported) {
       // Cancelar cualquier síntesis en curso
       window.speechSynthesis.cancel();
-      
+
       // Fix para Safari en iOS
       if (this.isIOS) {
         document.addEventListener('touchstart', () => {
           window.speechSynthesis.cancel();
         }, { once: true });
       }
+
+      // Configurar manejo de visibilidad para continuar la lectura en segundo plano
+      this.setupVisibilityHandling();
     } else {
       this.updateState(STATES.ERROR);
     }
-    
+
     // Limpiar al navegar a otra página
     window.addEventListener('beforeunload', () => this.stopReading());
     document.addEventListener('astro:before-swap', () => this.stopReading());
-    
+
     console.log('NaturalReader inicializado:', {
       isMobile: this.isMobile,
       isIOS: this.isIOS,
@@ -164,7 +179,7 @@ class NaturalReader {
       chunks: this.chunks.length
     });
   }
-  
+
   // Dividir el texto en fragmentos para una lectura más natural
   prepareTextChunks() {
     // Primero, limpiar el texto de caracteres especiales y HTML
@@ -172,18 +187,18 @@ class NaturalReader {
       .replace(/<[^>]*>/g, '') // Eliminar etiquetas HTML
       .replace(/\\s+/g, ' ')   // Normalizar espacios
       .trim();
-    
+
     // Tamaño de fragmento optimizado para una lectura natural
     // pero lo suficientemente pequeño para evitar problemas en móviles
     const chunkSize = this.isMobile ? 150 : 300;
-    
+
     // Dividir por párrafos primero para respetar la estructura del texto
     const paragraphs = cleanText.split(/\\n+/);
-    
+
     if (paragraphs.length <= 1) {
       // Si no hay párrafos claros, dividir por oraciones
       const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
-      
+
       if (sentences.length === 0) {
         // Si no hay oraciones, dividir por longitud
         for (let i = 0; i < cleanText.length; i += chunkSize) {
@@ -192,7 +207,7 @@ class NaturalReader {
       } else {
         // Agrupar oraciones en fragmentos más grandes para una lectura más natural
         let currentChunk = '';
-        
+
         for (const sentence of sentences) {
           // Si añadir esta oración excedería el tamaño máximo, guardar el fragmento actual
           if (currentChunk.length + sentence.length > chunkSize && currentChunk.length > 0) {
@@ -202,7 +217,7 @@ class NaturalReader {
             currentChunk += sentence;
           }
         }
-        
+
         // Añadir el último fragmento si queda algo
         if (currentChunk.length > 0) {
           this.chunks.push(currentChunk);
@@ -212,7 +227,7 @@ class NaturalReader {
       // Procesar cada párrafo
       for (const paragraph of paragraphs) {
         if (paragraph.trim().length === 0) continue;
-        
+
         // Si el párrafo es más corto que el tamaño máximo, usarlo como un fragmento
         if (paragraph.length <= chunkSize) {
           this.chunks.push(paragraph);
@@ -220,7 +235,7 @@ class NaturalReader {
           // Dividir párrafos largos por oraciones
           const sentences = paragraph.match(/[^.!?]+[.!?]+/g) || [paragraph];
           let currentChunk = '';
-          
+
           for (const sentence of sentences) {
             // Si añadir esta oración excedería el tamaño máximo, guardar el fragmento actual
             if (currentChunk.length + sentence.length > chunkSize && currentChunk.length > 0) {
@@ -230,7 +245,7 @@ class NaturalReader {
               currentChunk += sentence;
             }
           }
-          
+
           // Añadir el último fragmento si queda algo
           if (currentChunk.length > 0) {
             this.chunks.push(currentChunk);
@@ -238,21 +253,21 @@ class NaturalReader {
         }
       }
     }
-    
+
     // Si no hay fragmentos, crear uno con el texto limpio
     if (this.chunks.length === 0) {
       this.chunks.push(cleanText.substring(0, 1000)); // Limitar a 1000 caracteres como máximo
     }
-    
+
     // Limitar el número total de fragmentos para evitar problemas
     if (this.chunks.length > 100) {
       this.chunks = this.chunks.slice(0, 100);
     }
-    
+
     this.totalChunks = this.chunks.length;
     console.log(`Texto dividido en ${this.chunks.length} fragmentos para lectura natural`);
   }
-  
+
   // Alternar entre reproducir y pausar
   toggleReading() {
     switch (this.state) {
@@ -268,27 +283,27 @@ class NaturalReader {
         break;
     }
   }
-  
+
   // Iniciar la lectura
   startReading() {
     if (!this.speechSynthesisSupported) {
       this.updateState(STATES.ERROR);
       return;
     }
-    
+
     try {
       // Cancelar cualquier síntesis en curso
       window.speechSynthesis.cancel();
-      
+
       // Reiniciar el índice de fragmentos
       this.currentChunk = 0;
       this.shouldContinue = true;
-      
+
       // Mostrar los controles adicionales
       if (this.readerControls) {
         this.readerControls.classList.remove('hidden');
       }
-      
+
       // Iniciar la lectura del primer fragmento
       this.updateState(STATES.PLAYING);
       this.speakNextChunk();
@@ -297,7 +312,7 @@ class NaturalReader {
       this.updateState(STATES.ERROR);
     }
   }
-  
+
   // Reproducir el siguiente fragmento
   speakNextChunk() {
     if (!this.shouldContinue || this.currentChunk >= this.chunks.length) {
@@ -305,37 +320,37 @@ class NaturalReader {
       this.updateState(STATES.STOPPED);
       return;
     }
-    
+
     try {
       const chunkText = this.chunks[this.currentChunk];
-      
+
       // Actualizar la barra de progreso
       this.updateProgressBar();
-      
+
       // Crear una nueva instancia de SpeechSynthesisUtterance
       this.utterance = new SpeechSynthesisUtterance(chunkText);
       this.utterance.lang = this.lang === 'es' ? 'es-ES' : 'en-US';
       this.utterance.rate = this.speechRate; // Usar la velocidad seleccionada por el usuario
-      
+
       // Seleccionar una voz adecuada
       const voices = window.speechSynthesis.getVoices();
       const langCode = this.lang === 'es' ? 'es' : 'en';
-      
+
       // Buscar una voz adecuada
       let voice = voices.find(v => v.lang.startsWith(langCode) && v.localService);
       if (!voice) {
         voice = voices.find(v => v.lang.startsWith(langCode));
       }
-      
+
       if (voice) {
         this.utterance.voice = voice;
       }
-      
+
       // Configurar eventos
       this.utterance.onend = () => {
         // Pasar al siguiente fragmento
         this.currentChunk++;
-        
+
         // Si hay más fragmentos y debemos continuar, reproducir el siguiente
         if (this.shouldContinue && this.currentChunk < this.chunks.length) {
           // Pausa mínima entre fragmentos para evitar problemas técnicos
@@ -348,10 +363,10 @@ class NaturalReader {
           this.updateState(STATES.STOPPED);
         }
       };
-      
+
       this.utterance.onerror = (event) => {
         console.error('Error en la síntesis de voz:', event);
-        
+
         // Si es un error de interrupción, intentar con el siguiente fragmento
         if (event.error === 'interrupted' || event.error === 'canceled') {
           if (this.shouldContinue) {
@@ -368,12 +383,12 @@ class NaturalReader {
           this.updateState(STATES.ERROR);
         }
       };
-      
+
       // Iniciar la reproducción
       window.speechSynthesis.speak(this.utterance);
     } catch (error) {
       console.error('Error al reproducir fragmento:', error);
-      
+
       // Intentar con el siguiente fragmento
       this.currentChunk++;
       if (this.shouldContinue && this.currentChunk < this.chunks.length) {
@@ -385,7 +400,7 @@ class NaturalReader {
       }
     }
   }
-  
+
   // Actualizar la barra de progreso
   updateProgressBar() {
     if (this.progressBar && this.totalChunks > 0) {
@@ -393,11 +408,11 @@ class NaturalReader {
       this.progressBar.style.width = `${progress}%`;
     }
   }
-  
+
   // Pausar la lectura
   pauseReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       this.shouldContinue = false;
       window.speechSynthesis.cancel();
@@ -407,11 +422,11 @@ class NaturalReader {
       this.stopReading();
     }
   }
-  
+
   // Reanudar la lectura
   resumeReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       this.shouldContinue = true;
       this.updateState(STATES.PLAYING);
@@ -421,17 +436,17 @@ class NaturalReader {
       this.stopReading();
     }
   }
-  
+
   // Detener la lectura
   stopReading() {
     if (!this.speechSynthesisSupported) return;
-    
+
     try {
       this.shouldContinue = false;
       window.speechSynthesis.cancel();
       this.currentChunk = 0;
       this.updateState(STATES.STOPPED);
-      
+
       // Ocultar los controles adicionales
       if (this.readerControls) {
         this.readerControls.classList.add('hidden');
@@ -439,15 +454,125 @@ class NaturalReader {
           this.progressBar.style.width = '0%';
         }
       }
+
+      // Liberar recursos
+      this.releaseWakeLock();
+      this.stopKeepAlive();
     } catch (error) {
       console.error('Error al detener la lectura:', error);
     }
   }
-  
+
+  // Limpiar recursos y eventos al desmontar el componente
+  cleanup() {
+    // Detener la lectura
+    this.stopReading();
+
+    // Eliminar el manejador de visibilidad
+    if (this.visibilityHandler) {
+      document.removeEventListener('visibilitychange', this.visibilityHandler);
+    }
+
+    // Liberar Wake Lock
+    this.releaseWakeLock();
+
+    // Detener el intervalo de mantenimiento
+    this.stopKeepAlive();
+  }
+
+  // Configurar manejo de visibilidad para continuar la lectura en segundo plano
+  setupVisibilityHandling() {
+    // Manejar cambios de visibilidad (cuando la app pasa a segundo plano)
+    this.visibilityHandler = () => {
+      if (this.state === STATES.PLAYING) {
+        if (document.hidden) {
+          // La página está en segundo plano
+          console.log('Página en segundo plano, manteniendo la lectura activa...');
+          this.startKeepAlive();
+        } else {
+          // La página vuelve a estar visible
+          console.log('Página visible de nuevo');
+          this.stopKeepAlive();
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', this.visibilityHandler);
+  }
+
+  // Solicitar Wake Lock para mantener la pantalla encendida
+  async requestWakeLock() {
+    if ('wakeLock' in navigator) {
+      try {
+        this.wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock activado');
+
+        // Manejar la liberación del Wake Lock
+        this.wakeLock.addEventListener('release', () => {
+          console.log('Wake Lock liberado');
+          this.wakeLock = null;
+        });
+      } catch (err) {
+        console.error('Error al solicitar Wake Lock:', err);
+      }
+    } else {
+      console.log('Wake Lock API no soportada en este navegador');
+    }
+  }
+
+  // Liberar Wake Lock
+  releaseWakeLock() {
+    if (this.wakeLock) {
+      try {
+        this.wakeLock.release();
+        this.wakeLock = null;
+      } catch (err) {
+        console.error('Error al liberar Wake Lock:', err);
+      }
+    }
+  }
+
+  // Iniciar intervalo para mantener activo el proceso en segundo plano
+  startKeepAlive() {
+    // Detener cualquier intervalo existente
+    this.stopKeepAlive();
+
+    // Crear un nuevo intervalo que mantenga activo el proceso
+    this.keepAliveInterval = setInterval(() => {
+      if (this.state === STATES.PLAYING) {
+        // Verificar si la síntesis de voz sigue activa
+        if (!window.speechSynthesis.speaking) {
+          // Si no está hablando pero debería estarlo, continuar con el siguiente fragmento
+          this.currentChunk++;
+          if (this.currentChunk < this.chunks.length) {
+            this.speakNextChunk();
+          } else {
+            this.updateState(STATES.STOPPED);
+            this.stopKeepAlive();
+          }
+        } else {
+          // Mantener activa la síntesis de voz
+          window.speechSynthesis.pause();
+          window.speechSynthesis.resume();
+        }
+      } else {
+        this.stopKeepAlive();
+      }
+    }, 5000); // Verificar cada 5 segundos
+  }
+
+  // Detener el intervalo de mantenimiento
+  stopKeepAlive() {
+    if (this.keepAliveInterval) {
+      clearInterval(this.keepAliveInterval);
+      this.keepAliveInterval = null;
+    }
+  }
+
   // Actualizar el estado y la interfaz
   updateState(newState) {
     this.state = newState;
-    
+
     // Actualizar la interfaz según el estado
     if (this.readButton && this.buttonText && this.stopButton) {
       switch (newState) {
@@ -457,6 +582,9 @@ class NaturalReader {
           this.readButton.classList.add('bg-yellow-600', 'hover:bg-yellow-700');
           this.stopButton.disabled = false;
           this.stopButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+          // Solicitar Wake Lock para mantener la pantalla encendida
+          this.requestWakeLock();
           break;
         case STATES.PAUSED:
           this.buttonText.textContent = resumeText;
@@ -464,6 +592,9 @@ class NaturalReader {
           this.readButton.classList.add('bg-primary', 'hover:bg-primary/90');
           this.stopButton.disabled = false;
           this.stopButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+          // Liberar Wake Lock
+          this.releaseWakeLock();
           break;
         case STATES.STOPPED:
           this.buttonText.textContent = readText;
@@ -471,6 +602,11 @@ class NaturalReader {
           this.readButton.classList.add('bg-primary', 'hover:bg-primary/90');
           this.stopButton.disabled = true;
           this.stopButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+          // Liberar Wake Lock
+          this.releaseWakeLock();
+          // Detener el intervalo de mantenimiento
+          this.stopKeepAlive();
           break;
         case STATES.ERROR:
           this.buttonText.textContent = errorText;
@@ -478,6 +614,11 @@ class NaturalReader {
           this.readButton.classList.add('bg-red-600', 'hover:bg-red-700');
           this.stopButton.disabled = true;
           this.stopButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+          // Liberar Wake Lock
+          this.releaseWakeLock();
+          // Detener el intervalo de mantenimiento
+          this.stopKeepAlive();
           break;
       }
     }
@@ -485,8 +626,26 @@ class NaturalReader {
 }
 
 // Inicializar cuando el DOM esté cargado
+let readerInstance = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-  new NaturalReader();
+  readerInstance = new NaturalReader();
+});
+
+// Limpiar recursos cuando se desmonta el componente
+document.addEventListener('astro:before-swap', () => {
+  if (readerInstance) {
+    readerInstance.cleanup();
+    readerInstance = null;
+  }
+});
+
+// Limpiar recursos cuando se cierra la página
+window.addEventListener('beforeunload', () => {
+  if (readerInstance) {
+    readerInstance.cleanup();
+    readerInstance = null;
+  }
 });
 </script>
 
@@ -498,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
       touch-action: manipulation;
     }
   }
-  
+
   /* Animación para la barra de progreso */
   #progress-bar {
     transition: width 0.3s ease-in-out;
