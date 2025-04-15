@@ -1,12 +1,16 @@
 ---
+import WebpImage from "@/components/WebpImage.astro";
 ---
 
 <div id="imageModal" class="modal hidden fixed inset-0 z-50 w-full h-full bg-black/90 flex items-center justify-center">
   <div class="modal-content relative max-w-[95%] max-h-[95%] flex flex-col items-center">
     <div class="image-container relative overflow-hidden">
-      <img id="modalImage" src="" alt="Modal Image" class="max-w-full max-h-[85vh] object-contain transition-transform duration-300">
+      <picture>
+        <source id="modalImageWebp" srcset="" type="image/webp">
+        <img id="modalImage" src="" alt="Modal Image" class="max-w-full max-h-[85vh] object-contain transition-transform duration-300">
+      </picture>
     </div>
-    
+
     <div class="controls absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/60 rounded-full px-4 py-2 flex items-center space-x-4 text-white z-10">
       <button onclick="zoomIn(event)" class="hover:text-accent transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
@@ -18,7 +22,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
       </button>
     </div>
-    
+
     <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-accent transition-colors z-10">&times;</button>
   </div>
 </div>
@@ -28,19 +32,32 @@
   let currentZoom = 1;
   let isDragging = false;
   let startX, startY, translateX = 0, translateY = 0;
-  
+
   // Exponer las funciones necesarias al ámbito global
   window.openModal = function(imageSrc) {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
-    
+    const modalImageWebp = document.getElementById('modalImageWebp');
+
     // Reset zoom and position
     resetZoom();
-    
-    modal.classList.remove('hidden');
+
+    // Set the original image source
     modalImg.src = imageSrc;
+
+    // Set the WebP version if available
+    if (imageSrc.startsWith('/images/') && !imageSrc.includes('/webp/')) {
+      const fileName = imageSrc.split('/').pop();
+      const fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
+      const webpPath = `/images/webp/${fileNameWithoutExt}.webp`;
+      modalImageWebp.srcset = webpPath;
+    } else {
+      modalImageWebp.srcset = imageSrc;
+    }
+
+    modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    
+
     // Trigger entrance animation
     setTimeout(() => {
       modal.classList.add('modal-visible');
@@ -50,14 +67,14 @@
   window.closeModal = function() {
     const modal = document.getElementById('imageModal');
     modal.classList.remove('modal-visible');
-    
+
     // Wait for animation to complete before hiding
     setTimeout(() => {
       modal.classList.add('hidden');
       document.body.style.overflow = 'auto';
     }, 300);
   };
-  
+
   window.zoomIn = function(e) {
     e.stopPropagation();
     const modalImg = document.getElementById('modalImage');
@@ -65,7 +82,7 @@
     if (currentZoom > 3) currentZoom = 3;
     modalImg.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
   };
-  
+
   window.zoomOut = function(e) {
     e.stopPropagation();
     const modalImg = document.getElementById('modalImage');
@@ -73,7 +90,7 @@
     if (currentZoom < 0.5) currentZoom = 0.5;
     modalImg.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
   };
-  
+
   function resetZoom(e) {
     if (e) e.stopPropagation();
     const modalImg = document.getElementById('modalImage');
@@ -82,17 +99,17 @@
     translateY = 0;
     modalImg.style.transform = '';
   }
-  
+
   window.resetZoom = resetZoom;
 
   // Initialize drag functionality for zoomed images
   document.addEventListener('DOMContentLoaded', () => {
     const modalImg = document.getElementById('modalImage');
     const modalContent = document.querySelector('.modal-content');
-    
+
     // Solo configurar los eventos si los elementos existen
     if (!modalImg) return;
-    
+
     modalImg.addEventListener('mousedown', (e) => {
       if (currentZoom > 1) {
         isDragging = true;
@@ -101,7 +118,7 @@
         e.preventDefault();
       }
     });
-    
+
     document.addEventListener('mousemove', (e) => {
       if (isDragging) {
         translateX = e.clientX - startX;
@@ -109,11 +126,11 @@
         modalImg.style.transform = `scale(${currentZoom}) translate(${translateX / currentZoom}px, ${translateY / currentZoom}px)`;
       }
     });
-    
+
     document.addEventListener('mouseup', () => {
       isDragging = false;
     });
-    
+
     // Close modal when clicking outside the image and content
     const modal = document.getElementById('imageModal');
     if (modal) {
@@ -140,7 +157,7 @@
     opacity: 0;
     transition: opacity 0.3s ease-out;
   }
-  
+
   .modal-visible {
     opacity: 1;
   }
@@ -149,7 +166,7 @@
     transform-origin: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   }
-  
+
   .image-container {
     border-radius: 4px;
     overflow: hidden;
@@ -164,17 +181,17 @@
       box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
     }
   }
-  
+
   /* Añadir efecto de pulsación a los botones */
   .controls button {
     position: relative;
     animation: pulse 1.5s infinite;
   }
-  
+
   .controls button:active {
     transform: scale(0.95);
   }
-  
+
   @keyframes pulse {
     0% {
       transform: scale(1);

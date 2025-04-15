@@ -4,6 +4,7 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
 import Button from "../LinkButton.astro";
 import ImageModal from "./ImageModal.astro";
+import WebpImage from "@/components/WebpImage.astro";
 
 export type Section = PageSection;
 export type Props = {
@@ -51,12 +52,12 @@ const image_position_classes = (() => {
         image && image_position === "top" && (
           <div class={`${image_position_classes[2]}`}>
             <div class="cursor-pointer" onclick={`openModal('${image}')`}>
-              <Image
+              <WebpImage
                 class={imageClasses || "w-1/2 mr-auto ml-auto object-contain"}
-                alt="section-image"
+                alt={section.alt || "section-image"}
                 src={image}
-                width={500}
-                height={333}
+                width="500"
+                height="333"
               />
             </div>
           </div>
@@ -83,12 +84,12 @@ const image_position_classes = (() => {
           image && image_position != "top" && (
             <div class={`${image_position_classes[2]}`}>
               <div class="cursor-pointer" onclick={`openModal('${image}')`}>
-                <Image
+                <WebpImage
                   class={imageClasses || "w-full object-contain"}
-                  alt="section-image"
+                  alt={section.alt || "section-image"}
                   src={image}
-                  width={500}
-                  height={333}
+                  width="500"
+                  height="333"
                 />
               </div>
             </div>
