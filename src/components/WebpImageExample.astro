@@ -1,0 +1,97 @@
+---
+import WebpImage from './WebpImage.astro';
+---
+
+<div class="webp-example">
+  <h2>Ejemplo de uso de imágenes WebP</h2>
+  
+  <div class="image-comparison">
+    <div class="image-container">
+      <h3>Imagen Original</h3>
+      <img 
+        src="/images/logo.png" 
+        alt="Logo original" 
+        width="200"
+        loading="lazy"
+      />
+      <p>Formato: PNG</p>
+    </div>
+    
+    <div class="image-container">
+      <h3>Imagen WebP</h3>
+      <WebpImage 
+        src="/images/logo.png" 
+        alt="Logo en WebP" 
+        width="200"
+      />
+      <p>Formato: WebP con fallback a PNG</p>
+    </div>
+  </div>
+  
+  <div class="info-box">
+    <h3>Ventajas de WebP</h3>
+    <ul>
+      <li>Mejor compresión (hasta un 87% de reducción de tamaño)</li>
+      <li>Carga más rápida de la página</li>
+      <li>Menor consumo de datos para los usuarios</li>
+      <li>Mejor rendimiento en dispositivos móviles</li>
+      <li>Compatible con la mayoría de navegadores modernos</li>
+    </ul>
+    
+    <p>
+      <strong>Nota:</strong> Este componente detecta automáticamente si el navegador soporta WebP y 
+      muestra la versión adecuada de la imagen.
+    </p>
+  </div>
+</div>
+
+<style>
+  .webp-example {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  
+  .image-comparison {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    justify-content: center;
+  }
+  
+  .image-container {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .info-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #e9f7fe;
+    border-left: 4px solid #3498db;
+  }
+  
+  h2 {
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  h3 {
+    color: #3498db;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    margin-left: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+</style>
