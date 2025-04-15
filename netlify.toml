@@ -594,16 +594,16 @@
   status = 301
   force = true
 
-# Redirección directa para el artículo con caracteres especiales
+# Redirección para balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura
 [[redirects]]
   from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
-  to = "/es/blog/balanceo-de-l%C3%ADneas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  to = "/es/blog/balanceo-de-l%C3%ADneas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   status = 301
   force = true
 
