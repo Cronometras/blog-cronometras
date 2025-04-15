@@ -24,6 +24,20 @@
   force = true
   priority = 100
 
+[[redirects]]
+  from = "/que-es-el-cronometraje-industrial*"
+  to = "/es/blog/que-es-el-cronometraje-industrial/"
+  status = 301
+  force = true
+  priority = 100
+
+[[redirects]]
+  from = "/cuales-son-las-tecnicas-de-cronometraje-industrial*"
+  to = "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/"
+  status = 301
+  force = true
+  priority = 100
+
 # Redirecciones para manejar rutas con lenguaje
 [[redirects]]
   from = "/"
@@ -326,30 +340,10 @@
   force = true
 
 # Redirección para que-es-el-cronometraje-industrial
-[[redirects]]
-  from = "/que-es-el-cronometraje-industrial"
-  to = "/es/blog/que-es-el-cronometraje-industrial/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/que-es-el-cronometraje-industrial/"
-  to = "/es/blog/que-es-el-cronometraje-industrial/"
-  status = 301
-  force = true
+# Movida al inicio del archivo con prioridad alta
 
 # Redirección para cuales-son-las-tecnicas-de-cronometraje-industrial
-[[redirects]]
-  from = "/cuales-son-las-tecnicas-de-cronometraje-industrial"
-  to = "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/cuales-son-las-tecnicas-de-cronometraje-industrial/"
-  to = "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/"
-  status = 301
-  force = true
+# Movida al inicio del archivo con prioridad alta
 
 # Redirección para cuales-son-las-fases-de-un-proceso-industrial
 [[redirects]]
