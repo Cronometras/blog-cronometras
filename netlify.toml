@@ -38,6 +38,23 @@
   force = true
   priority = 100
 
+# Redirección genérica para cualquier artículo del blog
+[[redirects]]
+  from = "/:article*"
+  to = "/es/blog/:article/"
+  status = 301
+  force = true
+  priority = 90
+  conditions = {Path = {"/[^/]+$", "/[^/]+/$"}}
+
+# Redirección genérica para cualquier lección
+[[redirects]]
+  from = "/leccion/:lesson*"
+  to = "/es/blog/:lesson/"
+  status = 301
+  force = true
+  priority = 95
+
 # Redirecciones para manejar rutas con lenguaje
 [[redirects]]
   from = "/"
