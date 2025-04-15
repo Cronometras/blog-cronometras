@@ -16,6 +16,8 @@ buttons:
     class: "bg-gradient-to-r from-purple-600 to-accent text-white hover:opacity-90 font-bold py-3 px-6 rounded-lg text-center transition-all duration-300 shadow-md hover:scale-105 hover:shadow-purple-500/50 border border-purple-400 w-full sm:w-auto"
     target: "_blank"
 ---
+import WebpImage from '@components/WebpImage.astro';
+
 
 <div class="container py-10">
   <div class="row justify-center">
@@ -35,7 +37,7 @@ buttons:
     <div class="row justify-center">
       <div class="md:col-10 lg:col-8 text-center">
         <h2 class="mb-4">Nuestra Propuesta de Valor</h2>
-        <img src="/images/propuesta de valor.jpg" alt="Propuesta de Valor" class="mb-10 mx-auto">
+        <WebpImage src="/images/webp/propuesta-de-valor.webp" alt="Propuesta de Valor" class="mb-10 mx-auto" />
       </div>
     </div>
 
@@ -86,7 +88,7 @@ buttons:
   <div class="row justify-center">
     <div class="sm:col-6 md:col-3 mb-8">
       <div class="text-center">
-        <img src="/images/team/german.png" alt="Germán Iranzo" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
+        <WebpImage src="/images/webp/team/german.webp" alt="Germán Iranzo" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" />
         <h3 class="h5 mb-2">Germán Iranzo</h3>
         <p class="text-sm text-gray-600 mb-2">Director de Operaciones</p>
         <a href="https://www.linkedin.com/in/germ%C3%A1n-iranzo-5733b449/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
@@ -94,7 +96,7 @@ buttons:
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
       <div class="text-center">
-        <img src="/images/team/miguel.png" alt="Miguel Cano" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
+        <WebpImage src="/images/webp/team/miguel.webp" alt="Miguel Cano" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" />
         <h3 class="h5 mb-2">Miguel Cano</h3>
         <p class="text-sm text-gray-600 mb-2">Desarrollo de Software</p>
         <a href="https://www.linkedin.com/in/miguel-cano-otero/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
@@ -102,7 +104,7 @@ buttons:
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
       <div class="text-center">
-        <img src="/images/team/juanvi.png" alt="Juan Vicente Tarín" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
+        <WebpImage src="/images/webp/team/juanvi.webp" alt="Juan Vicente Tarín" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" />
         <h3 class="h5 mb-2">Juan Vte. Tarín</h3>
         <p class="text-sm text-gray-600 mb-2">Consultor de Procesos</p>
         <a href="https://www.linkedin.com/in/juan-vicente-tar%C3%ADn-2a384520/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
@@ -110,7 +112,7 @@ buttons:
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
       <div class="text-center">
-        <img src="/images/team/sofia.png" alt="Sofía Estelles" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
+        <WebpImage src="/images/webp/team/sofia.webp" alt="Sofía Estelles" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" />
         <h3 class="h5 mb-2">Sofía Estelles</h3>
         <p class="text-sm text-gray-600 mb-2">Formación y Consultoria</p>
         <a href="https://www.linkedin.com/in/sofia-estelles-miguel-961aba18" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
