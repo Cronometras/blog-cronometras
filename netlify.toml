@@ -38,6 +38,13 @@
   force = true
   priority = 100
 
+[[redirects]]
+  from = "/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial*"
+  to = "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
+  status = 301
+  force = true
+  priority = 100
+
 # Redirección genérica para cualquier artículo del blog
 [[redirects]]
   from = "/:article*"
@@ -467,17 +474,7 @@
   force = true
 
 # Redirección para optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial
-[[redirects]]
-  from = "/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial"
-  to = "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
-  to = "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
-  status = 301
-  force = true
+# Movida al inicio del archivo con prioridad alta
 
 # Redirección para herramientas-necesarias-para-realizar-un-estudio-de-tiempos
 [[redirects]]
