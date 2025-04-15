@@ -25,7 +25,7 @@ function getFullUrl(path) {
 ---
 
 <div class="hero-image-container">
-  <picture>
+  <picture class="w-full h-full block">
     <source srcset={webpSrc} type="image/webp" />
     <img
       src={src}
@@ -51,6 +51,8 @@ function getFullUrl(path) {
     object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
+    display: block;
+    margin: 0;
   }
 
   .hero-image-container:hover img {

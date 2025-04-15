@@ -67,7 +67,7 @@ export const prerender = true;
   {post && <BlogPostSchema post={post} url={Astro.url} />}
   <article class="mx-auto">
     <!-- Hero Image with Overlay -->
-    <div class="relative h-[40vh] md:h-[50vh] lg:h-[60vh] min-h-[300px] w-full mb-6 md:mb-12 overflow-hidden">
+    <div class="relative h-[40vh] md:h-[50vh] lg:h-[60vh] min-h-[300px] w-full overflow-hidden">
       <HeroImage
         src={post?.data?.heroImage || '/images/webp/cronometras-app.webp'}
         alt={post?.data?.title || 'Blog Post'}
@@ -105,7 +105,7 @@ export const prerender = true;
     </div>
 
     <!-- Article Content -->
-    <section class="section py-8 md:py-16 bg-white dark:bg-gray-900">
+    <section class="section pt-0 pb-8 md:pb-16 bg-white dark:bg-gray-900">
       <div class="container px-4 md:px-8 mx-auto">
         <div class="max-w-3xl mx-auto">
           <div class="article-content prose prose-base md:prose-lg dark:prose-invert">
