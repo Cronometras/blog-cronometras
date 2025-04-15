@@ -5,7 +5,7 @@ banner:
   title: '<span class="text-accent text-shadow-[0px_5px_15px] shadow-accent/10">CRONOMETRAS</span>: Optimize Your <span class="text-secondary">Productivity</span>'
   title_size: "text-4xl md:text-6xl"
   content: "The ultimate tool for time and motion analysis. Optimize your processes, reduce costs, and maximize efficiency like never before.<p>Discover the <b>Industrial timing App</b> that will help you improve your productivity and optimize your processes.</p>"
-  image: /images/adaptada a móviles, táblets y pc.png
+  image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Request a Free Demo
       href: "/signup"
@@ -21,12 +21,12 @@ banner:
 sections:
   - title: Total Time Control
     content: "Forget the stopwatch and paper. **CRONOMETRAS automates time measurement**, from basic timing to capturing complex sequences of elements. Our app guides you step by step, <b class='text-secondary'>automatically switching between elements</b> so the analyst can focus on what's important: observing and recording. ***Save time, reduce errors, and get more accurate data effortlessly.***"
-    image: /images/cronometro repetitivos.png
+    image: /images/webp/cronometro-repetitivos.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Study Reliability
     content: "CRONOMETRAS ensures reliable studies. The technician visualizes in real time the necessary shots to achieve <b class='text-secondary'>95%</b> reliability in the standard time. This calculation is based on the <b class='text-secondary'>statistical method</b>, considering the dispersion of the times to determine the remaining shots. Make decisions with total confidence, backed by solid data and scientific rigor."
-    image: /images/calculo de tomas restantes.png
+    image: /images/webp/calculo-de-tomas-restantes.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Real-Time Results
@@ -50,17 +50,17 @@ sections:
         </li>
       </ul>
       Streamline decision-making, implement improvements instantly, and optimize your processes without delay."
-    image: /images/resultados en tiempo real.png
+    image: /images/webp/resultados-en-tiempo-real.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Comprehensive Study Management
     content: "Organize your analyses into <b class='text-accent'>complete studies</b>. Define custom methods, elements, and allowances for each process. Keep everything organized and accessible in one place."
-    image: /images/gestion integral de estudios.png
+    image: /images/webp/gestion-integral-de-estudios.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Report Automation
     content: "CRONOMETRAS allows you to export your data without complications. Export studies in <b class='text-secondary'>Excel and PDF</b> to generate detailed and automated reports. Data and results are transferred to a spreadsheet, ready to use in <b class='text-accent'>Excel</b>.  *Benefit: Optimized workflow, from data capture to analysis in Excel, without manual steps.*"
-    image: /images/informe PDF.jpeg
+    image: /images/webp/informe-pdf.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Designed for Productivity
@@ -69,23 +69,23 @@ sections:
 colaboramos:
   - title: "Our industrial time study App collaborates with:"
     description: "CRONOMETRAS is a project based on collaboration. If you are interested in participating, do not hesitate to contact us."
-    image: /images/logo google play.png
+    image: /images/webp/logo-google-play.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
     colaboradores:
       - title: "TAL"
         description: "Labor Arbitration Court of Valencia"
-        image: /images/TAL - cronometrasApp.png
+        image: /images/webp/tal-cronometrasapp.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
       - title: "CCOO"
         description: "Most representative Workers' Union in Spain"
-        image: /images/ccoo-industria.jpg
+        image: /images/webp/ccoo-industria.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
       - title: "Asetemyt"
         description: "Spanish Association of Methods and Time Technicians"
-        image: /images/LOGO_ASETEMYT-300x300-1.png
+        image: /images/webp/logo-asetemyt-300x300-1.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 ## Key Features
@@ -177,3 +177,4 @@ call_to_action:
     color: accent
     id: "main-cta-button"
 ---
+import WebpImage from '@components/WebpImage.astro';
