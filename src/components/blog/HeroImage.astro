@@ -1,0 +1,64 @@
+---
+// HeroImage.astro - Un componente para mostrar la imagen heroImage con soporte para WebP
+import { Image } from 'astro:assets';
+
+const { src, alt = "Hero image", class: className = "rounded-lg w-full" } = Astro.props;
+
+// Verificar si la imagen ya es WebP
+const isWebp = src.endsWith('.webp');
+
+// Si no es WebP, crear la ruta para la versión WebP
+let webpSrc = src;
+if (!isWebp && src.startsWith('/images/')) {
+  // Verificar si la imagen está en la carpeta webp
+  if (!src.includes('/webp/')) {
+    const fileName = src.split('/').pop();
+    const fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
+    webpSrc = `/images/webp/${fileNameWithoutExt}.webp`;
+  }
+}
+
+// Función para obtener la URL completa
+function getFullUrl(path) {
+  return import.meta.env.SITE ? new URL(path, import.meta.env.SITE).href : path;
+}
+---
+
+<div class="hero-image-container mb-8">
+  <picture>
+    <source srcset={webpSrc} type="image/webp" />
+    <img 
+      src={src} 
+      alt={alt} 
+      class={className}
+      loading="lazy"
+      width="1200"
+      height="630"
+    />
+  </picture>
+</div>
+
+<style>
+  .hero-image-container {
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .hero-image-container:hover img {
+    transform: scale(1.02);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-image-container {
+      margin-bottom: 1rem;
+    }
+  }
+</style>

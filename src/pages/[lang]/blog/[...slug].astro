@@ -4,6 +4,7 @@ import Base from '@/layouts/Base.astro';
 import NaturalReader from '@/components/blog/NaturalReader.astro';
 import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
 import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
+import HeroImage from '@/components/blog/HeroImage.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -67,8 +68,8 @@ export const prerender = true;
   <article class="mx-auto">
     <!-- Hero Image with Overlay -->
     <div class="relative h-[40vh] md:h-[50vh] lg:h-[60vh] min-h-[300px] w-full mb-6 md:mb-12">
-      <img
-        src={post?.data?.heroImage || '/images/cronometras App.png'}
+      <HeroImage
+        src={post?.data?.heroImage || '/images/webp/cronometras App.webp'}
         alt={post?.data?.title || 'Blog Post'}
         class="absolute inset-0 w-full h-full object-cover"
       />
