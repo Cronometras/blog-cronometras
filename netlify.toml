@@ -227,8 +227,7 @@
   status = 301
   force = true
 
-# Redirección para balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura
-# (Movida al final del archivo para evitar duplicados)
+# Redirección movida al final del archivo
 
 # Redirección para como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro
 [[redirects]]
@@ -603,6 +602,19 @@
 
 [[redirects]]
   from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  status = 301
+  force = true
+
+# Redirección adicional para asegurar compatibilidad
+[[redirects]]
+  from = "*/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "*/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   status = 301
   force = true
