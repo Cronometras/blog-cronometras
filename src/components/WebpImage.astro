@@ -8,17 +8,38 @@ const isLocalImage = src.startsWith('/images/');
 // Crear la ruta de la imagen WebP
 let webpSrc = src;
 if (isLocalImage) {
-  webpSrc = src.replace('/images/', '/images/webp/').replace(/\.(png|jpg|jpeg|gif)$/, '.webp');
+  // Verificar si la imagen ya es WebP
+  if (src.endsWith('.webp')) {
+    webpSrc = src;
+  } else {
+    // Si no es WebP, convertir la ruta
+    const basePath = src.substring(0, src.lastIndexOf('/') + 1);
+    const fileName = src.substring(src.lastIndexOf('/') + 1);
+    const fileNameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.'));
+    const slugifiedFileName = fileNameWithoutExt
+      .toLowerCase()
+      .replace(/[áàäâãå]/g, 'a')
+      .replace(/[éèëê]/g, 'e')
+      .replace(/[íìïî]/g, 'i')
+      .replace(/[óòöôõ]/g, 'o')
+      .replace(/[úùüû]/g, 'u')
+      .replace(/[ñ]/g, 'n')
+      .replace(/[ç]/g, 'c')
+      .replace(/[^a-z0-9.]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    webpSrc = `${basePath}webp/${slugifiedFileName}.webp`;
+  }
 }
 ---
 
 <picture>
   <source srcset={webpSrc} type="image/webp">
-  <img 
-    src={src} 
-    alt={alt} 
-    width={width} 
-    height={height} 
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
     class={className}
     loading="lazy"
   />
