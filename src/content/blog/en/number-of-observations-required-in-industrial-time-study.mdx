@@ -5,8 +5,10 @@ pubDate: 2023-03-22
 category: "Industrial Time Study"
 tags: ["Observation calculation", "Industrial time study", "Time study", "ILO formula", "Methods engineering", "Margin of error", "Work measurement", "Confidence level", "Sample size", "Process variability"]
 author: "micaot"
-heroImage: "/images/tomas restantes.png"
+heroImage: "/images/webp/tomas-restantes.webp"
 ---
+import WebpImage from '@components/WebpImage.astro';
+
 
 In a methods and time study, it's important to know the necessary number of observations to perform for several reasons:
 
@@ -98,7 +100,7 @@ There are several methods to determine the number of observations to perform in 
 
 It is based on experience and general recommendations. For example, the International Labour Office suggests timing at least 50 cycles in brief operations and between 20 and 30 cycles in longer operations.
 
-![Table establishing the number of readings according to the duration of the cycle to be timed](/images/default.png)
+<WebpImage src="/images/default.png" alt="Table establishing the number of readings according to the duration of the cycle to be timed" />
 
 ### ILO statistical method specific for industrial time studies. (used in the CronometrasApp)
 
@@ -108,7 +110,7 @@ Let's say we take 8 measurements:
 
 The formula used is:
 
-![ILO formula to calculate the number of observations](/images/default.png)
+<WebpImage src="/images/default.png" alt="ILO formula to calculate the number of observations" />
 
 ```plaintext
 n = ((40 * SQRT((n' * ∑x2) - (∑x)2)) / ∑x)^2
