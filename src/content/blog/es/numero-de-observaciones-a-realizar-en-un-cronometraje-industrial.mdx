@@ -7,7 +7,7 @@ tags: ["Cálculo de observaciones", "Cronometraje industrial", "Estudio de tiemp
 author: "micaot"
 heroImage: "/images/webp/tomas-restantes.webp"
 ---
-import WebpImage from '@components/WebpImage.astro';
+
 
 
 En un estudio de métodos y tiempos es importante conocer el número necesario de observaciones a realizar por varias razones:
@@ -100,7 +100,7 @@ Existen varios métodos para determinar el número de observaciones a realizar e
 
 se basa en la experiencia y en las recomendaciones generales. Por ejemplo, la Oficina Internacional del Trabajo sugiere cronometrar al menos 50 ciclos en operaciones breves y entre 20 y 30 ciclos en operaciones más largas.
 
-<WebpImage src="/images/webp/default.webp" alt="Tabla que establece el número de lecturas según la duración del ciclo a cronometrar" />
+<img src="/images/webp/default.webp" alt="Tabla que establece el número de lecturas según la duración del ciclo a cronometrar" ismap />
 
 ### Método estadístico OIT específico para estudios de tiempos industriales. (utilizado en la App CronometrasApp)
 
@@ -110,7 +110,7 @@ Pongamos que tomamos 8 tomas:
 
 La fórmula utilizada es:
 
-<WebpImage src="/images/webp/default.webp" alt="Fórmula OIT para calcular el número de observaciones" />
+<img src="/images/webp/default.webp" alt="Fórmula OIT para calcular el número de observaciones" ismap />
 
 ```plaintext
 n = ((40 * RAIZ((n' * ∑x2) - (∑x)2)) / ∑x)^2
