@@ -45,7 +45,8 @@
 /pantalla-de-cronometraje/     /es/repetitive/    301
 
 # Redirecciones para artículos del blog
-/calculo-de-saturacion-en-un-estudio-de-tiempos/?     /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
+/calculo-de-saturacion-en-un-estudio-de-tiempos      /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
+/calculo-de-saturacion-en-un-estudio-de-tiempos/     /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
 
 /balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura      /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
 /balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/     /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301

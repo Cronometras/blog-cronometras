@@ -227,6 +227,19 @@
   status = 301
   force = true
 
+# Redirección adicional para asegurar compatibilidad
+[[redirects]]
+  from = "*/calculo-de-saturacion-en-un-estudio-de-tiempos"
+  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "*/calculo-de-saturacion-en-un-estudio-de-tiempos/"
+  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
+  status = 301
+  force = true
+
 # Redirección movida al final del archivo
 
 # Redirección para como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro
