@@ -321,10 +321,11 @@ class ChunkedReader {
 
         // Si hay más fragmentos y debemos continuar, reproducir el siguiente
         if (this.shouldContinue && this.currentChunk < this.chunks.length) {
-          // Pequeña pausa entre fragmentos
+          // Pausa mínima entre fragmentos para evitar problemas técnicos
+          // pero lo suficientemente corta para que la lectura sea fluida
           setTimeout(() => {
             this.speakNextChunk();
-          }, 50);
+          }, 10);
         } else {
           // Hemos terminado todos los fragmentos o se ha detenido la lectura
           this.updateState(STATES.STOPPED);

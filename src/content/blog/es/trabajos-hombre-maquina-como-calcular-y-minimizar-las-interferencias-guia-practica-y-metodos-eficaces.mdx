@@ -5,8 +5,10 @@ pubDate: 2025-04-12
 category: "Estudio del Trabajo"
 tags: ["Interferencias hombre-máquina", "Productividad industrial", "Tablas de Ashcroft", "Fórmula de Wright", "Optimización de procesos", "Eficiencia operativa"]
 author: "micaot"
-heroImage: "/images/hombre trabajando en 2 máquinas.png"
+heroImage: "/images/webp/hombre trabajando en 2 máquinas.webp"
 ---
+import WebpImage from '@components/WebpImage.astro';
+
 
 La industria moderna se caracteriza por la utilización de máquinas en los procesos productivos. Estas máquinas, cada vez más sofisticadas y precisas, permiten aumentar la productividad y reducir los tiempos de producción. Sin embargo, la interacción entre el operario y la máquina puede generar interferencias que afectan negativamente a la eficiencia del proceso.
 
@@ -152,7 +154,7 @@ Para calcular la interferencia, necesitamos los siguientes datos:
 
 Introduciendo estos parámetros en el gráfico presentado se tiene:
 
-![Curva empírica para el cálculo de interferencia (Niebel B. W. y col.)](/images/default.png)
+<WebpImage src="/images/default.png" alt="Curva empírica para el cálculo de interferencia (Niebel B. W. y col.)" />
 
 A la vista del gráfico, se observa que con una relación calculada de 20 y 3 máquinas se tiene una interferencia de 5%. Esto quiere decir que únicamente el 5% del tiempo de ciclo posee solapamientos. Teniendo en cuenta que se admite un máximo de 10% de interferencia, se puede afirmar que este operario puede ocuparse de las tres fresadoras.
 

@@ -5,7 +5,7 @@ banner:
   title: '<span class="text-accent text-shadow-[0px_5px_15px] shadow-accent/10">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
   title_size: "text-4xl md:text-6xl"
   content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos, reduce costos y maximiza la eficiencia como nunca antes.<p>Descubre la <b>App de cronometraje industrial</b> que te ayudará a mejorar tu productividad y optimizar tus procesos.</p>"
-  image: /images/adaptada a móviles, táblets y pc.png
+  image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Solicita una Demo Gratuita
       href: "/signup"
@@ -21,13 +21,13 @@ banner:
 sections:
   - title: Control Total del Tiempo
     content: "Olvida el cronómetro,  el papel y el lápiz. **CRONOMETRAS automatiza la medición del tiempo**, desde el cronometraje básico hasta la captura de secuencias complejas de elementos. Nuestra app te guía paso a paso, <b class='text-secondary'>cambiando automáticamente entre elementos</b> para que el analista solo se concentre en lo importante: observar y registrar.***Ahorra tiempo, reduce errores y obtén datos más precisos sin esfuerzo***"
-    image: /images/cronometro repetitivos.png
+    image: /images/webp/cronometro-repetitivos.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
      
   - title: Fiabilidad del estudio.
     content: "CRONOMETRAS te asegura estudios fiables. El técnico visualiza en tiempo real las tomas necesarias para alcanzar una fiabilidad del <b class='text-secondary'>95%</b> en el tiempo estándar. Este cálculo se basa en el <b class='text-secondary'>método estadístico</b>, considerando la dispersión de los tiempos para determinar las tomas restantes. Toma decisiones con total confianza, respaldadas por datos sólidos y un rigor científico."
-    image: /images/calculo de tomas restantes.png
+    image: /images/webp/calculo-de-tomas-restantes.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Resultados en Tiempo Real
@@ -51,18 +51,18 @@ sections:
         </li>
       </ul>
       Agiliza la toma de decisiones, implementa mejoras al instante y optimiza tus procesos sin demoras."
-    image: /images/resultados en tiempo real.png
+    image: /images/webp/resultados-en-tiempo-real.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 
   - title: Gestión Integral de Estudios
     content: "Organiza tus análisis en <b class='text-accent'>estudios completos</b>. Define métodos, elementos y suplementos personalizados para cada proceso. Mantén todo organizado y accesible en un solo lugar."
-    image: /images/gestion integral de estudios.png
+    image: /images/webp/gestion-integral-de-estudios.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Automatización de informes
     content: "CRONOMETRAS te permite exportar tus datos sin complicaciones.  Exporta estudios en <b class='text-secondary'>Excel y PDF</b> para generar informes detallados y automatizados.  Los datos y resultados se transfieren a una hoja de cálculo, listos para usar en <b class='text-accent'>Excel</b>. <i>Disfruta de un flujo de trabajo optimizado, desde la captura de datos hasta el análisis en Excel, sin pasos manuales.</i>"
-    image: /images/informe PDF.jpeg
+    image: /images/webp/informe-pdf.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 
@@ -73,62 +73,62 @@ sections:
 colaboramos:
   - title: "Nuestra App de cronometraje industrial colabora con:"
     description: "CRONOMETRAS es un proyecto que se basa en la colaboración. Si te interesa participar, no dudes en contactarnos."  
-    image: /images/logo google play.png
+    image: /images/webp/logo-google-play.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
     colaboradores:
       - title: "TAL"
         description: "Tribunal de Arbitraje Laboral de Valencia"  
-        image: /images/TAL - cronometrasApp.png
+        image: /images/webp/tal-cronometrasapp.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 
       - title: "CCOO"
         description: "Sindicato de Trabajadores más representativo de España"  
-        image: /images/ccoo-industria.jpg
+        image: /images/webp/ccoo-industria.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
         
       - title: "Asetemyt"
         description: "Asociación Española de técnicos en Métodos y Tiempos"  
-        image: /images/LOGO_ASETEMYT-300x300-1.png
+        image: /images/webp/logo-asetemyt-300x300-1.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 how_it_works:
   title: "Como funciona nuestra App de cronometraje industrial"
   description: "Desplázate cómodamente entre las diferentes pantallas de nuestra aplicación de métodos y tiempos y accede a las funcionalidades que te ofrecemos. Cálculos automatizado, tomas restantes, suplementos ágiles y mucho más."
-  image: /images/cronometras App.png
+  image: /images/webp/cronometras-app.webp
   image_alt: "Estudio de tiempos"
   steps:
     - number: 1
       title: "Genera un nuevo estudio de trabajo"
       description: "Identifica el estudio y añade toda la información que creas necesaria como el ID de la pieza, la fecha en que se realiza el estudio, le empresa donde se realiza, el trabajador al que se mide, etc. Puedes utilizar comandos de voz para agilizar la tarea."
-      image: /images/crea un nuevo estudio de tiempos de trabajo.png
+      image: /images/webp/crea-un-nuevo-estudio-de-tiempos-de-trabajo.webp
       imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
     - number: 2
       title: "Diseña el Método de Trabajo"
       description: "Genera con total flexibilidad, el método de trabajo que precises, estableciendo para cada elemento del ciclo, la Descripción de la tarea a cronometrar, así como la Frecuencia o número de piezas procesadas de ese elemento, en otras opciones. Puedes utilizar comandos de voz para agilizar la tarea."
-      image: /images/crea el método de trabajo.png
+      image: /images/webp/crea-el-metodo-de-trabajo.webp
 
     - number: 3
       title: "Realiza la medición por Cronometraje"
       description: "Elige los elementos que deseas medir en tu ciclo de trabajo. Realiza un cronometraje individual de un solo elemento, tomando diferentes tomas y valorando el ritmo en cada toma. O selecciona varios elementos y realiza un crono análisis encadenado, registrando las actividades y los tiempos observados automáticamente. De este modo habrás generado el tiempo normal para cada tarea medida."
-      image: /images/cronometraje industrial de tiempos repetitivos.png
+      image: /images/webp/cronometraje-industrial-de-tiempos-repetitivos.webp
 
     - number: 4
       title: "Aplica los suplementos"
       description: "Establece los suplementos para cada elemento del ciclo con las tablas de la OIT v4 de modo ágil y sencillo, copia los suplementos entre distintos elementos de trabajo que sean equiparables"
-      image: /images/aplicación de suplementos de fatiga OIT.png
+      image: /images/webp/aplicacion-de-suplementos-de-fatiga-oit.webp
 
     - number: 5
       title: "Obtén el informe automatizado"
       description: "En el mismo momento en que finalice la toma de datos, tendrá disponible el resultado del estudio, no precisando el posterior trasvase de datos, cálculos y análisis de los mimos."
-      image: /images/informe automatizado.png
+      image: /images/webp/informe-automatizado.webp
     - number: 6
       title: "Exporta datos a Excel y PDF"
       description: "Si lo prefieres podrás generar el informe en Excel o PDF, para sentirte cómodo en un entorno de trabajo que conoces, modifica los datos o crea gráficas a partir de los mismos."
-      image: /images/informe PDF.jpeg
+      image: /images/webp/informe-pdf.webp
 
   footer_description: "Establezca el estándar de producción y genere mejora de procesos en menor tiempo gracias a los estudios de tiempos. Potencie la gestión de la producción mediante la optimización del tiempo y las diferentes técnicas de productividad, que aplicará y medirá, comparando el registro de movimientos de diferentes normas de trabajo al usar nuestra app para desarrollar la ingeniería de métodos."
 
@@ -224,3 +224,5 @@ call_to_action:
     id: "main-cta-button"
 
 ---
+import WebpImage from '@components/WebpImage.astro';
+
