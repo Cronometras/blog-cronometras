@@ -9,6 +9,21 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Redirecciones prioritarias para artículos del blog con problemas
+[[redirects]]
+  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura*"
+  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
+  status = 301
+  force = true
+  priority = 100
+
+[[redirects]]
+  from = "/calculo-de-saturacion-en-un-estudio-de-tiempos*"
+  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
+  status = 301
+  force = true
+  priority = 100
+
 # Redirecciones para manejar rutas con lenguaje
 [[redirects]]
   from = "/"
@@ -215,30 +230,7 @@
 # Redirecciones individuales para artículos del blog antiguo
 
 # Redirección para calculo-de-saturacion-en-un-estudio-de-tiempos
-[[redirects]]
-  from = "/calculo-de-saturacion-en-un-estudio-de-tiempos"
-  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/calculo-de-saturacion-en-un-estudio-de-tiempos/"
-  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
-  status = 301
-  force = true
-
-# Redirección adicional para asegurar compatibilidad
-[[redirects]]
-  from = "*/calculo-de-saturacion-en-un-estudio-de-tiempos"
-  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "*/calculo-de-saturacion-en-un-estudio-de-tiempos/"
-  to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
-  status = 301
-  force = true
+# Movida al inicio del archivo con prioridad alta
 
 # Redirección movida al final del archivo
 
@@ -607,30 +599,7 @@
   force = true
 
 # Redirección para balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura
-[[redirects]]
-  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
-  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  status = 301
-  force = true
-
-# Redirección adicional para asegurar compatibilidad
-[[redirects]]
-  from = "*/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura"
-  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "*/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
-  status = 301
-  force = true
+# Movida al inicio del archivo con prioridad alta
 
 # Asegurarse de que las rutas de API funcionen
 [[redirects]]
