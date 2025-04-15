@@ -40,12 +40,13 @@
   status = 301
   force = true
 
-# Redirección genérica para cualquier artículo del blog
+# Redirección genérica para artículos del blog (excluyendo la URL principal y otras rutas importantes)
 [[redirects]]
   from = "/:article*"
   to = "/es/blog/:article/"
   status = 301
   force = true
+  conditions = {Path = {exclude = ["/", "/es/", "/en/", "/es/blog/*", "/en/blog/*", "/es/features/*", "/en/features/*", "/es/about/*", "/en/about/*", "/es/contact/*", "/en/contact/*", "/es/faq/*", "/en/faq/*", "/es/terms/*", "/en/terms/*", "/es/privacy/*", "/en/privacy/*", "/es/method/*", "/en/method/*", "/es/dashboard/*", "/en/dashboard/*", "/es/repetitive/*", "/en/repetitive/*", "/es/continuous/*", "/en/continuous/*", "/es/machine/*", "/en/machine/*", "/es/supplements/*", "/en/supplements/*", "/es/report/*", "/en/report/*", "/es/library/*", "/en/library/*", "/es/screens/*", "/en/screens/*", "/es/info/*", "/en/info/*", "/es/frequency/*", "/en/frequency/*"]}}
 
 # Redirección genérica para cualquier lección
 [[redirects]]
@@ -60,12 +61,14 @@
   to = "/es/"
   status = 302
   force = true
+  conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/"
   to = "/en/"
   status = 302
   force = true
+  conditions = {Language = ["en"]}
 
 [[redirects]]
   from = "/"
