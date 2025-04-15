@@ -47,7 +47,71 @@ else
   echo "Error en la compilación. Intentando solucionar..."
 
   # Si hay un error, podemos intentar soluciones específicas aquí
-  # Por ejemplo, si hay un problema con el idioma "Tiempo"
+  # Por ejemplo, si hay un problema con WebpImage
+  echo "Buscando y corrigiendo problemas con WebpImage..."
+
+  # Crear un script para eliminar importaciones de WebpImage
+  cat > fix-webpimage.js << 'EOL'
+  const fs = require('fs');
+  const path = require('path');
+
+  function getAllFiles(dir, fileList = []) {
+    const files = fs.readdirSync(dir);
+
+    files.forEach(file => {
+      const filePath = path.join(dir, file);
+      const stat = fs.statSync(filePath);
+
+      if (stat.isDirectory()) {
+        getAllFiles(filePath, fileList);
+      } else if (path.extname(file) === '.mdx') {
+        fileList.push(filePath);
+      }
+    });
+
+    return fileList;
+  }
+
+  function fixWebpImageIssues() {
+    const mdxFiles = getAllFiles(path.join(__dirname, 'src', 'content'));
+    console.log(`Encontrados ${mdxFiles.length} archivos MDX para procesar.`);
+
+    let updatedFiles = 0;
+
+    mdxFiles.forEach(filePath => {
+      let content = fs.readFileSync(filePath, 'utf8');
+      let originalContent = content;
+
+      // Eliminar importaciones de WebpImage
+      content = content.replace(/\/\/?\s*import\s+WebpImage\s+from\s+['\"](\@components|\.\.\/)WebpImage\.astro['\"];?/g, '');
+
+      // Reemplazar etiquetas WebpImage por img
+      content = content.replace(/<WebpImage\s+src=['\"]([^'\"]+)['\"]\s+alt=['\"]([^'\"]+)['\"](?:\s+class=['\"]([^'\"]+)['\"])?(?:\s+[^>]*)?(?:\s+\/?>\s*<\/WebpImage>|\s*\/>)/g,
+        (match, src, alt, className) => {
+          let imgTag = `<img src="${src}" alt="${alt}"`;
+          if (className) imgTag += ` class="${className}"`;
+          imgTag += ` />`;
+          return imgTag;
+        }
+      );
+
+      if (content !== originalContent) {
+        fs.writeFileSync(filePath, content, 'utf8');
+        updatedFiles++;
+        console.log(`Actualizado: ${filePath}`);
+      }
+    });
+
+    console.log(`\nResumen:\n- Archivos procesados: ${mdxFiles.length}\n- Archivos actualizados: ${updatedFiles}`);
+  }
+
+  fixWebpImageIssues();
+  EOL
+
+  # Ejecutar el script
+  node fix-webpimage.js
+
+  # Si hay un problema con el idioma "Tiempo"
 
   # Intentar nuevamente la compilación
   npm run build
@@ -79,7 +143,13 @@ else
     # Aún así, crear el directorio dist para evitar el error de despliegue
     echo "Creando directorio dist de emergencia..."
     mkdir -p dist
-    echo "<!DOCTYPE html><html><head><title>Sitio en mantenimiento</title></head><body><h1>Sitio en mantenimiento</h1><p>Estamos trabajando para mejorar el sitio. Por favor, vuelve más tarde.</p></body></html>" > dist/index.html
+
+    # Crear un archivo index.html que redirija a /es/
+    echo "<!DOCTYPE html><html><head><meta http-equiv='refresh' content='0;url=/es/'><title>Redirigiendo...</title></head><body><h1>Redirigiendo...</h1><p>Si no eres redirigido automáticamente, <a href='/es/'>haz clic aquí</a>.</p></body></html>" > dist/index.html
+
+    # Crear un archivo _redirects para asegurar que las redirecciones funcionen
+    echo "/ /es/ 301" > dist/_redirects
+    echo "/index.html /es/ 301" >> dist/_redirects
 
     exit 0
   fi
