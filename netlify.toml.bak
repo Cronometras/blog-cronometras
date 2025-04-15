@@ -15,30 +15,35 @@
   to = "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/"
   status = 301
   force = true
+  priority = 100
 
 [[redirects]]
   from = "/calculo-de-saturacion-en-un-estudio-de-tiempos*"
   to = "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/"
   status = 301
   force = true
+  priority = 100
 
 [[redirects]]
   from = "/que-es-el-cronometraje-industrial*"
   to = "/es/blog/que-es-el-cronometraje-industrial/"
   status = 301
   force = true
+  priority = 100
 
 [[redirects]]
   from = "/cuales-son-las-tecnicas-de-cronometraje-industrial*"
   to = "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/"
   status = 301
   force = true
+  priority = 100
 
 [[redirects]]
   from = "/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial*"
   to = "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/"
   status = 301
   force = true
+  priority = 100
 
 # Redirección genérica para cualquier artículo del blog
 [[redirects]]
@@ -46,6 +51,8 @@
   to = "/es/blog/:article/"
   status = 301
   force = true
+  priority = 90
+  # Eliminamos la condición que podía estar causando problemas
 
 # Redirección genérica para cualquier lección
 [[redirects]]
@@ -53,6 +60,7 @@
   to = "/es/blog/:lesson/"
   status = 301
   force = true
+  priority = 95
 
 # Redirecciones para manejar rutas con lenguaje
 [[redirects]]
@@ -60,129 +68,21 @@
   to = "/es/"
   status = 302
   force = true
+  # Eliminamos la condición que podía estar causando problemas
+  # Original: conditions = {Language = ["es"]}
 
 [[redirects]]
   from = "/"
   to = "/en/"
   status = 302
   force = true
+  # Eliminamos la condición que podía estar causando problemas
+  # Original: conditions = {Language = ["en"]}
 
 [[redirects]]
   from = "/"
   to = "/es/"
   status = 302
-  force = true
-
-# Redirecciones para páginas específicas
-[[redirects]]
-  from = "/about"
-  to = "/es/about/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/about"
-  to = "/en/about/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/privacy"
-  to = "/es/privacy/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/privacy"
-  to = "/en/privacy/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/contact"
-  to = "/es/contact/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/contact"
-  to = "/en/contact/"
-  status = 302
-  force = true
-
-# Redirecciones para manejar rutas de blog
-[[redirects]]
-  from = "/blog/*"
-  to = "/es/blog/:splat/"
-  status = 302
-  force = true
-
-[[redirects]]
-  from = "/blog/*"
-  to = "/en/blog/:splat/"
-  status = 302
-  force = true
-
-# Redirecciones para páginas específicas
-[[redirects]]
-  from = "/contact*"
-  to = "/es/contact/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/funciones-4*"
-  to = "/es/features/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/pantalla-de-metodo*"
-  to = "/es/method/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/pantalla-de-inicio*"
-  to = "/es/dashboard/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/conoce*"
-  to = "/es/about/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/curso/cronometras-app*"
-  to = "/es/features/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/author/micaot*"
-  to = "/es/about/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/faq*"
-  to = "/es/faq/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/pantalla-de-cronometraje*"
-  to = "/es/repetitive/"
-  status = 301
-  force = true
-
-# Asegurarse de que las rutas de API funcionen
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
   force = true
 
 # Redirección fallback para SPA
