@@ -9,6 +9,7 @@ const t = useTranslations(lang);
   id="search-button"
   class="search-button flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-accent dark:hover:text-secondary transition-colors duration-200"
   aria-label={t('search.placeholder')}
+  onclick="toggleSearchModal()"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -24,52 +25,36 @@ const t = useTranslations(lang);
       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
     />
   </svg>
-
+  <span class="hidden sm:inline">{t('search.button')}</span>
 </button>
 
-<script>
-  document.addEventListener('astro:page-load', () => {
-    console.log('SearchButton: astro:page-load event fired');
-    const searchButton = document.getElementById('search-button');
-    console.log('SearchButton: Button element exists:', !!searchButton);
+<script is:inline>
+  // Función global para abrir/cerrar el modal de búsqueda
+  function toggleSearchModal() {
+    console.log('toggleSearchModal called');
+    const searchModal = document.getElementById('search-modal');
+    const searchBackdrop = document.getElementById('search-backdrop');
 
-    if (searchButton) {
-      // Añadir un evento de clic directo para depuración
-      searchButton.addEventListener('click', (e) => {
-        console.log('SearchButton: Button clicked directly');
-        // Intentar abrir el modal directamente
-        const searchModal = document.getElementById('search-modal');
-        if (searchModal) {
-          console.log('SearchButton: Attempting to open modal directly');
-          searchModal.classList.remove('hidden');
-          document.body.classList.add('overflow-hidden');
+    if (searchModal && searchBackdrop) {
+      console.log('Toggling search modal');
+      searchModal.classList.toggle('hidden');
+      searchBackdrop.classList.toggle('hidden');
 
-          // Inicializar autocomplete cuando se abre el modal
-          setTimeout(() => {
-            // Intentar inicializar Algolia Autocomplete
-            try {
-              const container = document.getElementById('autocomplete');
-              if (container && window.autocomplete) {
-                console.log('SearchButton: Initializing autocomplete');
-                window.autocompleteInstance = window.autocomplete({
-                  container: '#autocomplete',
-                  placeholder: 'Buscar artículos...',
-                  openOnFocus: true,
-                  detachedMediaQuery: ''
-                });
-              }
-            } catch (error) {
-              console.error('SearchButton: Error initializing autocomplete', error);
-            }
+      if (!searchModal.classList.contains('hidden')) {
+        document.body.classList.add('overflow-hidden');
 
-            // Enfocar el campo de búsqueda
-            const input = document.querySelector('.aa-Input');
-            if (input) {
-              input.focus();
-            }
-          }, 100);
-        }
-      });
+        // Enfocar el campo de búsqueda
+        setTimeout(() => {
+          const input = document.querySelector('.aa-Input');
+          if (input) {
+            input.focus();
+          }
+        }, 100);
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+    } else {
+      console.error('Search modal or backdrop not found');
     }
-  });
+  }
 </script>

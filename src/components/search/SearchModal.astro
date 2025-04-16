@@ -7,14 +7,14 @@ const t = useTranslations(lang);
 
 <div id="search-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
   <div class="flex min-h-screen items-center justify-center p-4 text-center">
-    <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" id="search-backdrop"></div>
+    <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" id="search-backdrop" onclick="toggleSearchModal()"></div>
 
     <div class="relative w-full max-w-2xl transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 p-6 text-left shadow-xl transition-all">
       <div class="mb-4 flex items-center justify-between">
         <h3 class="text-lg font-medium text-gray-900 dark:text-white">
           {lang === 'es' ? 'Buscar en el blog' : 'Search the blog'}
         </h3>
-        <button id="close-search-modal" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+        <button id="close-search-modal" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300" onclick="toggleSearchModal()">
           <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -26,34 +26,60 @@ const t = useTranslations(lang);
   </div>
 </div>
 
+<script is:inline>
+  // Función global para abrir/cerrar el modal de búsqueda
+  function toggleSearchModal() {
+    console.log('toggleSearchModal called');
+    const searchModal = document.getElementById('search-modal');
+    const searchBackdrop = document.getElementById('search-backdrop');
+
+    if (searchModal && searchBackdrop) {
+      console.log('Toggling search modal');
+      searchModal.classList.toggle('hidden');
+
+      if (!searchModal.classList.contains('hidden')) {
+        document.body.classList.add('overflow-hidden');
+
+        // Inicializar autocomplete cuando se abre el modal
+        initAlgoliaAutocomplete();
+
+        // Enfocar el campo de búsqueda
+        setTimeout(() => {
+          const input = document.querySelector('.aa-Input');
+          if (input) {
+            input.focus();
+          }
+        }, 100);
+      } else {
+        document.body.classList.remove('overflow-hidden');
+      }
+    } else {
+      console.error('Search modal or backdrop not found');
+    }
+  }
+</script>
+
 <script>
   import algoliasearch from 'algoliasearch/lite';
   import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
   import '@algolia/autocomplete-theme-classic';
 
-  // Exponer autocomplete globalmente para que pueda ser usado desde SearchButton
+  // Exponer variables y funciones globalmente
   window.autocomplete = autocomplete;
   window.getAlgoliaResults = getAlgoliaResults;
+  window.algoliasearch = algoliasearch;
   window.autocompleteInstance = null;
 
-  document.addEventListener('astro:page-load', () => {
-    console.log('SearchModal: astro:page-load event fired');
-
-    // Elementos del DOM
-    const searchModal = document.getElementById('search-modal');
-    const searchBackdrop = document.getElementById('search-backdrop');
-    const closeButton = document.getElementById('close-search-modal');
-    const searchButton = document.getElementById('search-button');
-    const searchButtons = document.querySelectorAll('.search-button');
-
-    console.log('SearchModal: Modal element exists:', !!searchModal);
-    console.log('SearchModal: Search button exists:', !!searchButton);
-    console.log('SearchModal: Number of search buttons found:', searchButtons.length);
+  // Función global para inicializar Algolia Autocomplete
+  window.initAlgoliaAutocomplete = function() {
+    console.log('initAlgoliaAutocomplete called');
 
     // Configuración de Algolia
-    const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID;
-    const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY;
-    const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME;
+    const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID || 'ECFPLTCVYS';
+    const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY || '463072454d6fd853983fceec6f91f12a';
+    const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'cronometras_blog';
+
+    console.log('Algolia config:', { appId, apiKey: apiKey.substring(0, 5) + '...', indexName });
 
     if (!appId || !apiKey || !indexName) {
       console.error('Algolia environment variables are not set correctly');
@@ -66,15 +92,12 @@ const t = useTranslations(lang);
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
     const currentLang = pathSegments[0] === 'es' || pathSegments[0] === 'en' ? pathSegments[0] : 'es';
 
-    // Inicializar Autocomplete
-    let autocompleteInstance = null;
+    // Destruir instancia anterior si existe
+    if (window.autocompleteInstance) {
+      window.autocompleteInstance.destroy();
+    }
 
-    function initAutocomplete() {
-      if (autocompleteInstance) {
-        autocompleteInstance.destroy();
-      }
-
-      autocompleteInstance = autocomplete({
+      window.autocompleteInstance = window.autocomplete({
         container: '#autocomplete',
         placeholder: currentLang === 'es' ? 'Buscar artículos...' : 'Search articles...',
         openOnFocus: true,
@@ -84,7 +107,7 @@ const t = useTranslations(lang);
             {
               sourceId: 'blog-posts',
               getItems() {
-                return getAlgoliaResults({
+                return window.getAlgoliaResults({
                   searchClient,
                   queries: [
                     {
@@ -164,67 +187,21 @@ const t = useTranslations(lang);
       });
     }
 
-    // Funciones para abrir y cerrar el modal
-    function openSearchModal() {
-      if (searchModal) {
-        searchModal.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
+    // Inicializar Algolia cuando se carga la página
+    document.addEventListener('astro:page-load', () => {
+      console.log('SearchModal: astro:page-load event fired');
 
-        // Inicializar autocomplete cuando se abre el modal
-        initAutocomplete();
-
-        // Enfocar el campo de búsqueda
-        setTimeout(() => {
-          const input = document.querySelector('.aa-Input');
-          if (input) {
-            input.focus();
+      // Cerrar con Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const searchModal = document.getElementById('search-modal');
+          if (searchModal && !searchModal.classList.contains('hidden')) {
+            toggleSearchModal();
           }
-        }, 100);
-      }
-    }
-
-    function closeSearchModal() {
-      if (searchModal) {
-        searchModal.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-      }
-    }
-
-    // Event listeners
-    if (searchButton) {
-      console.log('SearchModal: Adding click event to search button');
-      searchButton.addEventListener('click', (e) => {
-        console.log('SearchModal: Search button clicked');
-        openSearchModal();
+        }
       });
-    }
-
-    // También añadimos eventos a todos los botones con la clase search-button
-    if (searchButtons && searchButtons.length > 0) {
-      console.log('SearchModal: Adding click events to all search buttons');
-      searchButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-          console.log('SearchModal: Search button (class) clicked');
-          openSearchModal();
-        });
-      });
-    }
-
-    if (closeButton) {
-      closeButton.addEventListener('click', closeSearchModal);
-    }
-
-    if (searchBackdrop) {
-      searchBackdrop.addEventListener('click', closeSearchModal);
-    }
-
-    // Cerrar con Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && searchModal && !searchModal.classList.contains('hidden')) {
-        closeSearchModal();
-      }
     });
-  });
+  };
 </script>
 
 <style is:global>
