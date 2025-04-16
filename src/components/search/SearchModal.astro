@@ -32,11 +32,18 @@ const t = useTranslations(lang);
   import '@algolia/autocomplete-theme-classic';
 
   document.addEventListener('astro:page-load', () => {
+    console.log('SearchModal: astro:page-load event fired');
+
     // Elementos del DOM
     const searchModal = document.getElementById('search-modal');
     const searchBackdrop = document.getElementById('search-backdrop');
     const closeButton = document.getElementById('close-search-modal');
+    const searchButton = document.getElementById('search-button');
     const searchButtons = document.querySelectorAll('.search-button');
+
+    console.log('SearchModal: Modal element exists:', !!searchModal);
+    console.log('SearchModal: Search button exists:', !!searchButton);
+    console.log('SearchModal: Number of search buttons found:', searchButtons.length);
 
     // Configuración de Algolia
     const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID;
@@ -179,9 +186,22 @@ const t = useTranslations(lang);
     }
 
     // Event listeners
-    if (searchButtons) {
+    if (searchButton) {
+      console.log('SearchModal: Adding click event to search button');
+      searchButton.addEventListener('click', (e) => {
+        console.log('SearchModal: Search button clicked');
+        openSearchModal();
+      });
+    }
+
+    // También añadimos eventos a todos los botones con la clase search-button
+    if (searchButtons && searchButtons.length > 0) {
+      console.log('SearchModal: Adding click events to all search buttons');
       searchButtons.forEach(button => {
-        button.addEventListener('click', openSearchModal);
+        button.addEventListener('click', (e) => {
+          console.log('SearchModal: Search button (class) clicked');
+          openSearchModal();
+        });
       });
     }
 
