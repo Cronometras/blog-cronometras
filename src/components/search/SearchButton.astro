@@ -43,6 +43,31 @@ const t = useTranslations(lang);
           console.log('SearchButton: Attempting to open modal directly');
           searchModal.classList.remove('hidden');
           document.body.classList.add('overflow-hidden');
+
+          // Inicializar autocomplete cuando se abre el modal
+          setTimeout(() => {
+            // Intentar inicializar Algolia Autocomplete
+            try {
+              const container = document.getElementById('autocomplete');
+              if (container && window.autocomplete) {
+                console.log('SearchButton: Initializing autocomplete');
+                window.autocompleteInstance = window.autocomplete({
+                  container: '#autocomplete',
+                  placeholder: 'Buscar artículos...',
+                  openOnFocus: true,
+                  detachedMediaQuery: ''
+                });
+              }
+            } catch (error) {
+              console.error('SearchButton: Error initializing autocomplete', error);
+            }
+
+            // Enfocar el campo de búsqueda
+            const input = document.querySelector('.aa-Input');
+            if (input) {
+              input.focus();
+            }
+          }, 100);
         }
       });
     }

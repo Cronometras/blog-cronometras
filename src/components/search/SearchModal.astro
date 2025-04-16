@@ -31,6 +31,11 @@ const t = useTranslations(lang);
   import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
   import '@algolia/autocomplete-theme-classic';
 
+  // Exponer autocomplete globalmente para que pueda ser usado desde SearchButton
+  window.autocomplete = autocomplete;
+  window.getAlgoliaResults = getAlgoliaResults;
+  window.autocompleteInstance = null;
+
   document.addEventListener('astro:page-load', () => {
     console.log('SearchModal: astro:page-load event fired');
 
