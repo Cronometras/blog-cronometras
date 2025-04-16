@@ -79,8 +79,13 @@ const t = useTranslations(lang);
                       indexName,
                       query,
                       params: {
-                        hitsPerPage: 8,
-                        filters: `lang:${currentLang}`
+                        hitsPerPage: 10,
+                        filters: `lang:${currentLang}`,
+                        attributesToHighlight: ['title', 'description', 'content'],
+                        attributesToSnippet: ['content:30'],
+                        snippetEllipsisText: '...',
+                        highlightPreTag: '<mark>',
+                        highlightPostTag: '</mark>'
                       },
                     },
                   ],
@@ -116,7 +121,19 @@ const t = useTranslations(lang);
                             })}
                           </div>
                           <div class="aa-ItemContentCategory">
-                            ${item.category}
+                            <span class="aa-ItemContentCategoryLabel">${item.category}</span>
+                            ${item.tags && item.tags.length > 0 ? `
+                              <span class="aa-ItemContentTags">
+                                ${item.tags.slice(0, 3).map(tag => `<span class="aa-ItemContentTag">${tag}</span>`).join('')}
+                              </span>
+                            ` : ''}
+                          </div>
+                          <div class="aa-ItemContentDate">
+                            ${item.pubDate ? new Date(item.pubDate).toLocaleDateString(currentLang === 'es' ? 'es-ES' : 'en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            }) : ''}
                           </div>
                         </div>
                       </div>
@@ -212,11 +229,31 @@ const t = useTranslations(lang);
   }
 
   .aa-ItemContentCategory {
-    @apply text-xs text-accent dark:text-secondary mt-1;
+    @apply text-xs mt-1 flex flex-wrap gap-1 items-center;
   }
+
+  .aa-ItemContentCategoryLabel {
+    @apply text-accent dark:text-secondary font-medium;
+  }
+
+  .aa-ItemContentTags {
+    @apply flex flex-wrap gap-1;
+  }
+
+  .aa-ItemContentTag {
+    @apply bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded-sm text-gray-600 dark:text-gray-300 text-xs;
+  }
+
+  .aa-ItemContentDate {
+    @apply text-xs text-gray-500 dark:text-gray-400 mt-1;
 
   /* Destacado de coincidencias */
   .aa-Highlight mark {
     @apply bg-yellow-200 dark:bg-yellow-700 text-gray-900 dark:text-white;
+  }
+
+  /* Estilos para el panel de resultados */
+  .aa-Panel {
+    @apply max-h-[80vh] overflow-y-auto;
   }
 </style>
