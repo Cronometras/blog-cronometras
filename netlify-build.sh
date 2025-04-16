@@ -52,61 +52,61 @@ else
 
   # Crear un script para eliminar importaciones de WebpImage
   cat > fix-webpimage.js << 'EOL'
-  const fs = require('fs');
-  const path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-  function getAllFiles(dir, fileList = []) {
-    const files = fs.readdirSync(dir);
+function getAllFiles(dir, fileList = []) {
+  const files = fs.readdirSync(dir);
 
-    files.forEach(file => {
-      const filePath = path.join(dir, file);
-      const stat = fs.statSync(filePath);
+  files.forEach(file => {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
 
-      if (stat.isDirectory()) {
-        getAllFiles(filePath, fileList);
-      } else if (path.extname(file) === '.mdx') {
-        fileList.push(filePath);
+    if (stat.isDirectory()) {
+      getAllFiles(filePath, fileList);
+    } else if (path.extname(file) === '.mdx') {
+      fileList.push(filePath);
+    }
+  });
+
+  return fileList;
+}
+
+function fixWebpImageIssues() {
+  const mdxFiles = getAllFiles(path.join(__dirname, 'src', 'content'));
+  console.log(`Encontrados ${mdxFiles.length} archivos MDX para procesar.`);
+
+  let updatedFiles = 0;
+
+  mdxFiles.forEach(filePath => {
+    let content = fs.readFileSync(filePath, 'utf8');
+    let originalContent = content;
+
+    // Eliminar importaciones de WebpImage
+    content = content.replace(/\/\/?\s*import\s+WebpImage\s+from\s+['\"](\@components|\.\.\/)?WebpImage\.astro['\"];?/g, '');
+
+    // Reemplazar etiquetas WebpImage por img
+    content = content.replace(/<WebpImage\s+src=['\"]([^'\"]+)['\"]\s+alt=['\"]([^'\"]+)['\"](?:\s+class=['\"]([^'\"]+)['\"])?(?:\s+[^>]*)?(?:\s+\/?><\/WebpImage>|\s*\/>)/g,
+      (match, src, alt, className) => {
+        let imgTag = `<img src="${src}" alt="${alt}"`;
+        if (className) imgTag += ` class="${className}"`;
+        imgTag += ` />`;
+        return imgTag;
       }
-    });
+    );
 
-    return fileList;
-  }
+    if (content !== originalContent) {
+      fs.writeFileSync(filePath, content, 'utf8');
+      updatedFiles++;
+      console.log(`Actualizado: ${filePath}`);
+    }
+  });
 
-  function fixWebpImageIssues() {
-    const mdxFiles = getAllFiles(path.join(__dirname, 'src', 'content'));
-    console.log(`Encontrados ${mdxFiles.length} archivos MDX para procesar.`);
+  console.log(`\nResumen:\n- Archivos procesados: ${mdxFiles.length}\n- Archivos actualizados: ${updatedFiles}`);
+}
 
-    let updatedFiles = 0;
-
-    mdxFiles.forEach(filePath => {
-      let content = fs.readFileSync(filePath, 'utf8');
-      let originalContent = content;
-
-      // Eliminar importaciones de WebpImage
-      content = content.replace(/\/\/?\s*import\s+WebpImage\s+from\s+['\"](\@components|\.\.\/)WebpImage\.astro['\"];?/g, '');
-
-      // Reemplazar etiquetas WebpImage por img
-      content = content.replace(/<WebpImage\s+src=['\"]([^'\"]+)['\"]\s+alt=['\"]([^'\"]+)['\"](?:\s+class=['\"]([^'\"]+)['\"])?(?:\s+[^>]*)?(?:\s+\/?>\s*<\/WebpImage>|\s*\/>)/g,
-        (match, src, alt, className) => {
-          let imgTag = `<img src="${src}" alt="${alt}"`;
-          if (className) imgTag += ` class="${className}"`;
-          imgTag += ` />`;
-          return imgTag;
-        }
-      );
-
-      if (content !== originalContent) {
-        fs.writeFileSync(filePath, content, 'utf8');
-        updatedFiles++;
-        console.log(`Actualizado: ${filePath}`);
-      }
-    });
-
-    console.log(`\nResumen:\n- Archivos procesados: ${mdxFiles.length}\n- Archivos actualizados: ${updatedFiles}`);
-  }
-
-  fixWebpImageIssues();
-  EOL
+fixWebpImageIssues();
+EOL
 
   # Ejecutar el script
   node fix-webpimage.js
