@@ -1,7 +1,7 @@
 # Redirecciones de idioma por defecto
-/  /es/  301  Language=es
-/  /en/  301  Language=en
-/  /es/  301
+/  /es/  301!  Language=es
+/  /en/  301!  Language=en
+/  /es/  301!
 
 # Redirecciones específicas
 /about      /es/about/    301  Language=es
@@ -154,5 +154,7 @@
 # Redirección para las rutas de API
 /api/*  /.netlify/functions/:splat  200
 
-# SPA fallback
+# Nota: Eliminadas redirecciones que causaban bucles
+
+# SPA fallback - Solo para rutas que no existen
 /*  /es/404/  404
