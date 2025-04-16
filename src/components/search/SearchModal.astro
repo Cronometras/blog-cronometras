@@ -1,0 +1,222 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div id="search-modal" class="fixed inset-0 z-50 hidden overflow-y-auto">
+  <div class="flex min-h-screen items-center justify-center p-4 text-center">
+    <div class="fixed inset-0 bg-black bg-opacity-50 transition-opacity" id="search-backdrop"></div>
+    
+    <div class="relative w-full max-w-2xl transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 p-6 text-left shadow-xl transition-all">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+          {lang === 'es' ? 'Buscar en el blog' : 'Search the blog'}
+        </h3>
+        <button id="close-search-modal" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      
+      <div id="autocomplete" class="w-full"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import algoliasearch from 'algoliasearch/lite';
+  import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
+  import '@algolia/autocomplete-theme-classic';
+
+  document.addEventListener('astro:page-load', () => {
+    // Elementos del DOM
+    const searchModal = document.getElementById('search-modal');
+    const searchBackdrop = document.getElementById('search-backdrop');
+    const closeSearchModal = document.getElementById('close-search-modal');
+    const searchButtons = document.querySelectorAll('.search-button');
+    
+    // Configuración de Algolia
+    const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID;
+    const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY;
+    const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME;
+    
+    if (!appId || !apiKey || !indexName) {
+      console.error('Algolia environment variables are not set correctly');
+      return;
+    }
+    
+    const searchClient = algoliasearch(appId, apiKey);
+    
+    // Obtener el idioma actual de la URL
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    const currentLang = pathSegments[0] === 'es' || pathSegments[0] === 'en' ? pathSegments[0] : 'es';
+    
+    // Inicializar Autocomplete
+    let autocompleteInstance = null;
+    
+    function initAutocomplete() {
+      if (autocompleteInstance) {
+        autocompleteInstance.destroy();
+      }
+      
+      autocompleteInstance = autocomplete({
+        container: '#autocomplete',
+        placeholder: currentLang === 'es' ? 'Buscar artículos...' : 'Search articles...',
+        openOnFocus: true,
+        detachedMediaQuery: '',
+        getSources({ query }) {
+          return [
+            {
+              sourceId: 'blog-posts',
+              getItems() {
+                return getAlgoliaResults({
+                  searchClient,
+                  queries: [
+                    {
+                      indexName,
+                      query,
+                      params: {
+                        hitsPerPage: 8,
+                        filters: `lang:${currentLang}`
+                      },
+                    },
+                  ],
+                });
+              },
+              getItemUrl({ item }) {
+                return `/${currentLang}/blog/${item.slug}`;
+              },
+              templates: {
+                item({ item, components, html }) {
+                  return html`
+                    <a href="/${currentLang}/blog/${item.slug}" class="aa-ItemLink">
+                      <div class="aa-ItemContent">
+                        <div class="aa-ItemIcon aa-ItemIcon--alignTop">
+                          <img 
+                            src="${item.heroImage || '/images/webp/default.webp'}" 
+                            alt="${item.title}"
+                            width="40"
+                            height="40"
+                          />
+                        </div>
+                        <div class="aa-ItemContentBody">
+                          <div class="aa-ItemContentTitle">
+                            ${components.Highlight({
+                              hit: item,
+                              attribute: 'title',
+                            })}
+                          </div>
+                          <div class="aa-ItemContentDescription">
+                            ${components.Highlight({
+                              hit: item,
+                              attribute: 'description',
+                            })}
+                          </div>
+                          <div class="aa-ItemContentCategory">
+                            ${item.category}
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  `;
+                },
+                noResults() {
+                  return currentLang === 'es' 
+                    ? 'No se encontraron resultados para esta búsqueda.'
+                    : 'No results found for this search.';
+                },
+              },
+            },
+          ];
+        },
+      });
+    }
+    
+    // Funciones para abrir y cerrar el modal
+    function openSearchModal() {
+      if (searchModal) {
+        searchModal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        
+        // Inicializar autocomplete cuando se abre el modal
+        initAutocomplete();
+        
+        // Enfocar el campo de búsqueda
+        setTimeout(() => {
+          const input = document.querySelector('.aa-Input');
+          if (input) {
+            input.focus();
+          }
+        }, 100);
+      }
+    }
+    
+    function closeSearchModal() {
+      if (searchModal) {
+        searchModal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+    
+    // Event listeners
+    if (searchButtons) {
+      searchButtons.forEach(button => {
+        button.addEventListener('click', openSearchModal);
+      });
+    }
+    
+    if (closeSearchModal) {
+      closeSearchModal.addEventListener('click', closeSearchModal);
+    }
+    
+    if (searchBackdrop) {
+      searchBackdrop.addEventListener('click', closeSearchModal);
+    }
+    
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchModal && !searchModal.classList.contains('hidden')) {
+        closeSearchModal();
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  /* Estilos adicionales para el modal y autocomplete */
+  .aa-Panel {
+    @apply shadow-lg border border-gray-200 dark:border-gray-700;
+  }
+  
+  .aa-Form {
+    @apply shadow-sm border border-gray-300 dark:border-gray-600 rounded-lg;
+  }
+  
+  .aa-Input {
+    @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
+  }
+  
+  .aa-Item {
+    @apply hover:bg-gray-100 dark:hover:bg-gray-700;
+  }
+  
+  .aa-ItemContentTitle {
+    @apply text-gray-900 dark:text-white font-medium;
+  }
+  
+  .aa-ItemContentDescription {
+    @apply text-gray-600 dark:text-gray-300 text-sm;
+  }
+  
+  .aa-ItemContentCategory {
+    @apply text-xs text-accent dark:text-secondary mt-1;
+  }
+  
+  /* Destacado de coincidencias */
+  .aa-Highlight mark {
+    @apply bg-yellow-200 dark:bg-yellow-700 text-gray-900 dark:text-white;
+  }
+</style>
