@@ -35,7 +35,7 @@ const t = useTranslations(lang);
     // Elementos del DOM
     const searchModal = document.getElementById('search-modal');
     const searchBackdrop = document.getElementById('search-backdrop');
-    const closeSearchModal = document.getElementById('close-search-modal');
+    const closeButton = document.getElementById('close-search-modal');
     const searchButtons = document.querySelectorAll('.search-button');
 
     // Configuración de Algolia
@@ -168,7 +168,6 @@ const t = useTranslations(lang);
       });
     }
 
-    const closeButton = document.getElementById('close-search-modal');
     if (closeButton) {
       closeButton.addEventListener('click', closeSearchModal);
     }
