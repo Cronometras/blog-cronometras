@@ -43,13 +43,24 @@ const t = useTranslations(lang);
       if (!searchModal.classList.contains('hidden')) {
         document.body.classList.add('overflow-hidden');
 
+        // Inicializar Algolia Autocomplete
+        if (typeof window.initAlgoliaAutocomplete === 'function') {
+          console.log('Calling initAlgoliaAutocomplete from toggleSearchModal');
+          window.initAlgoliaAutocomplete();
+        } else {
+          console.error('initAlgoliaAutocomplete is not available');
+        }
+
         // Enfocar el campo de búsqueda
         setTimeout(() => {
           const input = document.querySelector('.aa-Input');
           if (input) {
+            console.log('Focusing input field');
             input.focus();
+          } else {
+            console.error('Input field not found');
           }
-        }, 100);
+        }, 300);
       } else {
         document.body.classList.remove('overflow-hidden');
       }

@@ -74,58 +74,81 @@ const t = useTranslations(lang);
   window.initAlgoliaAutocomplete = function() {
     console.log('initAlgoliaAutocomplete called');
 
-    // Configuración de Algolia
-    const appId = import.meta.env.PUBLIC_ALGOLIA_APP_ID || 'ECFPLTCVYS';
-    const apiKey = import.meta.env.PUBLIC_ALGOLIA_SEARCH_API_KEY || '463072454d6fd853983fceec6f91f12a';
-    const indexName = import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME || 'cronometras_blog';
+    try {
+      // Verificar que el contenedor existe
+      const container = document.getElementById('autocomplete');
+      if (!container) {
+        console.error('Autocomplete container not found');
+        return;
+      }
 
-    console.log('Algolia config:', { appId, apiKey: apiKey.substring(0, 5) + '...', indexName });
+      // Verificar que las funciones necesarias están disponibles
+      if (typeof window.algoliasearch !== 'function' || typeof window.autocomplete !== 'function') {
+        console.error('Algolia functions not available', {
+          algoliasearch: typeof window.algoliasearch,
+          autocomplete: typeof window.autocomplete
+        });
+        return;
+      }
 
-    if (!appId || !apiKey || !indexName) {
-      console.error('Algolia environment variables are not set correctly');
-      return;
-    }
+      // Configuración de Algolia
+      const appId = 'ECFPLTCVYS';
+      const apiKey = '463072454d6fd853983fceec6f91f12a';
+      const indexName = 'cronometras_blog';
 
-    const searchClient = algoliasearch(appId, apiKey);
+      console.log('Algolia config:', { appId, apiKey: apiKey.substring(0, 5) + '...', indexName });
 
-    // Obtener el idioma actual de la URL
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    const currentLang = pathSegments[0] === 'es' || pathSegments[0] === 'en' ? pathSegments[0] : 'es';
+      const searchClient = window.algoliasearch(appId, apiKey);
 
-    // Destruir instancia anterior si existe
-    if (window.autocompleteInstance) {
-      window.autocompleteInstance.destroy();
-    }
+      // Obtener el idioma actual de la URL
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      const currentLang = pathSegments[0] === 'es' || pathSegments[0] === 'en' ? pathSegments[0] : 'es';
 
-      window.autocompleteInstance = window.autocomplete({
-        container: '#autocomplete',
-        placeholder: currentLang === 'es' ? 'Buscar artículos...' : 'Search articles...',
-        openOnFocus: true,
-        detachedMediaQuery: '',
-        getSources({ query }) {
-          return [
-            {
-              sourceId: 'blog-posts',
-              getItems() {
-                return window.getAlgoliaResults({
-                  searchClient,
-                  queries: [
-                    {
-                      indexName,
-                      query,
-                      params: {
-                        hitsPerPage: 10,
-                        filters: `lang:${currentLang}`,
-                        attributesToHighlight: ['title', 'description', 'content'],
-                        attributesToSnippet: ['content:30'],
-                        snippetEllipsisText: '...',
-                        highlightPreTag: '<mark>',
-                        highlightPostTag: '</mark>'
-                      },
-                    },
-                  ],
-                });
-              },
+      // Destruir instancia anterior si existe
+      if (window.autocompleteInstance) {
+        try {
+          window.autocompleteInstance.destroy();
+        } catch (e) {
+          console.error('Error destroying previous instance', e);
+        }
+      }
+
+      try {
+        console.log('Creating autocomplete instance');
+        window.autocompleteInstance = window.autocomplete({
+          container: '#autocomplete',
+          placeholder: currentLang === 'es' ? 'Buscar artículos...' : 'Search articles...',
+          openOnFocus: true,
+          detachedMediaQuery: '',
+          getSources({ query }) {
+            return [
+              {
+                sourceId: 'blog-posts',
+                getItems() {
+                  try {
+                    return window.getAlgoliaResults({
+                      searchClient,
+                      queries: [
+                        {
+                          indexName,
+                          query,
+                          params: {
+                            hitsPerPage: 10,
+                            filters: `lang:${currentLang}`,
+                            attributesToHighlight: ['title', 'description', 'content'],
+                            attributesToSnippet: ['content:30'],
+                            snippetEllipsisText: '...',
+                            highlightPreTag: '<mark>',
+                            highlightPostTag: '</mark>'
+                          },
+                        },
+                      ],
+                    });
+                  } catch (e) {
+                    console.error('Error getting Algolia results', e);
+                    return [];
+                  }
+                },
               getItemUrl({ item }) {
                 return `/${currentLang}/blog/${item.slug}`;
               },
@@ -185,7 +208,11 @@ const t = useTranslations(lang);
           ];
         },
       });
+      console.log('Autocomplete instance created successfully');
+    } catch (e) {
+      console.error('Error creating autocomplete instance', e);
     }
+  }
 
     // Inicializar Algolia cuando se carga la página
     document.addEventListener('astro:page-load', () => {
