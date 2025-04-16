@@ -2,7 +2,7 @@
 import Logo from "../../components/core/Logo.astro";
 import ThemeToggle from "../../components/core/ThemeToggle.astro";
 import LanguagePicker from "../../components/LanguagePicker.astro";
-import SearchButton from "../../components/search/SearchButton.astro";
+import SimpleSearch from "../../components/search/SimpleSearch.astro";
 import config from "../../config/config.json";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "../../i18n/utils";
 
@@ -94,7 +94,7 @@ const isActiveUrl = (menuUrl: string) => {
       </div>
 
       <div class="flex items-center justify-end space-x-6 md:space-x-4">
-        <SearchButton />
+        <SimpleSearch />
         <LanguagePicker />
         <ThemeToggle />
         <!-- Botón de menú móvil -->
