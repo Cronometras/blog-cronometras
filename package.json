@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier -w .",
-    "algolia:index": "node scripts/generate-algolia-index.js"
+    "algolia:index": "node scripts/generate-algolia-index.js",
+    "algolia:index:full": "node scripts/generate-algolia-index-full.js"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.18.1",
@@ -58,6 +59,7 @@
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "autoprefixer": "^10.4.20",
+    "cheerio": "^1.0.0",
     "dotenv": "^16.5.0",
     "glob": "^10.4.5",
     "gray-matter": "^4.0.3",
