@@ -44,6 +44,49 @@
 /pantalla-de-cronometraje      /es/repetitive/    301
 /pantalla-de-cronometraje/     /es/repetitive/    301
 
+# Redirecciones para URLs con espacios en el blog
+/es/blog/define%20el%20metodo%20de%20trabajo /es/blog/define-el-metodo-de-trabajo 301!
+/es/blog/define%20el%20metodo%20de%20trabajo/ /es/blog/define-el-metodo-de-trabajo/ 301!
+
+# Redirecciones genéricas para URLs con espacios
+/es/blog/*%20* /es/blog/:splat1-:splat2 301!
+/en/blog/*%20* /en/blog/:splat1-:splat2 301!
+/blog/*%20* /es/blog/:splat1-:splat2 301!
+/*%20* /es/blog/:splat1-:splat2 301!
+
+# Redirecciones para URLs con múltiples espacios
+/es/blog/*%20*%20* /es/blog/:splat1-:splat2-:splat3 301!
+/en/blog/*%20*%20* /en/blog/:splat1-:splat2-:splat3 301!
+/blog/*%20*%20* /es/blog/:splat1-:splat2-:splat3 301!
+/*%20*%20* /es/blog/:splat1-:splat2-:splat3 301!
+
+# Redirecciones para URLs con tres espacios
+/es/blog/*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4 301!
+/en/blog/*%20*%20*%20* /en/blog/:splat1-:splat2-:splat3-:splat4 301!
+/blog/*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4 301!
+/*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4 301!
+
+# Redirecciones para URLs con cuatro espacios
+/es/blog/*%20*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4-:splat5 301!
+/en/blog/*%20*%20*%20*%20* /en/blog/:splat1-:splat2-:splat3-:splat4-:splat5 301!
+/blog/*%20*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4-:splat5 301!
+/*%20*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4-:splat5 301!
+
+# Redirecciones específicas para artículos con espacios
+/es/blog/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura 301!
+/es/blog/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos 301!
+/es/blog/que%20es%20el%20cronometraje%20industrial /es/blog/que-es-el-cronometraje-industrial 301!
+/es/blog/cuales%20son%20las%20tecnicas%20de%20cronometraje%20industrial /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial 301!
+/es/blog/optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial 301!
+
+# Redirecciones para URLs antiguas sin prefijo de idioma y con espacios
+/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura 301!
+/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos 301!
+/que%20es%20el%20cronometraje%20industrial /es/blog/que-es-el-cronometraje-industrial 301!
+/cuales%20son%20las%20tecnicas%20de%20cronometraje%20industrial /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial 301!
+/optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial 301!
+/define%20el%20metodo%20de%20trabajo /es/blog/define-el-metodo-de-trabajo 301!
+
 # Redirecciones prioritarias para artículos del blog con problemas
 /balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura*     /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301!
 /calculo-de-saturacion-en-un-estudio-de-tiempos*     /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301!
