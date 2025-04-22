@@ -181,6 +181,95 @@
   status = 301
   force = true
 
+# Redirecciones para URLs con espacios (%20) a URLs con guiones (-) en el blog
+[[redirects]]
+  from = "/es/blog/*%20*"
+  to = "/es/blog/:splat1-:splat2/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2"}
+
+# Redirecciones para URLs antiguas sin prefijo de idioma
+[[redirects]]
+  from = "/blog/*%20*"
+  to = "/es/blog/:splat1-:splat2/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2"}
+
+[[redirects]]
+  from = "/*%20*"
+  to = "/es/blog/:splat1-:splat2/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2"}
+
+[[redirects]]
+  from = "/en/blog/*%20*"
+  to = "/en/blog/:splat1-:splat2/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2"}
+
+# Redirección para URLs con múltiples espacios
+[[redirects]]
+  from = "/es/blog/*%20*%20*"
+  to = "/es/blog/:splat1-:splat2-:splat3/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3"}
+
+[[redirects]]
+  from = "/blog/*%20*%20*"
+  to = "/es/blog/:splat1-:splat2-:splat3/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3"}
+
+[[redirects]]
+  from = "/*%20*%20*"
+  to = "/es/blog/:splat1-:splat2-:splat3/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3"}
+
+[[redirects]]
+  from = "/en/blog/*%20*%20*"
+  to = "/en/blog/:splat1-:splat2-:splat3/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3"}
+
+# Redirección para URLs con aún más espacios
+[[redirects]]
+  from = "/es/blog/*%20*%20*%20*"
+  to = "/es/blog/:splat1-:splat2-:splat3-:splat4/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3", splat4 = ":splat4"}
+
+[[redirects]]
+  from = "/en/blog/*%20*%20*%20*"
+  to = "/en/blog/:splat1-:splat2-:splat3-:splat4/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3", splat4 = ":splat4"}
+
+# Redirección para URLs con cinco palabras
+[[redirects]]
+  from = "/es/blog/*%20*%20*%20*%20*"
+  to = "/es/blog/:splat1-:splat2-:splat3-:splat4-:splat5/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3", splat4 = ":splat4", splat5 = ":splat5"}
+
+[[redirects]]
+  from = "/en/blog/*%20*%20*%20*%20*"
+  to = "/en/blog/:splat1-:splat2-:splat3-:splat4-:splat5/"
+  status = 301
+  force = true
+  query = {splat1 = ":splat1", splat2 = ":splat2", splat3 = ":splat3", splat4 = ":splat4", splat5 = ":splat5"}
+
 # Asegurarse de que las rutas de API funcionen
 [[redirects]]
   from = "/api/*"
