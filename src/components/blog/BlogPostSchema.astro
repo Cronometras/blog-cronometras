@@ -21,8 +21,11 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": title,
+  "name": title,
   "description": description,
-  "image": heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString(),
+  "image": [
+    heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()
+  ],
   "datePublished": pubDate.toISOString(),
   "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
   "inLanguage": lang === 'es' ? 'es-ES' : 'en-US',
@@ -32,14 +35,18 @@ const schema = {
   },
   "author": {
     "@type": "Person",
-    "name": author
+    "name": author,
+    "url": config.site.base_url
   },
   "publisher": {
     "@type": "Organization",
     "name": "CRONOMETRAS",
+    "url": config.site.base_url,
     "logo": {
       "@type": "ImageObject",
-      "url": new URL("/images/logo.png", config.site.base_url).toString()
+      "url": new URL("/images/logo.png", config.site.base_url).toString(),
+      "width": 192,
+      "height": 192
     }
   }
 };
@@ -59,3 +66,74 @@ const schemaString = JSON.stringify(schema);
 
 <!-- Insertar el esquema JSON-LD en la página -->
 <script type="application/ld+json" set:html={schemaString} />
+
+<!-- Etiquetas Open Graph específicas para este artículo -->
+<meta slot="head" property="og:title" content={title} />
+<meta slot="head" property="og:description" content={description} />
+<meta slot="head" property="og:type" content="article" />
+<meta slot="head" property="og:url" content={canonicalUrl} />
+<meta slot="head" property="og:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<!-- Asegurarnos de que LinkedIn use la imagen correcta -->
+<meta slot="head" name="image" property="og:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<meta slot="head" property="og:image:width" content="1200" />
+<meta slot="head" property="og:image:height" content="630" />
+<meta slot="head" property="og:image:alt" content={title} />
+<meta slot="head" property="og:site_name" content="Cronometras" />
+<meta slot="head" property="og:locale" content={lang === 'es' ? "es_ES" : "en_US"} />
+<meta slot="head" property="article:published_time" content={pubDate.toISOString()} />
+<meta slot="head" property="article:modified_time" content={updatedDate ? updatedDate.toISOString() : pubDate.toISOString()} />
+<meta slot="head" property="article:author" content={author} />
+<meta slot="head" property="article:section" content={category} />
+<meta slot="head" property="article:tag" content={tags ? tags.join(',') : category} />
+
+<!-- Etiquetas específicas para LinkedIn -->
+<meta slot="head" name="linkedin:title" content={title} />
+<meta slot="head" name="linkedin:description" content={description} />
+<meta slot="head" name="linkedin:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<meta slot="head" name="linkedin:author" content={author} />
+<!-- Etiquetas adicionales para LinkedIn -->
+<meta slot="head" name="twitter:card" content="summary_large_image" />
+<meta slot="head" name="twitter:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+
+<!-- Script para depuración de metadatos - solo se ejecuta en el cliente -->
+<script is:inline>
+  // Usamos is:inline para evitar problemas con el renderizado del servidor
+  document.addEventListener('DOMContentLoaded', function() {
+    // Depuración de metadatos para LinkedIn
+    console.log('Metadatos para LinkedIn:');
+    console.log('og:title:', document.querySelector('meta[property="og:title"]')?.getAttribute('content'));
+    console.log('og:description:', document.querySelector('meta[property="og:description"]')?.getAttribute('content'));
+    console.log('og:image:', document.querySelector('meta[property="og:image"]')?.getAttribute('content'));
+    console.log('og:url:', document.querySelector('meta[property="og:url"]')?.getAttribute('content'));
+    console.log('og:type:', document.querySelector('meta[property="og:type"]')?.getAttribute('content'));
+
+    // Crear un enlace para verificar los metadatos con herramientas externas
+    const debugContainer = document.createElement('div');
+    debugContainer.style.display = 'none';
+    debugContainer.innerHTML = `
+      <div id="linkedin-debug-tools" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <h4>Herramientas de depuración para compartir:</h4>
+        <ul>
+          <li><a href="https://www.linkedin.com/post-inspector/" target="_blank">LinkedIn Post Inspector</a></li>
+          <li><a href="https://developers.facebook.com/tools/debug/" target="_blank">Facebook Sharing Debugger</a></li>
+          <li><a href="https://cards-dev.twitter.com/validator" target="_blank">Twitter Card Validator</a></li>
+        </ul>
+      </div>
+    `;
+
+    // Solo mostrar en modo desarrollo - comprobamos de forma segura
+    const isLocalhost = () => {
+      try {
+        const hostname = document.location?.hostname;
+        return hostname === 'localhost' || hostname === '127.0.0.1';
+      } catch (e) {
+        return false;
+      }
+    };
+
+    if (isLocalhost()) {
+      debugContainer.style.display = 'block';
+      document.body.appendChild(debugContainer);
+    }
+  });
+</script>

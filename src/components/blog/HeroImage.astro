@@ -20,15 +20,26 @@ if (!isWebp && src.startsWith('/images/')) {
 
 // Función para obtener la URL completa
 function getFullUrl(path) {
-  return import.meta.env.SITE ? new URL(path, import.meta.env.SITE).href : path;
+  // Si la ruta ya es una URL completa, devolverla tal cual
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+
+  // Si tenemos la variable de entorno SITE, usarla para construir la URL completa
+  if (import.meta.env.SITE) {
+    return new URL(path, import.meta.env.SITE).href;
+  }
+
+  // Si no tenemos la variable de entorno SITE, usar la URL base de producción
+  return new URL(path, 'https://cronometras.com').href;
 }
 ---
 
 <div class="hero-image-container">
   <picture class="w-full h-full block">
-    <source srcset={webpSrc} type="image/webp" />
+    <source srcset={getFullUrl(webpSrc)} type="image/webp" />
     <img
-      src={src}
+      src={getFullUrl(src)}
       alt={alt}
       class={className}
       loading="lazy"

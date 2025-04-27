@@ -5,6 +5,7 @@ import NaturalReader from '@/components/blog/NaturalReader.astro';
 import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
 import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
 import HeroImage from '@/components/blog/HeroImage.astro';
+import ShareButtons from '@/components/blog/ShareButtons.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -111,6 +112,15 @@ export const prerender = true;
           <div class="article-content prose prose-base md:prose-lg dark:prose-invert">
             {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
           </div>
+
+          <!-- Botones de compartir -->
+          {post && (
+            <ShareButtons
+              url={Astro.url}
+              title={post.data.title}
+              description={post.data.description}
+            />
+          )}
 
           <!-- Separador -->
           <div class="my-12 border-t border-gray-200 dark:border-gray-700"></div>

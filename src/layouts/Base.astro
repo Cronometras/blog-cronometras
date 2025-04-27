@@ -6,7 +6,7 @@ import theme from "@/config/theme.json";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/layouts/partials/Footer.astro";
 import Header from "@/layouts/partials/Header.astro";
-import "@/styles/main.scss";
+import "@/styles/critical.scss";
 import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
 import RequestDemoModal from "@/components/core/RequestDemoModal.astro";
 import { RequestDemoFormIsland } from "@/components/react/ReactIslands";
@@ -155,6 +155,9 @@ console.log("Cargando layout Base.astro");
       media="(prefers-color-scheme: dark)"
       content="#000"
     />
+
+    <!-- Slot para etiquetas meta específicas de la página -->
+    <slot name="head" />
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -188,15 +191,37 @@ console.log("Cargando layout Base.astro");
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src={"https://www.googletagmanager.com/gtag/js?id="+GTAG}></script>
-    <script type="text/javascript" define:vars={{GTAG}}>
-      // Pasamos la variable GTAG_ID al navegador como una variable global
+    <!-- Google tag (gtag.js) - Optimizado para rendimiento -->
+    <script defer define:vars={{GTAG}}>
+      // Configuración inicial de Google Analytics
       window.GTAG_ID = GTAG;
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', window.GTAG_ID);
+      gtag('config', window.GTAG_ID, {
+        'send_page_view': false,
+        'transport_type': 'beacon'
+      }); // Retrasar el envío de la vista de página
+
+      // Cargar el script de GA de forma diferida
+      window.addEventListener('load', function() {
+        // Retrasar la carga de GA para dar prioridad al renderizado
+        setTimeout(function() {
+          const script = document.createElement('script');
+          script.src = "https://www.googletagmanager.com/gtag/js?id=" + GTAG;
+          script.async = true;
+          document.head.appendChild(script);
+
+          // Enviar la vista de página después de que la página esté completamente cargada
+          setTimeout(function() {
+            gtag('event', 'page_view', {
+              page_title: document.title,
+              page_location: window.location.href,
+              page_path: window.location.pathname
+            });
+          }, 2000);
+        }, 1000);
+      });
     </script>
 
     <!-- title -->
@@ -216,6 +241,74 @@ console.log("Cargando layout Base.astro");
     <link rel="alternate" hreflang="en" href={`${config.site.base_url}/en${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
     <link rel="alternate" hreflang="x-default" href={`${config.site.base_url}/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
 
+    <!-- Preconexiones para recursos críticos -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Precargar imágenes críticas con la máxima prioridad -->
+    <link rel="preload" href="/images/webp/adaptada-a-moviles-tablets-y-pc.webp" as="image" type="image/webp" fetchpriority="high" importance="high" />
+
+    <!-- Precargar la imagen principal con un script para asegurar la carga temprana -->
+    <script is:inline>
+      // Precargar la imagen principal de forma inmediata
+      (function() {
+        var img = new Image();
+        img.src = '/images/webp/adaptada-a-moviles-tablets-y-pc.webp';
+      })();
+    </script>
+
+    <!-- Estilos críticos inline para el renderizado inicial -->
+    <style>
+      /* Estilos básicos para el cuerpo y contenedores principales */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      /* Estilos específicos para la imagen principal */
+      img[src="/images/webp/adaptada-a-moviles-tablets-y-pc.webp"] {
+        content-visibility: auto;
+        contain-intrinsic-size: 500px 333px;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        will-change: transform;
+        transform: translateZ(0);
+      }
+
+      /* Placeholder para la imagen principal mientras se carga */
+      .banner-image-container {
+        position: relative;
+        background-color: #f0f0f0;
+        min-height: 333px;
+        display: block;
+      }
+
+      /* Estilos básicos para el contenedor principal */
+      main {
+        display: block;
+      }
+
+      /* Estilos para la sección del banner */
+      .section {
+        padding: 1rem 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+    </style>
+
+    <!-- RSS Feeds -->
+    <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed`} href={`${config.site.base_url}/rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed (Español)`} href={`${config.site.base_url}/es/rss.xml`} />
+    <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed (English)`} href={`${config.site.base_url}/en/rss.xml`} />
+
     <!-- noindex robots -->
     {
       _noindex === true ? (
@@ -233,44 +326,42 @@ console.log("Cargando layout Base.astro");
     <!-- author from config.json -->
     <meta name="author" content={plainify(_author)} />
 
-    <!-- og-title -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:title" content={plainify(_title)} />
-
-    <!-- og-description -->
     <meta property="og:description" content={plainify(_description)} />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content={`${config.site.base_url}/${Astro.url.pathname.replace("/", "")}`}
-    />
-    <meta property="og:locale" content={lang} />
-    <meta property="og:locale:alternate" content={lang === 'es' ? 'en' : 'es'} />
+    <meta property="og:url" content={`${config.site.base_url}${Astro.url.pathname}`} />
+    <meta property="og:site_name" content={config.site.title} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
+    <meta property="og:image" content={`${config.site.base_url}${_image}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={plainify(_title)} />
 
-    <!-- twitter-title -->
-    <meta
-      name="twitter:title"
-      content={plainify(_title)}
-    />
-
-    <!-- twitter-description -->
-    <meta
-      name="twitter:description"
-      content={plainify(_description)}
-    />
-
-    <!-- og-image -->
-    <meta
-      property="og:image"
-      content={`${config.site.base_url}${_image}`}
-    />
-
-    <!-- twitter-image -->
-    <meta
-      name="twitter:image"
-      content={`${config.site.base_url}${_image}`}
-    />
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={plainify(_title)} />
+    <meta name="twitter:description" content={plainify(_description)} />
+    <meta name="twitter:image" content={`${config.site.base_url}${_image}`} />
+    <meta name="twitter:image:alt" content={plainify(_title)} />
+    <meta name="twitter:site" content="@cronometras" />
+
+    <!-- LinkedIn specific - usando propiedades estándar de Open Graph que LinkedIn reconoce -->
+    <!-- LinkedIn usa las etiquetas Open Graph estándar, pero asegurémonos de que estén completas -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Cronometras" />
+    <meta property="og:locale" content={lang === 'es' ? "es_ES" : "en_US"} />
+    <meta property="article:published_time" content={new Date().toISOString()} />
+    <meta property="article:author" content={plainify(_author)} />
+    <meta property="article:section" content="Technology" />
+    <meta property="article:tag" content={Array.isArray(_keywords) ? _keywords.join(',') : "cronometraje industrial"} />
+
+    <!-- Etiquetas específicas para LinkedIn -->
+    <meta name="linkedin:owner" content="Cronometras" />
+    <meta name="linkedin:card" content="summary_large_image" />
     <script is:inline>
+      // Configuración del tema
       const setTheme = () => {
         const theme = (() => {
           if (
@@ -315,17 +406,54 @@ console.log("Cargando layout Base.astro");
     <!-- Formulario de solicitud de demo - Se cargará mediante React en el cliente -->
     <RequestDemoFormIsland targetId="form-container" client:load />
 
-    <!-- Script para depuración -->
-    <script is:inline>
-      console.log("Base.astro - DOM Content Loaded");
-      document.addEventListener('DOMContentLoaded', () => {
-        console.log("Base.astro - Verificando componentes del modal");
-        const modal = document.getElementById('requestDemoModal');
-        const formContainer = document.getElementById('form-container');
-        console.log("Modal existe en Base.astro:", !!modal);
-        console.log("Contenedor de formulario existe en Base.astro:", !!formContainer);
-        console.log("openRequestDemoModal definido:", typeof window.openRequestDemoModal === 'function');
-        console.log("loadRequestDemoForm definido:", typeof window.loadRequestDemoForm === 'function');
+    <!-- Script para depuración e inicialización global - Optimizado para rendimiento -->
+    <script defer>
+      // Función para inicializar modales
+      function initializeModals() {
+        // Check if we need to open a modal based on URL hash
+        if (window.location.hash) {
+          const hash = window.location.hash.toLowerCase();
+
+          if (hash === '#video') {
+            if (typeof window.openVideoTutorialModal === 'function') {
+              window.openVideoTutorialModal();
+            } else {
+              // Intentar de nuevo después de un tiempo
+              setTimeout(function() {
+                if (typeof window.openVideoTutorialModal === 'function') {
+                  window.openVideoTutorialModal();
+                }
+              }, 1000);
+            }
+          } else if (hash === '#demo') {
+            if (typeof window.openRequestDemoModal === 'function') {
+              window.openRequestDemoModal();
+            } else {
+              // Intentar de nuevo después de un tiempo
+              setTimeout(function() {
+                if (typeof window.openRequestDemoModal === 'function') {
+                  window.openRequestDemoModal();
+                }
+              }, 1000);
+            }
+          }
+        }
+      }
+
+      // Esperar a que la página esté completamente cargada
+      window.addEventListener('load', function() {
+        // Retrasar la inicialización para dar prioridad al renderizado
+        setTimeout(function() {
+          window.initializeModals = initializeModals;
+          initializeModals();
+        }, 500);
+      });
+
+      // Manejar cambios en el hash de la URL
+      window.addEventListener('hashchange', function() {
+        if (typeof window.initializeModals === 'function') {
+          window.initializeModals();
+        }
       });
     </script>
 

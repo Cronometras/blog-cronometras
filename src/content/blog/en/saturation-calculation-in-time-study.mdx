@@ -1,0 +1,95 @@
+---
+title: "Saturation Calculation in Time Study"
+description: "Saturation is the percentage of time that we occupy a given resource. Learn how to calculate labor saturation in different work scenarios with and without restrictions."
+pubDate: 2024-01-16
+category: "Industrial Time Study"
+tags: ["Maximum activity", "Saturation calculation", "Normal cycle", "Optimal cycle", "CronometrasApp", "Time study", "Performance incentives", "Machine operations", "Saturation", "Restricted work"]
+author: "CRONOMETRAS Team"
+heroImage: "/images/webp/calculo-de-saturacion-en-un-estudio-de-tiempos.webp"
+---
+
+
+
+Saturation is the percentage of time that we occupy a given resource.
+
+For the calculation of labor saturation, when it comes to unrestricted work in which machines or other workers are not involved in the process, the operator's saturation is always 100% since the worker has no waiting times.
+
+In these cases, the worker has the ability to increase their work pace, having the possibility to reach the optimal activity of 133%.
+
+When it comes to an operation in which a machine appears, it may be the case that the worker must wait for the machine, resulting in a restriction in the operation.
+
+Let's imagine an operation with 1 operator, 1 machine.
+
+TM = 3 min
+
+MM = 1 min
+
+The machine performs the process and once it is finished, the operator removes the processed piece and loads the new piece to be processed by pressing the automatic advance, meanwhile, the machine is already processing the new piece since it has a buffer of 1 piece.
+
+<img src="/images/webp/default.webp" alt="Saturation diagram" ismap />
+
+To calculate saturation, we will first calculate the normal cycle:
+
+```
+Normal Cycle = MP + The longest of MM or TM
+
+In this case, we don't have machine stopped time, therefore MP = 0
+The operator's working time with the machine running is 1 min, therefore MM = 1
+The machine cycle time is 3 min. TM = 3
+
+Normal Cycle = 3 min
+```
+
+If the work is continuous and the buffer is always there, this will be the cycle. In the first and last work cycle, a loading and unloading time will appear with the machine stopped, which can be treated as a frequency MP by assigning it the frequency of the average batch. Although we will not take into account the frequency elements for our example to clarify the concepts.
+
+Once we have calculated the cycle, we calculate the labor saturation:
+
+```
+Normal Saturation = ((MM+MP) / Normal Cycle) * 100
+1 / 3 = 0.33
+0.33 * 100 = 33.33
+```
+
+In the previous example, the operator could not influence the saturation or the maximum achievable performance because it was restricted work. Let's put a new example with a job that mixes machine times and free work.
+
+<img src="/images/webp/default.webp" alt="Saturation diagram with free work" ismap />
+
+```
+Normal Cycle = MP + The longest of MM or TM
+NC = 12 + 17
+NC = 29
+```
+
+```
+Saturation at Normal performance = ((MP+MM) / Normal Cycle) * 100
+NS = ((12 + 14) / 29) * 100 = 89.65
+```
+
+```
+Optimal cycle = CiTMP + The longest of TW or CiTMM
+(Optimized MP + The longest of TW or optimized MM):
+
+Optimized MP = 12 / 1.33 = 9.02
+The longest of TW or optimized MM = 17
+                                   14 / 1.33 = 10.52
+
+Ci = 9.02 + 17
+Ci = 26.02
+```
+
+```
+Saturation at Optimal performance = (MMi + MPi)/Optimal Cycle
+
+((10.52 + 9.02) / 26.02) * 100 = 75.09
+```
+
+When the operator increases their work pace, their saturation decreases. In this case, the maximum activity that the operator can achieve will be:
+
+```
+Maximum Activity = NC/Ci
+(29 / 26.02) * 100 = 111.45
+```
+
+The worker can only reach this maximum activity, so the optimal incentive should correspond to that 111.45% performance.
+
+When conducting the time study with the CronometrasApp, the saturations of the measured process are automatically calculated.

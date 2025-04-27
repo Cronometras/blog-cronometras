@@ -6,6 +6,7 @@ import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils";
+import { IoLogoRss } from "react-icons/io5";
 
 const { footer } = menu;
 const { copyright, location, email, footer_description } = config.params;
@@ -36,6 +37,52 @@ const translatePath = useTranslatedPath(lang);
             <div class="col-12 mt-12 md:col-6 lg:col-3">
               <h6>{social.title ?? "Social"}</h6>
               <Social source={social} className="social-icons mt-4 lg:mt-6" />
+
+              <!-- RSS Feeds -->
+              <h6 class="mt-6">{t('footer.rss_feeds') || "RSS Feeds"}</h6>
+              <ul class="rss-feeds mt-4">
+                <li class="inline-block">
+                  <a
+                    href="/rss.xml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rss-icon"
+                    aria-label="RSS Feed"
+                    title="RSS Feed"
+                  >
+                    <IoLogoRss />
+                    <span class="sr-only">RSS</span>
+                  </a>
+                </li>
+                <li class="inline-block">
+                  <a
+                    href="/es/rss.xml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rss-icon"
+                    aria-label="RSS Feed (Español)"
+                    title="RSS Feed (Español)"
+                  >
+                    <IoLogoRss />
+                    <span class="sr-only">RSS ES</span>
+                    <span class="rss-lang">ES</span>
+                  </a>
+                </li>
+                <li class="inline-block">
+                  <a
+                    href="/en/rss.xml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rss-icon"
+                    aria-label="RSS Feed (English)"
+                    title="RSS Feed (English)"
+                  >
+                    <IoLogoRss />
+                    <span class="sr-only">RSS EN</span>
+                    <span class="rss-lang">EN</span>
+                  </a>
+                </li>
+              </ul>
             </div>
             <div class="col-12 mt-12 md:col-6 lg:col-3">
               <h6>Quick Links</h6>
@@ -69,4 +116,38 @@ const translatePath = useTranslatedPath(lang);
       </div>
     </div>
   </div>
+  <style>
+    .rss-feeds {
+      display: flex;
+      gap: 10px;
+    }
+
+    .rss-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: #f26522;
+      color: white;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .rss-lang {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      background-color: #333;
+      color: white;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      font-size: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  </style>
 </footer>

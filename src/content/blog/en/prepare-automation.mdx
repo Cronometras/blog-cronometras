@@ -1,0 +1,79 @@
+---
+title: "Prepare Automation"
+description: "Contact the instructor If we want to automate the data update between our App and our Google Sheets spreadsheet, we will need to take some preliminary steps, which we will have ready in 5 minutes. We only need to perform this operation once and we will be ready to synchronize our app."
+pubDate: 2022-05-23
+category: "Industrial Time Study Course"
+tags: ["industrial applications", "time study software"]
+author: "CRONOMETRAS Team"
+heroImage: "/images/webp/crono2.webp"
+---
+
+THIS ONLY APPLIES TO VERSION 1 OF THE APP. IT IS NOW OBSOLETE
+
+If we want to automate the data update between our App and our Google Sheets spreadsheet, we will need to take some preliminary steps, which we will have ready in 5 minutes. We only need to perform this operation once and we will be ready to synchronize our app.
+
+The first thing we will have to do is configure our Google spreadsheet to communicate with the application so we can automate the transfer of information from the application.
+
+To do this, we will need to follow these steps:
+
+1. Open your Google spreadsheets account in your web browser; you must be logged in with the account you want to use to work with the app.
+
+2. Once inside, paste the synchronization template address in the browser's address bar: https://docs.google.com/spreadsheets/d/1NYkhsAJHH-jcOTBZOfwhItvLVinGkFafmpH8k7AkSao/edit#gid=1866236056 and click enter to open the web page.
+
+3. A spreadsheet will open. Now in the top menu, click on "File" + "Make a copy". A pop-up window will appear where you can give an identifying name to the template + click on the "Make a copy" button.
+
+4. Now you have your own copy of the template. Give it public read permissions from the share button (upper right corner) so that we can communicate with our sheet from the application. "Anyone on the Internet with this link can view this" + select "Editor".
+
+5. Open your list of spreadsheets from the home panel https://docs.google.com/spreadsheets/u/0/ you will see that you have your own copy in which you are the owner. There is also another one in which the owner is cronometras app; to avoid possible confusion, delete the one where the owner is cronometras app, you will not use it anymore. To do this, click on the 3 buttons to the right of the sheet title + Remove. Now go back to opening the sheet of which you are the owner, your copy.
+
+6. Link a form. In the top menu click on: Tools + Create Form + Change "Multiple choice" to "Short answer" + click on the eye icon at the top to access the public view of the form.
+
+7. Return to the Spreadsheet and click on the top menu "Extensions" + "Apps script". Now you need to create a trigger, for this, in the Apps Script window, click on the button in the left menu that has the clock icon to access the triggers screen + "Add Trigger" (bottom right) + function to execute = clean sheet + deployment to execute = Main + event source = From a spreadsheet + Event type = On form submit + Save. You must Authorize the trigger.
+
+8. Now open your email and start composing an email that you will send to the email account you work with on the mobile device where you are going to install the application. You must be able to open it from that device, as this will be the necessary data to connect the app with your spreadsheet. The information to include is:
+
+- Sheet name => Write "Base"
+
+- SpreadSheetID => Copy the SpreadSheetID of the sheet and paste it in the email. (https://docs.google.com/spreadsheets/d/----this is the ID----/edit#gid=xxxxx)
+
+- gid => Copy the gid of the sheet and paste it in the email. (https://docs.google.com/spreadsheets/d/----this is the ID----/edit#gid=----this is the gid----)
+
+- FormID => Click on the top menu "Tools" + "create form" + "select short answer" + "go to the public view of the form" + Copy and paste in the email you will send yourself the ID of the form FormID(https://docs.google.com/forms/d/e/----this is the ID------/)
+
+- FormEntryID => On the form page, click "F12" and search for "entry." + copy and paste that ID in the email you will send yourself. Example: (name="entry.726594466"), what you should save is entry.726594466
+
+9. Return to the spreadsheet, you will see that now the first tab of our spreadsheet is the form responses tab, you must drag it behind the "Base" tab so that this remains as the first tab of the book.
+
+The operation of the ecosystem is simple, what we have done is connect the App with google spreadsheets, to be able to synchronize the data. When we click on synchronize, the first thing we do is clean the sheet of previous data, for this we use the clean sheet script that already comes copied in the template, and to execute this script we use a trigger which is, "upon receiving a form response", therefore, from the app, when clicking on synchronize the first thing we do is send a response to the form, so that it executes the trigger and once the sheet is clean we synchronize data.
+
+## Now Link the App.
+
+Ready, we have now configured our spreadsheet for synchronization with our App. We had to save 5 pieces of data:
+
+- Sheet Name: "Base" which is the name of the sheet where the data is synchronized and which you should not change.
+
+- SpreadSheet ID: To connect the spreadsheet with the App
+
+- GID: To SELECT the sheet to download once the App data is synchronized with SpreadSheets
+
+- Form Entry ID: to send a response from our App to the form.
+
+- FormID: To connect the form with the App
+
+Once you have sent the email with that data to the device where you are going to install the app, open the App on your Android device and log in with your account to access the main screen.
+
+Once on the main screen, click on the gear wheel that appears in the upper left corner, then a window will appear where you should enter the data you previously sent, you will only need to copy and paste that data in its corresponding text box.
+
+https://www.youtube.com/watch?v=VlpeYDkFNcU&ab_channel=cronometrasapp
+
+View questionnaire
+
+Complete lesson
+
+Next lesson
+
+Restart lesson
+
+## Conclusion
+
+Mastering industrial time study techniques is essential for any professional seeking to optimize production processes. The systematic application of these methods not only improves operational efficiency but also significantly contributes to cost reduction and increased business competitiveness. Remember that precision in measurement and rigorous data analysis are the basis for establishing reliable time standards that drive continuous improvement in your organization.
