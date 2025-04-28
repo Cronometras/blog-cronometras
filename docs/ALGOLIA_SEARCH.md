@@ -36,11 +36,24 @@ Las variables con prefijo `PUBLIC_` son accesibles desde el cliente y deben cont
 
 ## Generación del Índice
 
-Para indexar los artículos del blog en Algolia, ejecuta el siguiente comando:
+Para indexar los artículos del blog en Algolia, puedes usar uno de los siguientes comandos:
 
 ```bash
+# Indexa solo los artículos del blog
 npm run algolia:index
+
+# Indexa artículos del blog y páginas de colecciones
+npm run algolia:index:full
+
+# Actualiza el índice completo sin duplicados (recomendado)
+npm run algolia:update
 ```
+
+El comando `algolia:update` es el recomendado ya que:
+1. Limpia el índice existente antes de crear uno nuevo
+2. Evita duplicados usando IDs consistentes
+3. Indexa tanto artículos del blog como páginas de colecciones
+4. Proporciona estadísticas detalladas sobre los registros indexados
 
 Este comando procesará todos los archivos MDX en el directorio `src/content/blog` y los indexará en Algolia.
 

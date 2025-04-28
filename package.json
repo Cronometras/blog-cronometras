@@ -13,7 +13,8 @@
     "astro": "astro",
     "format": "prettier -w .",
     "algolia:index": "node scripts/generate-algolia-index.js",
-    "algolia:index:full": "node scripts/generate-algolia-index-full.js"
+    "algolia:index:full": "node scripts/generate-algolia-index-full.js",
+    "algolia:update": "node scripts/update-algolia-index.js"
   },
   "dependencies": {
     "@algolia/autocomplete-js": "^1.18.1",
