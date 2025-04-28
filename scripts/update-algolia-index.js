@@ -69,7 +69,8 @@ function extractBlogContent(filePath) {
       pubDate: data.pubDate ? new Date(data.pubDate).toISOString() : null,
       lang,
       type: 'blog',
-      url: `/blog/${lang}/${slug}`
+      slug: slug, // Añadir el slug como campo separado
+      url: `/${lang}/blog/${slug}` // Corregir el formato de la URL
     };
   } catch (error) {
     console.error(`Error al procesar el archivo de blog ${filePath}:`, error);
@@ -108,6 +109,9 @@ function extractCollectionContent(filePath) {
     // Crear un ID único para evitar duplicados
     const objectID = `${lang}-${pageType}-${path.basename(filePath, path.extname(filePath))}`;
 
+    // Extraer el slug del nombre del archivo
+    const slug = path.basename(filePath, path.extname(filePath));
+
     // Crear el registro para Algolia
     return {
       objectID,
@@ -116,6 +120,7 @@ function extractCollectionContent(filePath) {
       content: textContent.substring(0, 5000), // Limitar el tamaño del contenido
       type: pageType,
       lang,
+      slug: slug, // Añadir el slug como campo separado
       url: `/${lang}/${pageType === 'homepage' ? '' : pageType}`
     };
   } catch (error) {
@@ -147,6 +152,9 @@ function extractPageContent(filePath) {
     // Crear un ID único para evitar duplicados
     const objectID = `${lang}-page-${pageType}-${path.basename(filePath, path.extname(filePath))}`;
 
+    // Extraer el slug del nombre del archivo
+    const slug = path.basename(filePath, path.extname(filePath));
+
     // Crear el registro para Algolia
     return {
       objectID,
@@ -155,6 +163,7 @@ function extractPageContent(filePath) {
       content: cleanContent.substring(0, 5000), // Limitar el tamaño del contenido
       type: 'page',
       lang,
+      slug: slug, // Añadir el slug como campo separado
       url: `/${lang}/${pageType}`
     };
   } catch (error) {

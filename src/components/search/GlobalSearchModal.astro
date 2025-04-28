@@ -46,11 +46,11 @@ const t = useTranslations(lang);
   window.openGlobalSearchModal = function() {
     const searchModal = document.getElementById('global-search-modal');
     const searchInput = document.getElementById('global-search-input');
-    
+
     if (searchModal) {
       searchModal.classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
-      
+
       // Enfocar el campo de búsqueda
       if (searchInput) {
         setTimeout(() => {
@@ -59,22 +59,22 @@ const t = useTranslations(lang);
       }
     }
   };
-  
+
   // Función global para cerrar el modal de búsqueda
   window.closeGlobalSearchModal = function() {
     const searchModal = document.getElementById('global-search-modal');
     const searchResults = document.getElementById('global-search-results');
     const searchInput = document.getElementById('global-search-input');
-    
+
     if (searchModal) {
       searchModal.classList.add('hidden');
       document.body.classList.remove('overflow-hidden');
-      
+
       // Limpiar resultados
       if (searchResults) {
         searchResults.innerHTML = '';
       }
-      
+
       // Limpiar campo de búsqueda
       if (searchInput) {
         searchInput.value = '';
@@ -114,17 +114,17 @@ const t = useTranslations(lang);
           const script = document.createElement('script');
           script.src = 'https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js';
           document.head.appendChild(script);
-          
+
           // Esperar a que se cargue
           await new Promise(resolve => {
             script.onload = resolve;
           });
         }
-        
+
         // Inicializar cliente de Algolia
         const searchClient = window.algoliasearch(appId, apiKey);
         const index = searchClient.initIndex(indexName);
-        
+
         // Realizar búsqueda
         const { hits } = await index.search(query, {
           hitsPerPage: 10,
@@ -132,7 +132,7 @@ const t = useTranslations(lang);
           attributesToHighlight: ['title', 'description', 'content'],
           attributesToSnippet: ['content:30'],
         });
-        
+
         // Mostrar resultados
         if (searchResults) {
           if (hits.length === 0) {
@@ -141,9 +141,9 @@ const t = useTranslations(lang);
             </p>`;
             return;
           }
-          
+
           const resultsHTML = hits.map(hit => `
-            <a href="/${currentLang}/blog/${hit.slug}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md mb-2">
+            <a href="${hit.url || `/${currentLang}/blog/${hit.slug}`}" class="block p-4 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md mb-2">
               <div class="flex items-start">
                 <div class="flex-shrink-0 mr-4">
                   <img src="${hit.heroImage || '/images/webp/default.webp'}" alt="${hit.title}" width="60" height="60" class="rounded-md">
@@ -165,7 +165,7 @@ const t = useTranslations(lang);
               </div>
             </a>
           `).join('');
-          
+
           searchResults.innerHTML = resultsHTML;
         }
       } catch (error) {
@@ -216,7 +216,7 @@ const t = useTranslations(lang);
     background-color: rgba(255, 255, 0, 0.3);
     font-style: normal;
   }
-  
+
   :global(.dark em) {
     background-color: rgba(255, 255, 0, 0.2);
   }
