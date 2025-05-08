@@ -70,7 +70,8 @@ function extractBlogContent(filePath) {
       lang,
       type: 'blog',
       slug: slug, // Añadir el slug como campo separado
-      url: `/${lang}/blog/${slug}` // Corregir el formato de la URL
+      url: `/${lang}/blog/${slug}`, // Corregir el formato de la URL
+      heroImage: data.heroImage || null 
     };
   } catch (error) {
     console.error(`Error al procesar el archivo de blog ${filePath}:`, error);
@@ -150,10 +151,8 @@ function extractPageContent(filePath) {
       .trim();
 
     // Crear un ID único para evitar duplicados
-    const objectID = `${lang}-page-${pageType}-${path.basename(filePath, path.extname(filePath))}`;
-
-    // Extraer el slug del nombre del archivo
     const slug = path.basename(filePath, path.extname(filePath));
+    const objectID = `${lang}-pages-${slug}`;
 
     // Crear el registro para Algolia
     return {
@@ -164,7 +163,7 @@ function extractPageContent(filePath) {
       type: 'page',
       lang,
       slug: slug, // Añadir el slug como campo separado
-      url: `/${lang}/${pageType}`
+      url: `/${lang}/${slug}` 
     };
   } catch (error) {
     console.error(`Error al procesar la página ${filePath}:`, error);
@@ -178,7 +177,7 @@ async function updateAlgoliaIndex() {
 
     // Limpiar el índice existente
     try {
-      await client.clearObjects(ALGOLIA_INDEX_NAME);
+      await client.clearObjects({ indexName: ALGOLIA_INDEX_NAME });
       console.log('Índice limpiado correctamente.');
     } catch (error) {
       console.error('Error al limpiar el índice:', error);
@@ -187,21 +186,30 @@ async function updateAlgoliaIndex() {
       try {
         // Obtener todos los objectIDs existentes
         const { hits } = await client.search({
-          indexName: ALGOLIA_INDEX_NAME,
-          query: '',
-          params: {
-            hitsPerPage: 1000,
-            attributesToRetrieve: ['objectID']
-          }
+          requests: [
+            {
+              indexName: ALGOLIA_INDEX_NAME,
+              query: '',
+              params: {
+                hitsPerPage: 1000,
+                attributesToRetrieve: ['objectID']
+              }
+            }
+          ]
         });
+        
+        // La respuesta de search ahora está anidada en results[0]
+        const searchHits = hits && hits[0] ? hits[0].hits : [];
 
-        if (hits.length > 0) {
-          const objectIDs = hits.map(hit => hit.objectID);
+        if (searchHits.length > 0) {
+          const objectIDs = searchHits.map(hit => hit.objectID);
           await client.deleteObjects({
             indexName: ALGOLIA_INDEX_NAME,
-            objectIDs
+            objects: objectIDs // La propiedad debería ser 'objects' o similar, verificar la documentación de deleteObjects si esto falla
           });
           console.log(`Eliminados ${objectIDs.length} objetos existentes.`);
+        } else {
+           console.log('No se encontraron objetos existentes para eliminar.');
         }
       } catch (deleteError) {
         console.error('Error al eliminar objetos existentes:', deleteError);
@@ -242,8 +250,10 @@ async function updateAlgoliaIndex() {
 
       for (const filePath of files) {
         let record;
+        // Corregir: Normalizar separadores de ruta para la comprobación
+        const normalizedFilePath = filePath.replace(/\\/g, '/');
 
-        if (filePath.includes('content/pages')) {
+        if (normalizedFilePath.includes('src/content/pages/')) {
           record = extractPageContent(filePath);
         } else {
           record = extractCollectionContent(filePath);

@@ -14,34 +14,34 @@ const InformationRequestForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors }
   } = useForm<InformationRequestData>();
-  
+
   const onSubmit = async (data: InformationRequestData) => {
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
-    
+
     try {
-      const response = await fetch('/api/information-request', {
+      const response = await fetch('/api/information-request/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
-      
+
       const result = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(result.error || 'Ha ocurrido un error al enviar la solicitud');
       }
-      
+
       setSubmitStatus('success');
       reset();
     } catch (error) {
@@ -51,7 +51,7 @@ const InformationRequestForm: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-  
+
   // Lista de sectores para el selector
   const sectores = [
     'Industria manufacturera',
@@ -65,7 +65,7 @@ const InformationRequestForm: React.FC = () => {
     'Educación',
     'Otros'
   ];
-  
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {submitStatus === 'success' && (
@@ -73,13 +73,13 @@ const InformationRequestForm: React.FC = () => {
           ¡Solicitud enviada correctamente! Nos pondremos en contacto contigo pronto con más información sobre Cronometras App.
         </div>
       )}
-      
+
       {submitStatus === 'error' && (
         <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
           {errorMessage}
         </div>
       )}
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-1">
@@ -97,7 +97,7 @@ const InformationRequestForm: React.FC = () => {
             <p className="mt-1 text-sm text-red-600">{errors.nombre.message}</p>
           )}
         </div>
-        
+
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email
@@ -121,7 +121,7 @@ const InformationRequestForm: React.FC = () => {
           )}
         </div>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-1">
@@ -139,7 +139,7 @@ const InformationRequestForm: React.FC = () => {
             <p className="mt-1 text-sm text-red-600">{errors.empresa.message}</p>
           )}
         </div>
-        
+
         <div>
           <label htmlFor="sector" className="block text-sm font-medium text-gray-700 mb-1">
             Sector
@@ -163,7 +163,7 @@ const InformationRequestForm: React.FC = () => {
           )}
         </div>
       </div>
-      
+
       <div>
         <label htmlFor="mensaje" className="block text-sm font-medium text-gray-700 mb-1">
           Mensaje (opcional)
@@ -176,7 +176,7 @@ const InformationRequestForm: React.FC = () => {
           {...register('mensaje')}
         ></textarea>
       </div>
-      
+
       <div className="mt-4">
         <div className="flex items-start">
           <div className="flex h-5 items-center">
@@ -186,8 +186,8 @@ const InformationRequestForm: React.FC = () => {
               className={`h-4 w-4 rounded border-gray-300 accent-accent focus:ring-accent ${
                 errors.privacyPolicy ? 'border-red-500' : ''
               }`}
-              {...register('privacyPolicy', { 
-                required: 'Debes aceptar la política de privacidad para continuar' 
+              {...register('privacyPolicy', {
+                required: 'Debes aceptar la política de privacidad para continuar'
               })}
             />
           </div>
@@ -203,7 +203,7 @@ const InformationRequestForm: React.FC = () => {
           <p className="mt-1 text-sm text-red-600">{errors.privacyPolicy.message}</p>
         )}
       </div>
-      
+
       <div>
         <button
           type="submit"
@@ -213,13 +213,13 @@ const InformationRequestForm: React.FC = () => {
           {isSubmitting ? 'Enviando...' : 'Solicitar información'}
         </button>
       </div>
-      
+
       <p className="text-xs text-gray-500 text-center mt-2">
-        Al enviar este formulario, recibirás información detallada sobre Cronometras App 
+        Al enviar este formulario, recibirás información detallada sobre Cronometras App
         adaptada a las necesidades de tu empresa y sector. Tus datos serán tratados según nuestra política de privacidad.
       </p>
     </form>
   );
 };
 
-export default InformationRequestForm; 
+export default InformationRequestForm;

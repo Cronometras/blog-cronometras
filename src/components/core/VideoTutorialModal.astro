@@ -1,34 +1,35 @@
 <div id="videoTutorialModal" class="modal hidden fixed inset-0 z-50 w-full h-full bg-black/90 flex items-center justify-center">
   <div class="modal-content relative bg-transparent max-w-4xl w-full mx-4 rounded-xl shadow-2xl overflow-hidden">
     <div class="relative pb-[56.25%] h-0">
-      <iframe 
+      <iframe
         id="videoFrame"
         class="absolute top-0 left-0 w-full h-full"
-        src="" 
-        title="Video tutorial Cronometras" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        src=""
+        title="Video tutorial Cronometras"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
     </div>
-    
-    <button id="videoModalCloseBtn" class="absolute top-4 right-4 text-white hover:text-accent text-3xl font-bold transition-colors z-10">&times;</button>
+
+    <button onclick="closeVideoTutorialModal()" id="videoModalCloseBtn" class="absolute top-4 right-4 text-white hover:text-accent text-3xl font-bold transition-colors z-10">&times;</button>
   </div>
 </div>
 
 <script is:inline>
 (function() {
   console.log("Inicializando modal de video tutorial");
-  
+
   // Variable para controlar el estado
   let modalIsActive = false;
-  
+  let modalInitialized = false;
+
   // Detectar el idioma actual
   const getLang = () => {
     const path = window.location.pathname;
     return path.startsWith('/en') ? 'en' : 'es';
   };
-  
+
   // Traducciones para los mensajes de consola
   const translations = {
     es: {
@@ -58,113 +59,171 @@
       }
     }
   };
-  
+
   // Función de log con el idioma actual
   const logWithLang = (key) => {
     const lang = getLang();
     const t = translations[lang];
     console.log(t[key]);
   };
-  
+
   // Log inicial
   logWithLang('init');
-  
-  // Exponer las funciones al ámbito global
-  window.openVideoTutorialModal = function() {
-    const lang = getLang();
-    const t = translations[lang];
-    console.log(t.opening);
-    
-    const modal = document.getElementById('videoTutorialModal');
-    const videoFrame = document.getElementById('videoFrame');
-    
-    if (!modal || !videoFrame) {
-      console.error(t.notFound);
-      return;
-    }
-    
-    // Establecer URL del video
-    videoFrame.src = "https://www.youtube.com/embed/_Fj5IW8lJfA?autoplay=1";
-    
-    // Marcar como activo
-    modalIsActive = true;
-    
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-    
-    // Trigger entrance animation
-    setTimeout(() => {
-      modal.classList.add('modal-visible');
-    }, 10);
-  };
-  
-  window.closeVideoTutorialModal = function() {
-    const lang = getLang();
-    const t = translations[lang];
-    console.log(t.closing);
-    
-    const modal = document.getElementById('videoTutorialModal');
-    const videoFrame = document.getElementById('videoFrame');
-    
-    if (!modal || !videoFrame) {
-      console.error(t.notFound);
-      return;
-    }
-    
-    // Detener reproducción del video estableciendo el src a vacío
-    videoFrame.src = "";
-    
-    modal.classList.remove('modal-visible');
-    
-    // Esperar a que la animación termine antes de ocultar
-    setTimeout(() => {
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-      
-      // Marcar como inactivo
-      modalIsActive = false;
-    }, 300);
-  };
-  
-  // Event listener para cerrar el modal haciendo clic fuera del contenido
-  document.addEventListener('DOMContentLoaded', () => {
-    const lang = getLang();
-    const t = translations[lang];
-    console.log(t.domLoaded);
-    
+
+  // Función para inicializar el modal
+  function initializeModal() {
+    if (modalInitialized) return;
+
     const modal = document.getElementById('videoTutorialModal');
     const closeBtn = document.getElementById('videoModalCloseBtn');
-    
+
     if (modal) {
-      console.log(t.modalFound);
-      
       // Click fuera del contenido para cerrar
       modal.addEventListener('click', function(e) {
+        console.log("Click en el modal, target:", e.target, "this:", this);
         if (e.target === this) {
+          console.log("Click fuera del contenido, cerrando modal");
           window.closeVideoTutorialModal();
         }
       });
-      
+
       // Botón de cerrar
       if (closeBtn) {
         closeBtn.addEventListener('click', function() {
           window.closeVideoTutorialModal();
         });
       }
+
+      modalInitialized = true;
+    }
+  }
+
+  // Exponer las funciones al ámbito global
+  window.openVideoTutorialModal = function() {
+    const lang = getLang();
+    const t = translations[lang];
+    console.log(t.opening);
+
+    // Asegurarse de que el modal esté inicializado
+    initializeModal();
+
+    const modal = document.getElementById('videoTutorialModal');
+    const videoFrame = document.getElementById('videoFrame');
+
+    if (!modal || !videoFrame) {
+      console.error(t.notFound);
+      return;
+    }
+
+    // Si ya está activo, no hacer nada
+    if (modalIsActive) {
+      console.log("El modal ya está activo");
+      return;
+    }
+
+    // Establecer URL del video
+    videoFrame.src = "https://www.youtube.com/embed/oqkfnN4dCHs?autoplay=1";
+
+    // Marcar como activo
+    modalIsActive = true;
+
+    // Asegurarse de que el modal esté visible
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Trigger entrance animation
+    setTimeout(() => {
+      modal.classList.add('modal-visible');
+    }, 10);
+
+    // Agregar listener para la tecla Escape
+    document.addEventListener('keydown', escapeKeyHandler);
+  };
+
+  // Manejador para la tecla Escape
+  function escapeKeyHandler(e) {
+    if (e.key === 'Escape' && modalIsActive) {
+      window.closeVideoTutorialModal();
+    }
+  }
+
+  window.closeVideoTutorialModal = function() {
+    const lang = getLang();
+    const t = translations[lang];
+    console.log(t.closing);
+
+    const modal = document.getElementById('videoTutorialModal');
+    const videoFrame = document.getElementById('videoFrame');
+
+    if (!modal || !videoFrame) {
+      console.error(t.notFound);
+      return;
+    }
+
+    // Si no está activo, no hacer nada
+    if (!modalIsActive) {
+      console.log("El modal ya está cerrado");
+      return;
+    }
+
+    // Detener reproducción del video estableciendo el src a vacío
+    videoFrame.src = "";
+
+    modal.classList.remove('modal-visible');
+
+    // Esperar a que la animación termine antes de ocultar
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+
+      // Marcar como inactivo
+      modalIsActive = false;
+
+      // Eliminar listener para la tecla Escape
+      document.removeEventListener('keydown', escapeKeyHandler);
+    }, 300);
+  };
+
+  // Event listener para inicializar el modal cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    const lang = getLang();
+    const t = translations[lang];
+    console.log(t.domLoaded);
+
+    const modal = document.getElementById('videoTutorialModal');
+
+    if (modal) {
+      console.log(t.modalFound);
+      initializeModal();
     } else {
       console.error(t.modalNotFound);
     }
 
-    // Event listener para cerrar con la tecla Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modalIsActive) {
-        window.closeVideoTutorialModal();
-      }
-    });
-    
     // Verificar que las funciones estén definidas
     console.log(t.functionsDefined.open, typeof window.openVideoTutorialModal === 'function');
     console.log(t.functionsDefined.close, typeof window.closeVideoTutorialModal === 'function');
+
+    // Verificar si hay un hash en la URL y actuar en consecuencia
+    if (window.location.hash === '#video') {
+      console.log("Found #video hash in URL, opening video modal");
+      setTimeout(function() {
+        window.openVideoTutorialModal();
+      }, 500);
+    }
+  });
+
+  // También inicializar cuando la ventana se cargue completamente
+  window.addEventListener('load', function() {
+    console.log("Window load event in VideoTutorialModal");
+    initializeModal();
+
+    // Verificar si hay un hash en la URL y actuar en consecuencia
+    if (window.location.hash === '#video') {
+      console.log("Found #video hash in URL, opening video modal on load");
+      setTimeout(function() {
+        window.openVideoTutorialModal();
+      }, 500);
+    }
   });
 })();
 </script>
@@ -174,7 +233,7 @@
     opacity: 0;
     transition: opacity 0.3s ease-out;
   }
-  
+
   .modal-visible {
     opacity: 1;
   }
@@ -183,13 +242,13 @@
     transform: translateY(20px);
     transition: transform 0.3s ease-out;
   }
-  
+
   .modal-visible .modal-content {
     transform: translateY(0);
   }
-  
+
   /* Estilo para el botón de cerrar más visible */
   button {
     text-shadow: 0 0 10px rgba(0,0,0,0.8);
   }
-</style> 
+</style>

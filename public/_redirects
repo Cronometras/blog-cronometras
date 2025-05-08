@@ -16,6 +16,44 @@
 /faq        /en/faq/      301  Language=en
 /faq        /es/faq/      301
 
+# Redirecciones para categorías y artículos específicos
+/category/blog      /es/blog/    301!
+/category/blog/     /es/blog/    301!
+/sistema-bedaux     /es/blog/sistema-bedaux/    301!
+/sistema-bedaux/    /es/blog/sistema-bedaux/    301!
+/obeya-room-lean    /es/blog/obeya-room-lean/    301!
+/obeya-room-lean/   /es/blog/obeya-room-lean/    301!
+/articulos/page/3   /es/blog/    301!
+/articulos/page/3/  /es/blog/    301!
+/category/cronometraje-industrial      /es/blog/    301!
+/category/cronometraje-industrial/     /es/blog/    301!
+/el-estudio-del-trabajo      /es/blog/el-estudio-del-trabajo/    301!
+/el-estudio-del-trabajo/     /es/blog/el-estudio-del-trabajo/    301!
+/que-es-gsd-en-ingenieria      /es/blog/que-es-gsd-en-ingenieria/    301!
+/que-es-gsd-en-ingenieria/     /es/blog/que-es-gsd-en-ingenieria/    301!
+/cronometraje-y-la-estandarizacion-de-procesos      /es/blog/cronometraje-y-la-estandarizacion-de-procesos/    301!
+/cronometraje-y-la-estandarizacion-de-procesos/     /es/blog/cronometraje-y-la-estandarizacion-de-procesos/    301!
+/category/lean-manufacturing-y-metodologias-agiles      /es/blog/    301!
+/category/lean-manufacturing-y-metodologias-agiles/     /es/blog/    301!
+/por-que-hay-retrasos-en-la-produccion      /es/blog/por-que-hay-retrasos-en-la-produccion/    301!
+/por-que-hay-retrasos-en-la-produccion/     /es/blog/por-que-hay-retrasos-en-la-produccion/    301!
+/herramientas-necesarias-para-realizar-un-estudio-de-tiempos      /es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/    301!
+/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/     /es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/    301!
+/metodos-y-tiempos-en-la-gestion-empresarial-industrial      /es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/    301!
+/metodos-y-tiempos-en-la-gestion-empresarial-industrial/     /es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/    301!
+/la-importancia-del-estudio-de-tiempos-de-trabajo      /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301!
+/la-importancia-del-estudio-de-tiempos-de-trabajo/     /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301!
+/que-es-el-estudio-de-tiempos-y-movimientos      /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301!
+/que-es-el-estudio-de-tiempos-y-movimientos/     /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301!
+/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial      /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301!
+/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/     /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301!
+/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial      /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301!
+/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/     /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301!
+/es/blog/por-qu%C3%A9-hay-retrasos-en-la-producci%C3%B3n      /es/blog/por-que-hay-retrasos-en-la-produccion/    301!
+/es/blog/por-qu%C3%A9-hay-retrasos-en-la-producci%C3%B3n/     /es/blog/por-que-hay-retrasos-en-la-produccion/    301!
+/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial      /es/blog/optimiza-la-productividad-empresarial-con-el-control-de-tiempos-y-el-cronometraje-industrial/    301!
+/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial/     /es/blog/optimiza-la-productividad-empresarial-con-el-control-de-tiempos-y-el-cronometraje-industrial/    301!
+
 # Redirección para la página de funciones
 /funciones-4      /es/features/    301
 /funciones-4/     /es/features/    301
@@ -48,6 +86,14 @@
 /es/blog/define%20el%20metodo%20de%20trabajo /es/blog/define-el-metodo-de-trabajo 301!
 /es/blog/define%20el%20metodo%20de%20trabajo/ /es/blog/define-el-metodo-de-trabajo/ 301!
 
+# Redirecciones para URLs con caracteres especiales
+/es/blog/*%C3%AD* /es/blog/:splat1i:splat2 301!
+/es/blog/*%C3%B3* /es/blog/:splat1o:splat2 301!
+/es/blog/*%C3%A1* /es/blog/:splat1a:splat2 301!
+/es/blog/*%C3%A9* /es/blog/:splat1e:splat2 301!
+/es/blog/*%C3%BA* /es/blog/:splat1u:splat2 301!
+/es/blog/*%C3%B1* /es/blog/:splat1n:splat2 301!
+
 # Redirecciones genéricas para URLs con espacios
 /es/blog/*%20* /es/blog/:splat1-:splat2 301!
 /en/blog/*%20* /en/blog/:splat1-:splat2 301!
@@ -73,6 +119,8 @@
 /*%20*%20*%20*%20* /es/blog/:splat1-:splat2-:splat3-:splat4-:splat5 301!
 
 # Redirecciones específicas para artículos con espacios
+/es/blog/aplicacion-de-suplementos-oit /es/blog/aplicacion-suplementos-oit-fixed 301!
+/es/blog/aplicacion-de-suplementos-oit/ /es/blog/aplicacion-suplementos-oit-fixed/ 301!
 /es/blog/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura 301!
 /es/blog/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos 301!
 /es/blog/que%20es%20el%20cronometraje%20industrial /es/blog/que-es-el-cronometraje-industrial 301!
@@ -95,12 +143,19 @@
 
 /descanso-laboral*      /es/blog/descanso-en-el-trabajo-un-enfoque-integral/   301!
 
-
+# Redirección específica para la URL problemática
+/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro      /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301!
+/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/     /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301!
 /como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro*     /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301!
 
 /por-que-hay-retrasos-en-la-produccion*     /es/blog/por-que-hay-retrasos-en-la-produccion/    301!
 
-/muestreo-del-trabajo*     /es/blog/muestreo-del-trabajo/    301!
+# Redirecciones para el muestreo del trabajo
+/muestreo-del-trabajo*     /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301!
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estad%C3%ADstica-para-la-gesti%C3%B3n-eficiente     /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301!
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estad%C3%ADstica-para-la-gesti%C3%B3n-eficiente/    /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301!
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente     /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301!
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301!
 
 /que-es-el-estudio-de-tiempos-y-movimientos*     /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301!
 
@@ -140,7 +195,7 @@
 
 /la-apreciacion-de-la-actividad-en-el-cronometraje-industrial*     /es/blog/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/    301!
 
-/como-estandarizar-los-tiempos-de-trabajo-en-la-industria*     /es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria/    301!
+/como-estandarizar-los-tiempos-de-trabajo-en-la-industria*     /es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria-v2/    301!
 
 /cronometraje-y-la-estandarizacion-de-procesos*     /es/blog/cronometraje-y-la-estandarizacion-de-procesos/    301!
 

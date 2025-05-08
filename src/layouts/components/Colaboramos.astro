@@ -74,7 +74,7 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
                     </div>
                   ))}
                   {/* Duplicate logos for infinite scroll effect when needed */}
-                  {section.colaboradores.length > 3 && 
+                  {section.colaboradores.length > 3 &&
                     section.colaboradores.map((colaborador) => (
                       <div class="logo-item text-center duplicate">
                         <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
@@ -103,12 +103,7 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
 
 <style>
   .section-image-hover {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  .section-image-hover:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
   }
 
   .image-container {
@@ -120,12 +115,7 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
     justify-content: center;
     padding: 1rem;
     border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .image-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .colaborador-image {
@@ -134,11 +124,6 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
     width: auto !important;
     height: auto !important;
     object-fit: contain;
-    transition: filter 0.3s ease;
-  }
-  
-  .image-container:hover .colaborador-image {
-    filter: brightness(1.05);
   }
 
   .logo-carousel-container {
@@ -171,23 +156,10 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
     justify-content: flex-start;
   }
 
-  /* Apply animation only when there are enough items to scroll */
+  /* No animation for carousel */
   @media (min-width: 768px) {
-    .logo-carousel:hover {
-      animation-play-state: paused;
-    }
-
     .logo-carousel {
-      animation: scroll 30s linear infinite;
-    }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(calc(-250px * var(--logo-count, 3)));
-      }
+      animation: none;
     }
   }
 
@@ -198,11 +170,11 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
       justify-content: center;
       animation: none;
     }
-    
+
     .logo-item.duplicate {
       display: none;
     }
-    
+
     .logo-item {
       width: 100%;
       max-width: 250px;
@@ -213,8 +185,8 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
   .logo-carousel.no-animation {
     animation: none !important;
   }
-  
-  .logo-carousel.centered, 
+
+  .logo-carousel.centered,
   .logo-carousel-container.centered {
     justify-content: center;
     margin: 0 auto;
@@ -225,41 +197,32 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
   // Set the logo count for the animation
   document.addEventListener('DOMContentLoaded', () => {
     const carousels = document.querySelectorAll('.logo-carousel');
-    
+
     carousels.forEach(carousel => {
       const items = carousel.querySelectorAll('.logo-item:not(.duplicate)');
       carousel.setAttribute('data-logo-count', items.length.toString());
       document.documentElement.style.setProperty('--logo-count', items.length.toString());
-      
+
       // Safe parent element check
       const parent = carousel.parentElement;
       if (!parent) return;
-      
+
       // Check if we need to activate the carousel
       const containerWidth = parent.offsetWidth;
       const totalItemsWidth = items.length * 250; // 250px per item
-      
+
       // Only apply animation if content exceeds container width
       if (totalItemsWidth <= containerWidth) {
         carousel.classList.add('no-animation');
         carousel.classList.add('centered');
-        
+
         // If we're not animating, make sure everything is centered
         parent.classList.add('centered');
       }
     });
 
-    // Añadir un efecto de brillo al pasar el cursor por las imágenes
-    const imagenes = document.querySelectorAll('.colaborador-image, .section-image-hover');
-    imagenes.forEach(img => {
-      img.addEventListener('mouseenter', () => {
-        img.classList.add('image-highlight');
-      });
-      
-      img.addEventListener('mouseleave', () => {
-        img.classList.remove('image-highlight');
-      });
-    });
+    // No añadir efectos a las imágenes de colaboradores
+    // Código eliminado para evitar efectos de hover en las imágenes
   });
 </script>
 
@@ -268,7 +231,7 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
     position: relative;
     z-index: 1;
   }
-  
+
   .image-highlight::after {
     content: "🔍";
     position: absolute;
@@ -287,7 +250,7 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
     transform: scale(0.8);
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
-  
+
   .image-container:hover .image-highlight::after {
     opacity: 1;
     transform: scale(1);

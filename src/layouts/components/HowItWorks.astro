@@ -89,16 +89,20 @@ if (!how_it_works) {
 <ImageModal />
 
 <script is:inline>
-  // Añadir un efecto de pulsación sutil a las imágenes cuando el cursor pasa sobre ellas
+  // Añadir un efecto de pulsación sutil solo a las imágenes de este componente
   document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('section.section img');
+    // Seleccionar solo las imágenes dentro de este componente específico, excluyendo las de colaboradores
+    const images = document.querySelectorAll('section.section img:not(.colaborador-image):not(.section-image-hover)');
     images.forEach(img => {
-      img.addEventListener('mouseenter', () => {
-        img.classList.add('pulse-effect');
-      });
-      img.addEventListener('mouseleave', () => {
-        img.classList.remove('pulse-effect');
-      });
+      // Verificar que la imagen no está dentro del componente Colaboramos
+      if (!img.closest('.logo-carousel')) {
+        img.addEventListener('mouseenter', () => {
+          img.classList.add('pulse-effect');
+        });
+        img.addEventListener('mouseleave', () => {
+          img.classList.remove('pulse-effect');
+        });
+      }
     });
   });
 </script>

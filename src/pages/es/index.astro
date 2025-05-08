@@ -11,8 +11,8 @@ import { RequestDemoFormIsland } from "@/components/react/ReactIslands";
 import VideoTutorialModal from "@/components/core/VideoTutorialModal.astro";
 
 const homepageEntries = await getCollection("homepage");
-console.log("Available entries:", homepageEntries.map(entry => ({ 
-  id: entry.id, 
+console.log("Available entries:", homepageEntries.map(entry => ({
+  id: entry.id,
   slug: entry.slug,
   collection: entry.collection
 })));
@@ -74,10 +74,11 @@ const call_to_action = homepage.data.call_to_action;
   <VideoTutorialModal />
 </Base>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOMContentLoaded in main page");
-    
+<script is:inline>
+  // Definir una función global para inicializar los botones
+  window.initializePageButtons = function() {
+    console.log("Initializing page buttons in Spanish page");
+
     // Función para mostrar/ocultar el botón flotante
     const toggleFloatingButton = () => {
       const floatingButton = document.getElementById('floating-contact-button');
@@ -90,118 +91,171 @@ const call_to_action = homepage.data.call_to_action;
     // Llamar a la función cuando se carga la página
     toggleFloatingButton();
 
-    // También llamar a la función cuando cambia la URL (para navegación SPA)
-    window.addEventListener('popstate', toggleFloatingButton);
-    
     // Look for all buttons that might be related to demo
     const buttons = document.querySelectorAll('a.btn, button.btn, a.button, button.button');
     console.log("Found buttons:", buttons.length);
-    
+
     buttons.forEach((button, index) => {
-      console.log(`Button ${index} text:`, button.innerText);
-      
-      if (button.innerText.includes('Solicitar Demo') || 
-          button.innerText.includes('Comenzar Ahora') ||
-          button.innerText.includes('Comenzar ahora') ||
-          button.innerText.includes('Demo Gratuita')) {
-        
-        console.log(`Configuring button ${index}`);
-        
-        // Important: First remove href to prevent navigation
-        button.removeAttribute('href');
-        button.style.cursor = 'pointer';
-        
-        // Change behavior to open the modal
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
+      const buttonText = button.innerText.trim();
+      console.log(`Button ${index} text:`, buttonText);
+
+      if (buttonText.includes('Solicitar Demo') ||
+          buttonText.includes('Comenzar Ahora') ||
+          buttonText.includes('Comenzar ahora') ||
+          buttonText.includes('Demo Gratuita')) {
+
+        console.log(`Configuring demo button ${index}:`, buttonText);
+
+        console.log("Converting to button element to prevent URL issues");
+
+        // Crear un nuevo botón que reemplazará al enlace
+        const newButton = document.createElement('button');
+
+        // Copiar todas las clases y estilos del enlace original
+        newButton.className = button.className;
+        newButton.innerHTML = button.innerHTML;
+        newButton.style.cssText = button.style.cssText;
+        newButton.style.cursor = 'pointer';
+
+        // Agregar el atributo onclick directamente
+        newButton.setAttribute('onclick', 'window.openRequestDemoModal()');
+
+        // Agregar el event listener
+        newButton.addEventListener('click', function(e) {
           console.log("Demo button clicked");
-          
-          // Open the modal if the function exists
-          if (typeof window.openRequestDemoModal === 'function') {
-            console.log("Calling openRequestDemoModal");
-            window.openRequestDemoModal();
-          } else {
-            console.error("The function openRequestDemoModal is not defined");
-          }
+          window.openRequestDemoModal();
         });
+
+        // Reemplazar el enlace con el nuevo botón
+        button.parentNode.replaceChild(newButton, button);
       }
-    });
-    
-    // Look for the "Watch Tutorial Video" button
-    const videoButtons = document.querySelectorAll('a[href="#video"]');
-    console.log("Found video buttons:", videoButtons.length);
-    
-    videoButtons.forEach((button, index) => {
-      // Check if this is the specific button we want to modify
-      console.log(`Video button ${index} text:`, button.innerText);
-      
-      if (button.innerText.includes('Ver Video Tutorial') || 
-          button.innerText.includes('Ver Demo') || 
-          button.innerText.trim() === 'Ver Video Tutorial') {
-        
-        console.log(`Configuring video button ${index}`);
-        
-        // Important: First remove href to prevent navigation
-        button.removeAttribute('href');
-        button.style.cursor = 'pointer';
-        
-        // Change behavior to open the modal
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
+
+      // Check for video buttons
+      if (buttonText === 'Ver Video Tutorial' ||
+          buttonText.includes('Ver Video Tutorial') ||
+          buttonText.includes('Ver Demo') ||
+          (button.getAttribute('href') === '#video')) {
+
+        console.log(`Configuring video button ${index}:`, buttonText);
+
+        console.log("Converting to button element to prevent URL issues");
+
+        // Crear un nuevo botón que reemplazará al enlace
+        const newButton = document.createElement('button');
+
+        // Copiar todas las clases y estilos del enlace original
+        newButton.className = button.className;
+        newButton.innerHTML = button.innerHTML;
+        newButton.style.cssText = button.style.cssText;
+        newButton.style.cursor = 'pointer';
+
+        // Agregar el atributo onclick directamente
+        newButton.setAttribute('onclick', 'window.openVideoTutorialModal()');
+
+        // Agregar el event listener
+        newButton.addEventListener('click', function(e) {
           console.log("Video tutorial button clicked");
-          
-          // Open the modal if the function exists
-          if (typeof window.openVideoTutorialModal === 'function') {
-            console.log("Calling openVideoTutorialModal");
-            window.openVideoTutorialModal();
-          } else {
-            console.error("The function openVideoTutorialModal is not defined");
-          }
+          window.openVideoTutorialModal();
         });
+
+        // Reemplazar el enlace con el nuevo botón
+        button.parentNode.replaceChild(newButton, button);
       }
     });
-    
+
     // Look specifically for the main CTA button with ID
     const mainCtaButton = document.getElementById('main-cta-button');
     if (mainCtaButton) {
       console.log("Main CTA button found:", mainCtaButton.innerText);
-      mainCtaButton.addEventListener('click', (e) => {
-        e.preventDefault();
+
+      console.log("Converting main CTA to button element to prevent URL issues");
+
+      // Crear un nuevo botón que reemplazará al enlace
+      const newButton = document.createElement('button');
+
+      // Copiar todas las clases y estilos del enlace original
+      newButton.className = mainCtaButton.className;
+      newButton.innerHTML = mainCtaButton.innerHTML;
+      newButton.style.cssText = mainCtaButton.style.cssText;
+      newButton.style.cursor = 'pointer';
+      newButton.id = mainCtaButton.id; // Mantener el ID
+
+      // Agregar el atributo onclick directamente
+      newButton.setAttribute('onclick', 'window.openRequestDemoModal()');
+
+      // Agregar el event listener
+      newButton.addEventListener('click', function(e) {
         console.log("Main CTA button clicked");
-        if (typeof window.openRequestDemoModal === 'function') {
-          console.log("Opening modal from main CTA");
-          window.openRequestDemoModal();
-        } else {
-          console.error("The function openRequestDemoModal is not defined");
-        }
+        window.openRequestDemoModal();
       });
-      mainCtaButton.style.cursor = 'pointer';
+
+      // Reemplazar el enlace con el nuevo botón
+      mainCtaButton.parentNode.replaceChild(newButton, mainCtaButton);
     } else {
       console.log("Main CTA button with id main-cta-button not found");
-      
+
       // Look for class selector as fallback
       const ctaButton = document.querySelector('.call-to-action a.btn, .call-to-action button.btn, .call-to-action a.button, .call-to-action button.button');
       if (ctaButton) {
         console.log("CTA button found by class:", ctaButton.innerText);
-        ctaButton.addEventListener('click', (e) => {
-          e.preventDefault();
+
+        console.log("Converting CTA to button element to prevent URL issues");
+
+        // Crear un nuevo botón que reemplazará al enlace
+        const newButton = document.createElement('button');
+
+        // Copiar todas las clases y estilos del enlace original
+        newButton.className = ctaButton.className;
+        newButton.innerHTML = ctaButton.innerHTML;
+        newButton.style.cssText = ctaButton.style.cssText;
+        newButton.style.cursor = 'pointer';
+
+        // Agregar el atributo onclick directamente
+        newButton.setAttribute('onclick', 'window.openRequestDemoModal()');
+
+        // Agregar el event listener
+        newButton.addEventListener('click', function(e) {
           console.log("End of page CTA button clicked");
-          if (typeof window.openRequestDemoModal === 'function') {
-            console.log("Opening modal from end CTA");
-            window.openRequestDemoModal();
-          } else {
-            console.error("The function openRequestDemoModal is not defined");
-          }
+          window.openRequestDemoModal();
         });
-        ctaButton.removeAttribute('href');
-        ctaButton.style.cursor = 'pointer';
+
+        // Reemplazar el enlace con el nuevo botón
+        ctaButton.parentNode.replaceChild(newButton, ctaButton);
       } else {
         console.log("End of page CTA button not found by class");
       }
     }
-    
+
     // Check if global functions are available
     console.log("openRequestDemoModal available:", typeof window.openRequestDemoModal === 'function');
     console.log("openVideoTutorialModal available:", typeof window.openVideoTutorialModal === 'function');
+  };
+
+  // Ejecutar la inicialización cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOMContentLoaded in Spanish main page");
+    window.initializePageButtons();
+
+    // También llamar a la función cuando cambia la URL (para navegación SPA)
+    window.addEventListener('popstate', function() {
+      console.log("URL changed, reinitializing buttons");
+      window.initializePageButtons();
+    });
+  });
+
+  // También ejecutar cuando la página se cargue completamente
+  window.addEventListener('load', function() {
+    console.log("Window load event in Spanish main page");
+    window.initializePageButtons();
+
+    // Verificar si hay un hash en la URL y actuar en consecuencia
+    if (window.location.hash === '#video') {
+      console.log("Found #video hash in URL, opening video modal");
+      setTimeout(function() {
+        if (typeof window.openVideoTutorialModal === 'function') {
+          window.openVideoTutorialModal();
+        }
+      }, 500); // Pequeño retraso para asegurar que todo esté cargado
+    }
   });
 </script>

@@ -12,26 +12,71 @@ const {
   disabled,
   icon,
   addClasses = undefined,
+  href = "",
+  onclick = undefined,
 }: Props = Astro.props;
 const hasChildren = Object.keys(Astro.slots).length > 0;
-// console.log({ hasChildren });
+
+// Determinar si este botón debe abrir un modal
+const isModalButton = href === "#" ||
+                      href === "#video" ||
+                      href === "#demo" ||
+                      (label && (
+                        label.includes("Demo") ||
+                        label.includes("demo") ||
+                        label.includes("Video") ||
+                        label.includes("video")
+                      ));
+
+// Determinar qué función de modal llamar
+let modalFunction = "";
+if (isModalButton) {
+  if (href === "#video" || (label && (label.includes("Video") || label.includes("video")))) {
+    modalFunction = "window.openVideoTutorialModal()";
+  } else {
+    modalFunction = "window.openRequestDemoModal()";
+  }
+}
+
+const commonClasses = `btn${color ? "-" + color : ""}${mode === "outline" ? "-outline" : ""} me-4 mb-4 ${addClasses ?? ""} ${Astro.props.class ?? ""} mt-2 md:mt-0`;
 ---
 
-<a
-  {...Astro.props}
-  target={target}
-  class={`btn${color ? "-" + color : ""}${mode === "outline" ? "-outline" : ""} me-4 mb-4 ${addClasses ?? ""} ${Astro.props.class ?? ""} mt-2 md:mt-0`}
-  aria-disabled={disabled}
->
-  {
-    icon && (
-      <FeatherIcon
-        name={icon}
-        size={20}
-        client:load
-        className={`${label || hasChildren ? "mr-4" : "null"}`}
-      />
-    )
-  }
-  {label ?? <slot />}
-</a>
+{isModalButton ? (
+  <button
+    type="button"
+    class={commonClasses}
+    aria-disabled={disabled}
+    onclick={modalFunction}
+  >
+    {
+      icon && (
+        <FeatherIcon
+          name={icon}
+          size={20}
+          client:load
+          className={`${label || hasChildren ? "mr-4" : "null"}`}
+        />
+      )
+    }
+    {label ?? <slot />}
+  </button>
+) : (
+  <a
+    {...Astro.props}
+    target={target}
+    class={commonClasses}
+    aria-disabled={disabled}
+  >
+    {
+      icon && (
+        <FeatherIcon
+          name={icon}
+          size={20}
+          client:load
+          className={`${label || hasChildren ? "mr-4" : "null"}`}
+        />
+      )
+    }
+    {label ?? <slot />}
+  </a>
+)}

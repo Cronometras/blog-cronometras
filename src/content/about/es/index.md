@@ -16,7 +16,7 @@ buttons:
     class: "bg-gradient-to-r from-purple-600 to-accent text-white hover:opacity-90 font-bold py-3 px-6 rounded-lg text-center transition-all duration-300 shadow-md hover:scale-105 hover:shadow-purple-500/50 border border-purple-400 w-full sm:w-auto"
     target: "_blank"
 ---
-import WebpImage from '@/components/WebpImage.astro';
+
 
 
 <div class="container py-10">

@@ -26,12 +26,20 @@ const ContactFormEn: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
+      // Add the language parameter to the data
+      const dataWithLang = {
+        ...data,
+        lang: 'en' // Set language to English
+      };
+
+      console.log('Sending data with language:', dataWithLang);
+
+      const response = await fetch('/api/contact/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(dataWithLang),
       });
 
       try {

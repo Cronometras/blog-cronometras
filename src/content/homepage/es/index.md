@@ -8,7 +8,7 @@ banner:
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Solicita una Demo Gratuita
-      href: "/signup"
+      href: "#"
       target: "_self"
       icon: "clock"
       addClasses: "w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4"
@@ -24,7 +24,7 @@ sections:
     image: /images/webp/cronometro-repetitivos.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
-     
+
   - title: Fiabilidad del estudio.
     content: "CRONOMETRAS te asegura estudios fiables. El técnico visualiza en tiempo real las tomas necesarias para alcanzar una fiabilidad del <b class='text-secondary'>95%</b> en el tiempo estándar. Este cálculo se basa en el <b class='text-secondary'>método estadístico</b>, considerando la dispersión de los tiempos para determinar las tomas restantes. Toma decisiones con total confianza, respaldadas por datos sólidos y un rigor científico."
     image: /images/webp/calculo-de-tomas-restantes.webp
@@ -68,29 +68,29 @@ sections:
 
   - title: Diseñado para la Productividad
     content: "Con una interfaz intuitiva y moderna, CRONOMETRAS hace que el análisis de tiempos sea <b class='text-accent'>simple y eficiente</b>. Olvídate de las hojas de cálculo y de la tablilla con  el cronómetro manual y la hoja de papel y el lápiz. Optimiza tu productividad con herramientas profesionales."
-    
+
 
 colaboramos:
   - title: "Nuestra App de cronometraje industrial colabora con:"
-    description: "CRONOMETRAS es un proyecto que se basa en la colaboración. Si te interesa participar, no dudes en contactarnos."  
+    description: "CRONOMETRAS es un proyecto que se basa en la colaboración. Si te interesa participar, no dudes en contactarnos."
     image: /images/webp/logo-google-play.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
     colaboradores:
       - title: "TAL"
-        description: "Tribunal de Arbitraje Laboral de Valencia"  
+        description: "Tribunal de Arbitraje Laboral de Valencia"
         image: /images/webp/tal-cronometrasapp.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 
       - title: "CCOO"
-        description: "Sindicato de Trabajadores más representativo de España"  
+        description: "Sindicato de Trabajadores más representativo de España"
         image: /images/webp/ccoo-industria.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
-        
+
       - title: "Asetemyt"
-        description: "Asociación Española de técnicos en Métodos y Tiempos"  
+        description: "Asociación Española de técnicos en Métodos y Tiempos"
         image: /images/webp/logo-asetemyt-300x300-1.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
@@ -217,7 +217,7 @@ testimonial:
 call_to_action:
   title: "Optimiza tu productividad con <span class='text-accent text-shadow-[0px_5px_15px]'>CRONOMETRAS</span>"
   description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**"
-  button: 
+  button:
     label: "Comenzar Ahora"
     href: "#"
     color: accent

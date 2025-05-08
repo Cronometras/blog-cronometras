@@ -2,3 +2,8 @@ User-agent: *
 Allow: /
 
 Disallow: /api/*
+
+# Permitir explícitamente a LinkedIn
+User-agent: LinkedInBot
+Allow: /
+Disallow: /api/*

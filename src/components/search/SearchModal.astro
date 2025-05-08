@@ -155,15 +155,22 @@ const t = useTranslations(lang);
               },
               templates: {
                 item({ item, components, html }) {
+                  // Determinar la imagen a mostrar
+                  const imageUrl = item.type === 'blog' && item.heroImage 
+                                   ? item.heroImage 
+                                   : '/images/cronometras-logo.svg'; // Ruta al logo por defecto
+                                   
                   return html`
                     <a href="${item.url || `/${currentLang}/blog/${item.slug}`}" class="aa-ItemLink">
                       <div class="aa-ItemContent">
                         <div class="aa-ItemIcon aa-ItemIcon--alignTop">
                           <img
-                            src="${item.heroImage || '/images/webp/default.webp'}"
+                            src="${imageUrl}" // Usar la variable imageUrl
                             alt="${item.title}"
                             width="40"
                             height="40"
+                            // Añadir object-contain si el logo no es cuadrado
+                            class="${item.type !== 'blog' ? 'object-contain' : ''}"
                           />
                         </div>
                         <div class="aa-ItemContentBody">
@@ -206,10 +213,12 @@ const t = useTranslations(lang);
                 },
               },
             },
-          ];
-        },
-      });
-      console.log('Autocomplete instance created successfully');
+          });
+          console.log('Autocomplete instance created successfully');
+        } catch (e) {
+          console.error('Error creating autocomplete instance', e);
+        }
+      }
     } catch (e) {
       console.error('Error creating autocomplete instance', e);
     }

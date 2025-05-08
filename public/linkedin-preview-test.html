@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Preview Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .preview-container {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .linkedin-preview {
+            display: flex;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            overflow: hidden;
+            max-width: 525px;
+        }
+        .preview-image {
+            width: 150px;
+            height: 150px;
+            background-color: #f3f6f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .preview-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .preview-content {
+            padding: 12px;
+            flex: 1;
+            background-color: white;
+        }
+        .preview-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.9);
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .preview-description {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .preview-url {
+            font-size: 12px;
+            color: rgba(0,0,0,0.6);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0077b5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #006097;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .instructions h2 {
+            margin-top: 0;
+        }
+        .instructions ol {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LinkedIn Preview Test</h1>
+    
+    <div class="instructions">
+        <h2>Instrucciones</h2>
+        <ol>
+            <li>Ingresa la URL de tu artículo de blog (usa la URL de producción, no localhost)</li>
+            <li>Haz clic en "Obtener metadatos" para ver cómo se vería la vista previa en LinkedIn</li>
+            <li>Si la vista previa no muestra la información correcta, verifica las etiquetas Open Graph en tu página</li>
+        </ol>
+    </div>
+    
+    <div class="form-group">
+        <label for="url-input">URL del artículo:</label>
+        <input type="text" id="url-input" placeholder="https://cronometras.com/es/blog/tu-articulo" value="https://cronometras.com/es/blog/importancia-del-calculo-del-tiempo-estandar-para-la-productividad-y-rentabilidad">
+    </div>
+    
+    <button id="fetch-btn">Obtener metadatos</button>
+    
+    <div class="preview-container">
+        <h2>Vista previa en LinkedIn</h2>
+        <p>Así es como se vería tu artículo cuando se comparte en LinkedIn:</p>
+        
+        <div class="linkedin-preview">
+            <div class="preview-image">
+                <img id="preview-img" src="https://cronometras.com/images/logo.png" alt="Vista previa">
+            </div>
+            <div class="preview-content">
+                <div class="preview-title" id="preview-title">Título del artículo</div>
+                <div class="preview-description" id="preview-description">Descripción del artículo...</div>
+                <div class="preview-url" id="preview-url">cronometras.com</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="preview-container">
+        <h2>Metadatos detectados</h2>
+        <div id="metadata-container">
+            <p>Haz clic en "Obtener metadatos" para ver los metadatos de la página.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('fetch-btn').addEventListener('click', async function() {
+            const url = document.getElementById('url-input').value;
+            
+            if (!url) {
+                alert('Por favor, ingresa una URL válida');
+                return;
+            }
+            
+            // Actualizar la vista previa con un mensaje de carga
+            document.getElementById('preview-title').textContent = 'Cargando...';
+            document.getElementById('preview-description').textContent = '';
+            document.getElementById('metadata-container').innerHTML = '<p>Cargando metadatos...</p>';
+            
+            try {
+                // Nota: Esto no funcionará directamente debido a restricciones CORS
+                // En un entorno real, necesitarías un proxy del lado del servidor
+                // Esta es solo una simulación para fines de demostración
+                
+                // Simulamos la obtención de metadatos
+                setTimeout(() => {
+                    // Simulamos metadatos para demostración
+                    const metadata = {
+                        title: 'Importancia del Cálculo del Tiempo Estándar para la Productividad y Rentabilidad',
+                        description: 'Descubre cómo el cálculo preciso del tiempo estándar impacta directamente en la productividad y rentabilidad de tu empresa. Aprende métodos efectivos para implementarlo.',
+                        image: 'https://cronometras.com/images/blog/tiempo-estandar.jpg',
+                        url: url
+                    };
+                    
+                    // Actualizar la vista previa
+                    document.getElementById('preview-title').textContent = metadata.title;
+                    document.getElementById('preview-description').textContent = metadata.description;
+                    document.getElementById('preview-url').textContent = new URL(url).hostname;
+                    document.getElementById('preview-img').src = metadata.image;
+                    
+                    // Mostrar los metadatos detectados
+                    let metadataHtml = `
+                        <p><strong>og:title:</strong> ${metadata.title}</p>
+                        <p><strong>og:description:</strong> ${metadata.description}</p>
+                        <p><strong>og:image:</strong> ${metadata.image}</p>
+                        <p><strong>og:url:</strong> ${url}</p>
+                    `;
+                    document.getElementById('metadata-container').innerHTML = metadataHtml;
+                    
+                    // Mensaje adicional
+                    document.getElementById('metadata-container').innerHTML += `
+                        <div style="margin-top: 20px; padding: 10px; background-color: #f0f7ff; border-left: 4px solid #0077b5;">
+                            <p><strong>Nota importante:</strong> Esta es una simulación. Para ver los metadatos reales, debes:</p>
+                            <ol>
+                                <li>Subir tu sitio a producción con todos los cambios implementados</li>
+                                <li>Usar herramientas como <a href="https://www.linkedin.com/post-inspector/" target="_blank">LinkedIn Post Inspector</a> para verificar los metadatos</li>
+                                <li>Tener en cuenta que LinkedIn puede tardar hasta 24-48 horas en actualizar su caché</li>
+                            </ol>
+                        </div>
+                    `;
+                }, 1500);
+                
+            } catch (error) {
+                document.getElementById('preview-title').textContent = 'Error al obtener metadatos';
+                document.getElementById('metadata-container').innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

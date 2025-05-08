@@ -226,7 +226,7 @@ const RequestDemoForm: React.FC = () => {
     setServerError('');
 
     try {
-      const response = await fetch('/.netlify/functions/information-request', {
+      const response = await fetch('/api/information-request/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -250,6 +250,22 @@ const RequestDemoForm: React.FC = () => {
         }
 
         if (response.ok) {
+          console.log("Respuesta OK, cambiando a estado isSubmitted=true");
+
+          // Ocultar inmediatamente el encabezado del modal
+          const modalHeader = document.getElementById('modal-header');
+          if (modalHeader) {
+            console.log("Ocultando modal-header inmediatamente");
+            modalHeader.style.display = 'none';
+          }
+
+          // También ocultar el título y la descripción individualmente por si acaso
+          const modalTitle = document.getElementById('modal-title');
+          const modalDescription = document.getElementById('modal-description');
+
+          if (modalTitle) modalTitle.style.display = 'none';
+          if (modalDescription) modalDescription.style.display = 'none';
+
           setIsSubmitted(true);
           setFormData(initialFormState);
         } else {
@@ -269,6 +285,22 @@ const RequestDemoForm: React.FC = () => {
 
   // Si el formulario se envió con éxito, mostrar mensaje de confirmación
   if (isSubmitted) {
+    console.log("Formulario enviado con éxito, mostrando mensaje de confirmación");
+
+    // Asegurarnos de que el encabezado esté oculto
+    const modalHeader = document.getElementById('modal-header');
+    if (modalHeader) {
+      console.log("Verificando que modal-header esté oculto");
+      modalHeader.style.display = 'none';
+    }
+
+    // También ocultar el título y la descripción individualmente
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+
+    if (modalTitle) modalTitle.style.display = 'none';
+    if (modalDescription) modalDescription.style.display = 'none';
+
     return (
       <div className="text-center py-10">
         <div className="flex justify-center mb-6">
@@ -279,6 +311,7 @@ const RequestDemoForm: React.FC = () => {
           {t.thankYouMessage}
         </p>
         <button
+          type="button"
           onClick={() => {
             setIsSubmitted(false);
             window.closeRequestDemoModal && window.closeRequestDemoModal();

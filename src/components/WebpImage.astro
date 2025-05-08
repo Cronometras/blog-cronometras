@@ -1,6 +1,9 @@
 ---
 // WebpImage.astro - Un componente para usar imágenes WebP con fallback
-const { src, alt, width, height, class: className } = Astro.props;
+const { src, alt, width, height, class: className, critical = false } = Astro.props;
+
+// Verificar si es la imagen principal del banner
+const isMainBannerImage = src === "/images/webp/adaptada-a-moviles-tablets-y-pc.webp";
 
 // Verificar si la ruta de la imagen comienza con /images/
 const isLocalImage = src.startsWith('/images/');
@@ -33,7 +36,7 @@ if (isLocalImage) {
 }
 ---
 
-<picture>
+<picture class={isMainBannerImage ? 'banner-image-container' : ''}>
   <source srcset={webpSrc} type="image/webp">
   <img
     src={src}
@@ -41,7 +44,9 @@ if (isLocalImage) {
     width={width}
     height={height}
     class={className}
-    loading="lazy"
+    loading={critical || isMainBannerImage ? "eager" : "lazy"}
+    fetchpriority={critical || isMainBannerImage ? "high" : "auto"}
+    decoding="async"
   />
 </picture>
 

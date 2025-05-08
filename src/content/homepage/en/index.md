@@ -8,7 +8,7 @@ banner:
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Request a Free Demo
-      href: "/signup"
+      href: "#"
       target: "_self"
       icon: "clock"
       addClasses: "w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4"

@@ -19,7 +19,7 @@ let markdownContent = '';
 try {
   const filePath = path.join(process.cwd(), 'src', 'content', 'faq', 'es', 'index.md');
   const fileContent = fs.readFileSync(filePath, 'utf-8');
-  
+
   // Eliminar el frontmatter (todo lo que está entre --- al principio del archivo)
   markdownContent = fileContent.replace(/^---[\s\S]*?---\s*/m, '');
   console.log('✅ Archivo de FAQ leído correctamente');
@@ -85,19 +85,27 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
 </Base>
 
 <script>
-  // Script para manejar el acordeón
-  document.addEventListener('DOMContentLoaded', () => {
+  // Función para inicializar el acordeón
+  function initFaqAccordion() {
     const faqQuestions = document.querySelectorAll('.faq-question');
-    
+
+    // Eliminar listeners anteriores para evitar duplicados
     faqQuestions.forEach(question => {
+      const newQuestion = question.cloneNode(true);
+      question.parentNode.replaceChild(newQuestion, question);
+    });
+
+    // Volver a seleccionar los elementos después de clonarlos
+    const refreshedQuestions = document.querySelectorAll('.faq-question');
+
+    refreshedQuestions.forEach(question => {
       question.addEventListener('click', () => {
-        const index = question.getAttribute('data-index');
         const answer = question.nextElementSibling;
         const icon = question.querySelector('svg');
-        
+
         // Comprobar si la respuesta está visible
         const isExpanded = question.getAttribute('aria-expanded') === 'true';
-        
+
         // Cerrar todas las respuestas
         document.querySelectorAll('.faq-answer').forEach(el => {
           el.classList.add('hidden');
@@ -106,7 +114,7 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
           el.setAttribute('aria-expanded', 'false');
           el.querySelector('svg').classList.remove('rotate-180');
         });
-        
+
         // Si la respuesta estaba cerrada, abrirla
         if (!isExpanded) {
           answer.classList.remove('hidden');
@@ -115,18 +123,29 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
         }
       });
     });
-    
+
     // Abrir la primera pregunta por defecto
-    if (faqQuestions.length > 0) {
-      const firstQuestion = faqQuestions[0];
+    if (refreshedQuestions.length > 0) {
+      const firstQuestion = refreshedQuestions[0];
       const firstAnswer = firstQuestion.nextElementSibling;
       const firstIcon = firstQuestion.querySelector('svg');
-      
+
       firstQuestion.setAttribute('aria-expanded', 'true');
       firstAnswer.classList.remove('hidden');
       firstIcon.classList.add('rotate-180');
     }
-  });
+  }
+
+  // Inicializar en la carga del documento
+  document.addEventListener('DOMContentLoaded', initFaqAccordion);
+
+  // Inicializar después de las transiciones de vista de Astro
+  document.addEventListener('astro:page-load', initFaqAccordion);
+
+  // Inicializar inmediatamente si el documento ya está cargado
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initFaqAccordion, 0);
+  }
 </script>
 
 <style>

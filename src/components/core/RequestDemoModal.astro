@@ -1,19 +1,21 @@
 <div id="requestDemoModal" class="modal hidden fixed inset-0 z-50 w-full h-full bg-black/80 flex items-center justify-center">
   <div class="modal-content relative bg-white dark:bg-gray-800 max-w-3xl w-full mx-4 rounded-xl shadow-2xl overflow-hidden">
     <div class="p-6 md:p-8">
-      <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white" id="modal-title">
-        Solicita una Demo Gratuita
-      </h2>
-      <p class="text-gray-600 dark:text-gray-300 text-center mb-8" id="modal-description">
-        Completa el formulario y te contactaremos para mostrarte cómo CRONOMETRAS puede optimizar la productividad en tu empresa.
-      </p>
-      
+      <div id="modal-header">
+        <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white" id="modal-title">
+          Solicita una Demo Gratuita
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 text-center mb-8" id="modal-description">
+          Completa el formulario y te contactaremos para mostrarte cómo CRONOMETRAS puede optimizar la productividad en tu empresa.
+        </p>
+      </div>
+
       <div id="form-container">
         <!-- El formulario se cargará aquí mediante React -->
         <p class="text-center text-gray-500" id="loading-text">Cargando formulario...</p>
       </div>
     </div>
-    
+
     <button onclick="closeRequestDemoModal()" class="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-accent text-2xl font-bold transition-colors z-10">&times;</button>
   </div>
 </div>
@@ -21,22 +23,22 @@
 <script is:inline>
 (function() {
   console.log("Inicializando modal de solicitud de demo");
-  
+
   // Variable para controlar el estado
   let modalIsActive = false;
-  
+
   // Función para detectar el idioma
   function detectLanguage() {
     return window.location.pathname.startsWith('/en') ? 'en' : 'es';
   }
-  
+
   // Función para establecer los textos según el idioma
   function setModalTexts() {
     const lang = detectLanguage();
     const titleEl = document.getElementById('modal-title');
     const descriptionEl = document.getElementById('modal-description');
     const loadingEl = document.getElementById('loading-text');
-    
+
     if (titleEl && descriptionEl && loadingEl) {
       if (lang === 'en') {
         titleEl.textContent = 'Request a Free Demo';
@@ -49,36 +51,44 @@
       }
     }
   }
-  
+
   // Exponer las funciones al ámbito global
   window.openRequestDemoModal = function() {
     console.log("Abriendo modal de solicitud de demo");
-    
-    if (modalIsActive) {
-      console.log("El modal ya está activo, no necesita ser reinicializado");
-      return;
-    }
-    
+
+    // Asegurarse de que el modal esté inicializado
+    initializeModal();
+
     const modal = document.getElementById('requestDemoModal');
-    
+
     if (!modal) {
       console.error("No se encontró el modal #requestDemoModal");
       return;
     }
-    
+
+    // Si ya está activo, no hacer nada
+    if (modalIsActive) {
+      console.log("El modal ya está activo, no necesita ser reinicializado");
+      return;
+    }
+
     // Establecer los textos según el idioma
     setModalTexts();
-    
+
     // Marcar como activo
     modalIsActive = true;
-    
+
+    // Asegurarse de que el modal esté visible
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    
+
     // Trigger entrance animation
     setTimeout(() => {
       modal.classList.add('modal-visible');
     }, 10);
+
+    // Agregar listener para la tecla Escape
+    document.addEventListener('keydown', escapeKeyHandler);
 
     // Cargar el componente React en el contenedor cada vez que se abra el modal
     loadFormComponent();
@@ -87,56 +97,92 @@
   window.closeRequestDemoModal = function() {
     console.log("Cerrando modal de solicitud de demo");
     const modal = document.getElementById('requestDemoModal');
-    
+
     if (!modal) {
       console.error("No se encontró el modal al intentar cerrarlo");
       return;
     }
-    
+
+    // Si no está activo, no hacer nada
+    if (!modalIsActive) {
+      console.log("El modal ya está cerrado");
+      return;
+    }
+
     modal.classList.remove('modal-visible');
-    
+
     // Wait for animation to complete before hiding
     setTimeout(() => {
       modal.classList.add('hidden');
       document.body.style.overflow = 'auto';
-      
+
       // Limpiar el contenedor al cerrar para asegurar una carga limpia la próxima vez
       resetFormContainer();
-      
+
       // Marcar como inactivo
       modalIsActive = false;
+
+      // Eliminar listener para la tecla Escape
+      document.removeEventListener('keydown', escapeKeyHandler);
     }, 300);
   };
-  
+
   // Función para cargar el componente React
   function loadFormComponent() {
     console.log("Cargando componente de formulario");
     const formContainer = document.getElementById('form-container');
-    
+
     if (!formContainer) {
       console.error("No se encontró el contenedor #form-container");
       return;
     }
-    
+
     // Aseguramos que el contenedor tenga el mensaje de carga
     const lang = detectLanguage();
     const loadingText = lang === 'en' ? 'Loading form...' : 'Cargando formulario...';
     formContainer.innerHTML = `<p class="text-center text-gray-500">${loadingText}</p>`;
-    
-    // Usamos setTimeout para asegurar que el DOM se ha actualizado
-    setTimeout(() => {
+
+    // Intentos máximos para cargar el formulario
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    // Función para intentar cargar el formulario
+    function tryLoadForm() {
+      attempts++;
+
       // Usamos una función auxiliar para cargar el componente React
       if (typeof window.loadRequestDemoForm === 'function') {
-        console.log("Llamando a loadRequestDemoForm");
-        window.loadRequestDemoForm();
+        console.log("Llamando a loadRequestDemoForm (intento " + attempts + ")");
+        try {
+          window.loadRequestDemoForm();
+          console.log("Formulario cargado correctamente");
+        } catch (error) {
+          console.error("Error al cargar el formulario:", error);
+          if (attempts < maxAttempts) {
+            console.log("Reintentando cargar el formulario en 500ms...");
+            setTimeout(tryLoadForm, 500);
+          } else {
+            const errorText = lang === 'en' ? 'Error loading form' : 'Error al cargar el formulario';
+            formContainer.innerHTML = `<p class="text-center text-red-500">${errorText}</p>`;
+          }
+        }
       } else {
-        const errorText = lang === 'en' ? 'Error loading form' : 'Error al cargar el formulario';
-        console.error("La función loadRequestDemoForm no está definida");
-        formContainer.innerHTML = `<p class="text-center text-red-500">${errorText}</p>`;
+        console.log("La función loadRequestDemoForm no está definida (intento " + attempts + ")");
+        if (attempts < maxAttempts) {
+          console.log("Reintentando en 500ms...");
+          setTimeout(tryLoadForm, 500);
+        } else {
+          const errorText = lang === 'en' ? 'Error loading form' : 'Error al cargar el formulario';
+          console.error("La función loadRequestDemoForm no está definida después de " + maxAttempts + " intentos");
+          formContainer.innerHTML = `<p class="text-center text-red-500">${errorText}</p>`;
+        }
       }
-    }, 100); // Aumentamos el retraso para dar más tiempo al DOM
+    }
+
+    // Usamos setTimeout para asegurar que el DOM se ha actualizado
+    setTimeout(tryLoadForm, 300); // Aumentamos el retraso para dar más tiempo al DOM
   }
-  
+
   // Función para resetear el contenedor del formulario
   function resetFormContainer() {
     console.log("Reseteando contenedor del formulario");
@@ -150,31 +196,53 @@
     }
   }
 
-  // Event listener para cerrar el modal haciendo clic fuera del contenido
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOMContentLoaded en RequestDemoModal");
+  // Variable para controlar la inicialización
+  let modalInitialized = false;
+
+  // Función para inicializar el modal
+  function initializeModal() {
+    if (modalInitialized) return;
+
     const modal = document.getElementById('requestDemoModal');
+
     if (modal) {
       console.log("Modal encontrado, agregando event listeners");
+      // Click fuera del contenido para cerrar
       modal.addEventListener('click', function(e) {
+        console.log("Click en el modal, target:", e.target, "this:", this);
         if (e.target === this) {
+          console.log("Click fuera del contenido, cerrando modal");
           window.closeRequestDemoModal();
         }
       });
+
+      modalInitialized = true;
     } else {
       console.error("No se encontró el modal para agregar event listeners");
     }
+  }
 
-    // Event listener para cerrar con la tecla Escape
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modalIsActive) {
-        window.closeRequestDemoModal();
-      }
-    });
-    
+  // Manejador para la tecla Escape
+  function escapeKeyHandler(e) {
+    if (e.key === 'Escape' && modalIsActive) {
+      window.closeRequestDemoModal();
+    }
+  }
+
+  // Event listener para inicializar el modal cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded en RequestDemoModal");
+    initializeModal();
+
     // Verificar que las funciones estén definidas
     console.log("openRequestDemoModal definido:", typeof window.openRequestDemoModal === 'function');
     console.log("closeRequestDemoModal definido:", typeof window.closeRequestDemoModal === 'function');
+  });
+
+  // También inicializar cuando la ventana se cargue completamente
+  window.addEventListener('load', function() {
+    console.log("Window load event in RequestDemoModal");
+    initializeModal();
   });
 })();
 </script>
@@ -184,7 +252,7 @@
     opacity: 0;
     transition: opacity 0.3s ease-out;
   }
-  
+
   .modal-visible {
     opacity: 1;
   }
@@ -195,15 +263,15 @@
     max-height: 90vh;
     overflow-y: auto;
   }
-  
+
   .modal-visible .modal-content {
     transform: translateY(0);
   }
-  
+
   @media (max-width: 640px) {
     .modal-content {
       width: 95%;
       max-width: none;
     }
   }
-</style> 
+</style>

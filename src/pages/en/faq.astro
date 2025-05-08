@@ -19,7 +19,7 @@ let markdownContent = '';
 try {
   const filePath = path.join(process.cwd(), 'src', 'content', 'faq', 'en', 'index.md');
   const fileContent = fs.readFileSync(filePath, 'utf-8');
-  
+
   // Eliminar el frontmatter (todo lo que está entre --- al principio del archivo)
   markdownContent = fileContent.replace(/^---[\s\S]*?---\s*/m, '');
   console.log('✅ FAQ file read successfully');
@@ -85,19 +85,27 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
 </Base>
 
 <script>
-  // Script to handle the accordion
-  document.addEventListener('DOMContentLoaded', () => {
+  // Function to initialize the accordion
+  function initFaqAccordion() {
     const faqQuestions = document.querySelectorAll('.faq-question');
-    
+
+    // Remove previous listeners to avoid duplicates
     faqQuestions.forEach(question => {
+      const newQuestion = question.cloneNode(true);
+      question.parentNode.replaceChild(newQuestion, question);
+    });
+
+    // Re-select elements after cloning
+    const refreshedQuestions = document.querySelectorAll('.faq-question');
+
+    refreshedQuestions.forEach(question => {
       question.addEventListener('click', () => {
-        const index = question.getAttribute('data-index');
         const answer = question.nextElementSibling;
         const icon = question.querySelector('svg');
-        
+
         // Check if the answer is visible
         const isExpanded = question.getAttribute('aria-expanded') === 'true';
-        
+
         // Close all answers
         document.querySelectorAll('.faq-answer').forEach(el => {
           el.classList.add('hidden');
@@ -106,7 +114,7 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
           el.setAttribute('aria-expanded', 'false');
           el.querySelector('svg').classList.remove('rotate-180');
         });
-        
+
         // If the answer was closed, open it
         if (!isExpanded) {
           answer.classList.remove('hidden');
@@ -115,18 +123,29 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
         }
       });
     });
-    
+
     // Open the first question by default
-    if (faqQuestions.length > 0) {
-      const firstQuestion = faqQuestions[0];
+    if (refreshedQuestions.length > 0) {
+      const firstQuestion = refreshedQuestions[0];
       const firstAnswer = firstQuestion.nextElementSibling;
       const firstIcon = firstQuestion.querySelector('svg');
-      
+
       firstQuestion.setAttribute('aria-expanded', 'true');
       firstAnswer.classList.remove('hidden');
       firstIcon.classList.add('rotate-180');
     }
-  });
+  }
+
+  // Initialize on document load
+  document.addEventListener('DOMContentLoaded', initFaqAccordion);
+
+  // Initialize after Astro view transitions
+  document.addEventListener('astro:page-load', initFaqAccordion);
+
+  // Initialize immediately if the document is already loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(initFaqAccordion, 0);
+  }
 </script>
 
 <style>
