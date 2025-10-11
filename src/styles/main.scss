@@ -1,4 +1,5 @@
 @use "sass:meta";
+@use "../styles/settings-cards.css";
 @include meta.load-css("themes.scss");
 
 @tailwind base;
@@ -15,9 +16,6 @@
   @include meta.load-css("utilities");
   @include meta.load-css("buttons");
 }
-
-/* Import custom CSS files */
-@import "../styles/settings-cards.css";
 
 /**
  * Scrollbar styles

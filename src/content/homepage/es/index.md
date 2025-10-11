@@ -77,6 +77,21 @@ colaboramos:
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
     colaboradores:
+      - title: "Stadler Rail"
+        description: "Fabricante suizo líder mundial en material rodante ferroviario"
+        image: /images/Stadler_logo.svg.png
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
+      - title: "Cosval"
+        description: "Organización, Métodos y Tiempos, Procesos 4.0"
+        image: /images/cosval.png
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
+      - title: "Jaime Mascaró"
+        description: "Empresa líder en calzado de lujo desde 1918"
+        image: /images/Mascaro.png
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
       - title: "TAL"
         description: "Tribunal de Arbitraje Laboral de Valencia"
         image: /images/webp/tal-cronometrasapp.webp

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" width="300" height="150">
+  <!-- Círculo negro de fondo -->
+  <circle cx="75" cy="75" r="70" fill="#000000"/>
+  
+  <!-- Flecha blanca estilizada -->
+  <path d="M35 75 L75 45 L75 60 L115 60 L115 90 L75 90 L75 105 Z" fill="white"/>
+  
+  <!-- Texto COSVAL -->
+  <text x="160" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#000000">COSVAL</text>
+  
+  <!-- Texto descriptivo -->
+  <text x="160" y="75" font-family="Arial, sans-serif" font-size="12" fill="#666666">ORGANIZACIÓN</text>
+  <text x="160" y="90" font-family="Arial, sans-serif" font-size="12" fill="#666666">MÉTODOS Y TIEMPOS</text>
+  <text x="160" y="105" font-family="Arial, sans-serif" font-size="12" fill="#666666">PROCESOS 4.0</text>
+</svg>

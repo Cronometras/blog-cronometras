@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
 // Importar el formulario directamente
 import RequestDemoForm from "./RequestDemoForm";
@@ -10,13 +10,15 @@ export const RequestDemoFormIsland: React.FC<{ targetId: string }> = ({ targetId
   React.useEffect(() => {
     // Definimos la función para cargar el formulario en el modal
     if (typeof window !== 'undefined') {
+      // Variable para almacenar la instancia de root
+      let rootInstance: any = null;
+
       // Función para desmontar componentes React
       const handleBeforeUnload = () => {
         try {
-          const targetElement = document.getElementById(targetId);
-          if (targetElement) {
-            // @ts-ignore
-            ReactDOM.unmountComponentAtNode(targetElement);
+          if (rootInstance) {
+            rootInstance.unmount();
+            rootInstance = null;
             console.log("Componente React desmontado al descargar la página");
           }
         } catch (error) {
@@ -34,15 +36,14 @@ export const RequestDemoFormIsland: React.FC<{ targetId: string }> = ({ targetId
             return;
           }
 
-          // Primero desmontamos cualquier componente React que pudiera estar
-          // montado en el contenedor usando unmountComponentAtNode
-          try {
-            // @ts-ignore - TypeScript no reconoce unmountComponentAtNode en tipos modernos
-            // pero lo necesitamos para limpiar correctamente los componentes React
-            ReactDOM.unmountComponentAtNode(targetElement);
-            console.log("Componente React desmontado correctamente");
-          } catch (unmountError) {
-            console.warn("Error al desmontar componente React:", unmountError);
+          // Desmontar el componente anterior si existe
+          if (rootInstance) {
+            try {
+              rootInstance.unmount();
+              console.log("Componente React anterior desmontado correctamente");
+            } catch (unmountError) {
+              console.warn("Error al desmontar componente React anterior:", unmountError);
+            }
           }
 
           // Limpiar el contenedor antes de cada renderizado
@@ -50,14 +51,11 @@ export const RequestDemoFormIsland: React.FC<{ targetId: string }> = ({ targetId
             targetElement.removeChild(targetElement.firstChild);
           }
 
-          // Renderizar directamente usando ReactDOM.render clásico
-          // en lugar de usar Hooks y createRoot para evitar errores
-          ReactDOM.render(
-            <RequestDemoForm />,
-            targetElement
-          );
+          // Crear una nueva instancia de root y renderizar
+          rootInstance = createRoot(targetElement);
+          rootInstance.render(<RequestDemoForm />);
 
-          console.log("Formulario renderizado correctamente");
+          console.log("Formulario renderizado correctamente con createRoot");
         } catch (error) {
           console.error("Error al cargar el formulario:", error);
         }
@@ -81,6 +79,15 @@ export const RequestDemoFormIsland: React.FC<{ targetId: string }> = ({ targetId
       // Limpieza al desmontar
       return () => {
         if (typeof window !== 'undefined') {
+          // Desmontar el componente React si existe
+          if (rootInstance) {
+            try {
+              rootInstance.unmount();
+              rootInstance = null;
+            } catch (error) {
+              console.warn("Error al limpiar componente React:", error);
+            }
+          }
           window.loadRequestDemoForm = undefined;
           window.removeEventListener('beforeunload', handleBeforeUnload);
         }
