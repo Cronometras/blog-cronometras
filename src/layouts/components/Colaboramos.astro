@@ -51,10 +51,11 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
               <div class="logo-carousel-container">
                 <div class="logo-carousel">
                   {section.colaboradores
-  .filter((colaborador) =>
-    !/ccoo|asetemyt/i.test(colaborador.title || '') &&
-    !/ccoo|asetemyt/i.test(colaborador.description || '')
-  )
+  .filter((colaborador) => {
+    const title = colaborador.title || '';
+    const description = colaborador.description || '';
+    return !/ccoo|asetemyt/i.test(title) && !/ccoo|asetemyt/i.test(description);
+  })
   .map((colaborador) => (
     <div class="logo-item text-center">
       <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
@@ -70,7 +71,13 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
   ))}
                   {/* Duplicate logos for infinite scroll effect when needed */}
                   {section.colaboradores.length > 3 &&
-                    section.colaboradores.map((colaborador) => (
+                    section.colaboradores
+                    .filter((colaborador) => {
+                      const title = colaborador.title || '';
+                      const description = colaborador.description || '';
+                      return !/ccoo|asetemyt/i.test(title) && !/ccoo|asetemyt/i.test(description);
+                    })
+                    .map((colaborador) => (
                       <div class="logo-item text-center duplicate">
                         <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
                           <img
