@@ -1,38 +1,24 @@
 <div id="floating-contact-button" class="fixed bottom-8 right-8 z-50">
-  <button
-    class="bg-purple-600 dark:bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-purple-700 dark:hover:bg-green-700 transition-all duration-300 flex items-center justify-center"
-    aria-label="Solicitar demo gratuita"
-    onclick="window.openRequestDemoModal()"
+  <a
+    href="https://wa.me/34619588239?text=Hola%2C%20me%20gustaría%20obtener%20más%20información%20sobre%20Cronometras%20App"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300 flex items-center justify-center"
+    aria-label="Contactar por WhatsApp"
   >
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10 1.96 0 3.79-.59 5.31-1.6l3.87 1.06-1.04-3.95c.82-1.5 1.3-3.2 1.3-5.01 0-5.52-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+      <path d="M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.96-1.38-.92-2.61.05-1.22.69-1.8.95-2.04.24-.26.51-.29.68-.26h.47c.15 0 .36-.06.55.45l.69 1.87c.06.13.1.28.01.44l-.27.41-.39.42c-.12.12-.26.25-.12.5.12.26.62 1.09 1.32 1.78.91.88 1.71 1.17 1.95 1.3.24.14.39.12.54-.04l.81-.94c.19-.25.35-.19.54-.11l1.67.88z"/>
     </svg>
-  </button>
+  </a>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     console.log("FloatingContactButton: DOMContentLoaded");
-    
     const floatingButton = document.getElementById('floating-contact-button');
     if (floatingButton) {
-      // Mostrar el botón en todas las páginas
       floatingButton.style.display = 'flex';
-      
-      // Agregar el evento de clic directamente al botón
-      const button = floatingButton.querySelector('button');
-      if (button) {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          console.log("Floating button clicked");
-          if (typeof window.openRequestDemoModal === 'function') {
-            console.log("Opening demo modal from floating button");
-            window.openRequestDemoModal();
-          } else {
-            console.error("The function openRequestDemoModal is not defined");
-          }
-        });
-      }
     }
   });
-</script> 
+</script>

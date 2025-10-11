@@ -43,36 +43,31 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
           <div class="mb-16">
             <div class="row justify-center">
               <div class="mb-12 text-center md:col-10 lg:col-8">
-                <h2 class="mb-4" set:html={section.title} />
-                <p class="mb-8" set:html={section.description} />
-                {section.image && (
-                  <div class="cursor-pointer" onclick={`openModal('${section.image}')`}>
-                    <img
-                      src={section.image}
-                      alt={section.title}
-                      class={`${section.imageClasses || ""} section-image-hover`}
-                    />
-                  </div>
-                )}
-              </div>
+  <h2 class="mb-4">Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana.</h2>
+</div>
             </div>
 
             {section.colaboradores && section.colaboradores.length > 0 && (
               <div class="logo-carousel-container">
                 <div class="logo-carousel">
-                  {section.colaboradores.map((colaborador) => (
-                    <div class="logo-item text-center">
-                      <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
-                        <img
-                          src={colaborador.image}
-                          alt={colaborador.title}
-                          class={`${colaborador.imageClasses || ""} colaborador-image`}
-                        />
-                      </div>
-                      <h3 class="mb-2 text-xl font-semibold" set:html={colaborador.title} />
-                      <p class="text-gray-600" set:html={colaborador.description} />
-                    </div>
-                  ))}
+                  {section.colaboradores
+  .filter((colaborador) =>
+    !/ccoo|asetemyt/i.test(colaborador.title || '') &&
+    !/ccoo|asetemyt/i.test(colaborador.description || '')
+  )
+  .map((colaborador) => (
+    <div class="logo-item text-center">
+      <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
+        <img
+          src={colaborador.image}
+          alt={colaborador.title}
+          class={`${colaborador.imageClasses || ""} colaborador-image`}
+        />
+      </div>
+      <h3 class="mb-2 text-xl font-semibold" set:html={colaborador.title} />
+      <p class="text-gray-600" set:html={colaborador.description} />
+    </div>
+  ))}
                   {/* Duplicate logos for infinite scroll effect when needed */}
                   {section.colaboradores.length > 3 &&
                     section.colaboradores.map((colaborador) => (

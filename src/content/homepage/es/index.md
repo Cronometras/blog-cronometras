@@ -2,7 +2,7 @@
 lang: es
 
 banner:
-  title: '<span class="text-accent text-shadow-[0px_5px_15px] shadow-accent/10">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
+  title: '<span class="text-accent">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
   title_size: "text-4xl md:text-6xl"
   content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos, reduce costos y maximiza la eficiencia como nunca antes.<p>Descubre la <b>App de cronometraje industrial</b> que te ayudará a mejorar tu productividad y optimizar tus procesos.</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp

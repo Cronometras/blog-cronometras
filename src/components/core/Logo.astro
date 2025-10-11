@@ -1,8 +1,10 @@
 ---
 import config from "@/config/config.json";
 import { Image } from "astro:assets";
-// Importación corregida
-import logoImage from "@/assets/images/logo.png";
+
+// Importar imágenes de logo
+const lightLogo = "/images/webp/logo (2).webp";
+const darkLogo = "/images/webp/logo-blanco-50.webp";
 
 const { showText } = Astro.props;
 const { logo_text, logo_width, logo_height, title } = config.site;
@@ -10,14 +12,21 @@ const text = logo_text;
 ---
 
 <a href="/" class="navbar-brand flex flex-row items-center">
-  <Image
-    class="h-9 w-auto"
-    src={logoImage}
-    alt={title}
-    width={50}
-    height={50}
-    format="webp"
-    quality={80}
+  <img
+    class="h-9 w-auto dark:hidden"
+    src={lightLogo}
+    alt={`${title} - Logo claro`}
+    width="50"
+    height="50"
+    loading="lazy"
+  />
+  <img
+    class="h-9 w-auto hidden dark:block"
+    src={darkLogo}
+    alt={`${title} - Logo oscuro`}
+    width="50"
+    height="50"
+    loading="lazy"
   />
 
   {showText != false && (
