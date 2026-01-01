@@ -94,7 +94,7 @@ buttons:
     </div>
     <div class="sm:col-6 md:col-3 mb-8">
       <div class="text-center">
-        <img src="/images/webp/team/miguel.webp" alt="Miguel Cano" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" />
+        <img src="/images/webp/miguel-2.webp" alt="Miguel Cano" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" />
         <h3 class="h5 mb-2">Miguel Cano</h3>
         <p class="text-sm text-gray-600 mb-2">Software Development</p>
         <a href="https://www.linkedin.com/in/miguel-cano-otero/" target="_blank" class="inline-block border border-accent text-accent hover:bg-accent/10 font-bold py-2 px-4 rounded-lg text-center transition-colors w-full md:w-auto mb-4 md:mb-0 md:mr-4">LinkedIn</a>
@@ -146,7 +146,7 @@ buttons:
         <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
           <h3 class="h4 mb-4 dark:text-white">Clock-Ins</h3>
           <p class="mb-4 dark:text-gray-200">Attendance control and work time management system. Allows recording entries and exits, managing permissions, and generating detailed reports.</p>
-          <a href="https://prodcont.com/fichadas/" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">More Information</a>
+          <a href="https://induly.com/" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">More Information</a>
         </div>
       </div>
     </div>

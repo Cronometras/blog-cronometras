@@ -1,5 +1,6 @@
 ---
 import ImageModal from "@/components/core/ImageModal.astro";
+import { getLangFromUrl } from "../../i18n/utils";
 
 interface Colaborador {
   title: string;
@@ -25,6 +26,7 @@ interface Props {
 }
 
 const { colaboramos } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 
 // Verificar si colaboramos está definido
 if (!colaboramos) {
@@ -43,7 +45,12 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
           <div class="mb-16">
             <div class="row justify-center">
               <div class="mb-12 text-center md:col-10 lg:col-8">
-  <h2 class="mb-4">Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana.</h2>
+  <h2 class="mb-4">
+        {lang === 'es' 
+          ? 'Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana.' 
+          : 'Cronometras is the tool used by the Labor Arbitration Court (TAL) of the Valencian Community.'
+        }
+      </h2>
 </div>
             </div>
 

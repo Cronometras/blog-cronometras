@@ -34,7 +34,7 @@ const schema = {
         "description": post.data.description,
         "image": post.data.heroImage 
           ? new URL(post.data.heroImage, config.site.base_url).toString() 
-          : new URL("/images/cronometras App.png", config.site.base_url).toString(),
+          : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString(),
         "datePublished": post.data.pubDate.toISOString(),
         "dateModified": post.data.updatedDate 
           ? post.data.updatedDate.toISOString() 
@@ -48,7 +48,7 @@ const schema = {
           "name": "CRONOMETRAS",
           "logo": {
             "@type": "ImageObject",
-            "url": new URL("/images/webp/logo (2).webp", config.site.base_url).toString()
+            "url": new URL("/images/webp/logo-2.webp", config.site.base_url).toString()
           }
         },
         "mainEntityOfPage": {

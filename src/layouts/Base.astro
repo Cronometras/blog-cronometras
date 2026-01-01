@@ -404,7 +404,7 @@ console.log("Cargando layout Base.astro");
     <RequestDemoModal />
 
     <!-- Formulario de solicitud de demo - Se cargará mediante React en el cliente -->
-    <RequestDemoFormIsland targetId="form-container" client:load />
+    <RequestDemoFormIsland targetId="form-container" client:only="react" />
 
     <!-- Script para depuración e inicialización global - Optimizado para rendimiento -->
     <script defer>

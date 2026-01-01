@@ -14,7 +14,19 @@ if (!isWebp && src.startsWith('/images/')) {
   if (!src.includes('/webp/')) {
     const fileName = src.split('/').pop();
     const fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
-    webpSrc = `/images/webp/${fileNameWithoutExt}.webp`;
+    const slugifiedFileName = fileNameWithoutExt
+      .toLowerCase()
+      .replace(/[áàäâãå]/g, 'a')
+      .replace(/[éèëê]/g, 'e')
+      .replace(/[íìïî]/g, 'i')
+      .replace(/[óòöôõ]/g, 'o')
+      .replace(/[úùüû]/g, 'u')
+      .replace(/[ñ]/g, 'n')
+      .replace(/[ç]/g, 'c')
+      .replace(/[^a-z0-9.]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    webpSrc = `/images/webp/${slugifiedFileName}.webp`;
   }
 }
 

@@ -46,11 +46,26 @@ import WebpImage from "@/components/WebpImage.astro";
     modalImg.src = imageSrc;
 
     // Set the WebP version if available
-    if (imageSrc.startsWith('/images/') && !imageSrc.includes('/webp/')) {
-      const fileName = imageSrc.split('/').pop();
-      const fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
-      const webpPath = `/images/webp/${fileNameWithoutExt}.webp`;
-      modalImageWebp.srcset = webpPath;
+    if (imageSrc.startsWith('/images/')) {
+      if (imageSrc.includes('/webp/')) {
+        modalImageWebp.srcset = imageSrc;
+      } else {
+        const fileName = imageSrc.split('/').pop();
+        const fileNameWithoutExt = fileName.split('.').slice(0, -1).join('.');
+        const slugifiedFileName = fileNameWithoutExt
+          .toLowerCase()
+          .replace(/[áàäâãå]/g, 'a')
+          .replace(/[éèëê]/g, 'e')
+          .replace(/[íìïî]/g, 'i')
+          .replace(/[óòöôõ]/g, 'o')
+          .replace(/[úùüû]/g, 'u')
+          .replace(/[ñ]/g, 'n')
+          .replace(/[ç]/g, 'c')
+          .replace(/[^a-z0-9.]/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '');
+        modalImageWebp.srcset = `/images/webp/${slugifiedFileName}.webp`;
+      }
     } else {
       modalImageWebp.srcset = imageSrc;
     }

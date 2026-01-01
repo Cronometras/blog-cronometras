@@ -1,0 +1,10 @@
+{
+  "short_name": "AI SEO Writer",
+  "name": "Generador de Artículos SEO con IA para WordPress",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#111827",
+  "description": "Una aplicación que utiliza la API de Gemini para realizar una investigación profunda en Internet y generar un artículo optimizado para SEO sobre un tema determinado. También puede generar una imagen destacada y publicar tanto el artículo como la imagen directamente en un blog de WordPress."
+}

@@ -4,7 +4,7 @@ lang: es
 banner:
   title: '<span class="text-accent">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
   title_size: "text-4xl md:text-6xl"
-  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos, reduce costos y maximiza la eficiencia como nunca antes.<p>Descubre la <b>App de cronometraje industrial</b> que te ayudará a mejorar tu productividad y optimizar tus procesos.</p>"
+  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Solicita una Demo Gratuita
@@ -79,17 +79,17 @@ colaboramos:
     colaboradores:
       - title: "Stadler Rail"
         description: "Fabricante suizo líder mundial en material rodante ferroviario"
-        image: /images/Stadler_logo.svg.png
+        image: /images/webp/stadler-logo.svg.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
       - title: "Cosval"
         description: "Organización, Métodos y Tiempos, Procesos 4.0"
-        image: /images/cosval.png
+        image: /images/webp/cosval.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
       - title: "Jaime Mascaró"
         description: "Empresa líder en calzado de lujo desde 1918"
-        image: /images/Mascaro.png
+        image: /images/webp/mascaro.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
       - title: "TAL"
@@ -189,6 +189,21 @@ features:
     - icon: "award"
       title: Exportación de datos
       content: Exporta tus estudios en  <b class="text-text">formato excel y pdf</b>. Comparte estudios en formato **json**
+    - icon: "lock"
+      title: Seguridad MFA
+      content: Autenticación de <b class="text-text">dos factores (MFA)</b> con Google/Microsoft Authenticator. Dispositivos confiables y límite de sesiones.
+    - icon: "camera"
+      title: Imágenes Integradas
+      content: Documenta visualmente con <b class="text-text">imágenes por elemento y por registro</b>. Captura con cámara y exporta a PDF/Excel.
+    - icon: "video"
+      title: Grabación de Video
+      content: Graba <b class="text-text">video de la operación</b> mientras cronometras. Disponible en cronómetro continuo, frecuencial y máquina.
+    - icon: "layers"
+      title: Multi Crono
+      content: Hasta <b class="text-text">6 cronómetros simultáneos</b> con identificación por color. Perfecto para estudios de línea de producción.
+    - icon: "folder"
+      title: Organización por Carpetas
+      content: Organiza estudios en <b class="text-text">carpetas jerárquicas</b>. Arrastra y suelta, comparte carpetas con tu equipo.
 
 #testimonial
 testimonial:

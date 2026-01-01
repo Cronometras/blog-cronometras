@@ -24,7 +24,7 @@ const schema = {
   "name": title,
   "description": description,
   "image": [
-    heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()
+    heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString()
   ],
   "datePublished": pubDate.toISOString(),
   "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
@@ -44,7 +44,7 @@ const schema = {
     "url": config.site.base_url,
     "logo": {
       "@type": "ImageObject",
-      "url": new URL("/images/webp/logo (2).webp", config.site.base_url).toString(),
+      "url": new URL("/images/webp/logo-2.webp", config.site.base_url).toString(),
       "width": 192,
       "height": 192
     }
@@ -72,9 +72,9 @@ const schemaString = JSON.stringify(schema);
 <meta slot="head" property="og:description" content={description} />
 <meta slot="head" property="og:type" content="article" />
 <meta slot="head" property="og:url" content={canonicalUrl} />
-<meta slot="head" property="og:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<meta slot="head" property="og:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString()} />
 <!-- Asegurarnos de que LinkedIn use la imagen correcta -->
-<meta slot="head" name="image" property="og:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<meta slot="head" name="image" property="og:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString()} />
 <meta slot="head" property="og:image:width" content="1200" />
 <meta slot="head" property="og:image:height" content="630" />
 <meta slot="head" property="og:image:alt" content={title} />
@@ -89,11 +89,11 @@ const schemaString = JSON.stringify(schema);
 <!-- Etiquetas específicas para LinkedIn -->
 <meta slot="head" name="linkedin:title" content={title} />
 <meta slot="head" name="linkedin:description" content={description} />
-<meta slot="head" name="linkedin:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<meta slot="head" name="linkedin:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString()} />
 <meta slot="head" name="linkedin:author" content={author} />
 <!-- Etiquetas adicionales para LinkedIn -->
 <meta slot="head" name="twitter:card" content="summary_large_image" />
-<meta slot="head" name="twitter:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/cronometras App.png", config.site.base_url).toString()} />
+<meta slot="head" name="twitter:image" content={heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString()} />
 
 <!-- Script para depuración de metadatos - solo se ejecuta en el cliente -->
 <script is:inline>

@@ -4,7 +4,7 @@ lang: en
 banner:
   title: '<span class="text-accent text-shadow-[0px_5px_15px] shadow-accent/10">CRONOMETRAS</span>: Optimize Your <span class="text-secondary">Productivity</span>'
   title_size: "text-4xl md:text-6xl"
-  content: "The ultimate tool for time and motion analysis. Optimize your processes, reduce costs, and maximize efficiency like never before.<p>Discover the <b>Industrial timing App</b> that will help you improve your productivity and optimize your processes.</p>"
+  content: "The ultimate tool for time and motion analysis. Optimize your processes with <b>Multi Cronos</b>, <b>visual documentation</b> and <b>MFA security</b>.<p>Discover the <b>Industrial timing App</b> with video recording, Excel import and folder organization.</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Request a Free Demo
@@ -73,6 +73,21 @@ colaboramos:
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
     colaboradores:
+      - title: "Stadler Rail"
+        description: "Swiss world leader manufacturer in railway rolling stock"
+        image: /images/webp/stadler-logo.svg.webp
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
+      - title: "Cosval"
+        description: "Organization, Methods and Times, Processes 4.0"
+        image: /images/webp/cosval.webp
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
+      - title: "Jaime Mascaró"
+        description: "Leading luxury footwear company since 1918"
+        image: /images/webp/mascaro.webp
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
       - title: "TAL"
         description: "Labor Arbitration Court of Valencia"
         image: /images/webp/tal-cronometrasapp.webp
@@ -129,6 +144,21 @@ features:
     - icon: "award"
       title: Data Export
       content: Export your studies in <b class="text-text">Excel and PDF format</b>. Share studies in **json** format.
+    - icon: "lock"
+      title: MFA Security
+      content: <b class="text-text">Two-factor authentication (MFA)</b> with Google/Microsoft Authenticator. Trusted devices and session limits.
+    - icon: "camera"
+      title: Integrated Images
+      content: Visually document with <b class="text-text">images per element and per record</b>. Capture with camera and export to PDF/Excel.
+    - icon: "video"
+      title: Video Recording
+      content: Record <b class="text-text">operation video</b> while timing. Available in continuous, frequency and machine stopwatch.
+    - icon: "layers"
+      title: Multi Crono
+      content: Up to <b class="text-text">6 simultaneous stopwatches</b> with color identification. Perfect for production line studies.
+    - icon: "folder"
+      title: Folder Organization
+      content: Organize studies in <b class="text-text">hierarchical folders</b>. Drag and drop, share folders with your team.
 # Testimonial
 testimonial:
   title: What Our <ins>Satisfied Customers</ins> Say

@@ -62,6 +62,14 @@
           "url": "/library"
         },
         {
+          "name": "nav.security",
+          "url": "/security"
+        },
+        {
+          "name": "nav.organizations",
+          "url": "/organizations"
+        },
+        {
           "name": "nav.changelog",
           "url": "/changelog"
         }

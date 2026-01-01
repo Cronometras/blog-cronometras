@@ -156,9 +156,9 @@ const t = useTranslations(lang);
               templates: {
                 item({ item, components, html }) {
                   // Determinar la imagen a mostrar
-                  const imageUrl = item.type === 'blog' && item.heroImage 
-                                   ? item.heroImage 
-                                   : '/images/cronometras-logo.svg'; // Ruta al logo por defecto
+                   const imageUrl = item.type === 'blog' && item.heroImage
+                                    ? item.heroImage
+                                    : '/images/webp/logo-2.webp'; // Ruta al logo por defecto
                                    
                   return html`
                     <a href="${item.url || `/${currentLang}/blog/${item.slug}`}" class="aa-ItemLink">
@@ -213,32 +213,32 @@ const t = useTranslations(lang);
                 },
               },
             },
-          });
-          console.log('Autocomplete instance created successfully');
-        } catch (e) {
-          console.error('Error creating autocomplete instance', e);
-        }
-      }
+          ];
+        },
+      });
+      console.log('Autocomplete instance created successfully');
     } catch (e) {
       console.error('Error creating autocomplete instance', e);
     }
+  } catch (e) {
+    console.error('Error creating autocomplete instance', e);
   }
+};
 
-    // Inicializar Algolia cuando se carga la página
-    document.addEventListener('astro:page-load', () => {
-      console.log('SearchModal: astro:page-load event fired');
+  // Inicializar Algolia cuando se carga la página
+  document.addEventListener('astro:page-load', () => {
+    console.log('SearchModal: astro:page-load event fired');
 
-      // Cerrar con Escape
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          const searchModal = document.getElementById('search-modal');
-          if (searchModal && !searchModal.classList.contains('hidden')) {
-            toggleSearchModal();
-          }
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const searchModal = document.getElementById('search-modal');
+        if (searchModal && !searchModal.classList.contains('hidden')) {
+          toggleSearchModal();
         }
-      });
+      }
     });
-  };
+  });
 </script>
 
 <style is:global>

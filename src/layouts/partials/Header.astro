@@ -47,7 +47,7 @@ const isActiveUrl = (menuUrl: string) => {
           {t('nav.about')}
         </a>
         <div class="relative group">
-          <a href="javascript:void(0)" class={`nav-link flex items-center ${isActiveUrl('/dashboard') || isActiveUrl('/info') || isActiveUrl('/method') || isActiveUrl('/repetitive') || isActiveUrl('/continuous') || isActiveUrl('/frequency') || isActiveUrl('/machine') || isActiveUrl('/supplements') || isActiveUrl('/report') || isActiveUrl('/library') ? 'active' : ''}`}>
+          <a href="javascript:void(0)" class={`nav-link flex items-center ${isActiveUrl('/dashboard') || isActiveUrl('/info') || isActiveUrl('/method') || isActiveUrl('/repetitive') || isActiveUrl('/continuous') || isActiveUrl('/frequency') || isActiveUrl('/machine') || isActiveUrl('/supplements') || isActiveUrl('/report') || isActiveUrl('/library') || isActiveUrl('/security') || isActiveUrl('/organizations') ? 'active' : ''}`}>
             {t('nav.pages')}
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -84,6 +84,12 @@ const isActiveUrl = (menuUrl: string) => {
             </a>
             <a href={translatePath('/library')} class={`dropdown-item ${isActiveUrl('/library') ? 'active' : ''}`}>
               {t('nav.library')}
+            </a>
+            <a href={translatePath('/security')} class={`dropdown-item ${isActiveUrl('/security') ? 'active' : ''}`}>
+              {t('nav.security')}
+            </a>
+            <a href={translatePath('/organizations')} class={`dropdown-item ${isActiveUrl('/organizations') ? 'active' : ''}`}>
+              {t('nav.organizations')}
             </a>
             </div>
           </div>
@@ -128,7 +134,7 @@ const isActiveUrl = (menuUrl: string) => {
 
         <!-- Submenú de páginas en móvil -->
         <div class="py-2">
-          <button id="pages-dropdown-button" class={`mobile-nav-link w-full text-left flex items-center justify-between ${isActiveUrl('/dashboard') || isActiveUrl('/info') || isActiveUrl('/method') || isActiveUrl('/repetitive') || isActiveUrl('/continuous') || isActiveUrl('/frequency') || isActiveUrl('/machine') || isActiveUrl('/supplements') || isActiveUrl('/report') || isActiveUrl('/library') ? 'active' : ''}`}>
+          <button id="pages-dropdown-button" class={`mobile-nav-link w-full text-left flex items-center justify-between ${isActiveUrl('/dashboard') || isActiveUrl('/info') || isActiveUrl('/method') || isActiveUrl('/repetitive') || isActiveUrl('/continuous') || isActiveUrl('/frequency') || isActiveUrl('/machine') || isActiveUrl('/supplements') || isActiveUrl('/report') || isActiveUrl('/library') || isActiveUrl('/security') || isActiveUrl('/organizations') ? 'active' : ''}`}>
             <span>{t('nav.pages')}</span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform" id="pages-dropdown-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -164,6 +170,12 @@ const isActiveUrl = (menuUrl: string) => {
             </a>
             <a href={translatePath('/library')} class={`mobile-nav-link ${isActiveUrl('/library') ? 'active' : ''}`}>
               {t('nav.library')}
+            </a>
+            <a href={translatePath('/security')} class={`mobile-nav-link ${isActiveUrl('/security') ? 'active' : ''}`}>
+              {t('nav.security')}
+            </a>
+            <a href={translatePath('/organizations')} class={`mobile-nav-link ${isActiveUrl('/organizations') ? 'active' : ''}`}>
+              {t('nav.organizations')}
             </a>
           </div>
         </div>
