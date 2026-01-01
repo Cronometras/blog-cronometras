@@ -26,7 +26,7 @@ const ContactForm: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact/', {
+      const response = await fetch('/api/contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,9 +88,8 @@ const ContactForm: React.FC = () => {
         <input
           id="nombre"
           type="text"
-          className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-white dark:border-gray-600 ${
-            errors.nombre ? 'border-red-500' : 'border-gray-300'
-          }`}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-white dark:border-gray-600 ${errors.nombre ? 'border-red-500' : 'border-gray-300'
+            }`}
           {...register('nombre', { required: 'El nombre es obligatorio' })}
         />
         {errors.nombre && (
@@ -105,9 +104,8 @@ const ContactForm: React.FC = () => {
         <input
           id="email"
           type="email"
-          className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-white dark:border-gray-600 ${
-            errors.email ? 'border-red-500' : 'border-gray-300'
-          }`}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-white dark:border-gray-600 ${errors.email ? 'border-red-500' : 'border-gray-300'
+            }`}
           {...register('email', {
             required: 'El email es obligatorio',
             pattern: {
@@ -128,9 +126,8 @@ const ContactForm: React.FC = () => {
         <textarea
           id="mensaje"
           rows={5}
-          className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-white dark:border-gray-600 ${
-            errors.mensaje ? 'border-red-500' : 'border-gray-300'
-          }`}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent dark:bg-gray-700 dark:text-white dark:border-gray-600 ${errors.mensaje ? 'border-red-500' : 'border-gray-300'
+            }`}
           {...register('mensaje', { required: 'El mensaje es obligatorio' })}
         ></textarea>
         {errors.mensaje && (
@@ -144,18 +141,16 @@ const ContactForm: React.FC = () => {
             <input
               id="privacyPolicy"
               type="checkbox"
-              className={`h-4 w-4 rounded border-gray-300 accent-accent focus:ring-accent ${
-                errors.privacyPolicy ? 'border-red-500' : ''
-              }`}
+              className={`h-4 w-4 rounded border-gray-300 accent-accent focus:ring-accent ${errors.privacyPolicy ? 'border-red-500' : ''
+                }`}
               {...register('privacyPolicy', {
                 required: 'Debes aceptar la política de privacidad para continuar'
               })}
             />
           </div>
           <div className="ml-3 text-sm">
-            <label htmlFor="privacyPolicy" className={`font-medium dark:text-gray-300 ${
-              errors.privacyPolicy ? 'text-red-500' : 'text-gray-700'
-            }`}>
+            <label htmlFor="privacyPolicy" className={`font-medium dark:text-gray-300 ${errors.privacyPolicy ? 'text-red-500' : 'text-gray-700'
+              }`}>
               Acepto la <a href="/es/privacy" target="_blank" className="text-accent hover:underline">política de privacidad</a>
             </label>
           </div>

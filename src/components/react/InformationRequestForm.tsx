@@ -28,7 +28,7 @@ const InformationRequestForm: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/information-request/', {
+      const response = await fetch('/api/information-request.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,9 +88,8 @@ const InformationRequestForm: React.FC = () => {
           <input
             id="nombre"
             type="text"
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${
-              errors.nombre ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${errors.nombre ? 'border-red-500' : 'border-gray-300'
+              }`}
             {...register('nombre', { required: 'El nombre es obligatorio' })}
           />
           {errors.nombre && (
@@ -105,9 +104,8 @@ const InformationRequestForm: React.FC = () => {
           <input
             id="email"
             type="email"
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
             {...register('email', {
               required: 'El email es obligatorio',
               pattern: {
@@ -130,9 +128,8 @@ const InformationRequestForm: React.FC = () => {
           <input
             id="empresa"
             type="text"
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${
-              errors.empresa ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${errors.empresa ? 'border-red-500' : 'border-gray-300'
+              }`}
             {...register('empresa', { required: 'El nombre de la empresa es obligatorio' })}
           />
           {errors.empresa && (
@@ -146,9 +143,8 @@ const InformationRequestForm: React.FC = () => {
           </label>
           <select
             id="sector"
-            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${
-              errors.sector ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-4 py-2 border rounded-lg focus:ring-accent focus:border-accent ${errors.sector ? 'border-red-500' : 'border-gray-300'
+              }`}
             {...register('sector', { required: 'Selecciona un sector' })}
           >
             <option value="">Selecciona un sector</option>
@@ -183,18 +179,16 @@ const InformationRequestForm: React.FC = () => {
             <input
               id="privacyPolicy"
               type="checkbox"
-              className={`h-4 w-4 rounded border-gray-300 accent-accent focus:ring-accent ${
-                errors.privacyPolicy ? 'border-red-500' : ''
-              }`}
+              className={`h-4 w-4 rounded border-gray-300 accent-accent focus:ring-accent ${errors.privacyPolicy ? 'border-red-500' : ''
+                }`}
               {...register('privacyPolicy', {
                 required: 'Debes aceptar la política de privacidad para continuar'
               })}
             />
           </div>
           <div className="ml-3 text-sm">
-            <label htmlFor="privacyPolicy" className={`font-medium ${
-              errors.privacyPolicy ? 'text-red-500' : 'text-gray-700'
-            }`}>
+            <label htmlFor="privacyPolicy" className={`font-medium ${errors.privacyPolicy ? 'text-red-500' : 'text-gray-700'
+              }`}>
               Acepto la <a href="/es/privacy" target="_blank" className="text-accent hover:underline">política de privacidad</a>
             </label>
           </div>
