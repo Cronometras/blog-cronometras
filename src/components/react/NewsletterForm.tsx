@@ -41,10 +41,16 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const responseText = await response.text();
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch (e) {
+        throw new Error('Error del servidor: respuesta no válida');
+      }
 
       if (!response.ok) {
-        throw new Error(result.error || 'Ha ocurrido un error al procesar tu suscripción');
+        throw new Error(result.message || result.error || 'Ha ocurrido un error al procesar tu suscripción');
       }
 
       setSubmitStatus('success');

@@ -1,12 +1,16 @@
 ---
 // RelatedBlogPosts.astro
-// Componente que muestra enlaces aleatorios a artículos del blog relacionados con estudios de métodos y tiempos
+// Componente que muestra artículos del blog relacionados con tarjetas visuales
 import { getCollection } from 'astro:content';
+import { getFirestoreArticles } from '@/lib/firestoreArticles';
 
 // Definimos la interfaz para los artículos del blog
 interface BlogPost {
   title: string;
   slug: string;
+  keywords?: string[];
+  category?: string;
+  heroImage?: string;
 }
 
 // Definimos las propiedades que acepta el componente
@@ -14,57 +18,88 @@ interface Props {
   title?: string;
   count?: number;
   language?: string;
-  includeModules?: boolean; // Opción para incluir enlaces a módulos
+  includeModules?: boolean;
+  currentSlug?: string;
+  currentKeywords?: string[];
 }
 
 // Valores por defecto para las propiedades
 const {
   title = "Recursos relacionados",
-  count = 6,
+  count = 4,
   language = "es",
-  includeModules = true
+  includeModules = false,
+  currentSlug = "",
+  currentKeywords = []
 } = Astro.props;
 
-// Obtenemos todos los artículos del blog
+// Obtenemos todos los artículos del blog (MDX)
 const allBlogPosts = await getCollection('blog');
 
-// Filtramos los artículos por idioma y que no sean borradores
+// Obtenemos artículos de Firestore
+let firestoreArticles: any[] = [];
+try {
+  firestoreArticles = await getFirestoreArticles();
+} catch (error) {
+  console.error('Error loading Firestore articles for related posts:', error);
+}
+
+// Filtramos los artículos MDX por idioma y que no sean borradores
 const langBlogPosts = allBlogPosts.filter(post => {
   const postLang = post.slug.split('/')[0];
   return postLang === language && !post.data.draft;
 });
 
-// Convertimos los artículos a nuestro formato
+// Convertimos los artículos MDX a nuestro formato
 const blogPostsArray: BlogPost[] = langBlogPosts.map(post => {
-  // Extraemos el slug sin la parte del idioma
   const slugParts = post.slug.split('/');
   const postSlug = slugParts.slice(1).join('/');
 
   return {
     title: post.data.title,
-    slug: `/${language}/blog/${postSlug}`
+    slug: `/${language}/blog/${postSlug}`,
+    keywords: post.data.tags || [],
+    category: post.data.category || '',
+    heroImage: post.data.heroImage || '/images/webp/cronometras-app.webp'
   };
 });
 
+// Convertimos artículos de Firestore a nuestro formato (solo español por ahora)
+const firestorePostsArray: BlogPost[] = language === 'es' ? firestoreArticles.map(post => {
+  const slugParts = post.slug.split('/');
+  const postSlug = slugParts.slice(1).join('/');
+
+  return {
+    title: post.data.title,
+    slug: `/${language}/blog/${postSlug}`,
+    keywords: post.data.tags || [],
+    category: post.data.category || '',
+    heroImage: post.data.heroImage || '/images/webp/cronometras-app.webp'
+  };
+}) : [];
+
+// Combinamos todos los posts
+let allPosts: BlogPost[] = [...blogPostsArray, ...firestorePostsArray];
+
+// Excluimos el artículo actual si se proporciona
+if (currentSlug) {
+  allPosts = allPosts.filter(post => !post.slug.includes(currentSlug));
+}
+
 // Añadimos enlaces a los módulos si se solicita
-let allPosts: BlogPost[] = [...blogPostsArray];
-
 if (includeModules) {
-  // Enlaces a módulos en español
   const esModules: BlogPost[] = [
-    { title: "Módulo de Tiempos Repetitivos", slug: "/es/repetitive" },
-    { title: "Módulo de Tiempos Frecuenciales", slug: "/es/frequency" },
-    { title: "Módulo de Tiempos de Máquina", slug: "/es/machine" }
+    { title: "Módulo de Tiempos Repetitivos", slug: "/es/repetitive", keywords: ["cronometraje", "tiempos"], heroImage: "/images/webp/cronometras-app.webp" },
+    { title: "Módulo de Tiempos Frecuenciales", slug: "/es/frequency", keywords: ["frecuencial", "tiempos"], heroImage: "/images/webp/cronometras-app.webp" },
+    { title: "Módulo de Tiempos de Máquina", slug: "/es/machine", keywords: ["máquina", "tiempos"], heroImage: "/images/webp/cronometras-app.webp" }
   ];
 
-  // Enlaces a módulos en inglés
   const enModules: BlogPost[] = [
-    { title: "Repetitive Times Module", slug: "/en/repetitive" },
-    { title: "Frequency Times Module", slug: "/en/frequency" },
-    { title: "Machine Times Module", slug: "/en/machine" }
+    { title: "Repetitive Times Module", slug: "/en/repetitive", keywords: ["timing", "repetitive"], heroImage: "/images/webp/cronometras-app.webp" },
+    { title: "Frequency Times Module", slug: "/en/frequency", keywords: ["frequency", "timing"], heroImage: "/images/webp/cronometras-app.webp" },
+    { title: "Machine Times Module", slug: "/en/machine", keywords: ["machine", "timing"], heroImage: "/images/webp/cronometras-app.webp" }
   ];
 
-  // Añadimos los módulos según el idioma
   if (language === 'es') {
     allPosts = [...allPosts, ...esModules];
   } else {
@@ -72,35 +107,85 @@ if (includeModules) {
   }
 }
 
-// Función para obtener artículos aleatorios
-function getRandomPosts(posts: BlogPost[], count: number): BlogPost[] {
-  // Si hay menos posts que el número solicitado, devolvemos todos
-  if (posts.length <= count) {
-    return posts;
+// Función para calcular relevancia basada en keywords
+function calculateRelevance(postKeywords: string[], currentKeywords: string[]): number {
+  if (!currentKeywords.length || !postKeywords.length) return 0;
+  
+  const normalizedCurrent = currentKeywords.map(k => k.toLowerCase());
+  const normalizedPost = postKeywords.map(k => k.toLowerCase());
+  
+  let matches = 0;
+  for (const keyword of normalizedPost) {
+    if (normalizedCurrent.some(k => k.includes(keyword) || keyword.includes(k))) {
+      matches++;
+    }
   }
-
-  // Hacemos una copia del array para no modificar el original
-  const shuffled = [...posts];
-
-  // Algoritmo de Fisher-Yates para mezclar el array
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-
-  // Devolvemos los primeros 'count' elementos
-  return shuffled.slice(0, count);
+  return matches;
 }
 
-// Obtenemos los artículos aleatorios
-const postsToShow = getRandomPosts(allPosts, count);
+// Función para obtener artículos relacionados (prioriza por keywords)
+function getRelatedPosts(posts: BlogPost[], keywords: string[], count: number): BlogPost[] {
+  if (keywords.length === 0) {
+    const shuffled = [...posts].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+  }
+
+  const scored = posts.map(post => ({
+    post,
+    score: calculateRelevance(post.keywords || [], keywords)
+  }));
+
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return Math.random() - 0.5;
+  });
+
+  return scored.slice(0, count).map(s => s.post);
+}
+
+// Obtenemos los artículos relacionados
+const postsToShow = getRelatedPosts(allPosts, currentKeywords, count);
 ---
 
-<div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-  <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">{title}</h3>
-  <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
-    {postsToShow.map(post => (
-      <li><a href={post.slug} class="text-accent hover:underline">{post.title}</a></li>
-    ))}
-  </ul>
-</div>
+{postsToShow.length > 0 && (
+  <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+    <h3 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">{title}</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {postsToShow.map(post => (
+        <a 
+          href={post.slug} 
+          class="group block rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+        >
+          <div class="relative h-40 overflow-hidden">
+            <img 
+              src={post.heroImage} 
+              alt={post.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            {post.category && (
+              <span class="absolute bottom-3 left-3 px-2 py-1 text-xs font-medium bg-accent text-white rounded">
+                {post.category}
+              </span>
+            )}
+          </div>
+          <div class="p-4">
+            <h4 class="text-lg font-semibold text-gray-800 dark:text-white group-hover:text-accent transition-colors line-clamp-2">
+              {post.title}
+            </h4>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

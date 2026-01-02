@@ -6,30 +6,57 @@ import Pagination from '@/components/Pagination.astro';
 import CategoryFilter from '@/components/CategoryFilter.astro';
 import { slugify } from '@/utils/slugify';
 import { getAllCategories } from '@/utils/categories';
+import { getFirestoreArticles, type BlogPost } from '@/lib/firestoreArticles';
 
 export const getStaticPaths = async () => {
-  const allPosts = await getCollection('blog');
-  const postsPerPage = 21; // Mostrar 30 entradas por página
+  // Get MDX posts from content collection
+  const allMdxPosts = await getCollection('blog');
+  
+  // Get Firestore articles
+  let firestoreArticles: BlogPost[] = [];
+  try {
+    firestoreArticles = await getFirestoreArticles();
+    console.log(`Loaded ${firestoreArticles.length} articles from Firestore`);
+  } catch (error) {
+    console.error('Error loading Firestore articles:', error);
+  }
+  
+  const postsPerPage = 21;
   const languages = ['es', 'en'];
   const paths = [];
 
   for (const lang of languages) {
-    // Filtrar posts por idioma y que no sean borradores
-    const langPosts = allPosts.filter((post) => {
+    // Filter MDX posts by language
+    const langMdxPosts = allMdxPosts.filter((post) => {
       const postLang = post.slug.split('/')[0];
       return postLang === lang && !post.data.draft;
     });
 
-    // Ordenar por fecha de publicación, más reciente primero
-    const sortedPosts = langPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    // Filter Firestore articles by language (based on slug prefix)
+    const langFirestorePosts = firestoreArticles.filter(p => {
+      const postLang = p.slug.split('/')[0];
+      return postLang === lang && !p.data.draft;
+    });
 
-    // Calcular el número total de páginas
+    // Combine and normalize posts
+    const combinedPosts = [
+      ...langMdxPosts.map(post => ({
+        ...post,
+        source: 'mdx' as const,
+        sortDate: post.data.pubDate.valueOf(),
+      })),
+      ...langFirestorePosts.map(post => ({
+        ...post,
+        sortDate: post.data.pubDate.valueOf(),
+      })),
+    ];
+
+    // Sort by date, most recent first
+    const sortedPosts = combinedPosts.sort((a, b) => b.sortDate - a.sortDate);
+
     const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
-
-    // Obtener todas las categorías para este idioma
     const categories = await getAllCategories(lang);
 
-    // Generar la primera página (index)
     paths.push({
       params: { lang },
       props: {
@@ -76,6 +103,28 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
           <h1 class="mb-4 text-4xl lg:text-5xl font-bold">{title}</h1>
           <p class="mb-8 text-lg">{description}</p>
 
+          <!-- Tag Filter Banner (hidden by default, shown via JS when tag param exists) -->
+          <div id="tag-filter-banner" class="hidden mb-8 p-4 bg-accent/10 border border-accent/20 rounded-lg">
+            <div class="flex items-center justify-center gap-3 flex-wrap">
+              <span class="text-gray-700 dark:text-gray-300">
+                {lang === 'es' ? 'Filtrando por:' : 'Filtering by:'}
+              </span>
+              <span id="active-tag" class="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-accent text-white">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                </svg>
+                <span id="tag-name"></span>
+              </span>
+              <a href={`/${lang}/blog/`} class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                {lang === 'es' ? 'Quitar filtro' : 'Clear filter'}
+              </a>
+            </div>
+            <p id="filter-count" class="mt-2 text-sm text-gray-600 dark:text-gray-400"></p>
+          </div>
+
           {/* Filtro de categorías */}
           <div class="max-w-3xl mx-auto">
             <CategoryFilter
@@ -86,15 +135,17 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           posts.map((post) => {
-            // Extraer el slug correcto, omitiendo la parte del idioma
             const postSlug = post.slug.split('/').slice(1).join('/');
-            console.log(`Generando card para post: ${post.id}, slug: ${postSlug}`);
+            const postTags = (post.data.tags || []).map((t: string) => t.toLowerCase()).join(',');
 
             return (
-              <div class="rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-transform duration-300 hover:-translate-y-2">
+              <div 
+                class="post-card rounded-lg shadow-lg overflow-hidden bg-white dark:bg-gray-800 transition-transform duration-300 hover:-translate-y-2"
+                data-tags={postTags}
+              >
                 <a href={`/${lang}/blog/${postSlug}`} class="block">
                   <img
                     src={post.data.heroImage || '/images/cronometras App.png'}
@@ -129,6 +180,12 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
         }
       </div>
 
+      <div id="no-results" class="hidden text-center py-20">
+        <p class="text-xl text-gray-600 dark:text-gray-300">
+          {lang === 'es' ? 'No se encontraron artículos con este tema.' : 'No articles found with this topic.'}
+        </p>
+      </div>
+
       {posts.length === 0 && (
         <div class="text-center py-20">
           <p class="text-xl text-gray-600 dark:text-gray-300">
@@ -149,6 +206,58 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
     </div>
   </section>
 </Base>
+
+<script>
+  // Client-side tag filtering
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tagParam = urlParams.get('tag');
+    
+    if (tagParam) {
+      const tagLower = tagParam.toLowerCase();
+      const banner = document.getElementById('tag-filter-banner');
+      const tagNameEl = document.getElementById('tag-name');
+      const filterCountEl = document.getElementById('filter-count');
+      const noResultsEl = document.getElementById('no-results');
+      const postCards = document.querySelectorAll('.post-card');
+      
+      if (banner && tagNameEl) {
+        banner.classList.remove('hidden');
+        tagNameEl.textContent = tagParam;
+        
+        let visibleCount = 0;
+        
+        postCards.forEach((card) => {
+          const cardTags = (card as HTMLElement).dataset.tags || '';
+          const tagsArray = cardTags.split(',');
+          
+          // Check if any tag contains or matches the search term
+          const matches = tagsArray.some(t => 
+            t.includes(tagLower) || tagLower.includes(t)
+          );
+          
+          if (matches) {
+            (card as HTMLElement).style.display = '';
+            visibleCount++;
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+        
+        if (filterCountEl) {
+          const lang = document.documentElement.lang;
+          filterCountEl.textContent = lang === 'es' 
+            ? `Mostrando ${visibleCount} artículo${visibleCount !== 1 ? 's' : ''}`
+            : `Showing ${visibleCount} article${visibleCount !== 1 ? 's' : ''}`;
+        }
+        
+        if (visibleCount === 0 && noResultsEl) {
+          noResultsEl.classList.remove('hidden');
+        }
+      }
+    }
+  });
+</script>
 
 <style>
   .section {

@@ -41,11 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = isset($jsonData['name']) ? $jsonData['name'] : (isset($jsonData['nombre']) ? $jsonData['nombre'] : '');
         $email = isset($jsonData['email']) ? $jsonData['email'] : '';
         $company = isset($jsonData['company']) ? $jsonData['company'] : (isset($jsonData['empresa']) ? $jsonData['empresa'] : '');
+        $sector = isset($jsonData['sector']) ? $jsonData['sector'] : '';
         $phone = isset($jsonData['phone']) ? $jsonData['phone'] : (isset($jsonData['telefono']) ? $jsonData['telefono'] : '');
         $message = isset($jsonData['message']) ? $jsonData['message'] : (isset($jsonData['mensaje']) ? $jsonData['mensaje'] : '');
         $lang = isset($jsonData['lang']) ? $jsonData['lang'] : 'es';
 
-        error_log("Processed JSON data: name=$name, email=$email, company=$company, phone=$phone, message=$message, lang=$lang");
+        error_log("Processed JSON data: name=$name, email=$email, company=$company, sector=$sector, phone=$phone, message=$message, lang=$lang");
     } else {
         // Try to get data from POST
         error_log("No JSON data found, trying POST data");
@@ -55,11 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = isset($_POST['name']) ? $_POST['name'] : (isset($_POST['nombre']) ? $_POST['nombre'] : '');
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $company = isset($_POST['company']) ? $_POST['company'] : (isset($_POST['empresa']) ? $_POST['empresa'] : '');
+        $sector = isset($_POST['sector']) ? $_POST['sector'] : '';
         $phone = isset($_POST['phone']) ? $_POST['phone'] : (isset($_POST['telefono']) ? $_POST['telefono'] : '');
         $message = isset($_POST['message']) ? $_POST['message'] : (isset($_POST['mensaje']) ? $_POST['mensaje'] : '');
         $lang = isset($_POST['lang']) ? $_POST['lang'] : 'es';
 
-        error_log("Processed POST data: name=$name, email=$email, company=$company, phone=$phone, message=$message, lang=$lang");
+        error_log("Processed POST data: name=$name, email=$email, company=$company, sector=$sector, phone=$phone, message=$message, lang=$lang");
     }
 }
 
@@ -87,6 +89,7 @@ $emailBody = "
             <p><span class='label'>" . ($lang === 'es' ? 'Nombre:' : 'Name:') . "</span> $name</p>
             <p><span class='label'>" . ($lang === 'es' ? 'Email:' : 'Email:') . "</span> $email</p>
             <p><span class='label'>" . ($lang === 'es' ? 'Empresa:' : 'Company:') . "</span> $company</p>
+            <p><span class='label'>" . ($lang === 'es' ? 'Sector:' : 'Sector:') . "</span> $sector</p>
             <p><span class='label'>" . ($lang === 'es' ? 'Teléfono:' : 'Phone:') . "</span> $phone</p>
             <p><span class='label'>" . ($lang === 'es' ? 'Mensaje:' : 'Message:') . "</span> $message</p>
             <p><span class='label'>Fecha:</span> " . date('Y-m-d H:i:s') . "</p>
@@ -132,15 +135,15 @@ try {
             ]
         ]);
     } else {
-        // Log error but still return success to user
+        // Log error and return failure
         $errorMsg = isset($result['error']) && !empty($result['error']) ? $result['error'] : 'Unknown error';
         $responseData = isset($result['response']) ? json_decode($result['response'], true) : null;
         $apiErrorMsg = isset($responseData['message']) ? $responseData['message'] : 'No API error message';
 
-        // Return success to user but include debug info
+        http_response_code(500);
         echo json_encode([
-            'success' => true, // Still return success to user
-            'message' => $successMsg,
+            'success' => false,
+            'message' => $lang === 'es' ? 'Error al enviar el email: ' . $apiErrorMsg : 'Error sending email: ' . $apiErrorMsg,
             'debug' => [
                 'actualSuccess' => false,
                 'error' => $errorMsg,
@@ -150,11 +153,12 @@ try {
         ]);
     }
 } catch (Exception $e) {
-    // Log error but still return success to user
+    // Log error and return failure
     error_log("Exception in information-request.php: " . $e->getMessage());
+    http_response_code(500);
     echo json_encode([
-        'success' => true, // Still return success to user
-        'message' => $successMsg,
+        'success' => false,
+        'message' => $lang === 'es' ? 'Excepción en el servidor' : 'Server exception',
         'debug' => [
             'actualSuccess' => false,
             'exception' => $e->getMessage(),

@@ -3,44 +3,54 @@
 
 // Cargar variables de entorno desde .env
 function loadEnv() {
-    $envFile = __DIR__ . '/../../.env';
-    if (file_exists($envFile)) {
-        $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        foreach ($lines as $line) {
-            // Ignorar comentarios
-            if (strpos(trim($line), '#') === 0) {
-                continue;
-            }
-
-            // Parsear líneas con formato KEY=VALUE
-            if (strpos($line, '=') !== false) {
-                list($key, $value) = explode('=', $line, 2);
-                $key = trim($key);
-                $value = trim($value);
-
-                // Eliminar comentarios al final de la línea
-                if (strpos($value, '#') !== false) {
-                    $value = trim(explode('#', $value, 2)[0]);
+    // Intentar varias rutas comunes para encontrar el .env
+    $paths = [
+        __DIR__ . '/../../.env',
+        __DIR__ . '/../.env',
+        $_SERVER['DOCUMENT_ROOT'] . '/.env'
+    ];
+    
+    foreach ($paths as $envFile) {
+        if (file_exists($envFile)) {
+            $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                // Ignorar comentarios
+                if (strpos(trim($line), '#') === 0) {
+                    continue;
                 }
 
-                // Eliminar comillas si existen
-                if (strpos($value, '"') === 0 || strpos($value, "'") === 0) {
-                    $value = trim($value, '"\'');
-                }
+                // Parsear líneas con formato KEY=VALUE
+                if (strpos($line, '=') !== false) {
+                    list($key, $value) = explode('=', $line, 2);
+                    $key = trim($key);
+                    $value = trim($value);
 
-                // Establecer variable de entorno
-                putenv("$key=$value");
-                $_ENV[$key] = $value;
+                    // Eliminar comentarios al final de la línea
+                    if (strpos($value, '#') !== false) {
+                        $value = trim(explode('#', $value, 2)[0]);
+                    }
+
+                    // Eliminar comillas si existen
+                    if (strpos($value, '"') === 0 || strpos($value, "'") === 0) {
+                        $value = trim($value, '"\'');
+                    }
+
+                    // Establecer variable de entorno
+                    putenv("$key=$value");
+                    $_ENV[$key] = $value;
+                }
             }
+            return true; // Encontrado y cargado
         }
     }
+    return false;
 }
 
 // Cargar variables de entorno
 loadEnv();
 
 // Obtener configuración de Resend
-$resendApiKey = getenv('RESEND_API_KEY') ?: 're_AamXWQKc_2GCs1Motoc7rZFjqwVndgG8p';
+$resendApiKey = getenv('RESEND_API_KEY');
 $resendFromEmail = getenv('RESEND_FROM_EMAIL') ?: 'no-reply@cronometras.com';
 $resendFromName = getenv('RESEND_FROM_NAME') ?: 'Cronometras App';
 

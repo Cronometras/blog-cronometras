@@ -309,6 +309,26 @@ console.log("Cargando layout Base.astro");
     <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed (Español)`} href={`${config.site.base_url}/es/rss.xml`} />
     <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed (English)`} href={`${config.site.base_url}/en/rss.xml`} />
 
+    <!-- KaTeX for LaTeX math rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+    <script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script is:inline>
+      const renderMath = () => {
+        if (window.renderMathInElement) {
+          renderMathInElement(document.body, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
+      };
+
+      document.addEventListener('astro:page-load', renderMath);
+    </script>
+
     <!-- noindex robots -->
     {
       _noindex === true ? (

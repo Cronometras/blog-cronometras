@@ -6,30 +6,57 @@ import Pagination from '@/components/Pagination.astro';
 import CategoryFilter from '@/components/CategoryFilter.astro';
 import { slugify } from '@/utils/slugify';
 import { getAllCategories } from '@/utils/categories';
+import { getFirestoreArticles, type BlogPost } from '@/lib/firestoreArticles';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-  const postsPerPage = 30; // Mostrar 30 entradas por página
+  // Get MDX posts from content collection
+  const allMdxPosts = await getCollection('blog');
+  
+  // Get Firestore articles
+  let firestoreArticles: BlogPost[] = [];
+  try {
+    firestoreArticles = await getFirestoreArticles();
+  } catch (error) {
+    console.error('Error loading Firestore articles:', error);
+  }
+  
+  const postsPerPage = 30;
   const languages = ['es', 'en'];
   const paths = [];
 
   for (const lang of languages) {
-    // Filtrar posts por idioma y que no sean borradores
-    const langPosts = allPosts.filter((post) => {
+    // Filter MDX posts by language
+    const langMdxPosts = allMdxPosts.filter((post) => {
       const postLang = post.slug.split('/')[0];
       return postLang === lang && !post.data.draft;
     });
 
-    // Ordenar por fecha de publicación, más reciente primero
-    const sortedPosts = langPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    // Filter Firestore articles by language (based on slug prefix)
+    const langFirestorePosts = firestoreArticles.filter(p => {
+      const postLang = p.slug.split('/')[0];
+      return postLang === lang && !p.data.draft;
+    });
 
-    // Calcular el número total de páginas
+    // Combine and normalize posts
+    const combinedPosts = [
+      ...langMdxPosts.map(post => ({
+        ...post,
+        source: 'mdx' as const,
+        sortDate: post.data.pubDate.valueOf(),
+      })),
+      ...langFirestorePosts.map(post => ({
+        ...post,
+        sortDate: post.data.pubDate.valueOf(),
+      })),
+    ];
+
+    // Sort by date, most recent first
+    const sortedPosts = combinedPosts.sort((a, b) => b.sortDate - a.sortDate);
+
     const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
-
-    // Obtener todas las categorías para este idioma
     const categories = await getAllCategories(lang);
 
-    // Generar rutas para cada página (excepto la primera que ya está en index.astro)
+    // Generate paths for each page (except the first which is in index.astro)
     for (let page = 2; page <= totalPages; page++) {
       const startIndex = (page - 1) * postsPerPage;
       const endIndex = startIndex + postsPerPage;

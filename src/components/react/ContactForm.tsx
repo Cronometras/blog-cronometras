@@ -50,7 +50,7 @@ const ContactForm: React.FC = () => {
         }
 
         if (!response.ok) {
-          throw new Error(result.error || 'Ha ocurrido un error al enviar el mensaje');
+          throw new Error(result.message || result.error || 'Ha ocurrido un error al enviar el mensaje');
         }
 
         setSubmitStatus('success');

@@ -6,6 +6,8 @@ import { defineConfig, sharpImageService } from "astro/config";
 import config from "./src/config/config.json";
 import AutoImport from "astro-auto-import";
 import node from "@astrojs/node";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
@@ -46,9 +48,14 @@ export default defineConfig({
         "@/components/RelatedBlogPosts.astro",
       ],
     }),
-    mdx()
+    mdx({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex],
+    })
   ],
   markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
     shikiConfig: {
       theme: "one-dark-pro",
       wrap: true,

@@ -128,15 +128,15 @@ try {
             ]
         ]);
     } else {
-        // Log error but still return success to user
+        // Log error and return failure
         $errorMsg = isset($result['error']) && !empty($result['error']) ? $result['error'] : 'Unknown error';
         $responseData = isset($result['response']) ? json_decode($result['response'], true) : null;
         $apiErrorMsg = isset($responseData['message']) ? $responseData['message'] : 'No API error message';
 
-        // Return success to user but include debug info
+        http_response_code(500);
         echo json_encode([
-            'success' => true, // Still return success to user
-            'message' => $successMsg,
+            'success' => false,
+            'message' => $lang === 'es' ? 'Error al enviar el email: ' . $apiErrorMsg : 'Error sending email: ' . $apiErrorMsg,
             'debug' => [
                 'actualSuccess' => false,
                 'error' => $errorMsg,
@@ -146,11 +146,12 @@ try {
         ]);
     }
 } catch (Exception $e) {
-    // Log error but still return success to user
+    // Log error and return failure
     error_log("Exception in contact.php: " . $e->getMessage());
+    http_response_code(500);
     echo json_encode([
-        'success' => true, // Still return success to user
-        'message' => $successMsg,
+        'success' => false,
+        'message' => $lang === 'es' ? 'Excepción en el servidor' : 'Server exception',
         'debug' => [
             'actualSuccess' => false,
             'exception' => $e->getMessage(),
