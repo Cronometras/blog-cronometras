@@ -187,13 +187,21 @@
   function resetFormContainer() {
     console.log("Reseteando contenedor del formulario");
     const formContainer = document.getElementById('form-container');
-    if (formContainer) {
-      // No limpiamos directamente para evitar problemas con React
-      // React se encargará de desmontar correctamente sus componentes
-      const lang = detectLanguage();
-      const loadingText = lang === 'en' ? 'Loading form...' : 'Cargando formulario...';
-      formContainer.innerHTML = `<p class="text-center text-gray-500">${loadingText}</p>`;
+    
+    // Primero intentamos desmontar React correctamente
+    if (typeof window.unloadRequestDemoForm === 'function') {
+      console.log("Llamando a unloadRequestDemoForm para limpieza segura");
+      window.unloadRequestDemoForm();
     }
+    
+    // Esperar un momento antes de limpiar el HTML para evitar conflictos de "Node.removeChild"
+    setTimeout(() => {
+      if (formContainer) {
+        const lang = detectLanguage();
+        const loadingText = lang === 'en' ? 'Loading form...' : 'Cargando formulario...';
+        formContainer.innerHTML = `<p class="text-center text-gray-500">${loadingText}</p>`;
+      }
+    }, 100);
   }
 
   // Variable para controlar la inicialización

@@ -61,6 +61,19 @@ export const RequestDemoFormIsland: React.FC<{ targetId: string }> = ({ targetId
         }
       };
 
+      // Definir la función global para descargar el formulario
+      window.unloadRequestDemoForm = () => {
+        try {
+          if (rootInstance) {
+            rootInstance.unmount();
+            rootInstance = null;
+            console.log("Componente React desmontado manualmente");
+          }
+        } catch (error) {
+          console.error("Error al desmontar el formulario:", error);
+        }
+      };
+
       // Llamar a la función inmediatamente para asegurarnos de que esté disponible
       console.log("Registrando función loadRequestDemoForm en el ámbito global");
 
@@ -89,13 +102,14 @@ export const RequestDemoFormIsland: React.FC<{ targetId: string }> = ({ targetId
             }
           }
           window.loadRequestDemoForm = undefined;
+          window.unloadRequestDemoForm = undefined;
           window.removeEventListener('beforeunload', handleBeforeUnload);
         }
       };
     }
 
     // Si window no está definido (SSR), devolver una función de limpieza vacía
-    return () => {};
+    return () => { };
   }, [targetId]);
 
   return null; // No renderizamos nada directamente

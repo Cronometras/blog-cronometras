@@ -3,11 +3,18 @@
 
 // Cargar variables de entorno desde .env
 function loadEnv() {
+    // Si la clave ya está definida en el entorno del servidor, no necesitamos cargar el .env
+    // Esto es útil para despliegues donde las variables se definen en el panel de control (HestiaCP, etc.)
+    if (getenv('RESEND_API_KEY') && strlen(getenv('RESEND_API_KEY')) > 0) {
+        return true;
+    }
+
     // Intentar varias rutas comunes para encontrar el .env
     $paths = [
-        __DIR__ . '/../../.env',
-        __DIR__ . '/../.env',
-        $_SERVER['DOCUMENT_ROOT'] . '/.env'
+        __DIR__ . '/../../.env',       // Root desde public/api/
+        __DIR__ . '/../.env',          // Parent dir
+        $_SERVER['DOCUMENT_ROOT'] . '/.env', // Document root
+        __DIR__ . '/.env'              // Same dir
     ];
     
     foreach ($paths as $envFile) {
@@ -35,9 +42,12 @@ function loadEnv() {
                         $value = trim($value, '"\'');
                     }
 
-                    // Establecer variable de entorno
-                    putenv("$key=$value");
-                    $_ENV[$key] = $value;
+                    // Establecer variable de entorno si no existe ya
+                    if (!getenv($key)) {
+                        putenv("$key=$value");
+                        $_ENV[$key] = $value;
+                        $_SERVER[$key] = $value;
+                    }
                 }
             }
             return true; // Encontrado y cargado

@@ -206,6 +206,10 @@ try {
         $errorMsg = isset($result['error']) && !empty($result['error']) ? $result['error'] : 'Unknown error';
         $responseData = isset($result['response']) ? json_decode($result['response'], true) : null;
         $apiErrorMsg = isset($responseData['message']) ? $responseData['message'] : 'No API error message';
+        
+        // Obtener una versión enmascarada de la API Key para depuración
+        $apiKey = getenv('RESEND_API_KEY');
+        $maskedKey = $apiKey ? (substr($apiKey, 0, 5) . '...' . substr($apiKey, -5)) : 'NOT FOUND';
 
         // Return success to user but include debug info
         echo json_encode([
@@ -215,6 +219,7 @@ try {
                 'actualSuccess' => false,
                 'error' => $errorMsg,
                 'apiError' => $apiErrorMsg,
+                'apiKeyDebug' => $maskedKey,
                 'timestamp' => date('Y-m-d H:i:s')
             ]
         ]);
