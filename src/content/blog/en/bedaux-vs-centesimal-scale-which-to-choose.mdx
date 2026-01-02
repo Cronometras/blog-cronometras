@@ -1,0 +1,70 @@
+---
+title: "Bedaux Scale (60/80) vs. ILO Centesimal (100/133): Why Industry 4.0 Demands Abandoning the Bedaux System"
+description: "Executive Summary for Management: Is your plant still measuring in 'Bedaux Points' while trying to integrate an MES or SAP system? We analyze the technical dichotomy between the 60/80 tradition and the Centesimal international standard."
+pubDate: 2026-01-02
+category: "Industrial Engineering"
+tags: ["Bedaux Scale", "Centesimal Scale", "ILO", "Industrial Engineering 4.0", "Work Measurement"]
+author: "CRONOMETRAS Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fescala-bedaux-vs-centesimal%3A-cu%C3%A1l-elegir-1767316093597.webp?alt=media&token=8fd569a1-5ddc-42e5-a197-839ff146055b"
+---
+
+# Bedaux Scale (60/80) vs. ILO Centesimal (100/133): Why Industry 4.0 Demands Abandoning the Bedaux System
+
+In the world of industrial engineering, few topics spark as much debate as the choice of timing scales. While many plants in Europe and South America still cling to the **Bedaux System (60/80)**, the global standard has shifted decisively towards the **Centesimal Scale (100/133)** recommended by the ILO (International Labour Organization).
+
+## 1. What are these scales?
+
+### The Bedaux Scale (60/80)
+Developed by Charles Bedaux in the early 20th century, it defines:
+- **60:** Normal activity (the pace of a motivated worker without incentives).
+- **80:** Optimal activity (the pace achievable with incentives, roughly 33% faster).
+
+### The Centesimal Scale (100/133)
+The modern standard defines:
+- **100:** Normal activity.
+- **133:** Optimal activity (maintaining the same 33% proportionality).
+
+## 2. Mathematical Analysis and Conversion Table
+
+The relationship between both scales is perfectly linear, but the Bedaux scale introduces "measurement noise" due to its lower resolution.
+
+### Conversion Formulas:
+
+$$ \text{Centesimal Scale} = \frac{\text{Bedaux Points}}{0.60} $$
+
+$$ \text{Bedaux Points} = \text{Centesimal Scale} \times 0.60 $$
+
+| Concept | Bedaux (60/80) | Centesimal (100/133) |
+| :--- | :---: | :---: |
+| Normal Activity | 60 | 100 |
+| Optimal Activity | 80 | 133 |
+| Midpoint | 70 | 116 |
+
+## 3. Why Bedaux is Obsolete in Industry 4.0
+
+### Lack of Resolution
+Between 60 and 80 Bedaux, there are only 20 units. Between 100 and 133 Centesimal, there are 33. The Centesimal scale offers **65% more granularity**, which is vital when measuring high-speed automated processes or micro-movements.
+
+### Incompatibility with MES/ERP
+Most modern production management systems (SAP, Oracle, specialized MES) naturally use decimal bases. Converting data into "Bedaux Points" adds a layer of calculation that often masks rounding errors and makes it difficult to calculate **OEE** in real-time.
+
+### MTM and MOST Integration
+Predetermined time systems like **MTM-1** or **MOST** natively generate standards in Centesimal activity (specifically at 100). Forcing an MTM study into a Bedaux scale is mathematically redundant and error-prone.
+
+## 4. Psychological Impact and Transparency
+The Centesimal scale is much easier to explain to Workers' Committees. Saying a worker is at "110%" is intuitive; saying they are at "66 Bedaux Points" requires constant conversion and promotes mistrust. **Transparency is the foundation of any incentive system.**
+
+## 5. Incentive (Bonus) Calculation
+
+In modern systems, the bonus is calculated directly based on the percentage above 100:
+
+$$ \text{Bonus} = \frac{\text{Actual Activity} - 100}{100} \times \text{Base Salary} $$
+
+This simplicity reduces administrative costs and potential disputes over paycheck calculations.
+
+## Conclusion
+Transitioning from Bedaux to Centesimal is not just a change of numbers; it is a technological upgrade. It aligns your plant with international benchmarks and prepares your data for the digital era.
+
+---
+
+[Ready to upgrade your measurement system?](/en/contact) Our team at Cronometras can help you transition your standards with zero downtime.

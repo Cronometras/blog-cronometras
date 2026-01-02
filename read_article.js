@@ -19,19 +19,12 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 async function getArticle() {
-    const articleId = 'sq0WoVb6b8SxCs1Jkr4H';
+    const articleId = 'EYiY7mahhg8p1ZIAYFhF';
     try {
         const docRef = doc(db, 'articulos_cronometras', articleId);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            const content = docSnap.data().content;
-            const lines = content.split('\n');
-            console.log('Lines with math:');
-            lines.forEach(line => {
-                if (line.includes('$$') || line.includes('\\text')) {
-                    console.log(line);
-                }
-            });
+            console.log(docSnap.data().content);
         } else {
             console.log('No such document!');
         }
