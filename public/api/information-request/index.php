@@ -202,19 +202,18 @@ try {
             ]
         ]);
     } else {
-        // Log error but still return success to user
+        // Log error and return failure to user
         $errorMsg = isset($result['error']) && !empty($result['error']) ? $result['error'] : 'Unknown error';
         $responseData = isset($result['response']) ? json_decode($result['response'], true) : null;
         $apiErrorMsg = isset($responseData['message']) ? $responseData['message'] : 'No API error message';
         
         // Obtener una versión enmascarada de la API Key para depuración
-        $apiKey = getenv('RESEND_API_KEY');
+        $apiKey = get_config_var('RESEND_API_KEY');
         $maskedKey = $apiKey ? (substr($apiKey, 0, 5) . '...' . substr($apiKey, -5)) : 'NOT FOUND';
 
-        // Return success to user but include debug info
         echo json_encode([
-            'success' => true, // Still return success to user
-            'message' => $successMsg,
+            'success' => false,
+            'message' => ($lang === 'es' ? 'Error al enviar la solicitud' : 'Error sending request'),
             'debug' => [
                 'actualSuccess' => false,
                 'error' => $errorMsg,
@@ -225,10 +224,9 @@ try {
         ]);
     }
 } catch (Exception $e) {
-    // Log error but still return success to user
     echo json_encode([
-        'success' => true, // Still return success to user
-        'message' => $successMsg,
+        'success' => false,
+        'message' => ($lang === 'es' ? 'Error al procesar la solicitud' : 'Error processing request'),
         'debug' => [
             'actualSuccess' => false,
             'exception' => $e->getMessage(),

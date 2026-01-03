@@ -468,7 +468,7 @@ class ChunkedReader {
 }
 
 // Inicializar cuando el DOM esté cargado
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('astro:page-load', () => {
   new ChunkedReader();
 });
 </script>

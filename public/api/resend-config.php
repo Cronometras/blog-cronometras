@@ -1,56 +1,72 @@
 <?php
 // Configuración para Resend API
 
+// Variable global para almacenar la configuración cargada
+$loaded_config = [];
+$debug_info = [];
+
 // Cargar variables de entorno desde .env
 function loadEnv() {
-    // Si la clave ya está definida en el entorno del servidor, no necesitamos cargar el .env
-    // Esto es útil para despliegues donde las variables se definen en el panel de control (HestiaCP, etc.)
-    if (getenv('RESEND_API_KEY') && strlen(getenv('RESEND_API_KEY')) > 0) {
-        return true;
-    }
-
+    global $loaded_config, $debug_info;
+    
+    // Limpiar cualquier configuración previa
+    $loaded_config = [];
+    
     // Intentar varias rutas comunes para encontrar el .env
     $paths = [
-        __DIR__ . '/../../.env',       // Root desde public/api/
-        __DIR__ . '/../.env',          // Parent dir
+        __DIR__ . '/../.env',             // public_html/.env (desde api/) - PRODUCCIÓN
+        __DIR__ . '/../../.env',          // cronometras.com/.env
+        __DIR__ . '/../../../.env',       // Más arriba
         $_SERVER['DOCUMENT_ROOT'] . '/.env', // Document root
-        __DIR__ . '/.env'              // Same dir
+        __DIR__ . '/.env'                 // Same dir
     ];
     
+    $debug_info['checked_paths'] = [];
+    $debug_info['found_file'] = null;
+    
     foreach ($paths as $envFile) {
-        if (file_exists($envFile)) {
+        $exists = file_exists($envFile);
+        $realPath = $exists ? realpath($envFile) : null;
+        $debug_info['checked_paths'][] = [
+            'path' => $envFile,
+            'exists' => $exists,
+            'realpath' => $realPath
+        ];
+        
+        if ($exists) {
+            $debug_info['found_file'] = $realPath;
             $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($lines as $line) {
-                // Ignorar comentarios
-                if (strpos(trim($line), '#') === 0) {
-                    continue;
-                }
+                if (strpos(trim($line), '#') === 0) continue;
 
-                // Parsear líneas con formato KEY=VALUE
                 if (strpos($line, '=') !== false) {
                     list($key, $value) = explode('=', $line, 2);
                     $key = trim($key);
                     $value = trim($value);
 
-                    // Eliminar comentarios al final de la línea
                     if (strpos($value, '#') !== false) {
                         $value = trim(explode('#', $value, 2)[0]);
                     }
 
-                    // Eliminar comillas si existen
                     if (strpos($value, '"') === 0 || strpos($value, "'") === 0) {
                         $value = trim($value, '"\'');
                     }
 
-                    // Establecer variable de entorno si no existe ya
-                    if (!getenv($key)) {
-                        putenv("$key=$value");
-                        $_ENV[$key] = $value;
-                        $_SERVER[$key] = $value;
+                    // Guardar en nuestro array global y también en el sistema
+                    $loaded_config[$key] = $value;
+                    putenv("$key=$value");
+                    $_ENV[$key] = $value;
+                    $_SERVER[$key] = $value;
+                    
+                    // Log específico para RESEND_API_KEY
+                    if ($key === 'RESEND_API_KEY') {
+                        $debug_info['resend_key_found'] = substr($value, 0, 10) . '...' . substr($value, -5);
+                        $debug_info['resend_key_length'] = strlen($value);
                     }
                 }
             }
-            return true; // Encontrado y cargado
+            error_log("Loaded environment from: $realPath");
+            return true;
         }
     }
     return false;
@@ -59,10 +75,23 @@ function loadEnv() {
 // Cargar variables de entorno
 loadEnv();
 
-// Obtener configuración de Resend
-$resendApiKey = getenv('RESEND_API_KEY');
-$resendFromEmail = getenv('RESEND_FROM_EMAIL') ?: 'no-reply@cronometras.com';
-$resendFromName = getenv('RESEND_FROM_NAME') ?: 'Cronometras App';
+// Función auxiliar para obtener configuración (prioriza nuestro array sobre getenv)
+function get_config_var($key, $default = null) {
+    global $loaded_config;
+    if (isset($loaded_config[$key])) return $loaded_config[$key];
+    $val = getenv($key);
+    return ($val !== false) ? $val : $default;
+}
+
+// Obtener configuración de Resend usando la nueva función
+$resendApiKey = get_config_var('RESEND_API_KEY');
+$resendFromEmail = get_config_var('RESEND_FROM_EMAIL', 'no-reply@cronometras.com');
+$resendFromName = get_config_var('RESEND_FROM_NAME', 'Cronometras App');
+
+// Guardar info de debug sobre la API key cargada
+$debug_info['final_api_key'] = $resendApiKey ? (substr($resendApiKey, 0, 10) . '...' . substr($resendApiKey, -5)) : 'NOT SET';
+$debug_info['final_from_email'] = $resendFromEmail;
+
 
 // Función para enviar email usando Resend API
 function sendEmailWithResend($to, $subject, $htmlContent, $fromEmail = null, $fromName = null) {

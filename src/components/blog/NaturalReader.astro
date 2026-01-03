@@ -621,8 +621,10 @@ class NaturalReader {
     this.keepAliveInterval = setInterval(() => {
       if (this.state === STATES.PLAYING) {
         // Verificar si la síntesis de voz sigue activa
-        if (!window.speechSynthesis.speaking) {
-          // Si no está hablando pero debería estarlo, continuar con el siguiente fragmento
+        if (!window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+          // Si no está hablando pero debería estarlo (y no está pausado), 
+          // probablemente el OS detuvo el proceso. Intentar recuperar.
+          console.log('Detectado posible parón en background, intentando recuperar...');
           this.currentChunk++;
           if (this.currentChunk < this.chunks.length) {
             this.speakNextChunk();
@@ -631,14 +633,6 @@ class NaturalReader {
             this.stopKeepAlive();
           }
         } else {
-          // Mantener activa la síntesis de voz con una técnica más agresiva
-          window.speechSynthesis.pause();
-          setTimeout(() => {
-            if (this.state === STATES.PLAYING) {
-              window.speechSynthesis.resume();
-            }
-          }, 50);
-
           // Reproducir un breve sonido silencioso para mantener activo el proceso de audio
           this.playSilentSound();
 
@@ -647,19 +641,15 @@ class NaturalReader {
             this.requestWakeLock();
           }
 
-          // Usar vibración (si está disponible) para mantener activo el dispositivo
-          if ('vibrate' in navigator) {
-            try {
-              navigator.vibrate(1); // Vibración imperceptible de 1ms
-            } catch (e) {
-              // Ignorar errores de vibración
-            }
+          // Notificar al sistema que seguimos reproduciendo
+          if ('mediaSession' in navigator && navigator.mediaSession.playbackState !== 'playing') {
+            navigator.mediaSession.playbackState = 'playing';
           }
         }
       } else {
         this.stopKeepAlive();
       }
-    }, 1000); // Verificar cada segundo (más frecuente)
+    }, 2000); // 2 segundos es suficiente para no saturar pero mantener vivo
 
     // Crear un worker en segundo plano para mantener activo el proceso
     this.createBackgroundWorker();
@@ -802,6 +792,11 @@ class NaturalReader {
 
           // Solicitar Wake Lock para mantener la pantalla encendida
           this.requestWakeLock();
+          
+          // Actualizar estado de MediaSession
+          if ('mediaSession' in navigator) {
+            navigator.mediaSession.playbackState = 'playing';
+          }
           break;
         case STATES.PAUSED:
           this.buttonText.textContent = resumeText;
@@ -809,6 +804,11 @@ class NaturalReader {
           this.readButton.classList.add('bg-primary', 'hover:bg-primary/90');
           this.stopButton.disabled = false;
           this.stopButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+          // Actualizar estado de MediaSession
+          if ('mediaSession' in navigator) {
+            navigator.mediaSession.playbackState = 'paused';
+          }
 
           // Liberar Wake Lock
           this.releaseWakeLock();
@@ -819,6 +819,11 @@ class NaturalReader {
           this.readButton.classList.add('bg-primary', 'hover:bg-primary/90');
           this.stopButton.disabled = true;
           this.stopButton.classList.add('opacity-50', 'cursor-not-allowed');
+
+          // Actualizar estado de MediaSession
+          if ('mediaSession' in navigator) {
+            navigator.mediaSession.playbackState = 'none';
+          }
 
           // Liberar Wake Lock
           this.releaseWakeLock();
@@ -845,7 +850,11 @@ class NaturalReader {
 // Inicializar cuando el DOM esté cargado
 let readerInstance = null;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('astro:page-load', () => {
+  // Limpiar instancia previa si existe (redundancia de seguridad)
+  if (readerInstance) {
+    readerInstance.cleanup();
+  }
   readerInstance = new NaturalReader();
 });
 

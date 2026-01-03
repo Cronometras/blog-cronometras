@@ -294,7 +294,7 @@ function startSpeech(text: string, lang: string) {
 }
 
 // Initialize when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('astro:page-load', () => {
   if (!checkSpeechSynthesisSupport()) return;
 
   document.getElementById('tts-button')?.addEventListener('click', function() {

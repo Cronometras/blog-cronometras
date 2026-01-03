@@ -23,7 +23,7 @@ const lang = getLangFromUrl(url);
 const t = useTranslations(lang);
 
 // URLs para compartir en diferentes plataformas
-const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&t=${encodedTitle}`;
 const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
 
 // Para LinkedIn usamos la URL directa para compartir con todos los parámetros posibles
@@ -112,7 +112,7 @@ const copyToClipboardScript = `
 <!-- Script para mejorar la experiencia de compartir - client:load asegura que solo se ejecute en el cliente -->
 <script is:inline>
   // Usamos is:inline para evitar problemas con el renderizado del servidor
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('astro:page-load', function() {
     // Función segura para obtener la URL actual
     const getCurrentUrl = () => {
       try {

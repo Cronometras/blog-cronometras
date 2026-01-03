@@ -37,17 +37,7 @@ export default defineConfig({
     react(),
     sitemap(),
     tailwind(),
-    AutoImport({
-      // import react components to use in mdx
-      imports: [
-        "@/components/react/FeatherIcon.tsx",
-        "@/components/CounterComponent.astro",
-        "@/components/core/Section.astro",
-        "@/components/react/Changelog.tsx",
-        "@/components/Badge.astro",
-        "@/components/RelatedBlogPosts.astro",
-      ],
-    }),
+    // AutoImport removed - using explicit imports in MDX files
     mdx({
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex],

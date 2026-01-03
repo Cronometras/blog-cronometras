@@ -6,6 +6,7 @@ import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
 import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
 import HeroImage from '@/components/blog/HeroImage.astro';
 import ShareButtons from '@/components/blog/ShareButtons.astro';
+import DynamicFirestorePost from '@/components/react/DynamicFirestorePost';
 import { getFirestoreArticles, type BlogPost } from '@/lib/firestoreArticles';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
   const mdxPosts = await getCollection('blog');
   console.log(`Total de posts MDX encontrados: ${mdxPosts.length}`);
 
-  // Get Firestore articles
+  // Get Firestore articles for route generation
   let firestoreArticles: BlogPost[] = [];
   try {
     firestoreArticles = await getFirestoreArticles();
@@ -45,17 +46,22 @@ export async function getStaticPaths() {
     });
   }
 
-  // Add Firestore posts paths
+  // Add Firestore posts paths (only for route generation, content loads dynamically)
   for (const article of firestoreArticles) {
     const slugParts = article.slug.split('/');
     const lang = slugParts[0];
     const slug = slugParts.slice(1).join('/');
 
-    console.log(`Generando ruta Firestore: lang=${lang}, slug=${slug}`);
+    console.log(`Generando ruta Firestore (híbrida): lang=${lang}, slug=${slug}`);
 
     paths.push({
       params: { lang, slug },
-      props: { post: article, source: 'firestore' },
+      props: { 
+        post: article, 
+        source: 'firestore',
+        // Pass only minimal data needed for SEO meta tags
+        firestoreSlug: slug 
+      },
     });
   }
 
@@ -63,144 +69,149 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { post, source } = Astro.props;
+const { post, source, firestoreSlug } = Astro.props;
 const { lang, slug } = Astro.params;
 
 console.log(`Renderizando post: lang=${lang}, slug=${slug}, source=${source}`);
 
-// Render content based on source
+// For MDX posts, render content statically
 let Content;
 let htmlContent = '';
 let errorMessage = '';
 
-try {
-  if (!post) {
-    throw new Error(`Post no encontrado. Parámetros: lang=${lang}, slug=${slug}`);
-  }
+if (source === 'mdx') {
+  try {
+    if (!post) {
+      throw new Error(`Post no encontrado. Parámetros: lang=${lang}, slug=${slug}`);
+    }
 
-  if (source === 'mdx') {
-    // MDX rendering
     if (typeof post.render !== 'function') {
       throw new Error(`La función render no está disponible en el post MDX. id: ${post.id}`);
     }
     const rendered = await post.render();
     Content = rendered.Content;
-  } else if (source === 'firestore') {
-    // Firestore Markdown rendering
-    htmlContent = await marked(post.body || '');
+    
+    console.log(`Post MDX renderizado exitosamente: ${post.id}`);
+  } catch (error) {
+    console.error('Error al renderizar el post:', error);
+    errorMessage = 'No se pudo cargar el contenido del post.';
   }
-  
-  console.log(`Post renderizado exitosamente: ${post.id}`);
-} catch (error) {
-  console.error('Error al renderizar el post:', error);
-  errorMessage = 'No se pudo cargar el contenido del post.';
 }
 
-// Extract text content for text-to-speech
-const rawContent = post?.body || '';
+// Extract text content for text-to-speech (MDX only)
+const rawContent = source === 'mdx' ? (post?.body || '') : '';
 
 // Prerender para generar páginas estáticas durante la compilación
 export const prerender = true;
 ---
 
+
 <Base title={post?.data?.title || 'Blog Post'} description={post?.data?.description || ''}>
-  {post && <BlogPostSchema post={post} url={Astro.url} />}
-  <article class="mx-auto">
-    <!-- Hero Image with Overlay -->
-    <div class="relative min-h-[400px] md:min-h-[450px] lg:min-h-[500px] w-full overflow-hidden">
-      <HeroImage
-        src={post?.data?.heroImage || '/images/webp/cronometras-app.webp'}
-        alt={post?.data?.title || 'Blog Post'}
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
-      <div class="absolute inset-0 flex flex-col justify-end p-4 md:p-8 container mx-auto">
-        <div class="text-white mb-4 md:mb-8 max-w-4xl mx-auto w-full">
-          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">{post?.data?.title || 'Blog Post'}</h1>
-          <div class="flex flex-wrap items-center gap-2 md:gap-4 text-gray-200 mb-3 md:mb-4 text-sm md:text-base">
-            {post?.data?.pubDate && (
-              <time datetime={post.data.pubDate.toISOString()} class="font-medium">
-                {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-            )}
-            {post?.data?.author && (
-              <>
-                <span>•</span>
-                <span class="font-medium">{post.data.author}</span>
-              </>
-            )}
-          </div>
-          {post?.data?.description && (
-            <p class="text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed">{post.data.description}</p>
-          )}
-          <div class="mt-4 md:mt-8">
-            <NaturalReader text={rawContent} lang={lang || 'en'} />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Article Content -->
-    <section class="section pt-0 pb-8 md:pb-16 bg-white dark:bg-gray-900">
-      <div class="container px-4 md:px-8 mx-auto">
-        <div class="max-w-3xl mx-auto">
-          <div class="article-content prose prose-base md:prose-lg dark:prose-invert">
-            {Content ? <Content /> : htmlContent ? <Fragment set:html={htmlContent} /> : <p class="text-center text-red-500">{errorMessage}</p>}
-          </div>
-
-          <!-- Botones de compartir -->
-          {post && (
-            <ShareButtons
-              url={Astro.url}
-              title={post.data.title}
-              description={post.data.description}
-            />
-          )}
-
-          <!-- Keywords / Tags -->
-          {post?.data?.tags && post.data.tags.length > 0 && (
-            <div class="mt-8">
-              <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
-                {lang === 'es' ? 'Temas relacionados' : 'Related topics'}
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                {post.data.tags.map((tag: string) => (
-                  <a 
-                    href={`/${lang}/blog/?tag=${encodeURIComponent(tag)}`}
-                    class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-accent/10 text-accent hover:bg-accent hover:text-white transition-all duration-200 border border-accent/20 hover:border-accent"
-                  >
-                    <svg class="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-                    </svg>
-                    {tag}
-                  </a>
-                ))}
-              </div>
+  {source === 'mdx' && post && <BlogPostSchema post={post} url={Astro.url} />}
+  
+  {source === 'firestore' ? (
+    <!-- Dynamic loading for Firestore articles -->
+    <DynamicFirestorePost slug={firestoreSlug || slug} lang={lang} client:load />
+  ) : (
+    <!-- Static rendering for MDX articles -->
+    <article class="mx-auto">
+      <!-- Hero Image with Overlay -->
+      <div class="relative min-h-[400px] md:min-h-[450px] lg:min-h-[500px] w-full overflow-hidden">
+        <HeroImage
+          src={post?.data?.heroImage || '/images/webp/cronometras-app.webp'}
+          alt={post?.data?.title || 'Blog Post'}
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-4 md:p-8 container mx-auto">
+          <div class="text-white mb-4 md:mb-8 max-w-4xl mx-auto w-full">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">{post?.data?.title || 'Blog Post'}</h1>
+            <div class="flex flex-wrap items-center gap-2 md:gap-4 text-gray-200 mb-3 md:mb-4 text-sm md:text-base">
+              {post?.data?.pubDate && (
+                <time datetime={post.data.pubDate.toISOString()} class="font-medium">
+                  {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              )}
+              {post?.data?.author && (
+                <>
+                  <span>•</span>
+                  <span class="font-medium">{post.data.author}</span>
+                </>
+              )}
             </div>
-          )}
-
-          <!-- Separador -->
-          <div class="my-12 border-t border-gray-200 dark:border-gray-700"></div>
-
-          <!-- Artículos relacionados -->
-          <div class="mt-8 md:mt-12">
-            <RelatedBlogPosts 
-              language={lang} 
-              count={4} 
-              title={lang === 'es' ? "Artículos relacionados" : "Related articles"}
-              currentSlug={slug}
-              currentKeywords={post?.data?.tags || []}
-            />
+            {post?.data?.description && (
+              <p class="text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed">{post.data.description}</p>
+            )}
+            <div class="mt-4 md:mt-8">
+              <NaturalReader text={rawContent} lang={lang || 'en'} />
+            </div>
           </div>
         </div>
       </div>
-    </section>
-  </article>
+
+      <!-- Article Content -->
+      <section class="section pt-0 pb-8 md:pb-16 bg-white dark:bg-gray-900">
+        <div class="container px-4 md:px-8 mx-auto">
+          <div class="max-w-3xl mx-auto">
+            <div class="article-content prose prose-base md:prose-lg dark:prose-invert">
+              {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
+            </div>
+
+            <!-- Botones de compartir -->
+            {post && (
+              <ShareButtons
+                url={Astro.url}
+                title={post.data.title}
+                description={post.data.description}
+              />
+            )}
+
+            <!-- Keywords / Tags -->
+            {post?.data?.tags && post.data.tags.length > 0 && (
+              <div class="mt-8">
+                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wide">
+                  {lang === 'es' ? 'Temas relacionados' : 'Related topics'}
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  {post.data.tags.map((tag: string) => (
+                    <a 
+                      href={`/${lang}/blog/?tag=${encodeURIComponent(tag)}`}
+                      class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-accent/10 text-accent hover:bg-accent hover:text-white transition-all duration-200 border border-accent/20 hover:border-accent"
+                    >
+                      <svg class="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                      </svg>
+                      {tag}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <!-- Separador -->
+            <div class="my-12 border-t border-gray-200 dark:border-gray-700"></div>
+
+            <!-- Artículos relacionados -->
+            <div class="mt-8 md:mt-12">
+              <RelatedBlogPosts 
+                language={lang} 
+                count={4} 
+                title={lang === 'es' ? "Artículos relacionados" : "Related articles"}
+                currentSlug={slug}
+                currentKeywords={post?.data?.tags || []}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  )}
 </Base>
+
 
 <style is:global>
   /* Estilos base para el contenido del artículo */
