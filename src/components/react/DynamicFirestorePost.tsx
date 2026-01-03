@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
 
-// Firebase configuration (same as lib/firebase.ts)
+// Firebase configuration for client-side
+// Note: Firebase API keys are public by design - security comes from Firebase Security Rules
 const firebaseConfig = {
     apiKey: "AIzaSyAW4z3fkImqMO0MuEXQ92a0Dcw8HrLuiDs",
     authDomain: "micaot-com.firebaseapp.com",
@@ -15,7 +16,7 @@ const firebaseConfig = {
     measurementId: "G-8P8GPHKSQ7"
 };
 
-// Initialize Firebase only if it hasn't been initialized yet (Singleton pattern)
+// Initialize Firebase only if not already initialized
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const db = getFirestore(app);
 
@@ -128,6 +129,11 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Simple text-to-speech state
+    const [isReading, setIsReading] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+    const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+
     useEffect(() => {
         async function fetchPost() {
             try {
@@ -180,6 +186,78 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
             fetchPost();
         }
     }, [slug, lang]);
+
+    // Re-render KaTeX math formulas after content loads
+    useEffect(() => {
+        if (post && !loading && typeof window !== 'undefined') {
+            // Wait for DOM to update, then trigger KaTeX rendering
+            setTimeout(() => {
+                if ((window as any).renderMathInElement) {
+                    (window as any).renderMathInElement(document.body, {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ],
+                        throwOnError: false
+                    });
+                }
+            }, 100);
+        }
+    }, [post, loading]);
+
+    // Simple text-to-speech functions
+    const startReading = () => {
+        if (!post || typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+
+        // Stop any current speech
+        window.speechSynthesis.cancel();
+
+        // Clean text for reading
+        const textToRead = post.content
+            .replace(/<[^>]*>/g, '') // Remove HTML
+            .replace(/\$\$[\s\S]*?\$\$/g, '') // Remove block LaTeX
+            .replace(/\$[^$]*\$/g, '') // Remove inline LaTeX
+            .replace(/[#*_`]/g, '') // Remove markdown formatting
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Convert links to text
+            .substring(0, 5000); // Limit length
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = lang === 'es' ? 'es-ES' : 'en-US';
+        utterance.rate = 0.9;
+
+        utterance.onend = () => {
+            setIsReading(false);
+            setIsPaused(false);
+        };
+
+        utterance.onerror = () => {
+            setIsReading(false);
+            setIsPaused(false);
+        };
+
+        speechRef.current = utterance;
+        window.speechSynthesis.speak(utterance);
+        setIsReading(true);
+        setIsPaused(false);
+    };
+
+    const togglePause = () => {
+        if (!isReading) return;
+
+        if (isPaused) {
+            window.speechSynthesis.resume();
+            setIsPaused(false);
+        } else {
+            window.speechSynthesis.pause();
+            setIsPaused(true);
+        }
+    };
+
+    const stopReading = () => {
+        window.speechSynthesis.cancel();
+        setIsReading(false);
+        setIsPaused(false);
+    };
 
     if (loading) {
         return (
@@ -240,6 +318,53 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
                                 {post.description}
                             </p>
                         )}
+
+                        {/* Simple Text-to-Speech Controls */}
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {!isReading ? (
+                                <button
+                                    onClick={startReading}
+                                    className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071a1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
+                                    {lang === 'es' ? 'Leer en voz alta' : 'Read aloud'}
+                                </button>
+                            ) : (
+                                <>
+                                    <button
+                                        onClick={togglePause}
+                                        className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
+                                    >
+                                        {isPaused ? (
+                                            <>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                                </svg>
+                                                {lang === 'es' ? 'Continuar' : 'Resume'}
+                                            </>
+                                        ) : (
+                                            <>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                                                </svg>
+                                                {lang === 'es' ? 'Pausar' : 'Pause'}
+                                            </>
+                                        )}
+                                    </button>
+                                    <button
+                                        onClick={stopReading}
+                                        className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clipRule="evenodd" />
+                                        </svg>
+                                        {lang === 'es' ? 'Detener' : 'Stop'}
+                                    </button>
+                                </>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
