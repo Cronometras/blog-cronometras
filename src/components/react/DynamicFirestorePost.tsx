@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { marked } from 'marked';
+import markedKatex from 'marked-katex-extension';
 
 // Firebase configuration (same as lib/firebase.ts)
 const firebaseConfig = {
@@ -18,7 +19,10 @@ const firebaseConfig = {
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const db = getFirestore(app);
 
-// Configure marked for GitHub Flavored Markdown
+// Configure marked for GitHub Flavored Markdown with KaTeX support
+marked.use(markedKatex({
+    throwOnError: false
+}));
 marked.setOptions({
     breaks: true,
     gfm: true,
