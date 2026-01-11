@@ -111,7 +111,47 @@ const translatePath = useTranslatedPath(lang);
               {email}
             </a>
           </li>
-
+        </ul>
+        
+        <!-- Otras Apps -->
+        <h6 class="mt-6">{t('footer.other_apps')}</h6>
+        <ul class="other-apps mt-4">
+          <li class="mb-4">
+            <a
+              href="https://induly.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="app-link"
+            >
+              <span class="app-icon induly-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="app-svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
+                </svg>
+              </span>
+              <span class="app-info">
+                <span class="app-name">Induly</span>
+                <span class="app-desc">{t('footer.induly_desc')}</span>
+              </span>
+            </a>
+          </li>
+          <li class="mb-2">
+            <a
+              href="https://worksamp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="app-link"
+            >
+              <span class="app-icon worksamp-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="app-svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                </svg>
+              </span>
+              <span class="app-info">
+                <span class="app-name">Worksamp</span>
+                <span class="app-desc">{t('footer.worksamp_desc')}</span>
+              </span>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -148,6 +188,84 @@ const translatePath = useTranslatedPath(lang);
       align-items: center;
       justify-content: center;
       font-weight: bold;
+    }
+
+    /* Other Apps Styles */
+    .other-apps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .app-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(var(--color-primary-rgb, 99, 102, 241), 0.05);
+      border: 1px solid rgba(var(--color-primary-rgb, 99, 102, 241), 0.1);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .app-link:hover {
+      background: rgba(var(--color-primary-rgb, 99, 102, 241), 0.12);
+      border-color: rgba(var(--color-primary-rgb, 99, 102, 241), 0.25);
+      transform: translateX(4px);
+    }
+
+    .app-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .induly-icon {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+    }
+
+    .worksamp-icon {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .app-svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .app-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .app-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-default);
+    }
+
+    .app-desc {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      opacity: 0.85;
+    }
+
+    :global(.dark) .app-link {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    :global(.dark) .app-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
     }
   </style>
 </footer>

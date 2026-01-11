@@ -8,7 +8,7 @@ if (!process.env.API_KEY) {
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function generateArticle(topic: string): Promise<{ title: string, content: string; sources: GroundingSource[] }> {
-  const model = 'gemini-2.5-flash';
+  const model = 'gemini-3-flash-preview';
   const prompt = `
     Tu tarea es actuar como un experto en SEO y redactor de contenidos con una personalidad única. Vas a generar un artículo de blog sobre el tema: "${topic}".
     Tu objetivo es crear el mejor y más completo recurso sobre este tema en internet, optimizado para la intención de búsqueda principal y que aporte un valor inmenso al lector.

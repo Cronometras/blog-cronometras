@@ -45,6 +45,10 @@ export const ui = {
     'search.placeholder': 'Buscar artículos...',
     'nav.pricing': 'Precios',
     'nav.contact': 'Contacto',
+    'footer.other_apps': 'Otras Apps',
+    'footer.induly_desc': 'Control de Producción Industrial',
+    'footer.worksamp_desc': 'Muestreo del Trabajo',
+    'footer.rss_feeds': 'RSS Feeds',
   },
   en: {
     'nav.home': 'Home',
@@ -84,5 +88,9 @@ export const ui = {
     'search.placeholder': 'Search articles...',
     'nav.pricing': 'Pricing',
     'nav.contact': 'Contact',
+    'footer.other_apps': 'Other Apps',
+    'footer.induly_desc': 'Industrial Production Control',
+    'footer.worksamp_desc': 'Work Sampling',
+    'footer.rss_feeds': 'RSS Feeds',
   },
 } as const;
