@@ -1,0 +1,115 @@
+---
+title: "Specialized Technique #14: Timing, OEE and Productivity in Chemical and Continuous Processes (Technical Guide 2025)"
+description: "How is productivity measured when the manufacturing cycle lasts 4 hours and the operator seems to be 'inactive' in front of a control panel?"
+pubDate: 2026-01-04
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Ft%C3%A9cnica-especializada-%2314%3A-cronometraje-de-procesos-qu%C3%ADmicos-1767519827232.webp?alt=media&token=b3204ecf-2b2f-4fdf-aa69-1e5fecea40e3"
+---
+
+# Specialized Technique #14: Timing, OEE and Productivity in Chemical and Continuous Processes (Technical Guide 2025)
+
+**How is productivity measured when the manufacturing cycle lasts 4 hours and the operator seems to be "inactive" in front of a control panel?**
+
+This is the most frequent—and costly—technical dilemma in modern methods engineering. A systemic error in the process industry (pharmaceutical, petrochemical, cosmetic, and food) is trying to apply timing methodologies designed for discrete manufacturing (part assembly) in continuous reaction or batch environments.
+
+In this technical guide, we break down **Specialized Technique #14** from **Cronometras**. We analyze the definitive methodology to calculate standard times, saturation, and real OEE in process industries, strictly aligned with prevention and ergonomics regulations projected for the 2025 horizon.
+
+---
+
+## The Inactivity Paradox: Manual Work vs. Dominant Technological Time
+
+The first obstacle for a time analyst in a chemical plant is the **visual discontinuity of the cycle**. Unlike an automotive assembly line, here the operator does not set the pace; the reactor does. This generates what we call in methods engineering the "Inactivity Paradox".
+
+### 1. Active Vigilance Definition (ILO Standards)
+Seeing an operator observing a manometer or monitoring a temperature curve on a SCADA is not "leisure". According to ILO (International Labour Organization) standards, this is classified as **Active Vigilance Time** or **Attention Time**. There is significant mental load: the operator is managing the uncertainty of an exothermic reaction or critical pressure.
+
+Ignoring this time or classifying it as "avoidable inactivity" distorts saturation calculation and jeopardizes process safety.
+
+### 2. Phase Classification for Timing
+To correctly model these processes, Technique #14 requires breaking down "cycle time" into three hermetic categories:
+
+*   **External Manual Phase:** Physical tasks such as loading raw materials (bags, drums), hose connection, or final packaging. These are measurable via **Centesimal Timing** or **MTM** systems.
+*   **Technological Phase (Black Box):** Reaction, mixing, fermentation, or centrifugation. It is a *Dominant Machine Time (DMT)*. Here the stopwatch is useless; data must be extracted from PLC integration.
+*   **Frequency Manual Phase (The Chaos Variable):** Sampling for quality (QC), valve adjustments, or *in-process* pH corrections.
+
+---
+
+## Hybrid Methodology: Why Centesimal Timing Fails in Chem Sector?
+
+Attempting to time an 8-hour *batch* cycle with an analyst 100% present (continuous timing) is financially unfeasible and statistically inefficient. Observer fatigue and intrinsic process variability invalidate results.
+
+At **Cronometras**, we implement a **Hybrid Methodology** for these scenarios:
+
+### 1. Work Sampling (Tippett Technique)
+For long process phases, we replace the stopwatch with statistics.
+*   **Application:** Conducting instantaneous random observations to determine the percentage of time dedicated to Operation, Vigilance, Displacement, and Inactivity.
+*   **Mathematical Rigor:** We work with a Confidence Level of **95%** and a maximum margin of error of **±5%**. This allows auditing entire shifts without constant engineer presence.
+
+### 2. Standardization with MTM-2 and MOST
+Physical loading of raw materials into reactors is a high-wear task. A fatigued operator alters their pace (Activity < 100). Rating this pace "by eye" (Performance Judgment) is subjective and a source of union conflicts.
+*   **Solution:** We use predetermined times (MTM-2 or MOST). By assigning standard times to basic motions, we eliminate subjectivity and obtain a fair base time, independent of operator momentary fatigue.
+
+---
+
+## Regulatory Framework 2025: Impact of ISO 11228 and Rest Coefficients (K)
+
+The legal scenario in Spain and the EU is changing drastically. Updates to Prevention Law and **UNE-EN ISO 11228** standard on ergonomics force a reevaluation of fatigue allowances.
+
+### The Risk of Obsolete Coefficients
+Historically, rest coefficients (K Allowances) of **11-12%** have been applied. However, the chemical environment presents aggressive conditions that new ILO tables penalize severely:
+*   Use of complex PPE (chemical suits, autonomous masks).
+*   Work in ATEX zones.
+*   Thermal stress (heat/humidity in reactor zones).
+
+**Technical Projection:** To comply with 2025 regulations, allowances in process plants must be adjusted to the **18% to 25%** range.
+> **Warning:** Maintaining standard times calculated with old coefficients is not only unrealistic but will be legally indefensible before a labor inspection or ergonomic audit.
+
+---
+
+## Benchmarking: OEE and Saturation Indicators in Process Plants
+
+Based on our *Market Research Technical Report (2023-2024)*, we have detected critical gaps in sector efficiency:
+
+| Indicator | Current Average (Chemical Sector) | *Best-in-Class* Target |
+| :--- | :---: | :---: |
+| **Global OEE** | 60% - 65% | **> 85%** |
+| **Operator Saturation** | 45% - 55% | **75% - 80%** |
+| **Cycle Variability** | ± 15% | **± 2%** |
+
+### The Hidden Enemy: CIP and SIP
+70% of OEE inefficiencies do not come from reaction speed, but from **Cleaning (CIP) and Sterilization (SIP)** times. Often, these times "hide" in maintenance codes or unplanned stops, representing up to **20% of total available time** without standardization.
+
+---
+
+## Cronometras Solutions: Technical Optimization and Man-Machine Charts
+
+To transition from 60% to 85% OEE, measurement is only the first step. Optimization requires advanced methods engineering:
+
+### 1. SMED Applied to Cleaning Processes
+We treat reactor cleaning like a pit stop in Formula 1.
+*   **Conversion:** We transform internal times (detergent preparation, purges, hose connection with stopped reactor) into external times (*off-line* preparation).
+*   **Result:** Drastic reduction of *Changeover*, releasing productive capacity hours.
+
+### 2. Man-Machine Charts (M-M) and Saturation by Interference
+How many reactors can an operator safely attend?
+We use M-M Charts to visualize and calculate **interferences**: moments when two or more equipment require simultaneous attention (alarms, loads). This allows defining **Optimal Staffing**, balancing physical saturation with mental load necessary for critical process vigilance.
+
+### 3. Data Digitalization (Real-Time OEE)
+Paper timing is dead. We integrate calculated standard times (Via MTM/Sampling) with your **MES/SCADA** system logs. This provides a dynamic OEE distinguishing between performance drop due to machine failure and operational inefficiency.
+
+---
+
+### Would your standard times withstand an audit under 2025 regulations?
+
+Measurement in continuous processes requires precision engineering, not just a stopwatch. If your plant operates with generic fatigue allowances or ignores real impact of cleaning times on OEE, your cost structure is compromised.
+
+At **Cronometras**, we diagnose your real OEE, apply Technique #14, and adjust your fatigue coefficients to shield your productivity and legality against new European standards.
+
+[**> Request Technical Time Audit (Confidential Report)**]
+
+---
+
+**Meta Description:**
+*Technical guide on time measurement in chemical industry and continuous processes. Analysis of Technique #14, Work Sampling (Tippett), ISO 11228 Standard (2025), and OEE optimization via SMED in cleaning.*

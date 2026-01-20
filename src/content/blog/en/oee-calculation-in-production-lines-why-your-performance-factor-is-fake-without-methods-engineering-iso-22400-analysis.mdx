@@ -1,0 +1,116 @@
+---
+title: "OEE Calculation in Production Lines: Why Your Performance Factor is Fake Without Methods Engineering (ISO 22400 Analysis)"
+description: "In the current operations environment, OEE (Overall Equipment Effectiveness) has been prostituted. Born as pure engineering thermometer under TPM umbrella."
+pubDate: 2026-01-01
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fc%C3%A1lculo-del-oee-en-l%C3%ADneas-de-producci%C3%B3n-1767316202642.webp?alt=media&token=5359d174-b20f-42fa-8a6a-77891fb045c1"
+---
+
+# OEE Calculation in Production Lines: Why Your Performance Factor is Fake Without Methods Engineering (ISO 22400 Analysis)
+
+In the current operations environment, OEE (*Overall Equipment Effectiveness*) has been prostituted. What was born as a pure engineering thermometer under the TPM (*Total Productive Maintenance*) umbrella has devolved in many organizations into a financial KPI or a "vanity metric".
+
+The data is alarming: according to our 2024-004-OEE technical research report, **65% of manufacturing industry in Spain calculates its OEE incorrectly**. Not due to arithmetic failures in factor multiplication, but due to defective data feeding in the most critical and volatile variable: **Ideal Cycle Time**.
+
+If you feed your OEE formula with historical estimates, theoretical plate speeds, or times not leveled under ILO regulations, you are not measuring productivity; you are institutionalizing inefficiency. The goal of this technical article is to deconstruct OEE calculation from the lens of Methods and Time Engineering to recover the **Industrial Truth** of your plant.
+
+---
+
+## Vectorial OEE Breakdown: Beyond Basic Formula ($A \times P \times Q$)
+
+For an industrial engineer, reciting $OEE = A \times P \times Q$ is trivial. The challenge lies in data integrity composing those vectors according to **ISO 22400-2** standard.
+
+### 1. Availability (A): The SMED Trap
+Availability measures losses due to stops. However, distinction between **Planned Stop** (does not affect OEE) and **Unplanned Stop** (affects OEE) is often subjective.
+*   **Technical Impact:** If changeover times (Setup) are not optimized via SMED methodology and standardized, any deviation eats up availability. An MES (*Manufacturing Execution System*) will record the stop, but won't tell you if standard change time is loose or demanding.
+
+### 2. Quality (Q): Rework Hidden Cost
+Standard formula usually penalizes only *scrapped* parts.
+*   **Engineering View:** In-line *rework* must penalize cycle time. If a part requires non-standardized "touch-up" within cycle, you are injecting non-valued manual time, leading us to next critical point.
+
+### 3. Performance (P): The Critical Equation
+Here is where most calculations collapse. Performance formula is:
+
+$$P = \frac{(Total \ Pieces \ Produced \times Ideal \ Cycle \ Time)}{Operating \ Time}$$
+
+Mathematically, if you overestimate *Operating Time* or underestimate *Ideal Cycle Time*, your performance percentage skyrockets artificially. **The keystone is "Ideal Cycle Time".** Where does that number come from in your ERP?
+
+---
+
+## Performance "Black Box": Ideal Cycle Time Problem
+
+Defining Ideal Cycle Time is an exclusive competence of Methods Engineering. Leaving this data in hands of "historical averages" or machine manufacturer specifications is a grave technical error.
+
+### Plate Speed Error
+In semi-automatic or manual processes (Man-Machine), using manufacturer's theoretical speed (e.g., "this packer does 60 strokes/min") ignores **operator saturation**. If cycle depends on manual load/unload, and man-machine interference hasn't been calculated, standard is unattainable or unreal.
+
+### Historical Averages Danger
+Many ERPs calculate standard based on last year's production average. This is **validating inefficiency**. If your plant has historically worked at low pace (e.g., 80 Bedaux), converting that into your "100% standard" means your OEE will never detect hidden improvement capacity.
+
+### Micro-stops vs. Reduced Speed
+"6 Big Losses" distinguish between micro-stops (short stops < 5 min) and reduced speed.
+*   **Centesimal Impact:** A deviation of barely **0.5 seconds** in a 10-second cycle generates **5% error in Performance KPI**.
+*   **SCADA Blindness:** A SCADA system can tell you machine is slow. But it cannot distinguish if it is mechanical problem or operator executing inefficient *Therbligs* (micro-motions). Only methods analysis detects this.
+
+---
+
+## Scientific Standard Validation: Timing (ILO Standards) and MTM
+
+For OEE to be management tool and not fiction, *Ideal Cycle Time* must be a **Scientific Standard Time**.
+
+### Industrial Timing and Activity Leveling
+Any stopwatch measurement not including pace valuation (Performance Factor) is useless.
+*   **Leveling:** Analyst must judge operator speed regarding "Normal Activity" concept (100 BSI/Bedaux or 100% ILO). Without this, time is subjective.
+*   **Rest Coefficients (Fatigue):** According to ILO, standard time **must** include allowances for physical, mental fatigue, and personal needs. An OEE calculated with "pure" machine times without considering human fatigue in manual cycles is a technical violation that will burn out staff and generate absenteeism, destroying long-term productivity.
+
+### Predetermined Time Systems (MTM / MOST)
+Most robust way to fix *Ideal Cycle Time* is via predetermined time systems like **MTM-UAS** or **BasicMOST**.
+*   **Why use them?** These systems decompose task into basic motions (reach, grasp, move, position) and assign international standard times.
+*   **Result:** Subjectivity of analyst and operator is eliminated. You obtain time process *should* take with correct method, becoming irrefutable denominator for your OEE formula.
+
+---
+
+## Industry 4.0 and MES Systems: Risk of Automating Error
+
+Plant digitalization is necessary, but dangerous if base processes are not audited.
+
+### Master Data Conflict
+We frequently see plants with state-of-the-art MES systems capturing stops with millisecond precision, then calculating OEE against ERP *Master Data* not updated in 5 years.
+*   **Garbage In, Garbage Out:** Digitalizing without prior methods and times cleaning only accelerates erroneous data generation. Software is fast, but not smart; it doesn't know if work method is ergonomic or efficient.
+
+### Compliance and Ergonomics (Horizon 2025)
+Regulatory trend (ISO 11228 and EU directives) increasingly links work paces to occupational health.
+*   A time audit not only adjusts OEE, but serves as legal defense (Compliance) before inspections, demonstrating production targets (100% Performance) respect workers' physiological limits.
+
+---
+
+## Technical Solution: "Cronometras" Audit and Calibration Protocol
+
+To transition from financial OEE to technical and actionable OEE, at **Cronometras** we don't just observe; we intervene data. We propose three-phase protocol:
+
+### Phase 1: Baseline Audit (Stopwatch Audit)
+We perform *in situ* timing to break down current cycle. We rigorously separate **Technological Time** (machine) from **Manual Time** (human) and detect real activity vs. normal activity (100).
+
+### Phase 2: Standardization with MTM/MOST
+We model critical motions and bottlenecks using MTM-UAS. This allows establishing **Technical Ideal Cycle Time**, free from historical vices and based on necessary motions.
+
+### Phase 3: Saturation Recalculation and Real OEE
+We update *Master Data* with new standards. When recalculating OEE, indicator often drops (revealing hidden inefficiencies) or rises (revealing idle capacity). In both cases, result is real control over plant capacity.
+
+---
+
+## Conclusion: From OEE to OEEE (Energy Effectiveness)
+
+Looking towards 2025, OEE will evolve into **OEEE (Overall Equipment & Energy Effectiveness)**. Processes with poor methods, full of useless motions and wait times, not only lose time: consume energy without adding value.
+
+**Summary:** Without Methods there is no OEE. Do not invest in data capture software without first calibrating field engineering feeding that data.
+
+---
+
+### Is your OEE stuck at 60% or suspect your 85% is unreal?
+
+At **Cronometras**, we don't sell software. We audit engineering behind your data. If you need to validate real line capacity and ensure production standards, let's talk engineering.
+
+[**Request Technical Time and OEE Audit**]

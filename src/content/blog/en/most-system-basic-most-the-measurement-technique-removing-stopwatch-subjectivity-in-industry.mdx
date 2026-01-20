@@ -1,0 +1,129 @@
+---
+title: "MOST System (Basic MOST): The Measurement Technique Removing Stopwatch Subjectivity in Industry"
+description: "The Spanish manufacturing industry faces a 2025 scenario marked by double pressure: relentless pressure on operating margins and an increasingly strict labor regulatory framework."
+pubDate: 2026-01-03
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fsistema-most%3A-t%C3%A9cnica-b%C3%A1sica-de-medici%C3%B3n-1767461206305.webp?alt=media&token=032b6c6d-1bdd-4bb3-990b-f5eaa2de7048"
+---
+
+# MOST System (Basic MOST): The Measurement Technique Removing Stopwatch Subjectivity in Industry
+
+The Spanish manufacturing industry faces a 2025 scenario marked by double pressure: relentless pressure on operating margins and an increasingly strict labor regulatory framework regarding ergonomics and performance measurement objectivity. In this context, using manual stopwatches and subjective work pace valuation ("Rating") have become technical and legal liabilities.
+
+Modern methods engineering demands defensible standards. This is where the **MOST System (Maynard Operation Sequence Technique)** positions itself not only as a time tool, but as an essential data management standard to feed MES/ERP systems and Digital Twin models. Unlike traditional timing, MOST reduces analysis time by a 40:1 ratio, offering structured data that eliminates analyst arbitrariness.
+
+---
+
+## What is the MOST System and why does it replace MTM-1?
+
+**MOST** is a predetermined time system (PMTS - *Predetermined Motion Time Systems*) derived from MTM, but designed to be applied with significantly higher speed without sacrificing the statistical precision required in general industry.
+
+While **MTM-1** focuses on exhaustive analysis of basic micro-motions (reach, grasp, turn, release)—making it ideal for very short cycles but impractical for most medium assembly processes—the MOST system shifts the paradigm: it focuses on **object displacement**.
+
+### The Sequence Block Concept
+Basic MOST's genius lies in logical grouping of motions. Instead of analyzing every finger or joint separately, MOST uses "Sequence Blocks" describing the entire action needed to move an object. This simplifies analysis for operations with medium variability and cycles typically oscillating between **0.5 and 3 minutes**, covering the vast majority of assembly, machining, and internal logistics activities.
+
+---
+
+## Algorithms and Sequence Models in Basic MOST
+
+For the industrial engineer or time analyst, MOST's power lies in its three basic sequence models. These algorithms allow parameterizing any manual task into a standardized alphanumeric code.
+
+### 1. General Move
+Applied when an object is moved freely through the air without mechanical restrictions. The sequence follows this formula:
+
+$$ A \ B \ G \ A \ B \ P \ A $$
+
+Where parameters represent action phases:
+*   **A (Action Distance):** Action distance (mainly horizontal).
+*   **B (Body Motion):** Body motion (bend, sit, steps).
+*   **G (Gain Control):** Gain control of object (grasp complexity).
+*   **P (Placement):** Object placement (required precision).
+
+### 2. Controlled Move
+Used when the object maintains contact with a surface or its movement is restricted by a fixed path (e.g., levers, handwheels, sliding a box).
+
+$$ A \ B \ G \ M \ X \ I \ A $$
+
+Here process parameters are introduced:
+*   **M (Move Controlled):** The controlled movement itself.
+*   **X (Process Time):** Machine process time (if any).
+*   **I (Alignment):** Final alignment after movement.
+
+### 3. Tool Use
+Integrates use of common hand tools (wrenches, hammers, knives) into general motion sequence.
+
+$$ A \ B \ G \ A \ B \ P \ \dots \ A $$
+
+The central space $(\dots)$ is filled with specific technical action parameters, such as:
+*   **F (Fasten):** Tighten/Assemble.
+*   **L (Loosen):** Loosen/Disassemble.
+*   **C (Cut):** Cut.
+*   **S (Surface Treat):** Surface treatment (clean, sand).
+
+---
+
+## Measurement Units (TMU) and Statistical Precision
+
+Like other PMTS systems, MOST uses the **TMU (Time Measurement Unit)** unit to guarantee decimal precision in minute-cost calculations.
+
+*   **Technical Conversion:** $1 \text{ TMU} = 0.00001 \text{ hours} = 0.036 \text{ seconds}$.
+
+### Indexing Methodology
+Each parameter in previous formulas ($A, B, G$, etc.) receives a predetermined index value based on engineering tables $(0, 1, 3, 6, 10, 16\dots)$. Standard time calculation is done by summing indices and multiplying the result by 10.
+
+> *Example:* If a sequence sums 15 in indices, time is $150 \text{ TMU} = 5.4 \text{ seconds}$.
+
+### Reliability and Defense against Audits
+From a statistical perspective, Basic MOST guarantees a **95% confidence level** with a margin of error of $\pm 5\%$ for aggregated cycles.
+
+This mathematical basis makes the system **"Audit-Proof"**. Before labor inspections or union negotiations, time does not depend on the observer's opinion on operator pace (as in timing), but on established work methodology. If the method is followed, the time is irrefutable.
+
+---
+
+## Strategic Advantages: MOST vs. Stopwatch and MTM
+
+For an Operations Director, measurement methodology choice directly impacts engineering department ROI.
+
+| Feature | Manual Stopwatch | MTM-1 | Basic MOST |
+| :--- | :--- | :--- | :--- |
+| **Analysis Speed** | Slow (Requires 1:1 observation) | Very Slow (250:1 vs cycle) | **Fast (40:1 vs cycle)** |
+| **Rating** | **Subjective** (Conflict source) | N/A (Predetermined 100% ILO) | **N/A (Predetermined 100% ILO)** |
+| **Base for OEE** | "Dirty" historical data | Pure data | **Pure and standardized data** |
+| **Simulation** | Impossible (Requires physical process) | Possible | **Ideal for design phases** |
+| **Documentation** | Poor | Excessive | **Clear step-by-step method trace** |
+
+**MOST is 5 times faster than MTM-1** and completely eliminates the "Performance Rating" factor, the most conflicting point in industrial labor relations. Furthermore, by generating alphanumeric codes, it allows immediate process digitalization for plant simulators.
+
+---
+
+## Regulatory Framework and Ergonomics (Spain 2025 Horizon)
+
+MOST implementation goes beyond productivity; it is a regulatory requirement tool (Compliance).
+
+### Workers' Statute Compliance
+Labor regulations are advancing towards demanding **algorithmic transparency**. Using stopwatches and judging that an operator works at "80% activity" is legally weak. MOST offers an objective technical breakdown: assigned time corresponds strictly to necessary motions, complying with ILO standards.
+
+### Integration with ISO 11228 (Ergo-MOST)
+There is a direct correlation between MOST parameters and physical load. A high value in parameter **B (Body Motion)**—like $B_{6}$ (bend and arise)—automatically alerts about ergonomic risks.
+This allows calculating **rest and fatigue allowances** based on data, not estimates, aligning with ISO 11228 and EN 1005 standards on load handling and repetitive movements.
+
+---
+
+## Cronometras Solutions: Advanced Methods Engineering
+
+At **Cronometras**, we understand that data is the plant's most valuable asset. We don't just measure time; we establish robust and defensible engineering standards.
+
+Our technical consulting division offers specific solutions for transition to predetermined systems:
+
+1.  **Basic MOST Implementation:** We create your production standards from scratch in **2 weeks**, compared to 8 weeks required by traditional time study. We deliver analysis sheets ready for ERP integration.
+2.  **Audit of "Legacy Times" and OEE:** Many OEE calculations are erroneous because "Ideal Cycle Time" is based on flawed historical data. We perform a database cleanup with MOST to discover real hidden capacity of your lines.
+3.  **In-Company Technical Training:** We train your engineers and middle management in system logic. Not just to calculate, but to understand how method simplification (lowering an index from $A_{10}$ to $A_{3}$) directly impacts unit product cost.
+
+> **Would your production standards withstand a technical audit today?**
+>
+> Subjectivity is a risk your plant cannot afford. Request a **MOST feasibility diagnosis** today with our expert consultants and transform your work measurement into a competitive advantage.
+>
+> **[Contact Cronometras Engineering]**

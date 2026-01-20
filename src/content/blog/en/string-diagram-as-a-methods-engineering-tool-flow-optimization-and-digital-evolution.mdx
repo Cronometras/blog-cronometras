@@ -1,0 +1,101 @@
+---
+title: "String Diagram as a Methods Engineering Tool: Flow Optimization and Digital Evolution"
+description: "In contemporary process engineering, precision in work measurement is the boundary between a profitable plant and one saturated with hidden inefficiencies. The String Diagram remains a fundamental pillar."
+pubDate: 2026-01-19
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fan%C3%A1lisis-de-flujo-mediante-diagrama-de-hilos-1768809885362.webp?alt=media&token=a3dca109-5f53-42d7-9294-542532cf8f68"
+---
+
+# String Diagram as a Methods Engineering Tool: Flow Optimization and Digital Evolution
+
+In contemporary process engineering, precision in work measurement is the boundary between a profitable plant and one saturated with hidden inefficiencies. The **String Diagram**, often underestimated compared to more complex simulation tools, remains the fundamental pillar for topological analysis of movement.
+
+This technical article breaks down the rigorous application of this tool under ILO standards, its critical integration with predetermined time systems (MTM/MOST), and its evolution towards Digital Twins in the 2025 industrial horizon.
+
+## The String Diagram in the Context of Work Measurement
+
+### Technical definition according to ILO and current relevance
+According to the **"Introduction to Work Study" by the International Labour Organization (ILO)**, the string diagram is defined as a scale model (plan or model) on which the path of workers, materials, or equipment during a specified sequence of events is traced and measured with a thread.
+
+Unlike simple observation, this tool quantifies **traffic density** and **total distance traveled**. In an environment where *Lean Manufacturing* seeks the systematic elimination of waste, the string diagram objectifies spatial waste.
+
+### Structural differences vs. Flow Process Chart
+While the **Flow Process Chart** (OTIDA) focuses on the chronological sequence and nature of the activity (Operation, Transport, Inspection, Delay, Storage), it lacks the spatial dimension. A process chart may indicate a "Transport", but not reveal that said transport involves crossing a forklift path three times, generating risks and waits. The string diagram complements the process chart by providing the process topography, indispensable for effective *layout* redesign.
+
+### The impact of unnecessary transport (*Muda*) on technical productivity
+Transport is one of the seven forms of *Muda* (waste). From the perspective of time engineering, operator movement is **Non-Value Added** (NVA) time.
+Reducing 10 meters in a high-frequency repetitive cycle (e.g., 500 cycles/shift) is not a marginal improvement; it is the release of annual man-hours. Analysis tools like [Cronometras](https://cronometras.com), which allow breakdown of elements via video analysis, facilitate identifying these dead times, but the string diagram diagnoses the spatial root cause.
+
+## Integration with Predetermined Time Systems (PMTS) and OEE
+
+The validity of a time standard depends on the accuracy of the input data. The string diagram acts as a prior audit for PMTS application.
+
+### Distance validation for sequence parameters in MOST
+In the **MOST (Maynard Operation Sequence Technique)** technique, the "General Move" model uses the distance parameter ($A$) to index time.
+*   Without a precise string diagram, the analyst estimates distance "by eye", introducing variability.
+*   A scale diagram allows defining if the movement corresponds to an index $A_6$ (within reach) or scales to an $A_{10}$ (3-4 steps), drastically impacting the final TMU (*Time Measurement Unit*).
+
+### Elimination of 'Walk' (W) movements in MTM-2 and MTM-UAS analysis
+In **MTM (Methods-Time Measurement)** systems, specifically in MTM-2 and UAS, the 'W' (*Walk*) code is assigned per meter or step. The string diagram allows applying reverse engineering: before calculating the standard time, the station is redesigned so that the 'W' code tends to zero. If the operator must travel to fetch raw material, the process is not optimized.
+
+### Correlation between route optimization and OEE Performance
+**OEE (Overall Equipment Effectiveness)** is directly affected by movement inefficiency through the **Performance** factor. An operator who spends 15% of the cycle walking reduces the theoretical production speed.
+To monitor how these physical changes impact availability and global efficiency in real-time, integrating production control platforms like [Induly](https://induly.com/) is recommended, allowing correlation of physical distance reduction with the immediate increase of the performance KPI on the plant floor.
+
+## Rigorous Execution Methodology in Plant
+
+For the diagram to have engineering validity, it must follow a strict protocol:
+
+### Layout Survey and precision scales (1:50 / 1:100)
+The plan must be exact. A scale error of 5% invalidates the subsequent time study. It is recommended:
+*   **Scale 1:50** for individual workstations or manufacturing cells.
+*   **Scale 1:100** for flow analysis in complete halls.
+It must include not only machinery but columns, extinguishers, temporary *racks*, and real passage zones (not just those painted on the floor).
+
+### Weighting by frequency and Origin-Destination Matrix calculation
+The visual trace is qualitative; engineering requires quantitative data. An **Origin-Destination Matrix** must be built where:
+$$ D_{total} = \sum_{i=1}^{n} (d_i \times f_i) $$
+Where $d_i$ is the distance of the section and $f_i$ is the frequency per shift. A short trip made 1000 times is more critical than a long trip made once. To obtain these frequencies scientifically without being on the floor all day, using **Work Sampling** tools like [WorkSamp](https://worksamp.com/) allows collecting statistically significant data on displacement frequency.
+
+### Identification of spatial bottlenecks and crossing points
+The diagram will visually reveal where more threads accumulate. These "hotspots" indicate:
+1.  Collision risk (Safety).
+2.  Flow congestion (Logistics bottleneck).
+3.  Optimal location for shared tools or quality controls.
+
+## Technological Evolution: From Physical Thread to Digital Twin
+
+Industry 4.0 transforms cotton thread into data vectors.
+
+### Digital Spaghetti Diagrams via CAD/BIM integration
+Using CAD software allows generating the diagram ("Spaghetti Diagram") over the digital *layout*. This facilitates simulation: *"What happens to total distance if I move the machining center 2 meters to the left?"*. Recalculation is instantaneous, allowing iteration of *layouts* before moving a single machine.
+
+### Use of RTLS and UWB systems for Real-Time Heatmaps generation
+**UWB (Ultra Wide Band)** technology and **RTLS (Real-Time Location Systems)** allow placing *tags* on operators or forklifts. The system traces the string diagram in real-time, generating historical *Heatmaps*.
+This eliminates observer bias ("Hawthorne Effect") and provides massive data for process variability analysis.
+
+### Motion Capture (MoCap) and AI to distinguish value added vs. displacement
+Advanced computer vision systems can today automatically distinguish between an operator "assembling" and one "walking". This automatic segmentation directly feeds method study, reducing the engineer's analysis time.
+
+## Regulatory Framework 2025: Ergonomics and Data
+
+### ISO 11228-1/2: The diagram as evidence in ergonomic evaluations
+ISO 11228 standards (Manual handling of loads) penalize carrying loads over long distances. The string diagram serves as **documentary evidence** in OHS audits, demonstrating that the company has taken technical measures to minimize accumulated fatigue from displacement.
+
+### Digital monitoring and GDPR compliance in Spanish industry
+Digitization of the string diagram (people tracking) potentially conflicts with GDPR and Data Law. It is crucial to anonymize data collected via RTLS or sampling tools like [WorkSamp](https://worksamp.com/), focusing on the "Role" and not the "Person", to guarantee regulatory compliance while optimizing the process.
+
+### Energy efficiency (ISO 50001) applied to intralogistics
+In electric forklift fleets and AGVs, distance is energy. Route optimization validated by string diagrams contributes directly to ISO 50001 objectives, reducing kWh consumption per unit produced and extending battery life.
+
+## Conclusions: The String Diagram as Process Audit
+
+The string diagram is not a drawing exercise; it is a spatial efficiency audit.
+
+### Standard Time Reduction and ROI justification in Layout changes
+Implementation of improvements based on this diagram usually results in Standard Time ($T_s$) reductions of between **10% and 20%** in logistics and assembly operations. This data is the basis for calculating the ROI of any plant reengineering project.
+
+### Elimination of logistic waste before direct timing
+The golden rule of **[Cronometras](https://cronometras.com)** is clear: **A method that has not been optimized should not be timed**. The string diagram is the necessary filter that ensures the final standard time reflects an efficient process, clean of transport *muda*, and ready for high productivity.

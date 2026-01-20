@@ -1,0 +1,115 @@
+---
+title: "Timing of Frequency Elements: The Challenge of Variability in Methods Engineering"
+description: "In modern methods engineering, measuring repetitive cyclic elements has become a commodity. The real productivity gap lies in the 'Gray Zone': those elements that do not occur in every cycle."
+pubDate: 2026-01-14
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fcronometraje-de-elementos-frecuenciales-complejos-1768408557151.webp?alt=media&token=f0541e66-0c46-4374-9069-a06864ae3c56"
+---
+
+# Timing of Frequency Elements: The Challenge of Variability in Methods Engineering
+
+In modern methods engineering, measuring repetitive cyclic elements has become a *commodity*. Any junior analyst can time a 30-second cycle on a stable assembly line. However, the true productivity gap in industry—especially in *High Mix / Low Volume* environments—lies in the **"Gray Zone"**: those elements that do not occur in every cycle but are indispensable for process continuity.
+
+We are talking about **Frequency Elements** (or Occasional Elements). Their incorrect measurement (or omission) is the root cause of OEE deviations of up to 15% and standard costs that do not reflect the reality of the *Shop Floor*.
+
+## Technical Definition: What is a Frequency Element in Work Study?
+
+According to ILO guidelines and reference technical literature (Niebel/Freivalds), an element is classified as **frequency** or occasional when it occurs at regular or random intervals after $N$ production cycles, but not in every one of them.
+
+### Difference between cyclic element, frequency element, and contingency
+
+For the plant engineer, the distinction is critical for cost allocation:
+
+1.  **Cyclic Element:** Occurs once per piece (e.g., "Screw component A"). Allocated directly to Cycle Time ($Tc$).
+2.  **Frequency Element:** Occurs every $X$ pieces (e.g., "Change CNC insert every 50 pieces" or "Refill hopper every 200 units"). Must be technically prorated.
+3.  **Contingency:** Random events inherent to the method (breakdowns, material waits). Covered by allowances, not standard times.
+
+The most common methodological error is treating a frequency element as a contingency, applying a general percentage "cushion" (e.g., 5%) to the total time. This is a bad practice that hides inefficiency.
+
+### Why the "Snapback" method fails in non-repetitive tasks
+
+Snapback timing is ineffective for capturing the variability of frequency elements. If an analyst is measuring a short cycle and a frequency element occurs (e.g., cleaning accumulated burrs), they tend to discard that reading as "abnormal". By doing so, they remove a legitimate part of the workload from the study, generating an impossible-to-meet standard (a "tight" standard).
+
+To capture these events without bias, advanced digital tools like [Cronometras](https://cronometras.com) allow tagging events *in-situ* or via video analysis, ensuring these times are not discarded but isolated for subsequent calculation.
+
+## The Hidden Impact on OEE and Industrial Cost
+
+Incorrect definition of frequency elements devastates the accuracy of **OEE (Overall Equipment Effectiveness)**.
+
+### The error of general allowances: Inflating Standard Time
+
+If we include tasks like "zone cleaning" within a fixed 7% allowance for "process needs", we are assuming that the necessary time is proportional to the shift duration, which is false. Cleaning time is proportional to the amount of chips generated (production volume). By using fixed allowances, we inflate cost in low production and strangle the operator in high production.
+
+### Speed Loss vs. Saturated Cycle Time
+
+When a MES system or production control platform like [Induly](https://induly.com/) records a drop in pieces/hour, the engineer must discern: Is it a speed loss (micro-stop) or is it the legitimate execution of a frequency element?
+
+If the Standard Time does not include the prorating of the frequency element ($T_{freq}$), the system will report a false performance loss every time the operator performs that necessary task. For real cost traceability, the industrial clock-in system must be fed with times that integrate this mathematical variability.
+
+## Calculation Methodology: Mathematics of Technical Proration
+
+To integrate these elements into the Standard Time ($TE$), you don't sum the total time; you prorate it.
+
+### The Frequency Standard Time Formula ($TE_{freq}$)
+
+The technical equation to allocate the cost of a frequency element to the unit cycle is:
+
+$$TE_{freq} = \frac{(TO \times Act) \times (1 + Allw)}{N}$$
+
+Where:
+*   $TO$: Average Observed Time of the frequency element.
+*   $Act$: Activity Factor (Pace or Performance, centesimal or Bedaux scale).
+*   $Allw$: Allowances for fatigue and personal needs.
+*   $N$: Frequency of occurrence (e.g., 1 time every 50 cycles).
+
+### Statistical determination of variable $N$ (Frequency)
+
+The great challenge is not measuring the time ($TO$), but determining $N$. Does the operator really clean the machine every 50 cycles, or do they do it every 35? This is where the stopwatch fails, as it would require days of continuous observation.
+
+### Work Sampling vs. Direct Timing
+
+To determine frequency $N$ with scientific validity, the superior technique is **Work Sampling (Tippett Method)**. Instead of observing continuously, random observations are made over a representative period (a week or a month).
+
+*   **Application:** If in 1,000 random observations, the operator appears performing the frequency element in 50 of them, we have a $P$ (percentage of occurrence) of 5%.
+*   **Recommended Tool:** Conducting thousands of observations with pen and paper is unfeasible today. Using professional apps like [WorkSamp](https://worksamp.com/) allows engineers to conduct sampling studies with random alerts and automatic calculation of margin of error and confidence level (generally seeking 95% confidence $\pm$ 5% error). Once the frequency is validated with *WorkSamp*, the stopwatch is used to measure the exact duration of that specific task.
+
+## Predetermined Time Systems (MTM and MOST) in Irregular Tasks
+
+When frequency elements are complex and manual (e.g., irregular palletizing, box preparation), pace assessment (Activity) by subjective appreciation is dangerous. The operator usually works at a different pace in tasks that are not automatic.
+
+### Limitations of pace rating
+
+In sporadic tasks, "muscular automatism" does not exist. An analyst might rate a pace of 80 (BSI) when in reality the method is inefficient.
+
+### Use of Basic MOST and MTM-UAS
+
+To standardize these operations, it is recommended to abandon the stopwatch and use predetermined time systems:
+
+*   **MTM-UAS (Universal Analysing System):** Ideal for batch processes and auxiliary tasks.
+*   **Basic MOST:** Excellent for general moves of medium duration.
+*   **MaxiMOST:** Specifically designed for long-cycle operations, maintenance, and machine setups, where millisecond precision is less critical than method consistency.
+
+## Regulatory Framework 2025: Ergonomics and Digitalization in Spain
+
+Methods engineering can no longer be dissociated from risk prevention and data legality.
+
+### Linking with UNE-EN ISO 11228
+
+Frequency elements are often the most physically demanding (e.g., loading a 20kg coil every 30 minutes). Under ISO 11228 (Manual handling of loads), a time study is incomplete if it does not audit the ergonomic risk of these effort peaks. The standard time must include fatigue recovery coefficients derived from methods like NIOSH or OCRA, applied specifically to those frequency elements.
+
+### GDPR and Algorithmic Transparency
+
+With the rise of industrial video analysis, capturing task frequency via fixed cameras implies legal challenges. The new EU AI Regulation and GDPR demand transparency. If you use software to determine times, you must be able to justify to the Works Council how frequency $N$ has been calculated. A sampling study conducted with auditable tools like [WorkSamp](https://worksamp.com/) offers a much more robust technical defense than an "eye-balled" estimation or a "black box" video analysis.
+
+## Implementation Strategy for Plant Engineers
+
+To master variability, follow this technical workflow:
+
+1.  **Identification:** List all tasks that do not occur in every cycle (use Pareto Chart to prioritize high impact ones).
+2.  **Frequency Validation ($N$):** Don't guess. Run a Work Sampling study for 5-10 shifts using a digital app to obtain the real occurrence percentage.
+3.  **Duration Measurement:** Once the frequency is known, isolate the task and measure it precisely (using [Cronometras](https://cronometras.com) or MTM) to obtain the Normal Time.
+4.  **Calculation and Integration:** Apply the proration formula and integrate the result into your ERP or plant control system ([Induly](https://induly.com/)), ensuring the cost standard correctly absorbs these auxiliary activities.
+
+Timing frequency elements is the frontier that separates a simple "time taker" from a Productivity Engineer. Precision in these details defines the real profitability of the plant.

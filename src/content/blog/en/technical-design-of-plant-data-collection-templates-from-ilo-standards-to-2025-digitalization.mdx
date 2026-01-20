@@ -1,0 +1,92 @@
+---
+title: "Technical Design of Plant Data Collection Templates: From ILO Standards to 2025 Digitalization"
+description: "In modern process engineering, 'data collection' has ceased to be a mere administrative exercise to become the critical input for MES systems and standard cost calculation."
+pubDate: 2026-01-15
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fdise%C3%B1o-de-plantillas-para-toma-de-datos-en-planta-1768481001145.webp?alt=media&token=eb6bf6d7-5c78-4982-bfb7-39bb9053d5db"
+---
+
+# Technical Design of Plant Data Collection Templates: From ILO Standards to 2025 Digitalization
+
+In modern process engineering, "data collection" has ceased to be a mere administrative exercise to become the critical input for MES (*Manufacturing Execution Systems*) and standard cost calculation. However, field research reveals a worrying reality: **60% of errors in OEE calculation and technical productivity come from poor design in the capture phase**, not in subsequent analysis.
+
+For the 2025 industrial horizon, the transition from paper timing to digitalization requires a complete restructuring of data architecture under ILO regulations and ISO standards. This technical article breaks down the anatomy of a robust, auditable, and legally defensible methods engineering template.
+
+## Data Architecture in Methods Engineering
+
+The time analyst has evolved from being a "time taker" to a **plant data engineer**. The fundamental difference between an administrative record and a technical data architecture lies in traceability. While an administrative record only seeks the final result (Pieces/Hour), data architecture seeks to identify losses in cycle micro-management.
+
+To correctly feed production control platforms like [Induly](https://induly.com/), which calculate profitability in real-time, the initial capture must be cleaned of "noise". An incorrect template design that does not segregate value-added times from non-value-added times will inevitably contaminate OEE availability and performance indicators.
+
+## Anatomy of an Industrial Time Study Sheet (ILO Standards)
+
+For a time study template to be functional in a high-level engineering environment, it must transcend time recording and allow *in-situ* statistical analysis.
+
+### Granularity and Element Segregation
+
+The most common error in SMEs is capturing "cycle time" as a monolithic block. Methods engineering requires superior granularity:
+
+1.  **Segregation Tm vs. tm:** The template must force physical separation of **Machine Times (Tm)** from **Manual Times (tm)**. This distinction is critical for calculating operator saturation (frequency) and balancing multi-station lines.
+2.  **Frequent Elements:** Specific fields must be designed for tasks that do not occur in every cycle (e.g., chip cleaning every 10 pieces, insert change, quality inspection). Ignoring or mentally prorating them distorts the final Standard Time.
+3.  **Hidden Micro-stops:** The matrix structure must allow agile capture of minor interruptions (< 2 min). These micro-stops are often wrongly masked by lowering the pacing factor (Activity), when they should be recorded as technical incidents.
+
+### Critical Calculation Variables in the Template
+
+Following ILO practice, a professional template must include the following mandatory columns to ensure arithmetic integrity:
+
+*   **Observed Time (OT):** It must be clearly defined whether operating with cumulative reading or snapback ($L_n - L_{n-1}$).
+*   **Pacing Factor (Activity):** It is imperative to include boxes for the scale used (Bedaux 60/80, Centesimal 100/133, or BSI 0-100). The design should force the analyst to assess the pace *before* reading the stopwatch to avoid cognitive bias.
+*   **Normal Time and Allowances (K):** Integrating fatigue tables into the data flow is vital. Generic allowances ("10% for everyone") cannot be applied; a breakdown by environmental conditions and physical effort is required.
+
+## Statistical Validation: The "n" Problem
+
+A time study without validation of the number of observations lacks technical and legal validity before a works council. The template, whether physical or digital, must include a pre-calculation section to determine the necessary sample size ($n$).
+
+For a 95% confidence level and a margin of error of $\pm 5\%$, the reference formula that must be integrated into the methodology is:
+
+$$ n = \left( \frac{40 \sqrt{n' \sum x^2 - (\sum x)^2}}{\sum x} \right)^2 $$
+
+Where $n'$ is the number of readings from the pilot study.
+
+### Centesimal vs. Sexagesimal System
+From an engineering perspective, the use of the sexagesimal system (minutes and seconds) must be eradicated from industrial data collection. The centesimal system (minutes with two or three decimals) minimizes arithmetic error in sums and facilitates integration with Work Sampling software like [WorkSamp](https://worksamp.com/), allowing a smooth transition between direct timing and statistical sampling.
+
+## Adaptation to Predetermined Time Systems (MTM and MOST)
+
+In high-demand sectors (Automotive, Aerospace), we observe a technical migration from timing to Predetermined Motion Time Systems (PMTS). This radically changes the data support design.
+
+*   **Paradigm Shift:** "Start Time / End Time" is no longer sought. The template transforms into a matrix of motion codes.
+*   **TMU Syntax:** The structure must support *Time Measurement Units* syntax (1 TMU = 0.00001 hour).
+*   **Sequence Validation:** In systems like BasicMOST, the template must guide the logical sequence (General Move: A B G A B P A). The data support must act as a *poka-yoke*, preventing, for example, registering a "Put" (P) without having registered a prior "Get" (G).
+
+## Regulatory Framework and Ergonomics in Spain (Horizon 2025)
+
+The Spanish industrial framework faces a convergence between the rigidity of collective agreements and the flexibility of Industry 4.0.
+
+### Legality and GDPR in Data Collection
+The **EU AI Act** and GDPR impose new restrictions. Digital templates cannot perform invasive biometric measurements without explicit consent. Furthermore, in logistics or administrative time studies, the right to digital disconnection must be respected.
+
+### Ergonomic Checklists Integration
+Towards 2025, a "fast" method cannot be validated if it is ergonomically harmful. Modern templates must link **ISO 11228** with timing. This implies simultaneous capture of ergonomic risks (RULA/REBA) alongside cycle times. Advanced tools like [Cronometras](https://cronometras.com) already contemplate safety and ergonomics as inseparable vectors of standard time.
+
+## Capture Technologies: From Paper to Video-Chronometry
+
+Technological evolution allows us to classify capture supports into three maturity levels:
+
+### Level 1: Physical Support Optimization
+Standardization of paper formats for punctual studies. Recommended only when digitalization is not viable due to environmental conditions (ATEX zones, for example).
+
+### Level 2: Digitalization and Industrial Apps
+Using industrial tablets allows calculating **standard deviation and coefficient of variability in real-time**.
+*   **Advantage:** If operator variability exceeds 5-10%, the system generates an automatic alert. This indicates that the method is not standardized and continuing to measure is a waste of time.
+
+### Level 3: Video-Chronometry and Artificial Intelligence
+Continuous recording of the station and post-processing via software allow a **forensic audit of the method**. In case of a union claim regarding a standard time, the video can be reviewed cycle by cycle, eliminating subjectivity in pace assessment. Tools like [Cronometras](https://cronometras.com) integrate video analysis modules and MFA security to guarantee the integrity of this digital evidence.
+
+## Conclusion: Standardization as the Basis of Technical Productivity
+
+Template design for data collection is not an aesthetic issue, but one of robust engineering. We need data that is traceable, auditable, and ergonomically sustainable.
+
+The recommendation for engineering departments is clear: develop a methodological "Master Template" that integrates statistical validation, dynamic fatigue factors, and compatibility with MTM systems. Only by ensuring data quality at the source can we correctly feed higher management tools like [Induly](https://induly.com/) and guarantee plant competitiveness in the 2025 horizon.

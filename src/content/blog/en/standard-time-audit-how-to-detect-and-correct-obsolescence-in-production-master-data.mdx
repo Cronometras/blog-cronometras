@@ -1,0 +1,127 @@
+---
+title: "Standard Time Audit: How to Detect and Correct Obsolescence in Production Master Data"
+description: "In modern process engineering, an alarming paradox exists: industrial plants invest massive capital in digitalization (Industry 4.0, IoT, Digital Twins), but feed these systems with obsolete data."
+pubDate: 2026-01-20
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Fauditor%C3%ADa-de-tiempos-est%C3%A1ndar-existentes-1768884121675.webp?alt=media&token=b13c996a-a281-4e08-a00c-36af3cf4df35"
+---
+
+# Standard Time Audit: How to Detect and Correct Obsolescence in Production Master Data
+
+## The Silent Deterioration of Standard Time in Industry
+
+In modern process engineering, there is an alarming paradox: industrial plants invest massive capital in digitalization (Industry 4.0, IoT, Digital Twins), but feed these systems with analog, obsolete, or incorrectly estimated base data. We are facing a **master data crisis**.
+
+An ERP system (SAP, Oracle, Dynamics) or a production control platform like **[Induly](https://induly.com/)** processes the information it receives with millimeter precision. However, if the critical input—the **Standard Time ($Te$)**—is erroneous, the calculation of costs, capacity planning (CRP), and the resulting OEE will invariably be a financial fiction.
+
+### What is "Method Drift" and why it invalidates your industrial costs
+
+The most destructive and least diagnosed phenomenon in methods engineering is *Method Drift*. It occurs when small undocumented changes in the process (layout adjustments, unregistered auxiliary tools, micro-improvements in operator skill) accumulate over time.
+
+The result is a divergence between the method recorded in the operations sheet and the reality on the shop floor. If your company has not conducted a time audit in the last 24 months, it is statistically probable that your standards have a **deviation exceeding 15%**. This is not just a technical problem; it is a gross margin problem. An industrial cost calculated on a 60-second cycle, when the reality is 52 seconds, implies that the company is losing competitiveness in its commercial offers or inflating the value of its work-in-progress inventory (WIP).
+
+### Symptoms of outdated times: From the "cushion effect" to output restriction
+
+How to detect obsolescence without timing the entire plant? There are clear operational symptoms:
+
+1.  **The Cushion Effect:** When incentive systems have a cap (bonus ceiling), and a large percentage of the workforce consistently reaches that ceiling hours before the end of the shift. This indicates a deliberate output restriction to protect a "loose" standard time.
+2.  **Performances > 120% Sustained:** Except for radical technological improvements, maintaining human efficiencies consistently above 120-130% of normal activity (Bedaux or Centesimal Scale) usually indicates an error in the original rating assessment.
+3.  **Planner Mismatches:** The system indicates that a Manufacturing Order requires 8 hours, but production strictly finishes it in 6.
+
+## Audit Technical Protocol: Forensic Engineering Methodology
+
+Time auditing in 2025 is not about "going down with the stopwatch". It requires a forensic engineering approach to armor the data before Management and the Works Council.
+
+### Statistical Validation: Sample Size Calculation (n) and Confidence Level (95%)
+
+The most common error in internal engineering departments is statistical insufficiency. A time study with $n=5$ cycles is, in most cases, invalid.
+
+To certify a standard, we must audit the dispersion of readings. The protocol requires calculating the necessary sample size ($n'$) to guarantee a Confidence Level (CL) of 95% with a margin of error $k$ (usually $\pm 5\%$).
+
+$$ n' = \left( \frac{40 \sqrt{n' \sum x^2 - (\sum x)^2}}{\sum x} \right)^2 $$
+
+If after performing the preliminary timing with digital tools like **[Cronometras](https://cronometras.com)**, the calculated $n'$ is higher than the historical readings recorded in the ERP, the current standard lacks statistical validity and must be revoked.
+
+### Activity Rating Audit: Detecting Performance Inflation
+
+Subjectivity in activity rating (Pacing or *Rating*) is the weak point of classic time study. We have detected a tendency in poorly trained analysts to "normalize" observation, rating as 100 (Normal Activity) paces that actually correspond to 90 or 95. This inflation of the pace generates excessively loose standard times.
+
+The audit must include **Analyst Recalibration** sessions using standard videos (Video-Rating) to ensure that the judgment scale (Centesimal, Bedaux, or BSI) is aligned with international regulations.
+
+### Triangulation with Predetermined Systems: MTM and MOST as "Impartial Judge"
+
+When there is a dispute over a standard time, the stopwatch is not enough. Here comes **triangulation with Predetermined Time Systems (PMTS)**.
+
+The use of systems such as **MTM-2** (Methods-Time Measurement) or **MOST** acts as an impartial judge. While the stopwatch measures *what happens* (including inefficiencies and variability), MTM establishes *what should happen* under a defined method.
+
+*   If $Time_{Stopwatch} \approx Time_{MTM}$ ($\pm 5\%$), the standard is valid.
+*   If $Time_{Stopwatch} \gg Time_{MTM}$, there is **Waste (Muda)** hidden in the operational method or covert low activity.
+
+## Financial and Operational Impact: The Truth Behind OEE
+
+### The error in OEE calculation: When Performance is a fiction
+
+OEE (*Overall Equipment Effectiveness*) is the king KPI of the industry. Its formula is:
+$$ OEE = Availability \times Performance \times Quality $$
+
+The **Performance** factor is calculated by comparing total pieces against the theoretical capacity based on **Theoretical Cycle Time**. If this theoretical time has not been audited, the resulting OEE is false. Many plants report OEEs of 85% based on lax standards, when their real efficiency against installed technical capacity does not exceed 60%.
+
+To obtain a true OEE reading and connect this data directly with profitability, it is crucial to use reliable shop floor data capture (MES) tools like **[Induly](https://induly.com/)**, which allow contrasting in real-time the standard time charged vs. the actual execution time.
+
+### Gross Margin Deviation: The cost of a wrong cycle time
+
+A deviation of seconds in high-frequency operations (e.g., stamping, injection, packaging) translates into thousands of euros annually.
+*   **Direct Cost:** Payment of unjustified incentives.
+*   **Opportunity Cost:** Hidden production capacity that is not being sold because the system believes the plant is "full".
+
+### Time Decoupling: Machine Cycle Audit vs. Manual Intervention
+
+In semi-automated environments, the audit must strictly segregate:
+1.  **Technological Time (Machine):** Fixed, determined by technical parameters.
+2.  **Frequency / Manual Time:** Variable, dependent on the operator.
+
+It is common to find that, after a CNC or PLC optimization, the machine time is reduced, but the global standard is not updated in the system, giving away that productivity improvement to the operator in the form of idle time.
+
+## Regulatory Framework and Legal Shielding of the Standard (Spain 2025)
+
+### ILO Guidelines: Technical justification for incentive review
+
+According to the International Labour Organization (ILO), a standard time cannot be modified arbitrarily. It is only reviewable if there is a demonstrable change in:
+*   The work Method.
+*   The Materials.
+*   The Machines or equipment.
+*   The Quality conditions.
+
+The technical audit generates the **expert report** that demonstrates these changes, protecting the company against legal claims.
+
+### Fatigue and Rest Allowances Audit: ISO 11228 and UNE-EN 1005 Compliance
+
+By 2025, the application of a fixed rest coefficient (e.g., 10% linear) is technically indefensible and legally risky. The audit must verify that rest allowances ($K$) are calculated using analytical tables that consider:
+*   Postural and muscular effort (ISO 11228).
+*   Environmental conditions (thermometry, luxometry).
+*   Mental load and monotony.
+
+To validate the frequency of non-cyclic tasks or contingency allowances, we recommend conducting **Work Sampling** studies. Digital tools like **[WorkSamp](https://worksamp.com/)** allow conducting these statistical studies with scientific rigor, determining exactly the percentage of time dedicated to productive activities vs. incidents or rest.
+
+## 4.0 Tools for Process Verification
+
+### Spectral Video-Analysis: Detection of imperceptible waste (Muda)
+
+Naked-eye observation loses detail. The use of video-analysis software allows breaking down the cycle into frames, identifying unnecessary micro-movements (inefficient Therbligs) that add seconds to the total cycle.
+
+### Process Mining: Contrasting Machine Log against ERP
+
+The modern audit crosses data. We extract real machine *logs* and overlay them on operator clock-ins. This technique reveals "dead times" that the operator imputes to manufacturing orders to cover inefficiencies.
+
+## Certification of Productive Standards: The value of data certainty
+
+The conclusion is clear: **time engineering is the basis of cost engineering**. Operating with unaudited master data is navigating without a compass.
+
+From **Cronometras**, we recommend a data sanitation strategy in three phases:
+1.  **Diagnostic Audit:** Sampling (Pareto A) of the highest impact references.
+2.  **Technical Validation:** Use of advanced chronometry and MTM systems to fix the "should be".
+3.  **Continuous Monitoring:** Implementation of systems like **[Induly](https://induly.com/)** to ensure the standard is met and detect deviations in real-time.
+
+Only through data certainty can industrial competitiveness be guaranteed in the current demanding market.

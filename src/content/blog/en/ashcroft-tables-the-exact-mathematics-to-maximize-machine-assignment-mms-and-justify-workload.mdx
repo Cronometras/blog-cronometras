@@ -1,0 +1,116 @@
+---
+title: "Ashcroft Tables: The Exact Mathematics to Maximize Machine Assignment (MMS) and Justify Workload"
+description: "In the Industry 5.0 era, where demand variability and mass customization drastically reduce Cycle Times, intuitive machine assignment calculation is no longer valid."
+pubDate: 2026-01-08
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Ft%C3%A9cnica-especializada-%2316%3A-asignaci%C3%B3n-de-m%C3%A1quinas-por-tablas-de-ashcroft-1767855459262.webp?alt=media&token=ac330756-de16-48cb-92fb-835c90c411e3"
+---
+
+# Ashcroft Tables: The Exact Mathematics to Maximize Machine Assignment (MMS) and Justify Workload
+
+In the **Industry 5.0** era, where demand variability and mass customization drastically reduce Cycle Times ($Tm$), intuitive machine assignment calculation is no longer valid. Many Operations Directors face a paradox: they invest in automation, but global OEE does not reach theoretical targets. The hidden cause? **Poorly categorized interference micro-stops.**
+
+Today we analyze **Specialized Technique #16**, based on **Ashcroft Tables**, to calculate with probabilistic precision the interference in multi-machine assignment systems (MMS). This is not a basic guide; it is the technical framework to defend your productivity standards against audits, works councils, and cost deviations.
+
+---
+
+## What are Ashcroft Tables and why is the Man-Machine Chart no longer sufficient?
+
+### From Deterministic to Stochastic: The Interference Problem
+The traditional Methods Engineer relies on the **Man-Machine Chart** to balance loads. This method assumes a deterministic scenario: perfect cycles, no variability. However, the industrial reality of 2025 is stochastic.
+
+When an operator manages a fleet of $N$ machines, random stops (feeding, small faults, variable inspections) generate what we call **Stochastic Synchronization**.
+*   **The problem:** If two machines stop simultaneously, one must wait. That wait is unproductive time ($I$) beyond the operator's control.
+*   **The solution:** **Ashcroft Tables** use binomial and Poisson distributions to probabilistically quantify the percentage of time a machine will remain idle awaiting service.
+
+### ILO Support and Current Regulations
+Applying Ashcroft is not a theoretical preference, it is an engineering standard. According to the **ILO (International Labour Organization)** regulations in its introduction to work study, unproductive times due to machine interference **must be compensated through a specific allowance** if they cannot be eliminated by methods.
+
+Ignoring this calculation and demanding 100% of theoretical capacity in a multi-machine environment is not only a technical capacity calculation error but a violation of the basis for determining correct times.
+
+---
+
+## Calculation Mechanics: Determining Service Coefficient ($\rho$)
+
+To apply Ashcroft correctly, input precision is non-negotiable. An error of thousandths in base timing multiplies exponentially in the interference and assignment result.
+
+### The Critical Saturation Formula
+For the technical analyst, the starting point is the **Service Coefficient ($\rho$)**, defined as the ratio between the time the operator dedicates to the machine and the machine's total cycle time.
+
+$$ \rho = \frac{To}{Tm} $$
+
+Where:
+*   **$To$ (Occupancy Time):** Strict sum of External Manual Load + Internal Manual Load + Standardized walking between stations.
+*   **$Tm$ (Machine Time):** Real automatic cycle time (validated, not manufacturer's theoretical).
+
+### Why Cronometras recommends MTM-2 or MOST for $To$ value?
+Here lies the difference between estimation and precision engineering. Using conventional timing to determine $To$ introduces operator pace variability (performance factor).
+At **Cronometras**, we standardize $To$ using **Predetermined Time Systems (PMTS)** like **MTM-2** or **MOST**. This guarantees "clean" input data, free from human variability, allowing the Ashcroft table to return a reliable probability based exclusively on technical workload, not on observed operator speed.
+
+---
+
+## 2025 Feasibility Analysis: Saturation vs. System Efficiency
+
+### The "Additional Machine" Trap
+Increasing $N$ (number of machines) always increases total production, but reduces per-machine efficiency ($E$) and skyrockets workload. System efficiency calculation must consider interference ($I$) obtained from tables:
+
+$$ E = \frac{N \times (100 - I)}{100} $$
+
+The goal is not to maximize $N$, but to find the point where the marginal cost of interference exceeds the marginal benefit of extra production.
+
+### Real Case Study (Automotive Sector - Injection)
+We present data extracted from our **2025-Q1 Technical Report** for a Tier 2 plastic injection plant:
+
+*   **Scenario:** Proposal to increase assignment from 3 to 4 injection molding machines per operator.
+*   **Data:** $Tm = 4.00$ min / $To = 1.00$ min. Service ratio $\rho = 0.25$.
+*   **Ashcroft Calculation:**
+    *   With 3 machines: Interference $1.8\%$. Saturation $73.5\%$.
+    *   With 4 machines: Interference **$6.2\%$**. Saturation **$93.7\%$**.
+
+**Technical Conclusion:** Although going to 4 machines is theoretically possible, the **93.7%** saturation exceeds the sustainable fatigue threshold (generally 85% according to ISO 11228). This will cause an increase in absenteeism and quality defects due to cognitive fatigue, nullifying productivity gains. The correct technical decision is **keeping 3 machines** or **applying methods engineering** to reduce $To$ before assigning the fourth.
+
+---
+
+## Legal and Labor Implications of Machine Assignment in Spain
+
+### Objective Justification before Works Councils
+In collective agreement negotiations (especially Metal and Chemical), "load estimates" are easily contestable. Ashcroft Tables serve as a **legal and technical shield**.
+The company does not present an opinion, it presents a mathematical model that explicitly recognizes inevitable wait times ($I$) and adjusts production targets accordingly. This demonstrates good faith and technical rigor.
+
+### Cognitive Ergonomics and OEE Blindness
+Modern MES (*Manufacturing Execution Systems*) often fail to label stops. If a machine waits for the operator due to interference, the system usually records it as "Labor Inefficiency".
+Applying Ashcroft allows correcting OEE, reclassifying those losses as **System Saturation (Interference)**, freeing the operator from responsibility for systemic stops impossible to attend.
+
+---
+
+## Cronometras Solution: Interference Audit and Methods Optimization
+
+It is not enough to calculate interference; it must be managed. Our methodology goes beyond the table:
+
+1.  **Hybrid Audit (Stopwatch + MTM):** We validate real $Tm$ with digital technology to capture machine variability and standardize $To$ with MTM to eliminate operator variability.
+2.  **Cost Scenario Simulation:** We calculate the "Break-even Point": At what moment does idle labor cost more than idle machine? (High Capex vs. High Opex).
+3.  **$To$ Reduction:** If the Ashcroft table indicates saturation, our engineers apply SMED and methods improvements to lower service time, making assigning that extra machine viable without burning out the team.
+
+> **Is your machine assignment based on intuition or mathematical probability?**
+>
+> Poorly calculated saturation is the silent enemy of your OEE. Request a **Workload Audit with Ashcroft Technique**.
+>
+> [**Contact Cronometras Engineering**]
+
+---
+
+## Frequently Asked Questions (Technical FAQ)
+
+**What is the difference between Ashcroft and a conventional Man-Machine chart?**
+The Man-Machine chart is deterministic (assumes fixed cycles and perfect synchronization). Ashcroft is stochastic (probabilistic) and calculates efficiency loss caused by random and coincident stops across multiple machines.
+
+**Up to what saturation percentage is it recommended to assign machines according to ILO?**
+Although there is no fixed legal limit, ergonomic standards and ILO good practices suggest not exceeding 85% saturation (including rest factors) to maintain quality and safety long-term.
+
+**How does automatic cycle variability affect Ashcroft calculation?**
+If $Tm$ has high variability, coefficient $\rho$ fluctuates. In these cases, it is recommended to use weighted average $Tm$ or perform Monte Carlo simulations if standard deviation is very high.
+
+**Is using time tables for incentives legally valid in Spain?**
+Yes. Predetermined time systems and mathematical load calculations like Ashcroft are objective tools accepted in Spanish labor jurisdiction to justify task enforceability, provided they are correctly audited and documented.

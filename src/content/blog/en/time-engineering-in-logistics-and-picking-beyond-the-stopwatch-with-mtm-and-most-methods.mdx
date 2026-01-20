@@ -1,0 +1,121 @@
+---
+title: "Time Engineering in Logistics and Picking: Beyond the Stopwatch with MTM and MOST Methods"
+description: "In Distribution Center (DC) management, intuition is an unacceptable financial risk. When the Picking and Order Preparation subsector represents 55-65% of total OPEX."
+pubDate: 2026-01-03
+category: "Industrial Time Study"
+tags: ["time study", "industrial engineering", "productivity", "methods"]
+author: "Cronometras Team"
+heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestorage.app/o/cronometras%2Festudio-de-tiempos-en-almacenes-y-picking-1767461076384.webp?alt=media&token=7d27657b-3c78-4a05-b54f-7669690d8fb4"
+---
+
+# Time Engineering in Logistics and Picking: Beyond the Stopwatch with MTM and MOST Methods
+
+In Distribution Center (DC) management, intuition is an unacceptable financial risk. When the **Picking and Order Preparation** subsector statistically represents between **55% and 65% of total OPEX** (Operational Expenditure), unmanaged variability translates directly into margin erosion.
+
+However, warehouse operational reality is defined by its "entropy": high variability in locations (XYZ coordinates), SKU geometry, and demand fluctuation. In this scenario, historical estimates ("it has always taken this long") or simple arithmetic averages are technically and financially dangerous.
+
+This technical article breaks down why it is imperative to migrate from subjective estimation to **Methods Engineering (MTM/MOST)** to ensure productivity, LMS algorithm validation, and ergonomic regulatory compliance towards 2025.
+
+---
+
+## The Fallacy of Direct Timing in Logistics Environments
+
+Classic industrial timing (*BS 3138* or *UNE 14002* standard) is the gold standard in repetitive production lines. However, applying "snapback" or "cumulative" timing in a warehouse without prior statistical analysis is a methodological error.
+
+### Coefficient of Variation (CV) as Limiting Factor
+From time engineering, any task whose **Coefficient of Variation (CV)** exceeds **20%** invalidates direct time taking as sole data source for establishing a reliable standard. In logistics, this CV skyrockets due to uncontrolled variables:
+1.  **Geographic Dispersion:** Distance between slot A and B varies in every order.
+2.  **SKU Geometry:** Picking a master case is not the same as picking a loose unit (*each*).
+3.  **Stochastic Interferences:** Forklift traffic, stacker crane crossings, and aisle congestion.
+
+### The Need for Work Sampling
+To neutralize this variance, and following ILO guidelines (*Introduction to Work Study*), it is mandatory to execute a **Work Sampling** prior to standard establishment. This statistical procedure allows determining with precision the percentage of time dedicated to contingencies and interruptions, ensuring allowances applied to Normal Time (NT) reflect operational reality and not obsolete theoretical tables.
+
+---
+
+### Technical Anatomy of Picking Cycle (AS-IS Breakdown)
+
+To optimize, we must first dissect the cycle under *Lean Logistics* lens. Aggregated data from our audits in the Iberian Peninsula reveal an alarming time distribution in non-optimized operations:
+
+*   **Displacement (Travel Time - Muda):** Represents **50-60%** of total cycle time. It is "non-vigorous time" and constitutes the biggest waste. Its reduction does not depend on the operator, but on *Slotting* engineering and *Batch Picking* algorithms.
+*   **Extraction (Value Added):** Only **10-15%** of the cycle adds real value (the physical moment of the *pick*).
+*   **Cognitive Inefficiency:** Between 10-15% is lost in "Search and Locate". This evidences failures in visual standardization and warehouse signage.
+
+---
+
+## Predetermined Time Systems (PTS) in Logistics: MOST vs. MTM
+
+Modern engineering demands eliminating subjectivity inherent to "pace appreciation" (Performance Rating - Bedaux/ILO Scale) by the analyst. The solution is using **Predetermined Time Systems (PTS)**.
+
+### Why PTS are Superior in Warehouse
+PTS calculate time based on method, not operator observation. This allows modeling times for processes that do not yet exist or validating if times claimed by WMS are realistic.
+
+### 1. BasicMOST and MaxiMOST (Maynard Operation Sequence Technique)
+For logistics, MTM-1 is usually excessively detailed and expensive to maintain. **MaxiMOST** is the preferred standard for long and non-repetitive cycles. It focuses on object movement:
+
+> **Example of MOST Technical Sequence:**
+> `A10 B0 G1 A10 B0 P3 A0`
+>
+> *Where:*
+> *   **A10:** Considerable Displacement (Action Distance).
+> *   **G1:** Get light box.
+> *   **P3:** Position (Put) with adjustment.
+> *   **Precision:** ±5% with 95% confidence level.
+
+### 2. MTM-Logistics
+When greater precision in motion ergonomics is required, we use MTM-Logistics. This system allows scientifically differentiating **Normal Time (NT)** according to location height:
+*   NT for a Level 1 *pick* (floor) includes "Bend" and "Arise" motions (*Body Motions*).
+*   NT for a Level 3 *pick* (mid-height) eliminates these macro-motions, reducing cycle.
+
+---
+
+## Regulatory Framework 2025: Ergonomics, Fatigue, and Algorithms
+
+Time engineering does not occur in a legal vacuum. Labor Inspection and Health & Safety Committees are increasing scrutiny on imposed paces (Art. 35 ET).
+
+### ISO 11228-1 Compliance and NIOSH Equation
+Manual load lifting is critical. A standard time ($TE$) is calculated as:
+$$TE = NT \times (1 + Allowances)$$
+
+Towards 2025, calculation of these **Allowances (Rest Coefficients)** can no longer be based on a "fixed 4%". A dynamic calculation integrating:
+1.  **Energy Expenditure:** Work metabolism (Kcal/min).
+2.  **NIOSH Equation:** Time penalty according to weight, frequency, and vertical distance of load.
+3.  **ISO 11228-1:** Force and repetition limits.
+
+### Algorithm Audit (Rider Law / GDPR)
+With transposition of European directives on platform work and algorithmic management, companies must demonstrate transparency of their times. If your *Pick-to-Voice* system dictates a target of 200 boxes/hour, **CRONOMETRAS** must validate that said target is achievable by a qualified operator at normal pace (100 ILO), protecting the company against lawsuits for psychosocial risks or "techno-stress".
+
+---
+
+## From Manufacturing OEE to OLE (Overall Logistics Effectiveness)
+
+To monitor process health, we adapt industrial OEE to logistical flow via **OLE**:
+
+1.  **Availability:** Time lost by System *Downtime* (WMS crashes, stacker crane breakdowns, or lack of charge in PDAs).
+2.  **Performance:** Relationship between Real Pieces/Hour vs. Technical Standard (calculated with MOST).
+3.  **Quality:** Impact of picking errors (reverse logistics) and time dedicated to reconditioning, subtracted from total productive time.
+
+---
+
+## CRONOMETRAS Solution: LMS Audit and Validation
+
+Many operations directors operate with *Labor Management Systems* (LMS) —modules of SAP EWM, Manhattan, or JDA— containing "Flat Times" poorly configured by default.
+
+**Our technical value proposition focuses on three pillars:**
+
+1.  **LMS Technical Audit:** We validate your current standard times using **MaxiMOST** to detect deviations between algorithm and physical reality.
+2.  **Scientific Parameterization:** We adjust your system base times considering matrix variables: weight, volume, *packaging* type, and anthropometry.
+3.  **Neutral Third Party:** We act as objective technical arbitrator between Management and Works Council. We provide irrefutable data based on international standards to guarantee "Social Peace" in agreement and productivity bonus negotiations.
+
+---
+
+### Conclusion
+
+Time engineering in the modern warehouse is not about "making people run faster". It is about predicting real installed capacity, optimizing flow via methods, and protecting occupational health with scientific data.
+
+**Do not leave your OPEX in intuition's hands.**
+
+> **Request a Picking Time Audit.**
+> Our engineers certified in MTM and MOST will validate your standards for an efficient and regulatory 2025.
+>
+> **[Contact CRONOMETRAS Engineering]**
