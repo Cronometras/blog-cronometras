@@ -19,7 +19,7 @@
   "dependencies": {
     "@algolia/autocomplete-js": "^1.18.1",
     "@algolia/autocomplete-theme-classic": "^1.18.1",
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.2",
     "@astrojs/markdown-remark": "^6.3.1",
     "@astrojs/mdx": "^4.2.3",
     "@astrojs/node": "^9.1.3",
