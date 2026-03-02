@@ -10,123 +10,228 @@ interface Colaborador {
 }
 
 interface Props {
-  colaboramos?: {
-    title: string;
-    description: string;
-    image?: string;
-    imageClasses?: string;
-    colaboradores?: Colaborador[];
-  }[] | {
-    title: string;
-    description: string;
-    image?: string;
-    imageClasses?: string;
-    colaboradores?: Colaborador[];
-  };
+  colaboramos?:
+    | {
+        title: string;
+        description: string;
+        image?: string;
+        imageClasses?: string;
+        colaboradores?: Colaborador[];
+      }[]
+    | {
+        title: string;
+        description: string;
+        image?: string;
+        imageClasses?: string;
+        colaboradores?: Colaborador[];
+      };
 }
 
 const { colaboramos } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 
-// Verificar si colaboramos está definido
 if (!colaboramos) {
-  console.error("Componente Colaboramos: La propiedad colaboramos no está definida");
+  console.error(
+    "Componente Colaboramos: La propiedad colaboramos no está definida",
+  );
 }
 
-// Convertir a array si es un objeto único
-const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos ? [colaboramos] : [];
+const colaboramosArray = Array.isArray(colaboramos)
+  ? colaboramos
+  : colaboramos
+    ? [colaboramos]
+    : [];
 ---
 
-{colaboramosArray.length > 0 && (
-  <section class="section">
-    <div class="container justify-center">
-      {
-        colaboramosArray.map((section) => (
-          <div class="mb-16">
-            <div class="row justify-center">
-              <div class="mb-12 text-center md:col-10 lg:col-8">
-  <h2 class="mb-4">
-        {lang === 'es' 
-          ? 'Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana.' 
-          : 'Cronometras is the tool used by the Labor Arbitration Court (TAL) of the Valencian Community.'
-        }
-      </h2>
-</div>
-            </div>
+{
+  colaboramosArray.length > 0 && (
+    <section class="section">
+      <div class="container justify-center">
+        {colaboramosArray.map((section, sectionIdx) => {
+          const items = section.colaboradores ?? [];
+          const cloneCount = Math.min(4, items.length);
 
-            {section.colaboradores && section.colaboradores.length > 0 && (
-              <div class="logo-carousel-container">
-                <div class="logo-carousel">
-                  {section.colaboradores
-  .filter((colaborador) => {
-    const title = colaborador.title || '';
-    const description = colaborador.description || '';
-    return !/ccoo|asetemyt/i.test(title) && !/ccoo|asetemyt/i.test(description);
-  })
-  .map((colaborador) => (
-    <div class="logo-item text-center">
-      <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
-        <img
-          src={colaborador.image}
-          alt={colaborador.title}
-          class={`${colaborador.imageClasses || ""} colaborador-image`}
-        />
-      </div>
-      <h3 class="mb-2 text-xl font-semibold" set:html={colaborador.title} />
-      <p class="text-gray-600" set:html={colaborador.description} />
-    </div>
-  ))}
-                  {/* Duplicate logos for infinite scroll effect when needed */}
-                  {section.colaboradores.length > 3 &&
-                    section.colaboradores
-                    .filter((colaborador) => {
-                      const title = colaborador.title || '';
-                      const description = colaborador.description || '';
-                      return !/ccoo|asetemyt/i.test(title) && !/ccoo|asetemyt/i.test(description);
-                    })
-                    .map((colaborador) => (
-                      <div class="logo-item text-center duplicate">
-                        <div class="image-container mb-4 cursor-pointer" onclick={`openModal('${colaborador.image}')`}>
-                          <img
-                            src={colaborador.image}
-                            alt={colaborador.title}
-                            class={`${colaborador.imageClasses || ""} colaborador-image`}
-                          />
-                        </div>
-                        <h3 class="mb-2 text-xl font-semibold" set:html={colaborador.title} />
-                        <p class="text-gray-600" set:html={colaborador.description} />
-                      </div>
-                    ))
-                  }
+          return (
+            <div class="mb-16">
+              <div class="row justify-center">
+                <div class="mb-12 text-center md:col-10 lg:col-8">
+                  <h2 class="mb-4">
+                    {lang === "es"
+                      ? "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana."
+                      : "Cronometras is the tool used by the Labor Arbitration Court (TAL) of the Valencian Community."}
+                  </h2>
                 </div>
               </div>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </section>
-)}
+
+              {items.length > 0 && (
+                <div
+                  class="carousel-wrapper"
+                  id={`cw-${sectionIdx}`}
+                  data-total={items.length}
+                  data-clones={cloneCount}
+                >
+                  <button
+                    class="carousel-btn carousel-btn-prev"
+                    aria-label="Anterior"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2.5"
+                      stroke="currentColor"
+                      width="22"
+                      height="22"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 19.5 8.25 12l7.5-7.5"
+                      />
+                    </svg>
+                  </button>
+
+                  <div class="carousel-viewport">
+                    <div class="carousel-track" id={`ct-${sectionIdx}`}>
+                      {items.slice(-cloneCount).map((col) => (
+                        <div class="logo-item clone" aria-hidden="true">
+                          <div class="image-container mb-4">
+                            <img
+                              src={col.image}
+                              alt=""
+                              class={`${col.imageClasses || ""} colaborador-image`}
+                              loading="lazy"
+                            />
+                          </div>
+                          <h3 class="item-title" set:html={col.title} />
+                          <p class="item-desc" set:html={col.description} />
+                        </div>
+                      ))}
+
+                      {items.map((col) => (
+                        <div class="logo-item real">
+                          <div
+                            class="image-container mb-4 cursor-pointer"
+                            onclick={`openModal('${col.image}')`}
+                          >
+                            <img
+                              src={col.image}
+                              alt={col.title}
+                              class={`${col.imageClasses || ""} colaborador-image`}
+                              loading="lazy"
+                            />
+                          </div>
+                          <h3 class="item-title" set:html={col.title} />
+                          <p class="item-desc" set:html={col.description} />
+                        </div>
+                      ))}
+
+                      {items.slice(0, cloneCount).map((col) => (
+                        <div class="logo-item clone" aria-hidden="true">
+                          <div class="image-container mb-4">
+                            <img
+                              src={col.image}
+                              alt=""
+                              class={`${col.imageClasses || ""} colaborador-image`}
+                              loading="lazy"
+                            />
+                          </div>
+                          <h3 class="item-title" set:html={col.title} />
+                          <p class="item-desc" set:html={col.description} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    class="carousel-btn carousel-btn-next"
+                    aria-label="Siguiente"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2.5"
+                      stroke="currentColor"
+                      width="22"
+                      height="22"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                      />
+                    </svg>
+                  </button>
+
+                  <div class="carousel-dots">
+                    {items.map((_, i) => (
+                      <button
+                        class={`dot${i === 0 ? " active" : ""}`}
+                        data-goto={i}
+                        aria-label={`Colaborador ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  )
+}
 
 <ImageModal />
 
 <style>
-  .section-image-hover {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  .carousel-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 3.5rem;
+    box-sizing: border-box;
   }
-
+  .carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+  .carousel-track {
+    display: flex;
+    gap: 2rem;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .logo-item {
+    flex: 0 0 calc(25% - 1.5rem);
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
   .image-container {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
+    width: 175px;
+    height: 175px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: white;
+    transition:
+      box-shadow 0.3s,
+      transform 0.3s;
   }
-
+  .image-container:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    transform: translateY(-4px);
+  }
   .colaborador-image {
     max-width: 100%;
     max-height: 100%;
@@ -134,134 +239,173 @@ const colaboramosArray = Array.isArray(colaboramos) ? colaboramos : colaboramos 
     height: auto !important;
     object-fit: contain;
   }
-
-  .logo-carousel-container {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
+  .item-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.25rem;
+  }
+  .item-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 87px;
+    z-index: 10;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+    cursor: pointer;
+    color: #374151;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   }
-
-  .logo-carousel {
+  .carousel-btn-prev {
+    left: 0;
+  }
+  .carousel-btn-next {
+    right: 0;
+  }
+  .carousel-dots {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 2rem;
-    padding: 1rem 0;
-    width: fit-content;
+    gap: 0.5rem;
     justify-content: center;
-    margin: 0 auto;
-    align-items: center;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d1d5db;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  .dot.active {
+    background: #6366f1;
+    transform: scale(1.35);
   }
 
-  .logo-item {
-    flex: 0 0 auto;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  /* No animation for carousel */
-  @media (min-width: 768px) {
-    .logo-carousel {
-      animation: none;
-    }
-  }
-
-  /* Hide duplicate logos on small screens */
-  @media (max-width: 767px) {
-    .logo-carousel {
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: none;
-    }
-
-    .logo-item.duplicate {
-      display: none;
-    }
-
+  @media (max-width: 1024px) {
     .logo-item {
-      width: 100%;
-      max-width: 250px;
+      flex: 0 0 calc(33.333% - 1.4rem);
     }
   }
-
-  /* Additional classes for JavaScript control */
-  .logo-carousel.no-animation {
-    animation: none !important;
+  @media (max-width: 768px) {
+    .logo-item {
+      flex: 0 0 calc(50% - 1rem);
+    }
+    .image-container {
+      width: 140px;
+      height: 140px;
+    }
+    .carousel-btn {
+      top: 70px;
+    }
   }
-
-  .logo-carousel.centered,
-  .logo-carousel-container.centered {
-    justify-content: center;
-    margin: 0 auto;
+  @media (max-width: 480px) {
+    .logo-item {
+      flex: 0 0 100%;
+    }
   }
 </style>
 
 <script>
-  // Set the logo count for the animation
-  document.addEventListener('DOMContentLoaded', () => {
-    const carousels = document.querySelectorAll('.logo-carousel');
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".carousel-wrapper").forEach((wrapper: any) => {
+      const sid = wrapper.id.replace("cw-", "");
+      const track = document.getElementById(`ct-${sid}`);
+      const vp = wrapper.querySelector(".carousel-viewport");
+      const dots = wrapper.querySelectorAll(".dot");
+      if (!track || !vp) return;
 
-    carousels.forEach(carousel => {
-      const items = carousel.querySelectorAll('.logo-item:not(.duplicate)');
-      carousel.setAttribute('data-logo-count', items.length.toString());
-      document.documentElement.style.setProperty('--logo-count', items.length.toString());
+      const total = parseInt(wrapper.dataset.total ?? "0", 10);
+      const cloneCount = parseInt(wrapper.dataset.clones ?? "4", 10);
+      let trackPos = cloneCount;
+      let jumping = false;
+      let autoTimer: any = null;
 
-      // Safe parent element check
-      const parent = carousel.parentElement;
-      if (!parent) return;
-
-      // Check if we need to activate the carousel
-      const containerWidth = parent.offsetWidth;
-      const totalItemsWidth = items.length * 250; // 250px per item
-
-      // Only apply animation if content exceeds container width
-      if (totalItemsWidth <= containerWidth) {
-        carousel.classList.add('no-animation');
-        carousel.classList.add('centered');
-
-        // If we're not animating, make sure everything is centered
-        parent.classList.add('centered');
+      function getStep() {
+        const item = track!.querySelector(".logo-item") as HTMLElement;
+        const gap = parseInt(getComputedStyle(track!).gap) || 32;
+        return (item?.offsetWidth || 200) + gap;
       }
-    });
 
-    // No añadir efectos a las imágenes de colaboradores
-    // Código eliminado para evitar efectos de hover en las imágenes
+      function update(animated = true) {
+        track!.style.transition = animated
+          ? "transform 0.45s cubic-bezier(0.4,0,0.2,1)"
+          : "none";
+        track!.style.transform = `translateX(-${trackPos * getStep()}px)`;
+        const realIdx = (((trackPos - cloneCount) % total) + total) % total;
+        dots.forEach((d: any, i: number) =>
+          d.classList.toggle("active", i === realIdx),
+        );
+      }
+
+      track.addEventListener("transitionend", () => {
+        if (jumping) return;
+        if (trackPos >= cloneCount + total) {
+          jumping = true;
+          trackPos = cloneCount;
+          update(false);
+          setTimeout(() => {
+            jumping = false;
+          }, 50);
+        } else if (trackPos < cloneCount) {
+          jumping = true;
+          trackPos = cloneCount + total - 1;
+          update(false);
+          setTimeout(() => {
+            jumping = false;
+          }, 50);
+        }
+      });
+
+      wrapper
+        .querySelector(".carousel-btn-prev")
+        ?.addEventListener("click", () => {
+          resetAuto();
+          trackPos--;
+          update();
+        });
+      wrapper
+        .querySelector(".carousel-btn-next")
+        ?.addEventListener("click", () => {
+          resetAuto();
+          trackPos++;
+          update();
+        });
+      dots.forEach((d: any, i: number) =>
+        d.addEventListener("click", () => {
+          resetAuto();
+          trackPos = cloneCount + i;
+          update();
+        }),
+      );
+
+      function startAuto() {
+        autoTimer = setInterval(() => {
+          trackPos++;
+          update();
+        }, 4000);
+      }
+      function resetAuto() {
+        clearInterval(autoTimer);
+        startAuto();
+      }
+
+      wrapper.addEventListener("mouseenter", () => clearInterval(autoTimer));
+      wrapper.addEventListener("mouseleave", startAuto);
+
+      window.addEventListener("resize", () => update(false));
+
+      // Inicializar con un pequeño delay para asegurar layout
+      setTimeout(() => update(false), 100);
+      startAuto();
+    });
   });
 </script>
-
-<style is:global>
-  .image-highlight {
-    position: relative;
-    z-index: 1;
-  }
-
-  .image-highlight::after {
-    content: "🔍";
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .image-container:hover .image-highlight::after {
-    opacity: 1;
-    transform: scale(1);
-  }
-</style>

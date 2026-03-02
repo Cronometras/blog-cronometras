@@ -78,14 +78,9 @@ colaboramos:
         image: /images/webp/stadler-logo.svg.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
-      - title: "Cosval"
-        description: "Organization, Methods and Times, Processes 4.0"
-        image: /images/webp/cosval.webp
-        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
-
-      - title: "Jaime Mascaró"
-        description: "Leading luxury footwear company since 1918"
-        image: /images/webp/mascaro.webp
+      - title: "Royo Group"
+        description: "Spanish leading company in bathroom furniture manufacturing"
+        image: /images/webp/royo-group-logo.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
       - title: "TAL"
@@ -93,14 +88,29 @@ colaboramos:
         image: /images/webp/tal-cronometrasapp.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
+      - title: "Jaime Mascaró"
+        description: "Leading luxury footwear company since 1918"
+        image: /images/webp/mascaro.webp
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
+      - title: "Cosval"
+        description: "Organization, Methods and Times, Processes 4.0"
+        image: /images/webp/cosval.webp
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
       - title: "CCOO"
         description: "Most representative Workers' Union in Spain"
         image: /images/webp/ccoo-industria.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
-      - title: "Asetemyt"
-        description: "Spanish Association of Methods and Time Technicians"
-        image: /images/webp/logo-asetemyt-300x300-1.webp
+      - title: "UTRNG"
+        description: "Universidad Tecnológica de la Región Norte de Guerrero, Mexico"
+        image: /images/webp/utrng-logo.webp
+        imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
+      - title: "Firehawk Wearshop"
+        description: "Design and creation of technical running and trail clothing"
+        image: /images/webp/firehawk-logo.webp
         imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 ## Key Features
