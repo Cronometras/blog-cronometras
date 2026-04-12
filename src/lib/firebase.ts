@@ -12,6 +12,10 @@ const firebaseConfig = {
     measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID
 };
 
+console.log("=== FIREBASE CONFIG DEBUG ===");
+console.log(firebaseConfig);
+console.log("=============================");
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
