@@ -3,6 +3,8 @@ import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { marked } from 'marked';
 import markedKatex from 'marked-katex-extension';
+import { IoLogoFacebook, IoLogoLinkedin, IoLogoWhatsapp, IoLink } from 'react-icons/io5';
+import { FaXTwitter } from 'react-icons/fa6';
 
 // Firebase configuration for client-side
 // Note: Firebase API keys are public by design - security comes from Firebase Security Rules
@@ -134,6 +136,9 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
     const [isPaused, setIsPaused] = useState(false);
     const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
 
+    // Share Tooltip State
+    const [showTooltip, setShowTooltip] = useState(false);
+
     useEffect(() => {
         async function fetchPost() {
             try {
@@ -257,6 +262,15 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
         window.speechSynthesis.cancel();
         setIsReading(false);
         setIsPaused(false);
+    };
+
+    const handleCopyLink = () => {
+        if (typeof window !== 'undefined') {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                setShowTooltip(true);
+                setTimeout(() => setShowTooltip(false), 2000);
+            });
+        }
     };
 
     if (loading) {
@@ -397,6 +411,99 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
                                             {tag}
                                         </a>
                                     ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Share Buttons */}
+                        {post && (
+                            <div className="my-10 w-full rounded-2xl bg-gray-50/50 p-6 sm:p-8 dark:bg-gray-800/20 border border-gray-100 dark:border-gray-800 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300 hover:shadow-sm">
+                                <div className="text-center md:text-left">
+                                    <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-1">
+                                        {lang === 'es' ? '¿Te ha parecido útil?' : 'Did you find this useful?'}
+                                    </h3>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                        {lang === 'es' ? 'Comparte este artículo con tu red profesional' : 'Share this article with your professional network'}
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-wrap items-center justify-center gap-3">
+                                    {/* LinkedIn */}
+                                    <a
+                                        href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(post.title)}&summary=${encodeURIComponent(post.description || '')}&source=Cronometras`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center gap-2 rounded-full bg-[#0077b5]/10 px-5 py-2.5 text-[#0077b5] transition-all hover:bg-[#0077b5] hover:text-white dark:bg-[#0077b5]/20"
+                                        aria-label="Share on LinkedIn"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            window.open(e.currentTarget.href, 'linkedin-share', 'width=580,height=520,toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1');
+                                        }}
+                                    >
+                                        <IoLogoLinkedin className="h-5 w-5" />
+                                        <span className="font-medium text-sm">LinkedIn</span>
+                                    </a>
+
+                                    {/* X (Twitter) */}
+                                    <a
+                                        href={`https://x.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(post.title)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center justify-center h-10 w-10 md:h-11 md:w-11 rounded-full bg-gray-100 text-gray-700 transition-all hover:bg-black hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-white dark:hover:text-black"
+                                        aria-label="Share on X"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            window.open(e.currentTarget.href, 'x-share', 'width=580,height=520,toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1');
+                                        }}
+                                    >
+                                        <FaXTwitter className="h-4 w-4 md:h-5 md:w-5" />
+                                    </a>
+
+                                    {/* Facebook */}
+                                    <a
+                                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center justify-center h-10 w-10 md:h-11 md:w-11 rounded-full bg-gray-100 text-gray-700 transition-all hover:bg-[#1877f2] hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-[#1877f2]"
+                                        aria-label="Share on Facebook"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            window.open(e.currentTarget.href, 'fb-share', 'width=580,height=520,toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1');
+                                        }}
+                                    >
+                                        <IoLogoFacebook className="h-5 w-5 md:h-6 md:w-6" />
+                                    </a>
+
+                                    {/* WhatsApp */}
+                                    <a
+                                        href={`https://wa.me/?text=${encodeURIComponent(post.title)}%20${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center justify-center h-10 w-10 md:h-11 md:w-11 rounded-full bg-gray-100 text-gray-700 transition-all hover:bg-[#25d366] hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-[#25d366]"
+                                        aria-label="Share on WhatsApp"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            window.open(e.currentTarget.href, 'wa-share', 'width=580,height=520,toolbar=0,menubar=0,location=0,status=0,scrollbars=1,resizable=1');
+                                        }}
+                                    >
+                                        <IoLogoWhatsapp className="h-5 w-5 md:h-6 md:w-6 text-current pl-0.5" />
+                                    </a>
+
+                                    {/* Copy Link */}
+                                    <div className="relative flex items-center mt-2 md:mt-0">
+                                        <button
+                                            onClick={handleCopyLink}
+                                            className="peer flex items-center justify-center h-10 w-10 md:h-11 md:w-11 rounded-full bg-gray-100 text-gray-700 transition-all hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-accent/50"
+                                            aria-label="Copy link"
+                                        >
+                                            <IoLink className="h-5 w-5" />
+                                        </button>
+                                        
+                                        <div className={`absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 ${showTooltip ? 'bg-green-600 opacity-100' : 'bg-gray-800 opacity-0 peer-hover:opacity-100'} text-white text-xs font-medium rounded shadow-lg transition-opacity pointer-events-none whitespace-nowrap z-10`}>
+                                            {showTooltip ? (lang === 'es' ? '¡Copiado!' : 'Copied!') : (lang === 'es' ? 'Copiar link' : 'Copy link')}
+                                        </div>
+                                        <div className={`absolute -top-3 left-1/2 -translate-x-1/2 border-4 border-transparent ${showTooltip ? 'border-t-green-600 opacity-100' : 'border-t-gray-800 opacity-0 peer-hover:opacity-100'} transition-opacity pointer-events-none z-10`}></div>
+                                    </div>
                                 </div>
                             </div>
                         )}
