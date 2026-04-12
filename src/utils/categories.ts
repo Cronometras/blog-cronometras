@@ -6,7 +6,8 @@ export async function getAllCategories(lang: string): Promise<string[]> {
   
   // Filtrar por idioma y que no sean borradores
   const langPosts = allPosts.filter(post => {
-    const postLang = post.slug.split('/')[0];
+    const slugValue = post.slug || post.id || '';
+    const postLang = slugValue.split('/')[0];
     return postLang === lang && !post.data.draft;
   });
   

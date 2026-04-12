@@ -18,7 +18,7 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/${post.slug}/`,
+      link: `/${(post.slug || post.id)}/`,
       content: `<img src="${config.site.base_url}${post.data.heroImage}" alt="${post.data.title}" /><p>${post.data.description}</p>`,
       categories: [post.data.category, ...post.data.tags],
       author: post.data.author,

@@ -22,7 +22,8 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": posts.map((post, index) => {
-    const postSlug = post.slug.split('/').slice(1).join('/');
+    const slugValue = post.slug || post.id || '';
+    const postSlug = slugValue.split('/').slice(1).join('/');
     const postUrl = new URL(`/${lang}/blog/${postSlug}`, config.site.base_url).toString();
     
     return {
@@ -35,10 +36,10 @@ const schema = {
         "image": post.data.heroImage 
           ? new URL(post.data.heroImage, config.site.base_url).toString() 
           : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString(),
-        "datePublished": post.data.pubDate.toISOString(),
-        "dateModified": post.data.updatedDate 
+        "datePublished": (post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) ? post.data.pubDate : new Date()).toISOString(),
+        "dateModified": post.data.updatedDate && post.data.updatedDate instanceof Date && !isNaN(post.data.updatedDate.getTime())
           ? post.data.updatedDate.toISOString() 
-          : post.data.pubDate.toISOString(),
+          : (post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) ? post.data.pubDate : new Date()).toISOString(),
         "author": {
           "@type": "Person",
           "name": post.data.author

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 
 export const getStaticPaths = async () => {
@@ -19,11 +19,11 @@ console.log(`Renderizando página about para idioma: ${lang}`);
 const aboutContent = await getCollection('about');
 console.log("Todos los documentos about:", aboutContent.map(entry => entry.id));
 
-// Buscar el documento por ID en lugar de por slug
-const aboutEntry = aboutContent.find(entry => entry.id === `${lang}/index.md`);
+// Buscar el documento por ID directamente con el idioma (ej. "es" en vez de "es/index" ya que Astro quita index explícito)
+const aboutEntry = aboutContent.find(entry => entry.id === lang);
 
 if (!aboutEntry) {
-  console.error(`No se encontró contenido de about para el idioma: ${lang}, ID buscado: ${lang}/index.md`);
+  console.error(`No se encontró contenido de about para el idioma: ${lang}, ID buscado: ${lang}`);
   console.error("IDs disponibles:", aboutContent.map(entry => entry.id));
 }
 
@@ -37,7 +37,7 @@ const buttons = aboutEntry?.data?.buttons || [];
 let Content;
 if (aboutEntry) {
   try {
-    const rendered = await aboutEntry.render();
+    const rendered = await render(aboutEntry);
     Content = rendered.Content;
   } catch (error) {
     console.error(`Error al renderizar el contenido de about para ${lang}:`, error);

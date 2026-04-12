@@ -14,7 +14,8 @@ const { title, description, pubDate, updatedDate, heroImage, author, category, t
 const canonicalUrl = new URL(url.pathname, config.site.base_url).toString();
 
 // Obtener el idioma del post
-const lang = post.slug.split('/')[0];
+const slugValue = post.slug || post.id || '';
+const lang = slugValue.split('/')[0];
 
 // Construir el esquema JSON-LD para BlogPosting
 const schema = {
@@ -26,8 +27,8 @@ const schema = {
   "image": [
     heroImage ? new URL(heroImage, config.site.base_url).toString() : new URL("/images/webp/cronometras-app.webp", config.site.base_url).toString()
   ],
-  "datePublished": pubDate.toISOString(),
-  "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+  "datePublished": (pubDate instanceof Date && !isNaN(pubDate.getTime()) ? pubDate : new Date()).toISOString(),
+  "dateModified": updatedDate && updatedDate instanceof Date && !isNaN(updatedDate.getTime()) ? updatedDate.toISOString() : (pubDate instanceof Date && !isNaN(pubDate.getTime()) ? pubDate : new Date()).toISOString(),
   "inLanguage": lang === 'es' ? 'es-ES' : 'en-US',
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -80,8 +81,8 @@ const schemaString = JSON.stringify(schema);
 <meta slot="head" property="og:image:alt" content={title} />
 <meta slot="head" property="og:site_name" content="Cronometras" />
 <meta slot="head" property="og:locale" content={lang === 'es' ? "es_ES" : "en_US"} />
-<meta slot="head" property="article:published_time" content={pubDate.toISOString()} />
-<meta slot="head" property="article:modified_time" content={updatedDate ? updatedDate.toISOString() : pubDate.toISOString()} />
+<meta slot="head" property="article:published_time" content={(pubDate instanceof Date && !isNaN(pubDate.getTime()) ? pubDate : new Date()).toISOString()} />
+<meta slot="head" property="article:modified_time" content={updatedDate && updatedDate instanceof Date && !isNaN(updatedDate.getTime()) ? updatedDate.toISOString() : (pubDate instanceof Date && !isNaN(pubDate.getTime()) ? pubDate : new Date()).toISOString()} />
 <meta slot="head" property="article:author" content={author} />
 <meta slot="head" property="article:section" content={category} />
 <meta slot="head" property="article:tag" content={tags ? tags.join(',') : category} />

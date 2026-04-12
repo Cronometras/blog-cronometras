@@ -46,13 +46,15 @@ try {
 
 // Filtramos los artículos MDX por idioma y que no sean borradores
 const langBlogPosts = allBlogPosts.filter(post => {
-  const postLang = post.slug.split('/')[0];
+  const slugValue = post.slug || post.id || '';
+  const postLang = slugValue.split('/')[0];
   return postLang === language && !post.data.draft;
 });
 
 // Convertimos los artículos MDX a nuestro formato
 const blogPostsArray: BlogPost[] = langBlogPosts.map(post => {
-  const slugParts = post.slug.split('/');
+  const slugValue = post.slug || post.id || '';
+  const slugParts = slugValue.split('/');
   const postSlug = slugParts.slice(1).join('/');
 
   return {

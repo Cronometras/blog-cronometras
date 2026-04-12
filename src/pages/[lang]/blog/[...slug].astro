@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import NaturalReader from '@/components/blog/NaturalReader.astro';
 import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
@@ -34,7 +34,8 @@ export async function getStaticPaths() {
 
   // Add MDX posts paths
   for (const post of mdxPosts) {
-    const slugParts = post.slug.split('/');
+    const slugValue = post.slug || post.id || '';
+    const slugParts = slugValue.split('/');
     const lang = slugParts[0];
     const slug = slugParts.slice(1).join('/');
 
@@ -48,7 +49,8 @@ export async function getStaticPaths() {
 
   // Add Firestore posts paths (only for route generation, content loads dynamically)
   for (const article of firestoreArticles) {
-    const slugParts = article.slug.split('/');
+    const slugValue = article.slug || '';
+    const slugParts = slugValue.split('/');
     const lang = slugParts[0];
     const slug = slugParts.slice(1).join('/');
 
@@ -85,10 +87,7 @@ if (source === 'mdx') {
       throw new Error(`Post no encontrado. Parámetros: lang=${lang}, slug=${slug}`);
     }
 
-    if (typeof post.render !== 'function') {
-      throw new Error(`La función render no está disponible en el post MDX. id: ${post.id}`);
-    }
-    const rendered = await post.render();
+    const rendered = await render(post);
     Content = rendered.Content;
     
     console.log(`Post MDX renderizado exitosamente: ${post.id}`);
@@ -128,8 +127,11 @@ export const prerender = true;
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">{post?.data?.title || 'Blog Post'}</h1>
             <div class="flex flex-wrap items-center gap-2 md:gap-4 text-gray-200 mb-3 md:mb-4 text-sm md:text-base">
               {post?.data?.pubDate && (
-                <time datetime={post.data.pubDate.toISOString()} class="font-medium">
-                  {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                <time 
+                  datetime={(post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) ? post.data.pubDate : new Date()).toISOString()} 
+                  class="font-medium"
+                >
+                  {(post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) ? post.data.pubDate : new Date()).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',

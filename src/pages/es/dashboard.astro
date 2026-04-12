@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/core/PageHeader.astro';
 import RelatedBlogPosts from '../../components/RelatedBlogPosts.astro';
 
 const pages = await getCollection('pages');
-const dashboard = pages.find((page) => page.id === 'es/dashboard.mdx');
-const { Content } = await dashboard.render();
+const dashboard = pages.find((page) => page.id === 'es/dashboard');
+const { Content } = await render(dashboard);
 ---
 
 <Base title={dashboard.data.document_title} description={dashboard.data.meta_description}>

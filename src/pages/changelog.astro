@@ -1,14 +1,14 @@
 ---
 import PageHeader from "@/components/core/PageHeader.astro";
 import Base from "@/layouts/Base.astro";
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 
 const about = await getEntry("changelog", "index");
 const page_data = {
   ...about.data,
   content: about.body,
 };
-const { Content } = await about.render();
+const { Content } = await render(about);
 ---
 
 <Base entry_keys={["changelog", "index"]}>

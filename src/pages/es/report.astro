@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/core/PageHeader.astro';
 import RelatedBlogPosts from '../../components/RelatedBlogPosts.astro';
 
 const pages = await getCollection('pages');
-const report = pages.find((page) => page.id === 'es/report.mdx');
-const { Content } = await report.render();
+const report = pages.find((page) => page.id === 'es/report');
+const { Content } = await render(report);
 ---
 
 <Base title={report.data.document_title} description={report.data.meta_description}>

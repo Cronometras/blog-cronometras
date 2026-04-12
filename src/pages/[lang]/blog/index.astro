@@ -28,27 +28,39 @@ export const getStaticPaths = async () => {
   for (const lang of languages) {
     // Filter MDX posts by language
     const langMdxPosts = allMdxPosts.filter((post) => {
-      const postLang = post.slug.split('/')[0];
+      const slugValue = post.slug || post.id || '';
+      const postLang = slugValue.split('/')[0];
       return postLang === lang && !post.data.draft;
     });
 
     // Filter Firestore articles by language (based on slug prefix)
     const langFirestorePosts = firestoreArticles.filter(p => {
-      const postLang = p.slug.split('/')[0];
+      const slugValue = p.slug || '';
+      const postLang = slugValue.split('/')[0];
       return postLang === lang && !p.data.draft;
     });
 
     // Combine and normalize posts
     const combinedPosts = [
-      ...langMdxPosts.map(post => ({
-        ...post,
-        source: 'mdx' as const,
-        sortDate: post.data.pubDate.valueOf(),
-      })),
-      ...langFirestorePosts.map(post => ({
-        ...post,
-        sortDate: post.data.pubDate.valueOf(),
-      })),
+      ...langMdxPosts.map(post => {
+        const date = post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) 
+          ? post.data.pubDate 
+          : new Date();
+        return {
+          ...post,
+          source: 'mdx' as const,
+          sortDate: date.valueOf(),
+        };
+      }),
+      ...langFirestorePosts.map(post => {
+        const date = post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) 
+          ? post.data.pubDate 
+          : new Date();
+        return {
+          ...post,
+          sortDate: date.valueOf(),
+        };
+      }),
     ];
 
     // Sort by date, most recent first
@@ -138,7 +150,8 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
       <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {
           posts.map((post) => {
-            const postSlug = post.slug.split('/').slice(1).join('/');
+            const slugValue = post.slug || post.id || '';
+            const postSlug = slugValue.split('/').slice(1).join('/');
             const postTags = (post.data.tags || []).map((t: string) => t.toLowerCase()).join(',');
 
             return (
@@ -164,7 +177,10 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
                     </p>
                     <div class="flex justify-between items-center">
                       <span class="text-sm text-gray-500 dark:text-gray-400">
-                        {post.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                        {(post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) 
+                          ? post.data.pubDate 
+                          : new Date()
+                        ).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',

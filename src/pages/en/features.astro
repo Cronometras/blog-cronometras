@@ -1,7 +1,7 @@
 ---
 import PageHeader from "@/components/core/PageHeader.astro";
 import Base from "@/layouts/Base.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 const featuresEntries = await getCollection("features");
 console.log("Available features entries:", featuresEntries.map(entry => ({ 
@@ -11,7 +11,7 @@ console.log("Available features entries:", featuresEntries.map(entry => ({
 })));
 
 // Try different ID patterns
-const possibleIds = ["en/index", "en/index.mdx", "en"];
+const possibleIds = ["en/index", "en/index", "en"];
 let features;
 
 for (const id of possibleIds) {
@@ -27,7 +27,7 @@ if (!features) {
   throw new Error("Features content not found");
 }
 
-const { Content } = await features.render();
+const { Content } = await render(features);
 ---
 
 <Base>

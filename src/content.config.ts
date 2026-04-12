@@ -2,12 +2,13 @@ import type { Testimonial } from "@/components/Testimonial.astro";
 import type { Section } from "@/components/core/Section.astro";
 import type { LinkButton, PageType } from "@/content/page.types";
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const zodPageConfig = z.custom<PageType>();
 
 // Pages collection schema
 const pagesCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pages" }),
   schema: zodPageConfig,
 });
 
@@ -21,44 +22,22 @@ const featuresSchema = z.object({
 });
 
 const featuresCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/features" }),
   schema: featuresSchema,
 });
 
-const indexSchema = z.object({
-  type: z.literal("page"),
-  banner: z.custom<Section>(),
-  sections: z.array(z.custom<Section>()).optional(),
-  features: z.object({
-    title: z.string(),
-    description: z.string(),
-    feature_list: z.array(
-      z.object({
-        title: z.string(),
-        content: z.string(),
-        icon: z.string(),
-      }),
-    ),
-  }),
-  testimonial: z.custom<Testimonial>(),
-  call_to_action: z.object({
-    title: z.string(),
-    description: z.string(),
-    button: z.custom<LinkButton>(),
-  }),
-});
-
 const homepageCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/homepage" }),
   schema: zodPageConfig,
 });
 
 const blogCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.date(),
-    updatedDate: z.date().optional(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
     category: z.string(),
     tags: z.array(z.string()).default([]),
@@ -77,7 +56,7 @@ const privacySchema = z.object({
 });
 
 const privacyCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/privacy" }),
   schema: privacySchema,
 });
 
@@ -91,19 +70,41 @@ const termsSchema = z.object({
 });
 
 const termsCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/terms" }),
   schema: termsSchema,
+});
+
+// Shared collection definitions for standard pages
+const aboutCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/about" }),
+  schema: zodPageConfig,
+});
+
+const changelogCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/changelog" }),
+  schema: zodPageConfig,
+});
+
+const contactCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/contact" }),
+  schema: zodPageConfig,
+});
+
+const faqCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/faq" }),
+  schema: zodPageConfig,
 });
 
 // Export collections
 export const collections = {
-  about: pagesCollection,
+  about: aboutCollection,
   blog: blogCollection,
-  changelog: pagesCollection,
-  contact: pagesCollection,
+  changelog: changelogCollection,
+  contact: contactCollection,
   features: featuresCollection,
   homepage: homepageCollection,
   pages: pagesCollection,
   privacy: privacyCollection,
   terms: termsCollection,
+  faq: faqCollection,
 };

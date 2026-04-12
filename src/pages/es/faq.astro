@@ -1,11 +1,13 @@
 ---
 import PageHeader from "@/components/core/PageHeader.astro";
 import Base from "@/layouts/Base.astro";
-import fs from 'fs';
-import path from 'path';
 import { marked } from 'marked';
+import { getCollection, render } from "astro:content";
 
-// Definir los datos de la página
+// Obtener el contenido de la colección faq
+const faqEntries = await getCollection('faq');
+const esFaqEntry = faqEntries.find(entry => entry.id === 'es' || entry.id === 'es/index');
+
 const page_data = {
   title: 'Preguntas Frecuentes',
   description: 'Encuentra respuestas a las preguntas más comunes sobre CronometrasApp, sus funcionalidades y cómo utilizarla.',
@@ -14,22 +16,11 @@ const page_data = {
   meta_keywords: 'preguntas frecuentes, FAQ, CRONOMETRAS, estudios de tiempos, cronometraje industrial, ayuda, soporte',
 };
 
-// Leer el contenido del archivo Markdown directamente
 let markdownContent = '';
-try {
-  const filePath = path.join(process.cwd(), 'src', 'content', 'faq', 'es', 'index.md');
-  const fileContent = fs.readFileSync(filePath, 'utf-8');
-
-  // Eliminar el frontmatter (todo lo que está entre --- al principio del archivo)
-  markdownContent = fileContent.replace(/^---[\s\S]*?---\s*/m, '');
-  console.log('✅ Archivo de FAQ leído correctamente');
-} catch (error) {
-  console.error(`❌ Error al leer el archivo de FAQ: ${error.message}`);
-  markdownContent = `
-# Preguntas Frecuentes
-
-Lo sentimos, no se pudo cargar el contenido de las preguntas frecuentes. Por favor, inténtalo de nuevo más tarde o contacta con nosotros para obtener ayuda.
-  `;
+if (esFaqEntry) {
+  markdownContent = esFaqEntry.body;
+} else {
+  console.error('❌ No se encontró la entrada de FAQ en español');
 }
 
 // Convertir el Markdown a HTML usando marked

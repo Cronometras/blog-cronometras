@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/core/PageHeader.astro';
 
 const pages = await getCollection('pages');
-const frequency = pages.find((page) => page.id === 'es/frequency.mdx');
-const { Content } = await frequency.render();
+const frequency = pages.find((page) => page.id === 'es/frequency');
+const { Content } = await render(frequency);
 ---
 
 <Base title={frequency.data.document_title} description={frequency.data.meta_description}>

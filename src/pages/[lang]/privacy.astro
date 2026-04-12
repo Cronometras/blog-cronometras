@@ -2,7 +2,7 @@
 import { getLangFromUrl } from "@/i18n/utils";
 import PageHeader from "@/components/core/PageHeader.astro";
 import Base from "@/layouts/Base.astro";
-import { getEntry, getCollection } from "astro:content";
+import { getEntry, getCollection, render } from "astro:content";
 
 // Define the getStaticPaths function to generate routes for each language
 export async function getStaticPaths() {
@@ -32,7 +32,7 @@ try {
       ...privacy.data,
       content: privacy.body,
     };
-    const rendered = await privacy.render();
+    const rendered = await render(privacy);
     Content = rendered.Content;
   } else {
     console.error(`Privacy entry not found for language: ${lang}`);
@@ -43,7 +43,7 @@ try {
         ...privacy.data,
         content: privacy.body,
       };
-      const rendered = await privacy.render();
+      const rendered = await render(privacy);
       Content = rendered.Content;
     }
   }
@@ -57,7 +57,7 @@ try {
         ...privacy.data,
         content: privacy.body,
       };
-      const rendered = await privacy.render();
+      const rendered = await render(privacy);
       Content = rendered.Content;
     }
   } catch (innerError) {

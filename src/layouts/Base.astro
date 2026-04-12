@@ -15,10 +15,10 @@ import VideoTutorialModal from "@/components/core/VideoTutorialModal.astro";
 import GlobalSearchModal from "@/components/search/GlobalSearchModal.astro";
 
 import { AstroFont } from "astro-font";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { getEntry } from "astro:content";
 import type { PageType } from "@/content/page.types";
-import type { ContentEntryMap } from "astro:content";
+import type { AnyCollectionKey } from "astro:content";
 import { getLangFromUrl } from "@/i18n/utils";
 
 const GTAG = import.meta.env.GTAG_ID
@@ -49,7 +49,7 @@ export interface Props {
    *
    * @see PageType
    */
-  entry_keys?: [keyof ContentEntryMap, string];
+  entry_keys?: [AnyCollectionKey, string];
   /**
    * Override <title> og:title and twitter:title
    * @default config.site.title
@@ -341,7 +341,7 @@ console.log("Cargando layout Base.astro");
     <!-- meta-description -->
     <meta name="description" content={plainify(_description)} />
 
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- author from config.json -->
     <meta name="author" content={plainify(_author)} />

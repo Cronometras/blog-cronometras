@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/core/PageHeader.astro';
 
 const pages = await getCollection('pages');
-const repetitive = pages.find((page) => page.id === 'en/repetitive.mdx');
-const { Content } = await repetitive.render();
+const repetitive = pages.find((page) => page.id === 'en/repetitive');
+const { Content } = await render(repetitive);
 ---
 
 <Base title={repetitive.data.document_title} description={repetitive.data.meta_description}>
