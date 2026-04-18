@@ -48,17 +48,24 @@ function firestoreDocument(data: Record<string, any>): any {
 export async function onRequestPost({ request, env }: { request: Request; env: Env }) {
   try {
     const body = await request.json() as any;
-    const { nombre, email, empresa, sector, mensaje, privacyPolicy } = body;
+    // Support both Spanish field names (nombre, empresa) and English (name, company)
+    const name = body.nombre || body.name;
+    const email = body.email;
+    const empresa = body.empresa || body.company || '';
+    const telefono = body.telefono || body.phone || '';
+    const mensaje = body.mensaje || body.message || '';
+    const privacyPolicy = body.privacyPolicy || false;
+    const lang = body.lang || 'es';
 
-    if (!nombre || !email) {
+    if (!name || !email) {
       return new Response(JSON.stringify({ error: 'Nombre y email son obligatorios' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
     const sa = JSON.parse(env.FIREBASE_SERVICE_ACCOUNT);
     const token = await getAccessToken(sa);
-    const docData = { nombre, email, empresa: empresa || '', sector: sector || '', mensaje: mensaje || '',
-      privacyPolicy: privacyPolicy || false, createdAt: new Date().toISOString(), source: 'web_information_request' };
+    const docData = { nombre: name, email, empresa, telefono, mensaje, lang,
+      privacyPolicy, createdAt: new Date().toISOString(), source: 'web_information_request' };
 
     const resp = await fetch(
       `https://firestore.googleapis.com/v1/projects/${sa.project_id}/databases/(default)/documents/solicitudes_cronometras`,
