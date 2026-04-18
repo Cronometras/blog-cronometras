@@ -28,7 +28,7 @@ const InformationRequestForm: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/information-request.php', {
+      const response = await fetch('/api/information-request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

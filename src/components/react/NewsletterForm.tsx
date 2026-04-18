@@ -33,7 +33,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/newsletter/index.php', {
+      const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

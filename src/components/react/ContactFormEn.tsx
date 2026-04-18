@@ -34,7 +34,7 @@ const ContactFormEn: React.FC = () => {
 
       console.log('Sending data with language:', dataWithLang);
 
-      const response = await fetch('/api/contact/', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
