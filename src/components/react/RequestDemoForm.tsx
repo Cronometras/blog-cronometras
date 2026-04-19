@@ -231,7 +231,16 @@ const RequestDemoForm: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({...formData, lang}), // Incluir el idioma en la solicitud
+        body: JSON.stringify({
+          nombre: formData.name,
+          email: formData.email,
+          empresa: formData.company,
+          telefono: formData.phone,
+          mensaje: formData.message,
+          privacyPolicy: formData.privacyPolicy,
+          lang,
+          site: 'cronometras.com',
+        }),
       });
 
       try {
