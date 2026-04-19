@@ -29,7 +29,8 @@ const ContactFormEn: React.FC = () => {
       // Add the language parameter to the data
       const dataWithLang = {
         ...data,
-        lang: 'en' // Set language to English
+        lang: 'en', // Set language to English
+        site: 'cronometras.com',
       };
 
       console.log('Sending data with language:', dataWithLang);

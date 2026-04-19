@@ -19,7 +19,10 @@ async function getAccessToken(sa: any): Promise<string> {
     iss: sa.client_email, scope: 'https://www.googleapis.com/auth/datastore',
     aud: 'https://oauth2.googleapis.com/token', iat: now, exp: now + 3600,
   }));
-  const pemContents = sa.private_key.replace(/-----BEGIN PRIVATE KEY-----/, '').replace(/-----END PRIVATE KEY-----/, '').replace(/\s/g, '');
+  const pemContents = sa.private_key
+    .replace(/-----BEGIN PRIVATE KEY-----/, '')
+    .replace(/-----END PRIVATE KEY-----/, '')
+    .replace(/[\s\r\n]+/g, '');
   const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
   const key = await crypto.subtle.importKey('pkcs8', binaryKey, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
   const signature = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, new TextEncoder().encode(`${header}.${payload}`));
@@ -47,6 +50,12 @@ function firestoreDocument(data: Record<string, any>): any {
 
 export async function onRequestPost({ request, env }: { request: Request; env: Env }) {
   try {
+    if (!env.FIREBASE_SERVICE_ACCOUNT) {
+      console.error('FIREBASE_SERVICE_ACCOUNT env var is missing!');
+      return new Response(JSON.stringify({ error: 'Server configuration error' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } });
+    }
+
     const body = await request.json() as any;
     const { email, name } = body;
 
@@ -55,9 +64,23 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
-    const sa = JSON.parse(env.FIREBASE_SERVICE_ACCOUNT);
+    let sa;
+    try {
+      sa = JSON.parse(env.FIREBASE_SERVICE_ACCOUNT);
+    } catch (e) {
+      console.error('Failed to parse FIREBASE_SERVICE_ACCOUNT:', e);
+      return new Response(JSON.stringify({ error: 'Server configuration error' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } });
+    }
+
     const token = await getAccessToken(sa);
-    const docData = { email, name: name || '', createdAt: new Date().toISOString(), source: 'web_newsletter' };
+    const docData = {
+      email,
+      name: name || '',
+      site: body.site || 'cronometras.com',
+      createdAt: new Date().toISOString(),
+      source: 'web_newsletter',
+    };
 
     const resp = await fetch(
       `https://firestore.googleapis.com/v1/projects/${sa.project_id}/databases/(default)/documents/newsletter_cronometras`,
@@ -65,16 +88,17 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         body: JSON.stringify(firestoreDocument(docData)) });
 
     if (!resp.ok) {
-      console.error('Firestore error:', await resp.text());
-      return new Response(JSON.stringify({ error: 'Error al guardar la suscripción' }),
+      const errText = await resp.text();
+      console.error('Firestore error:', resp.status, errText);
+      return new Response(JSON.stringify({ error: 'Error al guardar la suscripción', details: errText.substring(0, 200) }),
         { status: 500, headers: { 'Content-Type': 'application/json' } });
     }
 
     return new Response(JSON.stringify({ success: true, message: 'Suscripción realizada correctamente' }),
       { status: 200, headers: { 'Content-Type': 'application/json' } });
-  } catch (error) {
-    console.error('Newsletter API error:', error);
-    return new Response(JSON.stringify({ error: 'Ha ocurrido un error' }),
+  } catch (error: any) {
+    console.error('Newsletter API error:', error?.message || error);
+    return new Response(JSON.stringify({ error: 'Ha ocurrido un error', details: error?.message || 'unknown' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
 }

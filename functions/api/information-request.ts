@@ -1,8 +1,9 @@
 // Cloudflare Pages Function — POST /api/information-request
-// Saves information request forms to Firestore
+// Saves information request forms to Firestore and sends email notification
 
 interface Env {
   FIREBASE_SERVICE_ACCOUNT: string;
+  GMAIL_WEBAPP_URL: string;
 }
 
 function base64url(data: string | Uint8Array): string {
@@ -19,7 +20,10 @@ async function getAccessToken(sa: any): Promise<string> {
     iss: sa.client_email, scope: 'https://www.googleapis.com/auth/datastore',
     aud: 'https://oauth2.googleapis.com/token', iat: now, exp: now + 3600,
   }));
-  const pemContents = sa.private_key.replace(/-----BEGIN PRIVATE KEY-----/, '').replace(/-----END PRIVATE KEY-----/, '').replace(/\s/g, '');
+  const pemContents = sa.private_key
+    .replace(/-----BEGIN PRIVATE KEY-----/, '')
+    .replace(/-----END PRIVATE KEY-----/, '')
+    .replace(/[\s\r\n]+/g, '');
   const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
   const key = await crypto.subtle.importKey('pkcs8', binaryKey, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
   const signature = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, new TextEncoder().encode(`${header}.${payload}`));
@@ -45,10 +49,28 @@ function firestoreDocument(data: Record<string, any>): any {
   return { fields };
 }
 
+async function sendNotificationEmail(env: Env, data: { site: string; nombre: string; email: string; empresa: string; plan: string }) {
+  if (!env.GMAIL_WEBAPP_URL) return;
+  try {
+    await fetch(env.GMAIL_WEBAPP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  } catch (err: any) {
+    console.error('Email webhook failed:', err?.message);
+  }
+}
+
 export async function onRequestPost({ request, env }: { request: Request; env: Env }) {
   try {
+    if (!env.FIREBASE_SERVICE_ACCOUNT) {
+      console.error('FIREBASE_SERVICE_ACCOUNT env var is missing!');
+      return new Response(JSON.stringify({ error: 'Server configuration error' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } });
+    }
+
     const body = await request.json() as any;
-    // Support both Spanish field names (nombre, empresa) and English (name, company)
     const name = body.nombre || body.name;
     const email = body.email;
     const empresa = body.empresa || body.company || '';
@@ -56,16 +78,35 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const mensaje = body.mensaje || body.message || '';
     const privacyPolicy = body.privacyPolicy || false;
     const lang = body.lang || 'es';
+    const site = body.site || 'cronometras.com';
 
     if (!name || !email) {
       return new Response(JSON.stringify({ error: 'Nombre y email son obligatorios' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
-    const sa = JSON.parse(env.FIREBASE_SERVICE_ACCOUNT);
+    let sa;
+    try {
+      sa = JSON.parse(env.FIREBASE_SERVICE_ACCOUNT);
+    } catch (e) {
+      console.error('Failed to parse FIREBASE_SERVICE_ACCOUNT:', e);
+      return new Response(JSON.stringify({ error: 'Server configuration error' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } });
+    }
+
     const token = await getAccessToken(sa);
-    const docData = { nombre: name, email, empresa, telefono, mensaje, lang,
-      privacyPolicy, createdAt: new Date().toISOString(), source: 'web_information_request' };
+    const docData = {
+      nombre: name,
+      email,
+      empresa,
+      telefono,
+      mensaje,
+      lang,
+      privacyPolicy,
+      site,
+      createdAt: new Date().toISOString(),
+      source: 'web_information_request',
+    };
 
     const resp = await fetch(
       `https://firestore.googleapis.com/v1/projects/${sa.project_id}/databases/(default)/documents/solicitudes_cronometras`,
@@ -73,16 +114,19 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         body: JSON.stringify(firestoreDocument(docData)) });
 
     if (!resp.ok) {
-      console.error('Firestore error:', await resp.text());
-      return new Response(JSON.stringify({ error: 'Error al guardar los datos' }),
+      const errText = await resp.text();
+      console.error('Firestore error:', resp.status, errText);
+      return new Response(JSON.stringify({ error: 'Error al guardar los datos', details: errText.substring(0, 200) }),
         { status: 500, headers: { 'Content-Type': 'application/json' } });
     }
 
+    sendNotificationEmail(env, { site, nombre: name, email, empresa, plan: mensaje || telefono || '' });
+
     return new Response(JSON.stringify({ success: true, message: 'Solicitud enviada correctamente' }),
       { status: 200, headers: { 'Content-Type': 'application/json' } });
-  } catch (error) {
-    console.error('Information request API error:', error);
-    return new Response(JSON.stringify({ error: 'Ha ocurrido un error' }),
+  } catch (error: any) {
+    console.error('Information request API error:', error?.message || error);
+    return new Response(JSON.stringify({ error: 'Ha ocurrido un error', details: error?.message || 'unknown' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } });
   }
 }
