@@ -2,16 +2,21 @@
 lang: en
 
 banner:
-  title: '<span class="text-accent text-shadow-[0px_5px_15px] shadow-accent/10">CRONOMETRAS</span>: Optimize Your <span class="text-secondary">Productivity</span>'
+  title: '<span class="text-accent text-shadow-[0px_5px_15px] shadow-accent/10">CRONOMETRAS</span>: Industrial Time Studies, <span class="text-secondary">Automated</span>'
   title_size: "text-4xl md:text-6xl"
-  content: "The ultimate tool for time and motion analysis. Optimize your processes with <b>Multi Cronos</b>, <b>visual documentation</b> and <b>MFA security</b>.<p>Discover the <b>Industrial timing App</b> with video recording, Excel import and folder organization.</p>"
+  content: "Stop the stopwatch, start optimizing. <b>Multi Cronos</b>, video recording, <b>Excel/PDF export</b>, and <b>MFA security</b> — everything you need for professional time and motion studies.<p class='mt-4 text-sm opacity-80'>Trusted by <b>Stadler Rail</b>, <b>Royo Group</b>, <b>Jaime Mascaró</b> and more.</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
-    - label: Request a Free Demo
+    - label: Start Free — No Credit Card
       href: "#"
       target: "_self"
       icon: "clock"
       addClasses: "w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4"
+    - label: Try It Now
+      href: "https://app.cronometras.com"
+      target: "_self"
+      icon: "zap"
+      addClasses: "w-full md:w-auto bg-green-600 text-white hover:bg-green-700 transition-colors mb-4 md:mb-0 md:mr-4"
     - label: Watch Tutorial Video
       href: "#video"
       target: "_self"
@@ -211,10 +216,15 @@ testimonial:
 call_to_action:
   title: "Optimize your productivity with <span class='text-accent text-shadow-[0px_5px_15px]'>CRONOMETRAS</span>"
   description: "Join the companies that have already transformed their operational efficiency. **Start your free trial today and discover the power of data-driven optimization.**"
-  button:
-    label: "Start Now"
-    href: "#"
-    color: accent
-    id: "main-cta-button"
+  buttons:
+    - label: "Start Now"
+      href: "#"
+      color: accent
+      id: "main-cta-button"
+      addClasses: "mb-4 md:mb-0 md:mr-4"
+    - label: "Open the App"
+      href: "https://app.cronometras.com"
+      color: secondary
+      addClasses: "border-2 border-accent text-accent hover:bg-accent hover:text-white transition-colors"
 ---
 import WebpImage from '@components/WebpImage.astro';

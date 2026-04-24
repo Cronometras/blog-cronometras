@@ -6,7 +6,10 @@ const {
   title,
   description,
   button,
+  buttons,
 } = Astro.props;
+
+const ctaButtons = buttons || (button ? [button] : []);
 ---
 
 <section class="px-5 py-20 xl:py-[120px]">
@@ -18,9 +21,11 @@ const {
         <div class="row">
           <div class="lg:col-7">
             <h2 class="h1 text-text" set:html={markdownify(title)}/>
-            {button && (
-              <div class="mt-8">
-                <LinkButton {...button} addClasses="mt-4 hover:bg-accent-dark dark:text-white dark:border-accent dark:hover:bg-accent" />
+            {ctaButtons.length > 0 && (
+              <div class="mt-8 flex flex-wrap items-center">
+                {ctaButtons.map((btn) => (
+                  <LinkButton {...btn} addClasses={`${btn.addClasses || ''} mt-4 hover:bg-accent-dark dark:text-white dark:border-accent dark:hover:bg-accent`} />
+                ))}
               </div>
             )}
           </div>

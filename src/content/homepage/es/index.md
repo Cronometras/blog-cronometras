@@ -4,7 +4,7 @@ lang: es
 banner:
   title: '<span class="text-accent">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
   title_size: "text-4xl md:text-6xl"
-  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p>"
+  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p><p class='mt-4 text-sm opacity-80'>Utilizada por empresas como <b>Stadler Rail</b>, <b>Royo Group</b> y <b>Jaime Mascaró</b> para optimizar sus procesos productivos.</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Solicita una Demo Gratuita
@@ -12,6 +12,11 @@ banner:
       target: "_self"
       icon: "clock"
       addClasses: "w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4"
+    - label: Pruébalo Gratis
+      href: "https://app.cronometras.com"
+      target: "_self"
+      icon: "zap"
+      addClasses: "w-full md:w-auto bg-green-600 text-white hover:bg-green-700 transition-colors mb-4 md:mb-0 md:mr-4"
     - label: Ver Video Tutorial
       href: "#video"
       target: "_self"
@@ -255,11 +260,16 @@ testimonial:
 call_to_action:
   title: "Optimiza tu productividad con <span class='text-accent text-shadow-[0px_5px_15px]'>CRONOMETRAS</span>"
   description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**"
-  button:
-    label: "Comenzar Ahora"
-    href: "#"
-    color: accent
-    id: "main-cta-button"
+  buttons:
+    - label: "Comenzar Ahora"
+      href: "#"
+      color: accent
+      id: "main-cta-button"
+      addClasses: "mb-4 md:mb-0 md:mr-4"
+    - label: "Acceder a la App"
+      href: "https://app.cronometras.com"
+      color: secondary
+      addClasses: "border-2 border-accent text-accent hover:bg-accent hover:text-white transition-colors"
 
 ---
 import WebpImage from '@components/WebpImage.astro';
