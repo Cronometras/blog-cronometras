@@ -4,7 +4,7 @@ lang: es
 banner:
   title: '<span class="text-accent">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
   title_size: "text-4xl md:text-6xl"
-  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p><p class='mt-4 text-sm opacity-80'>Utilizada por empresas como <b>Stadler Rail</b>, <b>Royo Group</b> y <b>Jaime Mascaró</b> para optimizar sus procesos productivos.</p>"
+  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p><p class='mt-4 text-sm opacity-80'>Utilizada por empresas como <b>Stadler Rail</b>, <b>Royo Group</b> y <b>Jaime Mascaró</b> para optimizar sus procesos productivos.</p><p class='mt-2 text-xs opacity-60'>Sin compromiso · Configuración en minutos · Soporte en español</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Solicita una Demo Gratuita
@@ -124,13 +124,13 @@ colaboramos:
 
 how_it_works:
   title: "Como funciona nuestra App de cronometraje industrial"
-  description: "Desplázate cómodamente entre las diferentes pantallas de nuestra aplicación de métodos y tiempos y accede a las funcionalidades que te ofrecemos. Cálculos automatizado, tomas restantes, suplementos ágiles y mucho más."
+  description: "Desplázate cómodamente entre las diferentes pantallas de nuestra aplicación de métodos y tiempos y accede a las funcionalidades que te ofrecemos. Cálculos automatizados, tomas restantes, suplementos ágiles y mucho más."
   image: /images/webp/cronometras-app.webp
   image_alt: "Estudio de tiempos"
   steps:
     - number: 1
       title: "Genera un nuevo estudio de trabajo"
-      description: "Identifica el estudio y añade toda la información que creas necesaria como el ID de la pieza, la fecha en que se realiza el estudio, le empresa donde se realiza, el trabajador al que se mide, etc. Puedes utilizar comandos de voz para agilizar la tarea."
+      description: "Identifica el estudio y añade toda la información que creas necesaria como el ID de la pieza, la fecha en que se realiza el estudio, la empresa donde se realiza, el trabajador al que se mide, etc. Puedes utilizar comandos de voz para agilizar la tarea."
       image: /images/webp/crea-un-nuevo-estudio-de-tiempos-de-trabajo.webp
       imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
@@ -151,7 +151,7 @@ how_it_works:
 
     - number: 5
       title: "Obtén el informe automatizado"
-      description: "En el mismo momento en que finalice la toma de datos, tendrá disponible el resultado del estudio, no precisando el posterior trasvase de datos, cálculos y análisis de los mimos."
+      description: "En el mismo momento en que finalice la toma de datos, tendrás disponible el resultado del estudio, sin necesidad del posterior trasvase de datos, cálculos y análisis de los mismos."
       image: /images/webp/informe-automatizado.webp
     - number: 6
       title: "Exporta datos a Excel y PDF"
@@ -174,7 +174,7 @@ features:
       content: Organización y gestión de estudios completos con <b class="text-text">métodos de trabajo, tiempos y suplementos</b>.
     - icon: "clock"
       title: Análisis Avanzado
-      content: Genera informes detallados de tus estudios de manera <b class="text-text">automática</b> para tomar decisiones informadas rapidamente.
+      content: Genera informes detallados de tus estudios de manera <b class="text-text">automática</b> para tomar decisiones informadas rápidamente.
     - icon: "cloud"
       title: Almacenamiento Seguro
       content: Tus datos siempre seguros y accesibles en la nube, con <b class="text-text">sincronización automática</b>.
@@ -259,7 +259,7 @@ testimonial:
 ## Call to Action
 call_to_action:
   title: "Optimiza tu productividad con <span class='text-accent text-shadow-[0px_5px_15px]'>CRONOMETRAS</span>"
-  description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**"
+  description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**<br><small>Sin compromiso · Pruébalo gratis</small>"
   buttons:
     - label: "Comenzar Ahora"
       href: "#"
