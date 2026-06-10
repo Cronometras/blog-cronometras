@@ -89,13 +89,21 @@ if (source === 'mdx') {
 
     const rendered = await render(post);
     Content = rendered.Content;
-    
+
     console.log(`Post MDX renderizado exitosamente: ${post.id}`);
   } catch (error) {
     console.error('Error al renderizar el post:', error);
     errorMessage = 'No se pudo cargar el contenido del post.';
   }
 }
+
+// Fechas normalizadas para los meta tags de artículo (og_type=article)
+const publishedISO = post?.data?.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime())
+  ? post.data.pubDate.toISOString()
+  : new Date().toISOString();
+const modifiedISO = post?.data?.updatedDate && post.data.updatedDate instanceof Date && !isNaN(post.data.updatedDate.getTime())
+  ? post.data.updatedDate.toISOString()
+  : publishedISO;
 
 // Extract text content for text-to-speech (MDX only)
 const rawContent = source === 'mdx' ? (post?.body || '') : '';
@@ -105,7 +113,18 @@ export const prerender = true;
 ---
 
 
-<Base title={post?.data?.title || 'Blog Post'} description={post?.data?.description || ''}>
+<Base
+  title={post?.data?.title || 'Blog Post'}
+  description={post?.data?.description || ''}
+  og_type="article"
+  article_published_time={publishedISO}
+  article_modified_time={modifiedISO}
+  article_section={post?.data?.category}
+  image={post?.data?.heroImage}
+  canonical_url={post?.data?.canonical_url}
+  noindex={post?.data?.noindex}
+  keywords={post?.data?.tags}
+>
   {source === 'mdx' && post && <BlogPostSchema post={post} url={Astro.url} />}
   
   {source === 'firestore' ? (

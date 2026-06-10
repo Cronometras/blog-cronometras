@@ -77,6 +77,23 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   canonical_url?: string;
+  /**
+   * Tipo de objeto Open Graph. "website" por defecto, "article" para posts.
+   * @default "website"
+   */
+  og_type?: "website" | "article" | "profile";
+  /**
+   * Fecha de publicación del artículo (ISO 8601) — sólo se usa si og_type = "article".
+   */
+  article_published_time?: string;
+  /**
+   * Fecha de modificación del artículo (ISO 8601) — sólo se usa si og_type = "article".
+   */
+  article_modified_time?: string;
+  /**
+   * Sección del artículo — sólo se usa si og_type = "article".
+   */
+  article_section?: string;
 }
 
 // distructure frontmatters
@@ -89,6 +106,10 @@ const {
   image,
   noindex,
   canonical_url,
+  og_type,
+  article_published_time,
+  article_modified_time,
+  article_section,
 } = Astro.props;
 
 let page: PageType | undefined = undefined;
@@ -128,12 +149,105 @@ const _canonical_url = canonical_url
   ? canonical_url
   : page?.canonical_url
     ? page.canonical_url
-    : undefined;
+    : new URL(Astro.url.pathname, config.site.base_url).toString();
 const _noindex =
   noindex === true ? true : page?.noindex === true ? true : false;
 
-// Obtener el código de idioma de la URL (sin el código de país)
+// Detectar idioma y par de idiomas en función de la URL
 const lang = getLangFromUrl(Astro.url);
+const pathWithoutLang = Astro.url.pathname.replace(/^\/[a-z]{2}/, "") || "/";
+
+// Construir los hreflang sólo cuando la ruta es parametrizable por idioma
+const esHref = `${config.site.base_url}/es${pathWithoutLang}`;
+const enHref = `${config.site.base_url}/en${pathWithoutLang}`;
+const xDefault = `${config.site.base_url}/es${pathWithoutLang}`;
+
+// OG image por defecto 1200x630 (creado para redes sociales)
+const ogImagePath = _image?.startsWith("http")
+  ? _image
+  : `${config.site.base_url}${_image}`;
+
+// Construir Schema.org Organization + WebSite + LocalBusiness (GEO/Local SEO)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${config.site.base_url}/#organization`,
+  "name": "Cronometras",
+  "alternateName": "CRONOMETRAS",
+  "url": config.site.base_url,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${config.site.base_url}/images/webp/logo-2.webp`,
+    "width": 192,
+    "height": 192,
+  },
+  "description": config.metadata.meta_description,
+  "email": config.params.email,
+  "telephone": config.params.phone,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Valencia",
+    "addressRegion": "Valencia",
+    "addressCountry": "ES",
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/cronometras",
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${config.site.base_url}/#website`,
+  "url": config.site.base_url,
+  "name": "Cronometras",
+  "inLanguage": ["es-ES", "en-US"],
+  "publisher": { "@id": `${config.site.base_url}/#organization` },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${config.site.base_url}/${lang}/blog?search={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${config.site.base_url}/#localbusiness`,
+  "name": "Cronometras",
+  "image": `${config.site.base_url}/images/webp/logo-2.webp`,
+  "url": config.site.base_url,
+  "telephone": config.params.phone,
+  "email": config.params.email,
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Valencia",
+    "addressRegion": "Valencia",
+    "addressCountry": "ES",
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 39.4699,
+    "longitude": -0.3763,
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "España" },
+    { "@type": "Country", "name": "Spain" },
+    { "@type": "AdministrativeArea", "name": "LATAM" },
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00",
+  },
+  "parentOrganization": { "@id": `${config.site.base_url}/#organization` },
+};
+
+const orgSchemaString = JSON.stringify(organizationSchema).replace(/</g, "\\u003c");
+const siteSchemaString = JSON.stringify(websiteSchema).replace(/</g, "\\u003c");
+const localSchemaString = JSON.stringify(localBusinessSchema).replace(/</g, "\\u003c");
 
 // Para debug
 console.log("Cargando layout Base.astro");
@@ -191,37 +305,54 @@ console.log("Cargando layout Base.astro");
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
 
-    <!-- Google tag (gtag.js) - Optimizado para rendimiento -->
-    <script defer define:vars={{GTAG}}>
-      // Configuración inicial de Google Analytics
+    <!-- Google tag (gtag.js) - Inicialización diferida del dataLayer (el script gtag.js se carga SOLO
+         si el usuario consiente las cookies analíticas en CookieConsent.astro) -->
+    <script is:inline define:vars={{GTAG}}>
       window.GTAG_ID = GTAG;
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      window.gtag = function gtag(){ dataLayer.push(arguments); };
+      // Estado por defecto: NO consentir analítica. CookieConsent.astro actualizará
+      // analytics_storage a 'granted' sólo si el usuario acepta.
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'wait_for_update': 500
+      });
       gtag('js', new Date());
       gtag('config', window.GTAG_ID, {
         'send_page_view': false,
-        'transport_type': 'beacon'
-      }); // Retrasar el envío de la vista de página
-
-      // Cargar el script de GA de forma diferida
-      window.addEventListener('load', function() {
-        // Retrasar la carga de GA para dar prioridad al renderizado
-        setTimeout(function() {
-          const script = document.createElement('script');
-          script.src = "https://www.googletagmanager.com/gtag/js?id=" + GTAG;
-          script.async = true;
-          document.head.appendChild(script);
-
-          // Enviar la vista de página después de que la página esté completamente cargada
-          setTimeout(function() {
-            gtag('event', 'page_view', {
-              page_title: document.title,
-              page_location: window.location.href,
-              page_path: window.location.pathname
-            });
-          }, 2000);
-        }, 1000);
+        'transport_type': 'beacon',
+        'anonymize_ip': true
       });
+
+      // Carga condicional de gtag.js — sólo si el usuario ha dado consentimiento.
+      // Se ejecuta tras window.onload para priorizar el render del contenido.
+      window.addEventListener('load', function() {
+        try {
+          const consent = JSON.parse(localStorage.getItem('cookie-preferences') || 'null');
+          if (consent && consent.analytics === true) {
+            loadGtagScript();
+          }
+        } catch (e) { /* sin consentimiento = sin analytics */ }
+      });
+
+      // Expuesto globalmente para que CookieConsent.astro lo llame al aceptar cookies.
+      window.loadGtagScript = function() {
+        if (document.getElementById('gtag-js')) return;
+        const s = document.createElement('script');
+        s.id = 'gtag-js';
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GTAG;
+        document.head.appendChild(s);
+
+        setTimeout(function() {
+          window.gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: window.location.pathname
+          });
+        }, 100);
+      };
     </script>
 
     <!-- title -->
@@ -229,17 +360,13 @@ console.log("Cargando layout Base.astro");
       {plainify(_title)}
     </title>
 
-    <!-- canonical url -->
-    {
-      _canonical_url && (
-        <link rel="canonical" href={_canonical_url} item-prop="url" />
-      )
-    }
+    <!-- canonical url (auto-generado a partir de Astro.url) -->
+    <link rel="canonical" href={_canonical_url} item-prop="url" />
 
-    <!-- Alternate language versions -->
-    <link rel="alternate" hreflang="es" href={`${config.site.base_url}/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
-    <link rel="alternate" hreflang="en" href={`${config.site.base_url}/en${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
-    <link rel="alternate" hreflang="x-default" href={`${config.site.base_url}/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <!-- Alternate language versions (sólo se emiten cuando la URL parametrizable por idioma existe) -->
+    <link rel="alternate" hreflang="es" href={esHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
 
     <!-- Preconexiones para recursos críticos -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
@@ -334,52 +461,64 @@ console.log("Cargando layout Base.astro");
       _noindex === true ? (
         <meta name="robots" content="noindex, nofollow" />
       ) : (
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       )
     }
 
     <!-- meta-description -->
     <meta name="description" content={plainify(_description)} />
 
+    <!-- meta-keywords -->
+    <meta name="keywords" content={Array.isArray(_keywords) ? _keywords.join(', ') : _keywords} />
+
     <ClientRouter />
 
     <!-- author from config.json -->
     <meta name="author" content={plainify(_author)} />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:title" content={plainify(_title)} />
     <meta property="og:description" content={plainify(_description)} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${config.site.base_url}${Astro.url.pathname}`} />
-    <meta property="og:site_name" content={config.site.title} />
+    <meta property="og:type" content={og_type || "website"} />
+    <meta property="og:url" content={_canonical_url} />
+    <meta property="og:site_name" content="Cronometras" />
     <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_US'} />
     <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_ES'} />
-    <meta property="og:image" content={`${config.site.base_url}${_image}`} />
+    <meta property="og:image" content={ogImagePath} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={plainify(_title)} />
+
+    {/* Meta tags adicionales para artículos (sólo si og_type = "article") */}
+    {og_type === "article" && article_published_time && (
+      <meta property="article:published_time" content={article_published_time} />
+    )}
+    {og_type === "article" && article_modified_time && (
+      <meta property="article:modified_time" content={article_modified_time} />
+    )}
+    {og_type === "article" && _author && (
+      <meta property="article:author" content={plainify(_author)} />
+    )}
+    {og_type === "article" && article_section && (
+      <meta property="article:section" content={article_section} />
+    )}
+    {og_type === "article" && Array.isArray(_keywords) && _keywords.length > 0 && (
+      <meta property="article:tag" content={_keywords.join(',')} />
+    )}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={plainify(_title)} />
     <meta name="twitter:description" content={plainify(_description)} />
-    <meta name="twitter:image" content={`${config.site.base_url}${_image}`} />
+    <meta name="twitter:image" content={ogImagePath} />
     <meta name="twitter:image:alt" content={plainify(_title)} />
     <meta name="twitter:site" content="@cronometras" />
 
-    <!-- LinkedIn specific - usando propiedades estándar de Open Graph que LinkedIn reconoce -->
-    <!-- LinkedIn usa las etiquetas Open Graph estándar, pero asegurémonos de que estén completas -->
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="Cronometras" />
-    <meta property="og:locale" content={lang === 'es' ? "es_ES" : "en_US"} />
-    <meta property="article:published_time" content={new Date().toISOString()} />
-    <meta property="article:author" content={plainify(_author)} />
-    <meta property="article:section" content="Technology" />
-    <meta property="article:tag" content={Array.isArray(_keywords) ? _keywords.join(',') : "cronometraje industrial"} />
+    <!-- Schema.org: Organization + WebSite + LocalBusiness (GEO) -->
+    <script type="application/ld+json" set:html={orgSchemaString} />
+    <script type="application/ld+json" set:html={siteSchemaString} />
+    <script type="application/ld+json" set:html={localSchemaString} />
 
-    <!-- Etiquetas específicas para LinkedIn -->
-    <meta name="linkedin:owner" content="Cronometras" />
-    <meta name="linkedin:card" content="summary_large_image" />
     <script is:inline>
       // Configuración del tema
       const setTheme = () => {

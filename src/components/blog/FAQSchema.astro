@@ -1,0 +1,45 @@
+---
+import config from '@/config/config.json';
+
+interface QA {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: QA[];
+}
+
+const { faqs } = Astro.props;
+const url = new URL(Astro.url.pathname, config.site.base_url).toString();
+
+// Sanitizar HTML básico de las respuestas (eliminar tags peligrosos)
+function sanitize(html: string): string {
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, "")
+    .replace(/ on\w+="[^"]*"/g, "")
+    .replace(/ on\w+='[^']*'/g, "")
+    .replace(/javascript:/gi, "");
+}
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": sanitize(faq.answer).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
+    },
+  })),
+  "url": url,
+  "inLanguage": Astro.url.pathname.split('/')[1] === 'en' ? 'en-US' : 'es-ES',
+};
+
+const schemaString = JSON.stringify(schema).replace(/</g, "\\u003c");
+---
+
+<!-- Schema FAQPage para Google rich results (GEO) -->
+<script type="application/ld+json" set:html={schemaString} />

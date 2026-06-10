@@ -1,0 +1,63 @@
+---
+import config from '@/config/config.json';
+
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+
+// Schema.org BreadcrumbList
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => {
+    const entry: Record<string, unknown> = {
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.label,
+    };
+    if (item.href) {
+      entry.item = item.href.startsWith("http")
+        ? item.href
+        : new URL(item.href, config.site.base_url).toString();
+    }
+    return entry;
+  }),
+};
+
+const schemaString = JSON.stringify(schema).replace(/</g, "\\u003c");
+---
+
+<!-- Schema BreadcrumbList -->
+<script type="application/ld+json" set:html={schemaString} />
+
+<!-- Visual breadcrumb (navegación visible) -->
+<nav aria-label="Breadcrumb" class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+  <ol class="flex flex-wrap items-center gap-1" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {items.map((item, index) => (
+      <li class="flex items-center gap-1" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        {item.href ? (
+          <a
+            href={item.href}
+            class="hover:text-accent transition-colors"
+            itemprop="item"
+          >
+            <span itemprop="name">{item.label}</span>
+          </a>
+        ) : (
+          <span itemprop="name" class="text-gray-700 dark:text-gray-300 font-medium">{item.label}</span>
+        )}
+        <meta itemprop="position" content={String(index + 1)} />
+        {index < items.length - 1 && (
+          <span aria-hidden="true" class="mx-1 text-gray-400">/</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

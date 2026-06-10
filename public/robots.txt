@@ -1,9 +1,36 @@
 User-agent: *
 Allow: /
-
 Disallow: /api/*
 
 # Permitir explícitamente a LinkedIn
 User-agent: LinkedInBot
 Allow: /
 Disallow: /api/*
+
+# Permitir bots de IA generativa (GEO: Generative Engine Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Sitemap
+Sitemap: https://cronometras.com/sitemap-index.xml

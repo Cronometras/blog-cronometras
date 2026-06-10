@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
     const langMdxPosts = allMdxPosts.filter((post) => {
       const slugValue = post.slug || post.id || '';
       const postLang = slugValue.split('/')[0];
-      return postLang === lang && !post.data.draft;
+      return postLang === lang && !post.data.draft && !post.data.noindex;
     });
 
     // Filter Firestore articles by language (based on slug prefix)
