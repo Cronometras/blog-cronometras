@@ -251,8 +251,12 @@ const t = translations[lang] || translations.es;
     }
 
     function enableAnalytics() {
-      // Enable Google Analytics or other analytics services
-      if (window.GTAG_ID) {
+      // Cargar el script de gtag.js (consentimiento explícito del usuario)
+      if (typeof window.loadGtagScript === 'function') {
+        window.loadGtagScript();
+      }
+      // Actualizar el modo de consentimiento por si ya se cargó gtag.js
+      if (window.GTAG_ID && window.gtag) {
         window.gtag('consent', 'update', {
           'analytics_storage': 'granted'
         });
@@ -260,8 +264,7 @@ const t = translations[lang] || translations.es;
     }
 
     function enableMarketing() {
-      // Enable marketing cookies
-      if (window.GTAG_ID) {
+      if (window.GTAG_ID && window.gtag) {
         window.gtag('consent', 'update', {
           'ad_storage': 'granted'
         });

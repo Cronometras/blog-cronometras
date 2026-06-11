@@ -43,6 +43,15 @@ const blogCollection = defineCollection({
     tags: z.array(z.string()).default([]),
     author: z.string().default('CRONOMETRAS Team'),
     draft: z.boolean().default(false),
+    /**
+     * URL canónica para contenido duplicado. Si se define, la página se marca
+     * como noindex y el canonical apunta a esta URL.
+     */
+    canonical_url: z.string().optional(),
+    /**
+     * Marca la página como noindex (true) o index (false). Por defecto false.
+     */
+    noindex: z.boolean().default(false),
   }),
 });
 

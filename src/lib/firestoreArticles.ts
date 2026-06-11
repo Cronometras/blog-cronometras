@@ -31,6 +31,8 @@ export interface BlogPost {
         tags: string[];
         author: string;
         draft: boolean;
+        canonical_url?: string;
+        noindex?: boolean;
     };
     body: string;
     source: 'firestore' | 'mdx';

@@ -44,11 +44,11 @@ try {
   console.error('Error loading Firestore articles for related posts:', error);
 }
 
-// Filtramos los artículos MDX por idioma y que no sean borradores
+// Filtramos los artículos MDX por idioma, que no sean borradores ni duplicados (noindex)
 const langBlogPosts = allBlogPosts.filter(post => {
   const slugValue = post.slug || post.id || '';
   const postLang = slugValue.split('/')[0];
-  return postLang === language && !post.data.draft;
+  return postLang === language && !post.data.draft && !post.data.noindex;
 });
 
 // Convertimos los artículos MDX a nuestro formato

@@ -55,4 +55,10 @@ if (isLocalImage) {
     max-width: 100%;
     height: auto;
   }
+  /* Cuando no se pasan width/height, reservamos un espacio 16:9 para evitar CLS */
+  img:not([width]) {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.05);
+  }
 </style>

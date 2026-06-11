@@ -1,6 +1,8 @@
 ---
 import PageHeader from "@/components/core/PageHeader.astro";
 import Base from "@/layouts/Base.astro";
+import FAQSchema from "@/components/blog/FAQSchema.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
 import { marked } from 'marked';
 import { getCollection, render } from "astro:content";
 
@@ -42,9 +44,14 @@ while ((match = faqRegex.exec(processedHtml)) !== null) {
 ---
 
 <Base title={page_data.document_title} description={page_data.meta_description}>
+  <FAQSchema faqs={faqs} />
   <section class="py-16">
     <div class="container">
       <div class="mx-auto max-w-[768px] text-center">
+        <Breadcrumb items={[
+          { label: 'Inicio', href: '/es/' },
+          { label: 'Preguntas Frecuentes' }
+        ]} />
         <PageHeader page_data={page_data} />
       </div>
       <div class="row justify-center">
