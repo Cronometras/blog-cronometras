@@ -83,6 +83,34 @@ const termsCollection = defineCollection({
   schema: termsSchema,
 });
 
+// Define aviso-legal collection schema (Spanish and English Legal Notice)
+const avisoLegalSchema = z.object({
+  document_title: z.string(),
+  meta_description: z.string(),
+  meta_keywords: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
+const avisoLegalCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/aviso-legal" }),
+  schema: avisoLegalSchema,
+});
+
+// Define cookies collection schema
+const cookiesSchema = z.object({
+  document_title: z.string(),
+  meta_description: z.string(),
+  meta_keywords: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
+const cookiesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/cookies" }),
+  schema: cookiesSchema,
+});
+
 // Shared collection definitions for standard pages
 const aboutCollection = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/about" }),
@@ -115,5 +143,7 @@ export const collections = {
   pages: pagesCollection,
   privacy: privacyCollection,
   terms: termsCollection,
+  'aviso-legal': avisoLegalCollection,
+  cookies: cookiesCollection,
   faq: faqCollection,
 };

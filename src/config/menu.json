@@ -78,12 +78,20 @@
   ],
   "footer": [
     {
+      "name": "footer.legal_notice",
+      "url": "/aviso-legal"
+    },
+    {
       "name": "footer.privacy",
       "url": "/privacy"
     },
     {
       "name": "footer.terms",
       "url": "/terms"
+    },
+    {
+      "name": "footer.cookies",
+      "url": "/cookies"
     },
     {
       "name": "footer.faq",

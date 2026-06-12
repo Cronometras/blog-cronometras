@@ -1,0 +1,65 @@
+---
+import { getLangFromUrl } from "@/i18n/utils";
+import PageHeader from "@/components/core/PageHeader.astro";
+import Base from "@/layouts/Base.astro";
+import { getEntry, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const languages = ['en', 'es'];
+  return languages.map(lang => ({
+    params: { lang },
+    props: { lang }
+  }));
+}
+
+const { lang } = Astro.params;
+
+let avisoLegal;
+let page_data;
+let Content;
+
+try {
+  avisoLegal = await getEntry("aviso-legal", `${lang}/index`);
+  if (avisoLegal) {
+    page_data = {
+      ...avisoLegal.data,
+      content: avisoLegal.body,
+    };
+    const rendered = await render(avisoLegal);
+    Content = rendered.Content;
+  } else {
+    avisoLegal = await getEntry("aviso-legal", `en/index`);
+    if (avisoLegal) {
+      page_data = { ...avisoLegal.data, content: avisoLegal.body };
+      const rendered = await render(avisoLegal);
+      Content = rendered.Content;
+    }
+  }
+} catch (error) {
+  console.error(`Error loading aviso-legal content: ${error.message}`);
+  page_data = {
+    title: "Aviso Legal",
+    description: "Aviso Legal could not be loaded.",
+    content: ""
+  };
+}
+---
+
+<Base
+  entry_keys={["aviso-legal", `${lang}/index`]}
+>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-[768px] text-center">
+        <PageHeader page_data={page_data} />
+      </div>
+      <div class="row justify-center">
+        <div class="md:col-10 lg:col-8">
+          <div class="prose prose-lg mx-auto mt-8">
+            {Content ? <Content /> : <p class="mb-6">{page_data.description}</p>}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
