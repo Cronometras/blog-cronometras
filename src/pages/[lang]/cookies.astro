@@ -19,9 +19,10 @@ let page_data = null;
 let Content = null;
 
 try {
-  cookies = await getEntry("cookies", `${lang}/index`);
+  // Astro v5 with glob loader uses just the filename (without extension) as the id.
+  cookies = await getEntry("cookies", `${lang}`);
   if (!cookies) {
-    cookies = await getEntry("cookies", "es/index");
+    cookies = await getEntry("cookies", `es`);
   }
   if (cookies) {
     page_data = {

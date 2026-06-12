@@ -19,9 +19,11 @@ let page_data = null;
 let Content = null;
 
 try {
-  avisoLegal = await getEntry("aviso-legal", `${lang}/index`);
+  // Astro v5 with glob loader uses just the filename (without extension) as the id,
+  // not the full relative path. For src/content/aviso-legal/es/index.md the id is "es".
+  avisoLegal = await getEntry("aviso-legal", `${lang}`);
   if (!avisoLegal) {
-    avisoLegal = await getEntry("aviso-legal", "es/index");
+    avisoLegal = await getEntry("aviso-legal", `es`);
   }
   if (avisoLegal) {
     page_data = {
