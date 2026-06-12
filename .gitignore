@@ -24,3 +24,6 @@ package-lock.json
 
 # ignore .astro directory
 .astro
+
+# Firebase service account JSON (admin SDK) — build only
+sa.json
