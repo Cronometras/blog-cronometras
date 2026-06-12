@@ -14,12 +14,15 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-let cookies;
-let page_data;
-let Content;
+let cookies = null;
+let page_data = null;
+let Content = null;
 
 try {
   cookies = await getEntry("cookies", `${lang}/index`);
+  if (!cookies) {
+    cookies = await getEntry("cookies", "es/index");
+  }
   if (cookies) {
     page_data = {
       ...cookies.data,
@@ -28,25 +31,29 @@ try {
     const rendered = await render(cookies);
     Content = rendered.Content;
   } else {
-    cookies = await getEntry("cookies", `en/index`);
-    if (cookies) {
-      page_data = { ...cookies.data, content: cookies.body };
-      const rendered = await render(cookies);
-      Content = rendered.Content;
-    }
+    page_data = {
+      title: "Cookie Policy",
+      document_title: "Cookie Policy",
+      description: "Cookie Policy",
+      meta_description: "Cookie Policy",
+      meta_keywords: "",
+    };
   }
 } catch (error) {
   console.error(`Error loading cookies content: ${error.message}`);
   page_data = {
     title: "Cookie Policy",
+    document_title: "Cookie Policy",
     description: "Cookie Policy could not be loaded.",
-    content: ""
+    meta_description: "Cookie Policy could not be loaded.",
+    meta_keywords: "",
   };
 }
 ---
 
 <Base
-  entry_keys={["cookies", `${lang}/index`]}
+  title={page_data?.document_title || "Cookie Policy"}
+  description={page_data?.description || "Cookie Policy"}
 >
   <section class="py-16">
     <div class="container">

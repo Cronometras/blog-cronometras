@@ -14,12 +14,15 @@ export async function getStaticPaths() {
 
 const { lang } = Astro.params;
 
-let avisoLegal;
-let page_data;
-let Content;
+let avisoLegal = null;
+let page_data = null;
+let Content = null;
 
 try {
   avisoLegal = await getEntry("aviso-legal", `${lang}/index`);
+  if (!avisoLegal) {
+    avisoLegal = await getEntry("aviso-legal", "es/index");
+  }
   if (avisoLegal) {
     page_data = {
       ...avisoLegal.data,
@@ -28,25 +31,29 @@ try {
     const rendered = await render(avisoLegal);
     Content = rendered.Content;
   } else {
-    avisoLegal = await getEntry("aviso-legal", `en/index`);
-    if (avisoLegal) {
-      page_data = { ...avisoLegal.data, content: avisoLegal.body };
-      const rendered = await render(avisoLegal);
-      Content = rendered.Content;
-    }
+    page_data = {
+      title: "Aviso Legal",
+      document_title: "Aviso Legal",
+      description: "Aviso Legal",
+      meta_description: "Aviso Legal",
+      meta_keywords: "",
+    };
   }
 } catch (error) {
   console.error(`Error loading aviso-legal content: ${error.message}`);
   page_data = {
     title: "Aviso Legal",
+    document_title: "Aviso Legal",
     description: "Aviso Legal could not be loaded.",
-    content: ""
+    meta_description: "Aviso Legal could not be loaded.",
+    meta_keywords: "",
   };
 }
 ---
 
 <Base
-  entry_keys={["aviso-legal", `${lang}/index`]}
+  title={page_data?.document_title || "Aviso Legal"}
+  description={page_data?.description || "Aviso Legal"}
 >
   <section class="py-16">
     <div class="container">
