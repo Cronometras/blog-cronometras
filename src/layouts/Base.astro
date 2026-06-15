@@ -458,11 +458,12 @@ console.log("Cargando layout Base.astro");
     <!-- SEO: sitemap -->
     <link rel="sitemap" type="application/xml" href={`${config.site.base_url}/sitemap-index.xml`} />
 
-    <!-- KaTeX for LaTeX math rendering -->
+    <!-- KaTeX for LaTeX math rendering (defer = non-blocking) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-    <script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+    <script defer is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+    <script defer is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
     <script is:inline>
+      // renderMath: solo corre en astro:page-load, así que no necesita bloquear
       const renderMath = () => {
         if (window.renderMathInElement) {
           renderMathInElement(document.body, {
