@@ -1,0 +1,925 @@
+{
+  "timestamp": "2026-06-15T20:14:36.128Z",
+  "mode": "execute",
+  "strategy": "merge+delete (mantén siempre los más antiguos)",
+  "total": 37,
+  "byStatus": {
+    "merged+deleted": 37
+  },
+  "details": [
+    {
+      "oldId": "VDV3WNFr5RdboM8PA1nn",
+      "newId": "1ZQtufCTBVfGwjdIuTNG",
+      "slug": "machine-time-measurement",
+      "topic": "Machine Time Measurement",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "MWDNgW6ZXVLt09kE3SvU",
+      "newId": "1ad8utBz9G4TxoN05znc",
+      "slug": "work-method-design",
+      "topic": "Work Method Design",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "leS0FF0LckApMsFD2LNj",
+      "newId": "22T01NwgLrQYGMlCrYbV",
+      "slug": "why-are-there-delays-in-production",
+      "topic": "Why Are There Delays in Production?",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "2GH9xPDaDNIG61FkkTrX",
+      "newId": "GBUPssjIYXdsMZmp6YQg",
+      "slug": "stages-of-work-methods-study",
+      "topic": "Stages of Work Methods Study",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "2nyNHArASdzOtRBTZoHv",
+      "newId": "vB53IJM7fitpo1LmSDS2",
+      "slug": "identification-of-work-to-measure",
+      "topic": "Identification of Work to Measure",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "tQYwnnACg6AL9yRZyYT0",
+      "newId": "2vh9muWRPBBEGMD3gT20",
+      "slug": "define-the-work-method",
+      "topic": "Define the Work Method",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "phhiUyvRDnqTxQk0ZuuW",
+      "newId": "41aWSPJrhkvlkjpRNOAG",
+      "slug": "time-measurement-with-stopwatch",
+      "topic": "Time Measurement with Stopwatch",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "aCzrKOwl3kaE1cfuQgM9",
+      "newId": "AxiPXXggWPziyhuonPsI",
+      "slug": "line-balancing-optimizing-efficiency-in-manufacturing-processes",
+      "topic": "Line Balancing: Optimizing Efficiency in Manufacturing Processes",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "CXbNCsnoyvgLU7iZ7nSM",
+      "newId": "IQHhNoruhJBWy19V3Dms",
+      "slug": "work-study",
+      "topic": "Work Study",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "Xg8PISIBABUI8iIpZOle",
+      "newId": "Ck8OWOMMuSiqIJgv3byM",
+      "slug": "tools-needed-for-time-study",
+      "topic": "Tools Needed for Time Study",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "vnR5aBrQucqP6VlysDlb",
+      "newId": "EBy8IsedyCLhMI9OhRbI",
+      "slug": "application-of-ilo-allowances",
+      "topic": "Application of ILO Allowances",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "lqujDFf6vJoL0p8sy6XL",
+      "newId": "EKeYc9ncHYtqioYLtBZK",
+      "slug": "prepare-automation",
+      "topic": "Prepare Automation",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "EMslKYEr73i2zKBgccyE",
+      "newId": "HtbhttLhBVPXAGtITihq",
+      "slug": "how-to-create-a-new-work-study",
+      "topic": "How to Create a New Work Study",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "FpGZfBX03udC6gMMQzfe",
+      "newId": "x9H88K8xZiqn5iVrlEc0",
+      "slug": "calculating-the-optimal-number-of-machines-for-an-operator",
+      "topic": "Calculating the Optimal Number of Machines for an Operator",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "Gm8gFzj3r3oIlwtRypEl",
+      "newId": "rE4plZPvr9PrHmYAgXuL",
+      "slug": "defining-work-elements-in-a-time-study-with-stopwatch",
+      "topic": "Defining Work Elements in a Time Study with Stopwatch",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "UXBnUj2OeRcOBrypcpXS",
+      "newId": "HN4WV13y5F3ywwczXYE4",
+      "slug": "work-time-measurement",
+      "topic": "Work Time Measurement",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "tnVVb5oEaQRJbtK3ykKK",
+      "newId": "ICf66WY8RT1D9ruiicvu",
+      "slug": "ergonomics-from-pain-to-productivity",
+      "topic": "Ergonomics: From Pain to Productivity",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "wBrRUQg8iu0AcIEkiorU",
+      "newId": "ImzHKrSRocnBy6uK3iTz",
+      "slug": "choose-how-to-measure-work",
+      "topic": "Choose How to Measure Work",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "IvGst6ezC1v3GV3WT9Sk",
+      "newId": "JaiKjHAo7QDxfOaFCa5h",
+      "slug": "methods-and-times-in-industrial-business-management",
+      "topic": "Methods and Times in Industrial Business Management",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "TCRpEPWXy0dZXmjFX8v1",
+      "newId": "JwmJQIE9SKUGGXryXcih",
+      "slug": "how-to-standardize-work-times-in-industry",
+      "topic": "How to Standardize Work Times in Industry?",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "Lg22h7zT5wSFLovCTlGo",
+      "newId": "LoCbNoq0rzKhv875aMC0",
+      "slug": "objectives-of-work-study",
+      "topic": "Objectives of Work Study",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "eYit5CgUUeGxbGs9vw2I",
+      "newId": "MPAKfDzoJVyaOzq6sDws",
+      "slug": "comprehensive-time-study-management",
+      "topic": "Comprehensive Time Study Management",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "Rj1ORthQstWgppHccSQV",
+      "newId": "MuEA4i8yEkZvg9F4cZYH",
+      "slug": "accessing-the-app",
+      "topic": "Accessing the App",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "QV4HCPzzrMgOy0oQf2qs",
+      "newId": "NjsubpwYyyGu6O6ZnnUo",
+      "slug": "what-are-the-phases-of-an-industrial-process",
+      "topic": "What Are the Phases of an Industrial Process?",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "OYLqosgEiJEzWSywIwkX",
+      "newId": "kLRcUA15iEES9DjOCEJH",
+      "slug": "rest-at-work-a-comprehensive-approach",
+      "topic": "Rest at Work: A Comprehensive Approach",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "PknrMKrAOAGr3rEnFufm",
+      "newId": "x7r3LgZWBlXRwuwc70E0",
+      "slug": "measuring-without-predefined-method-continuous-timing",
+      "topic": "Measuring Without Predefined Method: Continuous Timing",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "Q9kDKjuiHsLlPOyi9UP8",
+      "newId": "fuvp5XwhbjACKMQZtuBt",
+      "slug": "how-to-reduce-lead-time-to-improve-productivity-competitiveness-and-efficiency-of-your-company",
+      "topic": "How to Reduce Lead Time to Improve Productivity, Competitiveness and Efficiency of Your Company",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "QfHYMnKlZ2NmHRhwf7Jc",
+      "newId": "ig5QZq2GrzGcsE2rZTUt",
+      "slug": "what-is-time-and-motion-study",
+      "topic": "What is Time and Motion Study?",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "WfXb1egAknmDRR6bpTO0",
+      "newId": "SPhwbNCHnwI0fShsvjgA",
+      "slug": "what-types-of-stopwatches-exist",
+      "topic": "What Types of Stopwatches Exist?",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "SlkFXKZ6rYRKf9B5ab1w",
+      "newId": "pCDk79VYelIPcyiKojd7",
+      "slug": "optimization-of-production-systems-key-to-industrial-efficiency",
+      "topic": "Optimization of Production Systems: Key to Industrial Efficiency",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "TmLUUkVs8mrnQoTTxqaG",
+      "newId": "TqzHzgGI4tg2bOrGh8qf",
+      "slug": "benefits-and-challenges-of-implementing-lean-manufacturing-in-your-company",
+      "topic": "Benefits and Challenges of Implementing Lean Manufacturing in Your Company",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "YZZoe6E1mG6bIxCRll6i",
+      "newId": "eugrzlgK1kOItWGwe0jj",
+      "slug": "man-machine-work-how-to-calculate-and-minimize-interferences-practical-guide-and-effective-methods",
+      "topic": "Man-Machine Work, How to Calculate and Minimize Interferences: Practical Guide and Effective Methods",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "mPj8aKOIqnBtxFvmLUfW",
+      "newId": "jiA5OWRapBIhBcSKfig1",
+      "slug": "generate-time-study-report",
+      "topic": "Generate Time Study Report",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "tui7H5svbBn7MA7WdjQo",
+      "newId": "k3dAT8Ebtn44DVp20gxV",
+      "slug": "bedaux-system",
+      "topic": "Bedaux System",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "mLIQYqlXk7A7deHRJtqS",
+      "newId": "vrz3rj50JzE0JhRER7gd",
+      "slug": "what-is-gsd-in-engineering",
+      "topic": "What is GSD in Engineering?",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "velfQnQxMs4JgWBU7wkj",
+      "newId": "vVd0y77AWSCyYpKmFAC1",
+      "slug": "how-to-improve-efficiency-and-effectiveness-of-industrial-process-through-task-simplification",
+      "topic": "How to Improve Efficiency and Effectiveness of Industrial Process Through Task Simplification",
+      "status": "merged+deleted",
+      "fieldsCopied": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate"
+      ],
+      "updates": [
+        "esSlug",
+        "esTopic",
+        "description",
+        "author",
+        "pubDate",
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    },
+    {
+      "oldId": "AoN9Cu2gs1fHnpN44YEQ",
+      "newId": "3R2ipdZxogo62GpGA4ZP",
+      "slug": "(no slug)",
+      "topic": "Diseño de plantillas...",
+      "status": "merged+deleted",
+      "fieldsCopied": [],
+      "updates": [
+        "mergedFromTranslation",
+        "mergedAt",
+        "mergedFromNewId",
+        "needsSpanishTranslation"
+      ]
+    }
+  ]
+}
