@@ -30,7 +30,22 @@ function readServiceAccount(): any {
     }
   }
 
-  // Source 3: ./sa.json in project root (local dev convenience)
+  // Source 3: FIREBASE_SERVICE_ACCOUNT (alt name used by some hosting
+  // providers, e.g. Cloudflare Pages env vars panel accepts a short name
+  // without the _JSON suffix). Treated as raw JSON only.
+  const envAlt = (import.meta.env.FIREBASE_SERVICE_ACCOUNT
+    || process.env.FIREBASE_SERVICE_ACCOUNT || '').trim();
+  if (envAlt) {
+    if (envAlt.startsWith('{')) {
+      return JSON.parse(envAlt);
+    }
+    const abs = resolve(process.cwd(), envAlt);
+    if (existsSync(abs)) {
+      return JSON.parse(readFileSync(abs, 'utf8'));
+    }
+  }
+
+  // Source 4: ./sa.json in project root (local dev convenience)
   const localPath = resolve(process.cwd(), 'sa.json');
   if (existsSync(localPath)) {
     return JSON.parse(readFileSync(localPath, 'utf8'));
@@ -40,6 +55,7 @@ function readServiceAccount(): any {
     'Firebase admin service account not found. Provide one of:\n' +
     '  - FIREBASE_SERVICE_ACCOUNT_PATH=/abs/path/to/sa.json\n' +
     '  - FIREBASE_SERVICE_ACCOUNT_JSON={"type":...}\n' +
+    '  - FIREBASE_SERVICE_ACCOUNT={"type":...}  (Cloudflare Pages naming)\n' +
     '  - ./sa.json in project root'
   );
 }
