@@ -25,7 +25,7 @@ export async function getStaticPaths() {
   // Get Firestore articles for route generation
   let firestoreArticles: BlogPost[] = [];
   try {
-    firestoreArticles = await getFirestoreArticles();
+    firestoreArticles = await getFirestoreArticles(); // legacy default = 'es' (compat)
     console.log(`Total de artículos de Firestore: ${firestoreArticles.length}`);
   } catch (error) {
     console.error('Error loading Firestore articles:', error);
@@ -33,12 +33,33 @@ export async function getStaticPaths() {
 
   const paths = [];
 
-  // Add MDX posts paths
+  // Build a Set of slugs that Firestore already serves (to avoid duplicate routes)
+  // Firestore slugs are like "es/5-metodos-de-medicion-del-trabajo" or "en/5-work-measurement-methods"
+  const firestoreSlugs = new Set(firestoreArticles.map(a => a.slug));
+
+  // Get EN Firestore articles too (we need them for the i18n routing)
+  let firestoreEnArticles: BlogPost[] = [];
+  try {
+    firestoreEnArticles = await getFirestoreArticles('en');
+  } catch (e) {
+    console.error('Error loading EN Firestore articles:', e);
+  }
+  for (const a of firestoreEnArticles) firestoreSlugs.add(a.slug);
+
+  // Add MDX posts paths (only if NOT already in Firestore, to avoid duplicate routes)
+  let mdxSkipped = 0;
   for (const post of mdxPosts) {
     const slugValue = post.slug || post.id || '';
     const slugParts = slugValue.split('/');
     const lang = slugParts[0];
     const slug = slugParts.slice(1).join('/');
+
+    // Skip MDX if Firestore has the same slug
+    const mdxKey = `${lang}/${slug}`;
+    if (firestoreSlugs.has(mdxKey)) {
+      mdxSkipped++;
+      continue;
+    }
 
     console.log(`Generando ruta MDX: lang=${lang}, slug=${slug}`);
 
@@ -47,6 +68,7 @@ export async function getStaticPaths() {
       props: { post, source: 'mdx' },
     });
   }
+  console.log(`MDX omitidos (ya en Firestore): ${mdxSkipped}`);
 
   // Add Firestore posts paths (only for route generation, content loads dynamically)
   for (const article of firestoreArticles) {
@@ -59,11 +81,30 @@ export async function getStaticPaths() {
 
     paths.push({
       params: { lang, slug },
-      props: { 
-        post: article, 
+      props: {
+        post: article,
         source: 'firestore',
         // Pass only minimal data needed for SEO meta tags
-        firestoreSlug: slug 
+        firestoreSlug: slug
+      },
+    });
+  }
+
+  // Add EN Firestore posts paths too
+  for (const article of firestoreEnArticles) {
+    const slugValue = article.slug || '';
+    const slugParts = slugValue.split('/');
+    const lang = slugParts[0];
+    const slug = slugParts.slice(1).join('/');
+
+    console.log(`Generando ruta Firestore EN: lang=${lang}, slug=${slug}`);
+
+    paths.push({
+      params: { lang, slug },
+      props: {
+        post: article,
+        source: 'firestore',
+        firestoreSlug: slug
       },
     });
   }

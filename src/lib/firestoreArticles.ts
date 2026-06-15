@@ -2,6 +2,12 @@
 // Uses firebase-admin (server-side, build-time). The previous firebase client SDK
 // raised INVALID_ARGUMENT during Astro SSR because it tries to keep a gRPC Listen
 // stream open — not viable in a build context.
+//
+// i18n: each doc has a `language` field ('es' | 'en'). We fetch and return
+// only docs for the requested language. The `slug` field is the canonical
+// slug (e.g. "es/5-metodos-de-medicion-del-trabajo" or "en/5-work-measurement-methods").
+// When the `slug` field is missing (legacy docs from the generator), we fall
+// back to slugify(topic) for ES only.
 import { getAdminFirestore } from "./firebase-admin";
 import { slugify } from "@/utils/slugify";
 
@@ -18,6 +24,13 @@ export interface FirestoreArticle {
     status: string;
     topic: string;
     topicId: string;
+    // Custom fields (may be missing on legacy docs from the generator)
+    language?: 'es' | 'en';
+    slug?: string;
+    migratedFromMDX?: boolean;
+    needsSpanishTranslation?: boolean;
+    categoria?: string;
+    draft?: boolean;
 }
 
 // Type definition for blog post format (compatible with Astro content collection)
@@ -73,6 +86,9 @@ function extractDescription(content: string): string {
 }
 
 function extractCategory(article: FirestoreArticle): string {
+    // Prefer the explicit `categoria` field (Spanish), then fall back to
+    // legacy projectId-based default.
+    if (article.categoria) return article.categoria;
     if (article.projectId === 'cronometras') {
         return 'Cronometraje Industrial';
     }
@@ -90,15 +106,19 @@ function processCTAs(content: string): string {
     );
 }
 
-function transformToBlogPost(article: FirestoreArticle): BlogPost {
+function transformToBlogPost(article: FirestoreArticle, lang: 'es' | 'en'): BlogPost {
     const title = extractTitle(article.content);
     const description = extractDescription(article.content);
-    const slug = slugify(article.topic || title);
+    // Use the explicit `slug` field if present (migrated MDX have it),
+    // otherwise fall back to slugify(topic) and prefix with the language.
+    const slug = article.slug
+        ? article.slug
+        : `${lang}/${slugify(article.topic || title)}`;
     const processedContent = processCTAs(article.content);
 
     return {
         id: `firestore-${article.id}`,
-        slug: `es/${slug}`,
+        slug,
         data: {
             title,
             description,
@@ -107,48 +127,84 @@ function transformToBlogPost(article: FirestoreArticle): BlogPost {
             category: extractCategory(article),
             tags: article.keywords || [],
             author: 'Cronometras Team',
-            draft: article.status !== 'completed',
+            draft: article.draft !== undefined ? article.draft : article.status !== 'completed',
         },
         body: processedContent,
         source: 'firestore',
     };
 }
 
-async function fetchSpanishArticles(): Promise<BlogPost[]> {
+async function fetchArticlesByLang(lang: 'es' | 'en'): Promise<BlogPost[]> {
     try {
-        console.log('Fetching articles from Firestore collection: articulos_cronometras (admin SDK)');
+        console.log(`Fetching articles from Firestore collection: articulos_cronometras (admin SDK) [lang=${lang}]`);
 
         const db = getAdminFirestore();
-        const snapshot = await db.collection('articulos_cronometras')
-                                .orderBy('createdAt', 'desc')
-                                .get();
+        // NOTE: we don't use .orderBy() here because the query
+        // (where language == X, orderBy createdAt) requires a composite index
+        // that we don't have on articulos_cronometras. The result is sorted
+        // by createdAt DESC client-side below (cheap for ~150 docs).
+        //
+        // For Spanish, we ALSO include legacy docs from the generator that
+        // don't have a `language` field (they were created before i18n support).
+        // For English, only docs with language='en' exist.
+        let snapshot;
+        if (lang === 'es') {
+            const [snapEs, snapAll] = await Promise.all([
+                db.collection('articulos_cronometras').where('language', '==', 'es').get(),
+                db.collection('articulos_cronometras').get(),
+            ]);
+            // Filter legacy docs (no `language` field) client-side
+            const legacyDocs = snapAll.docs.filter(d => {
+                const data = d.data();
+                return data.language === undefined && data.status === 'completed' && !data.draft && data.content;
+            });
+            // Build a "fake" QuerySnapshot that supports forEach by extending the original
+            // We need an object with forEach — easiest is to create one that wraps a merged array
+            const allDocs = [...snapEs.docs, ...legacyDocs];
+            snapshot = {
+                forEach: (cb) => allDocs.forEach(cb),
+                size: allDocs.length,
+                docs: allDocs,
+            };
+        } else {
+            snapshot = await db.collection('articulos_cronometras')
+                                    .where('language', '==', lang)
+                                    .get();
+        }
 
         const articles: BlogPost[] = [];
         snapshot.forEach((doc) => {
             const data = doc.data() as Omit<FirestoreArticle, 'id'>;
             const article: FirestoreArticle = { id: doc.id, ...data };
-            if (article.status === 'completed' && article.content) {
-                articles.push(transformToBlogPost(article));
+            // Only include completed, non-draft posts
+            if (article.status === 'completed' && !article.draft && article.content) {
+                articles.push(transformToBlogPost(article, lang));
             }
         });
 
-        console.log(`Loaded ${articles.length} Spanish articles from Firestore`);
+        // Sort by createdAt DESC in JS (avoiding the need for a composite index)
+        articles.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+        console.log(`Loaded ${articles.length} ${lang.toUpperCase()} articles from Firestore`);
         return articles;
     } catch (error) {
-        console.error('Error fetching Firestore articles:', error);
+        console.error(`Error fetching Firestore articles (lang=${lang}):`, error);
         return [];
     }
 }
 
-export async function getFirestoreArticles(): Promise<BlogPost[]> {
-    return await fetchSpanishArticles();
+// Backward-compatible default: Spanish (used by the legacy routing path)
+export async function getFirestoreArticles(lang: 'es' | 'en' = 'es'): Promise<BlogPost[]> {
+    return await fetchArticlesByLang(lang);
 }
 
-export async function getFirestoreArticleBySlug(slug: string): Promise<BlogPost | null> {
-    const articles = await getFirestoreArticles();
+export async function getFirestoreArticleBySlug(slug: string, lang: 'es' | 'en' = 'es'): Promise<BlogPost | null> {
+    const articles = await getFirestoreArticles(lang);
     const article = articles.find(a => {
-        const articleSlug = a.slug.split('/').slice(1).join('/');
-        return articleSlug === slug;
+        // Accept slugs with or without the language prefix
+        const aSlug = a.slug.split('/').slice(1).join('/');
+        const requested = slug.split('/').slice(-1)[0];
+        return aSlug === requested;
     });
     return article || null;
 }
