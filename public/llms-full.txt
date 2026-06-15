@@ -36,7 +36,7 @@
 - [Actividad y ritmo en cronometraje industrial](https://cronometras.com/en/blog/activity-rating-in-industrial-time-study/): sistemas de valoración Bedaux, Westinghouse, Centésimal.
 - [Sistema Bedaux](https://cronometras.com/en/blog/bedaux-system/): explicación del sistema Bedaux de valoración.
 - [Bedaux vs. escala centesimal: ¿cuál elegir?](https://cronometras.com/en/blog/bedaux-vs-centesimal-scale-which-to-choose/): comparativa técnica.
-- [Sistema Westinghouse de valoración del ritmo](https://cronometras.com/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-guia/): guía completa del sistema Westinghouse.
+- [Sistema Westinghouse de valoración del ritmo](https://cronometras.com/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp/): guía completa del sistema Westinghouse.
 
 ### Suplementos y holguras
 - [Aplicación de suplementos OIT](https://cronometras.com/en/blog/application-of-ilo-allowances/): cómo aplicar las holguras OIT/TAL.

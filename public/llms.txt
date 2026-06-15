@@ -53,7 +53,7 @@
 - [Biblioteca de elementos y estandarización](https://cronometras.com/es/blog/biblioteca-de-elementos-estandarizacion-de-tiempos/): normalización de elementos.
 - [Análisis de variabilidad y SPC en cronometraje](https://cronometras.com/es/blog/analisis-de-la-variabilidad-en-los-tiempos-de-ciclo-control-estadistico-de-procesos-spc-aplicado-al-cronometraje-industrial/): control estadístico.
 - [Balanceo de líneas y MTM: de timing estático a 85% OEE](https://cronometras.com/en/blog/assembly-line-balancing-techniques-from-static-timing-to-85-percent-oee-efficiency-with-mtm/): MTM y OEE.
-- [Sistema Westinghouse de valoración del ritmo](https://cronometras.com/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-guia/): guía completa del sistema Westinghouse.
+- [Sistema Westinghouse de valoración del ritmo](https://cronometras.com/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp/): guía completa del sistema Westinghouse.
 - [Suplementos OIT y fatiga](https://cronometras.com/en/blog/ilo-fatigue-allowances-guide/): guía de suplementos por fatiga.
 - [Aplicación de suplementos ILO](https://cronometras.com/en/blog/application-of-ilo-allowances/): cómo aplicarlos.
 
