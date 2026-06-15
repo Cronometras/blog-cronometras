@@ -1,8 +1,10 @@
 # =====================================================================
-# _redirects (Netlify) - Reglas consolidadas para SEO
+# _redirects (Cloudflare Pages) - Reglas consolidadas para SEO
 # =====================================================================
-# Formato Netlify: /origen  /destino  [status] [opciones]
+# Formato Cloudflare Pages: /origen  /destino  [status]
 # Las reglas más específicas van primero.
+# Reglas con sintaxis Netlify (multi-splat, etc.) que Pages no soporta
+# se han convertido a patrones con `*` final o se han eliminado.
 # =====================================================================
 
 # ---------------------------------------------------------------------
@@ -71,14 +73,11 @@
 /descanso-laboral*                                                            /es/blog/descanso-en-el-trabajo-un-enfoque-integral/    301
 
 # ---------------------------------------------------------------------
-# 6. Posts con slug antiguo (canónico v2/fixed) - Duplicados que
-#    se han resuelto con noindex + canonical en el frontmatter
+# 6. (Eliminado) Las reglas de /es/blog/<slug>* -> ...-v2/ se han eliminado.
+#    Los archivos -v2.mdx fueron borrados del content/blog/es/, así que
+#    /es/blog/<slug>/ sirve el post canónico directamente (sin loop).
+#    Los aliases desde URLs sin prefijo de idioma siguen en sección 5.
 # ---------------------------------------------------------------------
-/es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria*        /es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria-v2/    301
-/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial*             /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial-v2/    301
-/es/blog/aplicacion-de-suplementos-oit*                                  /es/blog/aplicacion-suplementos-oit-fixed/    301
-/es/blog/por-qu%C3%A9-hay-retrasos-en-la-producci%C3%B3n*                 /es/blog/por-que-hay-retrasos-en-la-produccion/    301
-/es/blog/el-muestreo-del-trabajo-una-herramienta-estad%C3%ADstica-para-la-gesti%C3%B3n-eficiente*  /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301
 
 # ---------------------------------------------------------------------
 # 7. Posts con espacios (slug mal formado) -> slugs canónicos con guiones
@@ -143,9 +142,11 @@
 /leccion/*                                                              /es/blog/    301
 
 # ---------------------------------------------------------------------
-# 11. APIs
+# 11. API: las Netlify Functions ya no existen; las rutas /api/* ahora
+#     devuelven 404 (no hay backend serverless en este proyecto).
+#     Si en el futuro se añaden endpoints, apuntar a Cloudflare Workers
+#     o Cloudflare Pages Functions, no a /.netlify/functions/.
 # ---------------------------------------------------------------------
-/api/*  /.netlify/functions/:splat  200
 
 # ---------------------------------------------------------------------
 # 12. SPA fallback: rutas no existentes -> 404 localizado

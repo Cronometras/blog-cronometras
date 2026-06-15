@@ -1,0 +1,107 @@
+# Cronometras — Versión canónica completa
+
+> Cronometras es una aplicación web (PWA) en español para el cronometraje industrial, estudio de tiempos y movimientos, valoración del ritmo, suplementos OIT y generación de tiempos estándar. Pensada para ingenieros de métodos, responsables de producción y consultoras Lean que necesitan datos auditables en planta, sin papeles y sin hojas de cálculo.
+
+- Sitio web: https://cronometras.com
+- Email: info@cronometras.com
+- Privacidad: privacy@cronometras.com
+- Idioma: Español (es-ES); Inglés (en-US) disponible
+- Versión resumida: https://cronometras.com/llms.txt
+- Titular: ProdCont (Miguel Cano Otero). Domicilio: C/ San Pedro 70, 46470 Albal (Valencia), España. NIF 53097360-C.
+- Marca paraguas: ProdCont (https://prodcont.com) — paraguas corporativo de las apps de organización industrial del grupo.
+
+## Producto principal
+- [Inicio de Cronometras](https://cronometras.com/): cronómetro industrial digital, suplementos OIT, valoración Westinghouse, time study, métodos y tiempos.
+- [Cronometras en español](https://cronometras.com/es/): versión localizada es-ES.
+- [Cronometras in English](https://cronometras.com/en/): localized en-US version.
+- [Acerca de](https://cronometras.com/about/): misión, equipo y tecnología de Cronometras.
+- [Contacto](https://cronometras.com/contact/): canales comerciales y soporte.
+- [Changelog](https://cronometras.com/changelog/): historial de versiones y mejoras.
+- [Continuous (Lean)](https://cronometras.com/continuous/): módulo de mejora continua.
+
+## Aplicación (App)
+- [App Cronometras](https://app.cronometras.com): la PWA que se instala en tablet o móvil de planta, funciona offline y sincroniza cuando hay red.
+
+## Funcionalidades clave (artículos del blog)
+### Medición del trabajo
+- [Cómo elegir cómo medir el trabajo](https://cronometras.com/es/blog/choose-how-to-measure-work/): cuándo cronómetro, cuándo muestreo, cuándo MTM.
+- [5 métodos de medición del trabajo](https://cronometras.com/es/blog/5-work-measurement-methods/): cronómetro, muestreo, MTM, MOST, datos predeterminados.
+- [7 errores comunes en el cronometraje industrial](https://cronometras.com/es/blog/7-common-mistakes-industrial-time-study/): pitfalls del time study con cronómetro.
+- [Cómo conducir un estudio de tiempos y movimientos con cronómetro](https://cronometras.com/es/blog/how-to-conduct-a-time-and-motion-study-with-stopwatch/): guía paso a paso.
+- [Identificación del trabajo a medir](https://cronometras.com/es/blog/identification-of-work-to-measure/): primer paso del estudio.
+- [Cómo crear un nuevo estudio de trabajo](https://cronometras.com/es/blog/how-to-create-a-new-work-study/): tutorial paso a paso.
+- [Gestión integral del estudio de tiempos](https://cronometras.com/es/blog/comprehensive-time-study-management/): gestión completa.
+
+### Valoración del ritmo
+- [Actividad y ritmo en cronometraje industrial](https://cronometras.com/es/blog/activity-rating-in-industrial-time-study/): sistemas de valoración Bedaux, Westinghouse, Centésimal.
+- [Sistema Bedaux](https://cronometras.com/es/blog/bedaux-system/): explicación del sistema Bedaux de valoración.
+- [Bedaux vs. escala centesimal: ¿cuál elegir?](https://cronometras.com/es/blog/bedaux-vs-centesimal-scale-which-to-choose/): comparativa técnica.
+- [Sistema Westinghouse de valoración del ritmo](https://cronometras.com/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-guia/): guía completa del sistema Westinghouse.
+
+### Suplementos y holguras
+- [Aplicación de suplementos OIT](https://cronometras.com/es/blog/application-of-ilo-allowances/): cómo aplicar las holguras OIT/TAL.
+- [Suplementos OIT y fatiga](https://cronometras.com/es/blog/ilo-fatigue-allowances-guide/): guía de suplementos por fatiga.
+- [Ergonomía: del dolor a la productividad](https://cronometras.com/es/blog/ergonomics-from-pain-to-productivity/): ergonomía y tiempo de ciclo.
+- [Ciclo óptimo y ergonomía en planta](https://cronometras.com/es/blog/impact-of-ergonomics-on-cycle-times-from-variable-fatigue-to-maximized-oee-horizon-2025/): fatiga variable y OEE.
+
+### Tiempo normal, estándar y coste
+- [Diferencia entre tiempo normal y tiempo estándar](https://cronometras.com/es/blog/difference-between-normal-time-and-standard-time/): conceptos fundamentales.
+- [Estandarización de tiempos en industria](https://cronometras.com/es/blog/how-to-standardize-work-times-in-industry/): por qué estandarizar.
+- [Coste estándar por producto](https://cronometras.com/es/blog/coste-estandar-por-producto-como-calcular-el-coste-unitario-a-partir-del-tiempo-estandar/): cálculo del coste unitario.
+- [Biblioteca de elementos y estandarización](https://cronometras.com/es/blog/biblioteca-de-elementos-estandarizacion-de-tiempos/): normalización de elementos.
+- [Definición de elementos de trabajo en time study](https://cronometras.com/es/blog/defining-work-elements-in-a-time-study-with-stopwatch/): descomposición elemental.
+- [Definir el método de trabajo](https://cronometras.com/es/blog/define-the-work-method/): estandarización previa al cronometraje.
+
+### Análisis de variabilidad y OEE
+- [Análisis de variabilidad y SPC en cronometraje](https://cronometras.com/es/blog/analisis-de-la-variabilidad-en-los-tiempos-de-ciclo-control-estadistico-de-procesos-spc-aplicado-al-cronometraje-industrial/): control estadístico.
+- [Generar informe de estudio de tiempos](https://cronometras.com/es/blog/generate-time-study-report/): output del sistema.
+
+### Balanceo e interferencias hombre-máquina
+- [Cálculo del ciclo óptimo en trabajos con máquina](https://cronometras.com/es/blog/calculo-del-ciclo-optimo-en-trabajos-con-maquina/): fórmula y aplicación.
+- [Cálculo del número óptimo de máquinas por operario](https://cronometras.com/es/blog/calculating-the-optimal-number-of-machines-for-an-operator/): balanceo hombre-máquina.
+- [Asignación óptima de máquinas MMS (Ashcroft)](https://cronometras.com/es/blog/ashcroft-tables-the-exact-mathematics-to-maximize-machine-assignment-mms-and-justify-workload/): tablas Ashcroft.
+- [Cómo aplicar la fórmula de Wright para interferencias de máquinas](https://cronometras.com/es/blog/como-aplicar-la-formula-de-wright-para-interferencias-de-maquinas/): fórmula de Wright.
+- [Balanceo de líneas y MTM: de timing estático a 85% OEE](https://cronometras.com/es/blog/assembly-line-balancing-techniques-from-static-timing-to-85-percent-oee-efficiency-with-mtm/): MTM y OEE.
+
+### Mejora continua y Lean
+- [Beneficios y retos de implementar Lean Manufacturing](https://cronometras.com/es/blog/benefits-and-challenges-of-implementing-lean-manufacturing-in-your-company/): Lean en industria.
+- [Cómo mejorar la eficiencia industrial con simplificación de tareas](https://cronometras.com/es/blog/how-to-improve-efficiency-and-effectiveness-of-industrial-process-through-task-simplification/): simplificación.
+- [Cómo reducir el lead time y mejorar la productividad](https://cronometras.com/es/blog/how-to-reduce-lead-time-to-improve-productivity-competitiveness-and-efficiency-of-your-company/): lead time.
+- [Mejores prácticas de métodos de trabajo](https://cronometras.com/es/blog/best-practices-work-methods/): cómo abordar un estudio.
+
+### Producto (App PWA)
+- [Cómo usar Cronometras App para cronometraje industrial](https://cronometras.com/es/blog/how-to-use-cronometrasapp-for-industrial-timekeeping/): tutorial de la PWA.
+- [Acceso a la app](https://cronometras.com/es/blog/accessing-the-app/): login y onboarding.
+
+## Casos de uso por sector
+- Industria manufacturera (automoción, electrónica, metal-mecánica)
+- Alimentación y bebidas
+- Logística y distribución
+- Empresas de servicios con personal operativo
+- Consultoras de organización industrial
+- Plantas de ensamblaje
+
+## Compañía
+- [Sobre Cronometras](https://cronometras.com/about/): misión, equipo fundador y datos de la empresa.
+- [Contacto](https://cronometras.com/contact/): correo, formulario y datos de contacto.
+- Titular: ProdCont (Miguel Cano Otero). Domicilio: C/ San Pedro 70, 46470 Albal (Valencia), España. NIF 53097360-C.
+
+## Contenido y autoridad
+- [Blog de Cronometras](https://cronometras.com/es/blog/): guías técnicas, normativa, casos de estudio y análisis crítico del sector.
+- [Changelog](https://cronometras.com/changelog/): historial de versiones del producto.
+
+## Legal
+- [Aviso legal](https://cronometras.com/es/aviso-legal): LSSI-CE, datos del titular, régimen de responsabilidad.
+- [Política de privacidad](https://cronometras.com/es/privacy): RGPD, LOPDGDD, derechos ARCO, responsable del tratamiento.
+- [Términos y condiciones](https://cronometras.com/es/terms): condiciones de uso del sitio web.
+- [Política de cookies](https://cronometras.com/es/cookies): cookies técnicas, sin analíticas de terceros, sin marketing.
+
+## Apps del grupo ProdCont
+- [ProdCont](https://prodcont.com): paraguas corporativo de ProdCont. Servicios de cronometraje industrial, muestreo del trabajo, control horario y consultoría de métodos y tiempos.
+- [Worksamp](https://worksamp.com): muestreo del trabajo (work sampling) con análisis estadístico, PWA con notificaciones push.
+- [Induly](https://induly.com): control horario conforme al RD-ley 8/2019, gestión de turnos, centros de coste y productividad.
+- [ASETEMYT](https://asetemyt.com): directorio de técnicos, consultores y empresas de cronometraje industrial, time study, MTM, MOST y optimización de procesos.
+
+## Feeds y suscripciones
+- RSS del blog: https://cronometras.com/rss.xml
+- Sitemap XML: https://cronometras.com/sitemap-index.xml

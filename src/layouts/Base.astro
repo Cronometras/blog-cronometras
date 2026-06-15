@@ -192,7 +192,22 @@ const organizationSchema = {
   },
   "sameAs": [
     "https://www.linkedin.com/company/cronometras",
+    "https://prodcont.com",
+    "https://worksamp.com",
+    "https://induly.com",
+    "https://asetemyt.com",
   ],
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://prodcont.com/#organization",
+    "name": "ProdCont",
+    "url": "https://prodcont.com",
+  },
+  "memberOf": {
+    "@type": "Organization",
+    "@id": "https://prodcont.com/#organization",
+    "name": "Ecosistema ProdCont",
+  },
 };
 
 const websiteSchema = {
@@ -435,6 +450,13 @@ console.log("Cargando layout Base.astro");
     <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed`} href={`${config.site.base_url}/rss.xml`} />
     <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed (Español)`} href={`${config.site.base_url}/es/rss.xml`} />
     <link rel="alternate" type="application/rss+xml" title={`${config.site.title} - RSS Feed (English)`} href={`${config.site.base_url}/en/rss.xml`} />
+
+    <!-- GEO: llms.txt para modelos de lenguaje generativos -->
+    <link rel="alternate" type="text/plain" href={`${config.site.base_url}/llms.txt`} title={`${config.site.title} para LLMs`} />
+    <link rel="alternate" type="text/plain" href={`${config.site.base_url}/llms-full.txt`} title={`${config.site.title} (versión completa) para LLMs`} />
+
+    <!-- SEO: sitemap -->
+    <link rel="sitemap" type="application/xml" href={`${config.site.base_url}/sitemap-index.xml`} />
 
     <!-- KaTeX for LaTeX math rendering -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">

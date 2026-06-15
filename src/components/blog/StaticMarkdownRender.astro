@@ -1,0 +1,45 @@
+---
+import { marked } from 'marked';
+import markedKatex from 'marked-katex-extension';
+
+interface Props {
+  content: string;
+  lang?: string;
+}
+
+const { content, lang = 'es' } = Astro.props;
+
+// Same processing as DynamicFirestorePost.tsx (client-side) to maintain consistency
+function processCTAs(content: string): string {
+  let processedContent = content;
+
+  processedContent = processedContent.replace(
+    /\[([^\]]*(?:Demo|Prueba|Solicitar|Accede|Contacta)[^\]]*)\]/gi,
+    '<a href="#demo" class="cta-link inline-block px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors cursor-pointer">$1</a>'
+  );
+
+  processedContent = processedContent.replace(
+    /\*\*CTA[^:]*:\*\*\s*([^\n]+)/gi,
+    '<div class="cta-box my-8 p-6 bg-gradient-to-r from-accent/10 to-accent/5 border-l-4 border-accent rounded-r-lg"><p class="font-semibold mb-2">¡Actúa ahora!</p><a href="#demo" class="cta-link inline-block px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors cursor-pointer">$1</a></div>'
+  );
+
+  return processedContent;
+}
+
+function removeFirstH1(markdown: string): string {
+  return markdown.replace(/^#\s+.+$/m, '').trim();
+}
+
+function markdownToHtml(markdown: string): string {
+  if (!markdown) return '';
+  const processed = processCTAs(markdown);
+  // Strip first h1 (we render it as page h1)
+  const contentNoH1 = removeFirstH1(processed);
+  const html = marked.parse(contentNoH1);
+  return typeof html === 'string' ? html : '';
+}
+
+const html = markdownToHtml(content);
+---
+
+<div class="prose prose-lg dark:prose-invert max-w-none" set:html={html}></div>
