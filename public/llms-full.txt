@@ -24,54 +24,54 @@
 
 ## Funcionalidades clave (artículos del blog)
 ### Medición del trabajo
-- [Cómo elegir cómo medir el trabajo](https://cronometras.com/es/blog/choose-how-to-measure-work/): cuándo cronómetro, cuándo muestreo, cuándo MTM.
-- [5 métodos de medición del trabajo](https://cronometras.com/es/blog/5-work-measurement-methods/): cronómetro, muestreo, MTM, MOST, datos predeterminados.
-- [7 errores comunes en el cronometraje industrial](https://cronometras.com/es/blog/7-common-mistakes-industrial-time-study/): pitfalls del time study con cronómetro.
-- [Cómo conducir un estudio de tiempos y movimientos con cronómetro](https://cronometras.com/es/blog/how-to-conduct-a-time-and-motion-study-with-stopwatch/): guía paso a paso.
-- [Identificación del trabajo a medir](https://cronometras.com/es/blog/identification-of-work-to-measure/): primer paso del estudio.
-- [Cómo crear un nuevo estudio de trabajo](https://cronometras.com/es/blog/how-to-create-a-new-work-study/): tutorial paso a paso.
-- [Gestión integral del estudio de tiempos](https://cronometras.com/es/blog/comprehensive-time-study-management/): gestión completa.
+- [Cómo elegir cómo medir el trabajo](https://cronometras.com/en/blog/choose-how-to-measure-work/): cuándo cronómetro, cuándo muestreo, cuándo MTM.
+- [5 métodos de medición del trabajo](https://cronometras.com/en/blog/5-work-measurement-methods/): cronómetro, muestreo, MTM, MOST, datos predeterminados.
+- [7 errores comunes en el cronometraje industrial](https://cronometras.com/en/blog/7-common-mistakes-industrial-time-study/): pitfalls del time study con cronómetro.
+- [Cómo conducir un estudio de tiempos y movimientos con cronómetro](https://cronometras.com/en/blog/how-to-conduct-a-time-and-motion-study-with-stopwatch/): guía paso a paso.
+- [Identificación del trabajo a medir](https://cronometras.com/en/blog/identification-of-work-to-measure/): primer paso del estudio.
+- [Cómo crear un nuevo estudio de trabajo](https://cronometras.com/en/blog/how-to-create-a-new-work-study/): tutorial paso a paso.
+- [Gestión integral del estudio de tiempos](https://cronometras.com/en/blog/comprehensive-time-study-management/): gestión completa.
 
 ### Valoración del ritmo
-- [Actividad y ritmo en cronometraje industrial](https://cronometras.com/es/blog/activity-rating-in-industrial-time-study/): sistemas de valoración Bedaux, Westinghouse, Centésimal.
-- [Sistema Bedaux](https://cronometras.com/es/blog/bedaux-system/): explicación del sistema Bedaux de valoración.
-- [Bedaux vs. escala centesimal: ¿cuál elegir?](https://cronometras.com/es/blog/bedaux-vs-centesimal-scale-which-to-choose/): comparativa técnica.
+- [Actividad y ritmo en cronometraje industrial](https://cronometras.com/en/blog/activity-rating-in-industrial-time-study/): sistemas de valoración Bedaux, Westinghouse, Centésimal.
+- [Sistema Bedaux](https://cronometras.com/en/blog/bedaux-system/): explicación del sistema Bedaux de valoración.
+- [Bedaux vs. escala centesimal: ¿cuál elegir?](https://cronometras.com/en/blog/bedaux-vs-centesimal-scale-which-to-choose/): comparativa técnica.
 - [Sistema Westinghouse de valoración del ritmo](https://cronometras.com/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-guia/): guía completa del sistema Westinghouse.
 
 ### Suplementos y holguras
-- [Aplicación de suplementos OIT](https://cronometras.com/es/blog/application-of-ilo-allowances/): cómo aplicar las holguras OIT/TAL.
-- [Suplementos OIT y fatiga](https://cronometras.com/es/blog/ilo-fatigue-allowances-guide/): guía de suplementos por fatiga.
-- [Ergonomía: del dolor a la productividad](https://cronometras.com/es/blog/ergonomics-from-pain-to-productivity/): ergonomía y tiempo de ciclo.
-- [Ciclo óptimo y ergonomía en planta](https://cronometras.com/es/blog/impact-of-ergonomics-on-cycle-times-from-variable-fatigue-to-maximized-oee-horizon-2025/): fatiga variable y OEE.
+- [Aplicación de suplementos OIT](https://cronometras.com/en/blog/application-of-ilo-allowances/): cómo aplicar las holguras OIT/TAL.
+- [Suplementos OIT y fatiga](https://cronometras.com/en/blog/ilo-fatigue-allowances-guide/): guía de suplementos por fatiga.
+- [Ergonomía: del dolor a la productividad](https://cronometras.com/en/blog/ergonomics-from-pain-to-productivity/): ergonomía y tiempo de ciclo.
+- [Ciclo óptimo y ergonomía en planta](https://cronometras.com/en/blog/impact-of-ergonomics-on-cycle-times-from-variable-fatigue-to-maximized-oee-horizon-2025/): fatiga variable y OEE.
 
 ### Tiempo normal, estándar y coste
-- [Diferencia entre tiempo normal y tiempo estándar](https://cronometras.com/es/blog/difference-between-normal-time-and-standard-time/): conceptos fundamentales.
-- [Estandarización de tiempos en industria](https://cronometras.com/es/blog/how-to-standardize-work-times-in-industry/): por qué estandarizar.
+- [Diferencia entre tiempo normal y tiempo estándar](https://cronometras.com/en/blog/difference-between-normal-time-and-standard-time/): conceptos fundamentales.
+- [Estandarización de tiempos en industria](https://cronometras.com/en/blog/how-to-standardize-work-times-in-industry/): por qué estandarizar.
 - [Coste estándar por producto](https://cronometras.com/es/blog/coste-estandar-por-producto-como-calcular-el-coste-unitario-a-partir-del-tiempo-estandar/): cálculo del coste unitario.
 - [Biblioteca de elementos y estandarización](https://cronometras.com/es/blog/biblioteca-de-elementos-estandarizacion-de-tiempos/): normalización de elementos.
-- [Definición de elementos de trabajo en time study](https://cronometras.com/es/blog/defining-work-elements-in-a-time-study-with-stopwatch/): descomposición elemental.
-- [Definir el método de trabajo](https://cronometras.com/es/blog/define-the-work-method/): estandarización previa al cronometraje.
+- [Definición de elementos de trabajo en time study](https://cronometras.com/en/blog/defining-work-elements-in-a-time-study-with-stopwatch/): descomposición elemental.
+- [Definir el método de trabajo](https://cronometras.com/en/blog/define-the-work-method/): estandarización previa al cronometraje.
 
 ### Análisis de variabilidad y OEE
 - [Análisis de variabilidad y SPC en cronometraje](https://cronometras.com/es/blog/analisis-de-la-variabilidad-en-los-tiempos-de-ciclo-control-estadistico-de-procesos-spc-aplicado-al-cronometraje-industrial/): control estadístico.
-- [Generar informe de estudio de tiempos](https://cronometras.com/es/blog/generate-time-study-report/): output del sistema.
+- [Generar informe de estudio de tiempos](https://cronometras.com/en/blog/generate-time-study-report/): output del sistema.
 
 ### Balanceo e interferencias hombre-máquina
 - [Cálculo del ciclo óptimo en trabajos con máquina](https://cronometras.com/es/blog/calculo-del-ciclo-optimo-en-trabajos-con-maquina/): fórmula y aplicación.
-- [Cálculo del número óptimo de máquinas por operario](https://cronometras.com/es/blog/calculating-the-optimal-number-of-machines-for-an-operator/): balanceo hombre-máquina.
-- [Asignación óptima de máquinas MMS (Ashcroft)](https://cronometras.com/es/blog/ashcroft-tables-the-exact-mathematics-to-maximize-machine-assignment-mms-and-justify-workload/): tablas Ashcroft.
+- [Cálculo del número óptimo de máquinas por operario](https://cronometras.com/en/blog/calculating-the-optimal-number-of-machines-for-an-operator/): balanceo hombre-máquina.
+- [Asignación óptima de máquinas MMS (Ashcroft)](https://cronometras.com/en/blog/ashcroft-tables-the-exact-mathematics-to-maximize-machine-assignment-mms-and-justify-workload/): tablas Ashcroft.
 - [Cómo aplicar la fórmula de Wright para interferencias de máquinas](https://cronometras.com/es/blog/como-aplicar-la-formula-de-wright-para-interferencias-de-maquinas/): fórmula de Wright.
-- [Balanceo de líneas y MTM: de timing estático a 85% OEE](https://cronometras.com/es/blog/assembly-line-balancing-techniques-from-static-timing-to-85-percent-oee-efficiency-with-mtm/): MTM y OEE.
+- [Balanceo de líneas y MTM: de timing estático a 85% OEE](https://cronometras.com/en/blog/assembly-line-balancing-techniques-from-static-timing-to-85-percent-oee-efficiency-with-mtm/): MTM y OEE.
 
 ### Mejora continua y Lean
-- [Beneficios y retos de implementar Lean Manufacturing](https://cronometras.com/es/blog/benefits-and-challenges-of-implementing-lean-manufacturing-in-your-company/): Lean en industria.
-- [Cómo mejorar la eficiencia industrial con simplificación de tareas](https://cronometras.com/es/blog/how-to-improve-efficiency-and-effectiveness-of-industrial-process-through-task-simplification/): simplificación.
-- [Cómo reducir el lead time y mejorar la productividad](https://cronometras.com/es/blog/how-to-reduce-lead-time-to-improve-productivity-competitiveness-and-efficiency-of-your-company/): lead time.
-- [Mejores prácticas de métodos de trabajo](https://cronometras.com/es/blog/best-practices-work-methods/): cómo abordar un estudio.
+- [Beneficios y retos de implementar Lean Manufacturing](https://cronometras.com/en/blog/benefits-and-challenges-of-implementing-lean-manufacturing-in-your-company/): Lean en industria.
+- [Cómo mejorar la eficiencia industrial con simplificación de tareas](https://cronometras.com/en/blog/how-to-improve-efficiency-and-effectiveness-of-industrial-process-through-task-simplification/): simplificación.
+- [Cómo reducir el lead time y mejorar la productividad](https://cronometras.com/en/blog/how-to-reduce-lead-time-to-improve-productivity-competitiveness-and-efficiency-of-your-company/): lead time.
+- [Mejores prácticas de métodos de trabajo](https://cronometras.com/en/blog/best-practices-work-methods/): cómo abordar un estudio.
 
 ### Producto (App PWA)
-- [Cómo usar Cronometras App para cronometraje industrial](https://cronometras.com/es/blog/how-to-use-cronometrasapp-for-industrial-timekeeping/): tutorial de la PWA.
-- [Acceso a la app](https://cronometras.com/es/blog/accessing-the-app/): login y onboarding.
+- [Cómo usar Cronometras App para cronometraje industrial](https://cronometras.com/en/blog/how-to-use-cronometrasapp-for-industrial-timekeeping/): tutorial de la PWA.
+- [Acceso a la app](https://cronometras.com/en/blog/accessing-the-app/): login y onboarding.
 
 ## Casos de uso por sector
 - Industria manufacturera (automoción, electrónica, metal-mecánica)
