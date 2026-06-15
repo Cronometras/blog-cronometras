@@ -24,6 +24,10 @@ export interface FirestoreArticle {
     status: string;
     topic: string;
     topicId: string;
+    // Curated meta description (manually written, ~150c). Not always present on
+    // legacy docs from the generator; in that case transformToBlogPost falls
+    // back to extracting from content.
+    description?: string;
     // Custom fields (may be missing on legacy docs from the generator)
     language?: 'es' | 'en';
     slug?: string;
@@ -107,8 +111,12 @@ function processCTAs(content: string): string {
 }
 
 function transformToBlogPost(article: FirestoreArticle, lang: 'es' | 'en'): BlogPost {
-    const title = extractTitle(article.content);
-    const description = extractDescription(article.content);
+    // Prefer the explicit `topic` field (clean title from Firestore doc).
+    // Fall back to extracting from content (H1 or first line) for legacy docs.
+    const title = article.topic || extractTitle(article.content);
+    // Prefer the explicit `description` field (curated meta description).
+    // Fall back to extracting from content (first paragraph) for legacy docs.
+    const description = article.description || extractDescription(article.content);
     // Use the explicit `slug` field if present (migrated MDX have it),
     // otherwise fall back to slugify(topic) and prefix with the language.
     const slug = article.slug
