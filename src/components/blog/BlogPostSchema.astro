@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { post, url } = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage, author, category, tags } = post.data;
+const { title, description, pubDate, updatedDate, heroImage, author, category, tags, faq } = post.data;
 
 // Construir la URL canónica completa — si el post tiene canonical_url propia
 // (por ser duplicado de otro canónico), se respeta.
@@ -22,9 +22,14 @@ const lang = slugValue.split('/')[0];
 
 // Fechas normalizadas a ISO 8601
 const publishedISO = (pubDate instanceof Date && !isNaN(pubDate.getTime()) ? pubDate : new Date()).toISOString();
-const modifiedISO = updatedDate && updatedDate instanceof Date && !isNaN(updatedDate.getTime())
-  ? updatedDate.toISOString()
-  : publishedISO;
+// dateModified: SOLO se emite si updatedDate es una fecha REAL distinta de pubDate.
+// Si updatedDate no existe o coincide con pubDate, NO se emite el campo
+// (es preferible omitirlo a mentir a Google con un "modificado" falso).
+const hasRealUpdatedDate = updatedDate
+  && updatedDate instanceof Date
+  && !isNaN(updatedDate.getTime())
+  && updatedDate.getTime() !== new Date(publishedISO).getTime();
+const modifiedISO = hasRealUpdatedDate ? updatedDate.toISOString() : null;
 
 // Imagen del post
 const heroImageUrl = heroImage
@@ -32,7 +37,7 @@ const heroImageUrl = heroImage
   : new URL("/images/webp/og-default.png", config.site.base_url).toString();
 
 // Construir el esquema JSON-LD para BlogPosting
-const schema = {
+const schema: Record<string, any> = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "mainEntityOfPage": {
@@ -44,7 +49,6 @@ const schema = {
   "description": description,
   "image": [heroImageUrl],
   "datePublished": publishedISO,
-  "dateModified": modifiedISO,
   "inLanguage": lang === 'es' ? 'es-ES' : 'en-US',
   "author": {
     "@type": "Person",
@@ -64,6 +68,11 @@ const schema = {
   }
 };
 
+// dateModified solo si hay fecha real de modificación
+if (modifiedISO) {
+  schema.dateModified = modifiedISO;
+}
+
 // Añadir categoría y etiquetas si están disponibles
 if (category) {
   schema.articleSection = category;
@@ -72,12 +81,79 @@ if (tags && tags.length > 0) {
   schema.keywords = tags.join(', ');
 }
 
+// BreadcrumbList — siempre se emite para posts (mejora CTR en SERP con breadcrumb visual)
+// Estructura: Inicio > Blog > [categoría?] > Título
+const breadcrumbItems: any[] = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": lang === 'es' ? "Inicio" : "Home",
+    "item": `${config.site.base_url}/${lang}/`
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "name": lang === 'es' ? "Blog" : "Blog",
+    "item": `${config.site.base_url}/${lang}/blog/`
+  }
+];
+let nextPos = 3;
+if (category) {
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": nextPos,
+    "name": category,
+    "item": `${config.site.base_url}/${lang}/blog/category/${category.toLowerCase().replace(/\s+/g, '-')}/`
+  });
+  nextPos++;
+}
+breadcrumbItems.push({
+  "@type": "ListItem",
+  "position": nextPos,
+  "name": title,
+  "item": canonicalUrl
+});
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+};
+
+// FAQPage — solo se emite si el post tiene un campo `faq` con preguntas.
+// Estructura esperada en frontmatter:
+//   faq:
+//     - question: "¿Qué es X?"
+//       answer: "X es ..."
+const hasFaq = Array.isArray(faq) && faq.length > 0
+  && faq.every((q: any) => q && typeof q.question === 'string' && typeof q.answer === 'string');
+const faqSchema = hasFaq ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": (faq as any[]).map((q) => ({
+    "@type": "Question",
+    "name": q.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": q.answer
+    }
+  }))
+} : null;
+
 // Proteger JSON-LD contra inyecciones (XSS en crawlers)
 const schemaString = JSON.stringify(schema).replace(/</g, "\\u003c");
+const breadcrumbString = JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c");
+const faqString = faqSchema ? JSON.stringify(faqSchema).replace(/</g, "\\u003c") : null;
 ---
 
 <!-- Schema BlogPosting (JSON-LD) — apunta a la canónica si existe -->
 <script type="application/ld+json" set:html={schemaString} />
+
+<!-- BreadcrumbList (JSON-LD) — activa breadcrumb visual en Google SERP -->
+<script type="application/ld+json" set:html={breadcrumbString} />
+
+<!-- FAQPage (JSON-LD) — solo si el post tiene campo `faq` en frontmatter -->
+{faqString && <script type="application/ld+json" set:html={faqString} />}
 
 <!-- Si el post es un duplicado de otro canónico, lo marcamos como noindex y
      dejamos que Base.astro emita el <link rel="canonical"> hacia la canónica. -->

@@ -102,12 +102,59 @@ if (source === 'mdx') {
 const publishedISO = post?.data?.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime())
   ? post.data.pubDate.toISOString()
   : new Date().toISOString();
-const modifiedISO = post?.data?.updatedDate && post.data.updatedDate instanceof Date && !isNaN(post.data.updatedDate.getTime())
-  ? post.data.updatedDate.toISOString()
-  : publishedISO;
+// dateModified: SOLO se emite si updatedDate es una fecha REAL distinta de pubDate.
+// Si updatedDate no existe o coincide con pubDate, NO se emite el campo
+// (es preferible omitirlo a mentir a Google con un "modificado" falso).
+const hasRealUpdatedDate = post?.data?.updatedDate
+  && post.data.updatedDate instanceof Date
+  && !isNaN(post.data.updatedDate.getTime())
+  && post.data.updatedDate.getTime() !== new Date(publishedISO).getTime();
+const modifiedISO = hasRealUpdatedDate ? post.data.updatedDate.toISOString() : null;
 
 // Extract text content for text-to-speech (both MDX and Firestore)
 const rawContent = source === 'mdx' ? (post?.body || '') : (source === 'firestore' ? (post?.body || '') : '');
+
+// BreadcrumbList JSON-LD — se emite para TODOS los posts (MDX y Firestore).
+// Estructura: Inicio > Blog > [categoría?] > Título
+const postTitle = post?.data?.title || 'Blog Post';
+const postCanonicalUrl = post?.data?.canonical_url
+  || new URL(Astro.url.pathname, Astro.site?.toString() || 'https://cronometras.com').toString();
+const breadcrumbItems: any[] = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": lang === 'es' ? "Inicio" : "Home",
+    "item": `https://cronometras.com/${lang}/`
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Blog",
+    "item": `https://cronometras.com/${lang}/blog/`
+  }
+];
+let breadcrumbPos = 3;
+if (post?.data?.category) {
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": breadcrumbPos,
+    "name": post.data.category,
+    "item": `https://cronometras.com/${lang}/blog/category/${String(post.data.category).toLowerCase().replace(/\s+/g, '-')}/`
+  });
+  breadcrumbPos++;
+}
+breadcrumbItems.push({
+  "@type": "ListItem",
+  "position": breadcrumbPos,
+  "name": postTitle,
+  "item": postCanonicalUrl
+});
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+};
+const breadcrumbSchemaString = JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c");
 
 // Prerender para generar páginas estáticas durante la compilación
 export const prerender = true;
@@ -119,7 +166,7 @@ export const prerender = true;
   description={post?.data?.description || ''}
   og_type="article"
   article_published_time={publishedISO}
-  article_modified_time={modifiedISO}
+  article_modified_time={modifiedISO || undefined}
   article_section={post?.data?.category}
   image={post?.data?.heroImage}
   canonical_url={post?.data?.canonical_url}
@@ -127,6 +174,10 @@ export const prerender = true;
   keywords={post?.data?.tags}
 >
   {post && <BlogPostSchema post={post} url={Astro.url} />}
+
+  <!-- BreadcrumbList JSON-LD (MDX ya lo emite en BlogPostSchema; para Firestore,
+       BlogPostSchema no se invoca, así que lo emitimos aquí) -->
+  {source === 'firestore' && <script type="application/ld+json" set:html={breadcrumbSchemaString} />}
   
   {source === 'firestore' ? (
     <!-- Static rendering for Firestore articles (pre-rendered at build time) -->

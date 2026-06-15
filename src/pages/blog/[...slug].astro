@@ -16,10 +16,39 @@ const { Content } = await render(post);
 
 // Get the language from the post slug (e.g., "es/post-name" -> "es")
 const lang = post.slug.split('/')[0];
+
+// BreadcrumbList JSON-LD — se emite para todos los posts
+const breadcrumbItems: any[] = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": lang === 'es' ? "Inicio" : "Home",
+    "item": `https://cronometras.com/${lang}/`
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Blog",
+    "item": `https://cronometras.com/${lang}/blog/`
+  },
+  {
+    "@type": "ListItem",
+    "position": 3,
+    "name": post.data.title,
+    "item": `https://cronometras.com/${post.slug}/`
+  }
+];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+};
+const breadcrumbSchemaString = JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c");
 ---
 
 <Base title={post.data.title} description={post.data.description}>
   <BlogPostSchema post={post} url={Astro.url} />
+  <script type="application/ld+json" set:html={breadcrumbSchemaString} />
   <section class="section">
     <div class="container">
       <article class="mx-auto max-w-3xl">
