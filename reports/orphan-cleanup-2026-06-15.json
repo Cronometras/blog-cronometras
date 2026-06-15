@@ -1,0 +1,265 @@
+{
+  "timestamp": "2026-06-15T20:30:59.908Z",
+  "mode": "execute",
+  "summary": {
+    "deleted": 28,
+    "skipped": 0,
+    "blocked": 0,
+    "errors": 0,
+    "totalCharsDeleted": 110420
+  },
+  "details": [
+    {
+      "id": "4qDhZ2UL9j3xx87ctFob",
+      "status": "deleted",
+      "data": {
+        "topic": "7 Common Mistakes When Conducting Industrial Time Studies (and How to Avoid Them)",
+        "slug": "7-common-mistakes-when-conducting-industrial-time-studies-and-how-to-avoid-them",
+        "contentLen": 5303
+      }
+    },
+    {
+      "id": "6nDE1zGjRJL1NJubMcrn",
+      "status": "deleted",
+      "data": {
+        "topic": "The Vital Importance of Standard Time Calculation for Productivity and Profitability",
+        "slug": "the-vital-importance-of-standard-time-calculation-for-productivity-and-profitability",
+        "contentLen": 4524
+      }
+    },
+    {
+      "id": "7l6kyb7fdoySMsFRtmo0",
+      "status": "deleted",
+      "data": {
+        "topic": "Complete Guide to ILO Fatigue Allowances",
+        "slug": "complete-guide-to-ilo-fatigue-allowances",
+        "contentLen": 5219
+      }
+    },
+    {
+      "id": "7uGuk13GiUqLJbThn9vo",
+      "status": "deleted",
+      "data": {
+        "topic": "Introduction to Industrial Timekeeping",
+        "slug": "introduction-to-industrial-timekeeping",
+        "contentLen": 2165
+      }
+    },
+    {
+      "id": "AiRMpjadS8Gez2ALr4IX",
+      "status": "deleted",
+      "data": {
+        "topic": "Stages of Time Study in Industrial Timekeeping",
+        "slug": "stages-of-time-study-in-industrial-timekeeping",
+        "contentLen": 4089
+      }
+    },
+    {
+      "id": "E9rp4Z4EIU5I70OrCPGC",
+      "status": "deleted",
+      "data": {
+        "topic": "Takt Time: What It Is, How It Is Calculated and How It Is Applied",
+        "slug": "takt-time-what-it-is-how-it-is-calculated-and-how-it-is-applied",
+        "contentLen": 3847
+      }
+    },
+    {
+      "id": "EUqCORpL1BHFrfxOUOqD",
+      "status": "deleted",
+      "data": {
+        "topic": "Optimize Business Productivity with Time Control and Industrial Timekeeping",
+        "slug": "optimize-business-productivity-with-time-control-and-industrial-timekeeping",
+        "contentLen": 2844
+      }
+    },
+    {
+      "id": "HGzQqUzV9iT9u7HQqDGE",
+      "status": "deleted",
+      "data": {
+        "topic": "Observed Time vs. Standard Time: Understanding the Key Differences",
+        "slug": "observed-time-vs-standard-time-understanding-the-key-differences",
+        "contentLen": 4335
+      }
+    },
+    {
+      "id": "Hwsss2IJsmev6KPFG1X7",
+      "status": "deleted",
+      "data": {
+        "topic": "Introduction to MTM and MOST: Optimizing Processes with Advanced Methodologies",
+        "slug": "introduction-to-mtm-and-most-optimizing-processes-with-advanced-methodologies",
+        "contentLen": 5950
+      }
+    },
+    {
+      "id": "Iv5tT9jqj7lLqAZzliYV",
+      "status": "deleted",
+      "data": {
+        "topic": "Introduction to CRONOMETRAS: Your Tool for Time Studies",
+        "slug": "introduction-to-cronometras-your-tool-for-time-studies",
+        "contentLen": 1044
+      }
+    },
+    {
+      "id": "MXRFEOhRxLud7tVYONim",
+      "status": "deleted",
+      "data": {
+        "topic": "The Usefulness of Historical Times for Establishing Work Standards",
+        "slug": "the-usefulness-of-historical-times-for-establishing-work-standards",
+        "contentLen": 3027
+      }
+    },
+    {
+      "id": "Mv3HVR8jAYQ4duDDDF2y",
+      "status": "deleted",
+      "data": {
+        "topic": "Number of Observations Required in Industrial Timekeeping",
+        "slug": "number-of-observations-required-in-industrial-timekeeping",
+        "contentLen": 4518
+      }
+    },
+    {
+      "id": "NsIhfMBy3rxOzwZWD7LO",
+      "status": "deleted",
+      "data": {
+        "topic": "Work Allowance Calculation: What They Are and How They Affect Productivity",
+        "slug": "work-allowance-calculation-what-they-are-and-how-they-affect-productivity",
+        "contentLen": 3636
+      }
+    },
+    {
+      "id": "OwVkLlszgQNwkpchPsJj",
+      "status": "deleted",
+      "data": {
+        "topic": "What Are the Industrial Timekeeping Techniques?",
+        "slug": "what-are-the-industrial-timekeeping-techniques",
+        "contentLen": 5288
+      }
+    },
+    {
+      "id": "UCscaujntEhn2f30JNcI",
+      "status": "deleted",
+      "data": {
+        "topic": "Timing the Main Work Cycle",
+        "slug": "timing-the-main-work-cycle",
+        "contentLen": 2760
+      }
+    },
+    {
+      "id": "WqDcQWms9l6jpIdoPjvo",
+      "status": "deleted",
+      "data": {
+        "topic": "The 5 Most Used Work Measurement Methods in Modern Industry",
+        "slug": "the-5-most-used-work-measurement-methods-in-modern-industry",
+        "contentLen": 6294
+      }
+    },
+    {
+      "id": "bUP7RnJe9kryUm2FCeAa",
+      "status": "deleted",
+      "data": {
+        "topic": "ILO Allowances Application",
+        "slug": "ilo-allowances-application",
+        "contentLen": 1889
+      }
+    },
+    {
+      "id": "hmzWDmIOSvfS5ZRdKp9M",
+      "status": "deleted",
+      "data": {
+        "topic": "Activity Rating in Industrial Timekeeping",
+        "slug": "activity-rating-in-industrial-timekeeping",
+        "contentLen": 5451
+      }
+    },
+    {
+      "id": "i6Vbf9BzLqGzLGbgMXwo",
+      "status": "deleted",
+      "data": {
+        "topic": "Timekeeping and Process Standardization",
+        "slug": "timekeeping-and-process-standardization",
+        "contentLen": 3314
+      }
+    },
+    {
+      "id": "izJ5H6GOc9oA4CAIntYM",
+      "status": "deleted",
+      "data": {
+        "topic": "Importance of Methods and Time Study",
+        "slug": "importance-of-methods-and-time-study",
+        "contentLen": 1778
+      }
+    },
+    {
+      "id": "o05HtRHuMsAG6aHFKuLj",
+      "status": "deleted",
+      "data": {
+        "topic": "Saturation Calculation in a Time Study",
+        "slug": "saturation-calculation-in-a-time-study",
+        "contentLen": 1840
+      }
+    },
+    {
+      "id": "o7OjoEUZEG3Z8jS0tiIm",
+      "status": "deleted",
+      "data": {
+        "topic": "The Importance of Work Time Study",
+        "slug": "the-importance-of-work-time-study",
+        "contentLen": 2951
+      }
+    },
+    {
+      "id": "pTV3X75upygqEYHY2e49",
+      "status": "deleted",
+      "data": {
+        "topic": "What is Industrial Timekeeping?",
+        "slug": "what-is-industrial-timekeeping",
+        "contentLen": 3718
+      }
+    },
+    {
+      "id": "qPRotMvvoH6mh2gkFhN7",
+      "status": "deleted",
+      "data": {
+        "topic": "How is a Time and Motion Study Conducted with Stopwatch?",
+        "slug": "how-is-a-time-and-motion-study-conducted-with-stopwatch",
+        "contentLen": 3375
+      }
+    },
+    {
+      "id": "vBNl8RWciqlj72kHZVFh",
+      "status": "deleted",
+      "data": {
+        "topic": "Work Sampling: A Statistical Tool for Efficient Management",
+        "slug": "work-sampling-a-statistical-tool-for-efficient-management",
+        "contentLen": 9133
+      }
+    },
+    {
+      "id": "vJtM36lCtFrBBkD4s12v",
+      "status": "deleted",
+      "data": {
+        "topic": "Best Practices for Work Method Definition",
+        "slug": "best-practices-for-work-method-definition",
+        "contentLen": 6422
+      }
+    },
+    {
+      "id": "zHpjgwlhTZN02wAsOeyv",
+      "status": "deleted",
+      "data": {
+        "topic": "Obeya Room: Lean Management Visual System",
+        "slug": "obeya-room-lean-management-visual-system",
+        "contentLen": 3799
+      }
+    },
+    {
+      "id": "zcjisqvg95KXgPi8Rbxx",
+      "status": "deleted",
+      "data": {
+        "topic": "Frequency Element Timing",
+        "slug": "frequency-element-timing",
+        "contentLen": 1907
+      }
+    }
+  ]
+}
