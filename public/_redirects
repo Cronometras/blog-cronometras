@@ -81,8 +81,9 @@
 
 # ---------------------------------------------------------------------
 # 7. Posts con espacios (slug mal formado) -> slugs canónicos con guiones
+#    (aplicacion-de-suplementos-oit eliminado: el MDX canónico ya está
+#    en src/content/blog/es/aplicacion-de-suplementos-oit.mdx)
 # ---------------------------------------------------------------------
-/es/blog/aplicacion-de-suplementos-oit*                                          /es/blog/aplicacion-de-suplementos-oit/    301
 /es/blog/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura*  /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
 /es/blog/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos*          /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
 /es/blog/que%20es%20el%20cronometraje%20industrial*                              /es/blog/que-es-el-cronometraje-industrial/    301
