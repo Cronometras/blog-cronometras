@@ -12,11 +12,6 @@ banner:
       target: "_self"
       icon: "clock"
       addClasses: "w-full md:w-auto bg-accent text-white hover:bg-accent/90 dark:border-white/10 dark:border mb-4 md:mb-0 md:mr-4"
-    - label: Pruébalo Gratis
-      href: "https://app.cronometras.com"
-      target: "_self"
-      icon: "zap"
-      addClasses: "w-full md:w-auto bg-green-600 text-white hover:bg-green-700 transition-colors mb-4 md:mb-0 md:mr-4"
     - label: Ver Video Tutorial
       href: "#video"
       target: "_self"
@@ -259,7 +254,7 @@ testimonial:
 ## Call to Action
 call_to_action:
   title: "Optimiza tu productividad con <span class='text-accent text-shadow-[0px_5px_15px]'>CRONOMETRAS</span>"
-  description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**<br><small>Sin compromiso · Pruébalo gratis</small>"
+  description: "Únete a las empresas que ya han transformado su eficiencia operativa. **Descubre el poder de la optimización basada en datos.**<br><small>Sin compromiso · Solicita una demo gratuita</small>"
   buttons:
     - label: "Comenzar Ahora"
       href: "#"

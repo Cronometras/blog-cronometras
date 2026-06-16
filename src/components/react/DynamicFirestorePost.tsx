@@ -305,6 +305,10 @@ export default function DynamicFirestorePost({ slug, lang = 'es' }: DynamicFires
                     src={post.heroImage}
                     alt={post.title}
                     className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width="1200"
+                    height="630"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/60"></div>
                 <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-8 container mx-auto">

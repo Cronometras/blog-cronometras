@@ -169,6 +169,8 @@ const t = useTranslations(lang);
                             alt="${item.title}"
                             width="40"
                             height="40"
+                            loading="lazy"
+                            decoding="async"
                             // Añadir object-contain si el logo no es cuadrado
                             class="${item.type !== 'blog' ? 'object-contain' : ''}"
                           />

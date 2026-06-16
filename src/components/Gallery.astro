@@ -33,7 +33,7 @@ const { title, images } = gallery;
           images.map((image: any) => (
             <div class={`picture-item ${grid_cols} mt-12`}>
               {" "}
-              <img class="w-full" src={image} alt="" />
+              <img class="w-full" src={image} alt="" loading="lazy" decoding="async" />
             </div>
           ))
         }
