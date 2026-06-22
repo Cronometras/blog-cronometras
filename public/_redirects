@@ -154,4 +154,14 @@
 # ---------------------------------------------------------------------
 /*  /es/404/  404
 
+# ---------------------------------------------------------------------
+# 13. Renombrados de slug detectados en auditoría SEO/GEO 2026-06-22
+#     Pilares ES que perdieron -16% en orgánico por redirects faltantes
+#     desde los slugs anteriores. Apuntan al post canónico actual.
+# ---------------------------------------------------------------------
+/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo             /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica            /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301
+/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro            /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301
+/es/blog/cuales-son-las-tecnicas-de-cronometraje                         /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
+
 # Last validated sitemap dedup: 2026-06-16T05:25:50.143483
