@@ -320,8 +320,9 @@ console.log("Cargando layout Base.astro");
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
 
-    <!-- Google tag (gtag.js) - Inicialización diferida del dataLayer (el script gtag.js se carga SOLO
-         si el usuario consiente las cookies analíticas en CookieConsent.astro) -->
+    <!-- Google tag (gtag.js) - Inicialización que carga gtag.js SIEMPRE
+         para que GA4 reciba hits cookieless (consent mode v2 modeling) tanto
+         si el usuario acepta como si rechaza cookies. -->
     <script is:inline define:vars={{GTAG}}>
       window.GTAG_ID = GTAG;
       window.dataLayer = window.dataLayer || [];
@@ -331,6 +332,8 @@ console.log("Cargando layout Base.astro");
       gtag('consent', 'default', {
         'analytics_storage': 'denied',
         'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
         'wait_for_update': 500
       });
       gtag('js', new Date());
@@ -340,15 +343,13 @@ console.log("Cargando layout Base.astro");
         'anonymize_ip': true
       });
 
-      // Carga condicional de gtag.js — sólo si el usuario ha dado consentimiento.
+      // Cargar gtag.js SIEMPRE (no solo si hay consentimiento) para que GA4
+      // pueda modelar el tráfico de usuarios que rechazan cookies.
       // Se ejecuta tras window.onload para priorizar el render del contenido.
       window.addEventListener('load', function() {
         try {
-          const consent = JSON.parse(localStorage.getItem('cookie-preferences') || 'null');
-          if (consent && consent.analytics === true) {
-            loadGtagScript();
-          }
-        } catch (e) { /* sin consentimiento = sin analytics */ }
+          loadGtagScript();
+        } catch (e) { /* si falla, seguimos sin tracking */ }
       });
 
       // Expuesto globalmente para que CookieConsent.astro lo llame al aceptar cookies.
