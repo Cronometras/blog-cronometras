@@ -21,7 +21,11 @@ import type { PageType } from "@/content/page.types";
 import type { AnyCollectionKey } from "astro:content";
 import { getLangFromUrl } from "@/i18n/utils";
 
-const GTAG = import.meta.env.GTAG_ID
+// Fallback hardcoded a la G-ID del proyecto (cronometras.com). Evita que el
+// tracking se rompa silenciosamente cuando la env var GTAG_ID no está definida
+// en Cloudflare Pages (Pitfall GG §24 de seo-geo-optimization). El ID correcto
+// es G-7FCEX5D4FF — verificar antes de cambiar.
+const GTAG = import.meta.env.GTAG_ID || 'G-7FCEX5D4FF'
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -320,56 +324,11 @@ console.log("Cargando layout Base.astro");
       content="width=device-width, initial-scale=1, maximum-scale=5"
     />
 
-    <!-- Google tag (gtag.js) - Inicialización que carga gtag.js SIEMPRE
-         para que GA4 reciba hits cookieless (consent mode v2 modeling) tanto
-         si el usuario acepta como si rechaza cookies. -->
-    <script is:inline define:vars={{GTAG}}>
-      window.GTAG_ID = GTAG;
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag(){ dataLayer.push(arguments); };
-      // Estado por defecto: NO consentir analítica. CookieConsent.astro actualizará
-      // analytics_storage a 'granted' sólo si el usuario acepta.
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'wait_for_update': 500
-      });
-      gtag('js', new Date());
-      gtag('config', window.GTAG_ID, {
-        'send_page_view': true,
-        'transport_type': 'beacon',
-        'anonymize_ip': true
-      });
-
-      // Cargar gtag.js SIEMPRE (no solo si hay consentimiento) para que GA4
-      // pueda modelar el tráfico de usuarios que rechazan cookies.
-      // Se ejecuta tras window.onload para priorizar el render del contenido.
-      window.addEventListener('load', function() {
-        try {
-          loadGtagScript();
-        } catch (e) { /* si falla, seguimos sin tracking */ }
-      });
-
-      // Expuesto globalmente para que CookieConsent.astro lo llame al aceptar cookies.
-      window.loadGtagScript = function() {
-        if (document.getElementById('gtag-js')) return;
-        const s = document.createElement('script');
-        s.id = 'gtag-js';
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GTAG;
-        document.head.appendChild(s);
-
-        setTimeout(function() {
-          window.gtag('event', 'page_view', {
-            page_title: document.title,
-            page_location: window.location.href,
-            page_path: window.location.pathname
-          });
-        }, 100);
-      };
-    </script>
+    <!-- Google Analytics (gtag.js) — inicialización centralizada en
+         GoogleAnalytics.astro (renderizado en el head más abajo). Evita la doble
+         inicialización que rompía el handshake con GA4 cuando la env var GTAG_ID
+         no estaba definida (Bug 2026-06-13 → 2026-06-25). -->
+    <GoogleAnalytics />
 
     <!-- title -->
     <title>
@@ -583,7 +542,6 @@ console.log("Cargando layout Base.astro");
       <Footer />
     </div>
     <CookieConsent />
-    <GoogleAnalytics />
     <RequestDemoModal />
 
     <!-- Formulario de solicitud de demo - Se cargará mediante React en el cliente -->
