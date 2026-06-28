@@ -96,6 +96,9 @@
 /optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial*        /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
 /define%20el%20metodo%20de%20trabajo*                                            /es/blog/define-el-metodo-de-trabajo/    301
 
+# Slug 'fixed' huérfano (post renombrado sin redirect en su día)
+/es/blog/aplicacion-suplementos-oit-fixed*    /es/blog/aplicacion-de-suplementos-oit/    301
+
 # ---------------------------------------------------------------------
 # 8. URLs con caracteres especiales UTF-8 (tildes y ñ)
 # ---------------------------------------------------------------------
