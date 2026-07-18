@@ -1,0 +1,88 @@
+---
+document_title: "Software de Cronometraje Industrial: Módulo de Estudio de Saturación de Operario y Máquina | CRONOMETRAS"
+meta_description: "Mide en tiempo real el porcentaje de saturación de operario y máquina con el módulo de Estudio de Saturación de CRONOMETRAS. Cronómetros independientes con marcha/parada, registro de segmentos y resultados en vivo para optimizar procesos industriales."
+meta_keywords: "estudio de saturación, saturación operario, saturación máquina, cronómetro marcha parada, medición tiempo real, estudio de tiempos y movimientos, cronometraje industrial, software cronometraje industrial, ingeniería de métodos, productividad industrial, optimización de procesos, tiempo estándar, asignación de recursos, equilibrado de líneas"
+
+title: "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina"
+description: "Cronómetros independientes para operario y máquina con registro de segmentos marcha/parada. Calcula el porcentaje de saturación de cada uno en tiempo real y obtén datos objetivos para optimizar tu proceso productivo."
+---
+
+import Section from '@/components/core/Section.astro';
+import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
+
+
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">¿Qué es el Módulo de Estudio de Saturación en CRONOMETRAS?</h2>
+
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    El <strong>Módulo de Estudio de Saturación</strong> es una herramienta especializada de <a href="/es/features" class="text-accent hover:underline">CRONOMETRAS</a> diseñada para medir, en una sola sesión, el <strong>porcentaje de saturación real del operario y de la máquina</strong> durante un proceso productivo. Mientras que el <a href="/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos" class="text-accent hover:underline">cálculo teórico de saturación</a> se obtiene a partir de un estudio de tiempos clásico, este módulo te permite registrar <strong>qué ocurre en cada instante</strong>: cuándo la máquina está en marcha y cuándo está parada, cuándo el operario está trabajando y cuándo está esperando, mediante dos cronómetros independientes con botones de marcha y parada.
+  </p>
+
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    El resultado es un <strong>% de saturación calculado en vivo</strong> a partir de los segmentos reales medidos, sin estimaciones previas. Esto te da una base objetiva para tomar decisiones sobre <a href="/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario" class="text-accent hover:underline">asignación de máquinas a un operario</a>, equilibrado de líneas y planificación de la producción.
+  </p>
+</div>
+
+<Section
+  section={{
+    title: "Dos Cronómetros Independientes: Máquina y Operario",
+    content: "CRONOMETRAS incorpora <strong>dos cronómetros en paralelo</strong>, uno para la máquina y otro para el operario, cada uno con su propio botón de marcha y parada. A medida que avanza la sesión se generan <strong>segmentos cronológicos</strong> de tiempo en marcha y en parada para cada entidad:<br/><br/>• Cronómetro de máquina con registro de tiempo en marcha y tiempo en parada<br/>• Cronómetro de operario con registro de tiempo trabajando y tiempo en espera<br/>• Botones independientes de Marcha y Parada para cada cronómetro, evitando confundir los tiempos de ambas entidades<br/>• Posibilidad de <strong>reiniciar</strong> cada cronómetro por separado manteniendo el historial de segmentos del estudio<br/>• Botón de Eliminar Todo con confirmación para iniciar una nueva sesión limpia<br/><br/><i>Captura con precisión de milisegundos los tramos reales de actividad y parada de máquina y operario, sin hojas de cálculo ni cronómetros manuales sincronizados a mano.</i>",
+    image: "/images/webp/saturation-study.webp",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Dos cronómetros independientes para máquina y operario en el módulo de Estudio de Saturación de CRONOMETRAS"
+  }}
+/>
+
+<Section
+  section={{
+    title: "Cálculo de %saturación en Tiempo Real a partir de Segmentos",
+    content: "A partir de los segmentos registrados, CRONOMETRAS calcula automáticamente el <strong>porcentaje de saturación de la máquina y del operario</strong> sobre el tiempo total del estudio. La fórmula aplicada es directa y transparente:<br/><br/>• <strong>%saturación_máquina</strong> = tiempo_total_marcha_máquina / tiempo_total_estudio × 100<br/>• <strong>%saturación_operario</strong> = tiempo_total_trabajando_operario / tiempo_total_estudio × 100<br/>• Tiempo total del estudio calculado como el tiempo transcurrido desde el primer hasta el último segmento registrado<br/>• <strong>Resultados en vivo</strong> actualizados con cada nuevo segmento, sin necesidad de cerrar la sesión<br/>• Visualización clara del estado actual de cada cronómetro (en marcha o en parada) para validar la medición en el momento<br/><br/><i>Olvídate de cronómetros manuales cruzados en una hoja Excel: los datos de saturación se calculan en el momento y se almacenan junto al estudio para su análisis posterior.</i>",
+    image: "/images/webp/cronometras-app.webp",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Cálculo del porcentaje de saturación en tiempo real en CRONOMETRAS"
+  }}
+/>
+
+<Section
+  section={{
+    title: "Gestión de Segmentos y Anotaciones para un Análisis Detallado",
+    content: "Cada tramo marcha/parada se almacena como un <strong>segmento individual</strong> que puedes revisar, anotar y editar para refinar el estudio. CRONOMETRAS ofrece un panel de gestión completo pensado para el trabajo de campo:<br/><br/>• Listado cronológico de segmentos por entidad (máquina u operario) con su estado, hora de inicio y duración<br/>• <strong>Edición de notas</strong> en cada segmento para documentar incidencias, paradas técnicas, esperas o cualquier observación relevante<br/>• Persistencia <strong>offline-first</strong> de los segmentos: la sesión sigue funcionando aunque pierdas la conexión, sincronizándose automáticamente al recuperar la red<br/>• Compatible con la <a href='/es/method' class='text-accent hover:underline'>metodología de la app</a> y enlazable desde el <a href='/es/report' class='text-accent hover:underline'>módulo de Informes</a> para análisis avanzado<br/>• Exportación de los resultados para comparar estudios, justificar asignaciones o presentar datos a producción y dirección<br/><br/><i>Combina los datos reales de saturación con el histórico de tu <strong>estudio de tiempos</strong> para tomar decisiones basadas en mediciones objetivas y no en estimaciones.</i>",
+    image: "/images/webp/avance-de-fase-de-un-estudio-de-tiempos.webp",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Gestión de segmentos y notas en el módulo de Estudio de Saturación de CRONOMETRAS"
+  }}
+/>
+
+<div class="container mx-auto my-12 px-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Optimiza tus Procesos con el Módulo de Estudio de Saturación</h2>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      El módulo de Estudio de Saturación de CRONOMETRAS convierte una medición que tradicionalmente requería dos cronómetros, hojas de cálculo y horas de tratamiento posterior, en una sesión guiada y con resultados inmediatos. Esto te permite:
+    </p>
+
+    <ul class="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
+      <li>Medir el porcentaje real de saturación de operario y máquina con precisión de milisegundos</li>
+      <li>Detectar paradas técnicas, esperas y cuellos de botella que el <a href="/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos" class="text-accent hover:underline">cálculo teórico de saturación</a> no muestra</li>
+      <li>Decidir con datos objetivos cuántas máquinas puede llevar un operario basándote en su <a href="/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario" class="text-accent hover:underline">%saturación real</a></li>
+      <li>Documentar incidencias y paradas directamente sobre los segmentos medidos</li>
+      <li>Trabajar en planta con sincronización offline-first, sin perder datos por falta de cobertura</li>
+      <li>Combinar los resultados con el <a href="/es/method" class="text-accent hover:underline">módulo de método</a> y el <a href="/es/report" class="text-accent hover:underline">módulo de informes</a> para análisis completos</li>
+    </ul>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      Según la experiencia de implantaciones de CRONOMETRAS en planta, la medición directa de la saturación real suele poner de manifiesto diferencias de entre <strong>10 y 25 puntos porcentuales</strong> respecto a la saturación teórica estimada a partir del estudio de tiempos. Esta diferencia es la que justifica decisiones de equilibrado de líneas, reasignación de operarios o rediseño del método de trabajo.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-4 mt-8">
+      <a href="/es/contact" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Solicitar una demo gratuita
+      </a>
+      <a href="/es/method" class="border border-accent text-accent hover:bg-accent/10 font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Explorar Módulo de Método
+      </a>
+    </div>
+
+    <RelatedBlogPosts title="Recursos sobre Estudio de Saturación" language="es" />
+  </div>
+</div>

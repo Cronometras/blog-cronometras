@@ -1,0 +1,88 @@
+---
+document_title: "Industrial Time Study Software: Saturation Study Module for Operator and Machine | CRONOMETRAS"
+meta_description: "Measure the real-time saturation percentage of operator and machine with the CRONOMETRAS Saturation Study module. Independent start/stop stopwatches, segment logging and live results to optimize your industrial processes."
+meta_keywords: "saturation study, operator saturation, machine saturation, start stop stopwatch, real time measurement, time and motion study, industrial time study, industrial time study software, methods engineering, industrial productivity, process optimization, standard time, resource allocation, line balancing"
+
+title: "Saturation Study Module: Real-Time Measurement of Operator and Machine"
+description: "Independent stopwatches for operator and machine with start/stop segment logging. Calculate the saturation percentage of each one in real time and get objective data to optimize your production process."
+---
+
+import Section from '@/components/core/Section.astro';
+import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
+
+
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-12">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">What is the Saturation Study Module in CRONOMETRAS?</h2>
+
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    The <strong>Saturation Study Module</strong> is a specialized tool in <a href="/en/features" class="text-accent hover:underline">CRONOMETRAS</a> designed to measure, in a single session, the <strong>real saturation percentage of the operator and the machine</strong> during a production process. While the <a href="/en/blog/saturation-calculation-in-time-study" class="text-accent hover:underline">theoretical saturation calculation</a> is derived from a classical time study, this module lets you record <strong>what happens at every moment</strong>: when the machine is running and when it is stopped, when the operator is working and when they are waiting, through two independent stopwatches with start and stop buttons.
+  </p>
+
+  <p class="mb-6 text-gray-700 dark:text-gray-300">
+    The result is a <strong>saturation % calculated live</strong> from the actual measured segments, without prior estimates. This gives you an objective basis for decisions on <a href="/en/blog/calculating-the-optimal-number-of-machines-for-an-operator" class="text-accent hover:underline">machine-to-operator assignment</a>, line balancing and production planning.
+  </p>
+</div>
+
+<Section
+  section={{
+    title: "Two Independent Stopwatches: Machine and Operator",
+    content: "CRONOMETRAS includes <strong>two stopwatches in parallel</strong>, one for the machine and one for the operator, each with its own start and stop button. As the session advances, <strong>chronological segments</strong> of running and stopped time are generated for each entity:<br/><br/>• Machine stopwatch logging running time and stopped time<br/>• Operator stopwatch logging working time and waiting time<br/>• Independent Start and Stop buttons for each stopwatch, preventing confusion between both entities' times<br/>• Ability to <strong>reset</strong> each stopwatch separately while keeping the study's segment history<br/>• Clear All button with confirmation to start a fresh new session<br/><br/><i>Capture with millisecond precision the actual activity and stoppage intervals of machine and operator, no spreadsheets or manually synchronized stopwatches needed.</i>",
+    image: "/images/webp/saturation-study.webp",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Two independent stopwatches for machine and operator in the CRONOMETRAS Saturation Study module"
+  }}
+/>
+
+<Section
+  section={{
+    title: "Live %Saturation Calculation from Segments",
+    content: "From the recorded segments, CRONOMETRAS automatically calculates the <strong>saturation percentage of both the machine and the operator</strong> over the total study time. The formula applied is direct and transparent:<br/><br/>• <strong>%machine_saturation</strong> = total_machine_running_time / total_study_time × 100<br/>• <strong>%operator_saturation</strong> = total_operator_working_time / total_study_time × 100<br/>• Total study time computed as the elapsed time from the first to the last recorded segment<br/>• <strong>Live results</strong> updated with every new segment, no need to close the session<br/>• Clear visualization of each stopwatch's current state (running or stopped) to validate the measurement on the spot<br/><br/><i>Forget manual stopwatches cross-referenced in an Excel sheet: saturation data is calculated on the spot and stored with the study for later analysis.</i>",
+    image: "/images/webp/cronometras-app.webp",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Live percentage saturation calculation in CRONOMETRAS"
+  }}
+/>
+
+<Section
+  section={{
+    title: "Segment Management and Notes for Detailed Analysis",
+    content: "Each start/stop interval is stored as an <strong>individual segment</strong> you can review, annotate and edit to refine the study. CRONOMETRAS offers a complete management panel designed for field work:<br/><br/>• Chronological list of segments by entity (machine or operator) with their state, start time and duration<br/>• <strong>Notes editing</strong> on each segment to document incidents, technical stops, waits or any relevant observation<br/>• <strong>Offline-first</strong> persistence of segments: the session keeps working even if you lose connection, syncing automatically when the network is back<br/>• Compatible with the app's <a href='/en/method' class='text-accent hover:underline'>methodology</a> and linkable from the <a href='/en/report' class='text-accent hover:underline'>Reports module</a> for advanced analysis<br/>• Results export to compare studies, justify assignments or present data to production and management<br/><br/><i>Combine real saturation data with the history of your <strong>time study</strong> to make decisions grounded in objective measurements rather than estimates.</i>",
+    image: "/images/webp/avance-de-fase-de-un-estudio-de-tiempos.webp",
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
+    alt: "Segment management and notes in the CRONOMETRAS Saturation Study module"
+  }}
+/>
+
+<div class="container mx-auto my-12 px-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Optimize Your Processes with the Saturation Study Module</h2>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      The CRONOMETRAS Saturation Study module turns a measurement that traditionally required two stopwatches, spreadsheets and hours of post-processing, into a guided session with immediate results. This allows you to:
+    </p>
+
+    <ul class="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
+      <li>Measure the real saturation percentage of operator and machine with millisecond precision</li>
+      <li>Detect technical stops, waits and bottlenecks that <a href="/en/blog/saturation-calculation-in-time-study" class="text-accent hover:underline">theoretical saturation</a> does not show</li>
+      <li>Decide objectively how many machines an operator can handle based on their <a href="/en/blog/calculating-the-optimal-number-of-machines-for-an-operator" class="text-accent hover:underline">real %saturation</a></li>
+      <li>Document incidents and stops directly on the measured segments</li>
+      <li>Work on the shop floor with offline-first sync, without losing data due to lack of coverage</li>
+      <li>Combine results with the <a href="/en/method" class="text-accent hover:underline">method module</a> and the <a href="/en/report" class="text-accent hover:underline">reports module</a> for complete analysis</li>
+    </ul>
+
+    <p class="mb-6 text-gray-700 dark:text-gray-300">
+      Based on CRONOMETRAS deployments on the shop floor, the direct measurement of real saturation typically reveals differences of between <strong>10 and 25 percentage points</strong> compared to the theoretical saturation estimated from the time study. This difference is what justifies line balancing decisions, operator reassignments or work method redesign.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-4 mt-8">
+      <a href="/en/contact" class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Request a free demo
+      </a>
+      <a href="/en/method" class="border border-accent text-accent hover:bg-accent/10 font-bold py-3 px-6 rounded-lg text-center transition-colors">
+        Explore Method Module
+      </a>
+    </div>
+
+    <RelatedBlogPosts title="Resources on Saturation Studies" language="en" />
+  </div>
+</div>
