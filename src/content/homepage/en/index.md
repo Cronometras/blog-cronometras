@@ -71,6 +71,11 @@ sections:
   - title: Designed for Productivity
     content: "With an intuitive and modern interface, CRONOMETRAS makes time analysis <b class='text-accent'>simple and efficient</b>. Forget spreadsheets and manual stopwatches. Optimize your productivity with professional tools."
 
+  - title: Saturation Study for Operator and Machine
+    content: "Measure in real time the <b class='text-accent'>%saturation of operator and machine</b> with two independent stopwatches and start/stop segment logging. Detect technical stops, waits and bottlenecks that <a href='/en/blog/saturation-calculation-in-time-study' class='text-accent hover:underline'>theoretical saturation</a> cannot show. <i>Decide with real data how many machines an operator can handle based on their %saturation as measured, not estimated.</i>"
+    image: /images/webp/saturation-study.webp
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
 colaboramos:
   - title: "Our industrial time study App collaborates with:"
     description: "CRONOMETRAS is a project based on collaboration. If you are interested in participating, do not hesitate to contact us."
@@ -174,6 +179,9 @@ features:
     - icon: "folder"
       title: Folder Organization
       content: Organize studies in <b class="text-text">hierarchical folders</b>. Drag and drop, share folders with your team.
+    - icon: "clock"
+      title: Saturation Study
+      content: Measure the <b class="text-text">real %saturation of operator and machine</b> with independent start/stop stopwatches. Live results and segment logging with notes.
 # Testimonial
 testimonial:
   title: What Our <ins>Satisfied Customers</ins> Say

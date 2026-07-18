@@ -69,6 +69,11 @@ sections:
   - title: Diseñado para la Productividad
     content: "Con una interfaz intuitiva y moderna, CRONOMETRAS hace que el análisis de tiempos sea <b class='text-accent'>simple y eficiente</b>. Olvídate de las hojas de cálculo y de la tablilla con  el cronómetro manual y la hoja de papel y el lápiz. Optimiza tu productividad con herramientas profesionales."
 
+  - title: Estudio de Saturación de Operario y Máquina
+    content: "Mide en tiempo real el <b class='text-accent'>%saturación de operario y máquina</b> con dos cronómetros independientes y registro de segmentos marcha/parada. Detecta paradas técnicas, esperas y cuellos de botella que el <a href='/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos' class='text-accent hover:underline'>cálculo teórico de saturación</a> no muestra. <i>Decide con datos reales cuántas máquinas puede llevar un operario basándote en su %saturación medido, no estimado.</i>"
+    image: /images/webp/saturation-study.webp
+    imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
 
 colaboramos:
   - title: "Nuestra App de cronometraje industrial colabora con:"
@@ -153,6 +158,12 @@ how_it_works:
       description: "Si lo prefieres podrás generar el informe en Excel o PDF, para sentirte cómodo en un entorno de trabajo que conoces, modifica los datos o crea gráficas a partir de los mismos."
       image: /images/webp/informe-pdf.webp
 
+    - number: 7
+      title: "Estudio de Saturación de operario y máquina"
+      description: "Activa el estudio de saturación en cualquier estudio y obtén el <b class='text-text'>%saturación real de operario y máquina</b> con dos cronómetros marcha/parada independientes y resultados en vivo."
+      image: /images/webp/saturation-study.webp
+      imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
+
   footer_description: "Establezca el estándar de producción y genere mejora de procesos en menor tiempo gracias a los estudios de tiempos. Potencie la gestión de la producción mediante la optimización del tiempo y las diferentes técnicas de productividad, que aplicará y medirá, comparando el registro de movimientos de diferentes normas de trabajo al usar nuestra app para desarrollar la ingeniería de métodos."
 
 
@@ -212,6 +223,9 @@ features:
     - icon: "folder"
       title: Organización por Carpetas
       content: Organiza estudios en <b class="text-text">carpetas jerárquicas</b>. Arrastra y suelta, comparte carpetas con tu equipo.
+    - icon: "clock"
+      title: Estudio de Saturación
+      content: Mide el <b class="text-text">%saturación real de operario y máquina</b> con cronómetros marcha/parada independientes. Resultados en vivo y registro de segmentos con notas.
 
 #testimonial
 testimonial:
