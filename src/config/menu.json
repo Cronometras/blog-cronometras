@@ -1,10 +1,6 @@
 {
   "main": [
     {
-      "name": "nav.home",
-      "url": "/"
-    },
-    {
       "name": "nav.blog",
       "url": "/blog"
     },
