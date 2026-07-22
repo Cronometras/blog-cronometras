@@ -1,0 +1,227 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import config from "@/config/config.json";
+
+const title = "Estudio de Métodos y Tiempos Online con Cronometras | Servicio + App";
+const description =
+  "Estudio profesional de métodos y tiempos online con Cronometras: vídeo + app de cronometraje + análisis humano. Entrega PDF + Excel + JSON. Tarifa desde 595 €.";
+const canonical = `${config.site.base_url}/es/estudio-metodos-tiempos`;
+
+// JSON-LD: Service
+const jsonLdService = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Estudio de Métodos y Tiempos",
+  "name": "Estudio de Métodos y Tiempos Online con Cronometras",
+  "description": description,
+  "url": canonical,
+  "provider": {
+    "@type": "Organization",
+    "name": "Cronometras",
+    "url": "https://cronometras.com",
+  },
+  "areaServed": { "@type": "Country", "name": "España" },
+  "offers": {
+    "@type": "Offer",
+    "price": "595",
+    "priceCurrency": "EUR",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "595",
+      "priceCurrency": "EUR",
+      "valueAddedTaxIncluded": false,
+    },
+    "availability": "https://schema.org/InStock",
+  },
+  "deliveryMethod": "Online",
+};
+---
+
+<Base title={title} description={description}>
+  <Breadcrumb
+    items={[
+      { label: "Inicio", href: "/es" },
+      { label: "Servicio de Estudio de Métodos y Tiempos" },
+    ]}
+  />
+
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="badge badge-accent mb-4">Servicio + App · Solo en español</span>
+        <h1 class="mb-5 mt-2 text-4xl md:text-5xl font-bold">
+          Estudio de Métodos y Tiempos <span class="text-accent">Online</span>
+        </h1>
+        <p class="text-lg text-text-secondary">
+          Graba un vídeo de tu operación y nuestro equipo técnico lo analiza con <strong>Cronometras</strong>, la app líder en cronometraje industrial. Entregables en PDF, Excel y JSON estructurado.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/es/contact" class="btn btn-primary">Solicitar estudio</a>
+          <a href="#como-funciona" class="btn btn-primary-outline">Ver cómo funciona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 bg-gray-50">
+    <div class="container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-accent">595 €</div>
+          <div class="text-sm text-gray-600 mt-1">Tarifa cerrada</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-accent">5 días</div>
+          <div class="text-sm text-gray-600 mt-1">Plazo de entrega</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-accent">PDF · Excel · JSON</div>
+          <div class="text-sm text-gray-600 mt-1">Entregables</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-accent">100% online</div>
+          <div class="text-sm text-gray-600 mt-1">Sin desplazarte</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Cómo funciona</h2>
+        <p class="text-text-secondary">Tres pasos para recibir tu estudio con tiempos estándar validados.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        {[
+          { n: 1, t: "Graba la operación", d: "Vídeo de hasta 60 min desde tu móvil o cámara. Súbelo a tu Drive, Dropbox o OneDrive." },
+          { n: 2, t: "Envíanos el enlace", d: "Rellena el formulario con el enlace al vídeo y los datos de la operación." },
+          { n: 3, t: "Análisis con Cronometras", d: "Nuestro equipo toma los tiempos con la app Cronometras y aplica suplementos OIT." },
+          { n: 4, t: "Recibe los entregables", d: "PDF con el informe + Excel con los datos + JSON estructurado en 5 días hábiles." },
+        ].map((s) => (
+          <div class="bg-white rounded-xl shadow-md p-6 text-center">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white font-bold text-xl mb-4">{s.n}</div>
+            <h3 class="font-bold mb-2">{s.t}</h3>
+            <p class="text-sm text-gray-600">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Qué incluye el estudio</h2>
+        <p class="text-text-secondary">Todo lo necesario para tomar decisiones con datos auditables.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {[
+          { t: "Informe técnico en PDF", d: "Método de trabajo, descomposición por elementos, tiempo estándar, suplementos OIT, observaciones y oportunidades de mejora." },
+          { t: "Hoja de datos en Excel", d: "Tiempos por ciclo, valoración del ritmo, suplementos aplicados, tiempo normal y tiempo estándar por elemento y total." },
+          { t: "JSON estructurado", d: "Esquema exportable a tu MES, ERP o BI para alimentar sistemas de incentivos y planificación." },
+          { t: "Reunión online de resultados", d: "30 minutos con un técnico para revisar el informe y resolver dudas sobre el método y los tiempos." },
+          { t: "Acceso a la app Cronometras", d: "Visualiza los datos en la propia app, comparte con tu equipo y exporta a tus herramientas." },
+          { t: "Soporte post-entrega", d: "15 días para preguntas o ajustes derivados de aplicar los tiempos en planta." },
+        ].map((b) => (
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-bold text-accent mb-2">{b.t}</h3>
+            <p class="text-sm text-gray-600">{b.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Para quién es este servicio</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {[
+          { t: "Responsables de producción", d: "Que necesitan tiempos estándar auditables para planificar, fijar objetivos o detectar cuellos de botella." },
+          { t: "Ingenieros de métodos", d: "Que quieren un segundo análisis externo o cubrir picos de trabajo sin contratar personal adicional." },
+          { t: "Empresas en fase de Lean", d: "Que están implantando mejora continua y necesitan una base sólida de tiempos para los indicadores OEE." },
+          { t: "Consultoras e ingenierías", d: "Que ejecutan proyectos para clientes y necesitan un partner técnico con entregables profesionales." },
+          { t: "Departamentos de RRHH", d: "Que diseñan sistemas de incentivos y necesitan que los tiempos estén validados con metodología OIT." },
+          { t: "Industria 4.0 / transformación digital", d: "Que necesita datos estructurados (JSON) para alimentar su gemelo digital o sistema MES." },
+        ].map((b) => (
+          <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-accent">
+            <h3 class="font-bold mb-2">{b.t}</h3>
+            <p class="text-sm text-gray-600">{b.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gradient-primary text-white">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl font-bold mb-4">¿Listo para empezar?</h2>
+        <p class="text-white/90 mb-8">Graba tu operación y solicita tu estudio. Te respondemos en menos de 24 h.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/es/contact" class="btn btn-primary">Solicitar estudio</a>
+          <a href="https://wa.me/34615157877" class="btn btn-primary-outline text-white border-white">Contactar por WhatsApp</a>
+        </div>
+        <p class="mt-6 text-sm text-white/70">Tarifa cerrada 595 € + IVA · Vídeo de hasta 60 min · Entrega en 5 días hábiles</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-3xl font-bold mb-8 text-center">Preguntas frecuentes</h2>
+        <div class="space-y-4">
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Qué diferencia hay con el servicio de prodcont.com?</summary>
+            <p class="mt-3 text-gray-600">
+              Prodcont ofrece el estudio sin herramientas digitales. En Cronometras el mismo estudio se realiza <strong>con la app</strong>, lo que te permite visualizar, compartir y exportar los datos desde el primer momento, y recibir el JSON estructurado listo para conectar con tu MES, ERP o BI. Por eso la tarifa es ligeramente superior (595 € vs 495 €).
+            </p>
+          </details>
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Puedo ver un ejemplo del entregable antes de contratar?</summary>
+            <p class="mt-3 text-gray-600">
+              Sí. Al solicitar el estudio te enviaremos un PDF anonimizado de un caso real para que veas el formato y profundidad del informe.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Qué pasa si mi operación tiene máquinas?</summary>
+            <p class="mt-3 text-gray-600">
+              Medimos por separado <strong>MP</strong> (Máquina Parada, operario manual con máquina apagada), <strong>MM</strong> (Máquina en Marcha, operario manual con máquina funcionando) y <strong>TM/TW</strong> (tiempo automático de máquina, sin operario). Aplicamos suplementos distintos a cada caso. Con esos datos calculamos la <strong>saturación del operario</strong> respecto a la máquina.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Hasta qué duración de vídeo analizáis?</summary>
+            <p class="mt-3 text-gray-600">
+              Hasta <strong>60 minutos</strong> por operación. Para estudios de líneas completas o varias operaciones, contacta con nosotros para un presupuesto personalizado.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Cómo envío el vídeo?</summary>
+            <p class="mt-3 text-gray-600">
+              Sube el vídeo a tu propio Google Drive, Dropbox o OneDrive y envíanos el enlace desde el formulario de contacto. Así el archivo no caduca y mantienes el control sobre él.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Aplicáis suplementos OIT?</summary>
+            <p class="mt-3 text-gray-600">
+              Sí. Aplicamos suplementos por descanso, personales, contingencias y especiales según la metodología OIT (Organización Internacional del Trabajo). Si tu empresa utiliza otra convención, indícanoslo y la adaptamos.
+            </p>
+          </details>
+          <details class="bg-white rounded-xl shadow-md p-6">
+            <summary class="font-bold cursor-pointer">¿Y si la operación es muy compleja?</summary>
+            <p class="mt-3 text-gray-600">
+              Cubrimos estudios de operaciones manuales, semiautomáticas y con participación de operario en célula robotizada. Para líneas completas, células múltiples o estudios MTM/MOST, consúltanos: haremos un presupuesto a medida.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLdService)} />
+</Base>

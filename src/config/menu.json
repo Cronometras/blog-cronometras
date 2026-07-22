@@ -78,6 +78,10 @@
   ],
   "footer": [
     {
+      "name": "footer.service",
+      "url": "/estudio-metodos-tiempos"
+    },
+    {
       "name": "footer.legal_notice",
       "url": "/aviso-legal"
     },

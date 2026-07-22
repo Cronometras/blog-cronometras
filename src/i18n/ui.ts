@@ -49,6 +49,7 @@ export const ui = {
     'nav.pricing': 'Precios',
     'nav.contact': 'Contacto',
     'footer.other_apps': 'Otras Apps',
+    'footer.service': 'Estudio Métodos y Tiempos',
     'footer.induly_desc': 'Control de Producción Industrial',
     'footer.worksamp_desc': 'Muestreo del Trabajo',
     'footer.rss_feeds': 'RSS Feeds',
