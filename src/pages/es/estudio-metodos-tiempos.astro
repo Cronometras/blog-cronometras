@@ -87,6 +87,40 @@ const jsonLdService = {
     </div>
   </section>
 
+  <section class="py-16 bg-gradient-to-br from-primary/5 to-accent/5 border-y border-primary/10">
+    <div class="container">
+      <div class="mx-auto max-w-4xl">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <span class="inline-block text-xs font-bold uppercase tracking-wide text-primary mb-2">Complemento opcional</span>
+            <h2 class="text-3xl font-bold mb-4">Visualiza los datos en la app Cronometras</h2>
+            <p class="text-text-secondary mb-6">
+              Si tu equipo trabaja con la app Cronometras para registrar tiempos en planta, podemos entregarte el estudio directamente dentro de la app: cronogramas interactivos, comparativa entre ciclos, exportación a Excel/CSV/JSON y panel compartido con tu equipo.
+            </p>
+            <ul class="space-y-2 text-sm text-text-secondary mb-6">
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Sin doble carga de datos: importas los tiempos del estudio a la app</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Comparte el estudio con tu equipo desde la propia app</li>
+              <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Exporta a MES, ERP o BI desde la app</li>
+            </ul>
+            <p class="text-sm text-text-secondary">
+              <strong class="text-primary">El estudio a 495 € no incluye la licencia de la app.</strong> Si decides contratar una licencia anual de Cronometras para tu equipo, te aplicamos un <strong class="text-primary">10 % de descuento</strong> sobre el precio de la licencia durante el primer año como cliente del estudio.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-primary/10">
+            <p class="text-sm text-text-secondary uppercase tracking-wide mb-2">Si contratas la licencia de la app</p>
+            <p class="text-5xl font-extrabold text-primary mb-1">−10 %</p>
+            <p class="text-text-secondary mb-6">de descuento en el primer año</p>
+            <div class="border-t pt-6">
+              <p class="text-sm text-text-secondary mb-2">Estudio independiente de la app</p>
+              <p class="text-3xl font-bold text-text-primary">495 € <span class="text-base font-normal text-text-secondary">+ IVA</span></p>
+              <p class="text-xs text-text-secondary mt-1">Tarifa cerrada · sin permanencia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="como-funciona" class="py-16">
     <div class="container">
       <div class="mx-auto max-w-3xl text-center mb-12">
@@ -122,7 +156,6 @@ const jsonLdService = {
           { t: "Hoja de datos en Excel", d: "Tiempos por ciclo, valoración del ritmo, suplementos aplicados, tiempo normal y tiempo estándar por elemento y total." },
           { t: "JSON estructurado", d: "Esquema exportable a tu MES, ERP o BI para alimentar sistemas de incentivos y planificación." },
           { t: "Reunión online de resultados", d: "30 minutos con un técnico para revisar el informe y resolver dudas sobre el método y los tiempos." },
-          { t: "Acceso a la app Cronometras", d: "Visualiza los datos en la propia app, comparte con tu equipo y exporta a tus herramientas." },
           { t: "Soporte post-entrega", d: "15 días para preguntas o ajustes derivados de aplicar los tiempos en planta." },
         ].map((b) => (
           <div class="bg-white rounded-xl shadow p-6">
@@ -184,12 +217,6 @@ const jsonLdService = {
       <div class="mx-auto max-w-3xl">
         <h2 class="text-3xl font-bold mb-8 text-center">Preguntas frecuentes</h2>
         <div class="space-y-4">
-          <details class="bg-white rounded-xl shadow-md p-6">
-            <summary class="font-bold cursor-pointer">¿Qué diferencia hay con el servicio de prodcont.com?</summary>
-            <p class="mt-3 text-gray-600">
-              Prodcont ofrece el estudio con metodología clásica. En Cronometras el mismo estudio se realiza además <strong>con la app</strong>, lo que te permite visualizar, compartir y exportar los datos desde el primer momento, y recibir el JSON estructurado listo para conectar con tu MES, ERP o BI. La tarifa es la misma (495 €); eliges dónde quieres recibir el entregable final. <strong>Además, si contratas una licencia de la app Cronometras el primer año, te aplicamos un 10 % de descuento sobre la licencia.</strong>
-            </p>
-          </details>
           <details class="bg-white rounded-xl shadow-md p-6">
             <summary class="font-bold cursor-pointer">¿El precio del estudio incluye la app?</summary>
             <p class="mt-3 text-gray-600">
