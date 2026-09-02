@@ -104,10 +104,43 @@ function processCTAs(content: string): string {
         /\[([^\]]*(?:Demo|Prueba|Solicitar|Accede|Contacta)[^\]]*)\]/gi,
         '<a href="#demo" class="cta-link inline-block px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors cursor-pointer" onclick="if(typeof window.openRequestDemoModal === \'function\') { window.openRequestDemoModal(); return false; }">$1</a>'
     );
-    return processedContent.replace(
+    const withFinalCta = processedContent.replace(
         /\*\*CTA[^:]*:\*\*\s*([^\n]+)/gi,
         '<div class="cta-box my-8 p-6 bg-gradient-to-r from-accent/10 to-accent/5 border-l-4 border-accent rounded-r-lg"><p class="font-semibold mb-2">¡Actúa ahora!</p><a href="#demo" class="cta-link inline-block px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors cursor-pointer" onclick="if(typeof window.openRequestDemoModal === \'function\') { window.openRequestDemoModal(); return false; }">$1</a></div>'
     );
+
+    // CTA fijo al estudio de 800 € (Micaot 2026-08-31).
+    // Detectamos si el contenido ya menciona el precio del estudio para no duplicar.
+    if (!/estudio desde 800 €/i.test(withFinalCta) && !/study from €800/i.test(withFinalCta)) {
+        // Si el artículo parece estar en inglés (palabras clave + ratio), usamos la versión EN.
+        const englishHints = (withFinalCta.match(/\b(the|and|with|for|from|time|motion|study|work|standard|operator|process|industrial)\b/gi) || []).length;
+        const spanishHints = (withFinalCta.match(/\b(estudio|tiempos|métodos|operario|proceso|industrial|trabajo|para|desde)\b/gi) || []).length;
+        const isEnglish = englishHints > spanishHints && englishHints >= 6;
+
+        if (isEnglish) {
+            return withFinalCta + `
+
+---
+
+## Don't want to do it yourself? We do it for you from €800
+
+If you prefer to outsource it, Cronometras delivers a complete time and motion study from a single video: elemental breakdown, OIT/OLTA fatigue allowances, standard time with tolerances, and a report in PDF + Excel + JSON ready to present to management.
+
+[👉 Request the study from €800](/es/estudio-metodos-tiempos) · [More about Cronometras](https://cronometras.com/en)
+`;
+        }
+        return withFinalCta + `
+
+---
+
+## ¿No quieres hacerlo tú? Lo hacemos por ti desde 800 €
+
+Si prefieres externalizarlo, en Cronometras entregamos un estudio de métodos y tiempos completo a partir de un vídeo: descomposición por elementos, suplementos OIT/OLTA, tiempo estándar con tolerancias, y un informe en PDF + Excel + JSON listo para presentar a dirección.
+
+[👉 Solicita el estudio desde 800 €](/es/estudio-metodos-tiempos) · [Más información sobre Cronometras](https://cronometras.com/es)
+`;
+    }
+    return withFinalCta;
 }
 
 function transformToBlogPost(article: FirestoreArticle, lang: 'es' | 'en'): BlogPost {

@@ -3,9 +3,9 @@ import Base from "@/layouts/Base.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import config from "@/config/config.json";
 
-const title = "Estudio de Métodos y Tiempos Online con Cronometras | Servicio + App";
+const title = "Estudio de Tiempos desde 800 € · 5 días · PDF + Excel";
 const description =
-  "Estudio profesional de métodos y tiempos online con Cronometras: vídeo + app de cronometraje + análisis humano. Entrega PDF + Excel + JSON. Tarifa desde 495 €.";
+  "Estudio profesional de tiempos estándar desde vídeo: suplementos OIT y descomposición por elementos. Informe PDF + Excel + JSON en 5 días. Desde 800 €.";
 const canonical = `${config.site.base_url}/es/estudio-metodos-tiempos`;
 
 // JSON-LD: Service
@@ -24,11 +24,11 @@ const jsonLdService = {
   "areaServed": { "@type": "Country", "name": "España" },
   "offers": {
     "@type": "Offer",
-    "price": "495",
+    "price": "800",
     "priceCurrency": "EUR",
     "priceSpecification": {
       "@type": "PriceSpecification",
-      "price": "495",
+      "price": "800",
       "priceCurrency": "EUR",
       "valueAddedTaxIncluded": false,
     },
@@ -68,7 +68,7 @@ const jsonLdService = {
     <div class="container">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
-          <div class="text-3xl md:text-4xl font-extrabold text-accent">495 €</div>
+          <div class="text-3xl md:text-4xl font-extrabold text-accent">800 €</div>
           <div class="text-sm text-gray-600 mt-1">Tarifa cerrada</div>
         </div>
         <div>
@@ -103,7 +103,7 @@ const jsonLdService = {
               <li class="flex items-start gap-2"><span class="text-accent mt-0.5">✓</span> Exporta a MES, ERP o BI desde la app</li>
             </ul>
             <p class="text-sm text-text-secondary">
-              <strong class="text-primary">El estudio a 495 € no incluye la licencia de la app.</strong> Si decides contratar una licencia anual de Cronometras para tu equipo, te aplicamos un <strong class="text-primary">10 % de descuento</strong> sobre el precio de la licencia durante el primer año como cliente del estudio.
+              <strong class="text-primary">El estudio a 800 € no incluye la licencia de la app.</strong> Si decides contratar una licencia anual de Cronometras para tu equipo, te aplicamos un <strong class="text-primary">10 % de descuento</strong> sobre el precio de la licencia durante el primer año como cliente del estudio.
             </p>
           </div>
           <div class="bg-white rounded-2xl shadow-lg p-8 text-center border-2 border-primary/10">
@@ -112,7 +112,7 @@ const jsonLdService = {
             <p class="text-text-secondary mb-6">de descuento en el primer año</p>
             <div class="border-t pt-6">
               <p class="text-sm text-text-secondary mb-2">Estudio independiente de la app</p>
-              <p class="text-3xl font-bold text-text-primary">495 € <span class="text-base font-normal text-text-secondary">+ IVA</span></p>
+              <p class="text-3xl font-bold text-text-primary">800 € <span class="text-base font-normal text-text-secondary">+ IVA</span></p>
               <p class="text-xs text-text-secondary mt-1">Tarifa cerrada · sin permanencia</p>
             </div>
           </div>
@@ -198,14 +198,14 @@ const jsonLdService = {
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <a href="/es/contact" class="btn btn-primary">Solicitar estudio</a>
           <a
-            href="https://wa.me/34615157877?text=Hola%2C%20me%20interesa%20el%20Estudio%20de%20M%C3%A9todos%20y%20Tiempos%20desde%20495%20%E2%82%AC.%20%C2%BFMe%20puedes%20dar%20m%C3%A1s%20informaci%C3%B3n%3F"
+            href="https://wa.me/34615157877?text=Hola%2C%20me%20interesa%20el%20Estudio%20de%20M%C3%A9todos%20y%20Tiempos%20desde%20800%20%E2%82%AC.%20%C2%BFMe%20puedes%20dar%20m%C3%A1s%20informaci%C3%B3n%3F"
             class="btn btn-primary-outline text-white border-white"
             target="_blank"
             rel="noopener"
           >Contactar por WhatsApp</a>
         </div>
         <p class="mt-6 text-sm text-white/70">
-          Tarifa cerrada 495 € + IVA · Vídeo de hasta 60 min · Entrega en 5 días hábiles ·
+          Tarifa cerrada 800 € + IVA · Vídeo de hasta 60 min · Entrega en 5 días hábiles ·
           <strong class="text-white">10 % de descuento el primer año</strong> si contratas licencia de la app Cronometras
         </p>
       </div>
@@ -220,7 +220,7 @@ const jsonLdService = {
           <details class="bg-white rounded-xl shadow-md p-6">
             <summary class="font-bold cursor-pointer">¿El precio del estudio incluye la app?</summary>
             <p class="mt-3 text-gray-600">
-              No. El estudio a 495 € no incluye acceso a la app. Si después decides contratar una licencia anual de la app Cronometras para tu equipo, <strong>te aplicamos un 10 % de descuento sobre el precio de la licencia durante el primer año</strong> como cliente del estudio.
+              No. El estudio a 800 € no incluye acceso a la app. Si después decides contratar una licencia anual de la app Cronometras para tu equipo, <strong>te aplicamos un 10 % de descuento sobre el precio de la licencia durante el primer año</strong> como cliente del estudio.
             </p>
           </details>
           <details class="bg-white rounded-xl shadow-md p-6">
@@ -265,4 +265,140 @@ const jsonLdService = {
   </section>
 
   <script type="application/ld+json" set:html={JSON.stringify(jsonLdService)} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿El precio del estudio incluye la app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. El estudio a 800 € no incluye acceso a la app. Si después decides contratar una licencia anual de la app Cronometras para tu equipo, te aplicamos un 10 % de descuento sobre el precio de la licencia durante el primer año como cliente del estudio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Puedo ver un ejemplo del entregable antes de contratar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Al solicitar el estudio te enviaremos un PDF anonimizado de un caso real para que veas el formato y profundidad del informe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si mi operación tiene máquinas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Medimos por separado MP (Máquina Parada), MM (Máquina en Marcha) y TM/TW (tiempo automático de máquina). Aplicamos suplementos distintos a cada caso y calculamos la saturación del operario respecto a la máquina."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hasta qué duración de vídeo analizáis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hasta 60 minutos por operación. Para estudios de líneas completas o varias operaciones, contacta con nosotros para un presupuesto personalizado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo envío el vídeo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sube el vídeo a tu propio Google Drive, Dropbox o OneDrive y envíanos el enlace desde el formulario de contacto. Así el archivo no caduca y mantienes el control sobre él."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Aplicáis suplementos OIT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. Aplicamos suplementos por descanso, personales, contingencias y especiales según la metodología OIT (Organización Internacional del Trabajo). Si tu empresa utiliza otra convención, indícanoslo y la adaptamos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Y si la operación es muy compleja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cubrimos estudios de operaciones manuales, semiautomáticas y con participación de operario en célula robotizada. Para líneas completas, células múltiples o estudios MTM/MOST, consúltanos: haremos un presupuesto a medida."
+      }
+    }
+  ]
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://cronometras.com/es"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Estudio de Métodos y Tiempos",
+      "item": "https://cronometras.com/es/estudio-metodos-tiempos"
+    }
+  ]
+})} />
+
+<!-- Texto único para SEO (oculto visualmente, indexable). Refuerza long-tail queries sobre suplementos OIT, tiempo estándar, fórmulas aplicadas -->
+<section class="sr-only" aria-hidden="true">
+  <h2>¿Qué es un estudio de métodos y tiempos?</h2>
+  <p>
+    Un estudio de métodos y tiempos es un procedimiento de ingeniería industrial que analiza una operación de trabajo para identificar el método óptimo y asignarle un tiempo estándar. El método se descompone en elementos cronometrables; cada elemento se mide por separado y se ajusta por una valoración del ritmo (factor de actuación). Sobre el tiempo normal resultante se aplican suplementos OIT (Organización Internacional del Trabajo) —necesidades personales, fatiga y contingencias— para obtener el tiempo estándar final, que es el que se utiliza en planificación, equilibrado de líneas, cálculo de incentivos y sistemas OEE.
+  </p>
+  <h2>Suplementos OIT y suplementos OLTA</h2>
+  <p>
+    En Cronometras aplicamos por defecto los suplementos de la Organización Internacional del Trabajo (OIT), que incluyen suplementos por necesidades personales, fatiga básica, fatiga variable y contingencias. Cuando el cliente lo requiere, trabajamos también con la metodología OLTA (Ocupational Loss Time Allowance), que añade suplementos por posición incómoda, uso de fuerza, ruido, calor, humedad y monotonía. Ambos sistemas son configurables operación a operación desde la app.
+  </p>
+  <h2>¿Qué incluye el entregable?</h2>
+  <p>
+    El informe técnico en PDF documenta el método de trabajo, la descomposición por elementos, los tiempos cronometrados, el factor de ritmo asignado a cada vuelta, los suplementos aplicados (OIT u OLTA) y el tiempo estándar resultante, junto con observaciones de mejora. La hoja Excel contiene los datos en bruto: tiempos por ciclo, valoración, suplementos, tiempo normal y estándar por elemento y total. El JSON estructurado permite alimentar MES, ERP, BI o sistemas de planificación con los mismos datos.
+  </p>
+</section>
+
+<!-- Enlaces SEO a artículos del blog (relevantes para el long-tail) -->
+<section class="py-12 bg-gray-50 border-t border-gray-200">
+  <div class="container">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold mb-6 text-center">Aprende más sobre el estudio de tiempos</h2>
+      <p class="text-center text-text-secondary mb-8">
+        Si quieres profundizar en la metodología antes de contratar tu estudio, aquí tienes nuestras guías más leídas.
+      </p>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/es/blog/tablas-de-suplementos-oit-calculo-de-fatiga-y-descanso/" class="block bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow">
+          <h3 class="font-bold text-primary mb-2">Tablas de suplementos OIT: cálculo de fatiga y descanso</h3>
+          <p class="text-sm text-text-secondary">Las tablas oficiales con los porcentajes que aplicamos en cada estudio.</p>
+        </a>
+        <a href="/es/blog/que-es-el-estudio-de-tiempos-y-movimientos/" class="block bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow">
+          <h3 class="font-bold text-primary mb-2">¿Qué es el estudio de tiempos y movimientos?</h3>
+          <p class="text-sm text-text-secondary">Origen, objetivos y diferencias entre las dos técnicas históricas.</p>
+        </a>
+        <a href="/es/blog/suplementos-fatiga-oit/" class="block bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow">
+          <h3 class="font-bold text-primary mb-2">Suplementos de fatiga OIT: cómo se calculan</h3>
+          <p class="text-sm text-text-secondary">De la fatiga básica a los suplementos por condiciones especiales.</p>
+        </a>
+        <a href="/es/blog/calculo-suplementos-trabajo/" class="block bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow">
+          <h3 class="font-bold text-primary mb-2">Cálculo de suplementos de trabajo</h3>
+          <p class="text-sm text-text-secondary">Fórmulas, ejemplos y casos prácticos con suplementación.</p>
+        </a>
+        <a href="/es/blog/el-estudio-del-trabajo/" class="block bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow">
+          <h3 class="font-bold text-primary mb-2">El estudio del trabajo: principios y aplicaciones</h3>
+          <p class="text-sm text-text-secondary">Por qué el estudio del trabajo sigue siendo clave en la industria actual.</p>
+        </a>
+        <a href="/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/" class="block bg-white rounded-lg shadow p-5 hover:shadow-lg transition-shadow">
+          <h3 class="font-bold text-primary mb-2">Guía paso a paso del estudio de tiempos</h3>
+          <p class="text-sm text-text-secondary">Las 8 fases que seguimos en Cronometras para cada estudio.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 </Base>
