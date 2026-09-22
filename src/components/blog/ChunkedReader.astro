@@ -67,8 +67,8 @@ const plainText = text.length > maxLength ? text.substring(0, maxLength) + '...'
   </div>
 </div>
 
-<!-- Contenedor oculto para el texto -->
-<div id="article-text" class="hidden" aria-hidden="true">{plainText}</div>
+<!-- Texto para el lector TTS: en atributo data-text para que no se duplique el artículo en extracciones de texto ni en SEO -->
+<div id="article-text" class="hidden" aria-hidden="true" data-text={plainText}></div>
 
 <script define:vars={{ lang, readText, pauseText, resumeText, stopText, errorText }}>
 // Estados del reproductor
@@ -92,7 +92,7 @@ class ChunkedReader {
     this.progressBar = document.getElementById('progress-bar');
     this.speedControl = document.getElementById('speed-control');
 
-    this.text = this.articleText ? this.articleText.textContent || '' : '';
+    this.text = this.articleText ? (this.articleText.getAttribute('data-text') || '') : '';
     this.lang = lang || 'en';
     this.utterance = null;
     this.chunks = [];

@@ -130,13 +130,15 @@ Además, existen niveles algebraicos para cada grado de cada factor, como la hab
 
 ## Tiempos Frecuenciales
 
-Los tiempos frecuenciales son un concepto utilizado en el análisis de tiempos y movimientos en la industria. Estos tiempos se utilizan para clasificar las actividades de un trabajo en tres categorías:
+Los tiempos frecuenciales son los tiempos de los elementos que no aparecen en todos los ciclos, sino solo en algunas vueltas de la tarea. La literatura clásica de análisis de tiempos y movimientos suele clasificar estas actividades según su regularidad en tres categorías:
 
 - Actividades regulares: Son aquellas actividades que se realizan con una determinada frecuencia y se espera que sean repetitivas y precisas en cuanto a la duración.
 
 - Actividades irregulares: Son aquellas actividades que no son regulares y pueden variar en cuanto a la duración y frecuencia.
 
 - Actividades extrañas: Son aquellas actividades que son raras o inusuales y no están incluidas en la categoría de actividades regulares o irregulares.
+
+En CRONOMETRAS este concepto se modela con los **elementos frecuenciales**: elementos que aparecen una vez cada x ciclos, frente a los elementos repetitivos (que aparecen en cada vuelta) y a los elementos de máquina. Para cada elemento se registra además su **frecuencia**, es decir, el número de piezas resultantes de cada ciclo, de modo que su tiempo se reparte correctamente entre los ciclos en los que no interviene.
 
 El conocimiento de los tiempos frecuenciales es importante para la optimización de los procesos de producción, ya que permite identificar las áreas que requieren mejora y tomar medidas para aumentar la eficiencia y reducir los tiempos de ciclo.
 

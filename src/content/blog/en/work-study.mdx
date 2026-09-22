@@ -132,13 +132,15 @@ Additionally, there are algebraic levels for each degree of each factor, such as
 
 ## Frequency Times
 
-Frequency times are a concept used in the analysis of times and movements in industry. These times are used to classify work activities into three categories:
+Frequency times are the times of elements that do not appear in every cycle, but only in some laps of the task. The classic time and motion study literature usually classifies these activities according to their regularity into three categories:
 
 - Regular activities: These are activities that are performed with a certain frequency and are expected to be repetitive and precise in terms of duration.
 
 - Irregular activities: These are activities that are not regular and may vary in terms of duration and frequency.
 
 - Strange activities: These are activities that are rare or unusual and are not included in the category of regular or irregular activities.
+
+In CRONOMETRAS this concept is modeled with **frequent elements**: elements that appear once every x cycles, unlike repetitive elements (which appear every lap) and machine elements. For each element its **frequency** is also recorded, that is, the number of pieces resulting from each cycle, so that its time is distributed correctly across the cycles in which it does not intervene.
 
 Knowledge of frequency times is important for the optimization of production processes, as it allows for identifying areas that require improvement and taking measures to increase efficiency and reduce cycle times.
 
