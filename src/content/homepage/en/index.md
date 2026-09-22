@@ -29,8 +29,8 @@ sections:
     image: /images/webp/cronometro-repetitivos.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
-  - title: Study Reliability
-    content: "CRONOMETRAS ensures reliable studies. The technician visualizes in real time the necessary shots to achieve <b class='text-secondary'>95%</b> reliability in the standard time. This calculation is based on the <b class='text-secondary'>statistical method</b>, considering the dispersion of the times to determine the remaining shots. Make decisions based on the study's own data: time dispersion and the remaining shots needed to reach the target reliability."
+  - title: Statistical control of study reliability
+    content: "CRONOMETRAS calculates in real time the necessary takes based on the <b class='text-secondary'>variability of the recorded times</b> and the <b class='text-secondary'>statistical criterion</b> established (for example, 95% reliability in the standard time). The overall reliability of the study also depends on the method, the technician, and the observed conditions. Make decisions based on the study's own data: time dispersion and the remaining takes needed to reach the target reliability."
     image: /images/webp/calculo-de-tomas-restantes.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 

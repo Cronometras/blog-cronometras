@@ -25,8 +25,8 @@ sections:
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
 
-  - title: Fiabilidad del estudio.
-    content: "CRONOMETRAS te asegura estudios fiables. El técnico visualiza en tiempo real las tomas necesarias para alcanzar una fiabilidad del <b class='text-secondary'>95%</b> en el tiempo estándar. Este cálculo se basa en el <b class='text-secondary'>método estadístico</b>, considerando la dispersión de los tiempos para determinar las tomas restantes. Toma decisiones con los datos del propio estudio: dispersión de los tiempos y tomas restantes para alcanzar la fiabilidad objetivo."
+  - title: Control estadístico de la fiabilidad del estudio.
+    content: "CRONOMETRAS calcula en tiempo real las tomas necesarias en función de la <b class='text-secondary'>variabilidad de los tiempos registrados</b> y del <b class='text-secondary'>criterio estadístico</b> establecido (por ejemplo, una fiabilidad del 95% en el tiempo estándar). La fiabilidad completa del estudio depende también del método, el técnico y las condiciones observadas. Toma decisiones con los datos del propio estudio: dispersión de los tiempos y tomas restantes para alcanzar la fiabilidad objetivo."
     image: /images/webp/calculo-de-tomas-restantes.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 

@@ -139,9 +139,9 @@ buttons:
       </div>
       <div class="md:col-4 mb-8">
         <div class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md h-full">
-          <h3 class="h4 mb-4 dark:text-white">Muestreo</h3>
-          <p class="mb-4 dark:text-gray-200">Solución para el muestreo de trabajo y análisis estadístico de actividades. Ideal para estudiar la distribución del tiempo en diferentes tareas y detectar oportunidades de mejora.</p>
-          <a href="https://prodcont.com/muestreo/" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">Más información</a>
+          <h3 class="h4 mb-4 dark:text-white">Worksamp</h3>
+          <p class="mb-4 dark:text-gray-200">Solución para el muestreo del trabajo (work sampling) y análisis estadístico de actividades. Ideal para estudiar la distribución del tiempo en diferentes tareas y detectar oportunidades de mejora.</p>
+          <a href="https://worksamp.com/" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded-lg text-center transition-colors">Más información</a>
         </div>
       </div>
       <div class="md:col-4 mb-8">
