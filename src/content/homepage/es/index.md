@@ -70,7 +70,7 @@ sections:
     content: "Con una interfaz intuitiva y moderna, CRONOMETRAS hace que el análisis de tiempos sea <b class='text-accent'>simple y eficiente</b>. Olvídate de las hojas de cálculo y de la tablilla con  el cronómetro manual y la hoja de papel y el lápiz. Optimiza tu productividad con herramientas profesionales."
 
   - title: Estudio de Saturación de Operario y Máquina
-    content: "Mide en tiempo real el <b class='text-accent'>%saturación de operario y máquina</b> con dos cronómetros independientes y registro de segmentos marcha/parada. Detecta paradas técnicas, esperas y cuellos de botella que el <a href='/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos' class='text-accent hover:underline'>cálculo teórico de saturación</a> no muestra. <i>Decide con datos reales cuántas máquinas puede llevar un operario basándote en su %saturación medido, no estimado.</i>"
+    content: "Mide en tiempo real el <b class='text-accent'>%saturación de operario y máquina</b> con dos cronómetros independientes y registro de segmentos marcha/parada. Detecta paradas técnicas, esperas y cuellos de botella que el <a href='/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos' class='text-accent hover:underline'>cálculo teórico de saturación</a> no muestra. <i>Analiza la capacidad de asignación hombre-máquina con datos de %saturación medidos, no estimados.</i>"
     image: /images/webp/saturation-study.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
@@ -235,7 +235,7 @@ testimonial:
     - author: Carlos Rodríguez
       organization: Industrias MetalTech
       rating: five
-      content: "CRONOMETRAS ha revolucionado nuestra forma de medir y optimizar procesos. Hemos reducido los tiempos de producción en un <b class='text-accent'>25%</b>."
+      content: "CRONOMETRAS ha revolucionado nuestra forma de medir y optimizar procesos. Hemos reducido notablemente los tiempos de producción."
     - author: Ana Martínez
       organization: Logística Express
       rating: five

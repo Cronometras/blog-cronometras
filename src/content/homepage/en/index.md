@@ -72,7 +72,7 @@ sections:
     content: "With an intuitive and modern interface, CRONOMETRAS makes time analysis <b class='text-accent'>simple and efficient</b>. Forget spreadsheets and manual stopwatches. Optimize your productivity with professional tools."
 
   - title: Saturation Study for Operator and Machine
-    content: "Measure in real time the <b class='text-accent'>%saturation of operator and machine</b> with two independent stopwatches and start/stop segment logging. Detect technical stops, waits and bottlenecks that <a href='/en/blog/saturation-calculation-in-time-study' class='text-accent hover:underline'>theoretical saturation</a> cannot show. <i>Decide with real data how many machines an operator can handle based on their %saturation as measured, not estimated.</i>"
+    content: "Measure in real time the <b class='text-accent'>%saturation of operator and machine</b> with two independent stopwatches and start/stop segment logging. Detect technical stops, waits and bottlenecks that <a href='/en/blog/saturation-calculation-in-time-study' class='text-accent hover:underline'>theoretical saturation</a> cannot show. <i>Analyze man-machine assignment capacity with measured, not estimated, %saturation data.</i>"
     image: /images/webp/saturation-study.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
@@ -190,7 +190,7 @@ testimonial:
     - author: Carlos Rodríguez
       organization: Industrias MetalTech
       rating: five
-      content: "CRONOMETRAS has revolutionized the way we measure and optimize processes. We have reduced production times by <b class='text-accent'>25%</b>."
+      content: "CRONOMETRAS has revolutionized the way we measure and optimize processes. We have noticeably reduced production times."
     - author: Ana Martínez
       organization: Logística Express
       rating: five
