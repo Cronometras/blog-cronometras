@@ -19,7 +19,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
   </p>
 
   <p class="mb-6 text-gray-700 dark:text-gray-300">
-    El resultado es un <strong>% de saturación calculado en vivo</strong> a partir de los segmentos reales medidos, sin estimaciones previas. Esto te da una base objetiva para tomar decisiones sobre <a href="/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario" class="text-accent hover:underline">asignación de máquinas a un operario</a>, equilibrado de líneas y planificación de la producción.
+    El resultado es un <strong>% de saturación calculado en vivo</strong> a partir de los segmentos reales medidos, sin estimaciones previas. Esto te da una base objetiva para estudiar <a href="/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario" class="text-accent hover:underline">asignación de máquinas a un operario</a>, equilibrado de líneas y planificación de la producción.
   </p>
 </div>
 
@@ -35,7 +35,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
 
 <Section
   section={{
-    title: "Cálculo de %saturación en Tiempo Real a partir de Segmentos",
+    title: "Cálculo del % de saturación en Tiempo Real a partir de Segmentos",
     content: "A partir de los segmentos registrados, CRONOMETRAS calcula automáticamente el <strong>porcentaje de saturación de la máquina y del operario</strong> sobre el tiempo total del estudio. La fórmula aplicada es directa y transparente:<br/><br/>• <strong>%saturación_máquina</strong> = tiempo_total_marcha_máquina / tiempo_total_estudio × 100<br/>• <strong>%saturación_operario</strong> = tiempo_total_trabajando_operario / tiempo_total_estudio × 100<br/>• Tiempo total del estudio calculado como el tiempo transcurrido desde el primer hasta el último segmento registrado<br/>• <strong>Resultados en vivo</strong> actualizados con cada nuevo segmento, sin necesidad de cerrar la sesión<br/>• Visualización clara del estado actual de cada cronómetro (en marcha o en parada) para validar la medición en el momento<br/><br/><i>Olvídate de cronómetros manuales cruzados en una hoja Excel: los datos de saturación se calculan en el momento y se almacenan junto al estudio para su análisis posterior.</i>",
     image: "/images/webp/cronometras-app.webp",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
@@ -64,7 +64,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
     <ul class="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
       <li>Medir el porcentaje real de saturación de operario y máquina con precisión de milisegundos</li>
       <li>Detectar paradas técnicas, esperas y cuellos de botella que el <a href="/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos" class="text-accent hover:underline">cálculo teórico de saturación</a> no muestra</li>
-      <li>Analizar la capacidad de asignación hombre-máquina utilizando su <a href="/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario" class="text-accent hover:underline">%saturación real</a> como uno de los datos de partida</li>
+      <li>Analizar la capacidad de asignación hombre-máquina utilizando su <a href="/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario" class="text-accent hover:underline">% de saturación real</a> como uno de los datos de partida</li>
       <li>Documentar incidencias y paradas directamente sobre los segmentos medidos</li>
       <li>Trabajar en planta con sincronización offline-first, sin perder datos por falta de cobertura</li>
       <li>Combinar los resultados con el <a href="/es/method" class="text-accent hover:underline">módulo de método</a> y el <a href="/es/report" class="text-accent hover:underline">módulo de informes</a> para análisis completos</li>
