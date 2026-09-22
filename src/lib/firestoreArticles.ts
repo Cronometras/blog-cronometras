@@ -124,7 +124,7 @@ function processCTAs(content: string): string {
 
 ## Don't want to do it yourself? We do it for you from €800
 
-If you prefer to outsource it, Cronometras delivers a complete time and motion study from a single video: elemental breakdown, OIT/OLTA fatigue allowances, standard time with tolerances, and a report in PDF + Excel + JSON ready to present to management.
+If you prefer to outsource it, Cronometras delivers a complete time and motion study from a single video: elemental breakdown, OIT/TAL fatigue allowances, standard time with tolerances, and a report in PDF + Excel + JSON ready to present to management.
 
 [👉 Request the study from €800](/es/estudio-metodos-tiempos) · [More about Cronometras](https://cronometras.com/en)
 `;
@@ -135,7 +135,7 @@ If you prefer to outsource it, Cronometras delivers a complete time and motion s
 
 ## ¿No quieres hacerlo tú? Lo hacemos por ti desde 800 €
 
-Si prefieres externalizarlo, en Cronometras entregamos un estudio de métodos y tiempos completo a partir de un vídeo: descomposición por elementos, suplementos OIT/OLTA, tiempo estándar con tolerancias, y un informe en PDF + Excel + JSON listo para presentar a dirección.
+Si prefieres externalizarlo, en Cronometras entregamos un estudio de métodos y tiempos completo a partir de un vídeo: descomposición por elementos, suplementos OIT/TAL, tiempo estándar con tolerancias, y un informe en PDF + Excel + JSON listo para presentar a dirección.
 
 [👉 Solicita el estudio desde 800 €](/es/estudio-metodos-tiempos) · [Más información sobre Cronometras](https://cronometras.com/es)
 `;

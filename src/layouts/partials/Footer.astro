@@ -9,7 +9,7 @@ import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils
 import { IoLogoRss } from "react-icons/io5";
 
 const { footer } = menu;
-const { copyright, location, email, footer_description } = config.params;
+const { copyright, location, email, footer_description, product_signature } = config.params;
 
 const has_social = Object.entries(social).some(
   ([key, value]) => key != "title" && value
@@ -30,6 +30,12 @@ const translatePath = useTranslatedPath(lang);
           {footer_description}
         </p>
         <p class="mt-6" set:html={markdownify(copyright)} />
+        {product_signature && (
+          <p class="mt-2 text-sm text-text-dark/70 italic">
+            {product_signature}
+            <a href="https://prodcont.com" class="ml-1 hover:text-primary transition-colors">prodcont.com</a>
+          </p>
+        )}
       </div>
       {
         has_social && (
