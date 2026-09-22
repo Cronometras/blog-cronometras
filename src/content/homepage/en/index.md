@@ -150,7 +150,7 @@ features:
       title: Fast and Efficient
       content: Optimized interface for ***maximum performance*** without sacrificing functionality.
     - icon: "shield"
-      title: Guaranteed Security
+      title: Security and access control
       content: Your data is protected with <b class="text-text">enterprise-grade encryption</b>.
     - icon: "book"
       title: Element Library

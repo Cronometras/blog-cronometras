@@ -194,7 +194,7 @@ features:
       title: Rápido y Eficiente
       content: Interfaz optimizada para un ***rendimiento máximo*** sin sacrificar funcionalidad.
     - icon: "shield"
-      title: Seguridad Garantizada
+      title: Seguridad y control de acceso
       content: Tus datos protegidos con <b class="text-text">encriptación de nivel empresarial</b>.
     - icon: "book"
       title: Biblioteca de Elementos
