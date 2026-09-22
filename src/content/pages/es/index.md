@@ -1,9 +1,9 @@
 ---
 document_title: "CRONOMETRAS - Optimiza tu Productividad"
-meta_description: "CRONOMETRAS es la herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos, reduce costos y maximiza la eficiencia."
+meta_description: "CRONOMETRAS es el software de análisis de tiempos y movimientos de ProdCont. Realiza el estudio completo en planta: del cronometraje al informe."
 meta_keywords: "cronometraje industrial, estudio de tiempos, productividad, optimización de procesos"
 title: "CRONOMETRAS"
-description: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos, reduce costos y maximiza la eficiencia como nunca antes."
+description: "Software para el análisis de tiempos y movimientos: del cronometraje en planta al tiempo estándar y el informe final."
 ---
 
 # Bienvenido a CRONOMETRAS

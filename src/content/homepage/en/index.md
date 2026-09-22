@@ -30,7 +30,7 @@ sections:
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
   - title: Study Reliability
-    content: "CRONOMETRAS ensures reliable studies. The technician visualizes in real time the necessary shots to achieve <b class='text-secondary'>95%</b> reliability in the standard time. This calculation is based on the <b class='text-secondary'>statistical method</b>, considering the dispersion of the times to determine the remaining shots. Make decisions with total confidence, backed by solid data and scientific rigor."
+    content: "CRONOMETRAS ensures reliable studies. The technician visualizes in real time the necessary shots to achieve <b class='text-secondary'>95%</b> reliability in the standard time. This calculation is based on the <b class='text-secondary'>statistical method</b>, considering the dispersion of the times to determine the remaining shots. Make decisions based on the study's own data: time dispersion and the remaining shots needed to reach the target reliability."
     image: /images/webp/calculo-de-tomas-restantes.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 

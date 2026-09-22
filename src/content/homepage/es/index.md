@@ -4,7 +4,7 @@ lang: es
 banner:
   title: '<span class="text-accent">CRONOMETRAS</span>: Optimiza tu <span class="text-secondary">Productividad</span>'
   title_size: "text-4xl md:text-6xl"
-  content: "La herramienta definitiva para el análisis de tiempos y movimientos. Optimiza tus procesos con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p><p class='mt-4 text-sm opacity-80'>Utilizada por empresas como <b>Stadler Rail</b>, <b>Royo Group</b> y <b>Jaime Mascaró</b> para optimizar sus procesos productivos.</p><p class='mt-2 text-xs opacity-60'>Sin compromiso · Configuración en minutos · Soporte en español</p>"
+  content: "Realiza un estudio de tiempos completo en planta, desde la toma de datos hasta el tiempo estándar y el informe final. Trabaja con <b>Multi Crono</b>, <b>documentación visual</b> y <b>seguridad MFA</b>.<p>Descubre la <b>App de cronometraje industrial</b> con grabación de video, importación Excel y organización en carpetas.</p><p class='mt-4 text-sm opacity-80'>Utilizada por empresas como <b>Stadler Rail</b>, <b>Royo Group</b> y <b>Jaime Mascaró</b> para optimizar sus procesos productivos.</p><p class='mt-2 text-xs opacity-60'>Sin compromiso · Configuración en minutos · Soporte en español</p>"
   image: /images/webp/adaptada-a-moviles-tablets-y-pc.webp
   buttons:
     - label: Solicita una Demo Gratuita
@@ -26,7 +26,7 @@ sections:
 
 
   - title: Fiabilidad del estudio.
-    content: "CRONOMETRAS te asegura estudios fiables. El técnico visualiza en tiempo real las tomas necesarias para alcanzar una fiabilidad del <b class='text-secondary'>95%</b> en el tiempo estándar. Este cálculo se basa en el <b class='text-secondary'>método estadístico</b>, considerando la dispersión de los tiempos para determinar las tomas restantes. Toma decisiones con total confianza, respaldadas por datos sólidos y un rigor científico."
+    content: "CRONOMETRAS te asegura estudios fiables. El técnico visualiza en tiempo real las tomas necesarias para alcanzar una fiabilidad del <b class='text-secondary'>95%</b> en el tiempo estándar. Este cálculo se basa en el <b class='text-secondary'>método estadístico</b>, considerando la dispersión de los tiempos para determinar las tomas restantes. Toma decisiones con los datos del propio estudio: dispersión de los tiempos y tomas restantes para alcanzar la fiabilidad objetivo."
     image: /images/webp/calculo-de-tomas-restantes.webp
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover"
 
