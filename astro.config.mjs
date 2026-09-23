@@ -1,11 +1,10 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import { defineConfig, sharpImageService } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import config from "./src/config/config.json";
 import AutoImport from "astro-auto-import";
-import node from "@astrojs/node";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
@@ -15,6 +14,8 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: "ignore",
   output: "static",
+  // Conserva el manejo de espacios/HTML de v6 (el default de v7 es 'jsx')
+  compressHTML: true,
   vite: {
     css: {
       preprocessorOptions: {
@@ -36,7 +37,6 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap(),
-    tailwind(),
     // AutoImport removed - using explicit imports in MDX files
     mdx({
       remarkPlugins: [remarkMath],
@@ -44,6 +44,8 @@ export default defineConfig({
     })
   ],
   markdown: {
+    // Mantiene el pipeline unified() para remark-math / rehype-katex (Sätteri no los portaría)
+    processor: unified(),
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
     shikiConfig: {

@@ -219,9 +219,10 @@ export const prerender = true;
   <!-- BreadcrumbList JSON-LD (MDX ya lo emite en BlogPostSchema; para Firestore,
        BlogPostSchema no se invoca, así que lo emitimos aquí) -->
   {source === 'firestore' && <script type="application/ld+json" set:html={breadcrumbSchemaString} />}
-  
+
+  <!-- Static rendering for Firestore articles (pre-rendered at build time) -->
+  <!-- Static rendering for MDX articles -->
   {source === 'firestore' ? (
-    <!-- Static rendering for Firestore articles (pre-rendered at build time) -->
     <article class="mx-auto">
       <!-- Hero Image with Overlay -->
       <div class="relative min-h-[400px] md:min-h-[450px] lg:min-h-[500px] w-full overflow-hidden">
@@ -325,7 +326,6 @@ export const prerender = true;
       </section>
     </article>
   ) : (
-    <!-- Static rendering for MDX articles -->
     <article class="mx-auto">
       <!-- Hero Image with Overlay -->
       <div class="relative min-h-[400px] md:min-h-[450px] lg:min-h-[500px] w-full overflow-hidden">
