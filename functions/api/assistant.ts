@@ -31,9 +31,12 @@ async function getAccessToken(sa: any): Promise<string> {
     iss: sa.client_email, scope: 'https://www.googleapis.com/auth/datastore',
     aud: 'https://oauth2.googleapis.com/token', iat: now, exp: now + 3600,
   }));
+  // Extrae el cuerpo base64 del PEM sin depender de literales (que pueden
+  // venir censurados en copias): el segmento más largo entre '-----' es la clave.
   const pemContents = sa.private_key
-    .replace(/[REDACTED PRIVATE KEY]/, '')
-    .replace(/[\s\r\n]+/g, '');
+    .split('-----')
+    .map((s: string) => s.replace(/[\s\r\n]+/g, ''))
+    .reduce((a: string, b: string) => (b.length > a.length ? b : a), '');
   const binaryKey = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
   const key = await crypto.subtle.importKey('pkcs8', binaryKey, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
   const signature = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, new TextEncoder().encode(`${header}.${payload}`));
@@ -133,6 +136,26 @@ function extractEmail(text: string): string {
 function extractPhone(text: string): string {
   const m = text.match(/\+?\d[\d\s().-]{6,}\d/);
   return m ? m[0].trim() : '';
+}
+
+// Extracción determinista de datos del lead en el texto del usuario (red de
+// seguridad: el modelo a veces se salta el protocolo JSON).
+function extractFromText(text: string): Record<string, string> {
+  const out: Record<string, string> = {};
+  const nombre = text.match(/(?:soy|me llamo|mi nombre es)\s+([A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÑáéíóúñ]+(?:\s+[A-ZÁÉÍÓÚÑ][\wÁÉÍÓÚÑáéíóúñ]+){0,2})/)
+    || text.match(/(?:my name is|i am|i'm)\s+([A-Z][\w'-]+(?:\s+[A-Z][\w'-]+){0,2})/);
+  if (nombre) out.nombre = nombre[1].trim();
+  const empresa = text.match(/(?:de|en|para)\s+(?:la\s+)?empresa\s+([\wÁÉÍÓÚÑáéíóúñ .&'-]{2,40})/i)
+    || text.match(/(?:company|from)\s+([\w&.,' -]{2,40})/);
+  if (empresa) out.empresa = empresa[1].trim().replace(/[.,;]$/, '');
+  if (/(videollamada|video\s*llamada|videoconferencia|video call)/i.test(text)) {
+    out.modalidad = /\b20\b/.test(text) ? 'videollamada 20 min' : /\b30\b/.test(text) ? 'videollamada 30 min' : 'videollamada';
+  } else if (/(llamada\s*(telefónica|de\s*teléfono)?|phone call|\bcall\b)/i.test(text)) {
+    out.modalidad = 'llamada';
+  }
+  const disp = text.match(/\b(mañana|tarde|noche|morning|afternoon|evening)\b/i);
+  if (disp) out.disponibilidad = disp[1].toLowerCase();
+  return out;
 }
 
 function normalizeLead(raw: any, fallbackLang: string): Record<string, string> {
@@ -318,12 +341,22 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
-    const raw = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES, cleanHistory);
+    const raw0 = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES, cleanHistory);
+    // Si el modelo se salta el protocolo JSON, un reintento con recordatorio.
+    let raw = raw0;
+    if (!/\{[\s\S]*\}/.test(raw0)) {
+      raw = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES,
+        [...cleanHistory, { role: 'assistant', content: raw0 },
+         { role: 'user', content: 'Responde ahora solo con el objeto JSON (campo reply con tu mensaje). - recordatorio del sistema' }]
+      ).catch(() => raw0);
+    }
     const { reply, lead: rawLead, demoCompleta } = parseLLMOutput(raw);
 
-    // Red de seguridad: email/teléfono que aparezcan literalmente en el chat
+    // Red de seguridad: datos que aparezcan literalmente en el chat
     const allText = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content).join(' \n ');
     const lead = normalizeLead(rawLead, lang);
+    const fromText = extractFromText(allText);
+    for (const [k, v] of Object.entries(fromText)) if (!lead[k]) lead[k] = v;
     if (!lead.email) lead.email = extractEmail(allText);
     if (!lead.telefono) lead.telefono = extractPhone(allText);
 
