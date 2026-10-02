@@ -508,6 +508,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const lead = normalizeLead(rawLead, lang);
     const fromText = extractFromText(allText);
     for (const [k, v] of Object.entries(fromText)) if (!lead[k]) lead[k] = v;
+    // Company contact facts from retrieved pages must never become visitor
+    // contact details. Only retain email/phone actually provided by the user.
+    if (lead.email && !allText.toLowerCase().includes(lead.email)) lead.email = '';
+    if (lead.telefono && !allText.replace(/\D/g, '').includes(lead.telefono.replace(/\D/g, ''))) lead.telefono = '';
     if (!lead.email) lead.email = extractEmail(allText);
     if (!lead.telefono) lead.telefono = extractPhone(allText);
     lead.empresa ||= companyFromAnswer(cleanHistory);

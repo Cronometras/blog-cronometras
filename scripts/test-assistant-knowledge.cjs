@@ -52,7 +52,7 @@ async function handlerCheck() {
       prompts.push(input.messages[0].content);
       // A malformed first response exercises the protocol repair as well.
       const content = prompts.length === 1 ? '{"reply":"Sí.","lead":{""},"demo_completa":false}'
-        : '{"reply":"Sí, graba vídeo.","lead":{},"demo_completa":false}';
+        : '{"reply":"Sí, graba vídeo.","lead":{"email":"info@cronometras.com","telefono":"+34619588239"},"demo_completa":false}';
       return Response.json({ choices: [{ message: { content } }] });
     },
   };
