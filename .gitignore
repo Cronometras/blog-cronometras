@@ -27,3 +27,6 @@ package-lock.json
 
 # Firebase service account JSON (admin SDK) — build only
 sa.json
+
+# secrets locales de wrangler
+.dev.vars

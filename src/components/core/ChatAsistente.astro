@@ -1,0 +1,200 @@
+// Asistente de chat de cronometras.com — widget + llamada a /api/assistant
+// (Pages Function). Captura de leads de demo: nombre, email, teléfono, empresa,
+// interés y modalidad (llamada / videollamada 20 o 30 min).
+---
+const EN = Astro.url.pathname.startsWith('/en');
+const T = EN ? {
+  label: 'Cronometras assistant',
+  title: 'Cronometras assistant',
+  subtitle: 'Questions about time studies? Ask me.',
+  greeting: "Hello! I'm the Cronometras assistant. I can clear up any questions about the app and book a live demo. How can I help?",
+  placeholder: 'Write your message…',
+  chips: ['What is Cronometras?', 'Book a demo', 'Pricing'],
+  demoCard: '✓ Demo requested. We will contact you to agree on the day and time.',
+  privacy: 'By chatting you accept the privacy policy',
+  error: 'Sorry, something went wrong. Please try again.',
+} : {
+  label: 'Asistente de Cronometras',
+  title: 'Asistente de Cronometras',
+  subtitle: '¿Dudas sobre estudios de tiempos? Pregúntame.',
+  greeting: '¡Hola! Soy el asistente de Cronometras. Te aclaro cualquier duda sobre la app y te reservo una demo en vivo. ¿En qué te ayudo?',
+  placeholder: 'Escribe tu mensaje…',
+  chips: ['¿Qué es Cronometras?', 'Quiero una demo', 'Precios'],
+  demoCard: '✓ Demo solicitada. Te contactaremos para acordar el día y la hora.',
+  privacy: 'Al chatear aceptas la política de privacidad',
+  error: 'Vaya, algo ha fallado. Vuelve a intentarlo.',
+};
+const privacyUrl = EN ? '/en/privacy/' : '/es/privacy/';
+---
+
+<div id="chat-asistente-root" data-lang={EN ? 'en' : 'es'} style="position:fixed;bottom:7.5rem;right:2rem;z-index:60;font-family:inherit;">
+  <button id="chat-asistente-toggle" aria-label={T.label}
+    style="width:3.5rem;height:3.5rem;border-radius:9999px;background:#1a56db;color:#fff;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
+      <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
+    </svg>
+  </button>
+
+  <div id="chat-asistente-panel" hidden
+    style="position:absolute;bottom:4.25rem;right:0;width:22rem;max-width:calc(100vw - 2rem);height:30rem;max-height:70vh;background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb;">
+    <div style="background:#1a56db;color:#fff;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-weight:700;font-size:.95rem;">{T.title}</div>
+        <div style="font-size:.72rem;opacity:.85;">{T.subtitle}</div>
+      </div>
+      <button id="chat-asistente-close" aria-label="Cerrar" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
+    </div>
+
+    <div id="chat-asistente-msgs" style="flex:1;overflow-y:auto;padding:.75rem;display:flex;flex-direction:column;gap:.5rem;background:#f8fafc;"></div>
+
+    <div id="chat-asistente-chips" style="display:flex;flex-wrap:wrap;gap:.35rem;padding:.4rem .75rem;background:#f8fafc;border-top:1px solid #eef2f7;">
+      {T.chips.map((c) => (
+        <button class="chat-asistente-chip" data-chip={c}
+          style="font-size:.72rem;border:1px solid #c7d2fe;background:#eef2ff;color:#3730a3;border-radius:9999px;padding:.25rem .6rem;cursor:pointer;">{c}</button>
+      ))}
+    </div>
+
+    <form id="chat-asistente-form" style="display:flex;gap:.4rem;padding:.6rem;border-top:1px solid #e5e7eb;background:#fff;">
+      <input id="chat-asistente-input" type="text" maxlength="800" autocomplete="off" placeholder={T.placeholder}
+        style="flex:1;border:1px solid #d1d5db;border-radius:8px;padding:.45rem .6rem;font-size:.85rem;outline:none;" />
+      <button type="submit" aria-label="Enviar"
+        style="background:#1a56db;color:#fff;border:none;border-radius:8px;padding:0 .8rem;cursor:pointer;font-size:.85rem;">➤</button>
+    </form>
+    <div style="font-size:.62rem;color:#9ca3af;text-align:center;padding:.2rem .5rem .35rem;background:#fff;">
+      <a href={privacyUrl} style="color:#9ca3af;text-decoration:underline;">{T.privacy}</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ T }}>
+(function () {
+  function initChat() {
+    var root = document.getElementById('chat-asistente-root');
+    if (!root || root.dataset.wired === '1') return;
+    root.dataset.wired = '1';
+
+    var lang = root.getAttribute('data-lang') === 'en' ? 'en' : 'es';
+    var toggle = document.getElementById('chat-asistente-toggle');
+    var panel = document.getElementById('chat-asistente-panel');
+    var closeBtn = document.getElementById('chat-asistente-close');
+    var msgs = document.getElementById('chat-asistente-msgs');
+    var form = document.getElementById('chat-asistente-form');
+    var input = document.getElementById('chat-asistente-input');
+    var chips = document.getElementById('chat-asistente-chips');
+
+    var KEY = 'cronometras_chat_v1';
+    var state = { sessionId: '', messages: [] };
+    try {
+      var saved = JSON.parse(localStorage.getItem('cronometras_chat_sid') || '');
+      if (saved && typeof saved === 'string') state.sessionId = saved;
+    } catch (e) { /* noop */ }
+    if (!state.sessionId) {
+      state.sessionId = 's_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+      try { localStorage.setItem('cronometras_chat_sid', state.sessionId); } catch (e) { /* noop */ }
+    }
+    try {
+      var hist = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+      if (hist && Array.isArray(hist.messages)) state.messages = hist.messages;
+    } catch (e) { /* noop */ }
+
+    function persist() {
+      try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* noop */ }
+    }
+
+    function bubble(role, text, extra) {
+      var d = document.createElement('div');
+      var isUser = role === 'user';
+      d.style.cssText = 'max-width:85%;padding:.5rem .65rem;border-radius:12px;font-size:.83rem;line-height:1.35;white-space:pre-wrap;word-break:break-word;' +
+        (isUser ? 'align-self:flex-end;background:#1a56db;color:#fff;border-bottom-right-radius:4px;'
+                : 'align-self:flex-start;background:#fff;color:#111827;border:1px solid #e5e7eb;border-bottom-left-radius:4px;');
+      if (extra === 'demo') {
+        d.style.cssText = 'align-self:center;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:10px;padding:.45rem .7rem;font-size:.78rem;text-align:center;max-width:95%;';
+      }
+      d.textContent = text;
+      msgs.appendChild(d);
+      msgs.scrollTop = msgs.scrollHeight;
+      return d;
+    }
+
+    function typing() {
+      var d = document.createElement('div');
+      d.id = 'chat-asistente-typing';
+      d.style.cssText = 'align-self:flex-start;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:.5rem .7rem;font-size:.8rem;color:#6b7280;';
+      d.textContent = lang === 'en' ? 'Typing…' : 'Escribiendo…';
+      msgs.appendChild(d);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function untyping() {
+      var t = document.getElementById('chat-asistente-typing');
+      if (t) t.remove();
+    }
+
+    // Restaurar o saludo inicial
+    if (state.messages.length) {
+      state.messages.forEach(function (m) { bubble(m.role, m.content); });
+    } else {
+      bubble('assistant', T.greeting);
+      state.messages.push({ role: 'assistant', content: T.greeting });
+      persist();
+    }
+
+    var busy = false;
+    function send(text) {
+      text = (text || '').trim();
+      if (!text || busy) return;
+      busy = true;
+      bubble('user', text);
+      state.messages.push({ role: 'user', content: text });
+      if (state.messages.length > 18) state.messages = state.messages.slice(-18);
+      persist();
+      typing();
+      if (chips) chips.style.display = 'none';
+
+      fetch('/api/assistant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: state.messages, lang: lang, sessionId: state.sessionId, url: location.href }),
+      }).then(function (r) { return r.json(); }).then(function (data) {
+        untyping();
+        if (!data || data.error) {
+          bubble('assistant', T.error);
+          return;
+        }
+        bubble('assistant', data.reply || T.error);
+        state.messages.push({ role: 'assistant', content: data.reply || '' });
+        persist();
+        if (data.leadSaved) bubble('demo', T.demoCard);
+      }).catch(function () {
+        untyping();
+        bubble('assistant', T.error);
+      }).finally(function () { busy = false; });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = input.value;
+      input.value = '';
+      send(v);
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll('.chat-asistente-chip'), function (b) {
+      b.addEventListener('click', function () { send(b.getAttribute('data-chip')); });
+    });
+
+    toggle.addEventListener('click', function () {
+      panel.hidden = !panel.hidden;
+      if (!panel.hidden) { msgs.scrollTop = msgs.scrollHeight; input.focus(); }
+    });
+    closeBtn.addEventListener('click', function () { panel.hidden = true; });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChat);
+  } else {
+    initChat();
+  }
+  document.addEventListener('astro:page-load', initChat);
+})();
+</script>
