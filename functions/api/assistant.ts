@@ -287,6 +287,11 @@ function parseLLMOutput(raw: string): { reply: string; lead: any; demoCompleta: 
       };
     } catch { /* cae al texto crudo */ }
   }
+  // Sin JSON: si lo que llegó es una llamada a herramientas o ruido de modelo,
+  // no se muestra al usuario (bug verificado 2026-10-02 con mimo-v2.6-flash).
+  if (/<tool_call>|<function|<invoke|<\/tool|update_session_state/i.test(raw)) {
+    return { reply: '', lead: {}, demoCompleta: false };
+  }
   return { reply: raw.trim(), lead: {}, demoCompleta: false };
 }
 
@@ -405,9 +410,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     }
 
     const raw0 = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES, cleanHistory);
-    // Si el modelo se salta el protocolo JSON, un reintento con recordatorio.
+    // Si el modelo se salta el protocolo JSON (o emite llamadas a herramientas),
+    // un reintento con recordatorio.
     let raw = raw0;
-    if (!/\{[\s\S]*\}/.test(raw0)) {
+    if (!extractJsonObject(raw0) || /<tool_call>|<function|update_session_state/i.test(raw0)) {
       raw = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES,
         [...cleanHistory, { role: 'assistant', content: raw0 },
          { role: 'user', content: 'Responde ahora solo con el objeto JSON (campo reply con tu mensaje). - recordatorio del sistema' }]
@@ -448,7 +454,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       leadSaved = saveStatus === 'completa-nueva';
     }
 
-    return new Response(JSON.stringify({ reply, leadSaved }),
+    const replyFallback = lang === 'en'
+      ? "Sorry, I didn't catch that. Could you say it again?"
+      : 'Perdona, no te he entendido bien. ¿Puedes repetirlo?';
+    return new Response(JSON.stringify({ reply: reply || replyFallback, leadSaved }),
       { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (error: any) {
     console.error('Assistant API error:', error?.message || error);
