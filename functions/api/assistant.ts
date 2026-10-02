@@ -218,6 +218,31 @@ function isComplete(lead: Record<string, string>): boolean {
   );
 }
 
+// Recognise a short company answer when the previous turn asked for it,
+// including an email and company supplied together ("email@example.com Tenneco").
+function companyFromAnswer(history: { role: string; content: string }[]): string {
+  const last = history[history.length - 1]?.content || '';
+  const previous = history.slice(0, -1).reverse().find(m => m.role === 'assistant')?.content || '';
+  if (!/(empresa|company)/i.test(previous) || !/[?¿]/.test(previous)) return '';
+  const answer = last.replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, '').trim();
+  if (!answer || answer.length > 80 || answer.split(/\s+/).length > 6) return '';
+  if (/^(vale|ok|okay|yes|no|si|sí|gracias|thanks|perfecto|genial)$/i.test(answer)) return '';
+  if (/[?¿@\n]/.test(answer) || extractPhone(answer) || /video|llamada|call/i.test(answer)) return '';
+  return answer.replace(/^(?:mi empresa es|empresa\s*:|my company is|company\s*:)\s*/i, '').trim();
+}
+
+function demoNextReply(history: { role: string; content: string }[], lead: Record<string, string>, lang: string): string {
+  const last = history[history.length - 1]?.content || '';
+  const suppliedContact = Boolean(extractEmail(last) || companyFromAnswer(history));
+  const alreadyAsked = history.some(m => m.role === 'assistant' && /video|videoconferencia/i.test(m.content) && /tel[eé]fono|phone/i.test(m.content));
+  if (suppliedContact && lead.email && lead.empresa && lead.empresa !== '—' && !lead.modalidad && !alreadyAsked) {
+    return lang === 'en'
+      ? 'Thanks, I have your email and company. Would you prefer a 30-minute video call or a phone call? Please also share your contact phone number.'
+      : 'Perfecto, tengo tu email y el nombre de la empresa. ¿Prefieres una videollamada de 30 minutos o una llamada de teléfono? Indícame también tu teléfono de contacto.';
+  }
+  return '';
+}
+
 // ---------- LLM ----------
 
 async function askLLM(env: Env, system: string, messages: any[]): Promise<string> {
@@ -439,7 +464,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
          { role: 'user', content: 'Responde ahora solo con el objeto JSON (campo reply con tu mensaje). - recordatorio del sistema' }]
       ).catch(() => raw0);
     }
-    const { reply, lead: rawLead } = parseLLMOutput(raw);
+    const { reply: modelReply, lead: rawLead } = parseLLMOutput(raw);
 
     // Red de seguridad: datos que aparezcan literalmente en el chat
     const allText = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content).join(' \n ');
@@ -448,6 +473,8 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     for (const [k, v] of Object.entries(fromText)) if (!lead[k]) lead[k] = v;
     if (!lead.email) lead.email = extractEmail(allText);
     if (!lead.telefono) lead.telefono = extractPhone(allText);
+    lead.empresa ||= companyFromAnswer(cleanHistory);
+    const reply = demoNextReply(cleanHistory, lead, lang) || modelReply;
 
     let leadSaved = false;
     // Guarda el contacto desde que hay email, aunque falten datos de la demo.
