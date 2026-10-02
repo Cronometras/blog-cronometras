@@ -3,6 +3,7 @@
 // recoge nombre, email, teléfono, empresa, producto de interés y modalidad
 // (llamada o videollamada de 20/30 min), guarda el lead en Firestore y
 // notifica por email (mismo canal que /api/contact).
+import { documentationContext } from '../_shared/assistant-knowledge';
 
 interface Env {
   FIREBASE_SERVICE_ACCOUNT: string;
@@ -67,7 +68,7 @@ function firestoreDocument(data: Record<string, any>): any {
 
 const PROMPT_ES = `Eres el asistente de CronometrasApp en la web cronometras.com. Ayudas a visitantes (responsables de planta, producción, dirección) y tu segundo objetivo es cerrar una DEMO EN VIVO del producto.
 
-PRODUCTO (fuente: manual de usuario; no inventes nada fuera de esto):
+PRODUCTO (orientación general; consulta también los apartados de manuales y web adjuntos a esta pregunta; no inventes funciones):
 - QUÉ ES: CronometrasApp es una aplicación web progresiva (PWA) para estudios de tiempos: se instala como app en móvil/tablet, funciona sin conexión y sincroniza al reconectar. Interfaz en español e inglés.
 - CRONOMETRAJE (4 métodos): 1) Repetitivo (vuelta a cero): elementos que ocurren en cada ciclo. 2) Continuo (crono seguido): cronómetro sin detenerse, acumulados que se convierten en tiempos elementales, capta actividades imprevistas. 3) Frecuencial: elementos que ocurren cada X ciclos (con repeticiones por ocurrencia) y cálculo automático del tiempo promedio por ciclo. 4) Tiempos de máquina: distingue máquina funcionando/parada, calcula saturación del operario y tiempos de inactividad.
 - GRABACIÓN DE VÍDEO (documentado en /es/continuous y /es/features): SÍ graba vídeo de la operación mientras cronometras. Disponible en Cronómetro Continuo, Frecuencial y Máquina, con controles de iniciar, pausar, reanudar y detener e indicador de grabación activa. Sirve para revisión posterior, formación y evidencia documental. No confundas grabar vídeo en la app con reservar una videollamada.
@@ -106,7 +107,7 @@ En "lead" pon los datos que el usuario haya dado ya (el resto, cadena vacía); m
 
 const PROMPT_EN = `You are the CronometrasApp assistant on cronometras.com. You help visitors (plant, operations and management decision-makers) and your second goal is to close a LIVE DEMO of the product.
 
-PRODUCT (source: user manual; do not invent anything beyond this):
+PRODUCT (general orientation; also use the manual and website sections attached to this question; do not invent features):
 - WHAT IT IS: CronometrasApp is a progressive web app (PWA) for time studies: installable on mobile/tablet, works offline and syncs when back online. Spanish and English interface.
 - STOPWATCH TIMING (4 methods): 1) Repetitive (reset to zero): elements occurring every cycle. 2) Continuous: non-stop watch, cumulative readings converted to elemental times, captures unexpected activities. 3) Frequency-based: elements occurring every X cycles (with repetitions per occurrence) and automatic average time per cycle. 4) Machine times: distinguishes machine running/stopped, calculates operator saturation and idle times.
 - VIDEO RECORDING (documented in /es/continuous and /es/features): YES, records operation video while timing, in Continuous, Frequency and Machine screens. Controls include start, pause, resume and stop, with an active recording indicator. Useful for later review, training and documentary evidence. Do not confuse recording video in the app with scheduling a video call.
@@ -482,7 +483,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         { status: 400, headers: { 'Content-Type': 'application/json' } });
     }
 
-    const raw0 = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES, cleanHistory);
+    const userQuestions = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content);
+    const systemPrompt = (lang === 'en' ? PROMPT_EN : PROMPT_ES)
+      + documentationContext(userQuestions[userQuestions.length - 1], userQuestions.slice(0, -1));
+    const raw0 = await askLLM(env, systemPrompt, cleanHistory);
     // Si el modelo se salta el protocolo JSON (o emite llamadas a herramientas),
     // un reintento con recordatorio.
     let raw = raw0;
@@ -492,7 +496,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       validOutput = typeof obj?.reply === 'string' && Boolean(obj.reply.trim());
     } catch { /* reintenta el JSON mal formado */ }
     if (!validOutput || /<tool_call>|<function|update_session_state/i.test(raw0)) {
-      raw = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES,
+      raw = await askLLM(env, systemPrompt,
         [...cleanHistory, { role: 'assistant', content: raw0 },
          { role: 'user', content: 'Responde ahora solo con el objeto JSON (campo reply con tu mensaje). - recordatorio del sistema' }]
       ).catch(() => raw0);

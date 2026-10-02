@@ -6,6 +6,9 @@
   "license": "MIT",
   "packageManager": "pnpm@9.13.2",
   "scripts": {
+    "assistant:knowledge": "node scripts/generate-assistant-knowledge.cjs",
+    "prebuild": "npm run assistant:knowledge",
+    "predev": "npm run assistant:knowledge",
     "dev": "astro dev --host",
     "start": "astro dev",
     "build": "astro build",
