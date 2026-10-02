@@ -173,6 +173,11 @@ function extractFromText(text: string): Record<string, string> {
   }
   const disp = text.match(/\b(mañana|tarde|noche|morning|afternoon|evening)\b/i);
   if (disp) out.disponibilidad = disp[1].toLowerCase();
+  // Interés del lead por palabras clave (si el modelo no lo ha capturado)
+  if (/precio|precios|presupuesto|cotiza/i.test(text)) out.interes = 'precios';
+  else if (/muestreo|work\s?sampling/i.test(text)) out.interes = 'Worksamp';
+  else if (/implantaci[oó]n|lo hacemos por ti|servicio de estudio/i.test(text)) out.interes = 'servicio de implantación';
+  else if (/\bdemo\b/i.test(text)) out.interes = 'demo';
   return out;
 }
 
@@ -311,7 +316,7 @@ function sendNotificationEmail(env: Env, data: Record<string, string>) {
   }
 }
 
-async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<string, string>, nota: string, url: string, site: string) {
+async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<string, string>, conversacion: string, ultimoMensaje: string, url: string, site: string) {
   const token = await getAccessToken(sa);
   const collection = env.LEADS_COLLECTION || 'leads_asistente_cronometras';
   const docUrl = `https://firestore.googleapis.com/v1/projects/${sa.project_id}/databases/(default)/documents/${collection}/${sessionId}`;
@@ -332,7 +337,8 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
     sessionId,
     site,
     url,
-    nota,
+    nota: conversacion,          // conversación completa del usuario (no solo el último mensaje)
+    ultimoMensaje,
     privacyPolicy: true,
     source: 'web_asistente_demo',
     createdAt: new Date().toISOString(),
@@ -359,7 +365,7 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
       telefono: lead.telefono,
       sector: `Demo: ${lead.modalidad} | Interés: ${lead.interes}`,
       plan: `Disponibilidad: ${lead.disponibilidad}`,
-      mensaje: `Solicitud de demo vía asistente web (lead ${lead.estado || 'parcial'}). Nota: ${nota || '—'}`,
+      mensaje: `Solicitud de demo vía asistente web (lead ${lead.estado || 'parcial'}). Conversación: ${conversacion || '—'}`,
     });
   }
   // La tarjeta «✓ Demo solicitada» solo se muestra UNA vez, al cerrar el lead:
@@ -430,9 +436,12 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         lead.modalidad ||= '—';
       }
       if (!lead.nombre) lead.nombre = '—';
+      if (!lead.interes) lead.interes = '—';
       lead.estado = completo ? 'completa' : 'parcial';
-      const lastUser = cleanHistory[cleanHistory.length - 1].content;
-      const saveStatus = await saveLead(env, JSON.parse(env.FIREBASE_SERVICE_ACCOUNT), sessionId, lead, lastUser.slice(0, 400), pageUrl, site).catch((err) => {
+      const userMsgs = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content.slice(0, 300));
+      const ultimoMensaje = userMsgs[userMsgs.length - 1] || '';
+      const conversacion = userMsgs.join(' | ').slice(0, 800);
+      const saveStatus = await saveLead(env, JSON.parse(env.FIREBASE_SERVICE_ACCOUNT), sessionId, lead, conversacion, ultimoMensaje, pageUrl, site).catch((err) => {
         console.error('saveLead error:', err?.message || err);
         return 'error';
       });
