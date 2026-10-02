@@ -10,6 +10,7 @@
 // back to slugify(topic) for ES only.
 import { getAdminFirestore } from "./firebase-admin";
 import { slugify } from "@/utils/slugify";
+import { resolveArticleImage } from "./articleImages";
 
 // Type definition for Firestore article
 export interface FirestoreArticle {
@@ -164,7 +165,7 @@ function transformToBlogPost(article: FirestoreArticle, lang: 'es' | 'en'): Blog
             title,
             description,
             pubDate: new Date(article.createdAt),
-            heroImage: article.imageUrl || '/images/webp/cronometras-app.webp',
+            heroImage: resolveArticleImage(article.imageUrl),
             category: extractCategory(article),
             tags: article.keywords || [],
             author: 'Cronometras Team',
