@@ -1,6 +1,7 @@
 // Asistente de chat de cronometras.com — widget + llamada a /api/assistant
 // (Pages Function). Captura de leads de demo: nombre, email, teléfono, empresa,
 // interés y modalidad (llamada / videollamada 20 o 30 min).
+// Colores: variables del tema del sitio (themes.scss) — gradiente bg-gradient-primary.
 ---
 const EN = Astro.url.pathname.startsWith('/en');
 const T = EN ? {
@@ -25,20 +26,21 @@ const T = EN ? {
   error: 'Vaya, algo ha fallado. Vuelve a intentarlo.',
 };
 const privacyUrl = EN ? '/en/privacy/' : '/es/privacy/';
+// Mismo gradiente que los .btn-primary del sitio (src/styles/utilities.scss)
+const GRADIENT = 'background-image:linear-gradient(184.78deg, rgba(var(--primary)), rgba(var(--secondary)) 120.07%);';
 ---
 
-<div id="chat-asistente-root" data-lang={EN ? 'en' : 'es'} style="position:fixed;bottom:7.5rem;right:2rem;z-index:60;font-family:inherit;">
+<div id="chat-asistente-root" data-lang={EN ? 'en' : 'es'} style="position:fixed;bottom:2rem;right:2rem;z-index:60;font-family:inherit;">
   <button id="chat-asistente-toggle" aria-label={T.label}
-    style="width:3.5rem;height:3.5rem;border-radius:9999px;background:#1a56db;color:#fff;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;">
+    style={`width:3.5rem;height:3.5rem;border-radius:9999px;color:#fff;border:none;cursor:pointer;box-shadow:0 5px 15px rgba(var(--primary),.45);display:flex;align-items:center;justify-content:center;${GRADIENT}`}>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
       <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
     </svg>
   </button>
 
-  <div id="chat-asistente-panel" hidden
-    style="position:absolute;bottom:4.25rem;right:0;width:22rem;max-width:calc(100vw - 2rem);height:30rem;max-height:70vh;background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb;">
-    <div style="background:#1a56db;color:#fff;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;">
+  <div id="chat-asistente-panel" style="display:none;position:absolute;bottom:4.25rem;right:0;width:22rem;max-width:calc(100vw - 2rem);height:30rem;max-height:70vh;background:rgb(var(--surface));border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.28);flex-direction:column;overflow:hidden;border:1px solid rgb(var(--border));">
+    <div style={`${GRADIENT}color:#fff;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;`}>
       <div>
         <div style="font-weight:700;font-size:.95rem;">{T.title}</div>
         <div style="font-size:.72rem;opacity:.85;">{T.subtitle}</div>
@@ -46,28 +48,28 @@ const privacyUrl = EN ? '/en/privacy/' : '/es/privacy/';
       <button id="chat-asistente-close" aria-label="Cerrar" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;line-height:1;">✕</button>
     </div>
 
-    <div id="chat-asistente-msgs" style="flex:1;overflow-y:auto;padding:.75rem;display:flex;flex-direction:column;gap:.5rem;background:#f8fafc;"></div>
+    <div id="chat-asistente-msgs" style="flex:1;overflow-y:auto;padding:.75rem;display:flex;flex-direction:column;gap:.5rem;background:rgb(var(--background));"></div>
 
-    <div id="chat-asistente-chips" style="display:flex;flex-wrap:wrap;gap:.35rem;padding:.4rem .75rem;background:#f8fafc;border-top:1px solid #eef2f7;">
+    <div id="chat-asistente-chips" style="display:flex;flex-wrap:wrap;gap:.35rem;padding:.4rem .75rem;background:rgb(var(--background));border-top:1px solid rgb(var(--border));">
       {T.chips.map((c) => (
         <button class="chat-asistente-chip" data-chip={c}
-          style="font-size:.72rem;border:1px solid #c7d2fe;background:#eef2ff;color:#3730a3;border-radius:9999px;padding:.25rem .6rem;cursor:pointer;">{c}</button>
+          style="font-size:.72rem;border:1px solid rgba(var(--primary),.6);background:rgba(var(--primary),.12);color:rgb(var(--text));border-radius:9999px;padding:.25rem .6rem;cursor:pointer;">{c}</button>
       ))}
     </div>
 
-    <form id="chat-asistente-form" style="display:flex;gap:.4rem;padding:.6rem;border-top:1px solid #e5e7eb;background:#fff;">
+    <form id="chat-asistente-form" style="display:flex;gap:.4rem;padding:.6rem;border-top:1px solid rgb(var(--border));background:rgb(var(--surface));">
       <input id="chat-asistente-input" type="text" maxlength="800" autocomplete="off" placeholder={T.placeholder}
-        style="flex:1;border:1px solid #d1d5db;border-radius:8px;padding:.45rem .6rem;font-size:.85rem;outline:none;" />
+        style="flex:1;border:1px solid rgb(var(--border));border-radius:8px;padding:.45rem .6rem;font-size:.85rem;outline:none;background:rgb(var(--surface));color:rgb(var(--text));" />
       <button type="submit" aria-label="Enviar"
-        style="background:#1a56db;color:#fff;border:none;border-radius:8px;padding:0 .8rem;cursor:pointer;font-size:.85rem;">➤</button>
+        style={`${GRADIENT}color:#fff;border:none;border-radius:8px;padding:0 .8rem;cursor:pointer;font-size:.85rem;`}>➤</button>
     </form>
-    <div style="font-size:.62rem;color:#9ca3af;text-align:center;padding:.2rem .5rem .35rem;background:#fff;">
-      <a href={privacyUrl} style="color:#9ca3af;text-decoration:underline;">{T.privacy}</a>
+    <div style="font-size:.62rem;color:rgb(var(--text-disabled));text-align:center;padding:.2rem .5rem .35rem;background:rgb(var(--surface));">
+      <a href={privacyUrl} style="color:rgb(var(--text-disabled));text-decoration:underline;">{T.privacy}</a>
     </div>
   </div>
 </div>
 
-<script is:inline define:vars={{ T }}>
+<script is:inline define:vars={{ T, GRADIENT }}>
 (function () {
   function initChat() {
     var root = document.getElementById('chat-asistente-root');
@@ -106,10 +108,10 @@ const privacyUrl = EN ? '/en/privacy/' : '/es/privacy/';
       var d = document.createElement('div');
       var isUser = role === 'user';
       d.style.cssText = 'max-width:85%;padding:.5rem .65rem;border-radius:12px;font-size:.83rem;line-height:1.35;white-space:pre-wrap;word-break:break-word;' +
-        (isUser ? 'align-self:flex-end;background:#1a56db;color:#fff;border-bottom-right-radius:4px;'
-                : 'align-self:flex-start;background:#fff;color:#111827;border:1px solid #e5e7eb;border-bottom-left-radius:4px;');
+        (isUser ? 'align-self:flex-end;color:#fff;border-bottom-right-radius:4px;' + GRADIENT
+                : 'align-self:flex-start;background:rgb(var(--surface));color:rgb(var(--text));border:1px solid rgb(var(--border));border-bottom-left-radius:4px;');
       if (extra === 'demo') {
-        d.style.cssText = 'align-self:center;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;border-radius:10px;padding:.45rem .7rem;font-size:.78rem;text-align:center;max-width:95%;';
+        d.style.cssText = 'align-self:center;background:rgba(var(--secondary),.15);color:rgb(var(--text));border:1px solid rgba(var(--secondary),.5);border-radius:10px;padding:.45rem .7rem;font-size:.78rem;text-align:center;max-width:95%;';
       }
       d.textContent = text;
       msgs.appendChild(d);
@@ -120,7 +122,7 @@ const privacyUrl = EN ? '/en/privacy/' : '/es/privacy/';
     function typing() {
       var d = document.createElement('div');
       d.id = 'chat-asistente-typing';
-      d.style.cssText = 'align-self:flex-start;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:.5rem .7rem;font-size:.8rem;color:#6b7280;';
+      d.style.cssText = 'align-self:flex-start;background:rgb(var(--surface));border:1px solid rgb(var(--border));border-radius:12px;padding:.5rem .7rem;font-size:.8rem;color:rgb(var(--text-secondary));';
       d.textContent = lang === 'en' ? 'Typing…' : 'Escribiendo…';
       msgs.appendChild(d);
       msgs.scrollTop = msgs.scrollHeight;
@@ -184,10 +186,11 @@ const privacyUrl = EN ? '/en/privacy/' : '/es/privacy/';
     });
 
     toggle.addEventListener('click', function () {
-      panel.hidden = !panel.hidden;
-      if (!panel.hidden) { msgs.scrollTop = msgs.scrollHeight; input.focus(); }
+      var open = panel.style.display !== 'flex';
+      panel.style.display = open ? 'flex' : 'none';
+      if (open) { msgs.scrollTop = msgs.scrollHeight; input.focus(); }
     });
-    closeBtn.addEventListener('click', function () { panel.hidden = true; });
+    closeBtn.addEventListener('click', function () { panel.style.display = 'none'; });
   }
 
   if (document.readyState === 'loading') {
