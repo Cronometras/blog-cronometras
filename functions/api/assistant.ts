@@ -11,6 +11,7 @@ interface Env {
   LLM_API_KEY: string;
   LLM_MODEL: string;
   LEADS_COLLECTION: string; // opcional. default: leads_asistente_cronometras
+  WEB3FORMS_ACCESS_KEY?: string;
 }
 
 const LEAD_FIELDS = ['nombre', 'email', 'telefono', 'empresa', 'interes', 'modalidad', 'disponibilidad'] as const;
@@ -213,7 +214,7 @@ function isComplete(lead: Record<string, string>): boolean {
   return Boolean(
     lead.email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email) &&
     lead.telefono && lead.telefono.replace(/\D/g, '').length >= 7 &&
-    lead.empresa && lead.modalidad
+    lead.empresa && lead.empresa !== '—' && lead.modalidad && lead.modalidad !== '—'
   );
 }
 
@@ -281,11 +282,19 @@ function parseLLMOutput(raw: string): { reply: string; lead: any; demoCompleta: 
     try {
       const obj = JSON.parse(candidate);
       return {
-        reply: String(obj.reply || '').trim() || raw.trim(),
+        reply: typeof obj.reply === 'string' ? obj.reply.trim() : '',
         lead: obj.lead || {},
         demoCompleta: Boolean(obj.demo_completa ?? obj.demoComplete),
       };
-    } catch { /* cae al texto crudo */ }
+    } catch { /* recupera solo el mensaje, nunca muestra el JSON roto */ }
+  }
+  if (candidate || /^\s*[{\[]/.test(raw) || /"(?:reply|lead)"\s*:/.test(raw)) {
+    const replyMatch = raw.match(/"reply"\s*:\s*("(?:\\.|[^"\\])*")/);
+    let reply = '';
+    if (replyMatch) {
+      try { reply = JSON.parse(replyMatch[1]); } catch { /* usa el fallback */ }
+    }
+    return { reply, lead: {}, demoCompleta: false };
   }
   // Sin JSON: si lo que llegó es una llamada a herramientas o ruido de modelo,
   // no se muestra al usuario (bug verificado 2026-10-02 con mimo-v2.6-flash).
@@ -297,10 +306,10 @@ function parseLLMOutput(raw: string): { reply: string; lead: any; demoCompleta: 
 
 // ---------- Persistencia del lead ----------
 
-function sendNotificationEmail(env: Env, data: Record<string, string>) {
+async function sendNotificationEmail(env: Env, data: Record<string, string>) {
   // Canal principal: webhook de Gmail (Apps Script). Alternativa: Web3Forms.
   if (env.GMAIL_WEBAPP_URL) {
-    fetch(env.GMAIL_WEBAPP_URL, {
+    await fetch(env.GMAIL_WEBAPP_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -308,7 +317,7 @@ function sendNotificationEmail(env: Env, data: Record<string, string>) {
     return;
   }
   if (env.WEB3FORMS_ACCESS_KEY) {
-    fetch('https://api.web3forms.com/submit', {
+    await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
@@ -329,13 +338,19 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
   // ¿Existe ya? (para notificar solo una vez y saber si el lead ya estaba cerrado)
   const prev = await fetch(docUrl, { headers: { 'Authorization': `Bearer ${token}` } });
   const existed = prev.ok;
+  if (!existed && prev.status !== 404) throw new Error(`Firestore read failed: ${prev.status}`);
   let prevEstado = '';
+  let createdAt = new Date().toISOString();
   if (existed) {
-    try {
-      const pd = await prev.json() as any;
-      prevEstado = pd?.fields?.estado?.stringValue || '';
-    } catch { /* noop */ }
+    const pd = await prev.json() as any;
+    prevEstado = pd?.fields?.estado?.stringValue || '';
+    createdAt = pd?.fields?.createdAt?.stringValue || createdAt;
+    for (const field of LEAD_FIELDS) {
+      const previous = pd?.fields?.[field]?.stringValue;
+      if ((!lead[field] || lead[field] === '—') && previous) lead[field] = previous;
+    }
   }
+  lead.estado = isComplete(lead) ? 'completa' : 'parcial';
 
   const docData: Record<string, any> = {
     ...lead,
@@ -346,7 +361,7 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
     ultimoMensaje,
     privacyPolicy: true,
     source: 'web_asistente_demo',
-    createdAt: new Date().toISOString(),
+    createdAt,
     notificado: true,
   };
 
@@ -362,7 +377,7 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
   }
 
   if (!existed) {
-    sendNotificationEmail(env, {
+    await sendNotificationEmail(env, {
       site,
       nombre: lead.nombre,
       email: lead.email,
@@ -413,13 +428,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     // Si el modelo se salta el protocolo JSON (o emite llamadas a herramientas),
     // un reintento con recordatorio.
     let raw = raw0;
-    if (!extractJsonObject(raw0) || /<tool_call>|<function|update_session_state/i.test(raw0)) {
+    let validOutput = false;
+    try {
+      const obj = JSON.parse(extractJsonObject(raw0) || 'null');
+      validOutput = typeof obj?.reply === 'string' && Boolean(obj.reply.trim());
+    } catch { /* reintenta el JSON mal formado */ }
+    if (!validOutput || /<tool_call>|<function|update_session_state/i.test(raw0)) {
       raw = await askLLM(env, lang === 'en' ? PROMPT_EN : PROMPT_ES,
         [...cleanHistory, { role: 'assistant', content: raw0 },
          { role: 'user', content: 'Responde ahora solo con el objeto JSON (campo reply con tu mensaje). - recordatorio del sistema' }]
       ).catch(() => raw0);
     }
-    const { reply, lead: rawLead, demoCompleta } = parseLLMOutput(raw);
+    const { reply, lead: rawLead } = parseLLMOutput(raw);
 
     // Red de seguridad: datos que aparezcan literalmente en el chat
     const allText = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content).join(' \n ');
@@ -430,11 +450,11 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     if (!lead.telefono) lead.telefono = extractPhone(allText);
 
     let leadSaved = false;
-    // Captura aunque el modelo se salte el protocolo: basta email + teléfono válidos.
-    const completo = isComplete(lead) || demoCompleta;
+    // Guarda el contacto desde que hay email, aunque falten datos de la demo.
+    // El estado depende de los datos validados, nunca de la afirmación del modelo.
+    const completo = isComplete(lead);
     const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email);
-    const telOk = lead.telefono.replace(/\D/g, '').length >= 7;
-    if (emailOk && telOk) {
+    if (emailOk) {
       if (!completo) {
         // guarda parcial para no perder el lead si el usuario se va a medias
         lead.nombre ||= '—';
