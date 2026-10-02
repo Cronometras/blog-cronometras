@@ -88,7 +88,9 @@ OBJETIVO COMERCIAL (importante): resuelve la duda en 2-4 frases y propón una de
 2. SEGUNDA pregunta (en un solo mensaje): si prefieren que les contactemos por VIDEO LLAMADA de 30 minutos (siempre 30 minutos; nunca ofrezcas 20) o por LLAMADA DE TELÉFONO, y su teléfono de contacto.
 3. Con email, empresa, teléfono y modalidad ya tienes todo: confirma en "reply": «Perfecto, te contactaremos para acordar el día y la hora de la demo.» y NO vuelvas a pedir nada más.
 4. El nombre, si lo dan de paso, guárdalo, pero no lo pidas. No preguntes por disponibilidad (se acuerda al contactar); si la dan, guárdala.
-5. Nunca pidas contraseñas ni datos de pago.
+5. NO insistas ni repreguntes: si preguntaste por la modalidad y el usuario no la da, no vuelvas a preguntarla. Nunca preguntes dos veces lo mismo.
+6. Si el usuario agradece, se despide o deja de aportar datos, cierra en UNA frase: agradece y, si ya hay datos de contacto, confirma que le contactaremos. Si faltan datos pero el usuario cierra, despídete sin volver a pedirlos.
+7. Nunca pidas contraseñas ni datos de pago.
 
 IDIOMA: castellano de España (nunca "vos", "podés", "tenés", "querés", "decime", "vosotros"). Tono cercano y profesional, respuestas cortas. Sin markdown ni emojis salvo que el usuario los use.
 
@@ -120,7 +122,9 @@ SALES GOAL (important): answer the question in 2-4 sentences, then propose a liv
 2. SECOND question (single message): whether they prefer to be contacted by VIDEO CALL of 30 minutes (always 30 minutes; never offer 20) or by PHONE CALL, and their contact phone.
 3. Once you have email, company, phone and option you have everything: confirm in "reply": "Great, we will contact you to agree on the day and time of the demo." and do NOT ask for anything else.
 4. If they volunteer their name, keep it, but do not ask for it. Do not ask about availability (agreed when contacting); if given, keep it.
-5. Never ask for passwords or payment details.
+5. Do NOT insist or re-ask: if you asked for the option and the user does not give it, do not ask again. Never ask the same thing twice.
+6. If the user thanks you, says goodbye or stops providing details, close in ONE sentence: thank them and, if contact details exist, confirm we will contact them. If details are missing but the user closes, say goodbye without asking again.
+7. Never ask for passwords or payment details.
 
 LANGUAGE: answer in the language the user writes (Spanish or English). Friendly, professional, short replies. No markdown.
 
@@ -312,9 +316,16 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
   const collection = env.LEADS_COLLECTION || 'leads_asistente_cronometras';
   const docUrl = `https://firestore.googleapis.com/v1/projects/${sa.project_id}/databases/(default)/documents/${collection}/${sessionId}`;
 
-  // ¿Existe ya? (para notificar solo una vez)
+  // ¿Existe ya? (para notificar solo una vez y saber si el lead ya estaba cerrado)
   const prev = await fetch(docUrl, { headers: { 'Authorization': `Bearer ${token}` } });
   const existed = prev.ok;
+  let prevEstado = '';
+  if (existed) {
+    try {
+      const pd = await prev.json() as any;
+      prevEstado = pd?.fields?.estado?.stringValue || '';
+    } catch { /* noop */ }
+  }
 
   const docData: Record<string, any> = {
     ...lead,
@@ -351,7 +362,10 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
       mensaje: `Solicitud de demo vía asistente web (lead ${lead.estado || 'parcial'}). Nota: ${nota || '—'}`,
     });
   }
-  return true;
+  // La tarjeta «✓ Demo solicitada» solo se muestra UNA vez, al cerrar el lead:
+  // si ya estaba completa, no se vuelve a avisar (bug «vuelve a solicitar», 2026-10-02).
+  if (lead.estado === 'completa' && prevEstado !== 'completa') return 'completa-nueva';
+  return lead.estado || 'parcial';
 }
 
 // ---------- Handler ----------
@@ -418,10 +432,11 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       if (!lead.nombre) lead.nombre = '—';
       lead.estado = completo ? 'completa' : 'parcial';
       const lastUser = cleanHistory[cleanHistory.length - 1].content;
-      leadSaved = await saveLead(env, JSON.parse(env.FIREBASE_SERVICE_ACCOUNT), sessionId, lead, lastUser.slice(0, 400), pageUrl, site).catch((err) => {
+      const saveStatus = await saveLead(env, JSON.parse(env.FIREBASE_SERVICE_ACCOUNT), sessionId, lead, lastUser.slice(0, 400), pageUrl, site).catch((err) => {
         console.error('saveLead error:', err?.message || err);
-        return false;
+        return 'error';
       });
+      leadSaved = saveStatus === 'completa-nueva';
     }
 
     return new Response(JSON.stringify({ reply, leadSaved }),
