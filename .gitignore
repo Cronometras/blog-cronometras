@@ -30,3 +30,5 @@ sa.json
 
 # secrets locales de wrangler
 .dev.vars
+
+.wrangler/

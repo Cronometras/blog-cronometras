@@ -153,6 +153,23 @@
 # ---------------------------------------------------------------------
 
 # ---------------------------------------------------------------------
+# 11b. Artículos Firestore con slug sin prefijo de idioma (bug del script
+#      publicador, corregido 2026-09-24) -> canónicos en /es/blog/
+# ---------------------------------------------------------------------
+/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/blog*        /es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/   301
+/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/blog*   /es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/   301
+/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271/blog*          /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
+
+# ---------------------------------------------------------------------
+# 14. Variantes de slug largas citadas en informes -> slugs reales (301)
+/es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento-tiempos-estandar-tier-iii-iv/   /es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/   301
+/es/blog/cronoanalisis-envasado-bebidas-calidad-control-higiene-limpieza-tiempos-estandar/   /es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/   301
+/es/blog/comparativa-pmts-mtm-most-mtu-uas-modapts-gsd-wf-cronoanalisis/   /es/blog/comparativa-pmts-mtm-most-mts-dmt-ingenieria-metodos/   301
+/es/blog/cronoanalisis-paradas-programadas-turnaround-refineria-gas-tiempos-estandar/   /es/blog/cronoanalisis-paradas-programadas-refineria-turnaround-ti/   301
+/es/blog/cronoanalisis-mantenimiento-aeronautico-mro-hangar-tiempos-estandar-piezas/   /es/blog/cronoanalisis-mantenimiento-aeronautico-mro-easa-part-145-aog/   301
+/es/blog/cronoanalisis-mantenimiento-ferroviario-flota-talleres-tiempos-estandar/   /es/blog/cronoanalisis-mantenimiento-ferroviario-itv-rgs/   301
+/es/blog/cronoanalisis-baterias-litio-gigafactoria-celdas-electrodos-celdas-tiempos-estandar/   /es/blog/cronoanalisis-baterias-litio-lineas-fabricacion/   301
+
 # 12. SPA fallback: rutas no existentes -> 404 localizado
 # ---------------------------------------------------------------------
 /*  /es/404/  404
@@ -168,3 +185,6 @@
 /es/blog/cuales-son-las-tecnicas-de-cronometraje                         /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
 
 # Last validated sitemap dedup: 2026-06-16T05:25:50.143483
+/es/blog/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271*   /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
+
+# ---------------------------------------------------------------------
