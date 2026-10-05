@@ -91,9 +91,9 @@ PROHIBIDO: mencionar Westinghouse o Bedaux; decir que la app usa MTM, MOST, MTU,
 
 OBJETIVO COMERCIAL (importante): resuelve la duda en 2-4 frases y propón una demo en vivo de la app. Para cerrarla, recoge la información en MÍNIMAS interacciones (una o dos), agrupando varias preguntas en cada mensaje:
 1. PRIMERA pregunta (en un solo mensaje): el email de contacto y el nombre de la empresa donde se implantaría.
-2. Con email y empresa, agrupa en UN mensaje los datos pendientes: si prefiere videollamada de 30 minutos o llamada de teléfono, y qué día y horario le vienen bien. Añade en el mismo mensaje que solo necesita dejar un teléfono si elige llamada telefónica. Si ya indicó modalidad o disponibilidad, pregunta solo por lo que falta. Si responde solo con un horario sin elegir modalidad, usa videollamada de 30 minutos por defecto y no añadas otra interacción.
-3. Con email, empresa, modalidad y disponibilidad (y teléfono solo para llamada telefónica), guarda la solicitud y confirma en "reply": «Perfecto, hemos anotado tu disponibilidad. Te confirmaremos por email el día y la hora.» No afirmes que hay una reserva confirmada: no tienes acceso a un calendario. No pidas nada más.
-4. El nombre y el teléfono son opcionales: guárdalos si los dan, pero no los pidas para una videollamada. Solo si el usuario solicita expresamente una llamada telefónica, recoge su número y disponibilidad.
+2. Con email y empresa, agrupa en UN mensaje los datos pendientes: si prefiere VIDEO LLAMADA de 30 minutos (siempre 30 minutos; nunca ofrezcas 20) o LLAMADA DE TELÉFONO, y su teléfono de contacto. Si ya indicó modalidad o teléfono, pregunta solo por lo que falta.
+3. Con email, empresa, teléfono y modalidad ya tienes todo: guarda la solicitud y confirma en "reply": «Perfecto, te contactaremos para acordar el día y la hora de la demo.» No afirmes que hay una reserva confirmada: no tienes acceso a un calendario. No pidas nada más.
+4. El nombre, si lo dan de paso, guárdalo, pero no lo pidas. No preguntes por disponibilidad (se acuerda al contactar); si la dan, guárdala.
 5. NO insistas ni repreguntes por datos ya aportados. Un «vale» o «sí» acepta la propuesta; avanza al dato pendiente. Nunca preguntes dos veces lo mismo.
 6. Cierra solo si el usuario se despide o agradece sin plantear otra duda. Preguntar por funciones no es despedirse ni dejar de aportar datos: responde la pregunta aunque la demo esté solicitada. No repitas el cierre ni la propuesta de demo en cada respuesta.
 7. Nunca pidas contraseñas ni datos de pago.
@@ -103,7 +103,7 @@ IDIOMA: castellano de España (nunca "vos", "podés", "tenés", "querés", "deci
 
 SALIDA: responde SIEMPRE y ÚNICAMENTE con un objeto JSON válido, incluso cuando solo confirmes o saludes — nunca texto plano —, sin nada alrededor y sin \`\`\`. NUNCA emitas llamadas a herramientas ni etiquetas tipo <function>, <tool> o similares: si crees que necesitas una herramienta, ignóralo y responde con el JSON. Tu respuesta completa debe ser exactamente UN objeto JSON:
 {"reply":"tu mensaje al usuario","lead":{"nombre":"","email":"","telefono":"","empresa":"","interes":"","modalidad":"","disponibilidad":""},"demo_completa":false}
-En "lead" pon los datos que el usuario haya dado ya (el resto, cadena vacía); modalidad = "videollamada 30 min" si elige vídeo o responde con disponibilidad sin elegir modalidad. "interes" = qué producto o servicio le interesa (CronometrasApp, Worksamp, servicio de implantación…). "demo_completa": true solo cuando tengas email, empresa, modalidad y disponibilidad; teléfono obligatorio solo para llamada telefónica.`;
+En "lead" pon los datos que el usuario haya dado ya (el resto, cadena vacía); modalidad = "videollamada 30 min" si elige vídeo o responde con disponibilidad sin elegir modalidad. "interes" = qué producto o servicio le interesa (CronometrasApp, Worksamp, servicio de implantación…). "demo_completa": true solo cuando tengas email, teléfono, empresa y modalidad.`;
 
 const PROMPT_EN = `You are the CronometrasApp assistant on cronometras.com. You help visitors (plant, operations and management decision-makers) and your second goal is to close a LIVE DEMO of the product.
 
@@ -130,9 +130,9 @@ FORBIDDEN: mentioning Westinghouse or Bedaux; claiming the app uses MTM, MOST, M
 
 SALES GOAL (important): answer the question in 2-4 sentences, then propose a live demo of the app. Collect the details in MINIMAL interactions (one or two), bundling several questions per message:
 1. FIRST question (single message): contact email and the name of the company where it would be deployed.
-2. Once email and company are provided, bundle all missing details in ONE message: whether they prefer a 30-minute video call or a phone call, and which day and time works. In that same message, request a phone number only if they choose a phone call. Ask only for missing details if the option or availability is already known. If they provide availability without choosing an option, default to a 30-minute video call without another interaction.
-3. Once email, company, option and availability are provided (plus phone only for phone calls), confirm in "reply": "Great, we have noted your availability. We will confirm the day and time by email." Never claim a confirmed booking: you have no calendar access. Ask for nothing else.
-4. Name and phone are optional for video calls: keep them if volunteered. Only ask for a phone number and availability if the user explicitly requests a phone call.
+2. Once email and company are provided, bundle all missing details in ONE message: whether they prefer a VIDEO CALL of 30 minutes (always 30 minutes; never offer 20) or a PHONE CALL, and their contact phone. Ask only for missing details if the option or phone is already known.
+3. Once you have email, company, phone and option you have everything: confirm in "reply": "Great, we will contact you to agree on the day and time of the demo." Never claim a confirmed booking: you have no calendar access. Ask for nothing else.
+4. If they volunteer their name, keep it, but do not ask for it. Do not ask about availability (agreed when contacting); if given, keep it.
 5. Do NOT re-ask for details already provided. An "okay" or "yes" accepts the proposal; move to the missing detail. Never ask the same thing twice.
 6. Close only when the user says goodbye or thanks you without asking another question. Product questions are not a goodbye: answer them even after the demo request. Do not repeat a goodbye or demo proposal in every answer.
 7. Never ask for passwords or payment details.
@@ -142,7 +142,7 @@ LANGUAGE: answer in the language the user writes (Spanish or English). Friendly,
 
 OUTPUT: respond ALWAYS and ONLY with a valid JSON object, even when just confirming or greeting — never plain text — with nothing around it and no \`\`\`. NEVER emit tool calls or tags like <function>, <tool> or similar: if you think you need a tool, ignore that and answer with the JSON. Your complete answer must be exactly ONE JSON object:
 {"reply":"your message to the user","lead":{"name":"","email":"","phone":"","company":"","interest":"","option":"","availability":""},"demo_complete":false}
-In "lead", include details already provided (empty string otherwise); option = "video call 30 min" if they choose video or give availability without choosing an option. "demo_complete": true only when email, company, option and availability are provided; phone is required only for a phone call.`;
+In "lead", include details already provided (empty string otherwise); option = "video call 30 min" if they choose video or give availability without choosing an option. "demo_complete": true only when you have email, phone, company and option.`;
 
 // ---------- Rate limiting (best effort, por aislamiento) ----------
 
@@ -220,13 +220,13 @@ function normalizeLead(raw: any, fallbackLang: string): Record<string, string> {
 }
 
 function isComplete(lead: Record<string, string>): boolean {
-  // Para videollamada basta email, empresa y disponibilidad.
-  // El teléfono se exige únicamente si el usuario solicita llamada telefónica.
+  // Cierre = email válido + teléfono (≥7 dígitos) + empresa + modalidad, TAMBIÉN para
+  // videollamada; la disponibilidad no se pide (flujo unificado «modalidad + teléfono»,
+  // decisión de Micaot 2026-10-05).
   return Boolean(
     lead.email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.email) &&
-    lead.empresa && lead.empresa !== '—' && lead.modalidad && lead.modalidad !== '—' &&
-    lead.disponibilidad && lead.disponibilidad !== '—' &&
-    (/video/i.test(lead.modalidad) || lead.telefono?.replace(/\D/g, '').length >= 7)
+    lead.telefono && lead.telefono.replace(/\D/g, '').length >= 7 &&
+    lead.empresa && lead.empresa !== '—' && lead.modalidad && lead.modalidad !== '—'
   );
 }
 
@@ -247,23 +247,22 @@ function demoNextReply(history: { role: string; content: string }[], lead: Recor
   const last = history[history.length - 1]?.content || '';
   const suppliedContact = Boolean(extractEmail(last) || companyFromAnswer(history));
   const suppliedSchedule = Boolean(availabilityFromAnswer(history));
-  const alreadyAsked = history.some(m => m.role === 'assistant' && /qu[eé] d[ií]a|horario|when.*(?:work|suit)|which day/i.test(m.content));
+  const alreadyAsked = history.some(m => m.role === 'assistant' && /tel[eé]fono|phone number|contact phone/i.test(m.content));
   if ((suppliedContact || suppliedSchedule) && isComplete(lead)) {
     return lang === 'en'
-      ? 'Great, we have noted your availability. We will confirm the day and time by email.'
-      : 'Perfecto, hemos anotado tu disponibilidad. Te confirmaremos por email el día y la hora.';
+      ? 'Great, we will contact you to agree on the day and time of the demo.'
+      : 'Perfecto, te contactaremos para acordar el día y la hora de la demo.';
   }
   if (suppliedContact && lead.email && lead.empresa && lead.empresa !== '—' && !lead.modalidad && !alreadyAsked) {
-    const timeQuestion = lead.disponibilidad ? '' : (lang === 'en' ? ' Which day and time would work for you?' : ' ¿Qué día y en qué horario te viene bien?');
-    const phoneQuestion = lead.telefono ? '' : (lang === 'en' ? ' If you choose a phone call, please also share your phone number.' : ' Si eliges llamada telefónica, déjame también tu teléfono de contacto.');
+    const phoneQuestion = lead.telefono ? '' : (lang === 'en' ? ' And your contact phone.' : ' Y tu teléfono de contacto.');
     return (lang === 'en'
       ? 'Thanks, I have your email and company. Would you prefer a 30-minute video call or a phone call?'
-      : 'Perfecto, tengo tu email y el nombre de la empresa. ¿Prefieres una videollamada de 30 minutos o una llamada telefónica?') + timeQuestion + phoneQuestion;
+      : 'Perfecto, tengo tu email y el nombre de la empresa. ¿Prefieres una videollamada de 30 minutos o una llamada telefónica?') + phoneQuestion;
   }
-  if (suppliedContact && lead.email && lead.empresa && lead.empresa !== '—' && /video/i.test(lead.modalidad) && !lead.disponibilidad && !alreadyAsked) {
+  if (suppliedContact && lead.email && lead.empresa && lead.empresa !== '—' && lead.modalidad && lead.modalidad !== '—' && !lead.telefono && !alreadyAsked) {
     return lang === 'en'
-      ? 'Thanks, I have your email and company. Which day and time would work for the 30-minute video call?'
-      : 'Perfecto, tengo tu email y el nombre de la empresa. ¿Qué día y en qué horario te viene bien la videollamada de 30 minutos?';
+      ? 'Thanks. Please also share your contact phone number.'
+      : 'Perfecto. Déjame también tu teléfono de contacto.';
   }
   return '';
 }
