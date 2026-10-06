@@ -717,7 +717,7 @@
   {
     "source": "docs/assistant/manual-usuario.md",
     "title": "Manual de Usuario > Introducción > Multi-Crono Seguido (Cronometraje de Múltiples Estaciones) > Consejos de Uso",
-    "text": "Aplicación inmediata en toda la interfaz\nConversión automática de reportes existentes\nMantenimiento de consistencia en terminología técnica\nPreservación de datos en idioma original para trazabilidad\nConfiguración Regional:\n\nFormato de Fecha: DD/MM/AAAA (español) vs MM/DD/YYYY (inglés)\nSeparadores Decimales: Coma (,) vs punto (.)\nSeparadores de Miles: Punto (.) vs coma (,)\nFormato de Hora: 24 horas vs 12 horas (AM/PM)\nPersonalización de Terminología\nGlosario Personalizable:\n\nAdaptación de términos técnicos según empresa o región\nEjemplo: \"Operario\" vs \"Trabajador\" vs \"Empleado\"\nConfiguración de abreviaciones corporativas\nIntegración con estándares específicos de la industria\nPlantillas de Idioma por Industria:\n\nTerminología específica para automotriz, electrónica, textil, etc.\nAdaptación automática según el tipo de organización\nImportación de glosarios corporativos existentes\nConfiguración Avanzada de Unidades de Tiempo\nSistemas de Medición Especializados\nUnidades de Tiempo Principales\nMinutos Decimales:\n\nUnidad más intuitiva para la mayoría de usuarios\nFácil conversión a horas (dividir por 60)\nIdeal para procesos de duración media (1-30 minutos)\nPrecisión: 0.01 minutos (0.6 segundos)\nCentésimas de Minuto (CMM):\n\nEstándar industrial más utilizado\n1 minuto = 100 CMM\nFacilita cálculos de productividad\nPrecisión: 1 CMM = 0.6 segundos\nConversión automática: CMM = Minutos × 100\nSegundos:\n\nMáxima precisión para elementos muy cortos\nIdeal para movimientos básicos y micromovimientos\nUsado en estudios de alta precisión\nConversión automática a otras unidades\nHoras Decimales:\n\nPara procesos largos y análisis de capacidad\nFacilita cálculos de costos por hora\nIdeal para planificación de producción\nPrecisión: 0.001 horas (3.6 segundos)\nTMU (Time Measurement Units):\n\nUnidad estándar para sistemas de tiempos predeterminados\n1 TMU = 0.00001 horas = 0.0006 minutos = 0.036 segundos\nCompatibilidad con sistemas MTM, MOST, MODAPTS\nConversión automática desde observaciones reales\nDMH (Diezmilésimas de Hora):\n\nUnidad especializada para análisis de costos\n1 DMH = 0.0001 horas = 0.006 minutos = 0.36 segundos\nFacilita cálculos directos de costo por operación\nIntegración con sistemas ERP y de costos\nConfiguración de Unidades\nConversión Básica: Los cálculos se realizan en la unidad seleccionada\nVisualización Consistente: Todos los datos se muestran en la unidad configurada\nReportes Unificados: Los reportes usan la unidad de tiempo seleccionada\nPersonalización de la Interfaz de Cronometraje\nConfiguración de Herramientas de Medición\nConfiguración del Cronómetro Digital\nSensibilidad de Botones:\n\nAlta Sensibilidad: Respuesta inmediata al toque (ideal para elementos cortos)\nSensibilidad Media: Balance entre precisión y prevención de errores\nBaja Sensibilidad: Requiere presión deliberada (previene activaciones accidentales)\nConfiguración Adaptativa: Ajuste automático según el tipo de elemento\nRetroalimentación Sensorial:"
+    "text": "Aplicación inmediata en toda la interfaz\nConversión automática de reportes existentes\nMantenimiento de consistencia en terminología técnica\nPreservación de datos en idioma original para trazabilidad\nConfiguración Regional:\n\nFormato de Fecha: DD/MM/AAAA (español) vs MM/DD/YYYY (inglés)\nSeparadores Decimales: Coma (,) vs punto (.)\nSeparadores de Miles: Punto (.) vs coma (,)\nFormato de Hora: 24 horas vs 12 horas (AM/PM)\nPersonalización de Terminología\nGlosario Personalizable:\n\nAdaptación de términos técnicos según empresa o región\nEjemplo: \"Operario\" vs \"Trabajador\" vs \"Empleado\"\nConfiguración de abreviaciones corporativas\nIntegración con estándares específicos de la industria\nPlantillas de Idioma por Industria:\n\nTerminología específica para automotriz, electrónica, textil, etc.\nAdaptación automática según el tipo de organización\nImportación de glosarios corporativos existentes\nConfiguración Avanzada de Unidades de Tiempo\nSistemas de Medición Especializados\nUnidades de Tiempo Principales\nMinutos Decimales:\n\nUnidad más intuitiva para la mayoría de usuarios\nFácil conversión a horas (dividir por 60)\nIdeal para procesos de duración media (1-30 minutos)\nPrecisión: 0.01 minutos (0.6 segundos)\nCentésimas de Minuto (CMM):\n\nEstándar industrial más utilizado\n1 minuto = 100 CMM\nFacilita cálculos de productividad\nPrecisión: 1 CMM = 0.6 segundos\nConversión automática: CMM = Minutos × 100\nSegundos:\n\nMáxima precisión para elementos muy cortos\nIdeal para movimientos básicos y micromovimientos\nUsado en estudios de alta precisión\nConversión automática a otras unidades\nHoras Decimales:\n\nPara procesos largos y análisis de capacidad\nFacilita cálculos de costos por hora\nIdeal para planificación de producción\nPrecisión: 0.001 horas (3.6 segundos)\nTMU (Time Measurement Units):\n\nUnidad estándar para sistemas de tiempos predeterminados\n1 TMU = 0.00001 horas = 0.0006 minutos = 0.036 segundos\nCompatibilidad como unidad de datos con sistemas MTM, MOST, MODAPTS (la app no implementa esos sistemas)\nConversión automática desde observaciones reales\nDMH (Diezmilésimas de Hora):\n\nUnidad especializada para análisis de costos\n1 DMH = 0.0001 horas = 0.006 minutos = 0.36 segundos\nFacilita cálculos directos de costo por operación\nIntegración con sistemas ERP y de costos\nConfiguración de Unidades\nConversión Básica: Los cálculos se realizan en la unidad seleccionada\nVisualización Consistente: Todos los datos se muestran en la unidad configurada\nReportes Unificados: Los reportes usan la unidad de tiempo seleccionada\nPersonalización de la Interfaz de Cronometraje\nConfiguración de Herramientas de Medición\nConfiguración del Cronómetro Digital\nSensibilidad de Botones:\n\nAlta Sensibilidad: Respuesta inmediata al toque (ideal para elementos cortos)\nSensibilidad Media: Balance entre precisión y prevención de errores\nBaja Sensibilidad: Requiere presión deliberada (previene activaciones accidentales)\nConfiguración Adaptativa: Ajuste automático según el tipo de elemento\nRetroalimentación Sensorial:"
   },
   {
     "source": "docs/assistant/manual-usuario.md",
@@ -882,7 +882,7 @@
   {
     "source": "src/content/pages/es/frequency.mdx",
     "title": "Edición Flexible de Elementos Frecuenciales para Cálculos Precisos de Tiempo Estándar",
-    "text": "El cálculo del tiempo estándar requiere ajustes precisos basados en datos reales. CRONOMETRAS permite personalizar y ajustar cada elemento frecuencial según las necesidades específicas de tu estudio de tiempos:\n\n• Edita el tiempo registrado para cada toma con precisión de milisegundos, eliminando valores atípicos o corrigiendo errores de medición\n• Modifica la valoración de actividad asignada a cada toma según metodologías estandarizadas como Bedaux, MTM o normas internacionales\n• Ajusta la frecuencia de ocurrencia para cada registro de tiempo basándote en observaciones a largo plazo o análisis estadísticos\n• Actualiza los datos en tiempo real y observa cómo afectan al tiempo estándar mediante gráficos dinámicos y cálculos automáticos\n• Añade comentarios y observaciones a cada elemento para documentar condiciones especiales o variaciones\n\nMantén tus estudios de tiempos precisos y actualizados con la capacidad de refinar cada parámetro, garantizando estándares de trabajo realistas y competitivos para tu sistema productivo."
+    "text": "El cálculo del tiempo estándar requiere ajustes precisos basados en datos reales. CRONOMETRAS permite personalizar y ajustar cada elemento frecuencial según las necesidades específicas de tu estudio de tiempos:\n\n• Edita el tiempo registrado para cada toma con precisión de milisegundos, eliminando valores atípicos o corrigiendo errores de medición\n• Modifica la valoración de actividad asignada a cada toma, con valoración sintética del ritmo según el criterio técnico del analista\n• Ajusta la frecuencia de ocurrencia para cada registro de tiempo basándote en observaciones a largo plazo o análisis estadísticos\n• Actualiza los datos en tiempo real y observa cómo afectan al tiempo estándar mediante gráficos dinámicos y cálculos automáticos\n• Añade comentarios y observaciones a cada elemento para documentar condiciones especiales o variaciones\n\nMantén tus estudios de tiempos precisos y actualizados con la capacidad de refinar cada parámetro, garantizando estándares de trabajo realistas y competitivos para tu sistema productivo."
   },
   {
     "source": "src/content/pages/es/info.mdx",
@@ -1562,32 +1562,32 @@
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS > Categorías",
-    "text": "Todas las categorías   Balanceo de Líneas y Optimización de Procesos  Conceptos y Fundamentos  Cronometraje Industrial  Curso de cronometraje industrial  Eficiencia y productividad  Estudio del Trabajo  Gestión  Gestión Industrial  Ingeniería Industrial  Lean Manufacturing y Metodologías Ágiles  Metodología  Métodos y Estandarización de Procesos  Optimización de procesos industriales  Tutorial  Técnico  \n\nImagen: Parada programada: cómo planificar el turnaround de su planta con el coste y el plazo bajo control\n   [&quot;turnaround&quot;"
+    "text": "Todas las categorías   Balanceo de Líneas y Optimización de Procesos  Conceptos y Fundamentos  Cronometraje Industrial  Curso de cronometraje industrial  Eficiencia y productividad  Estudio del Trabajo  Gestión  Gestión Industrial  Ingeniería Industrial  Lean Manufacturing y Metodologías Ágiles  Metodología  Métodos y Estandarización de Procesos  Optimización de procesos industriales  Tutorial  Técnico  \n\nImagen: Cronoanálisis en Paradas Programadas de Refinería y Planta Petroquímica (Turnaround T&I): Tiempos Estándar para Intercambiadores, Columnas y Mantenimiento Mayor\n   [&quot;turnaround&quot;"
   },
   {
     "source": "https://cronometras.com/es/blog/",
-    "title": "Blog de CRONOMETRAS > Parada programada: cómo planificar el turnaround de su planta con el coste y el plazo bajo control",
-    "text": "Turnaround en refinería y gas: el coste real por tarea y oficio para planificar paradas de 45–60 días sin sobrecostes de plazo. \n   2 oct 2026  Leer más &rarr; \n\nImagen: Cronoanálisis en Cooperativas Agroalimentarias: Tiempos Estándar en Vendimia y Almazara\n   cronoanálisis"
+    "title": "Blog de CRONOMETRAS > Cronoanálisis en Paradas Programadas de Refinería y Planta Petroquímica (Turnaround T&I): Tiempos Estándar para Intercambiadores, Columnas y Mantenimiento Mayor",
+    "text": "Turnaround T&I en refinería: cómo estructurar el estudio de tiempos y calcular estándares para intercambiadores, andamiaje y columnas. Plantilla 7 pasos. \n   5 oct 2026  Leer más &rarr; \n\nImagen: Cronoanálisis en Cooperativas Agroalimentarias: Tiempos Estándar en Vendimia y Almazara\n   cronoanálisis"
   },
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS > Cronoanálisis en Cooperativas Agroalimentarias: Tiempos Estándar en Vendimia y Almazara",
-    "text": "Estudio de tiempos en vendimia y almazara con cronómetro digital: variabilidad estacional, suplementos OIT y TAL, y cálculo de estándares para cooperativas vitivinícolas y oleícolas. \n   1 oct 2026  Leer más &rarr; \n\nImagen: Turnos mal dimensionados y SLA en riesgo: cómo saber lo que cuesta realmente la operación 24/7 de su centro de datos\n   [&quot;cronoanálisis data center&quot;"
+    "text": "Estudio de tiempos en vendimia y almazara con cronómetro digital: variabilidad estacional, suplementos OIT y TAL, y cálculo de estándares para cooperativas vitivinícolas y oleícolas. \n   1 oct 2026  Leer más &rarr; \n\nImagen: Cronoanálisis en Centros de Datos (CPD): Tiempos Estándar para Operación y Mantenimiento 24/7 según TIA-942 y EN 50600\n   [&quot;cronoanálisis data center&quot;"
   },
   {
     "source": "https://cronometras.com/es/blog/",
-    "title": "Blog de CRONOMETRAS > Turnos mal dimensionados y SLA en riesgo: cómo saber lo que cuesta realmente la operación 24/7 de su centro de datos",
-    "text": "Tiempos fiables para planificar la plantilla de un CPD Tier III/IV, cumplir el SLA y saber lo que cuesta cada tarea de la operación 24/7. \n   24 sept 2026  Leer más &rarr; \n\nImagen: Envasar le cuesta más de lo que dice la placa: cómo saber cuánto cuesta cada botella y recuperar horas de producción\n   [&quot;cronoanálisis bebidas&quot;"
+    "title": "Blog de CRONOMETRAS > Cronoanálisis en Centros de Datos (CPD): Tiempos Estándar para Operación y Mantenimiento 24/7 según TIA-942 y EN 50600",
+    "text": "Cronoanálisis en data centers Tier III/IV: taxonomía VA/NVA/IMP para técnicos de operación, mantenimiento eléctrico, gestores de tickets NOC y facility managers. Fórmulas verificadas, MTTR/MTBF y checklist de auditoría. \n   24 sept 2026  Leer más &rarr; \n\nImagen: Cronoanálisis en Plantas de Envasado de Bebidas: Tiempos Estándar en Líneas de Cerveza y Refrescos a 30.000-80.000 BPH\n   [&quot;cronoanálisis bebidas&quot;"
   },
   {
     "source": "https://cronometras.com/es/blog/",
-    "title": "Blog de CRONOMETRAS > Envasar le cuesta más de lo que dice la placa: cómo saber cuánto cuesta cada botella y recuperar horas de producción",
-    "text": "Cómo saber cuánto cuesta cada botella en líneas de envasado de bebidas: capacidades reales, eficiencia, cambios de formato y caso con payback. \n   3 sept 2026  Leer más &rarr; \n\nImagen: Tiempos estándar para su planta: tres caminos para conseguirlos y cuánto cuesta cada uno\n   [&quot;MTM&quot;"
+    "title": "Blog de CRONOMETRAS > Cronoanálisis en Plantas de Envasado de Bebidas: Tiempos Estándar en Líneas de Cerveza y Refrescos a 30.000-80.000 BPH",
+    "text": "Cómo aplicar cronometraje industrial y MTM al estudio de líneas de embotellado de cerveza y refrescos de alta velocidad (30.000-80.000 BPH). Taxonomía de tiempos por etapa, fórmulas de capacidad, OEE típico del sector 60-75%, aplicación de SMED en cambios de formato, suplementos por trabajo en ambientes húmedos según OIT, y caso anonimizado de planta española de 41 millones de hectolitros/año. \n   3 sept 2026  Leer más &rarr; \n\nImagen: Comparativa de Sistemas de Tiempos Predeterminados (PMTS): MTM, MOST, MTS y DMT — Cómo Elegir el Adecuado para tu Industria\n   [&quot;MTM&quot;"
   },
   {
     "source": "https://cronometras.com/es/blog/",
-    "title": "Blog de CRONOMETRAS > Tiempos estándar para su planta: tres caminos para conseguirlos y cuánto cuesta cada uno",
-    "text": "Tres vías para conseguir tiempos estándar fiables: tablas predeterminadas, consultoría o medición en planta. Coste, plazo y riesgo de cada una. \n   21 ago 2026  Leer más &rarr; \n\nImagen: Plazos que se incumplen y costes a ciegas: cómo planificar el mantenimiento de sus subestaciones eléctricas\n   [&quot;cronoanálisis&quot;"
+    "title": "Blog de CRONOMETRAS > Comparativa de Sistemas de Tiempos Predeterminados (PMTS): MTM, MOST, MTS y DMT — Cómo Elegir el Adecuado para tu Industria",
+    "text": "Comparativa técnica entre los principales PMTS (MTM-1, MTM-2, MTM-UAS, MOST, MiniMOST, MaxiMOST, MTS y DMT): niveles de detalle, rangos de operación, sectores de aplicación y criterios prácticos para elegir el sistema que mejor se adapta a tu planta. \n   21 ago 2026  Leer más &rarr; \n\nImagen: Plazos que se incumplen y costes a ciegas: cómo planificar el mantenimiento de sus subestaciones eléctricas\n   [&quot;cronoanálisis&quot;"
   },
   {
     "source": "https://cronometras.com/es/blog/",
@@ -2077,22 +2077,22 @@
   {
     "source": "https://cronometras.com/es/continuous/",
     "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Cronometrando el ciclo de trabajo principal.\n\n  Curso de cronometraje industrial"
+    "text": "Imagen: El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo\n\n  Técnicas de Cronometraje"
   },
   {
     "source": "https://cronometras.com/es/continuous/",
-    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cronometrando el ciclo de trabajo principal.",
-    "text": "Imagen: ¿Cuáles son las fases de un proceso industrial?\n\n  blog"
+    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo",
+    "text": "Imagen: Medir sin método preestablecido. Crono Seguido\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/continuous/",
-    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > ¿Cuáles son las fases de un proceso industrial?",
-    "text": "Imagen: Cronometrando el ciclo de trabajo principal.\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Medir sin método preestablecido. Crono Seguido",
+    "text": "Imagen: ¿Cómo se realiza un estudio de tiempos y movimientos con cronómetro?\n\n  blog"
   },
   {
     "source": "https://cronometras.com/es/continuous/",
-    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cronometrando el ciclo de trabajo principal.",
-    "text": "Imagen: Cómo aplicar la fórmula de Wright para Interferencias de Máquinas\n\n  Interferencias de Máquina"
+    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > ¿Cómo se realiza un estudio de tiempos y movimientos con cronómetro?",
+    "text": "Imagen: Descanso en el trabajo: un enfoque integral\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
@@ -2152,22 +2152,22 @@
   {
     "source": "https://cronometras.com/es/dashboard/",
     "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos",
-    "text": "Imagen: Entrada por Voz en Estudios de Tiempos con CronometrasApp\n\n  Software y Herramientas"
+    "text": "Imagen: Cálculo del OEE en Líneas de Producción: Por qué tu Factor de Rendimiento es Falso sin Ingeniería de Métodos (Análisis ISO 22400)\n\n  Técnicas especializadas y metodologías avanzadas"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
-    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Entrada por Voz en Estudios de Tiempos con CronometrasApp",
-    "text": "Imagen: La utilidad de los tiempos históricos para establecer estándares de trabajo\n\n  Eficiencia y productividad"
+    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Cálculo del OEE en Líneas de Producción: Por qué tu Factor de Rendimiento es Falso sin Ingeniería de Métodos (Análisis ISO 22400)",
+    "text": "Imagen: Estudio de Tiempos en Almacenes y Picking\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
-    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > La utilidad de los tiempos históricos para establecer estándares de trabajo",
-    "text": "Imagen: El estudio del trabajo\n\n  Conceptos y Fundamentos"
+    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Estudio de Tiempos en Almacenes y Picking",
+    "text": "Imagen: Tiempo Observado vs. Tiempo Estándar: Entendiendo las Diferencias Clave\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
-    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > El estudio del trabajo",
-    "text": "Imagen: Etapas del estudio de métodos de trabajo\n\n  Curso de cronometraje industrial"
+    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Tiempo Observado vs. Tiempo Estándar: Entendiendo las Diferencias Clave",
+    "text": "Imagen: Cálculo del número óptimo de máquinas que debe llevar un operario\n\n  Estudio del Trabajo"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
@@ -2202,22 +2202,22 @@
   {
     "source": "https://cronometras.com/es/frequency/",
     "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Descanso en el trabajo: un enfoque integral\n\n  Conceptos y Fundamentos"
+    "text": "Imagen: 7 Errores Comunes al Hacer Cronometraje Industrial (y Cómo Evitarlos con Software)\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
-    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Descanso en el trabajo: un enfoque integral",
-    "text": "Imagen: ¿Qué es el estudio de tiempos y movimientos?\n\n  Conceptos y Fundamentos"
+    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > 7 Errores Comunes al Hacer Cronometraje Industrial (y Cómo Evitarlos con Software)",
+    "text": "Imagen: Análisis de flujo mediante diagrama de hilos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
-    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > ¿Qué es el estudio de tiempos y movimientos?",
-    "text": "Imagen: Auditoría de tiempos estándar existentes\n\n  Cronometraje Industrial"
+    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Análisis de flujo mediante diagrama de hilos",
+    "text": "Imagen: Cálculo de saturación en un estudio de tiempos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
-    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Auditoría de tiempos estándar existentes",
-    "text": "Imagen: Cronometraje y la estandarización de procesos\n\n  Estudio del Trabajo"
+    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Cálculo de saturación en un estudio de tiempos",
+    "text": "Imagen: Escala Bedaux vs Centesimal: Cuál elegir\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/info/",
@@ -2282,22 +2282,22 @@
   {
     "source": "https://cronometras.com/es/info/",
     "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Etapas del estudio de tiempos en un cronometraje industrial\n\n  Conceptos y Fundamentos"
+    "text": "Imagen: ¿Que tipos de cronómetros existen?\n\n  blog"
   },
   {
     "source": "https://cronometras.com/es/info/",
-    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Etapas del estudio de tiempos en un cronometraje industrial",
-    "text": "Imagen: Los 5 Mejores Software para Estudios de Tiempos Industriales en 2026\n\n  Comparativas"
+    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > ¿Que tipos de cronómetros existen?",
+    "text": "Imagen: Cálculo del número óptimo de máquinas que debe llevar un operario\n\n  Estudio del Trabajo"
   },
   {
     "source": "https://cronometras.com/es/info/",
-    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Los 5 Mejores Software para Estudios de Tiempos Industriales en 2026",
-    "text": "Imagen: Takt time: qué es, cómo se calcula y cómo se aplica\n\n  Optimización de procesos industriales"
+    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cálculo del número óptimo de máquinas que debe llevar un operario",
+    "text": "Imagen: La Ergonomía: del dolor a la productividad\n\n  Estudio del Trabajo"
   },
   {
     "source": "https://cronometras.com/es/info/",
-    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Takt time: qué es, cómo se calcula y cómo se aplica",
-    "text": "Imagen: Aplicación de suplementos OIT\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > La Ergonomía: del dolor a la productividad",
+    "text": "Imagen: Cómo utilizar CronometrasApp para el Cronometraje Industrial\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/library/",
@@ -2347,22 +2347,22 @@
   {
     "source": "https://cronometras.com/es/library/",
     "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos",
-    "text": "Imagen: Generar informe de estudio de tiempos\n\n  Curso de cronometraje industrial"
+    "text": "Imagen: Optimización de sistemas productivos: Clave para la eficiencia industrial\n\n  Optimización de procesos industriales"
   },
   {
     "source": "https://cronometras.com/es/library/",
-    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Generar informe de estudio de tiempos",
-    "text": "Imagen: Gestión Integral de Estudios de Tiempos\n\n  Gestión"
+    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Optimización de sistemas productivos: Clave para la eficiencia industrial",
+    "text": "Imagen: ¿Por qué hay retrasos en la producción?\n\n  blog"
   },
   {
     "source": "https://cronometras.com/es/library/",
-    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Gestión Integral de Estudios de Tiempos",
-    "text": "Imagen: Tiempo Observado vs. Tiempo Estándar: Entendiendo las Diferencias Clave\n\n  Conceptos y Fundamentos"
+    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > ¿Por qué hay retrasos en la producción?",
+    "text": "Imagen: Importancia del estudio de métodos y tiempos de trabajo\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/library/",
-    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Tiempo Observado vs. Tiempo Estándar: Entendiendo las Diferencias Clave",
-    "text": "Imagen: Cómo crear un nuevo estudio de trabajo\n\n  Curso de cronometraje industrial"
+    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Importancia del estudio de métodos y tiempos de trabajo",
+    "text": "Imagen: Aplicación de suplementos OIT\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/machine/",
@@ -2407,22 +2407,22 @@
   {
     "source": "https://cronometras.com/es/machine/",
     "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos",
-    "text": "Imagen: ¿Cómo estandarizar los tiempos de trabajo en la industria?\n\n  Cronometraje Industrial"
+    "text": "Imagen: Toma de Tiempos con cronómetro\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/machine/",
-    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > ¿Cómo estandarizar los tiempos de trabajo en la industria?",
-    "text": "Imagen: ¿Cómo se realiza un estudio de tiempos y movimientos con cronómetro?\n\n  blog"
+    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Toma de Tiempos con cronómetro",
+    "text": "Imagen: Mapeo de Procesos con Flow Process Chart: Guía Completa\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/machine/",
-    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > ¿Cómo se realiza un estudio de tiempos y movimientos con cronómetro?",
-    "text": "Imagen: Sistema Kanban y Cronometraje Industrial: Sincronizando Materiales y Tiempos Estándar\n\n  Lean Manufacturing"
+    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Mapeo de Procesos con Flow Process Chart: Guía Completa",
+    "text": "Imagen: Guía Completa de Suplementos de Fatiga según la OIT\n\n  Técnico"
   },
   {
     "source": "https://cronometras.com/es/machine/",
-    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Sistema Kanban y Cronometraje Industrial: Sincronizando Materiales y Tiempos Estándar",
-    "text": "Imagen: ¿Que tipos de cronómetros existen?\n\n  blog"
+    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Guía Completa de Suplementos de Fatiga según la OIT",
+    "text": "Imagen: Técnica Especializada: Uso de video-análisis para mejora de métodos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/method/",
@@ -2477,22 +2477,22 @@
   {
     "source": "https://cronometras.com/es/method/",
     "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos",
-    "text": "Imagen: Tablas de Suplementos OIT: Cálculo de Fatiga y Descanso\n\n  Suplementos y Fatiga"
+    "text": "Imagen: La apreciación de la actividad en el cronometraje industrial\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/method/",
-    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Tablas de Suplementos OIT: Cálculo de Fatiga y Descanso",
-    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
+    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > La apreciación de la actividad en el cronometraje industrial",
+    "text": "Imagen: Cálculo del Ciclo Óptimo en Trabajos con Máquina\n\n  Cálculo de Tiempos"
   },
   {
     "source": "https://cronometras.com/es/method/",
-    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna",
-    "text": "Imagen: Cronometraje de elementos frecuenciales\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Cálculo del Ciclo Óptimo en Trabajos con Máquina",
+    "text": "Imagen: Cronoanálisis en Paradas Programadas de Refinería y Planta Petroquímica (Turnaround T&I): Tiempos Estándar para Intercambiadores, Columnas y Mantenimiento Mayor\n\n  [&quot;turnaround&quot;"
   },
   {
     "source": "https://cronometras.com/es/method/",
-    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Cronometraje de elementos frecuenciales",
-    "text": "Imagen: Elige como vas a medir el trabajo.\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Cronoanálisis en Paradas Programadas de Refinería y Planta Petroquímica (Turnaround T&I): Tiempos Estándar para Intercambiadores, Columnas y Mantenimiento Mayor",
+    "text": "Imagen: Métodos y Tiempos en la Gestión Empresarial Industrial\n\n  Optimización de procesos industriales"
   },
   {
     "source": "https://cronometras.com/es/organizations/",
@@ -2572,22 +2572,22 @@
   {
     "source": "https://cronometras.com/es/repetitive/",
     "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones\n\n  Software y Herramientas"
+    "text": "Imagen: Análisis de flujo mediante diagrama de hilos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/repetitive/",
-    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones",
-    "text": "Imagen: Etapas del estudio de tiempos en un cronometraje industrial\n\n  Conceptos y Fundamentos"
+    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Análisis de flujo mediante diagrama de hilos",
+    "text": "Imagen: Impacto de la Ergonomía en los Tiempos de Ciclo: De la Fatiga Variable al OEE Maximizado (Horizonte 2025)\n\n  Técnicas especializadas y metodologías avanzadas"
   },
   {
     "source": "https://cronometras.com/es/repetitive/",
-    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Etapas del estudio de tiempos en un cronometraje industrial",
-    "text": "Imagen: Cálculo del OEE en Líneas de Producción\n\n  Cronometraje Industrial"
+    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Impacto de la Ergonomía en los Tiempos de Ciclo: De la Fatiga Variable al OEE Maximizado (Horizonte 2025)",
+    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/repetitive/",
-    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cálculo del OEE en Líneas de Producción",
-    "text": "Imagen: Sistema Kanban y Cronometraje Industrial: Sincronizando Materiales y Tiempos Estándar\n\n  Lean Manufacturing"
+    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna",
+    "text": "Imagen: Cálculo de saturación en un estudio de tiempos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/report/",
@@ -2642,22 +2642,22 @@
   {
     "source": "https://cronometras.com/es/report/",
     "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad",
-    "text": "Imagen: Cronometrando el ciclo de trabajo principal.\n\n  Curso de cronometraje industrial"
+    "text": "Imagen: Introducción a CRONOMETRAS: Tu Herramienta para Estudios de Tiempos\n\n  Tutorial"
   },
   {
     "source": "https://cronometras.com/es/report/",
-    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Cronometrando el ciclo de trabajo principal.",
-    "text": "Imagen: Cronometraje de tiempos de máquina\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Introducción a CRONOMETRAS: Tu Herramienta para Estudios de Tiempos",
+    "text": "Imagen: Tiempo Observado vs. Tiempo Estándar: Entendiendo las Diferencias Clave\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/report/",
-    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Cronometraje de tiempos de máquina",
-    "text": "Imagen: Generar informe de estudio de tiempos\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Tiempo Observado vs. Tiempo Estándar: Entendiendo las Diferencias Clave",
+    "text": "Imagen: Guía Paso a Paso: Cómo Realizar un Estudio de Tiempos y Movimientos Eficaz\n\n  Metodología"
   },
   {
     "source": "https://cronometras.com/es/report/",
-    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Generar informe de estudio de tiempos",
-    "text": "Imagen: Medir sin método preestablecido. Crono Seguido\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Guía Paso a Paso: Cómo Realizar un Estudio de Tiempos y Movimientos Eficaz",
+    "text": "Imagen: Cálculo del número óptimo de máquinas que debe llevar un operario\n\n  Estudio del Trabajo"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
@@ -2692,22 +2692,22 @@
   {
     "source": "https://cronometras.com/es/saturation/",
     "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación",
-    "text": "Imagen: Takt time: qué es, cómo se calcula y cómo se aplica\n\n  Optimización de procesos industriales"
+    "text": "Imagen: ¿Cuáles son las tecnicas de cronometraje industrial?\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
-    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Takt time: qué es, cómo se calcula y cómo se aplica",
-    "text": "Imagen: Gestión Integral de Estudios de Tiempos\n\n  Gestión"
+    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > ¿Cuáles son las tecnicas de cronometraje industrial?",
+    "text": "Imagen: Principios de Economía de Movimientos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
-    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Gestión Integral de Estudios de Tiempos",
-    "text": "Imagen: Los 5 Mejores Software para Estudios de Tiempos Industriales en 2026\n\n  Comparativas"
+    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Principios de Economía de Movimientos",
+    "text": "Imagen: El estudio del trabajo\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
-    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Los 5 Mejores Software para Estudios de Tiempos Industriales en 2026",
-    "text": "Imagen: La Importancia Vital del Cálculo del Tiempo Estándar para la Productividad y Rentabilidad\n\n  Gestión Industrial"
+    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > El estudio del trabajo",
+    "text": "Imagen: El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo\n\n  Técnicas de Cronometraje"
   },
   {
     "source": "https://cronometras.com/es/security/",
@@ -2787,21 +2787,21 @@
   {
     "source": "https://cronometras.com/es/supplements/",
     "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar",
-    "text": "Imagen: Etapas del estudio de tiempos en un cronometraje industrial\n\n  Conceptos y Fundamentos"
+    "text": "Imagen: Diseño Técnico de Plantillas para la Recogida de Datos en Planta: De las Normas OIT a la Digitalización 2025\n\n  Técnicas especializadas y metodologías avanzadas"
   },
   {
     "source": "https://cronometras.com/es/supplements/",
-    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Etapas del estudio de tiempos en un cronometraje industrial",
-    "text": "Imagen: Importancia del estudio de métodos y tiempos de trabajo\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Diseño Técnico de Plantillas para la Recogida de Datos en Planta: De las Normas OIT a la Digitalización 2025",
+    "text": "Imagen: Toma de Tiempos con cronómetro\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/supplements/",
-    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Importancia del estudio de métodos y tiempos de trabajo",
-    "text": "Imagen: Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones\n\n  Software y Herramientas"
+    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Toma de Tiempos con cronómetro",
+    "text": "Imagen: Cronometraje de elementos frecuenciales\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/supplements/",
-    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones",
-    "text": "Imagen: Work Sampling: Muestreo del Trabajo para Analistas\n\n  Cronometraje Industrial"
+    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Cronometraje de elementos frecuenciales",
+    "text": "Imagen: Cálculo de saturación en un estudio de tiempos\n\n  Cronometraje Industrial"
   }
 ]

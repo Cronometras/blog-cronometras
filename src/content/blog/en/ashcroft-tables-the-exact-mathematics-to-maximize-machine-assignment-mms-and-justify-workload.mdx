@@ -45,9 +45,9 @@ Where:
 *   **$To$ (Occupancy Time):** Strict sum of External Manual Load + Internal Manual Load + Standardized walking between stations.
 *   **$Tm$ (Machine Time):** Real automatic cycle time (validated, not manufacturer's theoretical).
 
-### Why MTM-2 or MOST are recommended for the $To$ value?
+### Why must the $To$ value be a stable figure?
 Here lies the difference between estimation and precision engineering. Using conventional timing to determine $To$ introduces operator pace variability (performance factor).
-At **Cronometras**, we standardize $To$ using **Predetermined Time Systems (PMTS)** like **MTM-2** or **MOST**. This guarantees "clean" input data, free from human variability, allowing the Ashcroft table to return a reliable probability based exclusively on technical workload, not on observed operator speed.
+At **Cronometras**, we standardize $To$ with **synthetic pace rating and ILO/TAL allowances** applied to the plant's stopwatch timing. This guarantees "clean" input data, free from human variability, allowing the Ashcroft table to return a reliable probability based exclusively on technical workload, not on observed operator speed.
 
 ---
 
@@ -89,7 +89,7 @@ Applying Ashcroft allows correcting OEE, reclassifying those losses as **System 
 
 It is not enough to calculate interference; it must be managed. Our methodology goes beyond the table:
 
-1.  **Hybrid Audit (Stopwatch + MTM):** We validate real $Tm$ with digital technology to capture machine variability and standardize $To$ with MTM to eliminate operator variability.
+1.  **Data Audit:** We validate real $Tm$ with digital technology to capture machine variability and standardize $To$ with pace rating and allowances to normalize operator variability.
 2.  **Cost Scenario Simulation:** We calculate the "Break-even Point": At what moment does idle labor cost more than idle machine? (High Capex vs. High Opex).
 3.  **$To$ Reduction:** If the Ashcroft table indicates saturation, our engineers apply SMED and methods improvements to lower service time, making assigning that extra machine viable without burning out the team.
 

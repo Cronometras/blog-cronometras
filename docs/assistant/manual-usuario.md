@@ -3040,7 +3040,7 @@ TMU (Time Measurement Units):
 
 Unidad estándar para sistemas de tiempos predeterminados
 1 TMU = 0.00001 horas = 0.0006 minutos = 0.036 segundos
-Compatibilidad con sistemas MTM, MOST, MODAPTS
+Compatibilidad como unidad de datos con sistemas MTM, MOST, MODAPTS (la app no implementa esos sistemas)
 Conversión automática desde observaciones reales
 DMH (Diezmilésimas de Hora):
 
