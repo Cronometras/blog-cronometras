@@ -16,7 +16,7 @@ En este artículo explicaremos en detalle el concepto de balanceo de líneas, su
 
 El balanceo de líneas consiste en organizar las operaciones manuales o automatizadas necesarias para elaborar un producto, distribuyéndolas adecuadamente entre estaciones de trabajo dispuestas a lo largo de una línea de producción.
 
-El balanceo busca igualar los tiempos de trabajo en cada estación para evitar cuellos de botella, minimizar tiempos de espera y de ocio, y lograr un flujo continuo en el proceso productivo. Una línea de producción balanceada permite incrementar la productividad, reducir costos e inventarios, y mejorar la calidad y satisfacción del cliente.
+El balanceo busca igualar los tiempos de trabajo en cada estación para evitar cuellos de botella, minimizar tiempos de espera y de ocio, y lograr un flujo continuo en el proceso productivo. Una línea de producción balanceada permite incrementar la productividad, reducir costes e inventarios, y mejorar la calidad y satisfacción del cliente.
 
 ## **Conceptos básicos del balanceo de líneas**
 
@@ -50,7 +50,7 @@ Los principales objetivos que se persiguen con el balanceo de líneas son:
 
 - Lograr un flujo continuo.
 
-- Reducir costos e inventarios.
+- Reducir costes e inventarios.
 
 - Incrementar la productividad.
 
@@ -150,11 +150,11 @@ Estaciones = Contenido de Trabajo / Takt Time
 
 - Asignar tareas a estaciones
 
-Se distribuyen meticulosamente las tareas entre estaciones buscando combinaciones factibles según restricciones y aplicando reglas como la del elemento mayor tiempo, mínimo número de elementos, máxima eficiencia, evitar dejar holguras muy grandes entre estaciones.etc.
+Se distribuyen meticulosamente las tareas entre estaciones buscando combinaciones factibles según restricciones y aplicando reglas como la del elemento mayor tiempo, mínimo número de elementos, máxima eficiencia, evitar dejar holguras muy grandes entre estaciones, etc.
 
 - Verificar eficiencia
 
-Compara el tiempo total de tareas vs el tiempo de ciclo real (número de estaciones x takt time) para determinar que tan balanceada ha quedado la línea. Menor diferencia significa mayor eficiencia.
+Compara el tiempo total de tareas con el producto del número de estaciones por el tiempo de ciclo de la línea (el de la estación más cargada) para determinar cuán balanceada ha quedado la línea. Menor diferencia significa mayor eficiencia.
 
 - Implementar y evaluar
 
@@ -172,7 +172,7 @@ Luego se audita y controla periódicamente que se cumpla lo establecido en el ba
 
 Si cambian las condiciones, se realizan re-balanceos.
 
-## **Claves para un Balanceo de linea Efectivo**
+## **Claves para un Balanceo de Línea Efectivo**
 
 Algunos tips para garantizar un proceso y resultado exitoso en el balanceo de líneas incluyen:
 
@@ -212,7 +212,7 @@ Finalmente, cabe mencionar otras consideraciones importantes con respecto al bal
 
 ## **Ejemplo de balanceo de línea**
 
-A continuación se muestra un ejemplo de balanceo de línea por el **método de Kilbridge y Wester**:
+A continuación se muestra un ejemplo de balanceo de línea (la asignación respeta las precedencias de la tabla anterior):
 
 - **Tareas del proceso**
 
@@ -241,16 +241,16 @@ A continuación se muestra un ejemplo de balanceo de línea por el **método de 
 | **Estación** | **Tarea** | **Tiempo** |
 |---------------|-----------|------------|
 | 1             | A         | 15         |
-| 1             | C         | 10         |
-| 2             | B         | 5          |
-| 2             | D         | 8          |
+| 1             | B         | 5          |
+| 1             | D         | 8          |
+| 2             | C         | 10         |
 | 2             | E         | 6          |
 | 2             | F         | 12         |
 
 **Verificar eficiencia:**
 
-- Tiempo de ciclo real = 2 estaciones * 29 s/estación = 58 s
-- Eficiencia = (Tiempos de tareas / Tiempo de ciclo real) x 100 = (56 s / 58 s) x 100 = 96.6%
+- Tiempo de ciclo de la línea = 28 s (estación más cargada; ninguna estación supera el takt time de 29 s)
+- Eficiencia = (tiempo total de tareas / (nº de estaciones × tiempo de ciclo de la línea)) × 100 = (56 s / (2 × 28 s)) × 100 = 100 % (ambas estaciones quedan exactamente igualadas)
 
 ## **Ventajas de balancear líneas**
 
@@ -258,7 +258,7 @@ Las principales ventajas de balancear líneas de producción son:
 
 - Aumento de la eficiencia y productividad.
 
-- Reducción de costos de operación.
+- Reducción de costes de operación.
 
 - Mejor aprovechamiento de mano de obra y activos.
 
@@ -270,7 +270,7 @@ Las principales ventajas de balancear líneas de producción son:
 
 - Reducción de estrés en los trabajadores.
 
-- Entregas más rápidas y confiables a clientes.
+- Entregas más rápidas y fiables a clientes.
 
 - Facilita la implementación de mejoras futuras.
 
@@ -282,7 +282,7 @@ Algunas desventajas y limitaciones del balanceo de líneas son:
 
 - Requiere tiempos estandarizados previamente.
 
-- Costo del estudio si el volumen es bajo.
+- Coste del estudio si el volumen es bajo.
 
 - Dificultad ante cambios frecuentes de modelo.
 
@@ -342,7 +342,7 @@ Las tecnologías permitirán estandarizar e integrar sistemas para lograr balanc
 
 ## **Conclusión**
 
-En conclusión, el balanceo de líneas es una potente herramienta que permite organizar y distribuir el trabajo productivo para maximizar la eficiencia global del sistema. A pesar de sus limitaciones, un balanceo adecuado aporta mejoras significativas en costos, calidad, entregas y satisfacción del cliente.
+En conclusión, el balanceo de líneas es una potente herramienta que permite organizar y distribuir el trabajo productivo para maximizar la eficiencia global del sistema. A pesar de sus limitaciones, un balanceo adecuado aporta mejoras significativas en costes, calidad, entregas y satisfacción del cliente.
 
 Los principios y conceptos del balanceo se mantienen vigentes, e incluso incrementan su relevancia dadas las tendencias actuales. Las nuevas tecnologías proveen oportunidades para hacer balances más ágiles y optimizados. En la industria 4.0, el balanceo adquiere mayor importancia para flexibilizar los sistemas productivos.
 

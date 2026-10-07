@@ -8,8 +8,6 @@ author: "micaot"
 heroImage: "/images/webp/calculo-de-saturacion-en-un-estudio-de-tiempos.webp"
 ---
 
-
-
 La saturación es el porcentaje de tiempo que ocupamos un recurso dado.
 
 Para el cálculo de la saturación de la mano de obra, cuando se trata de un trabajo irrestricto en el que no intervienen máquinas o otros trabajadores en el proceso, la saturación del operario siempre es del 100% ya que el trabajador no tiene tiempos de espera.
@@ -18,7 +16,7 @@ En estos casos el trabajador tiene la capacidad de aumentar su ritmo de trabajo 
 
 Cuando se trata de una operación en la que aparece una máquina, puede darse el caso de que el trabajador deba esperar a la máquina dando lugar a una restricción en la operación.
 
-Imaginemos una operación 1 operario, 1 maquina.
+Imaginemos una operación con 1 operario y 1 máquina.
 
 TM = 3 min
 
@@ -62,7 +60,7 @@ CN = 29
 
 ```
 Saturación a rendimiento Normal = ((MP+MM) / Ciclo Normal) * 100
-SN = ((12 + 14) / 29) * 100 = 89.65
+SN = ((12 + 14) / 29) × 100 = 89,66
 ```
 
 ```
@@ -71,7 +69,7 @@ Ciclo óptimo = CiTMP + El más largo de TM ó CiTMM
 
 MP optimizado = 12 / 1,33 = 9,02
 El más largo de TM ó MM optimizado = 17
-                                     14 / 1,33 = 10,52
+                                     14 / 1,33 = 10,53
 
 Ci = 9,02 + 17
 Ci = 26,02
@@ -80,19 +78,19 @@ Ci = 26,02
 ```
 Saturación a rendimiento Óptimo = (MMi + MPi)/Ciclo Óptimo
 
-((10,52 + 9,02) / 26,02) * 100 = 75,09
+((10,53 + 9,02) / 26,02) × 100 = 75,13
 ```
 
 Al operario aumentar su ritmo de trabajo baja su saturación. En este caso la actividad máxima que puede alcanzar el operario será:
 
 ```
 Actividad Máxima = CN/Ci
-(29 / 26.02) * 100 = 111,45
+(29 / 26,02) × 100 = 111,45
 ```
 
 El trabajador únicamente podrá alcanzar esta actividad máxima, por lo que a ese 111,45% de rendimiento le debe corresponder el incentivo óptimo.
 
-Al realizar el estudio de tiempos con la app CronometrasApp, se calcula de forma automática las saturaciones del proceso medido.
+Al realizar el estudio de tiempos con la app CronometrasApp, se calculan de forma automática las saturaciones del proceso medido.
 
 ---
 
