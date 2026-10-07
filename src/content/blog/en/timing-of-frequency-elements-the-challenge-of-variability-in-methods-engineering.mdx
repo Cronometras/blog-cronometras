@@ -46,7 +46,7 @@ If we include tasks like "zone cleaning" within a fixed 7% allowance for "proces
 
 When a MES system or production control platform like [Induly](https://induly.com/) records a drop in pieces/hour, the engineer must discern: Is it a speed loss (micro-stop) or is it the legitimate execution of a frequency element?
 
-If the Standard Time does not include the prorating of the frequency element ($T_{freq}$), the system will report a false performance loss every time the operator performs that necessary task. For real cost traceability, the industrial clock-in system must be fed with times that integrate this mathematical variability.
+If the Standard Time does not include the prorating of the frequency element ($T_{freq}$), the system will report a false performance loss every time the operator performs that necessary task. For real cost traceability, the times you feed into your cost calculation must include this mathematical variability.
 
 ## Calculation Methodology: Mathematics of Technical Proration
 
@@ -110,7 +110,7 @@ To master variability, follow this technical workflow:
 1.  **Identification:** List all tasks that do not occur in every cycle (use Pareto Chart to prioritize high impact ones).
 2.  **Frequency Validation ($N$):** Don't guess. Run a Work Sampling study for 5-10 shifts using a digital app to obtain the real occurrence percentage.
 3.  **Duration Measurement:** Once the frequency is known, isolate the task and measure it precisely (using [Cronometras](https://cronometras.com) or MTM) to obtain the Normal Time.
-4.  **Calculation and Integration:** Apply the proration formula and integrate the result into your ERP or plant control system ([Induly](https://induly.com/)), ensuring the cost standard correctly absorbs these auxiliary activities.
+4.  **Calculation and Export:** Apply the proration formula and export the structured data (PDF/Excel/JSON) to your cost system, so that the cost standard correctly absorbs these auxiliary activities. There is no direct integration with ERP or costing systems beyond these structured exports.
 
 Timing frequency elements is the frontier that separates a simple "time taker" from a Productivity Engineer. Precision in these details defines the real profitability of the plant.
 

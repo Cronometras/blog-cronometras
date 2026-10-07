@@ -154,7 +154,7 @@ Tasks are meticulously distributed among stations seeking feasible combinations 
 
 - Verify efficiency
 
-Compares the total task time vs. the actual cycle time (number of stations x takt time) to determine how balanced the line has become. Less difference means greater efficiency.
+Compares the total task time with the product of the number of stations and the line cycle time (that of the busiest station) to determine how balanced the line has become. Less difference means greater efficiency.
 
 - Implement and evaluate
 
@@ -212,7 +212,7 @@ Finally, it's worth mentioning other important considerations regarding balancin
 
 ## **Example of line balancing**
 
-Below is an example of line balancing using the **Kilbridge and Wester method**:
+Below is an example of line balancing (the assignment respects the precedences of the table above):
 
 - **Process tasks**
 
@@ -241,16 +241,16 @@ Below is an example of line balancing using the **Kilbridge and Wester method**:
 | **Station** | **Task** | **Time** |
 |---------------|-----------|------------|
 | 1             | A         | 15         |
-| 1             | C         | 10         |
-| 2             | B         | 5          |
-| 2             | D         | 8          |
+| 1             | B         | 5          |
+| 1             | D         | 8          |
+| 2             | C         | 10         |
 | 2             | E         | 6          |
 | 2             | F         | 12         |
 
 **Verify efficiency:**
 
-- Actual cycle time = 2 stations * 29 s/station = 58 s
-- Efficiency = (Task times / Actual cycle time) x 100 = (56 s / 58 s) x 100 = 96.6%
+- Line cycle time = 28 s (busiest station; no station exceeds the takt time of 29 s)
+- Efficiency = (total task time / (number of stations x line cycle time)) x 100 = (56 s / (2 x 28 s)) x 100 = 100% (both stations are exactly equalized)
 
 ## **Advantages of balancing lines**
 
