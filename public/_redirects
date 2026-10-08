@@ -173,9 +173,6 @@
 # 15. Slug renombrado 2026-10-06 (corrección de afirmación falsa embebida en el slug)
 /es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp   /es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo/   301
 
-# 12. SPA fallback: rutas no existentes -> 404 localizado
-# ---------------------------------------------------------------------
-/*  /es/404/  404
 
 # ---------------------------------------------------------------------
 # 13. Renombrados de slug detectados en auditoría SEO/GEO 2026-06-22
@@ -191,3 +188,11 @@
 /es/blog/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271*   /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
 
 # ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# 12. SPA fallback: rutas no existentes -> 404 localizado
+#    DEBE ser la última regla: cualquier catch-all situado antes anula
+#    todas las reglas de debajo (verificado en producción 2026-10-08:
+#    las reglas §13/§15 devolvían 404 al quedar bajo el antiguo /*).
+# ---------------------------------------------------------------------
+/*  /es/404/  404
