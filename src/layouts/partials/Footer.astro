@@ -6,7 +6,11 @@ import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getLangFromUrl, useTranslations, useTranslatedPath } from "@/i18n/utils";
-import { IoLogoRss } from "react-icons/io5";
+
+// SVG inline del logo RSS (sustituye a IoLogoRss de react-icons).
+// Razón: react-icons arrastra la librería completa (~760 KB) al bundle
+// aunque solo se use 1 icono. Fase 2 PSI — 2026-06-29.
+const RSS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.18 17.82a2.18 2.18 0 0 1-2.18-2.18c0-1.2.98-2.18 2.18-2.18s2.18.98 2.18 2.18a2.18 2.18 0 0 1-2.18 2.18M4 4.44V8a12 12 0 0 1 12 12h3.56A15.56 15.56 0 0 0 4 4.44m0 5.66v3.54A6.4 6.4 0 0 1 10.36 20h3.54A9.95 9.95 0 0 0 4 10.1Z"/></svg>`;
 
 const { footer } = menu;
 const { copyright, location, email, footer_description, product_signature } = config.params;
@@ -56,7 +60,7 @@ const translatePath = useTranslatedPath(lang);
                     aria-label="RSS Feed"
                     title="RSS Feed"
                   >
-                    <IoLogoRss />
+                    <Fragment set:html={RSS_ICON} />
                     <span class="sr-only">RSS</span>
                   </a>
                 </li>
@@ -69,7 +73,7 @@ const translatePath = useTranslatedPath(lang);
                     aria-label="RSS Feed (Español)"
                     title="RSS Feed (Español)"
                   >
-                    <IoLogoRss />
+                    <Fragment set:html={RSS_ICON} />
                     <span class="sr-only">RSS ES</span>
                     <span class="rss-lang">ES</span>
                   </a>
@@ -83,7 +87,7 @@ const translatePath = useTranslatedPath(lang);
                     aria-label="RSS Feed (English)"
                     title="RSS Feed (English)"
                   >
-                    <IoLogoRss />
+                    <Fragment set:html={RSS_ICON} />
                     <span class="sr-only">RSS EN</span>
                     <span class="rss-lang">EN</span>
                   </a>

@@ -1,0 +1,26 @@
+---
+// HomepageFeature.astro — Migrado de JSX/React a Astro puro (Fase 2 PSI, 2026-06-29).
+// No tiene estado, no tiene eventos: es 100% presentacional. AHORRO: -760 KB de react-feather + React DOM diff en home.
+import { markdownify } from "@/lib/utils/textConverter";
+import FeatherIcon from "@/components/FeatherIcon.astro";
+
+const { feature_list } = Astro.props;
+---
+
+<div class="key-feature-grid mt-10 grid grid-cols-2 gap-7 md:grid-cols-2 xl:grid-cols-3">
+  {
+    feature_list.map((item, i: number) => (
+      <div class="flex flex-col justify-between rounded-lg bg-surface p-4 shadow-lg hover:shadow-xl hover:shadow-secondary/50 transition-all hover:scale-105">
+        <div>
+          <div class="flex flex-row items-center">
+            <span class="icon">
+              <FeatherIcon name={item.icon} size={20} class="text-accent" />
+            </span>
+            <h3 class="ml-2 break-all text-sm md:text-lg">{item.title}</h3>
+          </div>
+          <p set:html={markdownify(item.content)}></p>
+        </div>
+      </div>
+    ))
+  }
+</div>

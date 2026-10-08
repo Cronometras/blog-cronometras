@@ -1,5 +1,14 @@
 import type { HTMLAttributes } from "astro/types";
-import type { IconProps } from "react-feather";
+
+/**
+ * Nombre del icono de Feather. Sustituye a `IconProps["name"]` de react-feather
+ * tras la migración de Fase 2 (2026-06-29) que eliminó la dependencia React.
+ * Solo se usan 17 iconos en todo el blog, ver src/components/FeatherIcon.astro.
+ */
+export type FeatherIconName =
+  | "award" | "book" | "camera" | "clock" | "cloud" | "folder"
+  | "headphones" | "layers" | "lock" | "mail" | "play" | "shield"
+  | "smartphone" | "users" | "video" | "zap" | "external-link";
 
 /**
  * Interface for a link button
@@ -11,7 +20,7 @@ export interface LinkButtonI {
   label?: string;
   mode?: "outline" | "solid";
   disabled?: boolean;
-  icon?: IconProps["name"];
+  icon?: FeatherIconName;
   /**
    * Applies to the main button color (background, border, effects)
    * Possible values: in @/config/theme.json

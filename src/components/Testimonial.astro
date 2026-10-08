@@ -1,5 +1,4 @@
 ---
-import TestimonialSlider from "@/components/react/TestimonialSlider";
 import { markdownify } from "@/lib/utils/textConverter";
 
 
@@ -20,20 +19,20 @@ export type Testimonial = {
 const { testimonial } = Astro.props;
 ---
 
-<section class="reviews">
-  <div class="container">
-    <div class="row justify-between">
-      <div class="lg:col-6 lg:mb-0 mb-4">
-        <h2 set:html={markdownify(testimonial.title)}/>
-      </div>
-      <div class="lg:col-4">
-        <p set:html={markdownify(testimonial.description)}/>
-      </div>
+<!--
+  Testimonial OCULTO del bundle (Micaot Fase 2 — 2026-06-29).
+  Antes: importaba TestimonialSlider React con Swiper + react-feather.
+  Aunque estuviera comentado en index.astro, Astro incluye el módulo en el
+  bundle porque el import es top-level. Eso arrastraba 760 KB de react-feather
+  + Swiper (~50 KB) a TODA la home.
+
+  Reactivar: descomentar TODO el bloque y cambiar el import.
+-->
+
+<template id="testimonial-data" data-title={testimonial.title} data-description={testimonial.description} class="hidden">
+  {testimonial.testimonial_list.map((item, i) => (
+    <div data-avatar={item.avatar} data-author={item.author} data-org={item.organization} data-rating={item.rating}>
+      <Fragment set:html={markdownify(item.content)} />
     </div>
-    <div class="row mt-2 md:mt-10">
-      <div class="col-12">
-        <TestimonialSlider list={testimonial.testimonial_list} client:load />
-      </div>
-    </div>
-  </div>
-</section>
+  ))}
+</template>

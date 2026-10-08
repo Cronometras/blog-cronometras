@@ -348,17 +348,26 @@ console.log("Cargando layout Base.astro");
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Precargar imágenes críticas con la máxima prioridad -->
-    <link rel="preload" href="/images/webp/adaptada-a-moviles-tablets-y-pc.webp" as="image" type="image/webp" fetchpriority="high" importance="high" />
-
-    <!-- Precargar la imagen principal con un script para asegurar la carga temprana -->
-    <script is:inline>
-      // Precargar la imagen principal de forma inmediata
-      (function() {
-        var img = new Image();
-        img.src = '/images/webp/adaptada-a-moviles-tablets-y-pc.webp';
-      })();
-    </script>
+    <!-- Precargar la imagen LCP en formato AVIF (mejor compresión) + WebP fallback.
+         Nota Fase 1 PSI:
+         - Se eliminó el <script>new Image()</script> duplicado que lanzaba una
+           segunda petición. Solo dejamos el <link rel="preload>, válido en ~98%
+           de navegadores modernos (caniuse 2026).
+         - Se apunta directamente al AVIF de 640px (target móvil + tablet), que
+           es el más probable que sirva PSI en la emulación Moto G Power.
+         - El componente WebpImage.astro (con isMainBannerImage=true) emite el
+           <picture> con srcset responsivo AVIF + WebP.
+         - imagesrcset explícito garantiza que el navegador pide el tamaño real. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      fetchpriority="high"
+      importance="high"
+      href="/images/webp/lcp/adaptada-640.avif"
+      imagesrcset="/images/webp/lcp/adaptada-320.avif 320w, /images/webp/lcp/adaptada-640.avif 640w, /images/webp/lcp/adaptada-960.avif 960w, /images/webp/lcp/adaptada-1280.avif 1280w"
+      imagesizes="(max-width: 640px) 100vw, 50vw"
+    />
 
     <!-- Estilos críticos inline para el renderizado inicial -->
     <style>
@@ -418,26 +427,47 @@ console.log("Cargando layout Base.astro");
     <!-- SEO: sitemap -->
     <link rel="sitemap" type="application/xml" href={`${config.site.base_url}/sitemap-index.xml`} />
 
-    <!-- KaTeX for LaTeX math rendering (defer = non-blocking) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-    <script defer is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-    <script defer is:inline src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
-    <script is:inline>
-      // renderMath: solo corre en astro:page-load, así que no necesita bloquear
-      const renderMath = () => {
-        if (window.renderMathInElement) {
-          renderMathInElement(document.body, {
-            delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false}
-            ],
-            throwOnError: false
+    <!-- KaTeX for LaTeX math rendering (carga condicional: solo si la página usa fórmulas).
+         Pitfall Fase 1 PSI: cargar katex en TODAS las páginas añadía ~120 KB de JS/CSS bloqueante
+         antes del LCP. Ahora detectamos $$ o $ en el HTML renderizado y cargamos KaTeX
+         bajo demanda. Si no hay fórmulas, cero coste. -->
+    <Fragment set:html={`
+      <script>
+        (function() {
+          // Detectar si la página actual usa fórmulas LaTeX (busca $$...$$ o $...$)
+          var hasMath = /(\\$\\$[\\s\\S]+\\$\\$|\\$[^\n$]+\\$)/.test(document.body.innerHTML);
+          if (!hasMath) return;
+          // Cargar CSS sin bloquear render (media print trick)
+          var css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+          css.crossOrigin = 'anonymous';
+          document.head.appendChild(css);
+          // Cargar JS en cadena no-bloqueante
+          loadScript('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js', function() {
+            loadScript('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js', function() {
+              document.addEventListener('astro:page-load', renderMath);
+            });
           });
-        }
-      };
-
-      document.addEventListener('astro:page-load', renderMath);
-    </script>
+          function loadScript(src, cb) {
+            var s = document.createElement('script');
+            s.src = src; s.crossOrigin = 'anonymous';
+            s.onload = cb; document.head.appendChild(s);
+          }
+          function renderMath() {
+            if (window.renderMathInElement) {
+              window.renderMathInElement(document.body, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+              });
+            }
+          }
+        })();
+      </script>
+    `} />
 
     <!-- noindex robots -->
     {

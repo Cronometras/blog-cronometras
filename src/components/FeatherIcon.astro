@@ -1,0 +1,64 @@
+---
+// FeatherIcon.astro — Componente ESTÁTICO para iconos Feather.
+// Reemplaza el antiguo src/components/react/FeatherIcon.tsx que arrastraba
+// toda la librería react-feather (~760 KB) al bundle del cliente.
+//
+// Fase 2 PSI: en lugar de importar `import * as Icon from 'react-feather'`,
+// este componente tiene hardcoded los 17 iconos que el blog usa realmente.
+// SVGs extraídos de node_modules/react-feather/dist/icons/*.js con
+// scripts/extract-feather-svgs.mjs el 2026-06-29.
+//
+// Si necesitas un icono nuevo, añádelo a la constante ICONS y al objeto ICON_SVGS.
+
+// Mantener API compatible con el antiguo componente:
+//   <FeatherIcon name="clock" size={20} className="text-accent mr-4" />
+//   El campo "name" puede venir como kebab-case ('external-link') o snake ('externalLink'),
+//   igual que la versión anterior (humanize() aplicado).
+const { name, size = 24, class: className = '' } = Astro.props;
+
+// Iconos disponibles (lowercase + kebab-case)
+const ICON_SVGS: Record<string, string> = {
+  award: '<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  camera: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  cloud: '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>',
+  folder: '<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>',
+  headphones: '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
+  layers: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+  lock: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  mail: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/>',
+  play: '<polygon points="5 3 19 12 5 21 5 3"/>',
+  shield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  smartphone: '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+  users: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  video: '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>',
+  zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  'external-link': '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>',
+};
+
+// Normalizar el nombre: 'externalLink' o 'external_link' → 'external-link'
+// (mantener compatibilidad con la versión react-feather que humanizaba)
+const normalizedName = name
+  ? name.toString().toLowerCase().replace(/_/g, '-').replace(/([a-z])([A-Z])/g, '$1-$2')
+  : '';
+
+const innerSvg = ICON_SVGS[normalizedName];
+---
+
+{innerSvg ? (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class={className}
+    aria-hidden="true"
+    set:html={innerSvg}
+  />
+) : null}

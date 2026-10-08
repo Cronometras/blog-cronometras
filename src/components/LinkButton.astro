@@ -1,6 +1,6 @@
 ---
 import type { LinkButton } from "@/content/page.types";
-import FeatherIcon from "./react/FeatherIcon";
+import FeatherIcon from "@/components/FeatherIcon.astro";
 
 type Props = LinkButton;
 
@@ -53,8 +53,7 @@ const commonClasses = `btn${color ? "-" + color : ""}${mode === "outline" ? "-ou
         <FeatherIcon
           name={icon}
           size={20}
-          client:load
-          className={`${label || hasChildren ? "mr-4" : "null"}`}
+          class={`${label || hasChildren ? "mr-4" : "null"}`}
         />
       )
     }
@@ -72,8 +71,7 @@ const commonClasses = `btn${color ? "-" + color : ""}${mode === "outline" ? "-ou
         <FeatherIcon
           name={icon}
           size={20}
-          client:load
-          className={`${label || hasChildren ? "mr-4" : "null"}`}
+          class={`${label || hasChildren ? "mr-4" : "null"}`}
         />
       )
     }

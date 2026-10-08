@@ -48,7 +48,35 @@
 
 # ---------------------------------------------------------------------
 # 3. Robots en páginas de bajo valor (login, checkout, admin)
+# IMPORTANTE: usar /*<resto> (wildcard al final) — sin él, CF Pages
+# interpreta la ruta como PREFIX MATCH y bloquea TODA la home ES/EN
+# (descubierto tras caída de SEO 61→92 en PSI 2026-06-29).
 # ---------------------------------------------------------------------
+/es/login/*
+  X-Robots-Tag: noindex, nofollow
+
+/en/login/*
+  X-Robots-Tag: noindex, nofollow
+
+/es/registro/*
+  X-Robots-Tag: noindex, nofollow
+
+/en/register/*
+  X-Robots-Tag: noindex, nofollow
+
+/es/mi-cuenta/*
+  X-Robots-Tag: noindex, nofollow
+
+/en/my-account/*
+  X-Robots-Tag: noindex, nofollow
+
+/es/checkout/*
+  X-Robots-Tag: noindex, nofollow
+
+/en/checkout/*
+  X-Robots-Tag: noindex, nofollow
+
+# Bloquear también la ruta exacta sin barra final
 /es/login
   X-Robots-Tag: noindex, nofollow
 
