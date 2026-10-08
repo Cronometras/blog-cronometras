@@ -66,3 +66,26 @@ const GA_ID = import.meta.env.GTAG_ID
   };
 </script>
 <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+<script is:inline>
+  // Capa de eventos: formularios, CTAs y chat (Micaot 2026-10-08)
+  document.addEventListener('submit', function (e) {
+    try {
+      window.gtag && window.gtag('event', 'form_submit', {
+        form_id: e.target.id || '(sin-id)',
+        form_action: e.target.getAttribute('action') || '(sin-accion)',
+        page_path: location.pathname
+      });
+    } catch (err) {}
+  }, true);
+  document.addEventListener('click', function (e) {
+    try {
+      var t = e.target.closest && e.target.closest('a,button');
+      if (t) {
+        var txt = (t.innerText || '').trim();
+        if (txt.length < 80 && /demo|prueba|solicitar|presupuesto|contact|quote|asisten/i.test(txt)) {
+          window.gtag && window.gtag('event', 'cta_click', { event_label: txt.slice(0, 60), page_path: location.pathname });
+        }
+      }
+    } catch (err) {}
+  }, true);
+</script>
