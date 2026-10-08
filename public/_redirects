@@ -171,7 +171,7 @@
 /es/blog/cronoanalisis-baterias-litio-gigafactoria-celdas-electrodos-celdas-tiempos-estandar/   /es/blog/cronoanalisis-baterias-litio-lineas-fabricacion/   301
 
 # 15. Slug renombrado 2026-10-06 (corrección de afirmación falsa embebida en el slug)
-/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp   /es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo/   301
+/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp*   /es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo/   301
 
 
 # ---------------------------------------------------------------------
@@ -180,9 +180,13 @@
 #     desde los slugs anteriores. Apuntan al post canónico actual.
 # ---------------------------------------------------------------------
 /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo             /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301
+/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo/   /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301   301
 /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica            /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica/   /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301   301
 /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro            /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301
+/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro/   /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301   301
 /es/blog/cuales-son-las-tecnicas-de-cronometraje                         /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
+/es/blog/cuales-son-las-tecnicas-de-cronometraje/   /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
 
 # Last validated sitemap dedup: 2026-06-16T05:25:50.143483
 /es/blog/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271*   /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
