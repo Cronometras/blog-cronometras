@@ -216,12 +216,8 @@ export const prerender = true;
 >
   {post && <BlogPostSchema post={post} url={Astro.url} />}
 
-  <!-- BreadcrumbList JSON-LD (MDX ya lo emite en BlogPostSchema; para Firestore,
-       BlogPostSchema no se invoca, así que lo emitimos aquí) -->
   {source === 'firestore' && <script type="application/ld+json" set:html={breadcrumbSchemaString} />}
 
-  <!-- Static rendering for Firestore articles (pre-rendered at build time) -->
-  <!-- Static rendering for MDX articles -->
   {source === 'firestore' ? (
     <article class="mx-auto">
       <!-- Hero Image with Overlay -->
