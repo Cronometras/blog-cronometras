@@ -3,7 +3,7 @@ title: "Number of Observations Required in Industrial Time Study"
 description: "In a methods and time study, it's important to know the necessary number of observations to obtain accurate measurements and capture process variability."
 pubDate: 2023-03-22
 category: "Industrial Time Study"
-tags: ["Observation calculation", "Industrial time study", "Time study", "ILO formula", "Methods engineering", "Margin of error", "Work measurement", "Confidence level", "Sample size", "Process variability"]
+tags: ["Observation calculation", "Industrial time study", "Time study", "Reliability 95%", "Methods engineering", "Margin of error", "Work measurement", "Confidence level", "Sample size", "Process variability"]
 author: "micaot"
 heroImage: "/images/webp/tomas-restantes.webp"
 ---
@@ -96,13 +96,15 @@ In summary, there is no fixed rule on the number of observations; it depends mai
 
 There are several methods to determine the number of observations to perform in an industrial time study. Some of the most used are:
 
-### The empirical method:
+### The empirical method
 
-It is based on experience and general recommendations. For example, the International Labour Office suggests timing at least 50 cycles in brief operations and between 20 and 30 cycles in longer operations.
+It is based on experience and general recommendations. The classic work measurement literature, starting with the International Labour Organization, recommends setting the number of readings according to the cycle duration: the shorter the cycle, the more readings are needed for the sample to be representative.
 
 <img src="/images/webp/default.webp" alt="Table establishing the number of readings according to the duration of the cycle to be timed" />
 
-### ILO statistical method specific for industrial time studies. (used in the CronometrasApp)
+### Statistical method
+
+The work measurement literature includes a statistical formula to estimate the number of observations needed from a few preliminary takes. The Cronometras application implements its own system for calculating the number of observations needed for 95% reliability, so it tells you how many takes you still need.
 
 Let's say we take 8 measurements:
 
@@ -110,7 +112,7 @@ Let's say we take 8 measurements:
 
 The formula used is:
 
-<img src="/images/webp/default.webp" alt="ILO formula to calculate the number of observations" />
+<img src="/images/webp/default.webp" alt="Formula to calculate the number of observations" />
 
 ```plaintext
 n = ((40 * SQRT((n' * ∑x2) - (∑x)2)) / ∑x)^2
@@ -122,8 +124,6 @@ Where:
 - n' = number of initial observations
 - ∑x = sum of the values of the observations
 - ∑x2 = sum of the squares of the values of the observations
-
-The origin of this formula dates back to the work of J.M. Juran in the context of time and motion studies in industrial engineering.
 
 We apply the formula to calculate the number of observations (n) needed in a work time study with a 95% confidence level and a 5% margin of error with the initial observations: 25, 23, 26, 25, 18, 21, 24, 26
 
@@ -144,9 +144,9 @@ n = ((40 * SQRT((8 * 4,472) - (188)^2)) / 188)^2
 n = ((40 * SQRT(35,776 - 35,344)) / 188)^2
 n = ((40 * SQRT(432)) / 188)^2
 n = ((40 * 20.78) / 188)^2
-n = (830.4 / 188)^2
+n = (831.2 / 188)^2
 n = 4.42^2
-n = 19.53
+n = 19.54
 ```
 
 Since the number of observations (n) must be an integer, it is rounded up, obtaining a total of 20 observations needed to achieve 95% reliability in the work time study. As we already had 8, we have 12 more measurements to perform.

@@ -1,9 +1,9 @@
 ---
 title: "La utilidad de los tiempos históricos para establecer estándares de trabajo"
-description: "Introducción Determinar estándares de tiempo para tareas repetitivas es crucial en muchas industrias, desde la manufactura hasta los servicios. Ex..."
+description: "Cómo usar los tiempos de trabajos previos para fijar estándares: media ponderada de tres valores, ventajas, límites y en qué contextos aplica."
 pubDate: 2023-11-07
 category: "Eficiencia y productividad"
-tags: ["análisis del trabajo", "Aplicación en diferentes contextos", "Cronometraje", "Datos históricos", "Desventajas de tiempos históricos", "Estándares de tiempo", "Estudio de tiempos", "Estudio del trabajo", "manufactura", "Manufactura estandarizada", "Medición del trabajo", "mejora continua.", "Mejora de métodos y tiempos de fabricación", "Método de tiempos históricos", "Operations management.", "servicios", "Servicios con tareas estandarizadas", "Tareas repetitivas", "Tiempos históricos", "Trabajos artesanales", "Trabajos con alta variación entre trabajadores", "Ventajas de tiempos históricos"]
+tags: ["Tiempos históricos", "Estándares de tiempo", "Estudio de tiempos", "Medición del trabajo", "Método de tiempos históricos", "Datos históricos", "Estudio del trabajo", "Productividad"]
 author: "micaot"
 heroImage: "/images/webp/og-default.png"
 ---
@@ -14,25 +14,27 @@ Determinar estándares de tiempo para tareas repetitivas es crucial en muchas in
 
 ## Fundamentación y método
 
-El método de tiempos históricos se basa en utilizar datos de tiempos requeridos en trabajos previos similares para determinar el tiempo estándar de una tarea actual. En lugar de cronometrar el trabajo cada vez, se registran los tiempos reales que los trabajadores toman en completar el trabajo bajo condiciones normales. Estos tiempos se comparan luego con mediciones históricas previas y se utilizan para calcular un promedio representativo.
+El método de tiempos históricos se basa en utilizar datos de tiempos requeridos en trabajos previos similares para determinar el tiempo estándar de una tarea actual. En lugar de cronometrar el trabajo cada vez, se registran los tiempos reales que los trabajadores tardan en completar el trabajo bajo condiciones normales. Estos tiempos se comparan luego con mediciones históricas previas y se utilizan para calcular una media representativa.
 
-La fórmula típica para calcular el tiempo estándar a partir de tiempos históricos es:
+Cuando de esas mediciones previas se dispone de tres valores de referencia —el tiempo optimista, el más probable y el pesimista—, la estimación se hace con la media ponderada clásica de la técnica PERT (Malcolm, Roseboom, Clark y Fazar, 1959):
 
 <figure>![](/images/webp/og-default.png)</figure>
 
-Tiempo Normal = [To +( 4 * Tm) + Tp)] / 6
+Tiempo normal = (To + 4 × Tm + Tp) / 6
 
 Donde:
 
-- To es el tiempo optimista, 
+- To es el tiempo optimista,
 
-- Tm es el tiempo modal o más común, y 
+- Tm es el tiempo modal o más común, y
 
 - Tp es el tiempo pesimista.
 
-***Por ejemplo, si para una tarea de ensamble previas mediciones dieron 2 minutos (To), 4 minutos la mayoría de veces (Tm), y 7 minutos en el peor caso (Tp), el tiempo estándar sería:***
+***Por ejemplo, si para una tarea de ensamblaje mediciones previas dieron 2 minutos (To), 4 minutos la mayoría de veces (Tm) y 7 minutos en el peor caso (Tp), el tiempo normal esperado sería:***
 
-*(2 + 4*4 + 7) / 6 = 4.16 minutos*
+*(2 + 4 × 4 + 7) / 6 = 4,16 minutos*
+
+De ese tiempo normal se llega al tiempo estándar aplicando sobre él los suplementos correspondientes, igual que en cualquier otra medición del trabajo.
 
 ## Ventajas del uso de tiempos históricos
 
@@ -66,9 +68,9 @@ Sin embargo, también presenta algunos inconvenientes y requiere ciertas precauc
 
 Dados sus pros y contras, los tiempos históricos son más adecuados en algunos entornos que en otros:
 
-- Manufactura altamente estandarizada y repetitiva, con poca variación en el producto. Por ejemplo, líneas de ensamble.
+- Manufactura altamente estandarizada y repetitiva, con poca variación en el producto. Por ejemplo, líneas de ensamblaje.
 
-- Servicios con tareas predecibles y estandarizadas como atención telefónica en call centers.
+- Servicios con tareas predecibles y estandarizadas, como la atención telefónica en centros de llamadas.
 
 - Trabajos artesanales o construcción donde cada caso es único. Los estándares deben determinarse de otra manera.
 
@@ -84,9 +86,9 @@ Se recomienda su aplicación analizando cuidadosamente las características de v
 
 J. A. Cruelles (2012). *Mejora de métodos y tiempos de fabricación*. España: MARCOMBO.
 
-G. Kanawaty. (1996). *Introducción Al Estudio Del Trabajo*, *4ta Edición*. Ginebra, Oficina Internacional del *Trabajo*
+G. Kanawaty. (1996). *Introducción al Estudio del Trabajo*, *4.ª edición*. Ginebra: Oficina Internacional del Trabajo.
 
-Stevenson, W. (2018). *Operations management* (13a ed.). New York, NY: McGraw-Hill Education.
+Stevenson, W. (2018). *Operations management* (13.ª ed.). New York, NY: McGraw-Hill Education.
 
 ---
 

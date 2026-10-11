@@ -20,11 +20,11 @@ En un estudio de métodos y tiempos es importante conocer el número necesario d
 
 - Para obtener estimaciones válidas de tiempos improductivos. Se requiere una muestra amplia para estimar adecuadamente proporciones.
 
-- Para evitar recoger más datos de los necesarios. Un exceso de observaciones consumen recursos innecesariamente.
+- Para evitar recoger más datos de los necesarios. Un exceso de observaciones consume recursos innecesariamente.
 
 El número de observaciones impacta directamente en la utilidad y precisión de los resultados del estudio de métodos y tiempos.
 
-## Puntos clave para determinar el numero de tomas a realizar en un estudio de tiempos
+## Puntos clave para determinar el número de tomas a realizar en un estudio de tiempos
 
 Algunos puntos clave para determinar el número necesario de observaciones en un estudio:
 
@@ -42,9 +42,9 @@ En resumen, determinar el número adecuado de observaciones requiere equilibrar 
 
 ## ¿Qué es el nivel de confianza?
 
-El nivel de confianza, en estadística, es la probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado. El nivel de confianza se define como 1-alfa y sus valores más comunes son 90%, 95% y 99%
+El nivel de confianza, en estadística, es la probabilidad máxima con la que podríamos asegurar que el parámetro a estimar se encuentra dentro de nuestro intervalo estimado. El nivel de confianza se define como 1-alfa y sus valores más comunes son 90 %, 95 % y 99 %.
 
-## ¿En que momentos del día se deben de realizar las diferentes tomas de tiempos?
+## ¿En qué momentos del día se deben realizar las diferentes tomas de tiempos?
 
 A la hora de medir un trabajo es una buena práctica:
 
@@ -64,7 +64,7 @@ A la hora de medir un trabajo es una buena práctica:
 
 En resumen, hay que buscar la mayor aleatoriedad y representatividad distribuyendo bien las  observaciones en tiempo y espacio.
 
-## ¿Factores que afectan en el numero de observaciones a realizar en un estudio de metodos y tiempos?
+## ¿Qué factores afectan al número de observaciones de un estudio de métodos y tiempos?
 
 El número de observaciones en un estudio de métodos y tiempos depende de varios factores:
 
@@ -94,13 +94,15 @@ En resumen, no hay una regla fija sobre el número de observaciones, depende pri
 
 Existen varios métodos para determinar el número de observaciones a realizar en un cronometraje industrial. Algunos de los más utilizados son:
 
-### El método empírico:
+### El método empírico
 
-se basa en la experiencia y en las recomendaciones generales. Por ejemplo, la Oficina Internacional del Trabajo sugiere cronometrar al menos 50 ciclos en operaciones breves y entre 20 y 30 ciclos en operaciones más largas.
+Se basa en la experiencia y en las recomendaciones generales. La literatura clásica de medición del trabajo, empezando por la Oficina Internacional del Trabajo, recomienda fijar el número de lecturas según la duración del ciclo: cuánto más breve es el ciclo, más lecturas se necesitan para que la muestra sea representativa.
 
 <img src="/images/webp/default.webp" alt="Tabla que establece el número de lecturas según la duración del ciclo a cronometrar" ismap />
 
-### Método estadístico OIT específico para estudios de tiempos industriales. (utilizado en la App CronometrasApp)
+### Método estadístico
+
+La literatura de medición del trabajo recoge una fórmula estadística para estimar el número de observaciones necesarias a partir de unas pocas tomas preliminares. La aplicación Cronometras implementa su propio sistema de cálculo del número de observaciones necesario para una fiabilidad del 95 %, de modo que te indica cuántas tomas te faltan por realizar.
 
 Pongamos que tomamos 8 tomas:
 
@@ -108,7 +110,7 @@ Pongamos que tomamos 8 tomas:
 
 La fórmula utilizada es:
 
-<img src="/images/webp/default.webp" alt="Fórmula OIT para calcular el número de observaciones" ismap />
+<img src="/images/webp/default.webp" alt="Fórmula para calcular el número de observaciones" ismap />
 
 ```plaintext
 n = ((40 * RAIZ((n' * ∑x2) - (∑x)2)) / ∑x)^2
@@ -124,11 +126,9 @@ Donde:
 
 - ∑x2 = sumatorio de los cuadrados de los valores de las observaciones
 
-El origen de esta fórmula se remonta a los trabajos de J.M. Juran en el contexto de estudios de tiempos y movimientos en ingeniería industrial.
+Aplicamos la fórmula para calcular el número de observaciones (n) necesarias en un estudio de tiempos de trabajo con un nivel de confianza del 95 % y un margen de error del 5 % con las observaciones iniciales: 25,23,26,25,18,21,24,26
 
-Aplicamos la fórmula para calcular el número de observaciones (n) necesarias en un estudio de tiempos de trabajo con un nivel de confianza del 95% y un margen de error del 5% con las observaciones inicailes: 25,23,26,25,18,21,24,26
-
-- Observaciones preliminares (n'): **8 **(ya que hay 8 tomas)
+- Observaciones preliminares (n'): **8** (ya que hay 8 tomas)
 
 - Suma de los tiempos de las observaciones preliminares (∑x):
   - 25 + 23 + 26 + 25 + 18 + 21 + 24 + 26 = **188**
@@ -139,16 +139,16 @@ Aplicamos la fórmula para calcular el número de observaciones (n) necesarias e
 Sustituyendo estos valores en la fórmula:
 
 ```plaintext
-n = ((40 * RAIZ((8 * 4,472) - (188)^2)) / 188)^2
-n = ((40 * RAIZ(35,776 - 35,344)) / 188)^2
+n = ((40 * RAIZ((8 * 4.472) - (188)^2)) / 188)^2
+n = ((40 * RAIZ(35.776 - 35.344)) / 188)^2
 n = ((40 * RAIZ(432)) / 188)^2
-n = ((40 * 20.78) / 188)^2
-n = (830.4 / 188)^2
-n = 4.42^2
-n = 19.53
+n = ((40 * 20,78) / 188)^2
+n = (831,2 / 188)^2
+n = 4,42^2
+n = 19,54
 ```
 
-Como el número de observaciones (n) debe ser un número entero, se redondea hacia arriba, obteniendo un total de 20 observaciones necesarias para alcanzar una fiabilidad del 95% en el estudio de tiempos de trabajo, como ya teníamos 8, nos restan 12 tomas por realizar.
+Como el número de observaciones (n) debe ser un número entero, se redondea hacia arriba, obteniendo un total de 20 observaciones necesarias para alcanzar una fiabilidad del 95 % en el estudio de tiempos de trabajo; como ya teníamos 8, nos restan 12 tomas por realizar.
 
 ---
 
