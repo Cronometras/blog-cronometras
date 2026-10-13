@@ -1107,7 +1107,7 @@
   {
     "source": "src/content/pages/es/screens.mdx",
     "title": "Método",
-    "text": "La sección de método te permite estructurar tu estudio de manera eficiente:\n\n• Crea y organiza elementos de trabajo en una estructura jerárquica\n• Define métodos alternativos para comparar diferentes formas de realizar una tarea\n• Establece tiempos predeterminados para elementos basados en datos históricos\n• Importa elementos desde tu biblioteca para agilizar la creación de estudios\n\nBeneficio: Estructura tus estudios de manera lógica y aprovecha el conocimiento previo para ser más eficiente."
+    "text": "La sección de método te permite estructurar tu estudio de manera eficiente:\n\n• Crea y organiza elementos de trabajo en una estructura jerárquica\n• Define métodos alternativos para comparar diferentes formas de realizar una tarea\n• Establece tiempos iniciales para elementos basados en datos históricos\n• Importa elementos desde tu biblioteca para agilizar la creación de estudios\n\nBeneficio: Estructura tus estudios de manera lógica y aprovecha el conocimiento previo para ser más eficiente."
   },
   {
     "source": "src/content/pages/es/screens.mdx",
@@ -1391,173 +1391,173 @@
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Control Total del Tiempo",
+    "title": "Control Total del Tiempo",
     "text": "Olvida el cronómetro,  el papel y el lápiz. CRONOMETRAS automatiza la medición del tiempo, desde el cronometraje básico hasta la captura de secuencias complejas de elementos. Nuestra app te guía paso a paso, cambiando automáticamente entre elementos para que el analista solo se concentre en lo importante: observar y registrar.Ahorra tiempo, reduce errores y obtén datos más precisos sin esfuerzo\n\nImagen: section-image\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Control estadístico de la fiabilidad del estudio.",
+    "title": "Control estadístico de la fiabilidad del estudio.",
     "text": "CRONOMETRAS calcula en tiempo real las tomas necesarias en función de la variabilidad de los tiempos registrados y del criterio estadístico establecido (por ejemplo, una fiabilidad del 95% en el tiempo estándar). La fiabilidad completa del estudio depende también del método, el técnico y las condiciones observadas. Toma decisiones con los datos del propio estudio: dispersión de los tiempos y tomas restantes para alcanzar la fiabilidad objetivo.\n\nImagen: section-image\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Resultados en Tiempo Real",
+    "title": "Resultados en Tiempo Real",
     "text": "Con CRONOMETRAS, la espera es cosa del pasado. El técnico obtiene el tiempo estándar de la tarea al instante, sin necesidad de análisis posteriores.  Imagina terminar un estudio y, en ese mismo momento, tener a tu disposición todos los datos clave, incluyendo entre otros:    Tiempo estándar \n   Piezas/hora \n   Piezas/turno \n   Saturación \n  Agiliza la toma de decisiones, implementa mejoras al instante y optimiza tus procesos sin demoras.\n\nImagen: section-image\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Gestión Integral de Estudios",
+    "title": "Gestión Integral de Estudios",
     "text": "Organiza tus análisis en estudios completos. Define métodos, elementos y suplementos personalizados para cada proceso. Mantén todo organizado y accesible en un solo lugar.\n\nImagen: section-image\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Automatización de informes",
+    "title": "Automatización de informes",
     "text": "CRONOMETRAS te permite exportar tus datos sin complicaciones.  Exporta estudios en Excel y PDF para generar informes detallados y automatizados.  Los datos y resultados se transfieren a una hoja de cálculo, listos para usar en Excel. Disfruta de un flujo de trabajo optimizado, desde la captura de datos hasta el análisis en Excel, sin pasos manuales.\n\nImagen: section-image\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Diseñado para la Productividad",
+    "title": "Diseñado para la Productividad",
     "text": "Con una interfaz intuitiva y moderna, CRONOMETRAS hace que el análisis de tiempos sea simple y eficiente. Olvídate de las hojas de cálculo y de la tablilla con  el cronómetro manual y la hoja de papel y el lápiz. Optimiza tu productividad con herramientas profesionales.\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Estudio de Saturación de Operario y Máquina",
+    "title": "Estudio de Saturación de Operario y Máquina",
     "text": "Mide en tiempo real el % de saturación de operario y máquina con dos cronómetros independientes y registro de segmentos marcha/parada. Detecta paradas técnicas, esperas y cuellos de botella que el cálculo teórico de saturación no muestra. Analiza la capacidad de asignación hombre-máquina con datos de % de saturación medidos, no estimados.\n\nImagen: section-image\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial",
+    "title": "Como funciona nuestra App de cronometraje industrial",
     "text": "Desplázate cómodamente entre las diferentes pantallas de nuestra aplicación de métodos y tiempos y accede a las funcionalidades que te ofrecemos. Cálculos automatizados, tomas restantes, suplementos ágiles y mucho más.\n\nImagen: Estudio de tiempos\n\n     1"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Genera un nuevo estudio de trabajo",
+    "title": "Como funciona nuestra App de cronometraje industrial > Genera un nuevo estudio de trabajo",
     "text": "Imagen: Genera un nuevo estudio de trabajo\n\n Identifica el estudio y añade toda la información que creas necesaria como el ID de la pieza, la fecha en que se realiza el estudio, la empresa donde se realiza, el trabajador al que se mide, etc. Puedes utilizar comandos de voz para agilizar la tarea.\n\n   2"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Diseña el Método de Trabajo",
+    "title": "Como funciona nuestra App de cronometraje industrial > Diseña el Método de Trabajo",
     "text": "Imagen: Diseña el Método de Trabajo\n\n Genera con total flexibilidad, el método de trabajo que precises, estableciendo para cada elemento del ciclo, la Descripción de la tarea a cronometrar, así como la Frecuencia o número de piezas procesadas de ese elemento, en otras opciones. Puedes utilizar comandos de voz para agilizar la tarea.\n\n   3"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Realiza la medición por Cronometraje",
+    "title": "Como funciona nuestra App de cronometraje industrial > Realiza la medición por Cronometraje",
     "text": "Imagen: Realiza la medición por Cronometraje\n\n Elige los elementos que deseas medir en tu ciclo de trabajo. Realiza un cronometraje individual de un solo elemento, tomando diferentes tomas y valorando el ritmo en cada toma. O selecciona varios elementos y realiza un crono análisis encadenado, registrando las actividades y los tiempos observados automáticamente. De este modo habrás generado el tiempo normal para cada tarea medida.\n\n   4"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Aplica los suplementos",
+    "title": "Como funciona nuestra App de cronometraje industrial > Aplica los suplementos",
     "text": "Imagen: Aplica los suplementos\n\n Establece los suplementos para cada elemento del ciclo con las tablas de la OIT v4 de modo ágil y sencillo, copia los suplementos entre distintos elementos de trabajo que sean equiparables\n\n   5"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Obtén el informe automatizado",
+    "title": "Como funciona nuestra App de cronometraje industrial > Obtén el informe automatizado",
     "text": "Imagen: Obtén el informe automatizado\n\n En el mismo momento en que finalice la toma de datos, tendrás disponible el resultado del estudio, sin necesidad del posterior trasvase de datos, cálculos y análisis de los mismos.\n\n   6"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Exporta datos a Excel y PDF",
+    "title": "Como funciona nuestra App de cronometraje industrial > Exporta datos a Excel y PDF",
     "text": "Imagen: Exporta datos a Excel y PDF\n\n Si lo prefieres podrás generar el informe en Excel o PDF, para sentirte cómodo en un entorno de trabajo que conoces, modifica los datos o crea gráficas a partir de los mismos.\n\n   7"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Como funciona nuestra App de cronometraje industrial > Estudio de Saturación de operario y máquina",
+    "title": "Como funciona nuestra App de cronometraje industrial > Estudio de Saturación de operario y máquina",
     "text": "Imagen: Estudio de Saturación de operario y máquina\n\n Activa el estudio de saturación en cualquier estudio y obtén el % de saturación real de operario y máquina con dos cronómetros marcha/parada independientes y resultados en vivo.\n\n  Establezca el estándar de producción y genere mejora de procesos en menor tiempo gracias a los estudios de tiempos. Potencie la gestión de la producción mediante la optimización del tiempo y las diferentes técnicas de productividad, que aplicará y medirá, comparando el registro de movimientos de diferentes normas de trabajo al usar nuestra app para desarrollar la ingeniería de métodos.\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Cosval",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Cosval",
     "text": "Organización, Métodos y Tiempos, Procesos 4.0"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > CCOO",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > CCOO",
     "text": "Sindicato de Trabajadores más representativo de España"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > UTRNG",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > UTRNG",
     "text": "Universidad Tecnológica de la Región Norte de Guerrero, México"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Firehawk Wearshop",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Firehawk Wearshop",
     "text": "Diseño y creación de ropa técnica de running y trail\n\nImagen: Stadler Rail"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Stadler Rail",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Stadler Rail",
     "text": "Fabricante suizo líder mundial en material rodante ferroviario\n\nImagen: Royo Group"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Royo Group",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Royo Group",
     "text": "Empresa española líder en fabricación de muebles de baño\n\nImagen: TAL"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > TAL",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > TAL",
     "text": "Tribunal de Arbitraje Laboral de Valencia\n\nImagen: Jaime Mascaró"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Jaime Mascaró",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Jaime Mascaró",
     "text": "Empresa líder en calzado de lujo desde 1918\n\nImagen: Cosval"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Cosval",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Cosval",
     "text": "Organización, Métodos y Tiempos, Procesos 4.0\n\nImagen: CCOO"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > CCOO",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > CCOO",
     "text": "Sindicato de Trabajadores más representativo de España\n\nImagen: UTRNG"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > UTRNG",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > UTRNG",
     "text": "Universidad Tecnológica de la Región Norte de Guerrero, México\n\nImagen: Firehawk Wearshop"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Firehawk Wearshop",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Firehawk Wearshop",
     "text": "Diseño y creación de ropa técnica de running y trail"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Stadler Rail",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Stadler Rail",
     "text": "Fabricante suizo líder mundial en material rodante ferroviario"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Royo Group",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Royo Group",
     "text": "Empresa española líder en fabricación de muebles de baño"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > TAL",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > TAL",
     "text": "Tribunal de Arbitraje Laboral de Valencia"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Jaime Mascaró",
+    "title": "Cronometras es la herramienta usada por el Tribunal de arbitraje laboral (TAL) de la Comunidad Valenciana. > Jaime Mascaró",
     "text": "Empresa líder en calzado de lujo desde 1918\n\nImagen: Modal Image\n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Optimiza tu productividad con CRONOMETRAS",
+    "title": "Optimiza tu productividad con CRONOMETRAS",
     "text": "Comenzar Ahora   Acceder a la App  \n\n  Únete a las empresas que ya han transformado su eficiencia operativa. Descubre el poder de la optimización basada en datos.\nSin compromiso · Solicita una demo gratuita\n\n       🎯 Servicio profesional · Solo español"
   },
   {
     "source": "https://cronometras.com/es/",
-    "title": "¿Por qué elegir CRONOMETRAS? > Estudio de Métodos y Tiempos online con Cronometras",
+    "title": "Estudio de Métodos y Tiempos online con Cronometras",
     "text": "¿No tienes tiempo de tomar los datos tú mismo? Nuestro equipo técnico graba tu operación, la analiza con Cronometras y te entrega el informe completo en PDF, Excel y JSON estructurado.\n\nSolicitar estudio desde 800 €\n\nVer cómo funciona\n\n Tarifa cerrada · Vídeo de hasta 60 min · Entrega en 5 días hábiles\n\n    ✓ Valoración sintética del ritmo · Suplementos OIT v4/TAL · Cálculo del tiempo estándar \n  ✓ Medición de MP (Máquina Parada) / MM (Máquina en Marcha) / TM (TiempoMáquina) \n  ✓ Datos exportables a tu MES, ERP o BI vía JSON \n  ✓ Reunión online de resultados incluida \n\n &times;"
   },
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS",
-    "text": "Artículos sobre productividad, estudios de tiempos y gestión industrial\n     Filtrando por:        Quitar filtro"
+    "text": "Artículos sobre productividad, estudios de tiempos y gestión industrial\n    Filtrando por:        Quitar filtro"
   },
   {
     "source": "https://cronometras.com/es/blog/",
@@ -1567,7 +1567,7 @@
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS > Cronoanálisis en Paradas Programadas de Refinería y Planta Petroquímica (Turnaround T&I): Tiempos Estándar para Intercambiadores, Columnas y Mantenimiento Mayor",
-    "text": "Turnaround T&I en refinería: cómo estructurar el estudio de tiempos y calcular estándares para intercambiadores, andamiaje y columnas. Plantilla 7 pasos. \n   7 oct 2026  Leer más &rarr; \n\nImagen: Cronoanálisis en Cooperativas Agroalimentarias: Tiempos Estándar en Vendimia y Almazara\n   cronoanálisis"
+    "text": "Turnaround T&I en refinería: cómo estructurar el estudio de tiempos y calcular estándares para intercambiadores, andamiaje y columnas. Plantilla 7 pasos. \n   12 oct 2026  Leer más &rarr; \n\nImagen: Cronoanálisis en Cooperativas Agroalimentarias: Tiempos Estándar en Vendimia y Almazara\n   cronoanálisis"
   },
   {
     "source": "https://cronometras.com/es/blog/",
@@ -1587,12 +1587,12 @@
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS > Comparativa de Sistemas de Tiempos Predeterminados (PMTS): MTM, MOST, MTS y DMT — Cómo Elegir el Adecuado para tu Industria",
-    "text": "Comparativa técnica entre los principales PMTS (MTM-1, MTM-2, MTM-UAS, MOST, MiniMOST, MaxiMOST, MTS y DMT): niveles de detalle, rangos de operación, sectores de aplicación y criterios prácticos para elegir el sistema que mejor se adapta a tu planta. \n   21 ago 2026  Leer más &rarr; \n\nImagen: Plazos que se incumplen y costes a ciegas: cómo planificar el mantenimiento de sus subestaciones eléctricas\n   [&quot;cronoanálisis&quot;"
+    "text": "Comparativa técnica entre los principales PMTS (MTM-1, MTM-2, MTM-UAS, MOST, MiniMOST, MaxiMOST, MTS y DMT): niveles de detalle, rangos de operación, sectores de aplicación y criterios prácticos para elegir el sistema que mejor se adapta a tu planta. \n   21 ago 2026  Leer más &rarr; \n\nImagen: Plazos que se incumplen y costes a ciegas: cómo planificar el mantenimiento de sus subestaciones eléctricas\n   Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS > Plazos que se incumplen y costes a ciegas: cómo planificar el mantenimiento de sus subestaciones eléctricas",
-    "text": "Mantenimiento de subestaciones AT/MT: mida tiempos reales, sepa el coste de cada avería y planifique con datos. Caso con ahorro del 20 % anual. \n   20 jul 2026  Leer más &rarr; \n\nImagen: Gigafactoría de baterías: por qué no sabe lo que le cuesta fabricar un kWh\n   [&quot;cronoanalisis&quot;"
+    "text": "Mantenimiento de subestaciones AT/MT: mida tiempos reales, sepa el coste de cada avería y planifique con datos. Caso con ahorro del 20 % anual. \n   20 jul 2026  Leer más &rarr; \n\nImagen: Gigafactoría de baterías: por qué no sabe lo que le cuesta fabricar un kWh\n   Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/blog/",
@@ -1602,7 +1602,7 @@
   {
     "source": "https://cronometras.com/es/blog/",
     "title": "Blog de CRONOMETRAS > Cuánto cuesta de verdad una revisión de su flota: tiempos de taller que resisten una auditoría y un canon que se puede defender",
-    "text": "Tiempos medidos, suplementos OIT y TAL y un informe que resiste a la AESF: cómo saber lo que cuesta su flota ferroviaria y planificarla. \n   13 jul 2026  Leer más &rarr; \n\nImagen: El avión en tierra le cuesta dinero cada hora: cómo recortar los tiempos de mantenimiento sin fallar una auditoría EASA\n   [&quot;cronoanálisis&quot;"
+    "text": "Tiempos medidos, suplementos OIT y TAL y un informe que resiste a la AESF: cómo saber lo que cuesta su flota ferroviaria y planificarla. \n   13 jul 2026  Leer más &rarr; \n\nImagen: El avión en tierra le cuesta dinero cada hora: cómo recortar los tiempos de mantenimiento sin fallar una auditoría EASA\n   Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/blog/",
@@ -2077,22 +2077,22 @@
   {
     "source": "https://cronometras.com/es/continuous/",
     "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Obeya room Lean\n\n  Lean Manufacturing y Metodologías Ágiles"
+    "text": "Imagen: Cálculo de saturación en un estudio de tiempos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/continuous/",
-    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Obeya room Lean",
-    "text": "Imagen: Balanceo de Líneas: Optimizando la Eficiencia en Procesos de Manufactura\n\n  Balanceo de Líneas y Optimización de Procesos"
-  },
-  {
-    "source": "https://cronometras.com/es/continuous/",
-    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Balanceo de Líneas: Optimizando la Eficiencia en Procesos de Manufactura",
+    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cálculo de saturación en un estudio de tiempos",
     "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/continuous/",
     "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna",
-    "text": "Imagen: Diseño del Método de Trabajo\n\n  Curso de cronometraje industrial"
+    "text": "Imagen: Mejores Prácticas para Definir el Método de Trabajo\n\n  Metodología"
+  },
+  {
+    "source": "https://cronometras.com/es/continuous/",
+    "title": "Módulo de Cronómetro Continuo: Precisión en Estudios de Tiempos No Cíclicos > Optimiza tus Estudios de Tiempos No Cíclicos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Mejores Prácticas para Definir el Método de Trabajo",
+    "text": "Imagen: Importar Estudios de Tiempos desde Excel a CronometrasApp\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
@@ -2152,22 +2152,22 @@
   {
     "source": "https://cronometras.com/es/dashboard/",
     "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos",
-    "text": "Imagen: Mejores Prácticas para Definir el Método de Trabajo\n\n  Metodología"
+    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
-    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Mejores Prácticas para Definir el Método de Trabajo",
-    "text": "Imagen: Tablas de Suplementos OIT: Cálculo de Fatiga y Descanso\n\n  Suplementos y Fatiga"
+    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna",
+    "text": "Imagen: 7 Errores Comunes al Hacer Cronometraje Industrial (y Cómo Evitarlos con Software)\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
-    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Tablas de Suplementos OIT: Cálculo de Fatiga y Descanso",
-    "text": "Imagen: Cálculo del número óptimo de máquinas que debe llevar un operario\n\n  Estudio del Trabajo"
+    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > 7 Errores Comunes al Hacer Cronometraje Industrial (y Cómo Evitarlos con Software)",
+    "text": "Imagen: Introducción al Cronometraje industrial\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/dashboard/",
-    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Cálculo del número óptimo de máquinas que debe llevar un operario",
-    "text": "Imagen: Gestión Integral de Estudios de Tiempos\n\n  Gestión"
+    "title": "Dashboard: Centro de Control para tus Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Introducción al Cronometraje industrial",
+    "text": "Imagen: ¿Qué es el estudio de tiempos y movimientos?\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
@@ -2202,22 +2202,22 @@
   {
     "source": "https://cronometras.com/es/frequency/",
     "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Cálculo del número óptimo de máquinas que debe llevar un operario\n\n  Estudio del Trabajo"
+    "text": "Imagen: Diagrama de Actividades Múltiples: Coordinación de Equipos\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
-    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Cálculo del número óptimo de máquinas que debe llevar un operario",
-    "text": "Imagen: Diseño Técnico de Plantillas para la Recogida de Datos en Planta: De las Normas OIT a la Digitalización 2025\n\n  Técnicas especializadas y metodologías avanzadas"
+    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Diagrama de Actividades Múltiples: Coordinación de Equipos",
+    "text": "Imagen: El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo\n\n  Técnicas de Cronometraje"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
-    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Diseño Técnico de Plantillas para la Recogida de Datos en Planta: De las Normas OIT a la Digitalización 2025",
-    "text": "Imagen: Comparativa de Sistemas de Tiempos Predeterminados (PMTS): MTM, MOST, MTS y DMT — Cómo Elegir el Adecuado para tu Industria\n\n  [&quot;MTM&quot;"
+    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo",
+    "text": "Imagen: Cronometrando el ciclo de trabajo principal.\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/frequency/",
-    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Comparativa de Sistemas de Tiempos Predeterminados (PMTS): MTM, MOST, MTS y DMT — Cómo Elegir el Adecuado para tu Industria",
-    "text": "Imagen: Sistema Kanban y Cronometraje Industrial: Sincronizando Materiales y Tiempos Estándar\n\n  Lean Manufacturing"
+    "title": "Módulo de Tiempos Frecuenciales: Precisión en Actividades No Cíclicas > Optimiza tus Estudios de Tiempos con el Módulo de Tiempos Frecuenciales > Recursos sobre Cronometraje Industrial > Cronometrando el ciclo de trabajo principal.",
+    "text": "Imagen: ¿Por qué hay retrasos en la producción?\n\n  blog"
   },
   {
     "source": "https://cronometras.com/es/info/",
@@ -2282,22 +2282,22 @@
   {
     "source": "https://cronometras.com/es/info/",
     "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Muestreo del Trabajo: Guía del Analista para la Precisión Estadística y la Optimización de Procesos (Norma OIT)\n\n  Técnicas especializadas y metodologías avanzadas"
+    "text": "Imagen: ¿Qué es el estudio de tiempos y movimientos?\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/info/",
-    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Muestreo del Trabajo: Guía del Analista para la Precisión Estadística y la Optimización de Procesos (Norma OIT)",
-    "text": "Imagen: Objetivos del Estudio del Trabajo\n\n  Conceptos y Fundamentos"
+    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > ¿Qué es el estudio de tiempos y movimientos?",
+    "text": "Imagen: Introducción a CRONOMETRAS: Tu Herramienta para Estudios de Tiempos\n\n  Tutorial"
   },
   {
     "source": "https://cronometras.com/es/info/",
-    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Objetivos del Estudio del Trabajo",
-    "text": "Imagen: Introducción a MTM-1: El Estándar de Oro en Tiempos Predeterminados e Ingeniería de Métodos\n\n  Técnicas especializadas y metodologías avanzadas"
+    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Introducción a CRONOMETRAS: Tu Herramienta para Estudios de Tiempos",
+    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/info/",
-    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Introducción a MTM-1: El Estándar de Oro en Tiempos Predeterminados e Ingeniería de Métodos",
-    "text": "Imagen: Delimitar los elementos de trabajo en un estudio de tiempos con cronometro\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Información: Gestión Eficiente de Estudios de Tiempos > Optimiza la Gestión de tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna",
+    "text": "Imagen: Balanceo de Líneas: Optimizando la Eficiencia en Procesos de Manufactura\n\n  Balanceo de Líneas y Optimización de Procesos"
   },
   {
     "source": "https://cronometras.com/es/library/",
@@ -2347,22 +2347,22 @@
   {
     "source": "https://cronometras.com/es/library/",
     "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos",
-    "text": "Imagen: Técnica Especializada: Análisis de Therbligs en montaje fino\n\n  Cronometraje Industrial"
+    "text": "Imagen: Introducción a MTM y MOST: Optimizando Procesos con Metodologías Avanzadas\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/library/",
-    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Técnica Especializada: Análisis de Therbligs en montaje fino",
-    "text": "Imagen: Diagrama de Hilos como Herramienta de Ingeniería de Métodos: Optimización del Flujo y Evolución Digital\n\n  Técnicas especializadas y metodologías avanzadas"
+    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Introducción a MTM y MOST: Optimizando Procesos con Metodologías Avanzadas",
+    "text": "Imagen: ¿Qué es el cronometraje industrial?\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/library/",
-    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Diagrama de Hilos como Herramienta de Ingeniería de Métodos: Optimización del Flujo y Evolución Digital",
-    "text": "Imagen: Diseño Técnico de Plantillas para la Recogida de Datos en Planta: De las Normas OIT a la Digitalización 2025\n\n  Técnicas especializadas y metodologías avanzadas"
+    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > ¿Qué es el cronometraje industrial?",
+    "text": "Imagen: Obeya room Lean\n\n  Lean Manufacturing y Metodologías Ágiles"
   },
   {
     "source": "https://cronometras.com/es/library/",
-    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Diseño Técnico de Plantillas para la Recogida de Datos en Planta: De las Normas OIT a la Digitalización 2025",
-    "text": "Imagen: Productividad en la Soldadura Robótica: Dominando la Sincronización entre Ingeniería de Métodos y Automatización\n\n  Técnicas especializadas y metodologías avanzadas"
+    "title": "Biblioteca de Elementos: Reutilización y Estandarización de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estandarización de Tiempos > Obeya room Lean",
+    "text": "Imagen: ¿Qué tipos de cronómetros existen?\n\n  blog"
   },
   {
     "source": "https://cronometras.com/es/machine/",
@@ -2407,22 +2407,22 @@
   {
     "source": "https://cronometras.com/es/machine/",
     "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos",
-    "text": "Imagen: SMED: Reducción del Tiempo de Cambio de Maquina – Optimización del OEE vía Ingeniería de Métodos y MTM\n\n  Técnicas especializadas y metodologías avanzadas"
+    "text": "Imagen: Obeya room Lean\n\n  Lean Manufacturing y Metodologías Ágiles"
   },
   {
     "source": "https://cronometras.com/es/machine/",
-    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > SMED: Reducción del Tiempo de Cambio de Maquina – Optimización del OEE vía Ingeniería de Métodos y MTM",
-    "text": "Imagen: Sistema Bedaux\n\n  Cronometraje Industrial"
+    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Obeya room Lean",
+    "text": "Imagen: Obeya room Lean\n\n  Lean Manufacturing y Metodologías Ágiles"
   },
   {
     "source": "https://cronometras.com/es/machine/",
-    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Sistema Bedaux",
-    "text": "Imagen: Cómo reducir el tiempo de entrega para mejorar la productividad, competitividad y eficiencia de su empresa\n\n  Eficiencia y productividad"
-  },
-  {
-    "source": "https://cronometras.com/es/machine/",
-    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Cómo reducir el tiempo de entrega para mejorar la productividad, competitividad y eficiencia de su empresa",
+    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > Obeya room Lean",
     "text": "Imagen: La utilidad de los tiempos históricos para establecer estándares de trabajo\n\n  Eficiencia y productividad"
+  },
+  {
+    "source": "https://cronometras.com/es/machine/",
+    "title": "Módulo de Tiempos de Máquina > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos relacionados con Estudios de Métodos y Tiempos > La utilidad de los tiempos históricos para establecer estándares de trabajo",
+    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/method/",
@@ -2477,22 +2477,22 @@
   {
     "source": "https://cronometras.com/es/method/",
     "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos",
-    "text": "Imagen: ¿Que tipos de cronómetros existen?\n\n  blog"
+    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
   },
   {
     "source": "https://cronometras.com/es/method/",
-    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > ¿Que tipos de cronómetros existen?",
-    "text": "Imagen: Generar informe de estudio de tiempos\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna",
+    "text": "Imagen: Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones\n\n  Software y Herramientas"
   },
   {
     "source": "https://cronometras.com/es/method/",
-    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Generar informe de estudio de tiempos",
-    "text": "Imagen: Diagrama Bimanual: Análisis de Movimientos\n\n  Mejora de Métodos"
+    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones",
+    "text": "Imagen: Sistema Bedaux\n\n  Cronometraje Industrial"
   },
   {
     "source": "https://cronometras.com/es/method/",
-    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Diagrama Bimanual: Análisis de Movimientos",
-    "text": "Imagen: Guía Completa de Suplementos de Fatiga según la OIT\n\n  Técnico"
+    "title": "Módulo de Método: La Base de tus Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Estudios de Métodos y Tiempos > Sistema Bedaux",
+    "text": "Imagen: Introducción a CRONOMETRAS: Tu Herramienta para Estudios de Tiempos\n\n  Tutorial"
   },
   {
     "source": "https://cronometras.com/es/organizations/",
@@ -2572,22 +2572,22 @@
   {
     "source": "https://cronometras.com/es/repetitive/",
     "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial",
-    "text": "Imagen: Introducción al MTM-1: Tiempos Predeterminados\n\n  Cronometraje Industrial"
+    "text": "Imagen: Cálculo del Ciclo Óptimo en Trabajos con Máquina\n\n  Cálculo de Tiempos"
   },
   {
     "source": "https://cronometras.com/es/repetitive/",
-    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Introducción al MTM-1: Tiempos Predeterminados",
-    "text": "Imagen: ¿Cuáles son las tecnicas de cronometraje industrial?\n\n  Cronometraje Industrial"
+    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cálculo del Ciclo Óptimo en Trabajos con Máquina",
+    "text": "Imagen: Cómo reducir el tiempo de entrega para mejorar la productividad, competitividad y eficiencia de su empresa\n\n  Eficiencia y productividad"
   },
   {
     "source": "https://cronometras.com/es/repetitive/",
-    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > ¿Cuáles son las tecnicas de cronometraje industrial?",
-    "text": "Imagen: Acceder a la App\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Cómo reducir el tiempo de entrega para mejorar la productividad, competitividad y eficiencia de su empresa",
+    "text": "Imagen: Medición de tiempos de trabajo\n\n  Curso de cronometraje industrial"
   },
   {
     "source": "https://cronometras.com/es/repetitive/",
-    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Acceder a la App",
-    "text": "Imagen: Los 5 Métodos de Medición del Trabajo Más Utilizados en la Industria Moderna\n\n  Ingeniería Industrial"
+    "title": "Módulo de Tiempos Repetitivos: Precisión en la Medición de Operaciones Cíclicas > Optimiza tus Estudios de Tiempos con CRONOMETRAS > Recursos sobre Cronometraje Industrial > Medición de tiempos de trabajo",
+    "text": "Imagen: Etapas del estudio de tiempos en un cronometraje industrial\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/report/",
@@ -2642,22 +2642,22 @@
   {
     "source": "https://cronometras.com/es/report/",
     "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad",
-    "text": "Imagen: ¿Qué es el estudio de tiempos y movimientos?\n\n  Conceptos y Fundamentos"
+    "text": "Imagen: Cómo reducir el tiempo de entrega para mejorar la productividad, competitividad y eficiencia de su empresa\n\n  Eficiencia y productividad"
   },
   {
     "source": "https://cronometras.com/es/report/",
-    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > ¿Qué es el estudio de tiempos y movimientos?",
-    "text": "Imagen: Cómo Calcular la Saturación del Operario en Tiempos de Máquina\n\n  Tiempos de Máquina"
+    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Cómo reducir el tiempo de entrega para mejorar la productividad, competitividad y eficiencia de su empresa",
+    "text": "Imagen: El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo\n\n  Técnicas de Cronometraje"
   },
   {
     "source": "https://cronometras.com/es/report/",
-    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Cómo Calcular la Saturación del Operario en Tiempos de Máquina",
-    "text": "Imagen: Los 5 Mejores Software para Estudios de Tiempos Industriales en 2026\n\n  Comparativas"
+    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > El Sistema Westinghouse de Valoración del Ritmo: La Técnica que Inventó la Valoración del Trabajo",
+    "text": "Imagen: Gestión Integral de Estudios de Tiempos\n\n  Gestión"
   },
   {
     "source": "https://cronometras.com/es/report/",
-    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Los 5 Mejores Software para Estudios de Tiempos Industriales en 2026",
-    "text": "Imagen: Métodos y Tiempos en la Gestión Empresarial Industrial\n\n  Optimización de procesos industriales"
+    "title": "Módulo de Informes: Análisis Completo de Estudios de Tiempos > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Análisis de Tiempos y Productividad > Gestión Integral de Estudios de Tiempos",
+    "text": "Imagen: Optimización de sistemas productivos: Clave para la eficiencia industrial\n\n  Optimización de procesos industriales"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
@@ -2692,22 +2692,22 @@
   {
     "source": "https://cronometras.com/es/saturation/",
     "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación",
-    "text": "Imagen: Sistemas de Incentivos Salariales basados en Tiempos Estándar: Diseño, Cálculo e Implementación de Planes de Primas\n\n  Gestión de la Producción"
+    "text": "Imagen: Introducción a MTM-1: El Estándar de Oro en Tiempos Predeterminados e Ingeniería de Métodos\n\n  Técnicas especializadas y metodologías avanzadas"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
-    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Sistemas de Incentivos Salariales basados en Tiempos Estándar: Diseño, Cálculo e Implementación de Planes de Primas",
-    "text": "Imagen: Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones\n\n  Software y Herramientas"
+    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Introducción a MTM-1: El Estándar de Oro en Tiempos Predeterminados e Ingeniería de Métodos",
+    "text": "Imagen: ¿Qué es el estudio de tiempos y movimientos?\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
-    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Trabajo Colaborativo en Ingeniería de Métodos: Organizaciones",
-    "text": "Imagen: Prepara la automatización\n\n  Curso de cronometraje industrial"
+    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > ¿Qué es el estudio de tiempos y movimientos?",
+    "text": "Imagen: Entrada por Voz en Estudios de Tiempos con CronometrasApp\n\n  Software y Herramientas"
   },
   {
     "source": "https://cronometras.com/es/saturation/",
-    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Prepara la automatización",
-    "text": "Imagen: Impacto de la Ergonomía en los Tiempos de Ciclo: De la Fatiga Variable al OEE Maximizado (Horizonte 2025)\n\n  Técnicas especializadas y metodologías avanzadas"
+    "title": "Módulo de Estudio de Saturación: Medición en Tiempo Real de Operario y Máquina > Optimiza tus Procesos con el Módulo de Estudio de Saturación > Recursos sobre Estudio de Saturación > Entrada por Voz en Estudios de Tiempos con CronometrasApp",
+    "text": "Imagen: Etapas del estudio de tiempos en un cronometraje industrial\n\n  Conceptos y Fundamentos"
   },
   {
     "source": "https://cronometras.com/es/security/",
@@ -2787,21 +2787,21 @@
   {
     "source": "https://cronometras.com/es/supplements/",
     "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar",
+    "text": "Imagen: Pérdidas de velocidad: El enemigo invisible del OEE\n\n  Cronometraje Industrial"
+  },
+  {
+    "source": "https://cronometras.com/es/supplements/",
+    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Pérdidas de velocidad: El enemigo invisible del OEE",
+    "text": "Imagen: Cronoanálisis en Plantas de Envasado de Bebidas: Tiempos Estándar en Líneas de Cerveza y Refrescos a 30.000-80.000 BPH\n\n  [&quot;cronoanálisis bebidas&quot;"
+  },
+  {
+    "source": "https://cronometras.com/es/supplements/",
+    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Cronoanálisis en Plantas de Envasado de Bebidas: Tiempos Estándar en Líneas de Cerveza y Refrescos a 30.000-80.000 BPH",
+    "text": "Imagen: ¿Qué es el estudio de tiempos y movimientos?\n\n  Conceptos y Fundamentos"
+  },
+  {
+    "source": "https://cronometras.com/es/supplements/",
+    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > ¿Qué es el estudio de tiempos y movimientos?",
     "text": "Imagen: Cronometraje de elementos frecuenciales complejos\n\n  Cronometraje Industrial"
-  },
-  {
-    "source": "https://cronometras.com/es/supplements/",
-    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Cronometraje de elementos frecuenciales complejos",
-    "text": "Imagen: Diseño de plantillas para toma de datos en planta\n\n  Cronometraje Industrial"
-  },
-  {
-    "source": "https://cronometras.com/es/supplements/",
-    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Diseño de plantillas para toma de datos en planta",
-    "text": "Imagen: Técnica Especializada: Uso de video-análisis para mejora de métodos\n\n  Cronometraje Industrial"
-  },
-  {
-    "source": "https://cronometras.com/es/supplements/",
-    "title": "Módulo de Suplementos: Cálculo Preciso del Tiempo Estándar > Optimiza tus Estudios de Métodos y Tiempos con CRONOMETRAS > Recursos sobre Suplementos y Tiempo Estándar > Técnica Especializada: Uso de video-análisis para mejora de métodos",
-    "text": "Imagen: Técnica Especializada #18: Dominio del Cálculo de Interferencias en la Asignación Multi-Máquina Textil\n\n  Técnicas especializadas y metodologías avanzadas"
   }
 ]
