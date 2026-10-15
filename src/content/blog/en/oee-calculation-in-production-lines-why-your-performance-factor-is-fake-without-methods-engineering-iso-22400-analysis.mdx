@@ -12,9 +12,9 @@ heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestora
 
 In the current operations environment, OEE (*Overall Equipment Effectiveness*) has been prostituted. What was born as a pure engineering thermometer under the TPM (*Total Productive Maintenance*) umbrella has devolved in many organizations into a financial KPI or a "vanity metric".
 
-The data is alarming: according to our 2024-004-OEE technical research report, **65% of manufacturing industry in Spain calculates its OEE incorrectly**. Not due to arithmetic failures in factor multiplication, but due to defective data feeding in the most critical and volatile variable: **Ideal Cycle Time**.
+The problem is widespread: many manufacturing plants calculate it incorrectly. Not due to arithmetic failures in factor multiplication, but due to defective data feeding in the most critical and volatile variable: **Ideal Cycle Time**.
 
-If you feed your OEE formula with historical estimates, theoretical plate speeds, or times not leveled under ILO regulations, you are not measuring productivity; you are institutionalizing inefficiency. The goal of this technical article is to deconstruct OEE calculation from the lens of Methods and Time Engineering to recover the **Industrial Truth** of your plant.
+If you feed your OEE formula with historical estimates, theoretical plate speeds, or times not leveled to a normal pace (pace rating), you are not measuring productivity; you are institutionalizing inefficiency. The goal of this technical article is to deconstruct OEE calculation from the lens of Methods and Time Engineering to recover the **Industrial Truth** of your plant.
 
 ---
 
@@ -35,7 +35,7 @@ Here is where most calculations collapse. Performance formula is:
 
 $$P = \frac{(Total \ Pieces \ Produced \times Ideal \ Cycle \ Time)}{Operating \ Time}$$
 
-Mathematically, if you overestimate *Operating Time* or underestimate *Ideal Cycle Time*, your performance percentage skyrockets artificially. **The keystone is "Ideal Cycle Time".** Where does that number come from in your ERP?
+Mathematically, if you overestimate *Ideal Cycle Time* or underestimate *Operating Time*, your performance percentage skyrockets artificially. **The keystone is "Ideal Cycle Time".** Where does that number come from in your ERP?
 
 ---
 
@@ -47,7 +47,7 @@ Defining Ideal Cycle Time is an exclusive competence of Methods Engineering. Lea
 In semi-automatic or manual processes (Man-Machine), using manufacturer's theoretical speed (e.g., "this packer does 60 strokes/min") ignores **operator saturation**. If cycle depends on manual load/unload, and man-machine interference hasn't been calculated, standard is unattainable or unreal.
 
 ### Historical Averages Danger
-Many ERPs calculate standard based on last year's production average. This is **validating inefficiency**. If your plant has historically worked at low pace (e.g., 80 Bedaux), converting that into your "100% standard" means your OEE will never detect hidden improvement capacity.
+Many ERPs calculate standard based on last year's production average. This is **validating inefficiency**. If your plant has historically worked at low pace (e.g., below the 60 Bedaux normal), converting that into your "100% standard" means your OEE will never detect hidden improvement capacity.
 
 ### Micro-stops vs. Reduced Speed
 "6 Big Losses" distinguish between micro-stops (short stops < 5 min) and reduced speed.
@@ -62,11 +62,11 @@ For OEE to be management tool and not fiction, *Ideal Cycle Time* must be a **Sc
 
 ### Industrial Timing and Activity Leveling
 Any stopwatch measurement not including pace valuation (Performance Factor) is useless.
-*   **Leveling:** Analyst must judge operator speed regarding "Normal Activity" concept (100 BSI/Bedaux or 100% ILO). Without this, time is subjective.
+*   **Leveling:** Analyst must judge operator speed regarding "Normal Activity" concept (60 on the Bedaux scale, where 80 is the optimum, or 100 on the centesimal scale, where 133 is the optimum). Without this, time is subjective.
 *   **Rest Coefficients (Fatigue):** According to ILO, standard time **must** include allowances for physical, mental fatigue, and personal needs. An OEE calculated with "pure" machine times without considering human fatigue in manual cycles is a technical violation that will burn out staff and generate absenteeism, destroying long-term productivity.
 
 ### Predetermined Time Systems (MTM / MOST)
-Most robust way to fix *Ideal Cycle Time* is via predetermined time systems like **MTM-UAS** or **BasicMOST**.
+There are two valid families of methods to fix *Ideal Cycle Time*: on-site time study with pace rating and allowances, and sector predetermined time systems like **MTM-UAS** or **BasicMOST**.
 *   **Why use them?** These systems decompose task into basic motions (reach, grasp, move, position) and assign international standard times.
 *   **Result:** Subjectivity of analyst and operator is eliminated. You obtain time process *should* take with correct method, becoming irrefutable denominator for your OEE formula.
 
@@ -82,7 +82,7 @@ We frequently see plants with state-of-the-art MES systems capturing stops with 
 
 ### Compliance and Ergonomics (Horizon 2025)
 Regulatory trend (ISO 11228 and EU directives) increasingly links work paces to occupational health.
-*   A time audit not only adjusts OEE, but serves as legal defense (Compliance) before inspections, demonstrating production targets (100% Performance) respect workers' physiological limits.
+*   A time audit not only adjusts OEE; it documents that production targets respect workers' physiological limits, which can help when answering questions in an inspection or an internal review.
 
 ---
 
@@ -93,8 +93,8 @@ To transition from financial OEE to technical and actionable OEE, at **Cronometr
 ### Phase 1: Baseline Audit (Stopwatch Audit)
 We perform *in situ* timing to break down current cycle. We rigorously separate **Technological Time** (machine) from **Manual Time** (human) and detect real activity vs. normal activity (100).
 
-### Phase 2: Standardization with MTM/MOST
-We model critical motions and bottlenecks using MTM-UAS. This allows establishing **Technical Ideal Cycle Time**, free from historical vices and based on necessary motions.
+### Phase 2: Standardization of the Method
+We define the work method and establish the standard with a valid measurement method: time study with pace rating and the OIT and TAL supplements, or a sector predetermined time system. This allows establishing **Technical Ideal Cycle Time**, free from historical vices and based on how the job is actually done.
 
 ### Phase 3: Saturation Recalculation and Real OEE
 We update *Master Data* with new standards. When recalculating OEE, indicator often drops (revealing hidden inefficiencies) or rises (revealing idle capacity). In both cases, result is real control over plant capacity.
@@ -103,7 +103,7 @@ We update *Master Data* with new standards. When recalculating OEE, indicator of
 
 ## Conclusion: From OEE to OEEE (Energy Effectiveness)
 
-Looking towards 2025, OEE will evolve into **OEEE (Overall Equipment & Energy Effectiveness)**. Processes with poor methods, full of useless motions and wait times, not only lose time: consume energy without adding value.
+Looking ahead, OEE is evolving towards **OEEE (Overall Equipment & Energy Effectiveness)**. Processes with poor methods, full of useless motions and wait times, not only lose time: consume energy without adding value.
 
 **Summary:** Without Methods there is no OEE. Do not invest in data capture software without first calibrating field engineering feeding that data.
 
@@ -111,7 +111,7 @@ Looking towards 2025, OEE will evolve into **OEEE (Overall Equipment & Energy Ef
 
 ### Is your OEE stuck at 60% or suspect your 85% is unreal?
 
-At **Cronometras**, we don't sell software. We audit engineering behind your data. If you need to validate real line capacity and ensure production standards, let's talk engineering.
+At **Cronometras**, we don't just sell software: we audit the engineering behind your data. If you need to validate real line capacity and ensure production standards, let's talk engineering.
 
 [**Request Technical Time and OEE Audit**]
 

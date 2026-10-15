@@ -24,11 +24,11 @@ Man-machine interference occurs when an operator has to attend to several machin
 
 ## Methods to Calculate Man-Machine Interference
 
-There are three methods for calculating interferences, based on queuing theory:
+There are three classic methods for calculating interference, based on queuing theory —the Ashcroft tables, the Dale-Jones abacus and the Wright formula— and two complementary tools for studying it case by case: the man-machine diagram and simulation.
 
 ### Ashcroft Tables
 
-- They are used when all machines that are in charge of the same operator are different. The relationship between the largest and smallest cycle does not exceed the value of 2.5.
+- They are used mainly when the machines attended by the same operator are not identical and the production lost to simultaneous stoppages must be quantified.
 
 **Steps:**
 
@@ -38,23 +38,11 @@ There are three methods for calculating interferences, based on queuing theory:
 
 ### The Dale-Jones Abacus
 
+- It is used to obtain the percentage of interference on machine time, crossing the operator's service time with the number of machines attended.
+
 ### The Wright Formula
 
-The Wright formula is a method used to calculate interference in production systems where an operator attends to several machines. Interference is defined as the time during which the operator is not available to attend to a machine because they are busy attending to another machine.
-
-The Wright formula has two variants, depending on the number of machines being considered. For systems with a number of machines less than or equal to 6, an empirical graph is used in which the interference is read without the need for calculations. For systems with a number of machines greater than 7, the expression is used:
-
-```
-I = 1 - (1 - x)^N
-```
-
-Where:
-
-- I is the interference to be calculated.
-- x is the relationship between machine operating time and operator attention time.
-- N is the number of machines.
-
-To use the formula, first determine the value of x, which represents the relationship between machine operating time and operator attention time. Then, substitute this value in the formula, along with the number of machines, to calculate the interference.
+The Wright formula is used to calculate interference in systems where one operator attends to several machines. Interference is the time during which a machine cannot be attended because the operator is busy with another. For systems with six or fewer machines, an empirical graph is used from which interference is read without the need for calculations; for seven or more machines, the Wright expression is used, which we see later with a complete example.
 
 ### Man-Machine Diagram
 
@@ -74,101 +62,66 @@ Next, we explain how to use each of them.
 
 ### Ashcroft Tables: Calculation of Time Supplement for Synchronized Stoppage
 
-The Ashcroft tables were developed in 1950 and allow calculating the time supplement corresponding to the production lost due to synchronized stoppage of two or more machines in charge of an operator. This method is based on the concept of effective number of machines, also known as the Ashcroft number. To calculate it, the formula P=(t1+t2)/(tm-t2) is used, where t1 and t2 are the cycle times of the two slowest machines and tm is the average cycle time. Once the Ashcroft number is calculated, the corrected machine cycle can be obtained, which is the total time it will take the operator to attend to all machines, including interferences.
+The Ashcroft tables come from the work of H. Ashcroft, “The Productivity of Several Machines Under the Care of One Operator” (Journal of the Royal Statistical Society: Series B, 1950), which applies probability concepts to quantify how much production a group of machines loses when a single person attends to them: if two machines stop at the same time, the second must wait for the operator to finish attending to the first. The method is based on the concept of effective number of machines (the Ashcroft number): when the machines are identical, the effective number matches the number of machines attended.
 
-Let's see a practical example. Suppose we have five identical machines, each with a machine capacity of 100 pieces per hour. If for each hour of machine operation there are 0.20 hours of downtime (external operator intervention), what effect does the interference have on the productivity of the installation?
+The procedure is as follows:
 
-To calculate the Ashcroft number, we need to know the cycle times of the two slowest machines. Since all machines are identical, we can take any pair. The cycle time of each machine will be 60 minutes (1 hour) - 0.20 hours (downtime) = 48 minutes. Therefore, t1=t2=48 minutes. The average cycle time will be tm=48 minutes. Applying the Ashcroft formula, we get P=(48+48)/(48-48)=infinity. This result is not valid, as the Ashcroft number must be a finite number. The reason is that we are dealing with identical machines, so the Ashcroft number will be equal to the number of machines, that is, 5.
+- Calculate the cycle time of each machine, distinguishing the running time and the operator’s attention time.
+- Determine the effective number of machines (for identical machines, equal to the number of machines).
+- Look up the corresponding interference supplement in the tables and apply it to the machine cycle to obtain the total time the operator takes to attend to all machines, including waits.
 
-Once the Ashcroft number is calculated, we can obtain the corrected machine cycle. The formula is N*(tm-t2)/A, where N is the number of machines, tm is the average cycle time, and A is the Ashcroft number. Substituting the values, we get 5*(48-0.20)/5 = 47.96 minutes. This is the total time it will take the operator to attend to the five machines, including interferences.
+Let's look at a practical example (illustrative example, built to illustrate the procedure). Suppose five identical machines, each with a capacity of 100 pieces per hour of operation, and that for each hour of machine operation there are 0.20 hours (12 minutes) of downtime due to external intervention by the operator. The calculation works out as:
 
-To calculate the effect of interference on productivity, we must compare the corrected machine cycle with the theoretical cycle time, that is, the time it would take the operator to attend to the machines if there were no interferences. In this case, the theoretical cycle time would be 5*48 = 240 minutes. The difference between the corrected machine cycle and the theoretical cycle time is the time lost due to interferences, which in this case would be 240 - 47.96 = 192.04 minutes. Therefore, interference reduces the productivity of the installation by 80.02% (192.04/240).
+- Each machine produces for 48 minutes of every hour of attendance (60 − 12 = 48 minutes), that is, 80 effective pieces per hour per machine.
 
-So far we have assumed that the operator does not spend any time on internal tasks during machine operation. However, in practice this is usually not the case. Let's see what happens if the operator spends 0.04 hours (2.4 minutes) on each machine during its operation.
+- The operator’s attention takes 12 minutes per machine per hour: with five machines, 5 × 12 = 60 minutes of attention per hour. The operator is busy 100% of the time.
 
-In this case, the cycle time of each machine will be 48 minutes (operating time) + 2.4 minutes (internal time) = 50.4 minutes. The average cycle time will be tm=50.4 minutes. Applying the Ashcroft formula, we get P=(50.4+50.4)/(50.4-50.4)=infinity. As before, this result is not valid, as the Ashcroft number must be a finite number. The reason is that we are dealing with identical machines, so the Ashcroft number will be equal to the number of machines, that is, 5.
+- With the operator at full capacity, every time two machines need attention at the same time, one of them waits. Interference is unavoidable and the actual output of the installation falls below the theoretical 400 pieces per hour (5 × 80).
 
-Once the Ashcroft number is calculated, we can obtain the corrected machine cycle. The formula is N*(tm-t2)/A, where N is the number of machines, tm is the average cycle time, and A is the Ashcroft number. Substituting the values, we get 5*(50.4-0.20)/5 = 50.16 minutes. This is the total time it will take the operator to attend to the five machines, including interferences and internal time.
-
-To calculate the effect of interference on productivity, we must compare the corrected machine cycle with the theoretical cycle time, that is, the time it would take the operator to attend to the machines if there were no interferences. In this case, the theoretical cycle time would be 5*50.4 = 252 minutes. The difference between the corrected machine cycle and the theoretical cycle time is the time lost due to interferences, which in this case would be 252 - 50.16 = 201.84 minutes. Therefore, interference reduces the productivity of the installation by 79.94% (201.84/252).
-
-As can be observed, interference has a great impact on the productivity of the installation. Therefore, it is important to design production processes in a way that minimizes interferences. One way to do this is to increase the number of machines in charge of each operator, so that waiting time is reduced. However, this can have a negative effect on the quality of work and the well-being of the operator. Therefore, it is necessary to find a balance between productivity and working conditions.
+The exact supplement to apply is read from the Ashcroft tables according to the number of machines and the relationship between their cycle times. The practical conclusion is that adding machines to an operator who is already at 100% of their attention time does not increase production: it reduces it through interference, unless the interventions are shortened (preparing tooling and material before the stoppage) or part of the attention is automated.
 
 ### Dale-Jones Abacus: Calculation of Interference Percentage on Machine Time
 
-Another method to calculate interferences is the Dale-Jones abacus. This method is based on the concept of service time, which is the percentage of man time that the worker dedicates in each cycle of each machine, both internal and external. To use the Dale-Jones abacus, first calculate the service time and then horizontally cross the corresponding curve with the number of machines to obtain the percentage of interference on machine time.
+Another method to calculate interference is the Dale-Jones abacus. It is based on the concept of service time: the percentage of time the worker dedicates to each machine in each cycle, both internal work (performed while the machine is running) and external work (with the machine stopped). To use it, first calculate the service time and then cross the corresponding curve with the number of machines, obtaining the percentage of interference on machine time.
 
-Let's see a practical example. Suppose we have a process operated by a worker with 8 machines. The service time of the operator on each machine is 8% and the internal time of the operator in the cycle is 0. What is the impact of interference on total productivity?
+Let's look at a practical example (illustrative example, built to illustrate the procedure). Suppose a process operated by one worker with 8 machines, with a service time of 8% on each machine and no internal work. Crossing the curve for a service time of 8% with the number of machines (8), the abacus gives an interference percentage of around 16.5% of machine time. This percentage is applied to machine time, not to cycle time.
 
-To use the Dale-Jones abacus, we need to know the service time. In this case, it is 8%. Horizontally crossing the curve corresponding to a service time of 8% with the number of machines (8), we obtain an interference percentage of 16.5%. This percentage is applied to machine time, not cycle time.
-
-To calculate the impact of interference on total productivity, we need to know the machine time and cycle time. As these data are not provided in the statement, we will assume them. Let's assume that the machine time is 1 hour (60 minutes) and that the cycle time is 10 minutes.
-
-The total time it will take the operator to attend to the eight machines, including interferences, will be 8*(1+0.165) = 9.32 hours. The total theoretical time, without interferences, would be 8*1 = 8 hours. Therefore, interference reduces total productivity by 16.5% (1.32/8).
+In productivity terms: if the eight machines each need one hour of machine time, the operator will need 8 × (1 + 0.165) = 9.32 clock hours to attend to them all, versus the 8 theoretical hours without interference. The difference (1.32 hours over 8) is the productivity loss of the installation: 16.5%.
 
 ### Wright Formula: Calculation of Interference in Percentage
 
-The third method to calculate interferences is the Wright formula. This formula is applicable when the number of machines is greater than 6 and is based on the concept of interference in percentage, which is applied to the operator's time. The Wright formula is I= 50*[ √((1+X-N)2 +2*N) – (1+X-N) ], where I is the interference in percentage, X is the relationship between machine time and total cycle time (machine time plus downtime), and N is the number of machines.
-
-The Wright formula has two well-differentiated variants:
-
-#### Number of machines less than or equal to 6, N ≤ 6
-
-For this case, an empirical graph is used in which the interference is read without the need for calculations.
-
-#### Number of machines greater than 7, N > 7
-
-In this case, the expression is used:
+The third method to calculate interference is the Wright formula (Wright, Duvall and Freeman, 1936). It calculates interference as a percentage of the operator’s average attention time and is used when there are seven or more machines; for fewer machines, the empirical curve graph is used. The expression is:
 
 ```
-I=50*[√(1+x)^2+2*(N-1)*(1+x)-2*(N-1)-1]
+I = 50 × [ √( (1 + X − N)² + 2·N ) − (1 + X − N) ]
 ```
 
 Where:
 
-- I is the interference to be calculated.
-
-- x is the relationship between machine operating time and operator attention time.
-
+- I is the interference, expressed as a percentage of the operator’s average attention time.
+- X is the ratio between the machine’s average running time and the operator’s average attention time.
 - N is the number of machines.
+
+X must be greater than N − 1 for the attention load to be viable; if it is lower, the operator cannot attend to all the machines and the problem is one of capacity, not interference.
 
 #### Example of Man-Machine Interference Calculation
 
-In a metal factory, they want to occupy a worker with three milling machines. The operator must take care of:
+In a machining factory, one worker is to be assigned three identical milling machines. Each machine takes 30 minutes to make the part automatically, and the operator intervenes for 1.5 minutes per part to load and unload it. Deburring the part (1.5 minutes) is done while the machine is running, so it does not stop the cycle. The maximum interference allowed by the method is 10% of the attention time.
 
-- Preparing the machine by placing the raw material in it. This operation lasts for 45 minutes.
+The data for the formula are:
 
-- Putting and removing the piece from the machine, operation time: 1.75 minutes.
+- X = ratio between the machine running time and the attention time: 30 / 1.5 = 20.
+- N = 3 machines.
 
-- Removing existing burrs in the material while the machine works. The estimated time for this operation is 1.5 minutes.
+Substituting: I = 50 × [ √( (1 + 20 − 3)² + 2·3 ) − (1 + 20 − 3) ] = 50 × [ √330 − 18 ] ≈ **8.3%** of the average attention time.
 
-Additionally, it should be known that each machine takes 30 minutes to make the piece and that the maximum allowed interference is 10%. Will the operator be able to take care of the three machines?
-
-To calculate the interference, the appropriate method must be determined. In this case, the operator must take care of the operation of three identical machines, so the Ashcroft method cannot be used. The Wright formula will be used, then, in its two variants. As we have 3 machines, the empirical graph mentioned in point 2.a will be used.
-
-To calculate the interference, we need the following data:
-
-- **x**: relationship between machine time and service time:
-  - 30 min is the time the machine is working.
-  - 1.5 min is the time the operator is working at the same time as the machine.
-
-- Number of machines: N=3
-
-Introducing these parameters in the presented graph, we have:
-
-<img src="/images/webp/default.webp" alt="Empirical curve for interference calculation (Niebel B. W. et al.)" />
-
-Looking at the graph, it is observed that with a calculated relationship of 20 and 3 machines, there is an interference of 5%. This means that only 5% of the cycle time has overlaps. Taking into account that a maximum of 10% interference is allowed, it can be affirmed that this operator can take care of the three milling machines.
-
-Let's see a practical example. Suppose we have 20 machines and that the machine time is 500 minutes, the machine downtime is 20 minutes, and the machine running time is 0 minutes. What is the interference in percentage?
-
-To calculate the interference in percentage, we need to know the relationship X. In this case, X=500/(500+20)=0.962. Applying the Wright formula, we get I= 50*[ √((1+0.962-20)2 +2*20) – (1+0.962-20) ] = 21.1%. Therefore, the interference in percentage is 21.1%.
+Although the empirical graph is normally used when there are fewer than seven machines, the formula gives a valid approximation in this case. At 8.3%, below the allowed 10%, the operator can take care of the three milling machines: the overlap between attentions exists, but it is acceptable. If the X ratio fell —for example, because the parts require more intervention— interference would grow quickly and the number of machines per operator would have to be reduced or the attention time shortened.
 
 ## How to Minimize Interferences in Work with Machines
 
 To minimize interferences in work with machines, it is important to design production processes in a way that reduces the operator's waiting time. One way to do this is to increase the number of machines in charge of each operator, so that waiting time is reduced. However, this can have a negative effect on the quality of work and the well-being of the operator. Therefore, it is necessary to find a balance between productivity and working conditions.
 
-Another way to minimize interferences is through the automation of some tasks, which reduces the need for human intervention. Additionally, it is important to perform preventive maintenance on machines to avoid unscheduled stops and reduce downtime.
+Another way to minimize interferences is through the automation of some tasks, which reduces the need for human intervention. To measure the attention and cycle times that feed these calculations on the shop floor, time study with an application like [Cronometras](https://cronometras.com/) and work sampling with [WorkSamp](https://worksamp.com/) cover the two required measurements. Additionally, it is important to perform preventive maintenance on machines to avoid unscheduled stops and reduce downtime.
 
 ## Conclusion
 
