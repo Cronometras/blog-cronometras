@@ -20,7 +20,7 @@ export async function getStaticPaths() {
     console.error('Error loading Firestore articles:', error);
   }
   
-  const postsPerPage = 30;
+  const postsPerPage = 21; // DEBE coincidir con index.astro (21): con 30 se salta los índices 21-29 del orden de fecha y las páginas extra que enlaza el widget dan 404
   const languages = ['es', 'en'];
   const paths = [];
 
