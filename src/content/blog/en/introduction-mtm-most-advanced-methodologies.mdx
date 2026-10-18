@@ -30,14 +30,14 @@ The **key advantages** of using PMTS in general include:
 
 ## MTM (Methods-Time Measurement): The Detailed Movement Analysis
 
-**Origin and Concept:** Developed in the United States after World War II by Maynard, Stegemerten, and Schwab, **MTM** is one of the pioneering and most influential PMTS systems. Its philosophy is to analyze any manual operation by breaking it down into the **basic movements** necessary to execute it. The fundamental movements cataloged by MTM include: Reach, Move, Turn, Apply Pressure, Grasp, Position, Release, Disengage, and others such as eye or body movements.
+**Origin and Concept:** Developed in the United States by Maynard, Stegemerten, and Schwab (Westinghouse, 1948), **MTM** is one of the pioneering and most influential PMTS systems. Its philosophy is to analyze any manual operation by breaking it down into the **basic movements** necessary to execute it. The fundamental movements cataloged by MTM include: Reach, Move, Turn, Apply Pressure, Grasp, Position, Release, Disengage, and others such as eye or body movements.
 
 **Basic Operation:** The MTM analyst observes (or visualizes from a design) the task and describes it as a detailed sequence of these basic movements. For each movement, they identify the variables that influence its duration (e.g., for 'Reach': the distance, conditions at start and end; for 'Grasp': the type of object; for 'Position': symmetry, ease of handling). With this information, they consult the MTM data tables (or use software) to find the TMU value corresponding to that specific movement under those conditions. The sum of the TMUs of all movements in the sequence gives the total time for the task (at normal pace, without allowances).
 
 **MTM Levels:** Aware that the level of detail of MTM-1 may be excessive for certain applications, the MTM organization has developed aggregated systems:
 * **MTM-1:** The original system, very detailed. Ideal for short cycles, high repetitiveness, and fine method optimization.
 * **MTM-2:** Combines and simplifies movements from MTM-1. Faster to apply, good precision for medium-duration cycles.
-* **MTM-UAS (Universal Analyzing System):** Even more aggregated than MTM-2, designed to be quick and easy to learn, useful for small batches and longer cycles.
+* **MTM-UAS (Universal Analyzing System):** Even more aggregated than MTM-2, developed in 1976-1978 by the MTM associations of Germany, Switzerland, and Austria for batch and series production; quick and easy to learn.
 * *Others:* There are additional variants such as MTM-MEK (for low volume/unit production), MTM-SD (standard data), etc.
 
 **Strengths of MTM:** It offers an unparalleled level of detail for method analysis and improvement, identifies inefficient or ergonomically unfavorable movements, its data are internationally recognized and serve as the basis for other MTM systems.
@@ -46,10 +46,10 @@ The **key advantages** of using PMTS in general include:
 
 ## MOST (Maynard Operation Sequence Technique): The Sequence-Based Approach
 
-**Origin and Concept:** Developed in the 1960s-70s by Kjell Zandin (working at H.B. Maynard and Company), **MOST** was explicitly designed to be a significantly faster alternative to MTM-1, maintaining acceptable precision for most industrial applications. Instead of focusing on individual micro-movements, MOST analyzes work in terms of standardized **movement sequences**.
+**Origin and Concept:** Developed in the 1970s by Kjell B. Zandin, working at H.B. Maynard and Company, **MOST** was explicitly designed to be a significantly faster alternative to MTM-1, maintaining acceptable precision for most industrial applications. Instead of focusing on individual micro-movements, MOST analyzes work in terms of standardized **movement sequences**.
 
 **Basic Operation:** MOST uses three basic sequence models for general manual activities:
-1.  **General Move Model:** Represents the free spatial movement of an object with the hand. Its sequence is **A B G A B P A**.
+1.  **General Move Model:** Represents the free spatial movement of an object with the hand. Its sequence is **A B G A B P A B**.
     * **A:** Action Distance (distance traveled by hands/body).
     * **B:** Body Motion (body movements such as sitting, standing up).
     * **G:** Gain Control (gaining control of the object, e.g., grasping).
@@ -62,10 +62,10 @@ The **key advantages** of using PMTS in general include:
 
 The analyst identifies which sequence model applies to each part of the task, determines the parameter values for each letter (using index numbers based on distance ranges, complexity, etc.), looks up these indices in the MOST data cards (or software) to obtain the TMUs, and adds them up.
 
-**MOST Versions:**
-* **BasicMOST:** The most common, for typical assembly, machining operations, etc. (cycles of seconds to a few minutes).
-* **MiniMOST:** Designed for very short cycles (< 10-15 seconds), highly repetitive and requiring high precision (e.g., fine electronic assembly). Offers more detail than BasicMOST.
-* **MaxiMOST:** For long-cycle operations (> 2-5 minutes), non-repetitive or with high variability (e.g., maintenance, heavy assembly, complex logistics). Less detailed but quick for this type of work.
+**MOST Versions:** the classic reference (MOST Work Measurement Systems, by K. B. Zandin) chooses the version according to how often the operation is repeated:
+* **BasicMOST:** The most common, for typical assembly, machining operations, etc. that repeat between 150 and 1,500 times per week: from a few seconds to about 10 minutes per cycle (between 0.5 and 3 minutes is the most frequent).
+* **MiniMOST:** Designed for highly repetitive operations —more than 1,500 times per week— and very short cycles, under 1.6 minutes (10 seconds or less is typical), requiring high precision (e.g., fine electronic assembly). Offers more detail than BasicMOST.
+* **MaxiMOST:** For infrequent operations —fewer than 150 times per week— and long cycles, from under 2 minutes up to several hours, non-repetitive or with high variability (e.g., maintenance, heavy assembly, complex logistics). Less detailed but quick for this type of work.
 
 **Strengths of MOST:** Significantly faster to apply than MTM-1, relatively easy to learn, good precision for its speed, logical structure based on recognizable activity sequences.
 
@@ -107,7 +107,7 @@ While they require an investment in specialized training, their ability to drive
 
 ## Additional Resources
 
-To implement an effective work measurement system that combines the advantages of different methods, CRONOMETRAS offers an advanced technological solution for direct stopwatch time study: work elements with their times, synthetic pace rating, ILO and TAL allowances, normal and standard time calculation, and PDF, Excel and JSON reports (the app does not implement predetermined time systems). Our application allows for precise measurements, performance rating, application of allowances, and generation of detailed reports that directly connect with your company's productivity indicators.
+To implement an effective work measurement system that combines the advantages of different methods, CRONOMETRAS offers an advanced technological solution for direct stopwatch time study: work elements with their times, synthetic pace rating, ILO and TAL allowances, normal and standard time calculation, and PDF, Excel and JSON reports (the app does not implement predetermined time systems). Our application allows for precise measurements, performance rating, application of allowances, and generation of detailed reports that provide data to your company's productivity indicators.
 
 [Request a free demo](/en/contact) to discover how CRONOMETRAS can help you implement a comprehensive work measurement system that combines the best of each methodology.
 

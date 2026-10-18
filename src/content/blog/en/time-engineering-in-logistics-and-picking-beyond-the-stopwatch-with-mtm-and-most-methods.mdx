@@ -10,7 +10,7 @@ heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestora
 
 # Time Engineering in Logistics and Picking: Beyond the Stopwatch with MTM and MOST Methods
 
-In Distribution Center (DC) management, intuition is an unacceptable financial risk. When the **Picking and Order Preparation** subsector statistically represents between **55% and 65% of total OPEX** (Operational Expenditure), unmanaged variability translates directly into margin erosion.
+In Distribution Center (DC) management, intuition is an unacceptable financial risk. When **Picking and Order Preparation** concentrate most of the warehouse's operating cost —it is often cited that around **55-65% of total OPEX** (illustrative figure, which depends on the operator and the type of warehouse)—, unmanaged variability translates directly into margin erosion.
 
 However, warehouse operational reality is defined by its "entropy": high variability in locations (XYZ coordinates), SKU geometry, and demand fluctuation. In this scenario, historical estimates ("it has always taken this long") or simple arithmetic averages are technically and financially dangerous.
 
@@ -29,13 +29,13 @@ From time engineering, any task whose **Coefficient of Variation (CV)** exceeds 
 3.  **Stochastic Interferences:** Forklift traffic, stacker crane crossings, and aisle congestion.
 
 ### The Need for Work Sampling
-To neutralize this variance, and following ILO guidelines (*Introduction to Work Study*), it is mandatory to execute a **Work Sampling** prior to standard establishment. This statistical procedure allows determining with precision the percentage of time dedicated to contingencies and interruptions, ensuring allowances applied to Normal Time (NT) reflect operational reality and not obsolete theoretical tables.
+To neutralize this variance, and following ILO guidelines (*Introduction to Work Study*), it is advisable to execute a **Work Sampling** prior to standard establishment. This statistical procedure allows determining with precision the percentage of time dedicated to contingencies and interruptions, ensuring allowances applied to Normal Time (NT) reflect operational reality and not obsolete theoretical tables.
 
 ---
 
 ### Technical Anatomy of Picking Cycle (AS-IS Breakdown)
 
-To optimize, we must first dissect the cycle under *Lean Logistics* lens. Aggregated data from our audits in the Iberian Peninsula reveal an alarming time distribution in non-optimized operations:
+To optimize, we must first dissect the cycle under *Lean Logistics* lens. The time distribution observed in non-optimized operations typically looks like this (illustrative example):
 
 *   **Displacement (Travel Time - Muda):** Represents the largest share of total cycle time. It is "non-vigorous time" and constitutes the biggest waste. Its reduction does not depend on the operator, but on *Slotting* engineering and *Batch Picking* algorithms.
 *   **Extraction (Value Added):** Only a small fraction of the cycle adds real value (the physical moment of the *pick*).
@@ -60,7 +60,7 @@ For logistics, MTM-1 is usually excessively detailed and expensive to maintain. 
 > *   **A10:** Considerable Displacement (Action Distance).
 > *   **G1:** Get light box.
 > *   **P3:** Position (Put) with adjustment.
-> *   **Precision:** ±5% with 95% confidence level.
+> *   **Precision:** determined by the level of data applied: the more aggregated the system, the wider the margin compared to MTM-1.
 
 ### 2. MTM-Logistics
 When greater precision in motion ergonomics is required, we use MTM-Logistics. This system allows scientifically differentiating **Normal Time (NT)** according to location height:

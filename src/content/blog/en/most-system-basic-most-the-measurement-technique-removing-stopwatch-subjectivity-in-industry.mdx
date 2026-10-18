@@ -10,15 +10,15 @@ heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestora
 
 # MOST System (Basic MOST): A Predetermined-Time Measurement Technique in Industry
 
-The Spanish manufacturing industry faces a 2025 scenario marked by double pressure: relentless pressure on operating margins and an increasingly strict labor regulatory framework regarding ergonomics and performance measurement objectivity. In this context, using manual stopwatches and subjective work pace valuation ("Rating") have become technical and legal liabilities.
+The Spanish manufacturing industry faces a 2025 scenario marked by double pressure: relentless pressure on operating margins and an increasingly strict labor regulatory framework regarding ergonomics and performance measurement objectivity. In this context, using manual stopwatches together with poorly documented pace valuation ("Rating") is increasingly perceived as a source of bias and conflict.
 
-Modern methods engineering demands defensible standards. This is where the **MOST System (Maynard Operation Sequence Technique)** positions itself not only as a time tool, but as an essential data management standard to feed MES/ERP systems and Digital Twin models. Unlike traditional timing, MOST reduces analysis time by a 40:1 ratio, offering structured data that eliminates analyst arbitrariness.
+Modern methods engineering demands defensible standards. This is where the **MOST System (Maynard Operation Sequence Technique)** positions itself not only as a time tool, but as an essential data management standard to feed MES/ERP systems and Digital Twin models. Unlike traditional timing, MOST reduces analysis time substantially, offering structured data that eliminates analyst arbitrariness.
 
 ---
 
 ## What is the MOST System and why does it replace MTM-1?
 
-**MOST** is a predetermined time system (PMTS - *Predetermined Motion Time Systems*) derived from MTM, but designed to be applied with significantly higher speed without sacrificing the statistical precision required in general industry.
+**MOST** is a predetermined time system (PMTS - *Predetermined Motion Time Systems*) developed by K. B. Zandin at H. B. Maynard and Company in the late 1960s, derived from MTM, but designed to be applied with significantly higher speed without sacrificing the precision required in general industry. Unlike MTM, it does not analyze individual motions: it describes the task with **parameter sequences**.
 
 While **MTM-1** focuses on exhaustive analysis of basic micro-motions (reach, grasp, turn, release)—making it ideal for very short cycles but impractical for most medium assembly processes—the MOST system shifts the paradigm: it focuses on **object displacement**.
 
@@ -32,9 +32,9 @@ Basic MOST's genius lies in logical grouping of motions. Instead of analyzing ev
 For the industrial engineer or time analyst, MOST's power lies in its three basic sequence models. These algorithms allow parameterizing any manual task into a standardized alphanumeric code.
 
 ### 1. General Move
-Applied when an object is moved freely through the air without mechanical restrictions. The sequence follows this formula:
+Applied when an object is moved freely through the air without mechanical restrictions. The free move sequence (General Move) is written:
 
-$$ A \ B \ G \ A \ B \ P \ A $$
+$$ A \ B \ G \ A \ B \ P \ A \ B $$
 
 Where parameters represent action phases:
 *   **A (Action Distance):** Action distance (mainly horizontal).
@@ -77,9 +77,9 @@ Each parameter in previous formulas ($A, B, G$, etc.) receives a predetermined i
 > *Example:* If a sequence sums 15 in indices, time is $150 \text{ TMU} = 5.4 \text{ seconds}$.
 
 ### Reliability and Defense against Audits
-From a statistical perspective, Basic MOST guarantees a **95% confidence level** with a margin of error of $\pm 5\%$ for aggregated cycles.
+From a statistical perspective, the precision of a MOST study depends on the version and the data level applied to the cycle range at hand.
 
-This mathematical basis makes the system **"Audit-Proof"**. Before labor inspections or union negotiations, time does not depend on the observer's opinion on operator pace (as in timing), but on established work methodology. If the method is followed, the time is irrefutable.
+This mathematical basis makes the system **very defensible**. Before labor inspections or union negotiations, time does not depend on the observer's opinion on operator pace (as in timing), but on established work methodology. If the method is followed, the time is much harder to dispute.
 
 ---
 
@@ -89,7 +89,7 @@ For an Operations Director, measurement methodology choice directly impacts engi
 
 | Feature | Manual Stopwatch | MTM-1 | Basic MOST |
 | :--- | :--- | :--- | :--- |
-| **Analysis Speed** | Slow (Requires 1:1 observation) | Very Slow (250:1 vs cycle) | **Fast (40:1 vs cycle)** |
+| **Analysis Speed** | Slow (Requires 1:1 observation) | Very slow (motion by motion) | **Fast (sequence-based analysis)** |
 | **Rating** | Analyst's technical judgment | N/A (Predetermined 100% ILO) | **N/A (Predetermined 100% ILO)** |
 | **Base for OEE** | "Dirty" historical data | Pure data | **Pure and standardized data** |
 | **Simulation** | Impossible (Requires physical process) | Possible | **Ideal for design phases** |
@@ -101,10 +101,10 @@ For an Operations Director, measurement methodology choice directly impacts engi
 
 ## Regulatory Framework and Ergonomics (Spain 2025 Horizon)
 
-MOST implementation goes beyond productivity; it is a regulatory requirement tool (Compliance).
+MOST implementation goes beyond productivity; it makes standards more objective and defensible.
 
 ### Workers' Statute Compliance
-Labor regulations are advancing towards demanding **algorithmic transparency**. Using stopwatches and judging that an operator works at "80% activity" is legally weak. MOST offers an objective technical breakdown: assigned time corresponds strictly to necessary motions, complying with ILO standards.
+Labor regulations are advancing towards demanding **algorithmic transparency**. Using stopwatches and judging that an operator works at "80% activity" is legally weak. MOST offers an objective technical breakdown: assigned time corresponds strictly to necessary motions, based on fixed time tables of international use.
 
 ### Integration with ISO 11228 (Ergo-MOST)
 There is a direct correlation between MOST parameters and physical load. A high value in parameter **B (Body Motion)**—like $B_{6}$ (bend and arise)—automatically alerts about ergonomic risks.

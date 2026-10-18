@@ -124,23 +124,23 @@ How many times do you need to measure the complete task? There is no single magi
 * **Cycle Duration:** Shorter cycles require more observations to be representative.
 * **Variability:** Tasks with very consistent element times need fewer cycles than those with high variability.
 * **Desired Confidence Level and Precision:** For critical studies, statistical formulas (based on the standard deviation of preliminary readings) are used to calculate the necessary sample size.
-* **Rule of Thumb:** As a general starting point (not statistically rigorous), for short and repetitive cycles (less than 2 minutes), between 20 and 40 observations are usually taken. For longer cycles, fewer may be sufficient (5-15). It is crucial to record enough cycles to capture normal variability.
+* **Rule of Thumb:** There is no magic number of cycles: what matters is recording enough observations to capture the normal variability of the process. Critical studies are sized using statistical formulas based on the preliminary readings, and when the study is carried out with Cronometras, the application implements a system for calculating the number of observations required for 95% reliability.
 
 ## IV. Data Analysis and Calculations: Transforming Numbers into Information
 
 Raw data is not very useful; it must be processed.
 
-### Step 14: Calculate the Average Observed Time (OT) per Element
+### Step 14: Calculate the Average Measured Time (AMT) per Element
 
 * **Calculate Elemental Times:** If you used continuous timing, subtract consecutive readings to obtain the time of each element in each cycle.
 * **Review and Clean Data:** Examine the recorded times for each element. Identify and eliminate abnormally high or low readings that are due to clear errors, interruptions, or non-standard actions documented during observation. Always justify any eliminated data!
-* **Calculate the Average:** Calculate the average observed time for each element by adding all valid times recorded for that element and dividing by the number of valid observations.
+* **Calculate the Mean:** Calculate the average measured time for each element by adding all valid times recorded for that element and dividing by the number of valid observations.
 
 ### Step 15: Apply Pace Rating to Obtain the Basic Time (BT)
 
 Pace rating compensates for the fact that the observed operator may have worked faster or slower than the standard "normal pace" (100%).
-* **Basic Time (BT) = Average Observed Time (OT) × (Average Pace Rating / 100)**
-    For example, if the OT of an element is 0.15 minutes and the average rating for that element was 110 (10% faster than normal), the BT = 0.15 * (110/100) = 0.165 minutes.
+* **Basic Time (BT) = Average Measured Time (AMT) × (Mean Pace Rating / 100)**
+    For example, if the AMT of an element is 0.15 minutes and the mean rating for that element was 110 (10% faster than normal), the BT = 0.15 × (110/100) = 0.165 minutes.
 * BT represents the time it would take a qualified operator to perform the element working at a standard or normal pace.
 
 ### Step 16: Determine and Apply Allowances
@@ -157,7 +157,7 @@ No operator can work continuously without rest or without facing small interrupt
 This is the final result of the study: the time allowed to perform the complete task.
 * **Sum of Basic Times:** Add the Basic Times (BT) of all regular elements of the cycle to obtain the Total Basic Time of the cycle.
 * **Apply Allowances:** **Standard Time (ST) = Total Basic Time × (1 + Sum of Allowances expressed as decimal)**
-    For example, if the Total BT is 1.50 minutes and the total allowances are 15% (0.15), the ST = 1.50 * (1 + 0.15) = 1.725 minutes.
+    For example, if the total BT is 1.50 minutes and the total allowances are 15% (0.15), the ST = 1.50 × (1 + 0.15) = 1.725 minutes.
 * ST represents the total time a qualified worker needs to perform the task once, at a normal pace, including time margins for personal needs, fatigue, and possible contingencies.
 
 ## V. Documentation and Application: Closing the Cycle
@@ -201,7 +201,7 @@ A standard time is not forever. It should be reviewed periodically and, fundamen
 
 ## Conclusion
 
-Conducting a **time and motion study** effectively is a methodical and detailed process, but the benefits it brings are invaluable. Following these **steps for a time and motion study**, from careful preparation to final documentation, you will transform subjective observations into objective and actionable data. This **time and motion study guide** provides you with the framework to understand **how to conduct a time and motion study** that not only measures work, but also lays the foundations for real optimization and significant continuous improvement in your industrial operations. The key is in the rigor and systematic application of each phase!
+Conducting a **time and motion study** effectively is a methodical and detailed process, but the benefits it brings are invaluable. Following these **steps for a time and motion study**, from careful preparation to final documentation, you will transform scattered observations into objective and actionable data. This **time and motion study guide** provides you with the framework to understand **how to conduct a time and motion study** that not only measures work, but also lays the foundations for real optimization and significant continuous improvement in your industrial operations. The key is in the rigor and systematic application of each phase!
 
 ---
 

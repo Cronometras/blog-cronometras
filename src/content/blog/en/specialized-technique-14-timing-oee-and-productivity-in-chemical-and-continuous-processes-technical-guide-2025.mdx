@@ -22,8 +22,8 @@ In this technical guide, we break down **Specialized Technique #14** from **Cron
 
 The first obstacle for a time analyst in a chemical plant is the **visual discontinuity of the cycle**. Unlike an automotive assembly line, here the operator does not set the pace; the reactor does. This generates what we call in methods engineering the "Inactivity Paradox".
 
-### 1. Active Vigilance Definition (ILO Standards)
-Seeing an operator observing a manometer or monitoring a temperature curve on a SCADA is not "leisure". According to ILO (International Labour Organization) standards, this is classified as **Active Vigilance Time** or **Attention Time**. There is significant mental load: the operator is managing the uncertainty of an exothermic reaction or critical pressure.
+### 1. Active Vigilance Definition (ILO Work-Study Terms)
+Seeing an operator observing a manometer or monitoring a temperature curve on a SCADA is not "leisure". In ILO (International Labour Organization) work-study terminology, this is classified as **Active Vigilance Time** or **Attention Time**. There is significant mental load: the operator is managing the uncertainty of an exothermic reaction or critical pressure.
 
 Ignoring this time or classifying it as "avoidable inactivity" distorts saturation calculation and jeopardizes process safety.
 
@@ -47,9 +47,9 @@ For long process phases, we replace the stopwatch with statistics.
 *   **Application:** Conducting instantaneous random observations to determine the percentage of time dedicated to Operation, Vigilance, Displacement, and Inactivity.
 *   **Mathematical Rigor:** We work with a Confidence Level of **95%** and a maximum margin of error of **±5%**. This allows auditing entire shifts without constant engineer presence.
 
-### 2. Standardization with MTM-2 and MOST
+### 2. Standardization of spot tasks
 Physical loading of raw materials into reactors is a high-wear task. A fatigued operator alters their pace (Activity < 100). Rating this pace "by eye" (Performance Judgment) is subjective and a source of union conflicts.
-*   **Solution:** We use direct stopwatch time study with pace rating (valoración sintética del ritmo). This gives a fair base time, independent of operator momentary fatigue.
+*   **Solution:** We use direct stopwatch time study with synthetic pace rating (apreciación sintética del ritmo) and ILO/TAL allowances —the **Cronometras** approach. This gives a fair base time, independent of operator momentary fatigue. Sector predetermined time systems are the alternative: MTM expresses each element in TMU, and MOST (a sector method, by K. B. Zandin) analyzes these tasks with its sequence models — general move (A-B-G-A-B-P-A-B), tool use, and controlled move.
 
 ---
 
@@ -58,19 +58,19 @@ Physical loading of raw materials into reactors is a high-wear task. A fatigued 
 The legal scenario in Spain and the EU is changing drastically. Updates to Prevention Law and **UNE-EN ISO 11228** standard on ergonomics force a reevaluation of fatigue allowances.
 
 ### The Risk of Obsolete Coefficients
-Rest coefficients (K Allowances) have traditionally been applied in this sector. However, the chemical environment presents aggressive conditions that new ILO tables penalize severely:
+Rest coefficients (K Allowances) have traditionally been applied in this sector. However, the chemical environment presents aggressive conditions that call for higher allowances (the exact values are fixed case by case):
 *   Use of complex PPE (chemical suits, autonomous masks).
 *   Work in ATEX zones.
 *   Thermal stress (heat/humidity in reactor zones).
 
-**Technical Projection:** To comply with 2025 regulations, allowances in process plants must be adjusted to the **18% to 25%** range.
+**Technical Projection:** To comply with 2025 regulations, allowances in process plants must be adjusted to the **18% to 25%** range (illustrative example).
 > **Warning:** Maintaining standard times calculated with old coefficients is not only unrealistic but will be legally indefensible before a labor inspection or ergonomic audit.
 
 ---
 
 ## Benchmarking: OEE and Saturation Indicators in Process Plants
 
-Based on our *Market Research Technical Report (2023-2024)*, we have detected critical gaps in sector efficiency:
+Process plants commonly show gaps in sector efficiency (illustrative example):
 
 | Indicator | Current Average (Chemical Sector) | *Best-in-Class* Target |
 | :--- | :---: | :---: |
@@ -79,7 +79,17 @@ Based on our *Market Research Technical Report (2023-2024)*, we have detected cr
 | **Cycle Variability** | ± 15% | **± 2%** |
 
 ### The Hidden Enemy: CIP and SIP
-70% of OEE inefficiencies do not come from reaction speed, but from **Cleaning (CIP) and Sterilization (SIP)** times. Often, these times "hide" in maintenance codes or unplanned stops, representing up to **20% of total available time** without standardization.
+A large share of OEE inefficiencies (illustrative example: around 70%) does not come from reaction speed, but from **Cleaning (CIP) and Sterilization (SIP)** times. Often, these times "hide" in maintenance codes or unplanned stops, representing up to **20% of total available time** (illustrative example) without standardization.
+
+---
+
+## Simulated Practical Case
+
+This example was built for educational purposes and does not correspond to a real implementation of the product or to a specific client. A chemical plant with 4 reactors in parallel (6-hour batch cycle, ≈5,800 batches/year theoretical capacity) achieves:
+
+*   Raising OEE from 58% to 73% (+15 points).
+*   Reducing batch changeover time from 90 min to 45 min.
+*   Raising annual production from ≈3,360 to ≈4,230 batches/year (+26%, in line with the OEE improvement).
 
 ---
 
@@ -111,8 +121,9 @@ At **Cronometras**, we diagnose your real OEE, apply Technique #14, and adjust y
 
 ---
 
-**Meta Description:**
-*Technical guide on time measurement in chemical industry and continuous processes. Analysis of Technique #14, Work Sampling (Tippett), ISO 11228 Standard (2025), and OEE optimization via SMED in cleaning.*
+If you need reliable times to plan and make decisions in a continuous process, [ProdCont](https://prodcont.com/) can help you measure them.
+
+This article is also available in Spanish: [Técnica Especializada #14: Cronometraje, OEE y productividad en procesos químicos y continuos](/es/blog/tecnica-especializada-14-cronometraje-oee-y-productividad-en-procesos-quimicos-y-continuos-guia-tecnica-2025/).
 
 ---
 

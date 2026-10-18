@@ -10,11 +10,11 @@ heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestora
 
 # Multiple Man-Machine Chart: Interference Calculation, ISO 10075 Standard and Stochastic Optimization (Technical Guide 2025)
 
-**The 2025 Reality:** If your engineering department still calculates machine assignment based on the classic deterministic model ($Cycle = Max(Man, Machine)$), your production standards are, with high probability, overestimated between 5% and 15%.
+**The 2025 Reality:** If your engineering department still calculates machine assignment based on the classic deterministic model ($Cycle = Max(Man, Machine)$), your production standards may be overestimated between 5% and 15% (illustrative example). This means you would be sizing your staff with a systematic error that can translate into thousands of euros per year.
 
 In plants with high automation or flexible manufacturing cells, variability is not an exception, it is the norm. The true challenge for the Plant Engineer today is not achieving theoretical **Mechanical Saturation**, but optimizing **Expected Total Cost (ETC)** by managing system stochasticity.
 
-From the Engineering Division of **Cronometras**, we present this technical guide on the transition from static diagram to dynamic modeling, integrating Ashcroft interference tables and new cognitive ergonomics requirements from ISO 10075 standard.
+From the Engineering Division of **Cronometras**, we present this technical guide on the transition from static diagram to dynamic modeling, integrating Ashcroft interference tables and, separately, the cognitive ergonomics principles of the ISO 10075 series (which apply to work design, not to interference calculation).
 
 ---
 
@@ -66,11 +66,11 @@ To calculate time lost due to interference in systems of $n$ machines attended b
 
 ## Regulatory Framework Spain 2025: Cognitive Ergonomics and Safety
 
-Methods engineering in 2025 must not only respond to productivity, but to strict legal compliance. **Cronometras** authority is based on integrating ILO and ISO regulations into technical calculation.
+Methods engineering in 2025 must not only respond to productivity, but to strict legal compliance. **Cronometras** authority is based on integrating ILO guidance and ISO standards into technical calculation.
 
 ### ISO 10075 and Mental Load in Multi-Machine Tasks
 
-Labor Inspection is shifting focus towards psychosocial load. An H-M diagram saturating the operator at 98% is technically viable on paper, but illegal and unsustainable in practice under **UNE-EN ISO 10075 (Ergonomic principles related to mental workload)**.
+Labor Inspection is shifting focus towards psychosocial load. An H-M diagram saturating the operator at 98% is technically viable on paper, but unwise and unsustainable in practice. The **UNE-EN ISO 10075 series (Ergonomic principles related to mental workload)** does not fix percentages of mental load or occupation limits: Part 1 defines the concepts of mental stress and mental strain, Part 2 gives principles of work design, and Part 3 establishes principles and requirements for measuring and assessing mental workload. The operator utilization ranges set in a specific study are a design decision of the plant itself, not standard content.
 
 *   **Divided Attention Fatigue:** Managing multiple asynchronous processes raises cognitive fatigue.
 *   **The 85% Limit:** At Cronometras, we recommend establishing an **active saturation limit of 85%**. The remaining 15% is not "leisure", it is a buffer for cognitive recovery and management of non-tabulated micro-incidents.
@@ -121,7 +121,7 @@ The H-M diagram must not be a static document. It must feed from the **MES (Manu
 Machine assignment in 2025 demands abandoning arithmetic simplicity in favor of statistical modeling and regulatory compliance. The three pillars for successful implementation are:
 
 1.  **Interference Modeling:** Mandatory use of Ashcroft Tables or queue simulation to predict real OEE loss.
-2.  **Cognitive Limit:** Respecting the 85% saturation ceiling (ISO 10075) to guarantee quality and sustainable safety.
+2.  **Cognitive Limit:** Respecting the agreed saturation ceiling (at Cronometras, 85%; a design criterion, not an ISO 10075 requirement) to guarantee quality and sustainable safety.
 3.  **Rigorous Standardization:** Use of MOST/MTM standards to fix manual and walking times, eliminating direct timing subjectivity.
 
 **Do your time standards ignore machine interference or cognitive load?**

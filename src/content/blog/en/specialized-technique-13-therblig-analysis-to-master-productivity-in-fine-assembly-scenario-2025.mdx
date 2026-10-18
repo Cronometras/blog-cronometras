@@ -12,17 +12,17 @@ heroImage: "https://firebasestorage.googleapis.com/v0/b/micaot-com.firebasestora
 
 In an industrial ecosystem where machinery **OEE** (*Overall Equipment Effectiveness*) has been optimized to near technical limits, residual variability and efficiency losses hide almost exclusively in the human factor.
 
-For industrial engineers and plant managers in high-precision sectors—such as electronics, Tier-1 automotive, or medical devices—the 2025 challenge is clear: **traditional timing is dead for short cycles.** When cycle time drops below **0.8 minutes**, the "snapback" methodology is incapable of capturing process reality.
+For industrial engineers and plant managers in high-precision sectors—such as electronics, Tier-1 automotive, or medical devices—the 2025 challenge is clear: **for very short cycles, global timing alone is not enough.** When cycle time drops below **0.8 minutes**, the "snapback" methodology is incapable of capturing process reality.
 
-The only way to reduce cycle times without compromising quality or ergonomics is **Forensic Method Engineering**: the atomic decomposition of manual work into its 17 (or 18) fundamental motions, known as Therbligs.
+The only way to reduce cycle times without compromising quality or ergonomics is **Forensic Method Engineering**: the atomic decomposition of manual work into its 18 fundamental motions, known as Therbligs.
 
-This article breaks down the **Confidential Technical Report TE-13**, revealing how to transform work measurement through micro-motion segregation and MTM (*Methods-Time Measurement*) systems use.
+This article breaks down how to transform work measurement through micro-motion segregation, using therblig analysis and, where it fits the task, sector predetermined time systems such as MTM (*Methods-Time Measurement*).
 
 ---
 
 ## The Collapse of Traditional Timing in Micro-mechanics
 
-Attempting to optimize a fine assembly line with a stopwatch and a pace rating table (Performance) is technical negligence in the current scenario.
+Attempting to optimize a fine assembly line with global timing alone —even with a stopwatch and synthetic pace rating (apreciación sintética del ritmo)— reaches its resolution limits in micro-second motions. Micro-motion analysis reveals what a global reading cannot see.
 
 ### Analyst Physiological Limitations
 The human eye has a critical perception latency. It is physically impossible for an analyst to consistently capture time intervals of less than **0.04 minutes (2.4 seconds)**. In fine assembly, where a "Grasp" motion can last milliseconds, conventional timing introduces an unacceptable statistical error.
@@ -33,36 +33,32 @@ To apply **Technique #13**, we define the work environment under the following c
 *   **High Visual Load:** Constant focus needed.
 *   **Micro-mechanics:** Handling components with dimensions < 10mm.
 
-### The Subjectivity Risk (Rating)
-Without a Predetermined Time System (PTS) like MTM-1 or MOST, valuate "Performance" or "Pace" in high-skill tasks becomes subjective. An operator may appear fast by moving hands quickly but generating technical waste. Technique TE-13 eliminates this subjectivity: **standard time is a function of the method, not apparent speed.**
+### The Rating Question
+Pace rating (apreciación sintética del ritmo) is an agile and simple system, although it requires trained analysts; sector predetermined time systems (PTS) like MTM-1 or MOST avoid rating altogether. In either case, an operator may appear fast by moving hands quickly but generating technical waste. Technique TE-13 eliminates this subjectivity: **standard time is a function of the method, not apparent speed.**
 
 ---
 
 ## Anatomy of Technique #13: Efficient vs. Inefficient Therblig Segregation
 
-Frank and Lillian Gilbreth's concept is not ancient history; it is the fundamental basis of **Cobot** programming and current MTM standards. Technique #13 relies on a relentless binary classification of motions:
+Frank and Lillian Gilbreth's concept is not ancient history; it is the fundamental basis of **Cobot** programming and current MTM standards. The classic list comprises **18 therbligs**, each with its standard code, habitually classified into two groups:
 
-### 1. Value Therbligs (Advancement)
-Are the only ones the customer is willing to pay for, as they physically transform the product or advance the operation:
-*   **Grasp (G):** Take control of the object.
-*   **Assemble (A):** Join two parts.
-*   **Use (U):** Manipulate a tool.
+### 1. Effective Therbligs (they advance the operation)
+They physically transform the product or advance the operation:
+*   **Transport Empty (TE)** (reach), **Transport Loaded (TL)** (move), **Grasp (G)**, **Release Load (RL)**, **Preposition (PP)**, **Assemble (A)**, **Disassemble (DA)** and **Use (U)**.
 
-### 2. Waste Therbligs (Fatigue)
-Do not add value to the product, only add time and ergonomic load to the operator:
-*   **Search (Sh)** and **Select (St)**.
-*   **Hold (H)**.
-*   **Inspect (I)** (unless it is a defined critical quality operation).
+### 2. Ineffective Therbligs (waste, to be reduced)
+They add time and ergonomic load without advancing the operation:
+*   **Search (Sh)**, **Find (F)**, **Select (St)**, **Hold (H)**, **Position (P)**, **Inspect (I)** (unless it is a defined critical quality operation), **Plan (Pn)**, **Unavoidable Delay (UD)**, **Avoidable Delay (AD)** and **Rest (R)**.
 
-**Mathematical Objective:** Maximize Value Therblig density within total Cycle Time, driving Waste Therbligs to zero.
+**Mathematical Objective:** Maximize Effective Therblig density within total Cycle Time, driving Ineffective Therbligs to zero.
 
 > *[Suggested Visual Element: Pie Chart comparing "Cycle Time Distribution: Value Added vs. Inefficient Therbligs (Before and After)"]*
 
 ---
 
-## The 3 Cycle Time "Vampires" in Fine Assembly (Field Data)
+## Simulated Practical Case: The 3 Cycle Time "Vampires" in Fine Assembly
 
-According to data analysis from report TE-13, 40% of time in non-optimized lines is lost in three critical inefficiencies.
+This example was built for educational purposes and does not correspond to a real implementation of the product or to a specific client. In this illustrative example, around 40% of the time in non-optimized lines (illustrative example) is lost in three critical inefficiencies.
 
 ### 1. The Hidden Cost of Search (Sh) and Select (St)
 *   **Root Cause:** Chaotic arrangement of bulk materials and lack of gravity feeding.
@@ -89,7 +85,7 @@ To audit and correct these micro-motions, we don't use stopwatches, we use imagi
     *   **Y-Axis:** Time (expressed in TMU or ten-thousandths of an hour).
     *   **X-Axis:** Left Hand vs. Right Hand Activity.
 3.  **Imbalance Detection:** Visual analysis allows identifying gaps.
-    *   *Technical Example:* If RH performs *Assemble (A)* and LH is in *Hold (H)* or *Wait (UD)*, we have a flagrant imbalance that must be corrected by redistributing workload or improving tooling.
+    *   *Technical Example:* If RH performs *Assemble (A)* and LH is in *Hold (H)* or *Unavoidable Delay (UD)*, we have a flagrant imbalance that must be corrected by redistributing workload or improving tooling.
 
 > *[Suggested Visual Element: Simo-Chart fragment showing RH/LH imbalance and its correction via fixture]*
 
@@ -101,7 +97,7 @@ Justifying standard times in 2025 requires solid regulatory backing, especially 
 
 *   **UNE-EN ISO 11228-3:** This standard regulates handling of light loads at high frequency. Therblig analysis is documentary proof to validate that motion frequency is not injurious.
 *   **Standard Justification:** By basing standard time on MTM and Therbligs, discussion shifts from "operator speed" (subjective) to "work method" (objective).
-*   **Allowances Reduction:** By eliminating fatigue Therbligs (*Bend, Body turn, Static hold*), rest coefficients (fatigue allowances) can representatively be adjusted downwards legitimately, resulting in a more competitive but less arduous standard for the worker.
+*   **Allowances Reduction:** By eliminating fatigue-inducing Therbligs (e.g. *Hold (H)* and *Unavoidable Delay (UD)*), rest coefficients (fatigue allowances) can representatively be adjusted downwards legitimately, resulting in a more competitive but less arduous standard for the worker.
 
 ---
 
@@ -112,11 +108,11 @@ For plants seeking to adopt **Technique #13**, we propose the following consulta
 ### Step 1: Micro-motion Audit
 Mapping potentially Type II (Delays) and III (Mental Elements) Therbligs via video analysis at bottleneck stations.
 
-### Step 2: MTM-1 Normalization
-Converting observed times to predetermined times. This eliminates operator variability and establishes a *base time* founded on human motion physics.
+### Step 2: Time Normalization
+Normalizing times with a sector system like MTM-1, or by observing real work with synthetic pace rating (apreciación sintética del ritmo). Both reduce operator variability and establish a *base time* founded on human motion physics.
 
 ### Step 3: Job Redesign (Micro Layout)
-Moving *Grasp (G)* zones closer to the **Normal Work Zone** (35-40cm radius from elbow). The goal is minimizing classes C and D of *Reach (RE)* and *Move (M)* motions, which consume most time and generate most shoulder fatigue.
+Moving *Grasp (G)* zones closer to the **Normal Work Zone** (35-40cm radius from elbow). The goal is minimizing long *Transport Empty (TE)* and *Transport Loaded (TL)* motions, which consume most time and generate most shoulder fatigue.
 
 **Expected ROI:** Eliminating *Search* and *Select* alone can cut cycle time noticeably, without requiring massive automation investments.
 
@@ -128,7 +124,7 @@ In the 2025 industrial scenario, we cannot afford to pay wages for motions that 
 
 Fine assembly requires precision, and precision requires data. Stop timing waste and start designing value.
 
-> *[Suggested Visual Element: Infographic of 17 Therbligs with their standard symbols, categorized into Efficient and Inefficient]*
+> *[Suggested Visual Element: Infographic of 18 Therbligs with their standard symbols, categorized into Effective and Ineffective]*
 
 ---
 
@@ -136,6 +132,12 @@ Fine assembly requires precision, and precision requires data. Stop timing waste
 Request a time study with the **Cronometras** team today.
 
 [**>> Contact Methods Engineering**]
+
+---
+
+If you want to identify and eliminate these unproductive motions in your assembly lines, [ProdCont](https://prodcont.com/) can help you measure and correct them.
+
+This article is also available in Spanish: [Técnica Especializada #13: Análisis de Therbligs en montaje fino](/es/blog/tecnica-especializada-13-analisis-de-therbligs-para-dominar-la-productividad-en-el-montaje-fino-escenario-2025/).
 
 ---
 

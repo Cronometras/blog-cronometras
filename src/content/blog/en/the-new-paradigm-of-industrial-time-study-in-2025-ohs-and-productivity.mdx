@@ -19,7 +19,7 @@ From the technical perspective of **Cronometras**, data analysis demonstrates th
 The current regulatory framework demands bidirectional integration between Process Engineering and Industrial Hygiene. For a plant engineer, calculating times without considering these regulations is a *compliance* risk.
 
 ### Update of Royal Decree 486/1997
-Legislation has evolved to severely limit work in thermal stress conditions (AEMET orange or red alerts) if corrective measures are not guaranteed. For time study, this implies recalculating **metabolic load** and recovery periods intrinsic to the cycle.
+Spanish Law 31/1995 on Occupational Risk Prevention and Royal Decree 486/1997 require that the design of the workplace and the task does not pose a risk to the safety and health of workers, and that duty extends to the work pace imposed by the cycle. For time study, this implies recalculating **metabolic load** and recovery periods intrinsic to the cycle.
 
 ### Essential UNE-EN ISO Standards for Standard Time Defense
 To establish a defensible **Standard Time** before works councils and inspections, allowances must be based on scientific standards, not arbitrary estimates:
@@ -46,7 +46,7 @@ When the body's internal temperature rises, the cardiovascular system diverts bl
 The application of predetermined time systems (MTM-1, MTM-2, MOST) must be audited under the lens of environmental conditions.
 
 ### 1. Thermal Stress (Heat + Humidity)
-An operator working at 32°C with 70% relative humidity experiences a drop in psychomotor efficiency of 15% to 20%.
+An operator working at high temperature and humidity experiences a drop in psychomotor efficiency (illustrative example: around 15% to 20% at 32°C with 70% relative humidity).
 *   **Impact on Motions:** In high-concentration tasks, *Reach* and *Position* micro-movements slow down.
 *   **Sweat Factor:** Loss of friction on the skin requires greater *Grasp* force, which fatigues forearms prematurely. The allowance must include time for constant hydration.
 
@@ -64,12 +64,12 @@ The use of masks or industrial respirators increases inhalation resistance, rais
 To differentiate from generalist consultancies, we recommend abandoning "eye-balling" and applying a matrix model in **[Cronometras](https://cronometras.com)**.
 
 ### Critical Variables
-1.  **H (Hygrothermal):** WBGT Index. If WBGT > 28, the allowance scales dynamically according to workload (Light/Medium/Heavy).
+1.  **H (Hygrothermal):** WBGT Index. When the WBGT index exceeds the thresholds set for each workload category (Light/Medium/Heavy) in ISO 7243, the allowance scales dynamically according to workload.
 2.  **V (Ventilation):** Negative correction factor if effective forced ventilation directly to the operator exists.
-3.  **L (Lighting):** Precision work under < 300 lux or with glare requires eye micro-pauses (Allowance +2% to +5%).
+3.  **L (Lighting):** Precision work under < 300 lux or with glare requires eye micro-pauses (allowance assessed case by case).
 
-### Composite Rest Coefficient Integration Formula
-The final coefficient is not a simple sum, but a weighted integration:
+### Composite Rest Coefficient Integration Scheme
+Rather than a simple sum, the final coefficient is built as a weighted integration. It is a conceptual scheme, not a standardized calculation method:
 
 $$K_{d} = K_{physiological} + K_{force} + (K_{thermal} \times Factor_{PPE}) + K_{environmental\_others}$$
 

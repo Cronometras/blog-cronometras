@@ -18,7 +18,7 @@ In this **Cronometras** technical analysis, we dissect direct correlation betwee
 
 ## The Hidden Equation: How "Muri" (Overburden) Alters Standard Time ($T_t$)
 
-For a time engineer, Standard Time formula is sacred. According to ILO regulations and industrial engineering best practices, it is defined as:
+For a time engineer, Standard Time formula is sacred. According to ILO work-study practice and industrial engineering best practices, it is defined as:
 
 $$T_{t} = T_{b} \times (1 + \%Allowances)$$
 
@@ -30,7 +30,7 @@ Where:
 ### The "Class 1" Error in Predetermined Systems
 Systemic error in most plants is calculating basic times ($T_b$) using predetermined time systems (like MTM-1, MTM-UAS, or MOST) assuming ideal or "Class 1" conditions. Analyst models motion on paper, but plant reality introduces **"Muri" (Overburden)**.
 
-When an operator works with awkward postures (e.g., trunk flexion >20º) or under static loads, physiology imposes a toll. This forces applying **Variable Fatigue** allowances oscillating between **12% and 20%** over basic time to comply with agreements and ILO regulations.
+When an operator works with awkward postures (e.g., trunk flexion >20º) or under static loads, physiology imposes a toll. This forces applying **Variable Fatigue** allowances over basic time (the exact percentage is fixed case by case, according to the applicable agreements and allowance schemes).
 
 ### Micro-pauses and Variance Phenomenon
 Even more critical for OEE is what is not measured. A workstation with poor ergonomics causes operator to introduce **non-standardized motions** (micro-pauses, stretching, grip changes) to recover blood flow. These deviations are not detected in punctual timing but generate variance ($S^2$) destabilizing line balancing and making maintaining constant 100 Pace impossible for 8 hours.
@@ -43,7 +43,10 @@ At **Cronometras** we hold a technical maxim: **A work method is not valid if it
 
 High-level methodology demands auditing processes with **EAWS (Ergonomic Assessment Worksheet)** simultaneously with MTM-UAS analysis.
 
-### Case Study: Line Assembly (Metal-mechanic)
+### Simulated Practical Case: Line Assembly (Metal-mechanic)
+
+This example was built for educational purposes from plausible industry parameters. It does not correspond to a real implementation of the product or to a specific client.
+
 Let's analyze a screwdriving station in low zone (height < 50 cm):
 *   **Situation A (Current):** Operator performs MTM `AB` (Bend) and `AS` (Arise) motions.
     *   MTM Cost: ~60 TMU per cycle.
@@ -61,7 +64,7 @@ Let's analyze a screwdriving station in low zone (height < 50 cm):
 Plant Managers must prepare for restrictive regulatory and demographic scenario in Spain and Europe.
 
 ### 1. Ageing Workforce
-Average industrial operator age will exceed 48 years in 2025. Functional capacity decays, and predetermined times (designed under "young average man" standards) will cease to be realistic without adjustments. If technical ergonomics is not improved, unions will demand **upward revisions of fatigue allowances**, increasing operator-minute cost.
+The average age of the industrial workforce keeps rising. Functional capacity decays, and predetermined times (designed under "young average man" standards) will cease to be realistic without adjustments. If technical ergonomics is not improved, unions will demand **upward revisions of fatigue allowances**, increasing operator-minute cost.
 
 ### 2. ISO Audits and Frequency Penalty
 Reference standards for time calculation must be crossed with:
@@ -87,11 +90,11 @@ We do not sell comfort; we sell process stability and *Takt Time* assurance. Sol
 
 ## Impact on OEE and Ergonomic Intervention ROI
 
-For Operations Management, financial data is conclusive. Applied ergonomics is a profitability tool:
+For Operations Management, applied ergonomics is a profitability tool. A well-designed program seeks measurable results in three fronts:
 
-*   **Variance Reduction ($S^2$):** Ergonomically optimized stations (RULA score < 3) show cycle time standard deviation **40% lower**. This allows MRP reliability and production planning without safety "buffers".
-*   **Quality Rate:** 30% of defects in manual processes occur in last 90 minutes of shift. Root cause is localized muscle fatigue preventing motor precision. Ergonomics = Quality at shift end.
-*   **Return on Investment (ROI):** Our average recovery calculations sit at **4.5 months**, based solely on time savings (allowance reduction) and technical absenteeism reduction.
+*   **Variance Reduction ($S^2$):** Ergonomically optimized stations (RULA score < 3) show lower cycle time dispersion (illustrative example: standard deviation around 40% lower). This allows MRP reliability and production planning without safety "buffers".
+*   **Quality Rate:** A significant share of defects in manual processes occurs at the end of the shift (illustrative example: 30% of defects in the last 90 minutes of shift). Root cause is localized muscle fatigue preventing motor precision. Ergonomics = Quality at shift end.
+*   **Return on Investment (ROI):** The payback comes from time savings (allowance reduction) and lower technical absenteeism, and it should be quantified case by case.
 
 ---
 
@@ -104,7 +107,7 @@ It is calculated via valuation tables scoring factors such as force exerted, pos
 MTM-UAS is preferable for serial production of large batches with medium-long cycles and allows better description of compound body motions. In high load stations, MTM-UAS facilitates identification of "Auxiliary" motions symptomatic of poor ergonomics, while MTM-2 might mask them due to lower granularity.
 
 ### When is introducing an exoskeleton in assembly line profitable?
-Profitable when operation implies keeping arms above shoulders more than 30% of cycle or repetitive lumbar manipulations, and activity drop greater than 10% is detected in last hours of shift.
+Profitable when operation implies keeping arms above shoulders for a large part of the cycle or repetitive lumbar manipulations, and a clear activity drop is detected in the last hours of shift.
 
 ### How does RULA score affect OEE calculation?
 High RULA score (>6) indicates high probability of micro-stops and speed reduction (Performance Loss), as well as increased errors (Quality Loss). Improving score directly impacts two of three OEE factors.
