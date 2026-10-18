@@ -26,8 +26,11 @@
   #     Para endurecer más, mover a nonces/hashes.
   #   - fonts.googleapis.com y fonts.gstatic.com son para la fuente de marca
   #   - www.googletagmanager.com y www.google-analytics.com son para GA4
+#   - *.cloudflareinsights.com es para Cloudflare Web Analytics (beacon RUM);
+#     sin esto el navegador BLOQUEA el beacon (CSP) — fue la causa de que
+#     cronometras apareciera a 0 en Cloudflare (verificado 2026-10-18)
   #   - cdn.jsdelivr.net es para KaTeX (matemáticas en posts)
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://*.cloudflareinsights.com; frame-ancestors 'none'; form-action 'self'; base-uri 'self'
   # Habilitar XSS filter (legacy browsers)
   X-XSS-Protection: 1; mode=block
 
