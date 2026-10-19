@@ -176,53 +176,44 @@ function transformToBlogPost(article: FirestoreArticle, lang: 'es' | 'en'): Blog
     };
 }
 
+// Module-level cache: the whole build (hundreds of pages) shares ONE Firestore
+// fetch. Before this, every page re-fetched the full collection (2 queries),
+// costing ~110k document reads per build and blowing the free daily quota.
+let rawArticlesCache: FirestoreArticle[] | null = null;
+
+async function getAllRawArticles(): Promise<FirestoreArticle[]> {
+    if (rawArticlesCache) return rawArticlesCache;
+    const db = getAdminFirestore();
+    // NOTE: no .orderBy() — it would need a composite index we don't have.
+    // Sorted by createdAt DESC client-side below (cheap for ~250 docs).
+    const snap = await db.collection('articulos_cronometras').get();
+    rawArticlesCache = snap.docs.map(d => {
+        const data = d.data() as Omit<FirestoreArticle, 'id'>;
+        return { id: d.id, ...data };
+    });
+    console.log(`Fetched ${rawArticlesCache.length} docs from articulos_cronometras (single fetch, cached)`);
+    return rawArticlesCache;
+}
+
 async function fetchArticlesByLang(lang: 'es' | 'en'): Promise<BlogPost[]> {
     try {
         console.log(`Fetching articles from Firestore collection: articulos_cronometras (admin SDK) [lang=${lang}]`);
 
-        const db = getAdminFirestore();
-        // NOTE: we don't use .orderBy() here because the query
-        // (where language == X, orderBy createdAt) requires a composite index
-        // that we don't have on articulos_cronometras. The result is sorted
-        // by createdAt DESC client-side below (cheap for ~150 docs).
-        //
-        // For Spanish, we ALSO include legacy docs from the generator that
-        // don't have a `language` field (they were created before i18n support).
-        // For English, only docs with language='en' exist.
-        let snapshot;
-        if (lang === 'es') {
-            const [snapEs, snapAll] = await Promise.all([
-                db.collection('articulos_cronometras').where('language', '==', 'es').get(),
-                db.collection('articulos_cronometras').get(),
-            ]);
-            // Filter legacy docs (no `language` field) client-side
-            const legacyDocs = snapAll.docs.filter(d => {
-                const data = d.data();
-                return data.language === undefined && data.status === 'completed' && !data.draft && data.content;
-            });
-            // Build a "fake" QuerySnapshot that supports forEach by extending the original
-            // We need an object with forEach — easiest is to create one that wraps a merged array
-            const allDocs = [...snapEs.docs, ...legacyDocs];
-            snapshot = {
-                forEach: (cb) => allDocs.forEach(cb),
-                size: allDocs.length,
-                docs: allDocs,
-            };
-        } else {
-            snapshot = await db.collection('articulos_cronometras')
-                                    .where('language', '==', lang)
-                                    .get();
-        }
-
+        // Single fetch per build, filtered in memory:
+        // - lang='es': docs with language='es' PLUS legacy docs (no `language`
+        //   field, created before i18n support).
+        // - lang='en': only docs with language='en'.
+        const all = await getAllRawArticles();
         const articles: BlogPost[] = [];
-        snapshot.forEach((doc) => {
-            const data = doc.data() as Omit<FirestoreArticle, 'id'>;
-            const article: FirestoreArticle = { id: doc.id, ...data };
+        for (const article of all) {
+            const langMatches = lang === 'es'
+                ? (article.language === 'es' || article.language === undefined)
+                : article.language === lang;
             // Only include completed, non-draft posts
-            if (article.status === 'completed' && !article.draft && article.content) {
+            if (langMatches && article.status === 'completed' && !article.draft && article.content) {
                 articles.push(transformToBlogPost(article, lang));
             }
-        });
+        }
 
         // Sort by createdAt DESC in JS (avoiding the need for a composite index)
         articles.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
