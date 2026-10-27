@@ -1,0 +1,12 @@
+{
+  "mode": "built-in image_gen",
+  "date": "2026-10-27",
+  "images": [
+    {
+      "slug": "saturacion",
+      "original": "saturation-study.webp",
+      "generatedPath": "C:\\Users\\micao\\.codex\\generated_images\\01a17deb-4a90-7cd0-b1f9-1b3ef1d1e162\\exec-cff54843-61db-42a8-a8af-61644d8d1064.png",
+      "prompt": "Use case: compositing. Asset type: polished app product image for the Cronometras website/blog, matching the existing set of premium device mockups. Edit target: the attached real saturation-study screenshot. Show one landscape desktop display with very thin satin graphite bezel and subtle short stand, nearly front facing. Insert the supplied screenshot faithfully in the screen, with its original aspect ratio and all content visible. Remove only the Windows title bar and external scrollbar from the displayed screenshot. Preserve the purple navigation, the dark TIEMPO OBSERVADO panel with 00:00:10, orange Pausar observación and red Finalizar observación buttons, the Operario panel with Trabajando, active time 00:00:08, saturation 85.4%, and the Máquina panel with Parada, active time 00:00:01, saturation 15.1%, plus their original controls. No UI redesign or invented data. Composition: landscape 3:2 canvas, centered monitor with 8% safe margins, nothing clipped. Backdrop: seamless very pale off-white lavender #f7f5fa, subtle broad lavender glow and tiny green tint near the base, soft realistic contact shadow. Lighting: soft diffused studio light. Brand purple #6b1fab, green #22c55e, warm yellow #fbbf24. Style: restrained premium product studio photography. No text outside screen, no slogans, no watermarks, no people, no props, no decorative icons. Finished individual image."
+    }
+  ]
+}

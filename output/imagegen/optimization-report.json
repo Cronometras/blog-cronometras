@@ -1,0 +1,2081 @@
+[
+  {
+    "source": "/images/webp/adaptada-a-moviles-tablets-y-pc.webp",
+    "src": "/images/app-showcases/multiplataforma.webp",
+    "originalBytes": 42342,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 7614,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 19268,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 34068,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 66958,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometro-repetitivos.webp",
+    "src": "/images/app-showcases/cronometraje.webp",
+    "originalBytes": 29590,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3928,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9904,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17198,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 32598,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/calculo-de-tomas-restantes.webp",
+    "src": "/images/app-showcases/fiabilidad.webp",
+    "originalBytes": 37196,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4116,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10346,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18558,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 36128,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/resultados-en-tiempo-real.webp",
+    "src": "/images/app-showcases/resultados.webp",
+    "originalBytes": 168208,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5274,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15562,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 31792,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 65584,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/gestion-integral-de-estudios.webp",
+    "src": "/images/app-showcases/gestion-estudios.webp",
+    "originalBytes": 95004,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5984,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15876,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 29204,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 60440,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/informe-pdf.webp",
+    "src": "/images/app-showcases/informe.webp",
+    "originalBytes": 39056,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4624,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13700,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 27036,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 55412,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/saturation-study.webp",
+    "src": "/images/app-showcases/saturacion.webp",
+    "originalBytes": 93688,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5372,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13928,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 25962,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 50326,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometras-app.webp",
+    "src": "/images/app-showcases/cronometras-app.webp",
+    "originalBytes": 22248,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 2534,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 6582,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 11192,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 22504,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometraje-de-tiempos-de-maquina.webp",
+    "src": "/images/app-showcases/cronometraje-maquina.webp",
+    "originalBytes": 33018,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3050,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8428,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16326,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 31854,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/tiempos-de-maquina-concurrentes-para-calculo-ed-tiempo-estandar.webp",
+    "src": "/images/app-showcases/tiempos-maquina-concurrentes.webp",
+    "originalBytes": 38550,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3676,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10528,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 19486,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 40282,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/pantalla-para-cronometrar-tiempos-de-maquina-en-un-estudio-de-tiempos.webp",
+    "src": "/images/app-showcases/cronometro-maquina.webp",
+    "originalBytes": 37214,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3610,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9504,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16584,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 33314,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronoanalisis-de-tiempos-de-maquina.webp",
+    "src": "/images/app-showcases/cronoanalisis-de-tiempos-de-maquina.webp",
+    "originalBytes": 36414,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3694,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9096,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16448,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 32198,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/eliminar-tiempos-de-maquina.webp",
+    "src": "/images/app-showcases/eliminar-tiempos-de-maquina.webp",
+    "originalBytes": 33040,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3760,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10096,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17988,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 34400,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/tipos-de-elemento-en-un-estudio-de-metodos-y-tiempos-segun-su-relacion-con-la-maquinaria.webp",
+    "src": "/images/app-showcases/tipos-elemento-relacion-maquinaria.webp",
+    "originalBytes": 46338,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4054,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11266,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 20638,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 41712,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/tipos-de-elemento-segun-su-frecuencia-de-aparicion-en-el-ciclod-e-trabajo.webp",
+    "src": "/images/app-showcases/tipos-elemento-frecuencia.webp",
+    "originalBytes": 44420,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3636,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10218,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18758,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 38052,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/reconocimiento-de-voz.webp",
+    "src": "/images/app-showcases/reconocimiento-de-voz.webp",
+    "originalBytes": 44958,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3874,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10696,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 19708,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 40324,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/metodo-biblioteca-de-elementos-1.webp",
+    "src": "/images/app-showcases/metodo-biblioteca-de-elementos-1.webp",
+    "originalBytes": 63170,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3778,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11648,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 23726,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 48822,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/reordena-el-metodo-de-trabajo.webp",
+    "src": "/images/app-showcases/reordena-el-metodo-de-trabajo.webp",
+    "originalBytes": 56270,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3952,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11138,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 21692,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 44176,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/creacion-y-gestion-de-organizaciones.webp",
+    "src": "/images/app-showcases/creacion-y-gestion-de-organizaciones.webp",
+    "originalBytes": 15944,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 2478,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 7422,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 13444,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 26436,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/invitacion-de-miembros.webp",
+    "src": "/images/app-showcases/invitacion-de-miembros.webp",
+    "originalBytes": 25518,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3104,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8250,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 15244,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 28444,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/compartir-estudios-con-m-i-organizacion.webp",
+    "src": "/images/app-showcases/compartir-estudios-con-m-i-organizacion.webp",
+    "originalBytes": 26836,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3336,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9540,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17522,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 33088,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/gestion-de-empresas-y-departamentos.webp",
+    "src": "/images/app-showcases/gestion-de-empresas-y-departamentos.webp",
+    "originalBytes": 27970,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3582,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10998,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 21146,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 42744,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/desactiva-elementos-para-tomar-tiempos-a-elementos-individualmente.webp",
+    "src": "/images/app-showcases/cronometraje-selectivo.webp",
+    "originalBytes": 34122,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3612,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8946,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16086,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 31026,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/estadisticas-en-tiempo-real.webp",
+    "src": "/images/app-showcases/estadisticas-en-tiempo-real.webp",
+    "originalBytes": 27600,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3686,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9554,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16604,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 32100,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/comentarios-en-los-registros-de-tiempos-de-un-estudio-de-metodos-y-tiempos.webp",
+    "src": "/images/app-showcases/comentarios-registros-tiempo.webp",
+    "originalBytes": 21004,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3048,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 7892,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 13182,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 25032,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/edicion-de-tiempos.webp",
+    "src": "/images/app-showcases/edicion-de-tiempos.webp",
+    "originalBytes": 22418,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3072,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 7606,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 13288,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 26332,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/report-customization.webp",
+    "src": "/images/app-showcases/report-customization.webp",
+    "originalBytes": 57322,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4202,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11390,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 22342,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 45862,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/data-visualization.webp",
+    "src": "/images/app-showcases/data-visualization.webp",
+    "originalBytes": 56260,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3630,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10346,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 19966,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 41232,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/executive-summary.webp",
+    "src": "/images/app-showcases/executive-summary.webp",
+    "originalBytes": 52154,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4298,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 12140,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 22296,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 44296,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/excel-export.webp",
+    "src": "/images/app-showcases/excel-export.webp",
+    "originalBytes": 43268,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4508,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13702,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 26998,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 55594,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/advanced-calculations.webp",
+    "src": "/images/app-showcases/advanced-calculations.webp",
+    "originalBytes": 116302,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4536,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 12774,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 24492,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 50280,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/doble-factor-de-autenticacion-mfa.webp",
+    "src": "/images/app-showcases/doble-factor-de-autenticacion-mfa.webp",
+    "originalBytes": 14388,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 2594,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 6894,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 12166,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 24088,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cambiar-password-seguridad-mfa.webp",
+    "src": "/images/app-showcases/cambiar-password-seguridad-mfa.webp",
+    "originalBytes": 20766,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3116,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8794,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16364,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 33136,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/panel-de-seguridad-de-la-cuenta.webp",
+    "src": "/images/app-showcases/panel-de-seguridad-de-la-cuenta.webp",
+    "originalBytes": 35822,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3544,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9814,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18092,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 35884,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/fatigue-allowances.webp",
+    "src": "/images/app-showcases/fatigue-allowances.webp",
+    "originalBytes": 41312,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3796,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10496,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18782,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 37508,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/personal-needs.webp",
+    "src": "/images/app-showcases/personal-needs.webp",
+    "originalBytes": 85770,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3588,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10038,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 19154,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 39730,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/work-conditions.webp",
+    "src": "/images/app-showcases/work-conditions.webp",
+    "originalBytes": 93084,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3178,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8538,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 15366,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 30258,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/special-allowances.webp",
+    "src": "/images/app-showcases/special-allowances.webp",
+    "originalBytes": 37978,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3976,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10882,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 20180,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 39522,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/machine-fatigue.webp",
+    "src": "/images/app-showcases/machine-fatigue.webp",
+    "originalBytes": 64928,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4080,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11526,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 22594,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 48798,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/imagenes-por-registro-en-cronometro-continuo.webp",
+    "src": "/images/app-showcases/imagenes-por-registro-en-cronometro-continuo.webp",
+    "originalBytes": 53738,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4176,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11646,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 22108,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 43000,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/unidades-personalizadas-para-reportes-en-la-pantalla-de-info.webp",
+    "src": "/images/app-showcases/unidades-personalizadas-reportes.webp",
+    "originalBytes": 40740,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 2808,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8450,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16874,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 35624,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/imagenes-del-proceso-visual-en-la-pantalla-info.webp",
+    "src": "/images/app-showcases/imagenes-proceso-informacion.webp",
+    "originalBytes": 41538,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3056,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9206,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18362,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 38572,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/biblioteca-de-elementos-pantalla-inicial.webp",
+    "src": "/images/app-showcases/biblioteca-elementos.webp",
+    "originalBytes": 42940,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3642,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 10484,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18954,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 38398,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/vista-expansiva-de-elementos-y-seleccion-de-elementos-desde-la-biblioteca-para-crear-un-nuevo-estudio-a-partir-de-ellos.webp",
+    "src": "/images/app-showcases/seleccion-elementos-biblioteca.webp",
+    "originalBytes": 59262,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4528,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13812,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 26122,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 50226,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/modal-de-creacion-de-nuevo-estudio-desde-la-biblioteca.webp",
+    "src": "/images/app-showcases/crear-estudio-desde-biblioteca.webp",
+    "originalBytes": 52756,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3774,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11090,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 21836,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 44720,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/mapear-excel-para-importar.webp",
+    "src": "/images/app-showcases/mapear-columnas-excel.webp",
+    "originalBytes": 72402,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4904,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15412,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 28922,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 60464,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/seleccion-simbolo-asme-diagrama-de-flujo.webp",
+    "src": "/images/app-showcases/simbolos-asme-diagrama-flujo.webp",
+    "originalBytes": 77078,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4984,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15088,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 28266,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 57608,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/crea-el-metodo-de-trabajo.webp",
+    "src": "/images/app-showcases/crear-elemento-metodo.webp",
+    "originalBytes": 22516,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 2794,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 7328,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 13178,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 25752,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/aplicacion-de-suplementos-de-fatiga-oit.webp",
+    "src": "/images/app-showcases/aplicar-suplementos-oit.webp",
+    "originalBytes": 141016,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3782,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11018,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 19542,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 42882,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometraje-industrial-de-elementos-repetitivos-encadenados.webp",
+    "src": "/images/app-showcases/cronometraje-elementos-encadenados.webp",
+    "originalBytes": 62362,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3548,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8972,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16260,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 32882,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/pantalla-de-cronometraje-continuo.webp",
+    "src": "/images/app-showcases/pantalla-de-cronometraje-continuo.webp",
+    "originalBytes": 33450,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3684,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9028,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16554,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 32822,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/imagenes-por-elemento.webp",
+    "src": "/images/app-showcases/imagenes-por-elemento.webp",
+    "originalBytes": 73160,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4708,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13750,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 26356,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 54266,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/grabar-video-simultaneamente.webp",
+    "src": "/images/app-showcases/grabar-video-simultaneamente.webp",
+    "originalBytes": 60298,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5512,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 14162,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 24576,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 47776,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometro-continuo.webp",
+    "src": "/images/app-showcases/cronometro-continuo.webp",
+    "originalBytes": 38006,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3478,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9164,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16634,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 32566,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/importar-desde-excel.webp",
+    "src": "/images/app-showcases/importar-desde-excel.webp",
+    "originalBytes": 56276,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4492,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 12770,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 24142,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 47744,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/estudios-compartidos.webp",
+    "src": "/images/app-showcases/estudios-compartidos.webp",
+    "originalBytes": 69472,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 6330,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15886,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 31144,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 59486,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/crea-un-nuevo-estudio-de-tiempos-de-trabajo.webp",
+    "src": "/images/app-showcases/crear-estudio-tiempos.webp",
+    "originalBytes": 39902,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3054,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8090,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 15468,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 31192,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometraje-industrial-de-tiempos-repetitivos.webp",
+    "src": "/images/app-showcases/cronometraje-tiempos-repetitivos.webp",
+    "originalBytes": 70282,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4334,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11496,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 21002,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 43372,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/informe-automatizado.webp",
+    "src": "/images/app-showcases/informe-automatizado.webp",
+    "originalBytes": 88314,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4666,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13130,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 24438,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 48744,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometraje-industrial-continuo-con-dictyado-por-voz.webp",
+    "src": "/images/app-showcases/cronometraje-continuo-dictado-voz.webp",
+    "originalBytes": 29568,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3816,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9726,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17500,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 34564,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/pasar-elementos-al-metodo-de-trabajo-en-bloque.webp",
+    "src": "/images/app-showcases/pasar-elementos-metodo-bloque.webp",
+    "originalBytes": 35358,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3876,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9954,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 18296,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 35720,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/reordena-el-metodo-operatorio.webp",
+    "src": "/images/app-showcases/reordena-el-metodo-operatorio.webp",
+    "originalBytes": 36870,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3182,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8544,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 15810,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 31978,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/dashboard-con-todos-los-estudios-de-metodos-y-tiempos.webp",
+    "src": "/images/app-showcases/dashboard-estudios.webp",
+    "originalBytes": 88078,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5640,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15164,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 28002,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 56494,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/falta-de-permiso-para-editar-un-estudio-de-tiempo-si-no-eres-el-propietario.webp",
+    "src": "/images/app-showcases/permisos-edicion-estudio.webp",
+    "originalBytes": 53744,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5074,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 13986,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 24974,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 47998,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/dashboard-navegacion.webp",
+    "src": "/images/app-showcases/dashboard-navegacion.webp",
+    "originalBytes": 68076,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 6390,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 15890,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 30838,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 60548,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/dashboard-busqueda.webp",
+    "src": "/images/app-showcases/dashboard-busqueda.webp",
+    "originalBytes": 53762,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5044,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 12620,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 22300,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 43672,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometraje-de-elementos-frecuenciales-en-un-estudio-de-tiempos.webp",
+    "src": "/images/app-showcases/cronometraje-elementos-frecuenciales.webp",
+    "originalBytes": 49870,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4258,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11316,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 20360,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 39710,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/cronometraje-de-elementos-aciclicos-en-un-estudio-de-tiempos.webp",
+    "src": "/images/app-showcases/cronometraje-elementos-aciclicos.webp",
+    "originalBytes": 96576,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5232,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 14878,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 27746,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 56966,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/edita-tiempos-frecuenciales-en-cronometraje-industrial.webp",
+    "src": "/images/app-showcases/edita-tiempos-frecuenciales-en-cronometraje-industrial.webp",
+    "originalBytes": 40434,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4412,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 12106,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 21710,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 43026,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/info.webp",
+    "src": "/images/app-showcases/info.webp",
+    "originalBytes": 39746,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3006,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8560,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 16112,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 33312,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/clonacion-de-estudios.webp",
+    "src": "/images/app-showcases/clonacion-de-estudios.webp",
+    "originalBytes": 67248,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 5282,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 14582,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 25994,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 51170,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/preferencias.webp",
+    "src": "/images/app-showcases/preferencias.webp",
+    "originalBytes": 33022,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3098,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8376,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 14968,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 30480,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/library-search.webp",
+    "src": "/images/app-showcases/library-search.webp",
+    "originalBytes": 58920,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 4050,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 11022,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 21112,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 42590,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/library-selection.webp",
+    "src": "/images/app-showcases/library-selection.webp",
+    "originalBytes": 46274,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3458,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9812,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17836,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 37416,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/library-create.webp",
+    "src": "/images/app-showcases/library-create.webp",
+    "originalBytes": 42204,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3324,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 8892,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17046,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 34982,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/library-average.webp",
+    "src": "/images/app-showcases/library-average.webp",
+    "originalBytes": 46816,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3188,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9352,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 17702,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 36162,
+        "budget": 160000
+      }
+    ]
+  },
+  {
+    "source": "/images/webp/library-workflow.webp",
+    "src": "/images/app-showcases/library-workflow.webp",
+    "originalBytes": 50374,
+    "variants": [
+      {
+        "width": 320,
+        "bytes": 3342,
+        "budget": 18000
+      },
+      {
+        "width": 640,
+        "bytes": 9832,
+        "budget": 45000
+      },
+      {
+        "width": 960,
+        "bytes": 19868,
+        "budget": 85000
+      },
+      {
+        "width": 1536,
+        "bytes": 40554,
+        "budget": 160000
+      }
+    ]
+  }
+]

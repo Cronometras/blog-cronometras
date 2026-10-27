@@ -31,3 +31,9 @@ sa.json
 .dev.vars
 
 .wrangler/
+# Keep image prompts and size reports; exclude local previews, logs and cache.
+/output/imagegen/*
+!/output/imagegen/app-showcases.json
+!/output/imagegen/saturation.json
+!/output/imagegen/optimization-report.json
+!/output/imagegen/screens/

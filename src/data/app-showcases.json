@@ -1,0 +1,597 @@
+{
+  "/images/webp/adaptada-a-moviles-tablets-y-pc.webp": {
+    "src": "/images/app-showcases/multiplataforma.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de multiplataforma en Cronometras",
+    "altEn": "Cronometras app — multiplataforma"
+  },
+  "/images/webp/cronometro-repetitivos.webp": {
+    "src": "/images/app-showcases/cronometraje.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de cronometraje en Cronometras",
+    "altEn": "Cronometras app — cronometraje"
+  },
+  "/images/webp/calculo-de-tomas-restantes.webp": {
+    "src": "/images/app-showcases/fiabilidad.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de fiabilidad en Cronometras",
+    "altEn": "Cronometras app — fiabilidad"
+  },
+  "/images/webp/resultados-en-tiempo-real.webp": {
+    "src": "/images/app-showcases/resultados.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de resultados en Cronometras",
+    "altEn": "Cronometras app — resultados"
+  },
+  "/images/webp/gestion-integral-de-estudios.webp": {
+    "src": "/images/app-showcases/gestion-estudios.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de gestion estudios en Cronometras",
+    "altEn": "Cronometras app — gestion estudios"
+  },
+  "/images/webp/informe-pdf.webp": {
+    "src": "/images/app-showcases/informe.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de informe en Cronometras",
+    "altEn": "Cronometras app — informe"
+  },
+  "/images/webp/saturation-study.webp": {
+    "src": "/images/app-showcases/saturacion.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de saturacion en Cronometras",
+    "altEn": "Cronometras app — saturacion"
+  },
+  "/images/webp/cronometras-app.webp": {
+    "src": "/images/app-showcases/cronometras-app.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Estudio de tiempos",
+    "altEn": "Cronometras app — cronometras app"
+  },
+  "/images/webp/cronometraje-de-tiempos-de-maquina.webp": {
+    "src": "/images/app-showcases/cronometraje-maquina.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de elementos de máquina en estudios de métodos y tiempos con CRONOMETRAS",
+    "altEn": "Machine element management in method and time studies with CRONOMETRAS"
+  },
+  "/images/webp/tiempos-de-maquina-concurrentes-para-calculo-ed-tiempo-estandar.webp": {
+    "src": "/images/app-showcases/tiempos-maquina-concurrentes.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Tiempos concurrentes de máquina en estudios de métodos y tiempos",
+    "altEn": "Concurrent machine times in method and time studies"
+  },
+  "/images/webp/pantalla-para-cronometrar-tiempos-de-maquina-en-un-estudio-de-tiempos.webp": {
+    "src": "/images/app-showcases/cronometro-maquina.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronómetro especializado para máquinas en CRONOMETRAS",
+    "altEn": "Specialized stopwatch for machines in CRONOMETRAS"
+  },
+  "/images/webp/cronoanalisis-de-tiempos-de-maquina.webp": {
+    "src": "/images/app-showcases/cronoanalisis-de-tiempos-de-maquina.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de registros en estudios de métodos y tiempos",
+    "altEn": "Record management in method and time studies"
+  },
+  "/images/webp/eliminar-tiempos-de-maquina.webp": {
+    "src": "/images/app-showcases/eliminar-tiempos-de-maquina.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Ajuste de frecuencia para cálculo de tiempo estándar en CRONOMETRAS",
+    "altEn": "Frequency adjustment for standard time calculation in CRONOMETRAS"
+  },
+  "/images/webp/tipos-de-elemento-en-un-estudio-de-metodos-y-tiempos-segun-su-relacion-con-la-maquinaria.webp": {
+    "src": "/images/app-showcases/tipos-elemento-relacion-maquinaria.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Clasificación de elementos en un estudio de métodos y tiempos según su relación con la maquinaria",
+    "altEn": "Classification of elements in a method and time study according to their relationship with machinery"
+  },
+  "/images/webp/tipos-de-elemento-segun-su-frecuencia-de-aparicion-en-el-ciclod-e-trabajo.webp": {
+    "src": "/images/app-showcases/tipos-elemento-frecuencia.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Clasificación de elementos según su frecuencia de aparición en el ciclo de trabajo",
+    "altEn": "Classification of elements according to their frequency of appearance in the work cycle"
+  },
+  "/images/webp/reconocimiento-de-voz.webp": {
+    "src": "/images/app-showcases/reconocimiento-de-voz.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Reconocimiento de voz en software de cronometraje industrial",
+    "altEn": "Voice recognition in industrial time study software"
+  },
+  "/images/webp/metodo-biblioteca-de-elementos-1.webp": {
+    "src": "/images/app-showcases/metodo-biblioteca-de-elementos-1.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Biblioteca de elementos en software de métodos y tiempos",
+    "altEn": "Element library in methods and times software"
+  },
+  "/images/webp/reordena-el-metodo-de-trabajo.webp": {
+    "src": "/images/app-showcases/reordena-el-metodo-de-trabajo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de elementos en estudios de métodos y tiempos",
+    "altEn": "Element management in method and time studies"
+  },
+  "/images/webp/creacion-y-gestion-de-organizaciones.webp": {
+    "src": "/images/app-showcases/creacion-y-gestion-de-organizaciones.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Creación y gestión de organizaciones en CRONOMETRAS",
+    "altEn": "Organization creation and management in CRONOMETRAS"
+  },
+  "/images/webp/invitacion-de-miembros.webp": {
+    "src": "/images/app-showcases/invitacion-de-miembros.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Invitación de miembros a organizaciones en CRONOMETRAS",
+    "altEn": "Member invitation to organizations in CRONOMETRAS"
+  },
+  "/images/webp/compartir-estudios-con-m-i-organizacion.webp": {
+    "src": "/images/app-showcases/compartir-estudios-con-m-i-organizacion.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Compartición automática de estudios en CRONOMETRAS",
+    "altEn": "Automatic study sharing in CRONOMETRAS"
+  },
+  "/images/webp/gestion-de-empresas-y-departamentos.webp": {
+    "src": "/images/app-showcases/gestion-de-empresas-y-departamentos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de empresas y departamentos en CRONOMETRAS",
+    "altEn": "Company and department management in CRONOMETRAS"
+  },
+  "/images/webp/desactiva-elementos-para-tomar-tiempos-a-elementos-individualmente.webp": {
+    "src": "/images/app-showcases/cronometraje-selectivo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronometraje selectivo de elementos individuales en software de estudio de tiempos CRONOMETRAS",
+    "altEn": "Selective timing of individual elements in CRONOMETRAS time study software"
+  },
+  "/images/webp/estadisticas-en-tiempo-real.webp": {
+    "src": "/images/app-showcases/estadisticas-en-tiempo-real.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Análisis estadístico en tiempo real en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Real-time statistical analysis in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/comentarios-en-los-registros-de-tiempos-de-un-estudio-de-metodos-y-tiempos.webp": {
+    "src": "/images/app-showcases/comentarios-registros-tiempo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión avanzada de observaciones en software de estudio de tiempos CRONOMETRAS",
+    "altEn": "Advanced observation management in CRONOMETRAS time study software"
+  },
+  "/images/webp/edicion-de-tiempos.webp": {
+    "src": "/images/app-showcases/edicion-de-tiempos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Edición avanzada de registros de tiempo en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Advanced editing of time records in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/report-customization.webp": {
+    "src": "/images/app-showcases/report-customization.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Configuración de parámetros en software de cronometraje industrial",
+    "altEn": "Parameter configuration in industrial time study software"
+  },
+  "/images/webp/data-visualization.webp": {
+    "src": "/images/app-showcases/data-visualization.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Tabla de elementos en estudios de métodos y tiempos",
+    "altEn": "Elements table in time and motion studies"
+  },
+  "/images/webp/executive-summary.webp": {
+    "src": "/images/app-showcases/executive-summary.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Resultados de estudios de tiempos en software de métodos y tiempos",
+    "altEn": "Time study results in time and motion study software"
+  },
+  "/images/webp/excel-export.webp": {
+    "src": "/images/app-showcases/excel-export.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Exportación de datos en software de cronometraje industrial",
+    "altEn": "Data export in industrial time study software"
+  },
+  "/images/webp/advanced-calculations.webp": {
+    "src": "/images/app-showcases/advanced-calculations.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cálculos avanzados en software de métodos y tiempos",
+    "altEn": "Advanced calculations in time and motion study software"
+  },
+  "/images/webp/doble-factor-de-autenticacion-mfa.webp": {
+    "src": "/images/app-showcases/doble-factor-de-autenticacion-mfa.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Sistema de autenticación multifactor MFA en CRONOMETRAS",
+    "altEn": "Multi-factor authentication MFA system in CRONOMETRAS"
+  },
+  "/images/webp/cambiar-password-seguridad-mfa.webp": {
+    "src": "/images/app-showcases/cambiar-password-seguridad-mfa.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de dispositivos confiables en CRONOMETRAS",
+    "altEn": "Trusted device management in CRONOMETRAS"
+  },
+  "/images/webp/panel-de-seguridad-de-la-cuenta.webp": {
+    "src": "/images/app-showcases/panel-de-seguridad-de-la-cuenta.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Control de sesiones activas en CRONOMETRAS",
+    "altEn": "Active session control in CRONOMETRAS"
+  },
+  "/images/webp/fatigue-allowances.webp": {
+    "src": "/images/app-showcases/fatigue-allowances.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Sistemas de suplementos en software de cronometraje industrial",
+    "altEn": "Allowance systems in industrial time study software"
+  },
+  "/images/webp/personal-needs.webp": {
+    "src": "/images/app-showcases/personal-needs.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de elementos en estudios de métodos y tiempos",
+    "altEn": "Element management in time and motion studies"
+  },
+  "/images/webp/work-conditions.webp": {
+    "src": "/images/app-showcases/work-conditions.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Sistema de puntos para suplementos en estudios de métodos y tiempos",
+    "altEn": "Point system for allowances in time and motion studies"
+  },
+  "/images/webp/special-allowances.webp": {
+    "src": "/images/app-showcases/special-allowances.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Opciones avanzadas de suplementos en software de métodos y tiempos",
+    "altEn": "Advanced allowance options in time and motion study software"
+  },
+  "/images/webp/machine-fatigue.webp": {
+    "src": "/images/app-showcases/machine-fatigue.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cálculo de fatiga para máquinas en estudios de tiempos",
+    "altEn": "Machine fatigue calculation in time studies"
+  },
+  "/images/webp/imagenes-por-registro-en-cronometro-continuo.webp": {
+    "src": "/images/app-showcases/imagenes-por-registro-en-cronometro-continuo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Imágenes por registro en cronómetro continuo de CRONOMETRAS",
+    "altEn": "Cronometras app — imagenes por registro en cronometro continuo"
+  },
+  "/images/webp/unidades-personalizadas-para-reportes-en-la-pantalla-de-info.webp": {
+    "src": "/images/app-showcases/unidades-personalizadas-reportes.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Unidades personalizadas para reportes en CRONOMETRAS",
+    "altEn": "Cronometras app — unidades personalizadas reportes"
+  },
+  "/images/webp/imagenes-del-proceso-visual-en-la-pantalla-info.webp": {
+    "src": "/images/app-showcases/imagenes-proceso-informacion.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Imágenes del proceso visual en la pantalla info de CRONOMETRAS",
+    "altEn": "Cronometras app — imagenes proceso informacion"
+  },
+  "/images/webp/biblioteca-de-elementos-pantalla-inicial.webp": {
+    "src": "/images/app-showcases/biblioteca-elementos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla inicial de la biblioteca de elementos en CRONOMETRAS",
+    "altEn": "Cronometras app — biblioteca elementos"
+  },
+  "/images/webp/vista-expansiva-de-elementos-y-seleccion-de-elementos-desde-la-biblioteca-para-crear-un-nuevo-estudio-a-partir-de-ellos.webp": {
+    "src": "/images/app-showcases/seleccion-elementos-biblioteca.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Vista expansiva y selección de elementos en biblioteca de CRONOMETRAS",
+    "altEn": "Cronometras app — seleccion elementos biblioteca"
+  },
+  "/images/webp/modal-de-creacion-de-nuevo-estudio-desde-la-biblioteca.webp": {
+    "src": "/images/app-showcases/crear-estudio-desde-biblioteca.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Modal de creación de nuevo estudio desde la biblioteca en CRONOMETRAS",
+    "altEn": "Cronometras app — crear estudio desde biblioteca"
+  },
+  "/images/webp/mapear-excel-para-importar.webp": {
+    "src": "/images/app-showcases/mapear-columnas-excel.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Mapeo de columnas Excel para importar en CRONOMETRAS",
+    "altEn": "Cronometras app — mapear columnas excel"
+  },
+  "/images/webp/seleccion-simbolo-asme-diagrama-de-flujo.webp": {
+    "src": "/images/app-showcases/simbolos-asme-diagrama-flujo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Selección de símbolo ASME para diagrama de flujo en CRONOMETRAS",
+    "altEn": "Cronometras app — simbolos asme diagrama flujo"
+  },
+  "/images/webp/crea-el-metodo-de-trabajo.webp": {
+    "src": "/images/app-showcases/crear-elemento-metodo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Formulario de creación de elementos en estudios de métodos y tiempos",
+    "altEn": "Element creation form in method and time studies"
+  },
+  "/images/webp/aplicacion-de-suplementos-de-fatiga-oit.webp": {
+    "src": "/images/app-showcases/aplicar-suplementos-oit.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de aplicar suplementos oit en Cronometras",
+    "altEn": "Cronometras app — aplicar suplementos oit"
+  },
+  "/images/webp/cronometraje-industrial-de-elementos-repetitivos-encadenados.webp": {
+    "src": "/images/app-showcases/cronometraje-elementos-encadenados.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronometraje industrial de elementos repetitivos encadenados en software de métodos y tiempos CRONOMETRAS",
+    "altEn": "Industrial time study of chained repetitive elements in CRONOMETRAS method and time software"
+  },
+  "/images/webp/pantalla-de-cronometraje-continuo.webp": {
+    "src": "/images/app-showcases/pantalla-de-cronometraje-continuo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronometraje continuo sin interrupciones en software de estudio de tiempos CRONOMETRAS",
+    "altEn": "Uninterrupted continuous timing in CRONOMETRAS time study software"
+  },
+  "/images/webp/imagenes-por-elemento.webp": {
+    "src": "/images/app-showcases/imagenes-por-elemento.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Sistema de imágenes por elemento en CRONOMETRAS",
+    "altEn": "Cronometras app — imagenes por elemento"
+  },
+  "/images/webp/grabar-video-simultaneamente.webp": {
+    "src": "/images/app-showcases/grabar-video-simultaneamente.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Grabación de video simultánea al cronometraje en CRONOMETRAS",
+    "altEn": "Cronometras app — grabar video simultaneamente"
+  },
+  "/images/webp/cronometro-continuo.webp": {
+    "src": "/images/app-showcases/cronometro-continuo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Multi Crono con 6 cronómetros simultáneos en CRONOMETRAS",
+    "altEn": "Cronometras app — cronometro continuo"
+  },
+  "/images/webp/importar-desde-excel.webp": {
+    "src": "/images/app-showcases/importar-desde-excel.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Importación de Excel con conversión de unidades en CRONOMETRAS",
+    "altEn": "Cronometras app — importar desde excel"
+  },
+  "/images/webp/estudios-compartidos.webp": {
+    "src": "/images/app-showcases/estudios-compartidos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de organizaciones y trabajo en equipo en CRONOMETRAS",
+    "altEn": "Collaboration in method and time studies with CRONOMETRAS"
+  },
+  "/images/webp/crea-un-nuevo-estudio-de-tiempos-de-trabajo.webp": {
+    "src": "/images/app-showcases/crear-estudio-tiempos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de crear estudio tiempos en Cronometras",
+    "altEn": "Cronometras app — crear estudio tiempos"
+  },
+  "/images/webp/cronometraje-industrial-de-tiempos-repetitivos.webp": {
+    "src": "/images/app-showcases/cronometraje-tiempos-repetitivos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de cronometraje tiempos repetitivos en Cronometras",
+    "altEn": "Cronometras app — cronometraje tiempos repetitivos"
+  },
+  "/images/webp/informe-automatizado.webp": {
+    "src": "/images/app-showcases/informe-automatizado.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de informe automatizado en Cronometras",
+    "altEn": "Cronometras app — informe automatizado"
+  },
+  "/images/webp/cronometraje-industrial-continuo-con-dictyado-por-voz.webp": {
+    "src": "/images/app-showcases/cronometraje-continuo-dictado-voz.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronometraje industrial continuo con dictado por voz en software de estudio de tiempos CRONOMETRAS",
+    "altEn": "Continuous industrial timing with voice dictation in CRONOMETRAS time study software"
+  },
+  "/images/webp/pasar-elementos-al-metodo-de-trabajo-en-bloque.webp": {
+    "src": "/images/app-showcases/pasar-elementos-metodo-bloque.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Integración de elementos al método de trabajo en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Integration of elements into the work method in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/reordena-el-metodo-operatorio.webp": {
+    "src": "/images/app-showcases/reordena-el-metodo-operatorio.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Organización flexible de datos de cronometraje en software de estudio de tiempos CRONOMETRAS",
+    "altEn": "Flexible organization of time study data in CRONOMETRAS time study software"
+  },
+  "/images/webp/dashboard-con-todos-los-estudios-de-metodos-y-tiempos.webp": {
+    "src": "/images/app-showcases/dashboard-estudios.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Visualización de estudios de tiempos en el Dashboard de CRONOMETRAS",
+    "altEn": "View of time studies in the CRONOMETRAS Dashboard"
+  },
+  "/images/webp/falta-de-permiso-para-editar-un-estudio-de-tiempo-si-no-eres-el-propietario.webp": {
+    "src": "/images/app-showcases/permisos-edicion-estudio.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Edición de estudios de tiempos en CRONOMETRAS",
+    "altEn": "Editing time studies in CRONOMETRAS"
+  },
+  "/images/webp/dashboard-navegacion.webp": {
+    "src": "/images/app-showcases/dashboard-navegacion.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Organización de estudios en carpetas con CRONOMETRAS",
+    "altEn": "Organizing studies into folders with CRONOMETRAS"
+  },
+  "/images/webp/dashboard-busqueda.webp": {
+    "src": "/images/app-showcases/dashboard-busqueda.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Búsqueda y filtrado en software de métodos y tiempos",
+    "altEn": "Search and filter in time and method study software"
+  },
+  "/images/webp/cronometraje-de-elementos-frecuenciales-en-un-estudio-de-tiempos.webp": {
+    "src": "/images/app-showcases/cronometraje-elementos-frecuenciales.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Registro preciso de elementos frecuenciales en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Precise recording of frequent elements in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/cronometraje-de-elementos-aciclicos-en-un-estudio-de-tiempos.webp": {
+    "src": "/images/app-showcases/cronometraje-elementos-aciclicos.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Visualización integral de elementos frecuenciales en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Comprehensive visualization of frequent elements in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/edita-tiempos-frecuenciales-en-cronometraje-industrial.webp": {
+    "src": "/images/app-showcases/edita-tiempos-frecuenciales-en-cronometraje-industrial.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Edición avanzada de tiempos frecuenciales en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Advanced editing of frequent times in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/info.webp": {
+    "src": "/images/app-showcases/info.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Campos esenciales para la creación de estudios de tiempos en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Essential fields for creating time studies in CRONOMETRAS industrial timing software"
+  },
+  "/images/webp/clonacion-de-estudios.webp": {
+    "src": "/images/app-showcases/clonacion-de-estudios.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Clonación y exportación de estudios de tiempos en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Cloning and export of time studies in CRONOMETRAS industrial timing software"
+  },
+  "/images/webp/preferencias.webp": {
+    "src": "/images/app-showcases/preferencias.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Configuración avanzada para estudios de tiempos profesionales en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Advanced configuration for professional time studies in CRONOMETRAS industrial timing software"
+  },
+  "/images/webp/library-search.webp": {
+    "src": "/images/app-showcases/library-search.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de library search en Cronometras",
+    "altEn": "Element search in industrial time study software"
+  },
+  "/images/webp/library-selection.webp": {
+    "src": "/images/app-showcases/library-selection.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de library selection en Cronometras",
+    "altEn": "Element selection in time and motion studies"
+  },
+  "/images/webp/library-create.webp": {
+    "src": "/images/app-showcases/library-create.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de library create en Cronometras",
+    "altEn": "Study creation in time and motion software"
+  },
+  "/images/webp/library-average.webp": {
+    "src": "/images/app-showcases/library-average.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de library average en Cronometras",
+    "altEn": "Element averaging in time studies"
+  },
+  "/images/webp/library-workflow.webp": {
+    "src": "/images/app-showcases/library-workflow.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de library workflow en Cronometras",
+    "altEn": "Workflows in time and motion study software"
+  },
+  "/images/webp/organizacion-en-carpetas.webp": {
+    "src": "/images/app-showcases/dashboard-estudios.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Visualización de estudios de tiempos en el Dashboard de CRONOMETRAS",
+    "altEn": "View of time studies in the CRONOMETRAS Dashboard"
+  },
+  "/images/webp/info-screen.webp": {
+    "src": "/images/app-showcases/info.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Campos esenciales para la creación de estudios de tiempos en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Essential fields for creating time studies in CRONOMETRAS industrial timing software"
+  },
+  "/images/webp/method-screen.webp": {
+    "src": "/images/app-showcases/reordena-el-metodo-de-trabajo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Gestión de elementos en estudios de métodos y tiempos",
+    "altEn": "Element management in method and time studies"
+  },
+  "/images/webp/repetitive-screen.webp": {
+    "src": "/images/app-showcases/cronometraje-elementos-encadenados.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronometraje industrial de elementos repetitivos encadenados en software de métodos y tiempos CRONOMETRAS",
+    "altEn": "Industrial time study of chained repetitive elements in CRONOMETRAS method and time software"
+  },
+  "/images/webp/continuous-screen.webp": {
+    "src": "/images/app-showcases/pantalla-de-cronometraje-continuo.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronometraje continuo sin interrupciones en software de estudio de tiempos CRONOMETRAS",
+    "altEn": "Uninterrupted continuous timing in CRONOMETRAS time study software"
+  },
+  "/images/webp/frequency-screen.webp": {
+    "src": "/images/app-showcases/cronometraje-elementos-frecuenciales.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Registro preciso de elementos frecuenciales en software de cronometraje industrial CRONOMETRAS",
+    "altEn": "Precise recording of frequent elements in CRONOMETRAS industrial time study software"
+  },
+  "/images/webp/machine-screen.webp": {
+    "src": "/images/app-showcases/cronometro-maquina.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Cronómetro especializado para máquinas en CRONOMETRAS",
+    "altEn": "Specialized stopwatch for machines in CRONOMETRAS"
+  },
+  "/images/webp/report-screen.webp": {
+    "src": "/images/app-showcases/informe-automatizado.webp",
+    "width": 1536,
+    "height": 1024,
+    "altEs": "Pantalla de informe automatizado en Cronometras",
+    "altEn": "Cronometras app — informe automatizado"
+  }
+}

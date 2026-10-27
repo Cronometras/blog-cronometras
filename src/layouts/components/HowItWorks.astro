@@ -1,5 +1,6 @@
 ---
 import ImageModal from "@/components/core/ImageModal.astro";
+import WebpImage from "@/components/WebpImage.astro";
 
 interface Step {
   number: number;
@@ -37,12 +38,13 @@ if (!how_it_works) {
           {
             how_it_works.image && (
               <div class="cursor-pointer" onclick={`openModal('${how_it_works.image}')`}>
-                <img
+                <WebpImage
                   src={how_it_works.image}
                   alt={how_it_works.image_alt || ""}
                   class="mx-auto rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
                   width="1024"
                   height="576"
+                  sizes="(min-width: 1024px) 800px, calc(100vw - 40px)"
                 />
               </div>
             )
@@ -64,10 +66,12 @@ if (!how_it_works) {
                   <h3 class="text-xl font-semibold" set:html={step.title} />
                   {step.image && (
                     <div class="cursor-pointer" onclick={`openModal('${step.image}')`}>
-                      <img
+                      <WebpImage
                         src={step.image}
                         alt={step.title}
                         class="h-24 w-auto rounded hover:opacity-90 transition-opacity duration-300"
+                        sizes="144px"
+                        showcaseLayout="thumbnail"
                       />
                     </div>
                   )}

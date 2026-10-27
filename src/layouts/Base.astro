@@ -20,12 +20,14 @@ import { getEntry } from "astro:content";
 import type { PageType } from "@/content/page.types";
 import type { AnyCollectionKey } from "astro:content";
 import { getLangFromUrl } from "@/i18n/utils";
+import { getAppShowcaseSrcset } from '@/lib/appShowcases';
 
 // Fallback hardcoded a la G-ID del proyecto (cronometras.com). Evita que el
 // tracking se rompa silenciosamente cuando la env var GTAG_ID no está definida
 // en Cloudflare Pages (Pitfall GG §24 de seo-geo-optimization). El ID correcto
 // es G-7FCEX5D4FF — verificar antes de cambiar.
 const GTAG = import.meta.env.GTAG_ID || 'G-7FCEX5D4FF'
+const preloadHomeHero = /^\/(?:es|en)?\/?$/.test(Astro.url.pathname);
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -350,26 +352,8 @@ console.log("Cargando layout Base.astro");
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Precargar la imagen LCP en formato AVIF (mejor compresión) + WebP fallback.
-         Nota Fase 1 PSI:
-         - Se eliminó el <script>new Image()</script> duplicado que lanzaba una
-           segunda petición. Solo dejamos el <link rel="preload>, válido en ~98%
-           de navegadores modernos (caniuse 2026).
-         - Se apunta directamente al AVIF de 640px (target móvil + tablet), que
-           es el más probable que sirva PSI en la emulación Moto G Power.
-         - El componente WebpImage.astro (con isMainBannerImage=true) emite el
-           <picture> con srcset responsivo AVIF + WebP.
-         - imagesrcset explícito garantiza que el navegador pide el tamaño real. -->
-    <link
-      rel="preload"
-      as="image"
-      type="image/avif"
-      fetchpriority="high"
-      importance="high"
-      href="/images/webp/lcp/adaptada-640.avif"
-      imagesrcset="/images/webp/lcp/adaptada-320.avif 320w, /images/webp/lcp/adaptada-640.avif 640w, /images/webp/lcp/adaptada-960.avif 960w, /images/webp/lcp/adaptada-1280.avif 1280w"
-      imagesizes="(max-width: 640px) 100vw, 50vw"
-    />
+    <!-- Precargar imágenes críticas con la máxima prioridad -->
+    {preloadHomeHero && <link rel="preload" href="/images/app-showcases/multiplataforma.webp" imagesrcset={getAppShowcaseSrcset('/images/webp/adaptada-a-moviles-tablets-y-pc.webp')} imagesizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, calc(100vw - 40px)" as="image" type="image/webp" fetchpriority="high" />}
 
     <!-- Estilos críticos inline para el renderizado inicial -->
     <style>
@@ -381,9 +365,7 @@ console.log("Cargando layout Base.astro");
       }
 
       /* Estilos específicos para la imagen principal */
-      img[src="/images/webp/adaptada-a-moviles-tablets-y-pc.webp"] {
-        content-visibility: auto;
-        contain-intrinsic-size: 500px 333px;
+      img[src="/images/app-showcases/multiplataforma.webp"] {
         width: 100%;
         height: auto;
         object-fit: contain;
@@ -394,8 +376,7 @@ console.log("Cargando layout Base.astro");
       /* Placeholder para la imagen principal mientras se carga */
       .banner-image-container {
         position: relative;
-        background-color: #f0f0f0;
-        min-height: 333px;
+        aspect-ratio: 3 / 2;
         display: block;
       }
 

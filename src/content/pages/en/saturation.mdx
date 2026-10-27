@@ -37,7 +37,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
   section={{
     title: "Live %Saturation Calculation from Segments",
     content: "From the recorded segments, CRONOMETRAS automatically calculates the <strong>saturation percentage of both the machine and the operator</strong> over the total study time. The formula applied is direct and transparent:<br/><br/>• <strong>%machine_saturation</strong> = total_machine_running_time / total_study_time × 100<br/>• <strong>%operator_saturation</strong> = total_operator_working_time / total_study_time × 100<br/>• Total study time computed as the elapsed time from the first to the last recorded segment<br/>• <strong>Live results</strong> updated with every new segment, no need to close the session<br/>• Clear visualization of each stopwatch's current state (running or stopped) to validate the measurement on the spot<br/><br/><i>Forget manual stopwatches cross-referenced in an Excel sheet: saturation data is calculated on the spot and stored with the study for later analysis.</i>",
-    image: "/images/webp/cronometras-app.webp",
+    image: "/images/webp/saturation-study.webp",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
     alt: "Live percentage saturation calculation in CRONOMETRAS"
   }}
@@ -47,7 +47,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
   section={{
     title: "Segment Management and Notes for Detailed Analysis",
     content: "Each start/stop interval is stored as an <strong>individual segment</strong> you can review, annotate and edit to refine the study. CRONOMETRAS offers a complete management panel designed for field work:<br/><br/>• Chronological list of segments by entity (machine or operator) with their state, start time and duration<br/>• <strong>Notes editing</strong> on each segment to document incidents, technical stops, waits or any relevant observation<br/>• <strong>Offline-first</strong> persistence of segments: the session keeps working even if you lose connection, syncing automatically when the network is back<br/>• Compatible with the app's <a href='/en/method' class='text-accent hover:underline'>methodology</a> and linkable from the <a href='/en/report' class='text-accent hover:underline'>Reports module</a> for advanced analysis<br/>• Results export to compare studies, justify assignments or present data to production and management<br/><br/><i>Combine real saturation data with the history of your <strong>time study</strong> to make decisions grounded in objective measurements rather than estimates.</i>",
-    image: "/images/webp/avance-de-fase-de-un-estudio-de-tiempos.webp",
+    image: "/images/webp/saturation-study.webp",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
     alt: "Segment management and notes in the CRONOMETRAS Saturation Study module"
   }}

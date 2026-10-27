@@ -1,0 +1,16 @@
+{
+  "id": 130,
+  "source": "/images/webp/machine-fatigue.webp",
+  "width": 1920,
+  "height": 1020,
+  "bytes": 64928,
+  "locations": [
+    "src\\content\\pages\\en\\supplements.mdx",
+    "src\\content\\pages\\es\\supplements.mdx"
+  ],
+  "slug": "machine-fatigue",
+  "status": "generated",
+  "generatedPath": "C:\\Users\\micao\\.codex\\generated_images\\01a17deb-4a90-7cd0-b1f9-1b3ef1d1e162\\exec-a512622e-2f3c-47ab-ada3-6ec180fb69ec.png",
+  "prompt": "Use case: compositing. Asset type: polished app screenshot product image for a website/blog, part of a consistent premium device mockup collection. Edit target: supplied real screenshot (machine-fatigue). One landscape desktop display with a very thin satin graphite bezel and subtle short stand, almost front facing. Put the entire provided screenshot inside the screen unchanged, preserving its original width-to-height ratio exactly. For very tall captures make a suitably tall display; never squeeze or stretch the UI. Keep all actual interface panels, text, numbers, colors, tables and controls faithful to the input; do not invent new UI. Retain any annotation arrows present in the input. Remove only outer Windows title bar, browser chrome and external scrollbars, if present; preserve app navigation. Composition: landscape 3:2 canvas, centered device with 8% safe margins, complete silhouette visible. Backdrop: seamless very pale off-white lavender #f7f5fa, subtle broad lavender glow and tiny green tint near base; soft realistic contact shadow. Lighting: soft diffused studio light. Materials: satin graphite, restrained realistic reflections confined to frame, no screen glare. Style: restrained premium product studio photography. No additional text outside the display, no slogans, no watermarks, no people, no props, no decorative icons, no fake charts, no new metrics. The reference UI must remain recognizable and legible. Finished individual image.",
+  "mode": "built-in image_gen"
+}

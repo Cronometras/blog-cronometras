@@ -1,6 +1,6 @@
 ---
 import type { PageSection } from "@/content/page.types";
-import { markdownify } from "@/lib/utils/textConverter";
+import { markdownify, plainify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
 import Button from "../LinkButton.astro";
 import ImageModal from "./ImageModal.astro";
@@ -54,11 +54,10 @@ const image_position_classes = (() => {
             <div class="cursor-pointer" onclick={`openModal('${image}')`}>
               <WebpImage
                 class={imageClasses || "w-1/2 mr-auto ml-auto object-contain"}
-                alt={section.alt || "section-image"}
+                alt={section.alt || plainify(title)}
                 src={image}
                 width="500"
                 height="333"
-                critical={true}
               />
             </div>
           </div>
@@ -87,11 +86,10 @@ const image_position_classes = (() => {
               <div class="cursor-pointer" onclick={`openModal('${image}')`}>
                 <WebpImage
                   class={imageClasses || "w-full object-contain"}
-                  alt={section.alt || "section-image"}
+                  alt={section.alt || plainify(title)}
                   src={image}
                   width="500"
                   height="333"
-                  critical={true}
                 />
               </div>
             </div>

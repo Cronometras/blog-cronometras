@@ -3,6 +3,8 @@
 // Componente que muestra artículos del blog relacionados con tarjetas visuales
 import { getCollection } from 'astro:content';
 import { getFirestoreArticles } from '@/lib/firestoreArticles';
+import { getAppShowcase, getAppShowcaseSrcset } from '@/lib/appShowcases';
+const optimizeModuleImages = !/\/blog(?:\/|$)/.test(Astro.url.pathname);
 
 // Definimos la interfaz para los artículos del blog
 interface BlogPost {
@@ -94,14 +96,14 @@ if (includeModules) {
     { title: "Módulo de Tiempos Repetitivos", slug: "/es/repetitive", keywords: ["cronometraje", "tiempos"], heroImage: "/images/webp/cronometras-app.webp" },
     { title: "Módulo de Tiempos Frecuenciales", slug: "/es/frequency", keywords: ["frecuencial", "tiempos"], heroImage: "/images/webp/cronometras-app.webp" },
     { title: "Módulo de Tiempos de Máquina", slug: "/es/machine", keywords: ["máquina", "tiempos"], heroImage: "/images/webp/cronometras-app.webp" },
-    { title: "Módulo de Estudio de Saturación", slug: "/es/saturation", keywords: ["saturación", "operario", "máquina"], heroImage: "/images/webp/saturation-study.webp" }
+    { title: "Módulo de Estudio de Saturación", slug: "/es/saturation", keywords: ["saturación", "operario", "máquina"], heroImage: "/images/app-showcases/saturacion.webp" }
   ];
 
   const enModules: BlogPost[] = [
     { title: "Repetitive Times Module", slug: "/en/repetitive", keywords: ["timing", "repetitive"], heroImage: "/images/webp/cronometras-app.webp" },
     { title: "Frequency Times Module", slug: "/en/frequency", keywords: ["frequency", "timing"], heroImage: "/images/webp/cronometras-app.webp" },
     { title: "Machine Times Module", slug: "/en/machine", keywords: ["machine", "timing"], heroImage: "/images/webp/cronometras-app.webp" },
-    { title: "Saturation Study Module", slug: "/en/saturation", keywords: ["saturation", "operator", "machine"], heroImage: "/images/webp/saturation-study.webp" }
+    { title: "Saturation Study Module", slug: "/en/saturation", keywords: ["saturation", "operator", "machine"], heroImage: "/images/app-showcases/saturacion.webp" }
   ];
 
   if (language === 'es') {
@@ -162,13 +164,15 @@ const postsToShow = getRelatedPosts(allPosts, currentKeywords, count);
         >
           <div class="relative h-40 overflow-hidden">
             <img
-              src={post.heroImage}
+              src={optimizeModuleImages && !post.slug.includes('/blog/') ? getAppShowcase(post.heroImage || '') || post.heroImage : post.heroImage}
+              srcset={optimizeModuleImages && !post.slug.includes('/blog/') ? getAppShowcaseSrcset(post.heroImage || '') : undefined}
+              sizes={optimizeModuleImages && !post.slug.includes('/blog/') ? '(min-width: 768px) 360px, calc(100vw - 40px)' : undefined}
               alt={post.title}
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
               decoding="async"
-              width="400"
-              height="160"
+              width={optimizeModuleImages && !post.slug.includes('/blog/') && getAppShowcase(post.heroImage || '') ? 1536 : 400}
+              height={optimizeModuleImages && !post.slug.includes('/blog/') && getAppShowcase(post.heroImage || '') ? 1024 : 160}
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             {post.category && (

@@ -37,7 +37,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
   section={{
     title: "Cálculo del % de saturación en Tiempo Real a partir de Segmentos",
     content: "A partir de los segmentos registrados, CRONOMETRAS calcula automáticamente el <strong>porcentaje de saturación de la máquina y del operario</strong> sobre el tiempo total del estudio. La fórmula aplicada es directa y transparente:<br/><br/>• <strong>%saturación_máquina</strong> = tiempo_total_marcha_máquina / tiempo_total_estudio × 100<br/>• <strong>%saturación_operario</strong> = tiempo_total_trabajando_operario / tiempo_total_estudio × 100<br/>• Tiempo total del estudio calculado como el tiempo transcurrido desde el primer hasta el último segmento registrado<br/>• <strong>Resultados en vivo</strong> actualizados con cada nuevo segmento, sin necesidad de cerrar la sesión<br/>• Visualización clara del estado actual de cada cronómetro (en marcha o en parada) para validar la medición en el momento<br/><br/><i>Olvídate de cronómetros manuales cruzados en una hoja Excel: los datos de saturación se calculan en el momento y se almacenan junto al estudio para su análisis posterior.</i>",
-    image: "/images/webp/cronometras-app.webp",
+    image: "/images/webp/saturation-study.webp",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
     alt: "Cálculo del porcentaje de saturación en tiempo real en CRONOMETRAS"
   }}
@@ -47,7 +47,7 @@ import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
   section={{
     title: "Gestión de Segmentos y Anotaciones para un Análisis Detallado",
     content: "Cada tramo marcha/parada se almacena como un <strong>segmento individual</strong> que puedes revisar, anotar y editar para refinar el estudio. CRONOMETRAS ofrece un panel de gestión completo pensado para el trabajo de campo:<br/><br/>• Listado cronológico de segmentos por entidad (máquina u operario) con su estado, hora de inicio y duración<br/>• <strong>Edición de notas</strong> en cada segmento para documentar incidencias, paradas técnicas, esperas o cualquier observación relevante<br/>• Persistencia <strong>offline-first</strong> de los segmentos: la sesión sigue funcionando aunque pierdas la conexión, sincronizándose automáticamente al recuperar la red<br/>• Compatible con la <a href='/es/method' class='text-accent hover:underline'>metodología de la app</a> y enlazable desde el <a href='/es/report' class='text-accent hover:underline'>módulo de Informes</a> para análisis avanzado<br/>• Exportación de los resultados para comparar estudios, justificar asignaciones o presentar datos a producción y dirección<br/><br/><i>Combina los datos reales de saturación con el histórico de tu <strong>estudio de tiempos</strong> para tomar decisiones basadas en mediciones objetivas y no en estimaciones.</i>",
-    image: "/images/webp/avance-de-fase-de-un-estudio-de-tiempos.webp",
+    image: "/images/webp/saturation-study.webp",
     imageClasses: "w-64 h-auto object-contain mx-auto section-image-hover",
     alt: "Gestión de segmentos y notas en el módulo de Estudio de Saturación de CRONOMETRAS"
   }}
