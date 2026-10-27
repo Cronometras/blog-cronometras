@@ -17,6 +17,12 @@ const { Content } = await render(post);
 // Get the language from the post slug (e.g., "es/post-name" -> "es")
 const lang = post.slug.split('/')[0];
 
+// Unidad de anuncio de AdSense (bloque in-page). Vacío = sin anuncios hasta que
+// exista la unidad en la cuenta de AdSense. Los anuncios SOLO se muestran en
+// artículos del blog (decisión Micaot 2026-10-27); el push de `ins.adsbygoogle`
+// lo hace CookieConsent.astro solo con cookies de publicidad aceptadas.
+const AD_SLOT = '';
+
 // BreadcrumbList JSON-LD — se emite para todos los posts
 const breadcrumbItems: any[] = [
   {
@@ -71,6 +77,20 @@ const breadcrumbSchemaString = JSON.stringify(breadcrumbSchema).replace(/</g, "\
         <div class="prose mx-auto max-w-3xl">
           <Content />
         </div>
+
+        {/* Anuncio de AdSense: SOLO en artículos del blog (decisión Micaot 2026-10-27).
+            Se muestra únicamente si hay unidad creada (AD_SLOT) y el visitante
+            aceptó las cookies de publicidad (el push lo hace CookieConsent.astro). */}
+        {AD_SLOT && (
+          <ins
+            class="adsbygoogle"
+            style="display:block; text-align:center; margin: 2rem 0;"
+            data-ad-client="ca-pub-4945197366693593"
+            data-ad-slot={AD_SLOT}
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+        )}
       </article>
     </div>
   </section>

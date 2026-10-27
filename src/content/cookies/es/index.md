@@ -1,14 +1,14 @@
 ---
 document_title: Política de Cookies | CRONOMETRAS
 meta_description: "Política de Cookies de CRONOMETRAS conforme al RGPD y la LOPDGDD. Información sobre qué son las cookies, qué cookies utilizamos y cómo puedes configurarlas o desactivarlas."
-meta_keywords: "política de cookies, CRONOMETRAS, RGPD, LOPDGDD, cookies técnicas, cookies analíticas, cookies de terceros"
+meta_keywords: "política de cookies, CRONOMETRAS, RGPD, LOPDGDD, cookies técnicas, cookies analíticas, cookies de publicidad, Google AdSense, cookies de terceros"
 title: Política de Cookies de CRONOMETRAS
 description: "Esta Política de Cookies describe qué son las cookies, qué tipos de cookies utiliza CRONOMETRAS y cómo puedes configurar tu navegador para gestionarlas."
 ---
 
 # Política de Cookies de CRONOMETRAS
 
-_Última actualización: 12 de junio de 2026_
+_Última actualización: 27 de octubre de 2026_
 
 ## 1. Responsable del Tratamiento
 
@@ -50,13 +50,13 @@ Las cookies de análisis **solo se instalan si el usuario las acepta previamente
 
 ### 3.4. Cookies de marketing o publicidad comportamental
 
-Permiten la gestión de los espacios publicitarios incluidos en el Sitio Web de la forma más eficaz posible. Estas cookies almacenan información del comportamiento de los usuarios obtenida a través de la observación continuada de sus hábitos de navegación, lo que permite desarrollar un perfil específico para mostrar publicidad en función del mismo.
+Este Sitio Web utiliza **Google AdSense**, un servicio de publicidad prestado por Google Ireland Limited que permite incluir anuncios en el Sitio Web. Google AdSense utiliza cookies de publicidad para, entre otros fines, seleccionar anuncios en función de tu navegación anterior, limitar la cantidad de veces que se muestra un anuncio, medir la eficacia de las campañas y detectar clics fraudulentos. Entre estas cookies se incluyen, por ejemplo, `IDE`, `DSID` y `test_cookie`, gestionadas por Google en sus propios dominios (doubleclick.net y google.com). Puedes obtener más información sobre cómo Google trata tu privacidad en [https://policies.google.com/privacy](https://policies.google.com/privacy).
 
-Actualmente, **el Sitio Web no utiliza cookies de marketing o publicidad comportamental**.
+Las cookies de publicidad **solo se instalan si el usuario las acepta previamente** a través del banner de cookies del Sitio Web. Si no las aceptas, no se carga el código de publicidad de Google AdSense.
 
 ## 4. Cookies de Terceros
 
-El Sitio Web puede utilizar servicios de terceros que, por cuenta del titular, recopilan información con fines estadísticos, de uso del Sitio Web por parte del usuario y para la prestación de otros servicios relacionados con la actividad del Sitio Web. En particular, este Sitio Web utiliza Google Analytics 4 como se describe en el apartado anterior.
+El Sitio Web puede utilizar servicios de terceros que, por cuenta del titular, recopilan información con fines estadísticos, de uso del Sitio Web por parte del usuario y para la prestación de otros servicios relacionados con la actividad del Sitio Web. En particular, este Sitio Web utiliza Google Analytics 4 y Google AdSense como se describe en los apartados anteriores.
 
 ## 5. Base Legitimadora
 
@@ -71,9 +71,11 @@ Las cookies se conservarán en el dispositivo del usuario durante el tiempo nece
 - **Cookies técnicas de sesión:** se eliminan al cerrar el navegador.
 - **Cookies técnicas de persistencia (preferencias):** hasta 1 año.
 - **Cookies de análisis (Google Analytics 4):** hasta 14 meses (configuración por defecto de Google).
-- **Cookies de marketing:** el Sitio Web no utiliza cookies de marketing en la actualidad.
+- **Cookies de marketing o publicidad (Google AdSense):** según la cookie, desde la sesión (por ejemplo, `test_cookie`) hasta un máximo de 13 meses en el Espacio Económico Europeo (por ejemplo, `IDE`).
 
 ## 7. Cómo Gestionar o Desactivar las Cookies
+
+Ni Google Analytics ni el código de publicidad de Google AdSense se cargan sin una aceptación previa. Puedes aceptar o rechazar cada categoría por separado desde el panel «Configurar cookies» y seguir usando la web. La elección se guarda en el almacenamiento local del navegador durante 180 días. Usa el botón «Configurar cookies» de cualquier página para cambiar o retirar tu consentimiento. Si retiras un permiso que ya habías concedido, se detiene el código correspondiente, se eliminan las cookies accesibles en el dominio y se recarga la página. Los datos enviados anteriormente no se eliminan por este cambio.
 
 Puedes permitir, bloquear o eliminar las cookies instaladas en tu equipo mediante la configuración de las opciones de tu navegador. A continuación, se indican los enlaces a las páginas de ayuda de los navegadores más comunes:
 

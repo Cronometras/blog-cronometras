@@ -1,6 +1,8 @@
 ---
 import { getLangFromUrl } from '../i18n/utils';
+import RedirectPage from '@/components/core/RedirectPage.astro';
 
 const lang = getLangFromUrl(Astro.url);
-return Astro.redirect(`/${lang}/saturation`);
+const redirectUrl = `/${lang}/saturation`;
 ---
+<RedirectPage target={redirectUrl} lang={lang} />

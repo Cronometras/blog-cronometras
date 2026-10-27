@@ -1,10 +1,8 @@
 ---
-import { getLangFromUrl } from "../i18n/utils";
+import { getLangFromUrl } from '../i18n/utils';
+import RedirectPage from '@/components/core/RedirectPage.astro';
 
-// Get the user's preferred language
 const lang = getLangFromUrl(Astro.url);
-
-// Redirect to language-specific privacy page
 const redirectUrl = lang === 'es' ? '/es/privacy' : '/en/privacy';
-return Astro.redirect(redirectUrl);
 ---
+<RedirectPage target={redirectUrl} lang={lang} />

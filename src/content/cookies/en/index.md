@@ -1,14 +1,14 @@
 ---
 document_title: Cookie Policy | CRONOMETRAS
 meta_description: "CRONOMETRAS Cookie Policy under the GDPR and LOPDGDD. Information about what cookies are, which cookies we use and how you can configure or disable them."
-meta_keywords: "cookie policy, CRONOMETRAS, GDPR, LOPDGDD, technical cookies, analytics cookies, third-party cookies"
+meta_keywords: "cookie policy, CRONOMETRAS, GDPR, LOPDGDD, technical cookies, analytics cookies, advertising cookies, Google AdSense, third-party cookies"
 title: CRONOMETRAS Cookie Policy
 description: "This Cookie Policy describes what cookies are, what types of cookies CRONOMETRAS uses, and how you can configure your browser to manage them."
 ---
 
 # CRONOMETRAS Cookie Policy
 
-_Last updated: June 12, 2026_
+_Last updated: October 27, 2026_
 
 ## 1. Data Controller
 
@@ -50,13 +50,13 @@ Analytics cookies **are only installed if the user has previously accepted them*
 
 ### 3.4. Marketing or behavioural advertising cookies
 
-These allow the management of the advertising spaces included on the Website in the most effective way possible. These cookies store information on user behaviour obtained through continuous observation of their browsing habits, which allows a specific profile to be developed to display advertising based on that profile.
+This Website uses **Google AdSense**, an advertising service provided by Google Ireland Limited that allows ads to be included on the Website. Google AdSense uses advertising cookies for, among other purposes, selecting ads based on your previous browsing, limiting the number of times an ad is shown, measuring the effectiveness of advertising campaigns and detecting fraudulent clicks. These cookies include, for example, `IDE`, `DSID` and `test_cookie`, managed by Google on its own domains (doubleclick.net and google.com). You can obtain more information about how Google processes your privacy at [https://policies.google.com/privacy](https://policies.google.com/privacy).
 
-Currently, **the Website does not use marketing or behavioural advertising cookies**.
+Advertising cookies **are only installed if the user has previously accepted them** through the Website's cookie banner. If you do not accept them, the Google AdSense advertising code is not loaded.
 
 ## 4. Third-Party Cookies
 
-The Website may use third-party services that, on behalf of the holder, collect information for statistical purposes, for the use of the Website by the user, and for the provision of other services related to the activity of the Website. Specifically, this Website uses Google Analytics 4 as described in the previous section.
+The Website may use third-party services that, on behalf of the holder, collect information for statistical purposes, for the use of the Website by the user, and for the provision of other services related to the activity of the Website. Specifically, this Website uses Google Analytics 4 and Google AdSense as described in the previous sections.
 
 ## 5. Legal Basis
 
@@ -71,9 +71,11 @@ Cookies will be retained on the user's device for the time necessary for the pur
 - **Session technical cookies:** deleted when the browser is closed.
 - **Persistent technical cookies (preferences):** up to 1 year.
 - **Analytics cookies (Google Analytics 4):** up to 14 months (Google's default configuration).
-- **Marketing cookies:** the Website does not currently use marketing cookies.
+- **Marketing or advertising cookies (Google AdSense):** depending on the cookie, from the session (e.g. `test_cookie`) up to a maximum of 13 months in the European Economic Area (e.g. `IDE`).
 
 ## 7. How to Manage or Disable Cookies
+
+Neither Google Analytics nor the Google AdSense advertising code are loaded without prior acceptance. You can accept or reject each category separately from the "Cookie settings" panel and keep using the site. The choice is stored in the browser's local storage for 180 days. Use the "Cookie settings" button on any page to change or withdraw your consent. If you withdraw a permission you had already granted, the corresponding code is stopped, the cookies accessible on the domain are deleted and the page is reloaded. Previously sent data is not deleted by this change.
 
 You can allow, block or delete cookies installed on your device by configuring your browser options. Below are links to the help pages of the most common browsers:
 

@@ -1,6 +1,6 @@
 ---
 export const prerender = true;
 
-// Redireccionar a la versión en español por defecto
-return Astro.redirect('/es/blog');
+import RedirectPage from '@/components/core/RedirectPage.astro';
 ---
+<RedirectPage target="/es/blog" />

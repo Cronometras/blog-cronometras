@@ -116,6 +116,14 @@ export async function getStaticPaths() {
 const { post, source, firestoreSlug } = Astro.props;
 const { lang, slug } = Astro.params;
 
+// Unidad de anuncio de AdSense (bloque in-page). Vacío = sin anuncios hasta que
+// exista la unidad en la cuenta de AdSense. Los anuncios SOLO se muestran en
+// artículos del blog (decisión Micaot 2026-10-27): este bloque vive en la
+// plantilla de artículo y no hay nada equivalente en home, servicios ni apps.
+// El push de `ins.adsbygoogle` lo hace CookieConsent.astro solo cuando el
+// visitante aceptó las cookies de publicidad.
+const AD_SLOT = '';
+
 console.log(`Renderizando post: lang=${lang}, slug=${slug}, source=${source}`);
 
 // For MDX posts, render content statically
@@ -273,6 +281,20 @@ export const prerender = true;
               )}
             </div>
 
+            {/* Anuncio de AdSense: SOLO en artículos del blog (decisión Micaot 2026-10-27).
+                Se muestra únicamente si hay unidad creada (AD_SLOT) y el visitante
+                aceptó las cookies de publicidad (el push lo hace CookieConsent.astro). */}
+            {AD_SLOT && (
+              <ins
+                class="adsbygoogle"
+                style="display:block; text-align:center; margin: 2rem 0;"
+                data-ad-client="ca-pub-4945197366693593"
+                data-ad-slot={AD_SLOT}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              ></ins>
+            )}
+
             <!-- Botones de compartir -->
             {post && (
               <ShareButtons
@@ -371,6 +393,20 @@ export const prerender = true;
             <div class="article-content prose prose-base md:prose-lg dark:prose-invert">
               {Content ? <Content /> : <p class="text-center text-red-500">{errorMessage}</p>}
             </div>
+
+            {/* Anuncio de AdSense: SOLO en artículos del blog (decisión Micaot 2026-10-27).
+                Se muestra únicamente si hay unidad creada (AD_SLOT) y el visitante
+                aceptó las cookies de publicidad (el push lo hace CookieConsent.astro). */}
+            {AD_SLOT && (
+              <ins
+                class="adsbygoogle"
+                style="display:block; text-align:center; margin: 2rem 0;"
+                data-ad-client="ca-pub-4945197366693593"
+                data-ad-slot={AD_SLOT}
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              ></ins>
+            )}
 
             <!-- Botones de compartir -->
             {post && (

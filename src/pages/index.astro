@@ -1,10 +1,19 @@
 ---
 import { defaultLang } from "../i18n/ui";
-
 const redirectTo = `/${defaultLang}`;
 ---
-
-<meta http-equiv="refresh" content={`0;url=${redirectTo}`} />
-<script>
-  window.location.replace(window.location.origin + `/${defaultLang}`);
-</script>
+<!doctype html>
+<html lang={defaultLang}>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to: {redirectTo}</title>
+  <meta name="google-adsense-account" content="ca-pub-4945197366693593">
+  <meta http-equiv="refresh" content={`0;url=${redirectTo}`}>
+  <script is:inline define:vars={{ redirectTo }}>
+    window.location.replace(window.location.origin + redirectTo);
+  </script>
+</head>
+<body>
+  <a href={redirectTo}>Redirecting to <code>{redirectTo}</code></a>
+</body>
+</html>

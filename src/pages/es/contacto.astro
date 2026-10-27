@@ -1,4 +1,5 @@
 ---
 // Redireccionar a la nueva ruta
-return Astro.redirect('/es/contact');
+import RedirectPage from '@/components/core/RedirectPage.astro';
 ---
+<RedirectPage target="/es/contact" lang="es" />

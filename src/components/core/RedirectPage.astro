@@ -1,0 +1,26 @@
+---
+// Página de redirección estática compartida. Sustituye a los stubs que usaban
+// Astro.redirect() para poder incluir en el <head> el meta de verificación de
+// Google AdSense (obligatorio en TODAS las páginas — decisión Micaot 2026-10-27).
+// Conserva la semántica de los stubs generados por Astro: meta refresh 2 s,
+// robots noindex y canonical hacia el destino.
+interface Props {
+  target: string;
+  lang?: string;
+}
+const { target, lang = 'es' } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to: {target}</title>
+    <meta name="google-adsense-account" content="ca-pub-4945197366693593" />
+    <meta http-equiv="refresh" content={`2;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`https://cronometras.com${target}`} />
+  </head>
+  <body>
+    <a href={target}>Redirecting to <code>{target}</code></a>
+  </body>
+</html>

@@ -5,12 +5,11 @@
 // (gtag('config', undefined) → 0 sesiones). Ahora este componente es el único punto
 // de inicialización, vive en el <head>, y siempre tiene fallback hardcoded.
 //
-// Patrón: Consent Mode v2 + cookieless pings (ver skill seo-geo-optimization,
-// references/consent-mode-v2-cookieless-pings-2026-06-24.md). Por defecto analytics
-// está 'denied' y CookieConsent.astro actualiza a 'granted' si el usuario acepta.
-// gtag.js SE CARGA SIEMPRE para que GA4 pueda modelar el tráfico de usuarios que
-// rechazan cookies (requiere toggles Google signals + Attribution modeling en el
-// panel de GA4).
+// Patrón: Consent Mode v2 — por defecto analytics está 'denied' y
+// CookieConsent.astro actualiza a 'granted' si el usuario acepta.
+// gtag.js SOLO se carga si el usuario aceptó la categoría de análisis
+// (consentimiento previo, AEPD; decisión Micaot 2026-10-27 — mismo patrón
+// que prodcont: ni GA4 ni AdSense se cargan sin aceptación previa).
 const GA_ID = import.meta.env.GTAG_ID
   || import.meta.env.GOOGLE_ANALYTICS_ID
   || 'G-7FCEX5D4FF';
@@ -38,12 +37,21 @@ const GA_ID = import.meta.env.GTAG_ID
     'anonymize_ip': true
   });
 
-  // Cargar gtag.js SIEMPRE (no solo si hay consentimiento) para que GA4 pueda
-  // modelar el tráfico de usuarios que rechazan cookies. Se ejecuta tras window
-  // onload para priorizar el render del contenido.
+  // Cargar gtag.js SOLO con consentimiento previo de análisis (consent-choice-v2
+  // o su migración desde cookie-preferences). CookieConsent.astro también llama a
+  // loadGtagScript() al aceptar; este handler cubre la carga en visitas posteriores.
   window.addEventListener('load', function() {
     try {
-      loadGtagScript();
+      var granted = false;
+      try {
+        var saved = JSON.parse(localStorage.getItem('consent-choice-v2') || 'null');
+        if (saved && typeof saved.analytics === 'boolean' && saved.expires > Date.now()) granted = saved.analytics;
+        else {
+          var old = JSON.parse(localStorage.getItem('cookie-preferences') || 'null');
+          if (old && typeof old.analytics === 'boolean') granted = old.analytics;
+        }
+      } catch (e) { /* Sin permiso almacenado no se carga nada. */ }
+      if (granted) loadGtagScript();
     } catch (e) { /* si falla, seguimos sin tracking */ }
   });
 
@@ -65,7 +73,6 @@ const GA_ID = import.meta.env.GTAG_ID
     }, 100);
   };
 </script>
-<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
 <script is:inline>
   // Capa de eventos: formularios, CTAs y chat (Micaot 2026-10-08)
   document.addEventListener('submit', function (e) {
