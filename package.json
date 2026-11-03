@@ -75,16 +75,14 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.81.0",
-    "sharp": "^0.33.5",
+    "sharp": "^0.35.5",
     "tailwind-bootstrap-grid": "^5.1.0",
     "tailwindcss": "^3.4.15",
     "typescript": "5.3.3"
   },
   "overrides": {
-    "yaml": "2.8.3",
-    "yaml-language-server": {
-      "yaml": "2.8.3"
-    }
+    "fast-uri": "^3.1.9",
+    "@grpc/grpc-js": "^1.14.7"
   },
   "pnpm": {
     "overrides": {
