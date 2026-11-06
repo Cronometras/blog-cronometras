@@ -1,0 +1,16 @@
+---
+import summaries from '@/data/article-summaries.json';
+const { lang = 'es' } = Astro.props;
+const key = Astro.url.pathname.replace(/\/?$/, '/') as keyof typeof summaries;
+const summary = summaries[key];
+---
+{summary && (
+ <section class="mb-8 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-6" aria-labelledby="technical-summary">
+  <h2 id="technical-summary" class="text-2xl font-bold mb-3">{summary.question}</h2>
+  <p class="mb-3">{summary.answer}</p>
+  <ul class="list-disc pl-5 space-y-2">{summary.points.map(point => <li>{point}</li>)}</ul>
+  <p class="font-semibold mt-5">{lang === 'es' ? 'Fuentes y alcance' : 'Sources and scope'}</p>
+  <ul class="list-disc pl-5 mt-2">{summary.sources.map(source => <li><a href={source.url} class="underline">{source.title}</a></li>)}</ul>
+  {summary.sources.some(source => source.url.includes('fao.org')) && <p class="text-sm mt-3">{lang === 'es' ? 'La referencia FAO trata operaciones forestales y se cita aquí por sus definiciones generales del estudio del trabajo.' : 'The FAO reference concerns forestry operations and is cited here for its general work-study definitions.'}</p>}
+ </section>
+)}

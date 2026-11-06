@@ -51,9 +51,9 @@ const schema: Record<string, any> = {
   "datePublished": publishedISO,
   "inLanguage": lang === 'es' ? 'es-ES' : 'en-US',
   "author": {
-    "@type": "Person",
+    "@type": /cronometras|team|equipo/i.test(author || '') ? "Organization" : "Person",
     "name": author,
-    "url": config.site.base_url
+    "url": new URL(`/${lang === 'en' ? 'en' : 'es'}/about/`, config.site.base_url).toString()
   },
   "publisher": {
     "@type": "Organization",
