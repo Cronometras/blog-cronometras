@@ -1,0 +1,622 @@
+[
+  {
+    "es": "/es/blog/etapas-del-estudio-de-metodos-de-trabajo/",
+    "en": "/en/blog/stages-of-work-methods-study/"
+  },
+  {
+    "es": "/es/blog/identificacion-del-trabajo-a-medir/",
+    "en": "/en/blog/identification-of-work-to-measure/"
+  },
+  {
+    "es": "/es/blog/el-estudio-del-trabajo/",
+    "en": "/en/blog/work-study/"
+  },
+  {
+    "es": "/es/blog/como-crear-un-nuevo-estudio-de-trabajo/",
+    "en": "/en/blog/how-to-create-a-new-work-study/"
+  },
+  {
+    "es": "/es/blog/calculo-del-numero-optimo-de-maquinas-que-debe-llevar-un-operario/",
+    "en": "/en/blog/calculating-the-optimal-number-of-machines-for-an-operator/"
+  },
+  {
+    "es": "/es/blog/delimitar-los-elementos-de-trabajo-en-un-estudio-de-tiempos-con-cronometro/",
+    "en": "/en/blog/defining-work-elements-in-a-time-study-with-stopwatch/"
+  },
+  {
+    "es": "/es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/",
+    "en": "/en/blog/methods-and-times-in-industrial-business-management/"
+  },
+  {
+    "es": "/es/blog/objetivos-del-estudio-del-trabajo/",
+    "en": "/en/blog/objectives-of-work-study/"
+  },
+  {
+    "es": "/es/blog/diseno-del-metodo-de-trabajo/",
+    "en": "/en/blog/work-method-design/"
+  },
+  {
+    "es": "/es/blog/descanso-en-el-trabajo-un-enfoque-integral/",
+    "en": "/en/blog/rest-at-work-a-comprehensive-approach/"
+  },
+  {
+    "es": "/es/blog/medir-sin-metodo-preestablecido-crono-seguido/",
+    "en": "/en/blog/measuring-without-predefined-method-continuous-timing/"
+  },
+  {
+    "es": "/es/blog/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa/",
+    "en": "/en/blog/how-to-reduce-lead-time-to-improve-productivity-competitiveness-and-efficiency-of-your-company/"
+  },
+  {
+    "es": "/es/blog/cuales-son-las-fases-de-un-proceso-industrial/",
+    "en": "/en/blog/what-are-the-phases-of-an-industrial-process/"
+  },
+  {
+    "es": "/es/blog/que-es-el-estudio-de-tiempos-y-movimientos/",
+    "en": "/en/blog/what-is-time-and-motion-study/"
+  },
+  {
+    "es": "/es/blog/acceder-a-la-app/",
+    "en": "/en/blog/accessing-the-app/"
+  },
+  {
+    "es": "/es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/",
+    "en": "/en/blog/optimization-of-production-systems-key-to-industrial-efficiency/"
+  },
+  {
+    "es": "/es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria/",
+    "en": "/en/blog/how-to-standardize-work-times-in-industry/"
+  },
+  {
+    "es": "/es/blog/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa/",
+    "en": "/en/blog/benefits-and-challenges-of-implementing-lean-manufacturing-in-your-company/"
+  },
+  {
+    "es": "/es/blog/medicion-de-tiempos-de-trabajo/",
+    "en": "/en/blog/work-time-measurement/"
+  },
+  {
+    "es": "/es/blog/cronometraje-de-tiempos-de-maquina/",
+    "en": "/en/blog/machine-time-measurement/"
+  },
+  {
+    "es": "/es/blog/que-tipos-de-cronometros-existen/",
+    "en": "/en/blog/what-types-of-stopwatches-exist/"
+  },
+  {
+    "es": "/es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/",
+    "en": "/en/blog/tools-needed-for-time-study/"
+  },
+  {
+    "es": "/es/blog/trabajos-hombre-maquina-como-calcular-y-minimizar-las-interferencias-guia-practica-y-metodos-eficaces/",
+    "en": "/en/blog/man-machine-work-how-to-calculate-and-minimize-interferences-practical-guide-and-effective-methods/"
+  },
+  {
+    "es": "/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/",
+    "en": "/en/blog/line-balancing-optimizing-efficiency-in-manufacturing-processes/"
+  },
+  {
+    "es": "/es/blog/gestion-integral-estudios/",
+    "en": "/en/blog/comprehensive-time-study-management/"
+  },
+  {
+    "es": "/es/blog/por-que-hay-retrasos-en-la-produccion/",
+    "en": "/en/blog/why-are-there-delays-in-production/"
+  },
+  {
+    "es": "/es/blog/prepara-la-automatizacion/",
+    "en": "/en/blog/prepare-automation/"
+  },
+  {
+    "es": "/es/blog/que-es-gsd-en-ingenieria/",
+    "en": "/en/blog/what-is-gsd-in-engineering/"
+  },
+  {
+    "es": "/es/blog/generar-informe-de-estudio-de-tiempos/",
+    "en": "/en/blog/generate-time-study-report/"
+  },
+  {
+    "es": "/es/blog/toma-de-tiempos-con-cronometro/",
+    "en": "/en/blog/time-measurement-with-stopwatch/"
+  },
+  {
+    "es": "/es/blog/define-el-metodo-de-trabajo/",
+    "en": "/en/blog/define-the-work-method/"
+  },
+  {
+    "es": "/es/blog/la-ergonomia-del-dolor-a-la-productividad/",
+    "en": "/en/blog/ergonomics-from-pain-to-productivity/"
+  },
+  {
+    "es": "/es/blog/sistema-bedaux/",
+    "en": "/en/blog/bedaux-system/"
+  },
+  {
+    "es": "/es/blog/como-mejorar-la-eficiencia-y-la-eficacia-del-proceso-industrial-mediante-la-simplificacion-de-tareas/",
+    "en": "/en/blog/how-to-improve-efficiency-and-effectiveness-of-industrial-process-through-task-simplification/"
+  },
+  {
+    "es": "/es/blog/aplicacion-de-suplementos-oit/",
+    "en": "/en/blog/application-of-ilo-allowances/"
+  },
+  {
+    "es": "/es/blog/elige-como-vas-a-medir-el-trabajo/",
+    "en": "/en/blog/choose-how-to-measure-work/"
+  },
+  {
+    "es": "/es/blog/muestreo-del-trabajo-guia-del-analista-para-la-precision-estadistica-y-la-optimizacion-de-procesos-norma-oit/",
+    "en": "/en/blog/work-sampling-analysts-guide-to-statistical-precision-and-process-optimization-ilo-standard/"
+  },
+  {
+    "es": "/es/blog/impacto-de-la-ergonomia-en-los-tiempos-de-ciclo-de-la-fatiga-variable-al-oee-maximizado-horizonte-2025/",
+    "en": "/en/blog/impact-of-ergonomics-on-cycle-times-from-variable-fatigue-to-maximized-oee-horizon-2025/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-18-dominio-del-calculo-de-interferencias-en-la-asignacion-multi-maquina-textil/",
+    "en": "/en/blog/specialized-technique-18-mastering-interference-calculation-in-textile-multi-machine-assignment/"
+  },
+  {
+    "es": "/es/blog/introduccion-a-mtm-1-tiempos-predeterminados-estandar-de-oro-en-ingenieria-de-metodos/",
+    "en": "/en/blog/introduction-to-mtm1-predetermined-times/"
+  },
+  {
+    "es": "/es/blog/ingenieria-de-tiempos-en-logistica-y-picking-mas-alla-del-cronometro-con-mtm-y-most/",
+    "en": "/en/blog/time-engineering-in-logistics-and-picking-beyond-the-stopwatch-with-mtm-and-most-methods/"
+  },
+  {
+    "es": "/es/blog/tablas-de-ashcroft-las-matematicas-exactas-para-maximizar-la-asignacion-de-maquinas-mms-y-justificar-la-carga-de-trabajo/",
+    "en": "/en/blog/ashcroft-tables-the-exact-mathematics-to-maximize-machine-assignment-mms-and-justify-workload/"
+  },
+  {
+    "es": "/es/blog/diagrama-hombre-maquina-multiple-calculo-de-interferencias-norma-iso-10075-y-optimizacion-estocastica-guia-tecnica-2025/",
+    "en": "/en/blog/multiple-man-machine-chart-interference-calculation-iso-10075-standard-and-stochastic-optimization-technical-guide-2025/"
+  },
+  {
+    "es": "/es/blog/cronometraje-de-elementos-frecuenciales-el-reto-de-la-variabilidad-en-la-ingenieria-de-metodos/",
+    "en": "/en/blog/timing-of-frequency-elements-the-challenge-of-variability-in-methods-engineering/"
+  },
+  {
+    "es": "/es/blog/smed-reduccion-del-tiempo-de-cambio-de-maquina-optimizacion-del-oee-via-ingenieria-de-metodos-y-mtm/",
+    "en": "/en/blog/smed-changeover-time-reduction-oee-optimization-via-methods-engineering-and-mtm/"
+  },
+  {
+    "es": "/es/blog/productividad-en-la-soldadura-robotica-dominando-la-sincronizacion-entre-ingenieria-de-metodos-y-automatizacion/",
+    "en": "/en/blog/productivity-in-robotic-welding-mastering-synchronization-between-methods-engineering-and-automation/"
+  },
+  {
+    "es": "/es/blog/calculo-del-oee-en-lineas-de-produccion-por-que-tu-factor-de-rendimiento-es-falso-sin-ingenieria-de-metodos-analisis-iso-22400/",
+    "en": "/en/blog/oee-calculation-in-production-lines-why-your-performance-factor-is-fake-without-methods-engineering-iso-22400-analysis/"
+  },
+  {
+    "es": "/es/blog/sistema-most-basic-most-la-tecnica-de-medicion-que-elimina-la-subjetividad-del-cronometro-en-la-industria/",
+    "en": "/en/blog/most-system-basic-most-the-measurement-technique-removing-stopwatch-subjectivity-in-industry/"
+  },
+  {
+    "es": "/es/blog/introduccion-a-los-sistemas-de-tiempos-predeterminados-mtm-y-most-metodologias-avanzadas/",
+    "en": "/en/blog/introduction-to-predetermined-time-systems-mtm-and-most-advanced-methodologies/"
+  },
+  {
+    "es": "/es/blog/diagrama-de-hilos-como-herramienta-de-ingenieria-de-metodos-optimizacion-del-flujo-y-evolucion-digital/",
+    "en": "/en/blog/string-diagram-as-a-methods-engineering-tool-flow-optimization-and-digital-evolution/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-14-cronometraje-oee-y-productividad-en-procesos-quimicos-y-continuos-guia-tecnica-2025/",
+    "en": "/en/blog/specialized-technique-14-timing-oee-and-productivity-in-chemical-and-continuous-processes-technical-guide-2025/"
+  },
+  {
+    "es": "/es/blog/diseno-tecnico-de-plantillas-para-la-recogida-de-datos-en-planta-de-las-normas-oit-a-la-digitalizacion-2025/",
+    "en": "/en/blog/technical-design-of-plant-data-collection-templates-from-ilo-standards-to-2025-digitalization/"
+  },
+  {
+    "es": "/es/blog/consultoria-de-productividad-industrial-el-enfoque-de-cronometras-hacia-la-excelencia-operacional/",
+    "en": "/en/blog/industrial-productivity-consulting-the-cronometras-approach-to-operational-excellence/"
+  },
+  {
+    "es": "/es/blog/importancia-vital-del-calculo-del-tiempo-estandar-para-la-productividad-y-rentabilidad/",
+    "en": "/en/blog/importance-of-standard-time-calculation-for-productivity-and-profitability/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-13-analisis-de-therbligs-para-dominar-la-productividad-en-el-montaje-fino-escenario-2025/",
+    "en": "/en/blog/specialized-technique-13-therblig-analysis-to-master-productivity-in-fine-assembly-scenario-2025/"
+  },
+  {
+    "es": "/es/blog/analisis-de-video-industrial-y-auditoria-forense-del-tiempo-el-fin-del-cronometro-clasico/",
+    "en": "/en/blog/specialized-technique-17-industrial-video-analysis-and-forensic-time-audit-the-end-of-the-classic-stopwatch/"
+  },
+  {
+    "es": "/es/blog/tecnicas-de-balanceo-de-linea-de-ensamblaje-del-cronometraje-estatico-al-oee-mayor-85-con-mtm/",
+    "en": "/en/blog/assembly-line-balancing-techniques-from-static-timing-to-85-percent-oee-efficiency-with-mtm/"
+  },
+  {
+    "es": "/es/blog/el-nuevo-paradigma-del-cronometraje-industrial-en-2025-prl-y-productividad/",
+    "en": "/en/blog/the-new-paradigm-of-industrial-time-study-in-2025-ohs-and-productivity/"
+  },
+  {
+    "es": "/es/blog/diferencia-entre-tiempo-normal-y-tiempo-estandar/",
+    "en": "/en/blog/difference-between-normal-time-and-standard-time/"
+  },
+  {
+    "es": "/es/blog/calculo-del-oee-en-lineas-de-produccion/",
+    "en": "/en/blog/oee-calculation-in-production-lines/"
+  },
+  {
+    "es": "/es/blog/auditoria-de-tiempos-estandar-existentes/",
+    "en": "/en/blog/standard-time-audit-how-to-detect-and-correct-obsolescence-in-production-master-data/"
+  },
+  {
+    "es": "/es/blog/cronometraje-de-elementos-frecuenciales/",
+    "en": "/en/blog/timing-of-frequency-elements/"
+  },
+  {
+    "es": "/es/blog/suplementos-fatiga-oit/",
+    "en": "/en/blog/ilo-fatigue-allowances-guide/"
+  },
+  {
+    "es": "/es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/",
+    "en": "/en/blog/what-are-the-industrial-time-study-techniques/"
+  },
+  {
+    "es": "/es/blog/calculo-suplementos-trabajo/",
+    "en": "/en/blog/work-allowance-calculation/"
+  },
+  {
+    "es": "/es/blog/que-es-el-cronometraje-industrial/",
+    "en": "/en/blog/what-is-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/tecnicas-de-balanceo-de-linea-para-ensamblaje/",
+    "en": "/en/blog/line-balancing-techniques-for-assembly/"
+  },
+  {
+    "es": "/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/",
+    "en": "/en/blog/step-by-step-guide-how-to-conduct-an-effective-time-and-motion-study/"
+  },
+  {
+    "es": "/es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/",
+    "en": "/en/blog/saturation-calculation-in-time-study/"
+  },
+  {
+    "es": "/es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/",
+    "en": "/en/blog/importance-of-work-time-study/"
+  },
+  {
+    "es": "/es/blog/mejores-practicas-metodo-trabajo/",
+    "en": "/en/blog/best-practices-work-methods/"
+  },
+  {
+    "es": "/es/blog/obeya-room-lean/",
+    "en": "/en/blog/obeya-room-lean/"
+  },
+  {
+    "es": "/es/blog/5-metodos-de-medicion-del-trabajo/",
+    "en": "/en/blog/5-work-measurement-methods/"
+  },
+  {
+    "es": "/es/blog/introduccion-al-cronometraje-industrial/",
+    "en": "/en/blog/introduction-to-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/7-errores-comunes-cronometraje-industrial/",
+    "en": "/en/blog/7-common-mistakes-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/",
+    "en": "/en/blog/work-sampling-statistical-tool-efficient-management/"
+  },
+  {
+    "es": "/es/blog/cronometrando-el-ciclo-de-trabajo/",
+    "en": "/en/blog/timing-the-work-cycle/"
+  },
+  {
+    "es": "/es/blog/escala-bedaux-vs-centesimal-cual-elegir/",
+    "en": "/en/blog/bedaux-vs-centesimal-scale-which-to-choose/"
+  },
+  {
+    "es": "/es/blog/optimiza-la-productividad-empresarial-con-el-control-de-tiempos-y-el-cronometraje-industrial/",
+    "en": "/en/blog/optimize-business-productivity-with-time-control-and-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/cronometraje-y-la-estandarizacion-de-procesos/",
+    "en": "/en/blog/time-study-and-process-standardization/"
+  },
+  {
+    "es": "/es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/",
+    "en": "/en/blog/stages-of-time-study-in-industrial-time-measurement/"
+  },
+  {
+    "es": "/es/blog/introduccion-mtm-most-metodologias-avanzadas/",
+    "en": "/en/blog/introduction-mtm-most-advanced-methodologies/"
+  },
+  {
+    "es": "/es/blog/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/",
+    "en": "/en/blog/activity-rating-in-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/importancia-tiempo-estandar-productividad-rentabilidad/",
+    "en": "/en/blog/importance-standard-time-productivity-profitability/"
+  },
+  {
+    "es": "/es/blog/como-utilizar-cronometrasapp-para-el-cronometraje-industrial/",
+    "en": "/en/blog/how-to-use-cronometrasapp-for-industrial-timekeeping/"
+  },
+  {
+    "es": "/es/blog/tiempo-observado-vs-tiempo-estandar/",
+    "en": "/en/blog/observed-time-vs-standard-time/"
+  },
+  {
+    "es": "/es/blog/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo/",
+    "en": "/en/blog/usefulness-of-historical-times-for-establishing-work-standards/"
+  },
+  {
+    "es": "/es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/",
+    "en": "/en/blog/how-to-conduct-a-time-and-motion-study-with-stopwatch/"
+  },
+  {
+    "es": "/es/blog/importancia-del-estudio-de-metodos-y-tiempos-de-trabajo/",
+    "en": "/en/blog/importance-of-work-methods-and-time-study/"
+  },
+  {
+    "es": "/es/blog/takt-time-que-es-como-se-calcula-y-como-se-aplica/",
+    "en": "/en/blog/takt-time-what-it-is-how-to-calculate-and-how-to-apply-it/"
+  },
+  {
+    "es": "/es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/",
+    "en": "/en/blog/number-of-observations-required-in-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/introduccion-cronometras/",
+    "en": "/en/blog/introduction-cronometras/"
+  },
+  {
+    "es": "/es/blog/exportar-estudios-de-tiempos-a-excel-y-pdf-con-cronometrasapp/",
+    "en": "/en/blog/exporting-time-studies-to-excel-and-pdf-with-cronometrasapp/"
+  },
+  {
+    "es": "/es/blog/smed-reduccion-de-tiempos-de-cambio/",
+    "en": "/en/blog/smed-reduction-of-changeover-times/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-cronometraje-de-procesos-quimicos/",
+    "en": "/en/blog/specialized-technique-14-time-study-of-chemical-processes/"
+  },
+  {
+    "es": "/es/blog/diagrama-de-actividades-multiples-coordinacion-de-equipos/",
+    "en": "/en/blog/multiple-activity-chart-team-coordination/"
+  },
+  {
+    "es": "/es/blog/productividad-en-procesos-de-soldadura-robotica/",
+    "en": "/en/blog/productivity-in-robotic-welding-processes/"
+  },
+  {
+    "es": "/es/blog/principios-de-economia-de-movimientos/",
+    "en": "/en/blog/principles-of-motion-economy/"
+  },
+  {
+    "es": "/es/blog/biblioteca-de-elementos-estandarizacion-de-tiempos/",
+    "en": "/en/blog/element-library-time-standardization/"
+  },
+  {
+    "es": "/es/blog/diagrama-hombre-maquina-multiple/",
+    "en": "/en/blog/multiple-man-machine-chart/"
+  },
+  {
+    "es": "/es/blog/entrada-por-voz-en-estudios-de-tiempos-con-cronometrasapp/",
+    "en": "/en/blog/voice-input-in-time-studies-with-cronometrasapp/"
+  },
+  {
+    "es": "/es/blog/los-5-mejores-software-para-estudios-de-tiempos-industriales-en-2026/",
+    "en": "/en/blog/the-5-best-software-tools-for-industrial-time-studies-in-2026/"
+  },
+  {
+    "es": "/es/blog/analisis-de-la-variabilidad-en-los-tiempos-de-ciclo-control-estadistico-de-procesos-spc-aplicado-al-cronometraje-industrial/",
+    "en": "/en/blog/cycle-time-variability-analysis-statistical-process-control-spc-applied-to-industrial-time-study/"
+  },
+  {
+    "es": "/es/blog/diseno-de-plantillas-para-toma-de-datos-en-planta/",
+    "en": "/en/blog/design-of-data-collection-templates-for-the-plant-floor/"
+  },
+  {
+    "es": "/es/blog/sistema-kanban-y-cronometraje-industrial-sincronizando-materiales-y-tiempos-estandar/",
+    "en": "/en/blog/kanban-system-and-industrial-time-study-synchronizing-materials-and-standard-times/"
+  },
+  {
+    "es": "/es/blog/estudio-de-tiempos-en-almacenes-y-picking/",
+    "en": "/en/blog/time-study-in-warehouses-and-picking/"
+  },
+  {
+    "es": "/es/blog/como-aplicar-la-formula-de-wright-para-interferencias-de-maquinas/",
+    "en": "/en/blog/how-to-apply-wrights-formula-for-machine-interference/"
+  },
+  {
+    "es": "/es/blog/como-calcular-la-saturacion-del-operario-en-tiempos-de-maquina/",
+    "en": "/en/blog/how-to-calculate-operator-saturation-in-machine-times-technical-guide-to-optimizing-industrial-productivity/"
+  },
+  {
+    "es": "/es/blog/analisis-de-therbligs-en-montaje-fino/",
+    "en": "/en/blog/therblig-analysis-in-fine-assembly/"
+  },
+  {
+    "es": "/es/blog/impacto-de-la-ergonomia-en-los-tiempos-de-ciclo/",
+    "en": "/en/blog/impact-of-ergonomics-on-cycle-times/"
+  },
+  {
+    "es": "/es/blog/metodo-de-cronometraje-vuelta-a-cero-vs-acumulativo/",
+    "en": "/en/blog/zero-reset-vs-cumulative-time-study-method-complete-technical-guide-for-industrial-engineers-2025/"
+  },
+  {
+    "es": "/es/blog/importar-estudios-de-tiempos-desde-excel-a-cronometrasapp/",
+    "en": "/en/blog/importing-time-studies-from-excel-into-cronometrasapp/"
+  },
+  {
+    "es": "/es/blog/introduccion-al-mtm-1-tiempos-predeterminados/",
+    "en": "/en/blog/introduction-to-mtm-1-predetermined-time-standards/"
+  },
+  {
+    "es": "/es/blog/escalas-de-valoracion-de-la-actividad-bedaux-vs-centesimal/",
+    "en": "/en/blog/activity-rating-scales-bedaux-vs-centesimal/"
+  },
+  {
+    "es": "/es/blog/poka-yoke-en-los-estudios-de-tiempos-como-los-dispositivos-antierror-reducen-la-variabilidad-y-mejoran-los-tiempos-de-ciclo/",
+    "en": "/en/blog/poka-yoke-in-time-studies-how-mistake-proofing-devices-reduce-variability-and-improve-cycle-times/"
+  },
+  {
+    "es": "/es/blog/smed-tecnica-de-cambio-rapido-de-maquinas/",
+    "en": "/en/blog/smed-quick-changeover-technique/"
+  },
+  {
+    "es": "/es/blog/perdidas-de-velocidad-el-enemigo-invisible-del-oee/",
+    "en": "/en/blog/speed-losses-the-invisible-enemy-of-oee/"
+  },
+  {
+    "es": "/es/blog/analisis-de-flujo-mediante-diagrama-de-hilos/",
+    "en": "/en/blog/flow-analysis-using-a-string-diagram/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-uso-de-video-analisis-para-mejora-de-metodos/",
+    "en": "/en/blog/specialized-technique-use-of-video-analysis-for-methods-improvement/"
+  },
+  {
+    "es": "/es/blog/mapeo-de-procesos-con-flow-process-chart-guia-completa/",
+    "en": "/en/blog/process-mapping-with-the-flow-process-chart-complete-guide/"
+  },
+  {
+    "es": "/es/blog/que-es-el-estudio-de-tiempos-definicion-y-objetivos/",
+    "en": "/en/blog/what-is-time-study-definition-and-objectives/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-15-diagrama-hombre-maquina-multiple/",
+    "en": "/en/blog/specialized-technique-15-multiple-man-machine-chart/"
+  },
+  {
+    "es": "/es/blog/suplementos-por-contingencias-cuando-y-como-aplicarlos/",
+    "en": "/en/blog/allowances-for-contingencies-when-and-how-to-apply-them/"
+  },
+  {
+    "es": "/es/blog/cronometraje-de-elementos-frecuenciales-complejos/",
+    "en": "/en/blog/time-study-of-complex-frequent-elements/"
+  },
+  {
+    "es": "/es/blog/tablas-de-suplementos-oit-calculo-de-fatiga-y-descanso/",
+    "en": "/en/blog/oit-allowance-tables-fatigue-and-rest-calculation/"
+  },
+  {
+    "es": "/es/blog/sistema-most-tecnica-basica-de-medicion/",
+    "en": "/en/blog/most-system-basic-measurement-technique/"
+  },
+  {
+    "es": "/es/blog/comparativa-pmts-mtm-most-mts-dmt-ingenieria-metodos/",
+    "en": "/en/blog/comparison-of-predetermined-time-systems-pmts-mtm-most-mts-and-dmt-how-to-choose-the-right-one-for-your-industry/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/",
+    "en": "/en/blog/time-study-in-beverage-bottling-plants-standard-times-in-beer-and-soft-drink-lines-at-30000-80000-bph/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-paradas-programadas-refineria-turnaround-ti/",
+    "en": "/en/blog/time-study-in-refinery-and-petrochemical-plant-scheduled-shutdowns-ti-turnarounds-standard-times-for-heat-exchangers-columns-and-major-maintenance/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/",
+    "en": "/en/blog/time-study-in-data-centers-cpd-standard-times-for-247-operation-and-maintenance-per-tia-942-and-en-50600/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-cooperativas-agroalimentarias-vendimia-almazara/",
+    "en": "/en/blog/time-study-in-agrifood-cooperatives-standard-times-in-grape-harvest-and-olive-mill/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-plantas-carton-ondulado-coste-real-caja-plazos/",
+    "en": "/en/blog/time-and-motion-analysis-in-corrugated-board-plants-how-to-know-what-a-box-really-costs-and-meet-the-delivery-dates-sales-promises/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-industria-del-mueble-tiempos-estandar-cotizar-entregar/",
+    "en": "/en/blog/time-and-motion-analysis-in-the-furniture-industry-standard-times-for-quoting-and-delivery/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-mantenimiento-aeronautico-mro-easa-part-145-aog/",
+    "en": "/en/blog/the-aircraft-on-the-ground-costs-you-money-every-hour-how-to-cut-maintenance-times-without-failing-an-easa-audit/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-mantenimiento-ferroviario-itv-rgs/",
+    "en": "/en/blog/what-a-fleet-overhaul-really-costs-shop-times-that-withstand-an-audit-and-a-maintenance-fee-you-can-defend/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-baterias-litio-lineas-fabricacion/",
+    "en": "/en/blog/battery-gigafactory-why-you-dont-know-what-it-costs-you-to-manufacture-a-kwh/"
+  },
+  {
+    "es": "/es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/",
+    "en": "/en/blog/deadlines-that-are-missed-and-costs-in-the-dark-how-to-plan-maintenance-for-your-electrical-substations/"
+  },
+  {
+    "es": "/es/blog/sistemas-de-incentivos-salariales-basados-en-tiempos-estandar-diseno-calculo-e-implementacion-de-planes-de-primas/",
+    "en": "/en/blog/wage-incentive-systems-based-on-standard-times-design-calculation-and-implementation-of-bonus-plans/"
+  },
+  {
+    "es": "/es/blog/cronometraje-de-procesos-quimicos/",
+    "en": "/en/blog/time-study-of-chemical-processes/"
+  },
+  {
+    "es": "/es/blog/cronometraje-de-elementos-frecuenciales-en-cronometrasapp/",
+    "en": "/en/blog/time-study-of-infrequent-elements-in-cronometrasapp/"
+  },
+  {
+    "es": "/es/blog/diagrama-bimanual-analisis-de-movimientos/",
+    "en": "/en/blog/bimanual-diagram-motion-analysis/"
+  },
+  {
+    "es": "/es/blog/coste-estandar-por-producto-como-calcular-el-coste-unitario-a-partir-del-tiempo-estandar/",
+    "en": "/en/blog/standard-cost-per-product-how-to-calculate-unit-cost-from-standard-time/"
+  },
+  {
+    "es": "/es/blog/work-sampling-muestreo-del-trabajo-para-analistas/",
+    "en": "/en/blog/work-sampling-work-sampling-for-analysts/"
+  },
+  {
+    "es": "/es/blog/trabajo-colaborativo-en-ingenieria-de-metodos-organizaciones/",
+    "en": "/en/blog/collaborative-work-in-methods-engineering-organizations/"
+  },
+  {
+    "es": "/es/blog/suplementos-por-condiciones-ambientales-extremas/",
+    "en": "/en/blog/allowances-for-extreme-environmental-conditions/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-16-asignacion-de-maquinas-por-tablas-de-ashcroft/",
+    "en": "/en/blog/specialized-technique-16-machine-assignment-using-ashcroft-tables/"
+  },
+  {
+    "es": "/es/blog/la-curva-de-aprendizaje-y-su-impacto-en-los-tiempos-estandar-formula-de-wright-y-aplicaciones-practicas/",
+    "en": "/en/blog/the-learning-curve-and-its-impact-on-standard-times-wrights-formula-and-practical-applications/"
+  },
+  {
+    "es": "/es/blog/uso-de-las-tablas-de-ashcroft-en-asignacion-de-maquinas/",
+    "en": "/en/blog/using-ashcroft-tables-in-machine-assignment/"
+  },
+  {
+    "es": "/es/blog/comparacion-de-estudios-de-tiempos-benchmarking/",
+    "en": "/en/blog/comparison-of-time-studies-benchmarking/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-calculo-de-interferencia-en-maquinas-textiles/",
+    "en": "/en/blog/specialized-technique-interference-calculation-in-textile-machines/"
+  },
+  {
+    "es": "/es/blog/value-stream-mapping-vsm-y-el-cronometraje/",
+    "en": "/en/blog/value-stream-mapping-vsm-and-time-study/"
+  },
+  {
+    "es": "/es/blog/sistema-mtm-2-movimientos-basicos-y-valores-tmu/",
+    "en": "/en/blog/mtm-2-system-basic-motions-and-tmu-values/"
+  },
+  {
+    "es": "/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo/",
+    "en": "/en/blog/the-westinghouse-performance-rating-system-the-technique-that-invented-work-rating/"
+  },
+  {
+    "es": "/es/blog/calculo-del-ciclo-optimo-en-trabajos-con-maquina/",
+    "en": "/en/blog/calculating-the-optimal-machine-cycle-in-machine-work/"
+  },
+  {
+    "es": "/es/blog/tecnica-especializada-analisis-de-therbligs-en-montaje-fino/",
+    "en": "/en/blog/specialized-technique-therblig-analysis-in-fine-assembly/"
+  }
+]

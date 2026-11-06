@@ -183,6 +183,19 @@ let rawArticlesCache: FirestoreArticle[] | null = null;
 
 async function getAllRawArticles(): Promise<FirestoreArticle[]> {
     if (rawArticlesCache) return rawArticlesCache;
+    // Optional private snapshot for reproducible translation QA before publishing.
+    // It is a build-time file, never copied to public/ or shipped as credentials.
+    const snapshot = process.env.FIRESTORE_ARTICLES_SNAPSHOT_PATH;
+    if (snapshot) {
+        const { readFileSync } = await import('node:fs');
+        const data = JSON.parse(readFileSync(snapshot, 'utf8').replace(/^\uFEFF/, ''));
+        if (!Array.isArray(data) || data.some(article => !article.id || typeof article.content !== 'string')) {
+            throw new Error('Invalid article snapshot');
+        }
+        rawArticlesCache = data;
+        console.log(`Loaded ${data.length} articles from the private build snapshot`);
+        return rawArticlesCache;
+    }
     const db = getAdminFirestore();
     // NOTE: no .orderBy() — it would need a composite index we don't have.
     // Sorted by createdAt DESC client-side below (cheap for ~250 docs).

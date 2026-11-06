@@ -21,6 +21,8 @@ import type { PageType } from "@/content/page.types";
 import type { AnyCollectionKey } from "astro:content";
 import { getLangFromUrl } from "@/i18n/utils";
 import { getAppShowcaseSrcset } from '@/lib/appShowcases';
+import articlePairs from '@/data/blog-translations.json';
+import { getLanguagePaths } from '@/lib/blogLanguagePaths.mjs';
 
 // Fallback hardcoded a la G-ID del proyecto (cronometras.com). Evita que el
 // tracking se rompa silenciosamente cuando la env var GTAG_ID no está definida
@@ -161,12 +163,10 @@ const _noindex =
 
 // Detectar idioma y par de idiomas en función de la URL
 const lang = getLangFromUrl(Astro.url);
-const pathWithoutLang = Astro.url.pathname.replace(/^\/[a-z]{2}/, "") || "/";
-
-// Construir los hreflang sólo cuando la ruta es parametrizable por idioma
-const esHref = `${config.site.base_url}/es${pathWithoutLang}`;
-const enHref = `${config.site.base_url}/en${pathWithoutLang}`;
-const xDefault = `${config.site.base_url}/es${pathWithoutLang}`;
+const languagePaths = getLanguagePaths(Astro.url.pathname, articlePairs);
+const esHref = languagePaths.es ? new URL(languagePaths.es, config.site.base_url).href : null;
+const enHref = languagePaths.en ? new URL(languagePaths.en, config.site.base_url).href : null;
+const xDefault = esHref || enHref;
 
 // OG image por defecto 1200x630 (creado para redes sociales)
 const ogImagePath = _image?.startsWith("http")
@@ -343,9 +343,9 @@ console.log("Cargando layout Base.astro");
     <link rel="canonical" href={_canonical_url} item-prop="url" />
 
     <!-- Alternate language versions (sólo se emiten cuando la URL parametrizable por idioma existe) -->
-    <link rel="alternate" hreflang="es" href={esHref} />
-    <link rel="alternate" hreflang="en" href={enHref} />
-    <link rel="alternate" hreflang="x-default" href={xDefault} />
+    {esHref && <link rel="alternate" hreflang="es" href={esHref} />}
+    {enHref && <link rel="alternate" hreflang="en" href={enHref} />}
+    {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault} />}
 
     <!-- Preconexiones para recursos críticos -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
