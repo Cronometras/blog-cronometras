@@ -1,196 +1,3 @@
-# =====================================================================
-# _redirects (Cloudflare Pages) - Reglas consolidadas para SEO
-# =====================================================================
-# Formato Cloudflare Pages: /origen  /destino  [status]
-# Las reglas más específicas van primero.
-# Reglas con sintaxis Netlify (multi-splat, etc.) que Pages no soporta
-# se han convertido a patrones con `*` final o se han eliminado.
-# =====================================================================
-
-# ---------------------------------------------------------------------
-# 1. Redirección raíz según idioma del navegador
-# ---------------------------------------------------------------------
-/  /es/  301
-
-# ---------------------------------------------------------------------
-# 0. Reglas críticas primero (2026-10-08): el tope de _redirects de
-#    Pages (~101 reglas) dejaba estas muertas al final del archivo.
-# ---------------------------------------------------------------------
-/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/blog*        /es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/   301
-/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/blog*   /es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/   301
-/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271/blog*          /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
-/es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento-tiempos-estandar-tier-iii-iv/   /es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/   301
-/es/blog/cronoanalisis-envasado-bebidas-calidad-control-higiene-limpieza-tiempos-estandar/   /es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/   301
-/es/blog/comparativa-pmts-mtm-most-mtu-uas-modapts-gsd-wf-cronoanalisis/   /es/blog/comparativa-pmts-mtm-most-mts-dmt-ingenieria-metodos/   301
-/es/blog/cronoanalisis-paradas-programadas-turnaround-refineria-gas-tiempos-estandar/   /es/blog/cronoanalisis-paradas-programadas-refineria-turnaround-ti/   301
-/es/blog/cronoanalisis-mantenimiento-aeronautico-mro-hangar-tiempos-estandar-piezas/   /es/blog/cronoanalisis-mantenimiento-aeronautico-mro-easa-part-145-aog/   301
-/es/blog/cronoanalisis-mantenimiento-ferroviario-flota-talleres-tiempos-estandar/   /es/blog/cronoanalisis-mantenimiento-ferroviario-itv-rgs/   301
-/es/blog/cronoanalisis-baterias-litio-gigafactoria-celdas-electrodos-celdas-tiempos-estandar/   /es/blog/cronoanalisis-baterias-litio-lineas-fabricacion/   301
-/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp*   /es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo/   301
-/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo             /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301
-/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo/   /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301   301
-/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica            /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301
-/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica/   /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301   301
-/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro            /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301
-/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro/   /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301   301
-/es/blog/cuales-son-las-tecnicas-de-cronometraje                         /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
-/es/blog/cuales-son-las-tecnicas-de-cronometraje/   /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
-
-# ---------------------------------------------------------------------
-# 2. Páginas estándar sin prefijo de idioma -> versiones localizadas
-# ---------------------------------------------------------------------
-/about*       /es/about/    301
-/privacy*     /es/privacy/  301
-/contact*     /es/contact/  301
-/terms*       /es/terms/    301
-/faq*         /es/faq/      301
-
-# ---------------------------------------------------------------------
-# 3. Alias antiguos -> rutas canónicas de páginas
-# ---------------------------------------------------------------------
-/funciones-4*              /es/features/      301
-/pantalla-de-metodo*       /es/method/        301
-/pantalla-de-inicio*       /es/dashboard/     301
-/conoce*                   /es/about/         301
-/curso/cronometras-app*    /es/features/      301
-/author/micaot*            /es/about/         301
-/pantalla-de-cronometraje* /es/repetitive/    301
-
-# ---------------------------------------------------------------------
-# 4. Categorías y listados de blog sin idioma
-# ---------------------------------------------------------------------
-/category/blog*                            /es/blog/    301
-/category/cronometraje-industrial*         /es/blog/    301
-/category/lean-manufacturing-y-metodologias-agiles*  /es/blog/    301
-/articulos/page/3*                         /es/blog/    301
-
-# ---------------------------------------------------------------------
-# 5. Posts antiguos sin prefijo de idioma -> canónicos en /es/blog/
-# ---------------------------------------------------------------------
-/sistema-bedaux*                                                              /es/blog/sistema-bedaux/    301
-/obeya-room-lean*                                                             /es/blog/obeya-room-lean/    301
-/el-estudio-del-trabajo*                                                      /es/blog/el-estudio-del-trabajo/    301
-/que-es-gsd-en-ingenieria*                                                     /es/blog/que-es-gsd-en-ingenieria/    301
-/cronometraje-y-la-estandarizacion-de-procesos*                              /es/blog/cronometraje-y-la-estandarizacion-de-procesos/    301
-/por-que-hay-retrasos-en-la-produccion*                                       /es/blog/por-que-hay-retrasos-en-la-produccion/    301
-/herramientas-necesarias-para-realizar-un-estudio-de-tiempos*                 /es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/    301
-/metodos-y-tiempos-en-la-gestion-empresarial-industrial*                      /es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/    301
-/la-importancia-del-estudio-de-tiempos-de-trabajo*                            /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301
-/que-es-el-estudio-de-tiempos-y-movimientos*                                  /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301
-/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial*            /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301
-/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial*                 /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
-/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro*          /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
-/muestreo-del-trabajo*                                                        /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301
-/que-tipos-de-cronometros-existen*                                            /es/blog/que-tipos-de-cronometros-existen/    301
-/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo* /es/blog/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo/    301
-/cuales-son-las-fases-de-un-proceso-industrial*                               /es/blog/cuales-son-las-fases-de-un-proceso-industrial/    301
-/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial*                 /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
-/objetivos-del-estudio-del-trabajo*                                           /es/blog/objetivos-del-estudio-del-trabajo/    301
-/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa*  /es/blog/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa/    301
-/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial*   /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
-/takt-time-que-es-como-se-calcula-y-como-se-aplica*                           /es/blog/takt-time-que-es-como-se-calcula-y-como-se-aplica/    301
-/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial*                /es/blog/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/    301
-/como-estandarizar-los-tiempos-de-trabajo-en-la-industria*                    /es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria-v2/    301
-/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa*    /es/blog/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa/    301
-/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial*  /es/blog/optimiza-la-productividad-empresarial-con-el-control-de-tiempos-y-el-cronometraje-industrial/    301
-/la-ergonomia-del-dolor-a-la-productividad*                                   /es/blog/la-ergonomia-del-dolor-a-la-productividad/    301
-/descanso-laboral*                                                            /es/blog/descanso-en-el-trabajo-un-enfoque-integral/    301
-
-# ---------------------------------------------------------------------
-# 6. (Eliminado) Las reglas de /es/blog/<slug>* -> ...-v2/ se han eliminado.
-#    Los archivos -v2.mdx fueron borrados del content/blog/es/, así que
-#    /es/blog/<slug>/ sirve el post canónico directamente (sin loop).
-#    Los aliases desde URLs sin prefijo de idioma siguen en sección 5.
-# ---------------------------------------------------------------------
-
-# ---------------------------------------------------------------------
-# 7. Posts con espacios (slug mal formado) -> slugs canónicos con guiones
-#    (aplicacion-de-suplementos-oit eliminado: el MDX canónico ya está
-#    en src/content/blog/es/aplicacion-de-suplementos-oit.mdx)
-# ---------------------------------------------------------------------
-/es/blog/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura*  /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
-/es/blog/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos*          /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
-/es/blog/que%20es%20el%20cronometraje%20industrial*                              /es/blog/que-es-el-cronometraje-industrial/    301
-/es/blog/define%20el%20metodo%20de%20trabajo*                                    /es/blog/define-el-metodo-de-trabajo/    301
-/es/blog/optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial*  /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
-/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura*        /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
-/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos*                    /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
-/que%20es%20el%20cronometraje%20industrial*                                      /es/blog/que-es-el-cronometraje-industrial/    301
-/cuales%20son%20las%20tecnicas%20de%20cronometraje%20industrial*                 /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/    301
-/optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial*        /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
-/define%20el%20metodo%20de%20trabajo*                                            /es/blog/define-el-metodo-de-trabajo/    301
-
-# Slug 'fixed' huérfano (post renombrado sin redirect en su día)
-/es/blog/aplicacion-suplementos-oit-fixed*    /es/blog/aplicacion-de-suplementos-oit/    301
-
-# ---------------------------------------------------------------------
-# ---------------------------------------------------------------------
-# 8-9. (ELIMINADAS 2026-10-08) Reglas multi-splat estilo Netlify
-#    (/es/blog/*%C3%AD*, /es/blog/*%20*%20*, :splat1/:splat2...): en
-#    Cloudflare Pages son NO-OP (verificado en producción: 404 con las
-#    reglas dentro del cupo). Las de un solo `*` de la sección 7 sí
-#    funcionan y siguen activas.
-# ---------------------------------------------------------------------
-
-# 10. Lecciones antiguas -> posts del blog
-# ---------------------------------------------------------------------
-/leccion/define-el-metodo-de-trabajo*                                  /es/blog/mejores-practicas-metodo-trabajo/    301
-/leccion/etapas-del-estudio-de-metodos-de-trabajo*                     /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
-/leccion/medir-sin-metodo-preestablecido-crono-seguido*                /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
-/leccion/diseno-del-metodo-de-trabajo*                                 /es/blog/mejores-practicas-metodo-trabajo/    301
-/leccion/importancia-del-estudio-de-metodos-y-tiempos-de-trabajo*     /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301
-/leccion/cronometrando-el-ciclo-de-trabajo*                            /es/blog/que-es-el-cronometraje-industrial/    301
-/leccion/delimitar-los-elementos-de-trabajo-en-un-estudio-de-tiempos-con-cronometro*  /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
-/leccion/introduccion-al-cronometraje-industrial*                      /es/blog/que-es-el-cronometraje-industrial/    301
-/leccion/cronometraje-de-elementos-frecuenciales*                      /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301
-/leccion/toma-de-tiempos-con-cronometro*                               /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
-/leccion/cronometraje-de-tiempos-de-maquina*                           /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
-/leccion/aplicacion-de-suplementos-oit*                                /es/blog/suplementos-fatiga-oit/    301
-/leccion/medicion-de-tiempos-de-trabajo*                               /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301
-/leccion/generar-informe-de-estudio-de-tiempos*                        /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
-/leccion/identificacion-del-trabajo-a-medir*                           /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
-/leccion/elige-como-vas-a-medir-el-trabajo*                            /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/    301
-/leccion/acceder-a-la-app*                                             /es/features/    301
-/leccion/prepara-la-automatizacion*                                    /es/features/    301
-/leccion/como-crear-un-nuevo-estudio-de-trabajo*                       /es/features/    301
-/leccion/*                                                              /es/blog/    301
-
-# ---------------------------------------------------------------------
-# 11. API: las Netlify Functions ya no existen; las rutas /api/* ahora
-#     devuelven 404 (no hay backend serverless en este proyecto).
-#     Si en el futuro se añaden endpoints, apuntar a Cloudflare Workers
-#     o Cloudflare Pages Functions, no a /.netlify/functions/.
-# ---------------------------------------------------------------------
-
-# ---------------------------------------------------------------------
-# 11b. Artículos Firestore con slug sin prefijo de idioma (bug del script
-#      publicador, corregido 2026-09-24) -> canónicos en /es/blog/
-# ---------------------------------------------------------------------
-
-# ---------------------------------------------------------------------
-# 14. Variantes de slug largas citadas en informes -> slugs reales (301)
-
-# 15. Slug renombrado 2026-10-06 (corrección de afirmación falsa embebida en el slug)
-
-
-# ---------------------------------------------------------------------
-# 13. Renombrados de slug detectados en auditoría SEO/GEO 2026-06-22
-#     Pilares ES que perdieron -16% en orgánico por redirects faltantes
-#     desde los slugs anteriores. Apuntan al post canónico actual.
-# ---------------------------------------------------------------------
-
-# Last validated sitemap dedup: 2026-06-16T05:25:50.143483
-/es/blog/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271*   /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
-
-# ---------------------------------------------------------------------
-
-# ---------------------------------------------------------------------
-# 12. SPA fallback: rutas no existentes -> 404 localizado
-#    DEBE ser la última regla: cualquier catch-all situado antes anula
-#    todas las reglas de debajo (verificado en producción 2026-10-08:
-#    las reglas §13/§15 devolvían 404 al quedar bajo el antiguo /*).
-# ---------------------------------------------------------------------
-
 # BEGIN ARTICLE LANGUAGE ALIASES
 /en/blog/5-metodos-de-medicion-del-trabajo /en/blog/5-work-measurement-methods/ 301
 /en/blog/5-metodos-de-medicion-del-trabajo/ /en/blog/5-work-measurement-methods/ 301
@@ -809,5 +616,200 @@
 /es/blog/zero-reset-vs-cumulative-time-study-method-complete-technical-guide-for-industrial-engineers-2025 /es/blog/metodo-de-cronometraje-vuelta-a-cero-vs-acumulativo/ 301
 /es/blog/zero-reset-vs-cumulative-time-study-method-complete-technical-guide-for-industrial-engineers-2025/ /es/blog/metodo-de-cronometraje-vuelta-a-cero-vs-acumulativo/ 301
 # END ARTICLE LANGUAGE ALIASES
+
+# =====================================================================
+# _redirects (Cloudflare Pages) - Reglas consolidadas para SEO
+# =====================================================================
+# Formato Cloudflare Pages: /origen  /destino  [status]
+# Las reglas más específicas van primero.
+# Reglas con sintaxis Netlify (multi-splat, etc.) que Pages no soporta
+# se han convertido a patrones con `*` final o se han eliminado.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# 1. Redirección raíz según idioma del navegador
+# ---------------------------------------------------------------------
+/  /es/  301
+
+# ---------------------------------------------------------------------
+# 0. Reglas críticas primero (2026-10-08): el tope de _redirects de
+#    Pages (~101 reglas) dejaba estas muertas al final del archivo.
+# ---------------------------------------------------------------------
+/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/blog*        /es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/   301
+/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/blog*   /es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/   301
+/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271/blog*          /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
+/es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento-tiempos-estandar-tier-iii-iv/   /es/blog/cronoanalisis-centros-datos-data-centers-operacion-mantenimiento/   301
+/es/blog/cronoanalisis-envasado-bebidas-calidad-control-higiene-limpieza-tiempos-estandar/   /es/blog/cronoanalisis-lineas-envasado-bebidas-cerveza-refrescos-bph/   301
+/es/blog/comparativa-pmts-mtm-most-mtu-uas-modapts-gsd-wf-cronoanalisis/   /es/blog/comparativa-pmts-mtm-most-mts-dmt-ingenieria-metodos/   301
+/es/blog/cronoanalisis-paradas-programadas-turnaround-refineria-gas-tiempos-estandar/   /es/blog/cronoanalisis-paradas-programadas-refineria-turnaround-ti/   301
+/es/blog/cronoanalisis-mantenimiento-aeronautico-mro-hangar-tiempos-estandar-piezas/   /es/blog/cronoanalisis-mantenimiento-aeronautico-mro-easa-part-145-aog/   301
+/es/blog/cronoanalisis-mantenimiento-ferroviario-flota-talleres-tiempos-estandar/   /es/blog/cronoanalisis-mantenimiento-ferroviario-itv-rgs/   301
+/es/blog/cronoanalisis-baterias-litio-gigafactoria-celdas-electrodos-celdas-tiempos-estandar/   /es/blog/cronoanalisis-baterias-litio-lineas-fabricacion/   301
+/es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo-y-sigue-viva-en-cronometrasapp*   /es/blog/el-sistema-westinghouse-de-valoracion-del-ritmo-la-tecnica-que-invento-la-valoracion-del-trabajo/   301
+/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo             /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301
+/es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempo/   /es/blog/guia-paso-a-paso-como-realizar-un-estudio-de-tiempos-y-movimientos-eficaz/   301   301
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica            /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301
+/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica/   /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/   301   301
+/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro            /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301
+/es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-pro/   /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/   301   301
+/es/blog/cuales-son-las-tecnicas-de-cronometraje                         /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
+/es/blog/cuales-son-las-tecnicas-de-cronometraje/   /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/   301
+
+# ---------------------------------------------------------------------
+# 2. Páginas estándar sin prefijo de idioma -> versiones localizadas
+# ---------------------------------------------------------------------
+/about*       /es/about/    301
+/privacy*     /es/privacy/  301
+/contact*     /es/contact/  301
+/terms*       /es/terms/    301
+/faq*         /es/faq/      301
+
+# ---------------------------------------------------------------------
+# 3. Alias antiguos -> rutas canónicas de páginas
+# ---------------------------------------------------------------------
+/funciones-4*              /es/features/      301
+/pantalla-de-metodo*       /es/method/        301
+/pantalla-de-inicio*       /es/dashboard/     301
+/conoce*                   /es/about/         301
+/curso/cronometras-app*    /es/features/      301
+/author/micaot*            /es/about/         301
+/pantalla-de-cronometraje* /es/repetitive/    301
+
+# ---------------------------------------------------------------------
+# 4. Categorías y listados de blog sin idioma
+# ---------------------------------------------------------------------
+/category/blog*                            /es/blog/    301
+/category/cronometraje-industrial*         /es/blog/    301
+/category/lean-manufacturing-y-metodologias-agiles*  /es/blog/    301
+/articulos/page/3*                         /es/blog/    301
+
+# ---------------------------------------------------------------------
+# 5. Posts antiguos sin prefijo de idioma -> canónicos en /es/blog/
+# ---------------------------------------------------------------------
+/sistema-bedaux*                                                              /es/blog/sistema-bedaux/    301
+/obeya-room-lean*                                                             /es/blog/obeya-room-lean/    301
+/el-estudio-del-trabajo*                                                      /es/blog/el-estudio-del-trabajo/    301
+/que-es-gsd-en-ingenieria*                                                     /es/blog/que-es-gsd-en-ingenieria/    301
+/cronometraje-y-la-estandarizacion-de-procesos*                              /es/blog/cronometraje-y-la-estandarizacion-de-procesos/    301
+/por-que-hay-retrasos-en-la-produccion*                                       /es/blog/por-que-hay-retrasos-en-la-produccion/    301
+/herramientas-necesarias-para-realizar-un-estudio-de-tiempos*                 /es/blog/herramientas-necesarias-para-realizar-un-estudio-de-tiempos/    301
+/metodos-y-tiempos-en-la-gestion-empresarial-industrial*                      /es/blog/metodos-y-tiempos-en-la-gestion-empresarial-industrial/    301
+/la-importancia-del-estudio-de-tiempos-de-trabajo*                            /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301
+/que-es-el-estudio-de-tiempos-y-movimientos*                                  /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301
+/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial*            /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301
+/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial*                 /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro*          /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/muestreo-del-trabajo*                                                        /es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/    301
+/que-tipos-de-cronometros-existen*                                            /es/blog/que-tipos-de-cronometros-existen/    301
+/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo* /es/blog/la-utilidad-de-los-tiempos-historicos-para-establecer-estandares-de-trabajo/    301
+/cuales-son-las-fases-de-un-proceso-industrial*                               /es/blog/cuales-son-las-fases-de-un-proceso-industrial/    301
+/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial*                 /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/objetivos-del-estudio-del-trabajo*                                           /es/blog/objetivos-del-estudio-del-trabajo/    301
+/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa*  /es/blog/como-reducir-el-tiempo-de-entrega-para-mejorar-la-productividad-competitividad-y-eficiencia-de-su-empresa/    301
+/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial*   /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
+/takt-time-que-es-como-se-calcula-y-como-se-aplica*                           /es/blog/takt-time-que-es-como-se-calcula-y-como-se-aplica/    301
+/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial*                /es/blog/la-apreciacion-de-la-actividad-en-el-cronometraje-industrial/    301
+/como-estandarizar-los-tiempos-de-trabajo-en-la-industria*                    /es/blog/como-estandarizar-los-tiempos-de-trabajo-en-la-industria-v2/    301
+/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa*    /es/blog/beneficios-y-desafios-de-implementar-el-lean-manufacturing-en-su-empresa/    301
+/productividad-empresarial-con-control-de-tiempos-y-el-cronometraje-industrial*  /es/blog/optimiza-la-productividad-empresarial-con-el-control-de-tiempos-y-el-cronometraje-industrial/    301
+/la-ergonomia-del-dolor-a-la-productividad*                                   /es/blog/la-ergonomia-del-dolor-a-la-productividad/    301
+/descanso-laboral*                                                            /es/blog/descanso-en-el-trabajo-un-enfoque-integral/    301
+
+# ---------------------------------------------------------------------
+# 6. (Eliminado) Las reglas de /es/blog/<slug>* -> ...-v2/ se han eliminado.
+#    Los archivos -v2.mdx fueron borrados del content/blog/es/, así que
+#    /es/blog/<slug>/ sirve el post canónico directamente (sin loop).
+#    Los aliases desde URLs sin prefijo de idioma siguen en sección 5.
+# ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# 7. Posts con espacios (slug mal formado) -> slugs canónicos con guiones
+#    (aplicacion-de-suplementos-oit eliminado: el MDX canónico ya está
+#    en src/content/blog/es/aplicacion-de-suplementos-oit.mdx)
+# ---------------------------------------------------------------------
+/es/blog/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura*  /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
+/es/blog/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos*          /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
+/es/blog/que%20es%20el%20cronometraje%20industrial*                              /es/blog/que-es-el-cronometraje-industrial/    301
+/es/blog/define%20el%20metodo%20de%20trabajo*                                    /es/blog/define-el-metodo-de-trabajo/    301
+/es/blog/optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial*  /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
+/balanceo%20de%20lineas%20optimizando%20la%20eficiencia%20en%20procesos%20de%20manufactura*        /es/blog/balanceo-de-lineas-optimizando-la-eficiencia-en-procesos-de-manufactura/    301
+/calculo%20de%20saturacion%20en%20un%20estudio%20de%20tiempos*                    /es/blog/calculo-de-saturacion-en-un-estudio-de-tiempos/    301
+/que%20es%20el%20cronometraje%20industrial*                                      /es/blog/que-es-el-cronometraje-industrial/    301
+/cuales%20son%20las%20tecnicas%20de%20cronometraje%20industrial*                 /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/    301
+/optimizacion%20de%20sistemas%20productivos%20clave%20para%20la%20eficiencia%20industrial*        /es/blog/optimizacion-de-sistemas-productivos-clave-para-la-eficiencia-industrial/    301
+/define%20el%20metodo%20de%20trabajo*                                            /es/blog/define-el-metodo-de-trabajo/    301
+
+# Slug 'fixed' huérfano (post renombrado sin redirect en su día)
+/es/blog/aplicacion-suplementos-oit-fixed*    /es/blog/aplicacion-de-suplementos-oit/    301
+
+# ---------------------------------------------------------------------
+# ---------------------------------------------------------------------
+# 8-9. (ELIMINADAS 2026-10-08) Reglas multi-splat estilo Netlify
+#    (/es/blog/*%C3%AD*, /es/blog/*%20*%20*, :splat1/:splat2...): en
+#    Cloudflare Pages son NO-OP (verificado en producción: 404 con las
+#    reglas dentro del cupo). Las de un solo `*` de la sección 7 sí
+#    funcionan y siguen activas.
+# ---------------------------------------------------------------------
+
+# 10. Lecciones antiguas -> posts del blog
+# ---------------------------------------------------------------------
+/leccion/define-el-metodo-de-trabajo*                                  /es/blog/mejores-practicas-metodo-trabajo/    301
+/leccion/etapas-del-estudio-de-metodos-de-trabajo*                     /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/leccion/medir-sin-metodo-preestablecido-crono-seguido*                /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/diseno-del-metodo-de-trabajo*                                 /es/blog/mejores-practicas-metodo-trabajo/    301
+/leccion/importancia-del-estudio-de-metodos-y-tiempos-de-trabajo*     /es/blog/la-importancia-del-estudio-de-tiempos-de-trabajo/    301
+/leccion/cronometrando-el-ciclo-de-trabajo*                            /es/blog/que-es-el-cronometraje-industrial/    301
+/leccion/delimitar-los-elementos-de-trabajo-en-un-estudio-de-tiempos-con-cronometro*  /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/introduccion-al-cronometraje-industrial*                      /es/blog/que-es-el-cronometraje-industrial/    301
+/leccion/cronometraje-de-elementos-frecuenciales*                      /es/blog/numero-de-observaciones-a-realizar-en-un-cronometraje-industrial/    301
+/leccion/toma-de-tiempos-con-cronometro*                               /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/cronometraje-de-tiempos-de-maquina*                           /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/leccion/aplicacion-de-suplementos-oit*                                /es/blog/suplementos-fatiga-oit/    301
+/leccion/medicion-de-tiempos-de-trabajo*                               /es/blog/que-es-el-estudio-de-tiempos-y-movimientos/    301
+/leccion/generar-informe-de-estudio-de-tiempos*                        /es/blog/etapas-del-estudio-de-tiempos-en-un-cronometraje-industrial/    301
+/leccion/identificacion-del-trabajo-a-medir*                           /es/blog/como-se-realiza-un-estudio-de-tiempos-y-movimientos-con-cronometro/    301
+/leccion/elige-como-vas-a-medir-el-trabajo*                            /es/blog/cuales-son-las-tecnicas-de-cronometraje-industrial/    301
+/leccion/acceder-a-la-app*                                             /es/features/    301
+/leccion/prepara-la-automatizacion*                                    /es/features/    301
+/leccion/como-crear-un-nuevo-estudio-de-trabajo*                       /es/features/    301
+/leccion/*                                                              /es/blog/    301
+
+# ---------------------------------------------------------------------
+# 11. API: las Netlify Functions ya no existen; las rutas /api/* ahora
+#     devuelven 404 (no hay backend serverless en este proyecto).
+#     Si en el futuro se añaden endpoints, apuntar a Cloudflare Workers
+#     o Cloudflare Pages Functions, no a /.netlify/functions/.
+# ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# 11b. Artículos Firestore con slug sin prefijo de idioma (bug del script
+#      publicador, corregido 2026-09-24) -> canónicos en /es/blog/
+# ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# 14. Variantes de slug largas citadas en informes -> slugs reales (301)
+
+# 15. Slug renombrado 2026-10-06 (corrección de afirmación falsa embebida en el slug)
+
+
+# ---------------------------------------------------------------------
+# 13. Renombrados de slug detectados en auditoría SEO/GEO 2026-06-22
+#     Pilares ES que perdieron -16% en orgánico por redirects faltantes
+#     desde los slugs anteriores. Apuntan al post canónico actual.
+# ---------------------------------------------------------------------
+
+# Last validated sitemap dedup: 2026-06-16T05:25:50.143483
+/es/blog/cronoanalisis-mantenimiento-subestaciones-at-mt-iec-62271*   /es/blog/cronoanalisis-del-mantenimiento-de-subestaciones-electricas-atmt-segun-iec-62271-tiempos-estandar-para-celdas-interruptores-y-sistemas-de-proteccion/   301
+
+# ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# 12. SPA fallback: rutas no existentes -> 404 localizado
+#    DEBE ser la última regla: cualquier catch-all situado antes anula
+#    todas las reglas de debajo (verificado en producción 2026-10-08:
+#    las reglas §13/§15 devolvían 404 al quedar bajo el antiguo /*).
+# ---------------------------------------------------------------------
+
+
 
 /*  /es/404/  404
