@@ -93,7 +93,7 @@ function extractDescription(content: string): string {
 function extractCategory(article: FirestoreArticle): string {
     // Prefer the explicit `categoria` field (Spanish), then fall back to
     // legacy projectId-based default.
-    if (article.categoria) return article.categoria;
+    if (article.categoria) return article.categoria.replace(/^[\s\["']+|[\s\]"']+$/g, '').trim() || 'General';
     if (article.projectId === 'cronometras') {
         return 'Cronometraje Industrial';
     }

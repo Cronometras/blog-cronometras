@@ -1,8 +1,9 @@
 import { getCollection } from 'astro:content';
+import { getFirestoreArticles } from '@/lib/firestoreArticles';
 
 // Función para obtener todas las categorías únicas de los artículos del blog
 export async function getAllCategories(lang: string): Promise<string[]> {
-  const allPosts = await getCollection('blog');
+  const allPosts = [...await getCollection('blog'), ...await getFirestoreArticles(lang === 'en' ? 'en' : 'es')];
   
   // Filtrar por idioma y que no sean borradores
   const langPosts = allPosts.filter(post => {
@@ -21,12 +22,12 @@ export async function getAllCategories(lang: string): Promise<string[]> {
   });
   
   // Convertir el Set a un array y ordenar alfabéticamente
-  return Array.from(categoriesSet).sort();
+  return Array.from(new Map(Array.from(categoriesSet).map(category => [normalizeCategoryName(category), category])).values()).sort();
 }
 
 // Función para normalizar el nombre de una categoría para usar en URLs
 export function normalizeCategoryName(category: string): string {
-  return category.toLowerCase().replace(/ /g, '-');
+  return category.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, '').replace(/\s+/g, '-').replace(/-+/g, '-');
 }
 
 // Función para desnormalizar el nombre de una categoría para mostrar

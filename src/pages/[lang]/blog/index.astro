@@ -1,4 +1,5 @@
 ---
+import { getArticleImageSrcset } from "@/lib/articleImages";
 import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import BlogListSchema from '@/components/blog/BlogListSchema.astro';
@@ -15,7 +16,7 @@ export const getStaticPaths = async () => {
   // Get Firestore articles
   let firestoreArticles: BlogPost[] = [];
   try {
-    firestoreArticles = await getFirestoreArticles();
+    firestoreArticles = (await Promise.all([getFirestoreArticles('es'), getFirestoreArticles('en')])).flat();
     console.log(`Loaded ${firestoreArticles.length} articles from Firestore`);
   } catch (error) {
     console.error('Error loading Firestore articles:', error);
@@ -161,6 +162,12 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
                 <a href={`/${lang}/blog/${postSlug}`} class="block">
                   <img
                     src={post.data.heroImage || '/images/cronometras App.png'}
+                    srcset={getArticleImageSrcset(post.data.heroImage)}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    width={1200}
+                    height={675}
+                    loading="lazy"
+                    decoding="async"
                     alt={post.data.title}
                     class="w-full h-48 object-cover"
                   />

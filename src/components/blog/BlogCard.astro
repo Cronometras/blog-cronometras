@@ -1,4 +1,5 @@
 ---
+import { getArticleImageSrcset } from "@/lib/articleImages";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
@@ -19,6 +20,8 @@ const postUrl = `/${lang}/blog/${slugParts.join('/')}`;
         <div class="relative">
           <img
             src={heroImage}
+            srcset={getArticleImageSrcset(heroImage)}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
             alt={title}
             width={400}
             height={225}
