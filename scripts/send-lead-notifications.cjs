@@ -37,7 +37,8 @@ function renderMessage(collection, id, data, recovered = false) {
   };
   const text = Object.entries(rows).filter(([, v]) => v !== undefined && v !== '')
     .map(([k, v]) => `${k}: ${String(v)}`).join('\n\n');
-  const reply = String(data.email || '').trim();
+  // A chat may capture the sentence's final punctuation after an email address.
+  const reply = String(data.email || '').trim().replace(/[.,;:!?]+$/, '');
   return { from: FROM, to: [RECIPIENT], subject, text,
     ...(emailPattern.test(reply) ? { reply_to: reply } : {}) };
 }

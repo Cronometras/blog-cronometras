@@ -17,6 +17,7 @@ test('all notices use the central inbox and safe reply address', () => {
   const p = renderMessage('solicitudes_cronometras', 'id', { nombre: 'Ana\nB', email: 'ana@example.com', telefono: '123', mensaje: '<b>Hola</b>' });
   assert.deepEqual(p.to, ['info@cronometras.com']);
   assert.equal(p.reply_to, 'ana@example.com');
+  assert.equal(renderMessage('contactos_cronometras', 'id', { email: 'ana@example.com.' }).reply_to, 'ana@example.com');
   assert(!p.subject.includes('\n'));
   assert(p.text.includes('123'));
   assert(!('html' in p));
