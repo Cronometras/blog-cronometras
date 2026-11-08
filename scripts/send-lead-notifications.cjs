@@ -1,4 +1,4 @@
-// Run every minute on the existing Oracle host. Secrets stay outside the repository.
+// Run every fifteen minutes on the existing Oracle host. Secrets stay outside the repository.
 // Default is read-only audit; delivery requires --send and NOTIFICATIONS_SINCE.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -62,9 +62,9 @@ async function deliver(db, doc, key, since) {
     if (!data || (createdAt(data) < since && !data.notificationStatus)) return null;
     if (['accepted', 'manual_review'].includes(data.notificationStatus)) return null;
     if (data.notificationLeaseUntil?.toMillis?.() > Date.now()) return null;
-    if (data.notificationNextAttempt?.toMillis?.() > Date.now()) return null;
     const revision = data.notificationRevision || 'initial';
     const previous = data.notificationDeliveryRevision === revision;
+    if (previous && data.notificationNextAttempt?.toMillis?.() > Date.now()) return null;
     const firstAttempt = previous && data.notificationFirstAttempt?.toMillis?.();
     // Resend retains idempotency keys for 24h. Never blindly resend an ambiguous old attempt.
     if (firstAttempt && Date.now() - firstAttempt > 23 * 3600000) {

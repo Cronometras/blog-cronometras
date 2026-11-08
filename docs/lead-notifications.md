@@ -3,10 +3,14 @@
 Contacto, información/demo, asistente y boletín conservan sus colecciones actuales
 en Firestore. Cada alta guarda `notificationStatus: pending`,
 `notificationRevision` y `notificado: false` junto con los datos, en la misma escritura.
-El asistente también avisa cuando un contacto parcial se completa, sin borrar el
-estado de envío durante los demás turnos.
+El asistente conserva el diálogo completo de la sesión: mensajes del usuario y
+respuestas del asistente, en orden e incluida la última respuesta mostrada.
+Cada cambio del diálogo deja pendiente su versión actualizada. Los turnos que
+lleguen antes de la revisión se agrupan en un único aviso; si la conversación
+continúa después del envío, se envía una actualización en la siguiente revisión.
+No se recuperan respuestas antiguas que el sistema anterior nunca guardó.
 
-El proceso `scripts/send-lead-notifications.cjs` se ejecuta cada minuto en Oracle
+El proceso `scripts/send-lead-notifications.cjs` se ejecuta cada quince minutos en Oracle
 mediante cron y `flock`. Envía exclusivamente a **info@cronometras.com**, con
 Resend y el remitente verificado **no-reply@cronometras.com**. El `Reply-To` es
 el email del interesado si tiene formato válido. Los avisos de boletín están
@@ -35,7 +39,7 @@ servicio es la que ya utiliza el blog. No copiar secretos a este documento.
 /home/ubuntu/.local/bin/node /home/ubuntu/.hermes/cronometras-notifications/run.cjs --send
 ```
 
-Cron conserva los trabajos anteriores. El log está en `sender.log` en el mismo
+Cron (`*/15 * * * *`) conserva los trabajos anteriores. El log está en `sender.log` en el mismo
 directorio privado y solo contiene referencias de documentos y estados.
 `NOTIFICATIONS_SINCE` evita enviar automáticamente todos los registros antiguos
 sin estado de aviso. Un registro antiguo que reciba un nuevo estado `pending`

@@ -88,17 +88,15 @@ const GRADIENT = 'background-image:linear-gradient(184.78deg, rgba(var(--primary
     var KEY = 'cronometras_chat_v1';
     var state = { sessionId: '', messages: [] };
     try {
-      var saved = JSON.parse(localStorage.getItem('cronometras_chat_sid') || '');
-      if (saved && typeof saved === 'string') state.sessionId = saved;
+      var hist = JSON.parse(sessionStorage.getItem(KEY) || 'null');
+      if (hist && Array.isArray(hist.messages)) {
+        state.messages = hist.messages;
+        if (typeof hist.sessionId === 'string' && /^[a-zA-Z0-9_-]{1,64}$/.test(hist.sessionId)) state.sessionId = hist.sessionId;
+      }
     } catch (e) { /* noop */ }
     if (!state.sessionId) {
       state.sessionId = 's_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
-      try { localStorage.setItem('cronometras_chat_sid', state.sessionId); } catch (e) { /* noop */ }
     }
-    try {
-      var hist = JSON.parse(sessionStorage.getItem(KEY) || 'null');
-      if (hist && Array.isArray(hist.messages)) state.messages = hist.messages;
-    } catch (e) { /* noop */ }
 
     function persist() {
       try { sessionStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* noop */ }
@@ -149,7 +147,6 @@ const GRADIENT = 'background-image:linear-gradient(184.78deg, rgba(var(--primary
       busy = true;
       bubble('user', text);
       state.messages.push({ role: 'user', content: text });
-      if (state.messages.length > 18) state.messages = state.messages.slice(-18);
       persist();
       typing();
       if (chips) chips.style.display = 'none';
@@ -161,16 +158,20 @@ const GRADIENT = 'background-image:linear-gradient(184.78deg, rgba(var(--primary
       }).then(function (r) { return r.json(); }).then(function (data) {
         untyping();
         if (!data || data.error) {
-          bubble('assistant', T.error);
+          bubble('assistant', data && data.error || T.error);
+          state.messages.push({ role: 'assistant', content: data && data.error || T.error });
+          persist();
           return;
         }
         bubble('assistant', data.reply || T.error);
-        state.messages.push({ role: 'assistant', content: data.reply || '' });
+        state.messages.push({ role: 'assistant', content: data.reply || T.error });
         persist();
         if (data.leadSaved) bubble('demo', T.demoCard);
       }).catch(function () {
         untyping();
         bubble('assistant', T.error);
+        state.messages.push({ role: 'assistant', content: T.error });
+        persist();
       }).finally(function () { busy = false; });
     }
 
