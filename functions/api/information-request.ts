@@ -1,9 +1,8 @@
 // Cloudflare Pages Function — POST /api/information-request
-// Saves information request forms to Firestore and sends email notification
+// Saves information request forms to Firestore and queues the email notification
 
 interface Env {
   FIREBASE_SERVICE_ACCOUNT: string;
-  GMAIL_WEBAPP_URL: string;
 }
 
 function base64url(data: string | Uint8Array): string {
@@ -49,19 +48,6 @@ function firestoreDocument(data: Record<string, any>): any {
   return { fields };
 }
 
-async function sendNotificationEmail(env: Env, data: { site: string; nombre: string; email: string; empresa: string; plan: string }) {
-  if (!env.GMAIL_WEBAPP_URL) return;
-  try {
-    await fetch(env.GMAIL_WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-  } catch (err: any) {
-    console.error('Email webhook failed:', err?.message);
-  }
-}
-
 export async function onRequestPost({ request, env }: { request: Request; env: Env }) {
   try {
     if (!env.FIREBASE_SERVICE_ACCOUNT) {
@@ -105,6 +91,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       privacyPolicy,
       site,
       createdAt: new Date().toISOString(),
+      notificationStatus: 'pending',
+      notificationRevision: 'initial',
+      notificado: false,
       source: 'web_information_request',
     };
 
@@ -120,7 +109,6 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         { status: 500, headers: { 'Content-Type': 'application/json' } });
     }
 
-    sendNotificationEmail(env, { site, nombre: name, email, empresa, plan: mensaje || telefono || '' });
 
     return new Response(JSON.stringify({ success: true, message: 'Solicitud enviada correctamente' }),
       { status: 200, headers: { 'Content-Type': 'application/json' } });

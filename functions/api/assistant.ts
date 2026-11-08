@@ -7,12 +7,10 @@ import { documentationContext } from '../_shared/assistant-knowledge';
 
 interface Env {
   FIREBASE_SERVICE_ACCOUNT: string;
-  GMAIL_WEBAPP_URL: string;
   LLM_BASE_URL: string;
   LLM_API_KEY: string;
   LLM_MODEL: string;
   LEADS_COLLECTION: string; // opcional. default: leads_asistente_cronometras
-  WEB3FORMS_ACCESS_KEY?: string;
 }
 
 const LEAD_FIELDS = ['nombre', 'email', 'telefono', 'empresa', 'interes', 'modalidad', 'disponibilidad'] as const;
@@ -364,30 +362,6 @@ function parseLLMOutput(raw: string): { reply: string; lead: any; demoCompleta: 
 
 // ---------- Persistencia del lead ----------
 
-async function sendNotificationEmail(env: Env, data: Record<string, string>) {
-  // Canal principal: webhook de Gmail (Apps Script). Alternativa: Web3Forms.
-  if (env.GMAIL_WEBAPP_URL) {
-    await fetch(env.GMAIL_WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }).catch((err: any) => console.error('Email webhook failed:', err?.message));
-    return;
-  }
-  if (env.WEB3FORMS_ACCESS_KEY) {
-    await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: env.WEB3FORMS_ACCESS_KEY,
-        subject: `Nueva solicitud de demo — ${data.site}`,
-        from_name: 'Asistente web',
-        ...data,
-      }),
-    }).catch((err: any) => console.error('Web3Forms failed:', err?.message));
-  }
-}
-
 async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<string, string>, conversacion: string, ultimoMensaje: string, url: string, site: string) {
   const token = await getAccessToken(sa);
   const collection = env.LEADS_COLLECTION || 'leads_asistente_cronometras';
@@ -420,10 +394,18 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
     privacyPolicy: true,
     source: 'web_asistente_demo',
     createdAt,
-    notificado: true,
   };
 
-  const resp = await fetch(docUrl, {
+  // A first contact and a newly completed request each produce one notification.
+  // Other conversation updates preserve the delivery state written by the sender.
+  if (!existed || (lead.estado === 'completa' && prevEstado !== 'completa')) {
+    docData.notificationStatus = 'pending';
+    docData.notificationRevision = lead.estado === 'completa' ? 'complete' : 'initial';
+    docData.notificado = false;
+  }
+  const updateMask = Object.keys(docData)
+    .map(field => `updateMask.fieldPaths=${encodeURIComponent(field)}`).join('&');
+  const resp = await fetch(`${docUrl}?${updateMask}`, {
     method: 'PATCH',
     headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(firestoreDocument(docData)),
@@ -434,18 +416,6 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
     return false;
   }
 
-  if (!existed || (lead.estado === 'completa' && prevEstado !== 'completa')) {
-    await sendNotificationEmail(env, {
-      site,
-      nombre: lead.nombre,
-      email: lead.email,
-      empresa: lead.empresa,
-      telefono: lead.telefono,
-      sector: `Demo: ${lead.modalidad} | Interés: ${lead.interes}`,
-      plan: `Disponibilidad: ${lead.disponibilidad}`,
-      mensaje: `Solicitud de demo vía asistente web (lead ${lead.estado || 'parcial'}). Conversación: ${conversacion || '—'}`,
-    });
-  }
   // La tarjeta «✓ Demo solicitada» solo se muestra UNA vez, al cerrar el lead:
   // si ya estaba completa, no se vuelve a avisar (bug «vuelve a solicitar», 2026-10-02).
   if (lead.estado === 'completa' && prevEstado !== 'completa') return 'completa-nueva';
