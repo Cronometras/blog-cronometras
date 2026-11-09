@@ -20,7 +20,7 @@ const translations = {
     acceptAll: "Aceptar Todas",
     acceptSelected: "Aceptar Seleccionadas",
     rejectAll: "Rechazar Todas",
-    settings: "Configuración",
+    settings: "Configurar cookies",
     settingsButton: "Configurar cookies",
     save: "Guardar Preferencias",
     close: "Cerrar",
@@ -39,7 +39,7 @@ const translations = {
     acceptAll: "Accept All",
     acceptSelected: "Accept Selected",
     rejectAll: "Reject All",
-    settings: "Settings",
+    settings: "Cookie settings",
     settingsButton: "Cookie settings",
     save: "Save Preferences",
     close: "Close",
@@ -58,12 +58,12 @@ const t = translations[lang] || translations.es;
         <h3 class="text-lg font-bold text-gray-900 dark:text-white">{t.title}</h3>
         <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{t.description}</p>
       </div>
-      <div class="flex flex-wrap gap-2">
-        <button id="cookie-settings-btn" class="px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-          {t.settings}
-        </button>
-        <button id="cookie-accept-all" class="px-4 py-2 text-sm bg-accent text-white rounded-md hover:bg-accent/90 transition-colors">
+      <div class="flex flex-wrap items-center gap-3">
+        <button id="cookie-accept-all" class="px-6 py-3 text-base font-semibold bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors shadow-sm">
           {t.acceptAll}
+        </button>
+        <button id="cookie-settings-btn" class="px-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300">
+          {t.settings}
         </button>
       </div>
     </div>
