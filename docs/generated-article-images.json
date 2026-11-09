@@ -1,0 +1,90 @@
+{
+  "tool": "built-in image_gen",
+  "covers": [
+    {
+      "file": "/images/blog/generated/exportar-estudios-excel-pdf.webp",
+      "sourceId": "09eXwbbRBASyaX4zwtPa",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A manufacturing engineer reviewing a tablet beside a workbench, with a nearby laptop showing an abstract spreadsheet grid and a neatly printed technical report. Convey exporting industrial time-study results into spreadsheets and PDF reports. Style: premium realistic editorial photography, natural materials, neutral industrial blue and warm grey, soft daylight, restrained composition, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, no logos, no watermark, no invented readable UI. Professional safe manufacturing environment. Generate one finished cover image."
+    },
+    {
+      "file": "/images/blog/generated/biblioteca-elementos.webp",
+      "sourceId": "54cQrTs46zscseh4DsNg",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. An organized modular library of work elements: neatly arranged small industrial components in divided trays beside a tablet displaying clean abstract repeating workflow blocks, engineer's hands arranging one component. Convey standardization and reusable work elements. Style: premium realistic editorial photography, natural materials, neutral industrial blue and warm grey, soft daylight, restrained composition, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, no logos, no watermark, no invented readable UI. Professional safe manufacturing environment. Generate one finished cover image."
+    },
+    {
+      "file": "/images/blog/generated/entrada-voz.webp",
+      "sourceId": "7qZDM2TF2MttuTirXawS",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A manufacturing engineer wearing a lightweight voice headset, hands free while observing a safe assembly station, tablet on a stand displaying a simple audio waveform and abstract timing records. Convey voice dictation for time studies. Style: premium realistic editorial photography, natural materials, neutral industrial blue and warm grey, soft daylight, restrained composition, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, no logos, no watermark, no invented readable UI. Professional safe manufacturing environment. Generate one finished cover image."
+    },
+    {
+      "file": "/images/blog/generated/interferencias-wright.webp",
+      "sourceId": "CGd7cEKNCjJ54OYbVMM5",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. One operator standing between two safe enclosed CNC machines, one machine actively machining behind a closed guard and another awaiting service; subtle abstract overlapping timelines in the upper background. Convey machine interference and competing demands on one operator. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/saturacion-operario.webp",
+      "sourceId": "DE8gEIUPo124w7Ve6Hcs",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A wide view of one worker attending a compact safe manufacturing cell with three enclosed machines and a small timing tablet on a stand. Distinct work and idle phases suggested by subtle horizontal colored timeline blocks in the background. Operator workload and machine time balance. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/cronometraje-cero-acumulativo.webp",
+      "sourceId": "ErSfTg1jIK0wbvzuVTNB",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Two precision stopwatches on an industrial engineer's desk beside a notebook and a small assembly fixture. One visual sequence of separated timing blocks and one continuous timing band, with no numerals or text. Convey reset-to-zero versus cumulative stopwatch time studies. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/valoracion-bedaux-centesimal.webp",
+      "sourceId": "GviqZgRnI0r0eMjyMQUE",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Industrial methods analyst observing two equally spaced manual assembly stations, clipboard with two clean abstract gauge dials at different scales but matching proportional needle positions. Convey performance rating scales in industrial work studies without numbers. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/smed-cambio-maquina.webp",
+      "sourceId": "IqyQN5aZFBm49MOM2IPZ",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Two trained technicians performing a safe machine changeover with machine fully stopped and isolated, modular tooling on a prepared trolley, quick-release fixtures and neatly arranged tools. Convey SMED quick changeover and advance preparation. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/mapeo-procesos.webp",
+      "sourceId": "SVgE0dA8HNcJNEvfDUc7",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Overhead view of a methods engineer's desk with a process map made of clean circles, squares, arrows and simple connected geometric symbols, alongside a small physical assembly part and pencil. No words or numbers. Convey flow process chart and industrial process mapping. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/suplementos-contingencias.webp",
+      "sourceId": "VtgXCcGH6hthmS6a5XkQ",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A methods engineer at a safe assembly line noting an unexpected small supply delay as a logistics worker brings a replacement component tray; clean factory with timing tablet and subtle abstract timeline with a small reserved buffer segment. Convey contingency allowances. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/suplementos-fatiga-descanso.webp",
+      "sourceId": "ZWH0wN3iInG5G8P2pmQK",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A worker taking a brief seated rest in a clean designated factory rest area while an ergonomic assembly workstation is visible beyond a partition. Tablet on a side table shows a simple abstract work-rest cycle chart. Convey fatigue allowances, recovery and humane work measurement. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/elementos-frecuenciales.webp",
+      "sourceId": "ev0mHk7bdWDiSaIVCWkd",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A repetitive assembly workbench with several identical finished parts in a row; worker replenishing a component tray, a less-frequent support task interrupting repeated cycles. An analyst's stopwatch rests nearby. Convey time study of infrequent work elements. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/diagrama-bimanual.webp",
+      "sourceId": "k5ZbVPsX2YSRHUyERy3c",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Overhead close view of exactly two human hands assembling a small mechanical fitting at an ergonomic bench, left and right parts trays symmetrically placed, two subtle parallel abstract motion paths aligned below the hands. Convey two-handed process chart and motion analysis. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/trabajo-colaborativo.webp",
+      "sourceId": "m9pRTSf30G5s6ey5LIXd",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Three manufacturing engineers collaborating around a table overlooking a clean industrial workshop, one points at a tablet with abstract process blocks, another reviews a clipboard, small real components on the table. Convey shared methods-engineering studies and teamwork. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/ashcroft-asignacion.webp",
+      "sourceId": "ovaEyy7vUFaJOvOmguWt",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Slightly elevated wide factory view showing a single trained operator supervising four safe enclosed machines arranged in a U-shaped cell, analyst in foreground studying an abstract grid and timeline on a tablet. Convey statistical machine assignment and Ashcroft tables. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/mtm2-movimientos.webp",
+      "sourceId": "uj1j08QUdB20hEv4y38b",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. Close overhead view of human hands reaching for, grasping and placing a small mechanical component into a fixture, three subtle ghosted motion positions illustrating sequence without extra fingers or limbs, parts bins neatly organized. Convey predetermined motion times and MTM-2 get-and-put motions. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    },
+    {
+      "file": "/images/blog/generated/ciclo-optimo-maquina.webp",
+      "sourceId": "xgJc7Tq6OupsMvT34Y7X",
+      "prompt": "Use case: photorealistic-natural. Asset type: wide editorial cover for an industrial engineering blog. A safe enclosed CNC machine with an operator preparing the next component at an adjacent workstation while the machine runs behind its closed guard, foreground tablet with two neatly interlocking abstract time bars. Convey optimizing machine cycle and overlapping manual preparation. Premium realistic editorial photography, natural materials, industrial blue and warm grey, soft daylight, wide 16:9 framing, important subjects in central 70% safe for cropping. No text, numerals, logos, watermark or readable UI. Professional safe manufacturing environment. Generate one finished cover."
+    }
+  ]
+}

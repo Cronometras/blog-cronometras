@@ -1,9 +1,8 @@
 // Cloudflare Pages Function — POST /api/contact
-// Saves contact form submissions to Firestore and sends email notification
+// Saves contact form submissions to Firestore and queues the email notification
 
 interface Env {
   FIREBASE_SERVICE_ACCOUNT: string;
-  GMAIL_WEBAPP_URL: string;
 }
 
 function base64url(data: string | Uint8Array): string {
@@ -49,19 +48,6 @@ function firestoreDocument(data: Record<string, any>): any {
   return { fields };
 }
 
-async function sendNotificationEmail(env: Env, data: { site: string; nombre: string; email: string; empresa: string; sector: string; mensaje: string }) {
-  if (!env.GMAIL_WEBAPP_URL) return;
-  try {
-    await fetch(env.GMAIL_WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-  } catch (err: any) {
-    console.error('Email webhook failed:', err?.message);
-  }
-}
-
 export async function onRequestPost({ request, env }: { request: Request; env: Env }) {
   try {
     if (!env.FIREBASE_SERVICE_ACCOUNT) {
@@ -98,6 +84,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       lang: lang || 'es',
       site: site || 'cronometras.com',
       createdAt: new Date().toISOString(),
+      notificationStatus: 'pending',
+      notificationRevision: 'initial',
+      notificado: false,
       source: 'web_contact',
     };
 
@@ -113,7 +102,6 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
         { status: 500, headers: { 'Content-Type': 'application/json' } });
     }
 
-    sendNotificationEmail(env, { site: site || 'cronometras.com', nombre, email, empresa: empresa || '', sector: sector || '', mensaje: mensaje || '' });
 
     return new Response(JSON.stringify({ success: true, message: 'Message sent successfully!' }),
       { status: 200, headers: { 'Content-Type': 'application/json' } });

@@ -3,6 +3,7 @@
 // Componente que muestra artículos del blog relacionados con tarjetas visuales
 import { getCollection } from 'astro:content';
 import { getFirestoreArticles } from '@/lib/firestoreArticles';
+import { getArticleImageSrcset } from '@/lib/articleImages';
 import { getAppShowcase, getAppShowcaseSrcset } from '@/lib/appShowcases';
 const optimizeModuleImages = !/\/blog(?:\/|$)/.test(Astro.url.pathname);
 
@@ -165,8 +166,8 @@ const postsToShow = getRelatedPosts(allPosts, currentKeywords, count);
           <div class="relative h-40 overflow-hidden">
             <img
               src={optimizeModuleImages && !post.slug.includes('/blog/') ? getAppShowcase(post.heroImage || '') || post.heroImage : post.heroImage}
-              srcset={optimizeModuleImages && !post.slug.includes('/blog/') ? getAppShowcaseSrcset(post.heroImage || '') : undefined}
-              sizes={optimizeModuleImages && !post.slug.includes('/blog/') ? '(min-width: 768px) 360px, calc(100vw - 40px)' : undefined}
+              srcset={optimizeModuleImages && !post.slug.includes('/blog/') ? getAppShowcaseSrcset(post.heroImage || '') : getArticleImageSrcset(post.heroImage || '')}
+              sizes="(min-width: 768px) 360px, calc(100vw - 40px)"
               alt={post.title}
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"

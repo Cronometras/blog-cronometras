@@ -7,12 +7,10 @@ import { documentationContext } from '../_shared/assistant-knowledge';
 
 interface Env {
   FIREBASE_SERVICE_ACCOUNT: string;
-  GMAIL_WEBAPP_URL: string;
   LLM_BASE_URL: string;
   LLM_API_KEY: string;
   LLM_MODEL: string;
   LEADS_COLLECTION: string; // opcional. default: leads_asistente_cronometras
-  WEB3FORMS_ACCESS_KEY?: string;
 }
 
 const LEAD_FIELDS = ['nombre', 'email', 'telefono', 'empresa', 'interes', 'modalidad', 'disponibilidad'] as const;
@@ -364,30 +362,6 @@ function parseLLMOutput(raw: string): { reply: string; lead: any; demoCompleta: 
 
 // ---------- Persistencia del lead ----------
 
-async function sendNotificationEmail(env: Env, data: Record<string, string>) {
-  // Canal principal: webhook de Gmail (Apps Script). Alternativa: Web3Forms.
-  if (env.GMAIL_WEBAPP_URL) {
-    await fetch(env.GMAIL_WEBAPP_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    }).catch((err: any) => console.error('Email webhook failed:', err?.message));
-    return;
-  }
-  if (env.WEB3FORMS_ACCESS_KEY) {
-    await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: env.WEB3FORMS_ACCESS_KEY,
-        subject: `Nueva solicitud de demo — ${data.site}`,
-        from_name: 'Asistente web',
-        ...data,
-      }),
-    }).catch((err: any) => console.error('Web3Forms failed:', err?.message));
-  }
-}
-
 async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<string, string>, conversacion: string, ultimoMensaje: string, url: string, site: string) {
   const token = await getAccessToken(sa);
   const collection = env.LEADS_COLLECTION || 'leads_asistente_cronometras';
@@ -398,10 +372,12 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
   const existed = prev.ok;
   if (!existed && prev.status !== 404) throw new Error(`Firestore read failed: ${prev.status}`);
   let prevEstado = '';
+  let previousConversation = '';
   let createdAt = new Date().toISOString();
   if (existed) {
     const pd = await prev.json() as any;
     prevEstado = pd?.fields?.estado?.stringValue || '';
+    previousConversation = pd?.fields?.nota?.stringValue || '';
     createdAt = pd?.fields?.createdAt?.stringValue || createdAt;
     for (const field of LEAD_FIELDS) {
       const previous = pd?.fields?.[field]?.stringValue;
@@ -415,15 +391,22 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
     sessionId,
     site,
     url,
-    nota: conversacion,          // conversación completa del usuario (no solo el último mensaje)
+    nota: conversacion,          // diálogo completo: usuario y asistente, en orden
     ultimoMensaje,
     privacyPolicy: true,
     source: 'web_asistente_demo',
     createdAt,
-    notificado: true,
   };
-
-  const resp = await fetch(docUrl, {
+  // Queue the latest transcript. The 15-minute sender coalesces turns before
+  // sending; later messages produce an updated notice rather than a lost tail.
+  if (!existed || previousConversation !== conversacion || (lead.estado === 'completa' && prevEstado !== 'completa')) {
+    docData.notificationStatus = 'pending';
+    docData.notificationRevision = `conversation-${Date.now()}-${conversacion.length}`;
+    docData.notificado = false;
+  }
+  const updateMask = Object.keys(docData)
+    .map(field => `updateMask.fieldPaths=${encodeURIComponent(field)}`).join('&');
+  const resp = await fetch(`${docUrl}?${updateMask}`, {
     method: 'PATCH',
     headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(firestoreDocument(docData)),
@@ -434,18 +417,6 @@ async function saveLead(env: Env, sa: any, sessionId: string, lead: Record<strin
     return false;
   }
 
-  if (!existed || (lead.estado === 'completa' && prevEstado !== 'completa')) {
-    await sendNotificationEmail(env, {
-      site,
-      nombre: lead.nombre,
-      email: lead.email,
-      empresa: lead.empresa,
-      telefono: lead.telefono,
-      sector: `Demo: ${lead.modalidad} | Interés: ${lead.interes}`,
-      plan: `Disponibilidad: ${lead.disponibilidad}`,
-      mensaje: `Solicitud de demo vía asistente web (lead ${lead.estado || 'parcial'}). Conversación: ${conversacion || '—'}`,
-    });
-  }
   // La tarjeta «✓ Demo solicitada» solo se muestra UNA vez, al cerrar el lead:
   // si ya estaba completa, no se vuelve a avisar (bug «vuelve a solicitar», 2026-10-02).
   if (lead.estado === 'completa' && prevEstado !== 'completa') return 'completa-nueva';
@@ -472,11 +443,18 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const sessionId = String(body.sessionId || '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 64) || `s_${Date.now()}`;
     const pageUrl = String(body.url || '').slice(0, 300);
     const site = 'cronometras.com';
-
-    const history = Array.isArray(body.messages) ? body.messages.slice(-16) : [];
+    const history = Array.isArray(body.messages) ? body.messages : [];
     const cleanHistory = history
       .filter((m: any) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
-      .map((m: any) => ({ role: m.role, content: m.content.slice(0, 1500) }));
+      .map((m: any) => ({ role: m.role, content: m.content }));
+    // Keep the transcript intact. Reject oversized chats explicitly instead of
+    // silently cutting them; leave room for the sender's saved payload in Firestore.
+    if (cleanHistory.length > 1000 || cleanHistory.reduce((n: number, m: any) => n + m.content.length, 0) > 100000) {
+      return new Response(JSON.stringify({ error: lang === 'en' ? 'This conversation is too long. Please contact info@cronometras.com.' : 'La conversación es demasiado larga. Contacta con info@cronometras.com.' }),
+        { status: 413, headers: { 'Content-Type': 'application/json' } });
+    }
+    // The model context stays bounded; the stored transcript does not use this window.
+    const modelHistory = cleanHistory.slice(-16).map((m: any) => ({ ...m, content: m.content.slice(0, 1500) }));
     if (!cleanHistory.length || cleanHistory[cleanHistory.length - 1].role !== 'user') {
       return new Response(JSON.stringify({ error: 'Falta el mensaje del usuario' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } });
@@ -485,7 +463,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     const userQuestions = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content);
     const systemPrompt = (lang === 'en' ? PROMPT_EN : PROMPT_ES)
       + documentationContext(userQuestions[userQuestions.length - 1], userQuestions.slice(0, -1));
-    const raw0 = await askLLM(env, systemPrompt, cleanHistory);
+    const raw0 = await askLLM(env, systemPrompt, modelHistory);
     // Si el modelo se salta el protocolo JSON (o emite llamadas a herramientas),
     // un reintento con recordatorio.
     let raw = raw0;
@@ -496,7 +474,7 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     } catch { /* reintenta el JSON mal formado */ }
     if (!validOutput || /<tool_call>|<function|update_session_state/i.test(raw0)) {
       raw = await askLLM(env, systemPrompt,
-        [...cleanHistory, { role: 'assistant', content: raw0 },
+        [...modelHistory, { role: 'assistant', content: raw0 },
          { role: 'user', content: 'Responde ahora solo con el objeto JSON (campo reply con tu mensaje). - recordatorio del sistema' }]
       ).catch(() => raw0);
     }
@@ -521,7 +499,10 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
     if (requestedPhoneCall) lead.modalidad = 'llamada';
     else if (requestedVideoCall || availability) lead.modalidad = 'videollamada 30 min';
     else lead.modalidad = '';
-    const reply = demoNextReply(cleanHistory, lead, lang) || modelReply;
+    const replyFallback = lang === 'en'
+      ? "Sorry, I didn't catch that. Could you say it again?"
+      : 'Perdona, no te he entendido bien. ¿Puedes repetirlo?';
+    const reply = demoNextReply(cleanHistory, lead, lang) || modelReply || replyFallback;
 
     let leadSaved = false;
     // Guarda el contacto desde que hay email, aunque falten datos de la demo.
@@ -538,20 +519,16 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       if (!lead.nombre) lead.nombre = '—';
       if (!lead.interes) lead.interes = '—';
       lead.estado = completo ? 'completa' : 'parcial';
-      const userMsgs = cleanHistory.filter((m: any) => m.role === 'user').map((m: any) => m.content.slice(0, 300));
-      const ultimoMensaje = userMsgs[userMsgs.length - 1] || '';
-      const conversacion = userMsgs.join(' | ').slice(0, 800);
+      const ultimoMensaje = cleanHistory[cleanHistory.length - 1].content;
+      const conversacion = [...cleanHistory, { role: 'assistant', content: reply }]
+        .map((m: any) => `${m.role === 'user' ? 'Usuario' : 'Asistente'}: ${m.content}`).join('\n\n');
       const saveStatus = await saveLead(env, JSON.parse(env.FIREBASE_SERVICE_ACCOUNT), sessionId, lead, conversacion, ultimoMensaje, pageUrl, site).catch((err) => {
         console.error('saveLead error:', err?.message || err);
         return 'error';
       });
       leadSaved = saveStatus === 'completa-nueva';
     }
-
-    const replyFallback = lang === 'en'
-      ? "Sorry, I didn't catch that. Could you say it again?"
-      : 'Perdona, no te he entendido bien. ¿Puedes repetirlo?';
-    return new Response(JSON.stringify({ reply: reply || replyFallback, leadSaved }),
+    return new Response(JSON.stringify({ reply, leadSaved }),
       { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (error: any) {
     console.error('Assistant API error:', error?.message || error);

@@ -1,14 +1,16 @@
 ---
+import { getArticleImageSrcset } from "@/lib/articleImages";
 import { getCollection } from 'astro:content';
+import { getFirestoreArticles } from '@/lib/firestoreArticles';
 import Base from '@/layouts/Base.astro';
 import BlogListSchema from '@/components/blog/BlogListSchema.astro';
 import Pagination from '@/components/Pagination.astro';
 import CategoryFilter from '@/components/CategoryFilter.astro';
 import { slugify } from '@/utils/slugify';
-import { getAllCategories, denormalizeCategoryName } from '@/utils/categories';
+import { getAllCategories, normalizeCategoryName, denormalizeCategoryName } from '@/utils/categories';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const allPosts = [...await getCollection('blog'), ...(await Promise.all([getFirestoreArticles('es'), getFirestoreArticles('en')])).flat()];
   const postsPerPage = 30; // Mostrar 30 entradas por página
   const languages = ['es', 'en'];
   const paths = [];
@@ -20,7 +22,7 @@ export async function getStaticPaths() {
     // Para cada categoría, crear una ruta
     for (const category of categories) {
       // Normalizar el nombre de la categoría para la URL
-      const normalizedCategory = category.toLowerCase().replace(/ /g, '-');
+      const normalizedCategory = normalizeCategoryName(category);
       
       // Filtrar posts por idioma, categoría y que no sean borradores
       const filteredPosts = allPosts.filter((post) => {
@@ -30,7 +32,7 @@ export async function getStaticPaths() {
         return postLang === lang && 
                !post.data.draft && 
                postCategory && 
-               postCategory.toLowerCase().replace(/ /g, '-') === normalizedCategory;
+               normalizeCategoryName(postCategory) === normalizedCategory;
       });
       
       // Ordenar por fecha de publicación, más reciente primero
@@ -117,6 +119,12 @@ const readMoreText = lang === 'es' ? 'Leer más' : 'Read more';
                 <a href={`/${lang}/blog/${postSlug}`} class="block">
                   <img
                     src={post.data.heroImage || '/images/cronometras App.png'}
+                    srcset={getArticleImageSrcset(post.data.heroImage)}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                    width={1200}
+                    height={675}
+                    loading="lazy"
+                    decoding="async"
                     alt={post.data.title}
                     class="w-full h-48 object-cover"
                   />

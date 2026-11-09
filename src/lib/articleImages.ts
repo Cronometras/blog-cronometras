@@ -13,3 +13,10 @@ export function resolveArticleImage(imageUrl: string): string {
   }
   return imageUrl || '/images/webp/cronometras-app.webp';
 }
+
+// Generated editorial covers have three real, precompressed variants.
+export function getArticleImageSrcset(src: string): string | undefined {
+  if (!src?.startsWith('/images/blog/generated/') || !src.endsWith('.webp')) return undefined;
+  const stem = src.slice(0, -5);
+  return `${stem}-480.webp 480w, ${stem}-800.webp 800w, ${src} 1200w`;
+}

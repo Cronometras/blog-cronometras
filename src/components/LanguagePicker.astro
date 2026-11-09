@@ -1,10 +1,11 @@
 ---
 import { languages } from "../i18n/ui";
-import { getLangFromUrl, useTranslatedPath, getPathWithoutLang } from "../i18n/utils";
+import { getLangFromUrl } from "../i18n/utils";
+import articlePairs from '../data/blog-translations.json';
+import { getLanguagePaths } from '../lib/blogLanguagePaths.mjs';
 
 const lang = getLangFromUrl(Astro.url);
-const translatePath = useTranslatedPath(lang);
-const currentPath = getPathWithoutLang(Astro.url.pathname);
+const languagePaths = getLanguagePaths(Astro.url.pathname, articlePairs);
 ---
 
 <div class="relative inline-block text-left">
@@ -37,9 +38,9 @@ const currentPath = getPathWithoutLang(Astro.url.pathname);
   >
     <div class="py-1" role="none">
       {
-        Object.entries(languages).map(([code, label]) => (
+        Object.entries(languages).filter(([code]) => languagePaths[code]).map(([code, label]) => (
           <a
-            href={translatePath(currentPath, code)}
+            href={languagePaths[code]}
             class={`block px-4 py-2 text-sm ${
               code === lang
                 ? "bg-gray-100 dark:bg-gray-700 text-primary"

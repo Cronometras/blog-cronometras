@@ -79,6 +79,9 @@ export async function onRequestPost({ request, env }: { request: Request; env: E
       name: name || '',
       site: body.site || 'cronometras.com',
       createdAt: new Date().toISOString(),
+      notificationStatus: 'pending',
+      notificationRevision: 'initial',
+      notificado: false,
       source: 'web_newsletter',
     };
 

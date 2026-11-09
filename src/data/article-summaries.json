@@ -1,0 +1,154 @@
+{
+  "/es/blog/el-estudio-del-trabajo/": {
+    "question": "¿Qué es el estudio del trabajo?",
+    "answer": "Combina el análisis del método con la medición del trabajo para mejorar una operación definida.",
+    "points": [
+      "El método describe cómo se realiza la tarea; la medición estima el tiempo para condiciones y ritmo definidos.",
+      "Antes de comparar resultados, documenta operación, herramientas y condiciones."
+    ],
+    "sources": [
+      {
+        "title": "FAO · Work study: scope and techniques",
+        "url": "https://www.fao.org/4/w8212e/w8212e06.htm#2.1.2%20work%20study"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/en/blog/work-study/": {
+    "question": "What is work study?",
+    "answer": "It combines method analysis and work measurement to improve a defined operation.",
+    "points": [
+      "The method explains how work is done; measurement estimates time under specified conditions and performance.",
+      "Record the operation, tools and conditions before comparing results."
+    ],
+    "sources": [
+      {
+        "title": "FAO · Work study: scope and techniques",
+        "url": "https://www.fao.org/4/w8212e/w8212e06.htm#2.1.2%20work%20study"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/es/blog/el-muestreo-del-trabajo-una-herramienta-estadistica-para-la-gestion-eficiente/": {
+    "question": "¿Cómo interpretar un muestreo del trabajo?",
+    "answer": "La proporción observada es el número de observaciones de una actividad dividido por el total de observaciones.",
+    "points": [
+      "Declara las categorías, el plan de observación, el tamaño de muestra y el nivel de confianza.",
+      "Con pocas observaciones o proporciones extremas, el intervalo normal simétrico puede ser inadecuado; revisa un intervalo binomial apropiado."
+    ],
+    "sources": [
+      {
+        "title": "NIST · Exact binomial confidence limits",
+        "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/exacbici.htm"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/en/blog/work-sampling-statistical-tool-efficient-management/": {
+    "question": "How should work sampling be interpreted?",
+    "answer": "The observed proportion is the number of observations of an activity divided by the total observations.",
+    "points": [
+      "State the categories, observation plan, sample size and confidence level.",
+      "With small samples or extreme proportions, a symmetric normal interval may be unsuitable; consider an appropriate binomial interval."
+    ],
+    "sources": [
+      {
+        "title": "NIST · Exact binomial confidence limits",
+        "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/exacbici.htm"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/es/blog/etapas-del-estudio-de-metodos-de-trabajo/": {
+    "question": "¿Qué se obtiene de un estudio de métodos?",
+    "answer": "Un método de trabajo documentado que se puede contrastar con la operación anterior.",
+    "points": [
+      "Registra y examina el procedimiento antes de proponer cambios.",
+      "Como comprobación práctica, compara calidad, seguridad y tiempo con condiciones equivalentes."
+    ],
+    "sources": [
+      {
+        "title": "FAO · Work study: scope and techniques",
+        "url": "https://www.fao.org/4/w8212e/w8212e06.htm#2.1.2%20work%20study"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/en/blog/stages-of-work-methods-study/": {
+    "question": "What does method study produce?",
+    "answer": "A documented working method that can be compared with the previous operation.",
+    "points": [
+      "Record and examine the procedure before proposing changes.",
+      "As a practical check, compare quality, safety and time under equivalent conditions."
+    ],
+    "sources": [
+      {
+        "title": "FAO · Work study: scope and techniques",
+        "url": "https://www.fao.org/4/w8212e/w8212e06.htm#2.1.2%20work%20study"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/es/blog/objetivos-del-estudio-del-trabajo/": {
+    "question": "¿Cuál es el objetivo del estudio del trabajo?",
+    "answer": "Mejorar cómo se ejecuta una operación y establecer una base de medición coherente.",
+    "points": [
+      "Separa el objetivo de mejorar el método del de medir el tiempo.",
+      "Como criterio de evaluación, define de antemano qué cambio comprobarás y con qué indicador."
+    ],
+    "sources": [
+      {
+        "title": "FAO · Work study: scope and techniques",
+        "url": "https://www.fao.org/4/w8212e/w8212e06.htm#2.1.2%20work%20study"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  },
+  "/en/blog/objectives-of-work-study/": {
+    "question": "What is the purpose of work study?",
+    "answer": "To improve how an operation is performed and establish a consistent basis for measurement.",
+    "points": [
+      "Separate improving the method from measuring the time.",
+      "As an evaluation criterion, decide in advance which change to verify and which measure to use."
+    ],
+    "sources": [
+      {
+        "title": "FAO · Work study: scope and techniques",
+        "url": "https://www.fao.org/4/w8212e/w8212e06.htm#2.1.2%20work%20study"
+      },
+      {
+        "title": "OIT / ILO · Introduction to work study, 4th revised edition",
+        "url": "https://www.ilo.org/publications/introduction-work-study-4th-revised-edition"
+      }
+    ],
+    "reviewedAt": "2026-11-06"
+  }
+}

@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import NaturalReader from '@/components/blog/NaturalReader.astro';
 import BlogPostSchema from '@/components/blog/BlogPostSchema.astro';
+import ArticleSummary from '@/components/blog/ArticleSummary.astro';
 import RelatedBlogPosts from '@/components/RelatedBlogPosts.astro';
 import HeroImage from '@/components/blog/HeroImage.astro';
 import ShareButtons from '@/components/blog/ShareButtons.astro';
@@ -255,7 +256,7 @@ export const prerender = true;
               {post?.data?.author && (
                 <>
                   <span>•</span>
-                  <span class="font-medium">{post.data.author}</span>
+                  <a class="font-medium underline underline-offset-2" href={`/${lang}/about/`}>{post.data.author}</a>
                 </>
               )}
             </div>
@@ -273,6 +274,7 @@ export const prerender = true;
       <section class="section pt-0 pb-8 md:pb-16 bg-white dark:bg-gray-900">
         <div class="container px-4 md:px-8 mx-auto">
           <div class="max-w-3xl mx-auto">
+            <ArticleSummary lang={lang} />
             <div class="article-content">
               {post?.body ? (
                 <StaticMarkdownRender content={post.body} lang={lang} />
@@ -372,7 +374,7 @@ export const prerender = true;
               {post?.data?.author && (
                 <>
                   <span>•</span>
-                  <span class="font-medium">{post.data.author}</span>
+                  <a class="font-medium underline underline-offset-2" href={`/${lang}/about/`}>{post.data.author}</a>
                 </>
               )}
             </div>
