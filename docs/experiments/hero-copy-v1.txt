@@ -1,0 +1,49 @@
+CRONOMETRAS — PRUEBA DEL PRIMER PÁRRAFO DE LA PORTADA
+
+Experimento: cronometras_hero_copy_v1
+Página: https://cronometras.com/es/
+Inicio: 10 de noviembre de 2026.
+Fin fijo: 5 de enero de 2027, 23:59:59 UTC. Después se muestra A y no se registran eventos del experimento.
+
+A: texto original completo del primer párrafo.
+B: Registra los tiempos de tu operación, aplica suplementos y exporta el informe a PDF o Excel.
+Se mantienen el resto de textos, botones, imágenes y formulario.
+
+HIPÓTESIS Y MEDICIÓN
+La versión breve puede aumentar el porcentaje de visitantes que solicita una demo.
+Asignación aleatoria 50/50 por navegador, conservada en localStorage hasta el fin.
+Solo participan visitantes que aceptan analítica y tienen almacenamiento disponible.
+No se asigna variante ni se emiten eventos del experimento sin ese permiso.
+Al retirar el permiso se elimina la asignación y se restaura A.
+La prueba no permite inferir resultados sobre visitantes que rechazan analítica.
+
+Métrica principal: total de usuarios de ab_demo_success / total de usuarios de ab_hero_view, separado por variante, para el periodo completo.
+Métrica secundaria: usuarios de ab_demo_click / usuarios de ab_hero_view.
+No sumar usuarios únicos diarios, ni usar form_submit como solicitud confirmada.
+El evento ab_demo_success se emite solo después de response.ok y success:true del API de guardado.
+El mismo usuario puede contar varias veces si cambia de dispositivo o borra sus cookies.
+
+ANÁLISIS
+Duración fija de ocho semanas; no detener al aparecer una ventaja inicial.
+No declarar ganador automáticamente. Al cierre revisar reparto A/B, volumen e intervalos de incertidumbre de la conversión; si la muestra es insuficiente, concluir inconcluso.
+No hay una tasa histórica de demos confirmadas que permita fijar una muestra fiable de antemano: antes de esta prueba solo se medían intentos de envío.
+El resultado puede ser inconcluso con el tráfico disponible.
+
+RESULTADOS
+GA4: propiedad 344700795; measurement ID G-7FCEX5D4FF.
+https://analytics.google.com/analytics/web/#/p344700795/explorations
+Dimensiones registradas: Experimento (experiment_id), Variante del experimento (experiment_variant), ambas de evento.
+Crear exploración libre: filas Variante del experimento; columnas Nombre del evento; valor Total de usuarios.
+Filtro Experimento coincide exactamente con cronometras_hero_copy_v1.
+Eventos: ab_hero_view, ab_demo_click, ab_demo_success.
+Los datos recientes y las dimensiones nuevas pueden tardar en aparecer.
+
+VERIFICACIÓN SIN ALTERAR RESULTADOS
+/es/?ab_preview=A y /es/?ab_preview=B fuerzan vista de prueba sin asignación ni eventos del experimento en esa página.
+node scripts/hero-copy-experiment.test.cjs
+La previsualización no debe usarse para estimar tráfico real.
+
+DESACTIVAR ANTES DEL FIN
+Eliminar el script de Base.astro y devolver Section a banner en es/index.astro; publicar.
+Los eventos de consentimiento y demo guardada por sí solos no envían datos.
+Reversión inmediata: restaurar el despliegue previo de Cloudflare Pages, registrado en los artefactos de la sesión.

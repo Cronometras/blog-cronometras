@@ -293,6 +293,7 @@ const t = translations[lang] || translations.es;
         window['ga-disable-' + window.GTAG_ID] = true;
         clearAnalyticsCookies();
       }
+      window.dispatchEvent(new CustomEvent('analytics-consent-change', { detail: { analytics: next.analytics } }));
       if (next.ads) startAds();
       else clearAdCookies();
       // Si se retira un permiso que ya estaba activo, recargar para detener el código cargado.

@@ -333,6 +333,7 @@ console.log("Cargando layout Base.astro");
          inicialización que rompía el handshake con GA4 cuando la env var GTAG_ID
          no estaba definida (Bug 2026-06-13 → 2026-06-25). -->
     <GoogleAnalytics />
+    <script is:inline defer src="/scripts/hero-copy-experiment.js"></script>
 
     <!-- title -->
     <title>

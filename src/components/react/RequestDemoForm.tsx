@@ -258,7 +258,8 @@ const RequestDemoForm: React.FC = () => {
           throw new Error('Respuesta no válida del servidor');
         }
 
-        if (response.ok) {
+        if (response.ok && data.success === true) {
+          window.dispatchEvent(new CustomEvent('demo-request-saved'));
           console.log("Respuesta OK, cambiando a estado isSubmitted=true");
 
           // Ocultar inmediatamente el encabezado del modal

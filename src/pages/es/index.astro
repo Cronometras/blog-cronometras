@@ -37,12 +37,18 @@ if (!homepage) {
 
 const { banner, sections = [], features, testimonial, how_it_works, colaboramos } = homepage.data;
 const call_to_action = homepage.data.call_to_action;
+// Keep all other hero content identical; only the opening paragraph is tested.
+const heroParagraphEnd = banner.content.indexOf('<p>');
+if (heroParagraphEnd < 0) throw new Error('Hero paragraph boundary missing');
+const experimentBanner = { ...banner, content:
+  '<span id="hero-copy-experiment">' + banner.content.slice(0, heroParagraphEnd) + '</span>' + banner.content.slice(heroParagraphEnd)
+};
 ---
 
 <Base>
   <!-- banner -->
   <section class="lg:mb-10 animate-fade-in">
-    <Section section={banner} />
+    <Section section={experimentBanner} />
   </section>
 
   <!-- key features -->
