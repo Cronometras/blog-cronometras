@@ -1,5 +1,6 @@
 ---
 import { getArticleImageSrcset } from "@/lib/articleImages";
+import { uniqueBlogPosts } from '@/lib/uniqueBlogPosts.mjs';
 import { getCollection } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import BlogListSchema from '@/components/blog/BlogListSchema.astro';
@@ -27,42 +28,17 @@ export const getStaticPaths = async () => {
   const paths = [];
 
   for (const lang of languages) {
-    // Filter MDX posts by language
-    const langMdxPosts = allMdxPosts.filter((post) => {
-      const slugValue = post.slug || post.id || '';
-      const postLang = slugValue.split('/')[0];
-      return postLang === lang && !post.data.draft && !post.data.noindex;
-    });
-
-    // Filter Firestore articles by language (based on slug prefix)
-    const langFirestorePosts = firestoreArticles.filter(p => {
-      const slugValue = p.slug || '';
-      const postLang = slugValue.split('/')[0];
-      return postLang === lang && !p.data.draft;
-    });
-
-    // Combine and normalize posts
-    const combinedPosts = [
-      ...langMdxPosts.map(post => {
-        const date = post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) 
-          ? post.data.pubDate 
-          : new Date();
-        return {
-          ...post,
-          source: 'mdx' as const,
-          sortDate: date.valueOf(),
-        };
-      }),
-      ...langFirestorePosts.map(post => {
-        const date = post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime()) 
-          ? post.data.pubDate 
-          : new Date();
-        return {
-          ...post,
-          sortDate: date.valueOf(),
-        };
-      }),
-    ];
+    // Match article routing: Firestore takes precedence over its MDX copy.
+    // Deduplicate before filtering and pagination so counts and categories agree.
+    const combinedPosts = uniqueBlogPosts([...firestoreArticles, ...allMdxPosts])
+      .filter(post => (post.slug || post.id || '').split('/')[0] === lang
+        && !post.data.draft && !post.data.noindex)
+      .map(post => ({
+        ...post,
+        source: post.source || 'mdx',
+        sortDate: post.data.pubDate instanceof Date && !isNaN(post.data.pubDate.getTime())
+          ? post.data.pubDate.valueOf() : 0,
+      }));
 
     // Sort by date, most recent first
     const sortedPosts = combinedPosts.sort((a, b) => b.sortDate - a.sortDate);

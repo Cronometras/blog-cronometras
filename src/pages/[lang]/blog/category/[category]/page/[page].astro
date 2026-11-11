@@ -1,5 +1,6 @@
 ---
 import { getArticleImageSrcset } from "@/lib/articleImages";
+import { uniqueBlogPosts } from '@/lib/uniqueBlogPosts.mjs';
 import { getCollection } from 'astro:content';
 import { getFirestoreArticles } from '@/lib/firestoreArticles';
 import Base from '@/layouts/Base.astro';
@@ -10,7 +11,7 @@ import { slugify } from '@/utils/slugify';
 import { getAllCategories, normalizeCategoryName, denormalizeCategoryName } from '@/utils/categories';
 
 export async function getStaticPaths() {
-  const allPosts = [...await getCollection('blog'), ...(await Promise.all([getFirestoreArticles('es'), getFirestoreArticles('en')])).flat()];
+  const allPosts = uniqueBlogPosts([...(await Promise.all([getFirestoreArticles('es'), getFirestoreArticles('en')])).flat(), ...await getCollection('blog')]);
   const postsPerPage = 30; // Mostrar 30 entradas por página
   const languages = ['es', 'en'];
   const paths = [];
@@ -30,7 +31,7 @@ export async function getStaticPaths() {
         const postLang = slugValue.split('/')[0];
         const postCategory = post.data.category;
         return postLang === lang && 
-               !post.data.draft && 
+               !post.data.draft && !post.data.noindex &&
                postCategory && 
                normalizeCategoryName(postCategory) === normalizedCategory;
       });

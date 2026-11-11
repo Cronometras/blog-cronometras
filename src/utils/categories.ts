@@ -1,15 +1,16 @@
+import { uniqueBlogPosts } from '@/lib/uniqueBlogPosts.mjs';
 import { getCollection } from 'astro:content';
 import { getFirestoreArticles } from '@/lib/firestoreArticles';
 
 // Función para obtener todas las categorías únicas de los artículos del blog
 export async function getAllCategories(lang: string): Promise<string[]> {
-  const allPosts = [...await getCollection('blog'), ...await getFirestoreArticles(lang === 'en' ? 'en' : 'es')];
+  const allPosts = uniqueBlogPosts([...await getFirestoreArticles(lang === 'en' ? 'en' : 'es'), ...await getCollection('blog')]);
   
   // Filtrar por idioma y que no sean borradores
   const langPosts = allPosts.filter(post => {
     const slugValue = post.slug || post.id || '';
     const postLang = slugValue.split('/')[0];
-    return postLang === lang && !post.data.draft;
+    return postLang === lang && !post.data.draft && !post.data.noindex;
   });
   
   // Extraer todas las categorías y eliminar duplicados

@@ -1,6 +1,7 @@
 ---
 // RelatedBlogPosts.astro
 // Componente que muestra artículos del blog relacionados con tarjetas visuales
+import { uniqueBlogPosts } from '@/lib/uniqueBlogPosts.mjs';
 import { getCollection } from 'astro:content';
 import { getFirestoreArticles } from '@/lib/firestoreArticles';
 import { getArticleImageSrcset } from '@/lib/articleImages';
@@ -84,7 +85,7 @@ const firestorePostsArray: BlogPost[] = language === 'es' ? firestoreArticles.ma
 }) : [];
 
 // Combinamos todos los posts
-let allPosts: BlogPost[] = [...blogPostsArray, ...firestorePostsArray];
+let allPosts: BlogPost[] = uniqueBlogPosts([...firestorePostsArray, ...blogPostsArray]);
 
 // Excluimos el artículo actual si se proporciona
 if (currentSlug) {
