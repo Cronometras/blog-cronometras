@@ -37,3 +37,6 @@ sa.json
 !/output/imagegen/saturation.json
 !/output/imagegen/optimization-report.json
 !/output/imagegen/screens/
+
+# ts build artifact
+tsconfig.tsbuildinfo
